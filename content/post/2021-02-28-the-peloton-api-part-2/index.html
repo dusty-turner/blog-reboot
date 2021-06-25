@@ -13,8 +13,8 @@ tags:
 - peloton
 - tidyverse
 - fitness
-cover: /img/bikecover.jpg
-draft: TRUE
+cover: /media/bikecover.jpg
+draft: FALSE
 ---
 
 
@@ -48,7 +48,7 @@ draft: TRUE
 <h1>Get the data</h1>
 <p>Lets start with how to access your peloton data.</p>
 <p>If you haven’t already, install the <code>pelotonR</code> library from github.</p>
-<pre class="r"><code>devtools::install_github(&quot;lgellis/pelotonR&quot;)</code></pre>
+<pre class="r"><code>devtools::install_github(&quot;lgellis/pelotonR&quot;, force = T)</code></pre>
 <div id="authenticate" class="section level2">
 <h2>Authenticate</h2>
 <p>Since I’m going to be pulling data for both my wife and I, I’ll authenticate both our accounts. Our passwords are saved in our <code>.RProfile</code> in a function I have saved there. If you’d like to do the same, this <a href="https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile">stack overflow post</a> is very helpful.</p>
@@ -56,8 +56,8 @@ draft: TRUE
 library(lubridate)
 library(pelotonR)
 
-me_auth_response &lt;- pelotonR::authenticate(username = &quot;dusty.s.turner@gmail.com&quot;, password = get_peloton_passwords(&quot;Dusty&quot;))
-wife_auth_response &lt;- pelotonR::authenticate(username = &quot;turner.jill.e@gmail.com&quot;, password = get_peloton_passwords(&quot;Jill&quot;))</code></pre>
+me_auth_response &lt;- pelotonR::authenticate(username = &quot;dusty.s.turner@gmail.com&quot;, password = Sys.getenv(&quot;my_passowrd&quot;))
+wife_auth_response &lt;- pelotonR::authenticate(username = Sys.getenv(&quot;wife_username&quot;), password = Sys.getenv(&quot;wife_passowrd&quot;))</code></pre>
 <p>To access our personal data, I need to extract our user IDs from our authentication.</p>
 <pre class="r"><code>me_user_id &lt;- me_auth_response %&gt;% jsonlite::parse_json() %&gt;% .$user_id
 
@@ -70,7 +70,7 @@ wife_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = wife_u
 <h2>Collect and organize data</h2>
 <p>The package helps retrieve a TON of data about your workouts. The first number is the workout count, but the second number is the number of columns returned about your data.</p>
 <pre class="r"><code>my_workout_df %&gt;% dim()</code></pre>
-<pre><code>## [1] 382 119</code></pre>
+<pre><code>## [1] 398 128</code></pre>
 <p>As we join and organize our data, I’m only going to select the columns that I end up using later on in the analysis. If you dig through the data frame, you might find more interesting information to use.</p>
 <pre class="r"><code>interesting &lt;-
   list(Dusty = my_workout_df,
@@ -85,9 +85,9 @@ wife_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = wife_u
          peloton.ride.total_workouts, peloton.ride.difficulty_estimate, peloton.ride.scheduled_start_time,instructor.name) </code></pre>
 <p>You’ll notice that I did several pre-processing steps.</p>
 <ol style="list-style-type: decimal">
-<li><p>I removed the work <code>workout</code> from all column names.</p></li>
+<li><p>I removed the word <code>workout</code> from all column names.</p></li>
 <li><p>I converted the ride duration from seconds to minutes. Minutes are a more familiar workout length than seconds for Peloton riders.</p></li>
-<li><p>I converted the <code>total_work</code> from Joules to Kilojoules. A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know. As a quick asside, riders produce wattage with their bike. If you sustain 1000 watts for 1 second you do 1 KJ of work. Okay, enough physics for today….</p></li>
+<li><p>I converted the <code>total_work</code> from Joules to Kilojoules. A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know. As a quick aside, riders produce wattage with their bike. If you sustain 1000 watts for 1 second you do 1 KJ of work. Okay, enough physics for today….</p></li>
 </ol>
 </div>
 </div>
@@ -100,14 +100,14 @@ wife_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = wife_u
 <pre><code>## # A tibble: 8 x 3
 ##   fitness_discipline Dusty  Jill
 ##   &lt;chr&gt;              &lt;int&gt; &lt;int&gt;
-## 1 cycling              258   862
+## 1 cycling              272  1017
 ## 2 meditation             3     2
-## 3 strength               1    75
-## 4 stretching            99    86
-## 5 yoga                  21     2
-## 6 bike_bootcamp          0     3
+## 3 strength               1   154
+## 4 stretching           101    90
+## 5 yoga                  21     6
+## 6 bike_bootcamp          0     6
 ## 7 cardio                 0     3
-## 8 running                0    11</code></pre>
+## 8 running                0    15</code></pre>
 <p>I’d like to limit most of the future exploration to only cycling classes. I’d like to also have the option of only looking at rides lasting 20 minutes or longer. To support this filter that I’ll need to do over and over, I’ll set up a function that does the following:</p>
 <ol style="list-style-type: decimal">
 <li>Selects only cycling classes</li>
@@ -324,7 +324,7 @@ interesting %&gt;%
   geom_text(aes(label = n)) +
   labs(x = &quot;Weekday&quot;, y = &quot;Hour&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>It is clear that my wife is a motivated morning rider while I’m more likely to ride in the evening. On weekends our workouts are more spread out as we are gettinga workout in when we can find space.</p>
+<p>It is clear that my wife is a motivated morning rider while I’m more likely to ride in the evening. On weekends our workouts are more spread out as we are getting a workout in when we can find space.</p>
 <div id="what-weekday-do-we-like-and-how-well-do-we-perform" class="section level3">
 <h3>What weekday do we like and how well do we perform?</h3>
 <p>I’d like to know which weekday we bike the most in and if there is a specific day that we perform better?</p>
@@ -357,7 +357,7 @@ interesting %&gt;%
        title = &quot;Proportion of Rides on Each Day \nColored by Total Minutes Spent Riding&quot;,
        subtitle = &quot;Label is Average KJ / Min on that day&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p>Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays. Our performance seems to dip on the weekends. Maybe we take it easy then to recover from our hrd weeks.</p>
+<p>Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays. Our performance seems to dip on the weekends. Maybe we take it easy then to recover from our hard weeks.</p>
 </div>
 </div>
 <div id="improvement-over-time" class="section level2">
@@ -528,7 +528,7 @@ full_join(
   geom_point(aes(x = median_difficulty), color = &quot;#B32134&quot;, size = 4) +
   geom_point(aes(x = max_difficulty), color = &quot;green&quot;, size = 4) +
   geom_point(aes(x = min_difficulty), color = &quot;green&quot;, size = 4) +
-  scale_x_continuous(breaks = c(4:10), limits = c(4,10)) +
+  scale_x_continuous(breaks = c(4:10)) +
   labs(x = &quot;Ride Difficulty Rating&quot;, y = &quot;&quot;, title = &quot;Difficulty ratings for each rider&quot;,
        subtitle = &quot;Green: max and min difficulty \nRed: median difficulty&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
@@ -542,7 +542,7 @@ full_join(
 <pre><code>## # A tibble: 2 x 5
 ##   Person peloton.ride.difficu~ instructor.name start_date peloton.ride.schedule~
 ##   &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;           &lt;date&gt;     &lt;dttm&gt;                
-## 1 Jill                    9.61 Robin Arzón     2020-06-01 2020-05-30 11:10:00   
+## 1 Jill                    9.60 Robin Arzón     2020-06-01 2020-05-30 11:10:00   
 ## 2 Dusty                   9.43 Olivia Amato    2021-01-16 2020-01-18 14:00:00</code></pre>
 <p>I’m going to have to find this ride - I can’t be left behind!</p>
 </div>

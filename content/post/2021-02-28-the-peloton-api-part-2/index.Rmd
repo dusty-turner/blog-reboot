@@ -14,7 +14,7 @@ tags:
 - tidyverse
 - fitness
 cover: /media/bikecover.jpg
-draft: TRUE
+draft: FALSE
 ---
 
 
@@ -75,7 +75,7 @@ library(lubridate)
 library(pelotonR)
 
 me_auth_response <- pelotonR::authenticate(username = "dusty.s.turner@gmail.com", password = Sys.getenv("my_passowrd"))
-wife_auth_response <- pelotonR::authenticate(username = "turner.jill.e@gmail.com", password = Sys.getenv("wife_password"))
+wife_auth_response <- pelotonR::authenticate(username = Sys.getenv("wife_username"), password = Sys.getenv("wife_passowrd"))
 ```
 
 To access our personal data, I need to extract our user IDs from our authentication. 
@@ -119,11 +119,11 @@ interesting <-
 
 You'll notice that I did several pre-processing steps.  
 
-1. I removed the work `workout` from all column names.
+1. I removed the word `workout` from all column names.
 
 2. I converted the ride duration from seconds to minutes.  Minutes are a more familiar workout length than seconds for Peloton riders.
 
-3. I converted the `total_work` from Joules to Kilojoules.  A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know.  As a quick asside, riders produce wattage with their bike.  If you sustain 1000 watts for 1 second you do 1 KJ of work.  Okay, enough physics for today....
+3. I converted the `total_work` from Joules to Kilojoules.  A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know.  As a quick aside, riders produce wattage with their bike.  If you sustain 1000 watts for 1 second you do 1 KJ of work.  Okay, enough physics for today....
 
 # Dig into the data!
 
@@ -396,7 +396,7 @@ interesting %>%
   labs(x = "Weekday", y = "Hour")
 ```
 
-It is clear that my wife is a motivated morning rider while I'm more likely to ride in the evening.  On weekends our workouts are more spread out as we are gettinga workout in when we can find space.  
+It is clear that my wife is a motivated morning rider while I'm more likely to ride in the evening.  On weekends our workouts are more spread out as we are getting a workout in when we can find space.  
 
 ### What weekday do we like and how well do we perform?
 
@@ -431,7 +431,7 @@ interesting %>%
        subtitle = "Label is Average KJ / Min on that day")
 ```
 
-Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays.  Our performance seems to dip on the weekends.  Maybe we take it easy then to recover from our hrd weeks.  
+Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays.  Our performance seems to dip on the weekends.  Maybe we take it easy then to recover from our hard weeks.  
 
 ## Improvement over time
 
@@ -628,7 +628,7 @@ interesting %>%
   geom_point(aes(x = median_difficulty), color = "#B32134", size = 4) +
   geom_point(aes(x = max_difficulty), color = "green", size = 4) +
   geom_point(aes(x = min_difficulty), color = "green", size = 4) +
-  scale_x_continuous(breaks = c(4:10), limits = c(4,10)) +
+  scale_x_continuous(breaks = c(4:10)) +
   labs(x = "Ride Difficulty Rating", y = "", title = "Difficulty ratings for each rider",
        subtitle = "Green: max and min difficulty \nRed: median difficulty")
 
