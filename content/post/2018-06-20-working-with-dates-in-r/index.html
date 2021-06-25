@@ -1,0 +1,96 @@
+---
+title: Working with Dates in R
+author: Dusty Turner
+date: '2018-06-20'
+slug: dates-in-r
+categories:
+  - beatnavy
+  - lubridate
+  - tidyverse
+tags:
+  - beatnavy
+  - lubridate
+  - tidyverse
+# output: 
+  # blogdown::html_page:
+    # toc: TRUE
+    # toc_depth: 1
+    # dev: "svg"
+    # theme: lumen
+    # highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+
+
+
+<div id="a-little-about-dates-in-r" class="section level3">
+<h3>A Little About Dates in R</h3>
+<p>Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.</p>
+<p>There are 3 date/time classes are built in to R<br />
+- Date<br />
+- POSIXct<br />
+- POSIXlt</p>
+<div id="base-r" class="section level4">
+<h4>Base R</h4>
+<p>First, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect. Below are several examples. You can look at all the possible format and codes by running <code>?strptime</code> in your R console.</p>
+<pre class="r"><code>strptime(&quot;October 16, 1984&quot;, format = &quot;%B %e, %Y&quot;)</code></pre>
+<pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
+<pre class="r"><code>strptime(&quot;16 October, 1984&quot;, format = &quot;%e %B, %Y&quot;)</code></pre>
+<pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
+<pre class="r"><code>strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
+<pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
+<pre class="r"><code>class(strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;))</code></pre>
+<pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
+<pre class="r"><code>birthday = strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
+<p>As you can see, the <code>strptime</code> command recognizes your string as a <code>POSIXlt POSIXt</code> class.</p>
+</div>
+</div>
+<div id="lubridate" class="section level3">
+<h3>lubridate</h3>
+<p>A second and easier way to have R recognize dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
+<pre class="r"><code>library(lubridate)</code></pre>
+<p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
+<pre class="r"><code>mdy(&quot;June 14, 2018&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
+<pre class="r"><code>dmy(&quot;14 June, 2018&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
+<pre class="r"><code>dmy(&quot;14-- June, 2018&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
+<pre class="r"><code>class(dmy(&quot;14-- June, 2018&quot;))</code></pre>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<p>You’ll notice that lubridate creates a <code>date</code> class. To change it into <code>POSIXlt POSIXt</code> format, wrap your text with the following code.</p>
+<pre class="r"><code>class(as.POSIXlt(mdy(&quot;June 14, 2018&quot;)))</code></pre>
+<pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
+<p>We also need to ensure our date is the correct timezone. This would be more important if our date had a time included.</p>
+<pre class="r"><code>date = as.POSIXlt(dmy(&quot;14 June, 2018&quot;)) 
+date</code></pre>
+<pre><code>## [1] &quot;2018-06-14 UTC&quot;</code></pre>
+<pre class="r"><code>date = force_tz(date, tzone = &quot;America/New_York&quot;)
+date</code></pre>
+<pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
+<p>When a date vector is of class <code>as.POSIXlt</code>, all the information is stored as a list. You can also extract specific information from the list as well.</p>
+<pre class="r"><code>date</code></pre>
+<pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
+<pre class="r"><code>unlist(date)</code></pre>
+<pre><code>##      sec      min     hour     mday      mon     year     wday     yday 
+##      &quot;0&quot;      &quot;0&quot;      &quot;0&quot;     &quot;14&quot;      &quot;5&quot;    &quot;118&quot;      &quot;4&quot;    &quot;164&quot; 
+##    isdst     zone   gmtoff 
+##      &quot;1&quot;    &quot;EDT&quot; &quot;-14400&quot;</code></pre>
+<pre class="r"><code>date$mon</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>month(date)</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="r"><code>date$year</code></pre>
+<pre><code>## [1] 118</code></pre>
+<pre class="r"><code>year(date)</code></pre>
+<pre><code>## [1] 2018</code></pre>
+<p>You can manipulate these date vectors as well.</p>
+<pre class="r"><code>date - birthday</code></pre>
+<pre><code>## Time difference of 12294 days</code></pre>
+<pre class="r"><code>birthday + hours(4)</code></pre>
+<pre><code>## [1] &quot;1984-10-16 04:00:00 EDT&quot;</code></pre>
+<pre class="r"><code>birthday + days(4)</code></pre>
+<pre><code>## [1] &quot;1984-10-20 EDT&quot;</code></pre>
+<pre class="r"><code>date + years(4) + months(9)</code></pre>
+<pre><code>## [1] &quot;2023-03-14 EDT&quot;</code></pre>
+</div>

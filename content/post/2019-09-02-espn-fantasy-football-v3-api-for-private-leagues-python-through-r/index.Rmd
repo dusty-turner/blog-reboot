@@ -1,0 +1,234 @@
+---
+title: 'ESPN Fantasy Football V3 API for Private Leagues: Python Through R'
+author: Dusty Turner
+date: '2019-09-02'
+slug: espn-fantasy-football-v3-api-for-private-leagues-Python-through-r
+categories:
+  - fantasy football
+  - tidyverse
+  - Python
+  - ESPN API
+tags:
+  - fantasy football
+  - tidyverse
+  - Python
+  - ESPN API
+cover: /media/football.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+### Accessing ESPN Fantasy Football for Private Leagues
+
+In my previous [post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/), I explained how to access the ESPN Fantasy Football's new (V3) *public* API.  But what if your league manager does not make the league public?  Are you out of luck?
+
+In this post I'll explain how to pass 'cookies' to ESPN and access private league data.  
+
+To accomplish this, we'll use...
+
+- Python
+- `retriculate`
+- `purrr`
+
+####  Python?!  
+
+Yes - Believe it or not, though I'm an avid R user, I believe in using the best tool for the job.  I code in Python about as well as I speak Spanish.  I have to think really hard as I translate vocabulary, I don't always know what I'm saying, and I often have to repeat something verbatim that I read somewhere else.    
+
+Despite my best efforts to accomplish this in R, I simply have not been able to make it work yet. (Please let me know if you or someone else figures out how to do this!)  Again, major thanks to [Steve Morse](https://stmorse.github.io/) for [this post](https://stmorse.github.io/journal/espn-fantasy-v3.html).  Follow him on twitter @[thestevemo](https://twitter.com/thestevemo).  
+
+So, my motto here, to butcher a quote from "Tropic Thunder" is to, "never go full Python...."  In light of that, it gave me a great opportunity to learn `retriculate`.
+
+### Access Private League Data
+
+Take the steps below to access private leagues.  Again, if your league is public, you can access the API like [so](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/).
+
+#### Build URL
+
+To begin, we build the URL to access the API.  This is the same as if we access a public league.  Restating from my previous post - replace the `leagueID` with your private league ID.  In the 'tail' of the URL, we request different chunks of data from the API. These are all the elements of which I’m aware.  Feel free to shorten if you do not need to request all the data.
+
+```{r eval = TRUE, include=FALSE}
+base = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/"
+year = "2019"
+mid = "/segments/0/leagues/"
+leagueID = "89417258"
+tail = "?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore"
+url = paste0(base,year,mid,leagueID,tail)
+```
+
+```{r eval=FALSE, include=TRUE}
+base = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/"
+year = "2019"
+mid = "/segments/0/leagues/"
+leagueID = "12345678"
+tail = "?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore"
+url = paste0(base,year,mid,leagueID,tail)
+```
+
+#### Find Cookies
+
+The ESPN fantasy football API requires two cookies; `swid` and `espn_s2`.
+
+You can find both of these cookies in Chrome in the following path:
+
+Settings >> Privacy and Security >> Site Settings >> Cookies >> See All Cookies and Site Data
+
+They'll be listed among the 'ESPN' cookies.  You can find these two cookies similarly in other browsers.   
+
+```{r, evel = FALSE, include = TRUE}
+swid = "{cookie-with-curly-brackets-included}"
+espn_s2 =  "very%long%cookie%296%ish%characters%long%with%no%brackets%"
+```
+
+#### What Currently Does Not Work (R)
+
+```{r eval=FALSE, include=TRUE}
+ESPNGet <- httr::GET(url = url,
+                     httr::set_cookies(
+                       `swid` = "{cookie-with-curly-brackets-included}",
+                       `espn_s2` =  "very%long%cookie%296%characters%long%with%no%brackets%"
+                     ))
+ESPNGet$status_code
+```
+ 
+```{r echo=FALSE}
+ESPNGet <- httr::GET(url = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2018/segments/0/leagues/1314476?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore",
+                     httr::set_cookies(
+                       `swid` = "{cookie-with-curly-brackets-included}",
+                       `espn_s2` =  "very%long%cookie%296%characters%long%with%no%brackets%"
+                     ))
+ESPNGet$status_code
+```
+
+The status code is 401.  This means the request has been blocked and we cannot access the data through the API using this technique.
+
+#### What does work: Python in R
+
+Since we cannot use R to access the API, lets replicate [Steve](https://twitter.com/thestevemo)'s [work in Python](https://stmorse.github.io/journal/espn-fantasy-v3.html).  Since we want to manipulate and eventually visualize the data in R, lets access the data using Python code in R. 
+
+First, ensure Python is installed on your computer.  The latest release of Python should be located for [Windows](https://www.Python.org/downloads/windows/) or [MAC](https://www.python.org/downloads/mac-osx/) users.  
+
+Next, install the `reticulate` package with `install.packages("reticulate")` and call the library.  Thanks to [Kevin Ushey]("https://twitter.com/kevin_ushey") for the great package that helps Python illiterate people like me execute a few lines of Python code in R.
+
+```{r}
+library(reticulate)
+```
+
+Should future Python code not work, it could be because R is unable to find where Python is installed.  You can point R in the right direction with this call: `use_Python("/path/to/Python_folder")`
+
+The reticulate packages creates an R/Python marriage.  
+
+<!-- This is an image from the retriculate package documentation.   -->
+
+<!-- <center> -->
+
+<!-- ```{r echo=FALSE, fig.width=1} -->
+<!-- knitr::include_graphics("/reticulated_Python.png") -->
+<!-- ``` -->
+
+<!-- </center> -->
+
+<!-- Clever... -->
+
+**Note** The code below is Python.  According to the `reticulate` documentation, R and Python will pass variables back and forth between each other.  Pass R objects to Python by preceding the r variable with `r.`. Python objects pass to R by preceding the object with `py$`.
+
+In order to access the URL built from `r` code we write execute the following:
+
+```{python}
+r.url
+```
+
+#### Request Data Using Python
+
+In order to access the API, execute the code below with your cookies as explained above.
+
+```{python eval=FALSE, include=TRUE}
+import requests
+
+r = requests.get(r.url,
+                 cookies={"SWID": "{cookie-with-curly-brackets-included}",
+                          "espn_s2": "very%long%token%296%characters%long%with%no%brackets%" })
+d = r.json()
+r.status_code
+```
+
+```{python echo=FALSE}
+head = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/"
+year = 2019
+mid = "/segments/0/leagues/"
+league_id = 89417258
+tail = "?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore"
+
+url = str(head) + str(year) + str(mid) + str(league_id)  + str(tail)
+
+import requests
+
+r = requests.get(url,
+                 cookies={"SWID": "{78538BF1-DE01-4269-A101-AC98E7620E27}", "espn_s2": "AEAkBcMc5yFs%2F%2B2bGtQY3FRkzcS8Thx0EzchviB3lgydk3O3sMVMLqmFOtXFaQ2hmNBM%2Fgr96nTNCaXARIipCMaCdP8PFrECaA4QbfEHUVTFVLrCjaBmIMyhoXcEQfYm7v719d6uFDzWB4Yg2NAbuGgqQ7FrNMyLxzdFzPPGaNc8t2Ku6YbAc8wPmjkV5A%2BsHsSAXDw%2FP%2FFNByrgEBS3FO6MN0foPbGegXAXt71m2clo%2F1sf7sePPpsQKAQeLPj3BBWpaklLDKVBRTi%2FzKtHE2k5"})
+d = r.json()
+r.status_code
+```
+
+If you've provided the correct URL and cookies, you should receive status 200.  This means you have successfully accessed your league's private data.
+
+### Manipulate the Data
+
+Now that we have accessed private league ESPN Fantasy Football data, we need to get it in a usable format.  In my [previous post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/), because we were able to access our public league data using R code, our data was in the shape of a dataframe.  Using this technique, the data is in JSON format.  
+
+This is taylor made for `purrr`. We are able to parse the JSON and extract the data of interest. 
+
+#### Team Records
+
+The first basic piece of information to extract is team records.
+
+```{r echo=TRUE}
+library(tidyverse)
+library(purrr)
+TeamRecords =
+  py$d$teams %>%
+  map_df(magrittr::extract, c("location", "nickname", "id")) %>%
+  bind_cols(
+    py$d$teams %>%
+    map("record") %>%
+    map("overall") %>%
+    map_df(magrittr::extract, c("losses", "wins"))
+  ) %>%
+  unite(Team, c(location, nickname), sep = " ")
+```
+
+```{r echo=FALSE}
+TeamRecords %>%
+  kableExtra::kable() %>%
+  kableExtra::kable_styling(full_width = F)
+```
+
+Next, we'll extract the schedule.
+
+```{r, echo = TRUE}
+Schedule =
+py$d$schedule %>%
+  map_df(magrittr::extract, c("winner","matchupPeriodId")) %>%
+  bind_cols(
+    py$d$schedule %>%
+    map("away") %>%
+    map_df(magrittr::extract,c("teamId","totalPoints"))
+  ) %>%
+  bind_cols(
+    py$d$schedule %>%
+    map("home") %>%
+    map_df(magrittr::extract,c("teamId","totalPoints"))
+  )
+```
+
+```{r echo=FALSE}
+DT::datatable(Schedule)
+```
+
+### Future Posts
+
+In subsequent posts, I'll analyze our league and share the code so you can do the same.  In particular, I hope to explore...
+
+- Measures of luck: Does a team's record really indicate their quality?
+- The accuracy of ESPN's player projections.
+- How well player's perform vs their draft position.

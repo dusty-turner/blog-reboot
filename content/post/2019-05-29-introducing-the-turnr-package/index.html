@@ -1,0 +1,101 @@
+---
+title: Introducing The turnR Package
+author: Dusty Turner
+date: '2019-05-29'
+slug: introducing-the-turnr-package
+categories:
+  - beatnavy
+  - devtools
+  - roxygen
+tags:
+  - beatnavy
+  - devtools
+  - roxygen
+---
+
+
+
+<div id="inspiration" class="section level2">
+<h2>Inspiration</h2>
+<p>At the <a href="https://www.rstats.nyc/">2019 New York R Conference</a>, <a href="https://twitter.com/robinson_es">Emily Robinson</a> gave a great talk called <a href="https://www.rstats.nyc/2019/nyr/">“Everything You Wanted to Know About Making R Packages but Were Afraid to Ask”</a> (<em>Note: This link will be live once the video is published</em>).</p>
+<p>Emily Robinson is one of my ‘heros of R.’ I was honored to host her several years back a the United States Military Academy when she came to present her work on A/B Testing during her time at Esty.</p>
+<p><img src="images/esrobinson.jpeg" width="480" /></p>
+<p>I dabbled with creating a <a href="https://github.com/dusty-turner/puertoRicoR">package</a> before, but her talk made creating a package so much more tangible (and scale-able), and it pushed me over the edge to try again.</p>
+<p>During her talk, she also made reference to a new book to help package writing newbies like me.</p>
+<center>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+My favorite discovery of this week: there’s a new <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> packages book in the works! Now from <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw"><span class="citation">@JennyBryan</span></a> as well as <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw"><span class="citation">@hadleywickham</span></a>. Read it as it develops at <a href="https://t.co/bQIVwWPME4">https://t.co/bQIVwWPME4</a>. Especially excited about new chapter 2 showing full package development cycle (w/ usethis 📦)!
+</p>
+— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/1126869271160795137?ref_src=twsrc%5Etfw">May 10, 2019</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+<p>I now had all the encouragement I needed to give this a wholehearted, harty hack.</p>
+<p>I will spare all the frustrating details, but the appropriately named book, <a href="https://r-pkgs.org/index.html">“R Packages”</a> by <a href="%22https://twitter.com/hadleywickham%22">Hadley Wickham</a> and <a href="https://twitter.com/JennyBryan">Jenny Bryan</a> tells you all you need to know to get you started. <a href="https://r-pkgs.org/whole-game.html">Chapter 2</a> is the one-stop-shop I used to get my package off the ground. There is, of course, more to do to get this fully developed.</p>
+<p>One of Emily’s biggest pieces of advice that I took away from her talk was to come up with a good package name. It needed to be ‘googleable’ and memorable and there were several other important considerations for naming the package. Well, I don’t know how well I met all the criteria, but I am happy with the appropriatness of how much this package name reflects that I made it :).</p>
+</div>
+<div id="turnr" class="section level2">
+<h2>turnR</h2>
+<p>To download the <code>turnR</code> package, run the uncommented code below. Then call the package.</p>
+<pre class="r"><code># devtools::install_github(&quot;dusty-turner/turnR&quot;, force = TRUE)
+library(turnR)</code></pre>
+<div id="available-functions" class="section level3">
+<h3>Available Functions</h3>
+<div id="my-cat" class="section level4">
+<h4>My Cat</h4>
+<p>To get the package off the ground, I created a simple function inspired by my 4 year old daughter.</p>
+<pre class="r"><code>mycat(CatName = &quot;Garfield&quot;)</code></pre>
+<pre><code>## Your Cat&#39;s Name is Garfield 
+##    /\_/\
+##   ( o.o )
+##    &gt; ^ &lt;
+##   (     )
+##    ^   ^ 
+##    _____</code></pre>
+</div>
+<div id="ggplot-themes" class="section level4">
+<h4>ggplot themes</h4>
+<p>I also find myself making some of the same adjustments over and over again to my ggplots. In particular, I like to center the title and remove the legend for certain plots. Here is a look.</p>
+<pre class="r"><code>library(tidyverse)
+set.seed(256)
+data(&quot;diamonds&quot;) 
+
+diamonds %&gt;%
+  sample_frac(.1) %&gt;%
+  ggplot(aes(x=color,y=price,fill = color)) +
+  geom_violin() +
+  labs(x=&quot;Color&quot;,y=&quot;Price&quot;,title=&quot;Distribution of Diamond Price by Color&quot;, subtitle = &quot;Colored by Color&quot;) +
+  theme_turnR()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Sometimes, when my ‘x’ axis is a factor, the labels run over. This fixes that issue.</p>
+<pre class="r"><code>diamonds %&gt;%
+  ggplot(aes(x=cut,y=price,fill = cut)) +
+  geom_violin() +
+  labs(x=&quot;Cut&quot;,y=&quot;Price&quot;,title=&quot;Distribution of Diamond Price by Color&quot;, subtitle = &quot;Colored by Cut; Faceted by Color&quot;) +
+  theme_turnR_f() +
+  facet_wrap(~color)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="randomization-test" class="section level4">
+<h4>Randomization Test</h4>
+<p>Lastly, as an alternative to <code>t.test</code>, I often run a randomization test. It gets frustrating finding my old code over and over. So <code>turnR</code> package to the rescue!</p>
+<p>This test returns the probability that each null hypothesis is true along with the difference in means of each samples. It will also return all data under index 1: [1] (not shown).</p>
+<p>P Values (index 2)</p>
+<pre class="r"><code>x=rnorm(100,5,2)
+y=rnorm(100,5.1,1)
+randtest(x=x,y=y,fun = mean, reps = 1000)[2]</code></pre>
+<pre><code>## [[1]]
+##    p.x.less.than.y p.x.greater.than.y    two.sided.p.x=y 
+##              0.700              0.300              0.563</code></pre>
+<p>Average Difference in Means (index 3)</p>
+<pre class="r"><code>randtest(x=x,y=y,fun = mean, reps = 1000)[3]</code></pre>
+<pre><code>## [[1]]
+## [1] 0.1229674</code></pre>
+<p>And of course, it always helps to visualize the difference.</p>
+<pre class="r"><code>randtestviz(x=x,y=y,fun=mean,reps=1000)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>I expect more to follow in the future!</p>
+</div>
+</div>
+</div>

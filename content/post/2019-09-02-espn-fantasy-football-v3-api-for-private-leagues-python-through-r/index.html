@@ -1,0 +1,321 @@
+---
+title: 'ESPN Fantasy Football V3 API for Private Leagues: Python Through R'
+author: Dusty Turner
+date: '2019-09-02'
+slug: espn-fantasy-football-v3-api-for-private-leagues-Python-through-r
+categories:
+  - fantasy football
+  - tidyverse
+  - Python
+  - ESPN API
+tags:
+  - fantasy football
+  - tidyverse
+  - Python
+  - ESPN API
+cover: /media/football.jpg
+---
+
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index_files/jquery/jquery.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/datatables-binding/datatables.js"></script>
+<link href="{{< blogdown/postref >}}index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="{{< blogdown/postref >}}index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/crosstalk/js/crosstalk.min.js"></script>
+
+
+<div id="accessing-espn-fantasy-football-for-private-leagues" class="section level3">
+<h3>Accessing ESPN Fantasy Football for Private Leagues</h3>
+<p>In my previous <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">post</a>, I explained how to access the ESPN Fantasy Football’s new (V3) <em>public</em> API. But what if your league manager does not make the league public? Are you out of luck?</p>
+<p>In this post I’ll explain how to pass ‘cookies’ to ESPN and access private league data.</p>
+<p>To accomplish this, we’ll use…</p>
+<ul>
+<li>Python</li>
+<li><code>retriculate</code></li>
+<li><code>purrr</code></li>
+</ul>
+<div id="python" class="section level4">
+<h4>Python?!</h4>
+<p>Yes - Believe it or not, though I’m an avid R user, I believe in using the best tool for the job. I code in Python about as well as I speak Spanish. I have to think really hard as I translate vocabulary, I don’t always know what I’m saying, and I often have to repeat something verbatim that I read somewhere else.</p>
+<p>Despite my best efforts to accomplish this in R, I simply have not been able to make it work yet. (Please let me know if you or someone else figures out how to do this!) Again, major thanks to <a href="https://stmorse.github.io/">Steve Morse</a> for <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">this post</a>. Follow him on twitter @<a href="https://twitter.com/thestevemo">thestevemo</a>.</p>
+<p>So, my motto here, to butcher a quote from “Tropic Thunder” is to, “never go full Python….” In light of that, it gave me a great opportunity to learn <code>retriculate</code>.</p>
+</div>
+</div>
+<div id="access-private-league-data" class="section level3">
+<h3>Access Private League Data</h3>
+<p>Take the steps below to access private leagues. Again, if your league is public, you can access the API like <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">so</a>.</p>
+<div id="build-url" class="section level4">
+<h4>Build URL</h4>
+<p>To begin, we build the URL to access the API. This is the same as if we access a public league. Restating from my previous post - replace the <code>leagueID</code> with your private league ID. In the ‘tail’ of the URL, we request different chunks of data from the API. These are all the elements of which I’m aware. Feel free to shorten if you do not need to request all the data.</p>
+<pre class="r"><code>base = &quot;http://fantasy.espn.com/apis/v3/games/ffl/seasons/&quot;
+year = &quot;2019&quot;
+mid = &quot;/segments/0/leagues/&quot;
+leagueID = &quot;12345678&quot;
+tail = &quot;?view=mDraftDetail&amp;view=mLiveScoring&amp;view=mMatchupScore&amp;view=mPendingTransactions&amp;view=mPositionalRatings&amp;view=mSettings&amp;view=mTeam&amp;view=modular&amp;view=mNav&amp;view=mMatchupScore&quot;
+url = paste0(base,year,mid,leagueID,tail)</code></pre>
+</div>
+<div id="find-cookies" class="section level4">
+<h4>Find Cookies</h4>
+<p>The ESPN fantasy football API requires two cookies; <code>swid</code> and <code>espn_s2</code>.</p>
+<p>You can find both of these cookies in Chrome in the following path:</p>
+<p>Settings &gt;&gt; Privacy and Security &gt;&gt; Site Settings &gt;&gt; Cookies &gt;&gt; See All Cookies and Site Data</p>
+<p>They’ll be listed among the ‘ESPN’ cookies. You can find these two cookies similarly in other browsers.</p>
+<pre class="r"><code>swid = &quot;{cookie-with-curly-brackets-included}&quot;
+espn_s2 =  &quot;very%long%cookie%296%ish%characters%long%with%no%brackets%&quot;</code></pre>
+</div>
+<div id="what-currently-does-not-work-r" class="section level4">
+<h4>What Currently Does Not Work (R)</h4>
+<pre class="r"><code>ESPNGet &lt;- httr::GET(url = url,
+                     httr::set_cookies(
+                       `swid` = &quot;{cookie-with-curly-brackets-included}&quot;,
+                       `espn_s2` =  &quot;very%long%cookie%296%characters%long%with%no%brackets%&quot;
+                     ))
+ESPNGet$status_code</code></pre>
+<pre><code>## [1] 401</code></pre>
+<p>The status code is 401. This means the request has been blocked and we cannot access the data through the API using this technique.</p>
+</div>
+<div id="what-does-work-python-in-r" class="section level4">
+<h4>What does work: Python in R</h4>
+<p>Since we cannot use R to access the API, lets replicate <a href="https://twitter.com/thestevemo">Steve</a>’s <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">work in Python</a>. Since we want to manipulate and eventually visualize the data in R, lets access the data using Python code in R.</p>
+<p>First, ensure Python is installed on your computer. The latest release of Python should be located for <a href="https://www.Python.org/downloads/windows/">Windows</a> or <a href="https://www.python.org/downloads/mac-osx/">MAC</a> users.</p>
+<p>Next, install the <code>reticulate</code> package with <code>install.packages("reticulate")</code> and call the library. Thanks to <a href="%22https://twitter.com/kevin_ushey%22">Kevin Ushey</a> for the great package that helps Python illiterate people like me execute a few lines of Python code in R.</p>
+<pre class="r"><code>library(reticulate)</code></pre>
+<p>Should future Python code not work, it could be because R is unable to find where Python is installed. You can point R in the right direction with this call: <code>use_Python("/path/to/Python_folder")</code></p>
+<p>The reticulate packages creates an R/Python marriage.</p>
+<!-- This is an image from the retriculate package documentation.   -->
+<!-- <center> -->
+<!-- ```{r echo=FALSE, fig.width=1} -->
+<!-- knitr::include_graphics("/reticulated_Python.png") -->
+<!-- ``` -->
+<!-- </center> -->
+<!-- Clever... -->
+<p><strong>Note</strong> The code below is Python. According to the <code>reticulate</code> documentation, R and Python will pass variables back and forth between each other. Pass R objects to Python by preceding the r variable with <code>r.</code>. Python objects pass to R by preceding the object with <code>py$</code>.</p>
+<p>In order to access the URL built from <code>r</code> code we write execute the following:</p>
+<pre class="python"><code>r.url</code></pre>
+<pre><code>## &#39;http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/89417258?view=mDraftDetail&amp;view=mLiveScoring&amp;view=mMatchupScore&amp;view=mPendingTransactions&amp;view=mPositionalRatings&amp;view=mSettings&amp;view=mTeam&amp;view=modular&amp;view=mNav&amp;view=mMatchupScore&#39;</code></pre>
+</div>
+<div id="request-data-using-python" class="section level4">
+<h4>Request Data Using Python</h4>
+<p>In order to access the API, execute the code below with your cookies as explained above.</p>
+<pre class="python"><code>import requests
+
+r = requests.get(r.url,
+                 cookies={&quot;SWID&quot;: &quot;{cookie-with-curly-brackets-included}&quot;,
+                          &quot;espn_s2&quot;: &quot;very%long%token%296%characters%long%with%no%brackets%&quot; })
+d = r.json()
+r.status_code</code></pre>
+<pre><code>## 200</code></pre>
+<p>If you’ve provided the correct URL and cookies, you should receive status 200. This means you have successfully accessed your league’s private data.</p>
+</div>
+</div>
+<div id="manipulate-the-data" class="section level3">
+<h3>Manipulate the Data</h3>
+<p>Now that we have accessed private league ESPN Fantasy Football data, we need to get it in a usable format. In my <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">previous post</a>, because we were able to access our public league data using R code, our data was in the shape of a dataframe. Using this technique, the data is in JSON format.</p>
+<p>This is taylor made for <code>purrr</code>. We are able to parse the JSON and extract the data of interest.</p>
+<div id="team-records" class="section level4">
+<h4>Team Records</h4>
+<p>The first basic piece of information to extract is team records.</p>
+<pre class="r"><code>library(tidyverse)
+library(purrr)
+TeamRecords =
+  py$d$teams %&gt;%
+  map_df(magrittr::extract, c(&quot;location&quot;, &quot;nickname&quot;, &quot;id&quot;)) %&gt;%
+  bind_cols(
+    py$d$teams %&gt;%
+    map(&quot;record&quot;) %&gt;%
+    map(&quot;overall&quot;) %&gt;%
+    map_df(magrittr::extract, c(&quot;losses&quot;, &quot;wins&quot;))
+  ) %&gt;%
+  unite(Team, c(location, nickname), sep = &quot; &quot;)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Team
+</th>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+losses
+</th>
+<th style="text-align:right;">
+wins
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+’R’m Chair Quarterback
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Philly Chapmaniacs
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Plainsmen
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The OBJective Functions
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Analysis Paralysis
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Team Ward
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Compute This!
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Chief
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dallas The boys
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Palindrome Tikkit
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we’ll extract the schedule.</p>
+<pre class="r"><code>Schedule =
+py$d$schedule %&gt;%
+  map_df(magrittr::extract, c(&quot;winner&quot;,&quot;matchupPeriodId&quot;)) %&gt;%
+  bind_cols(
+    py$d$schedule %&gt;%
+    map(&quot;away&quot;) %&gt;%
+    map_df(magrittr::extract,c(&quot;teamId&quot;,&quot;totalPoints&quot;))
+  ) %&gt;%
+  bind_cols(
+    py$d$schedule %&gt;%
+    map(&quot;home&quot;) %&gt;%
+    map_df(magrittr::extract,c(&quot;teamId&quot;,&quot;totalPoints&quot;))
+  )</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80"],["AWAY","HOME","AWAY","HOME","HOME","HOME","AWAY","HOME","AWAY","AWAY","HOME","AWAY","AWAY","AWAY","HOME","AWAY","HOME","AWAY","AWAY","AWAY","HOME","AWAY","AWAY","AWAY","HOME","HOME","AWAY","HOME","AWAY","HOME","AWAY","AWAY","AWAY","HOME","AWAY","HOME","AWAY","HOME","HOME","AWAY","AWAY","AWAY","HOME","HOME","AWAY","HOME","AWAY","AWAY","HOME","AWAY","HOME","HOME","HOME","HOME","HOME","AWAY","HOME","AWAY","HOME","AWAY","AWAY","AWAY","HOME","HOME","AWAY","HOME","HOME","AWAY","HOME","HOME","HOME","HOME","AWAY","AWAY","HOME","HOME","HOME","HOME","AWAY","HOME"],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,14,14,14,14,15,15,15,15,15,16,16,16,16,16],[2,3,6,1,10,6,9,2,7,4,10,5,8,7,4,8,1,10,3,6,4,9,2,3,6,3,1,5,7,9,2,6,10,8,4,5,7,9,3,1,2,5,4,1,8,6,7,10,5,8,10,1,6,5,2,8,3,4,9,2,4,7,8,9,10,6,4,3,9,5,8,3,4,6,5,2,3,6,9,5],[137.62,123.52,134.74,109.3,129.56,115.1,135.72,72.56,135.94,144.92,120.46,124.9,153.64,132.76,121.32,122.1,121.68,135.88,126.3,104.6,130.04,100.22,172.24,118.04,145.72,96.42,132.74,66.6,124.24,116.12,128.62,113.86,122.98,108.26,94.9,100.54,129.58,126.28,103.78,145.1,116.84,116.1,125.64,121.28,114.9,114.38,143.52,154.94,110.72,152.08,124.74,113.78,128.62,77.92,83.36,140.24,99.4,112.86,93.88,154.52,76.84,106.8,114.76,118.58,122.94,123.16,118.58,124.1,100,76.64,135.78,105.54,130.86,139.96,107.92,105.56,101.06,117.92,137.54,75.7],[9,7,4,5,8,3,1,10,5,8,1,3,6,9,2,5,7,4,9,2,7,5,8,1,10,2,6,10,8,4,1,5,7,9,3,2,6,10,8,4,7,9,6,3,10,9,3,2,1,4,3,9,8,7,4,1,5,10,7,6,5,1,2,3,6,7,8,10,2,1,7,2,10,9,1,7,8,4,10,1],[97.9,128.22,108.16,119.8,156.1,142.52,99.98,125.3,120.4,108.86,185.78,77.36,121.32,111.1,124.64,110.18,123.8,110.24,102.98,90.1,130.66,81.1,155.02,73.66,197.7,114.6,122.6,138.14,103.76,134.22,93.12,35.34,118.04,136.76,85.04,140.36,107.5,160.86,107.06,117.18,76.36,113.94,161.46,122.42,105.1,129.82,89.88,126.52,122.22,106.66,137.98,115.58,130.54,116.86,85.62,128.76,106.92,82.74,94.14,139.18,60.22,91.5,123.2,135.7,82.32,146.6,127.46,119.44,123.98,97.8,167.64,126.52,126.76,124.72,176.58,110.66,139.96,170.28,102.66,160.72]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>winner<\/th>\n      <th>matchupPeriodId<\/th>\n      <th>teamId...3<\/th>\n      <th>totalPoints...4<\/th>\n      <th>teamId...5<\/th>\n      <th>totalPoints...6<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="future-posts" class="section level3">
+<h3>Future Posts</h3>
+<p>In subsequent posts, I’ll analyze our league and share the code so you can do the same. In particular, I hope to explore…</p>
+<ul>
+<li>Measures of luck: Does a team’s record really indicate their quality?</li>
+<li>The accuracy of ESPN’s player projections.</li>
+<li>How well player’s perform vs their draft position.</li>
+</ul>
+</div>

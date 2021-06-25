@@ -1,0 +1,298 @@
+---
+title: Mathlete Fantasy Football Analysis
+author: Dusty Turner
+date: '2018-12-29'
+slug: mathlete-fantasy-football-analysis2018
+categories:
+  - army math
+  - beatnavy
+  - ESPN API
+  - YAHOO API
+tags:
+  - army math
+  - beatnavy
+  - ESPN API
+  - YAHOO API
+output:
+  blogdown::html_page:
+    toc: FALSE
+    # theme: lumen
+    # highlight: tango
+---
+
+# Introduction
+
+In my previous [post](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/), I worked through how to get your league information from the ESPN and YAHOO APIs.  
+
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season.  As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers.  This, of course, is too many for one league so we split the teams across two leagues.  I managed an ESPN league, and a colleague managed a yahoo league.  
+
+This post will pick up where last post left off and do some analysis between the two leagues.
+
+I have hid my code to improve readability.  If you are interested in the code for this script, send me a note, as I am happy to share.  
+
+<!-- ## Libraries -->
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(DT)
+```
+
+# The Data
+
+The data I use for this post comes from two leagues - one from yahoo and one from ESPN.  It is all available below.
+
+```{r echo=FALSE, message=FALSE}
+ffdata = read_csv("espndf.csv") %>%
+  rbind(
+    read_csv("yahoodf.csv"))
+ffdata %>% datatable()
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+gamewinnerdf = ffdata %>%
+  group_by(week) %>%
+  mutate(Winner = ifelse(TeamA>TeamB,PointsA,PointsB)) %>%
+  mutate(Loser = ifelse(TeamA>TeamB,PointsB,PointsA)) %>%
+  mutate(Delta = pmax(PointsA,PointsB)-pmin(PointsA,PointsB)) %>%
+  arrange(week)
+gamewinnerdf %>% datatable()
+```
+
+
+# Awards
+
+Every week, we hand out prizes for the highest overall point total and lowest.  
+
+## Highest Weekly Point Total
+
+The prizes for the highest points across both leagues is the honor of posessing the "Mug of my Mug" for the week.  Yes, as you can see below, it is a mug with a picture of my face.  The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face.  I earned my concussion and facial fracture in a softball colision.  Yes, I was called out...
+
+```{r echo=FALSE, fig.width=1}
+knitr::include_graphics("/mug.JPG")
+```
+
+<!-- So who are the weekly highest scorers?   -->
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow = 
+bind_rows(
+gamewinnerdf %>%
+  select(TeamA,TeamB,PointsA, week, league) %>%
+  rename(Team1 = TeamA,Team2 = TeamB,Score = PointsA),
+gamewinnerdf %>%
+  select(TeamB,TeamA,PointsB, week, league) %>%
+  rename(Team1 = TeamB,Team2 = TeamA,Score = PointsB)) 
+
+# oneteameachrow %>% datatable()
+```
+
+Now, who wins the mug each week?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(1,Score) %>% 
+  select(Team1, Score, week, league) %>%
+  arrange(week) %>% as.data.frame()
+```
+
+## Lowest Weekly Point Total
+
+In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+knitr::include_graphics("images/plunger.JPG")
+```
+
+Here are the plunger winners.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(-1,Score) %>%
+  select(Team1, Score, week, league) %>%
+  arrange(week) %>% as.data.frame()
+```
+
+# Which Leagues are better?  
+
+Lets look at several metrics.
+
+## Most Mugs
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(1,Score) %>% 
+  select(Team1, Score, week, league) %>%
+  arrange(week) %>% 
+  group_by(league) %>%
+  summarise(TotalMugs = n()) %>%
+  as.data.frame()
+```
+
+## Most Plungers
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(-1,Score) %>%
+  select(Team1, Score, week, league) %>%
+  arrange(week) %>% 
+    group_by(league) %>%
+  summarise(TotalMugs = n()) %>%
+  as.data.frame()
+
+```
+
+## League Points
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week,league) %>%
+  summarise(WeeklyPoints = sum(Score)) %>% as.data.frame()
+```
+
+# Who is good, and who is lucky?
+
+One of the more frustrating things in fantasy football is to score a ton of points, only to play the team who scores the most in your league.  Lets look at some measures of luck.
+
+## Who played the most mugs?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(-1,Score) %>%
+  group_by(Team2) %>%
+  summarise(LostAgainstTheMug = n()) %>%
+  arrange(desc(LostAgainstTheMug))
+```
+
+Those poor stampeders just couldn't catch a break!
+
+## Who played the most plungers?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(1,Score) %>%
+  group_by(Team2) %>%
+  summarise(BeatTheWeakling = n()) %>%
+  arrange(desc(BeatTheWeakling))
+```
+
+Man, I wish I could catch some luck.  Good work Big Gronkowski for beating down the little guys...  
+
+## Overall Points Scored vs Winning Percentage
+
+First, who had the highest winning percentage?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+winpercent = gamewinnerdf %>%
+  mutate(win = ifelse(PointsA>PointsB,TeamA,TeamB)) %>%
+  group_by(win,league) %>%
+  summarise(wins = n(), losses = 16-n(), winpercent = wins/16) %>%
+  arrange(desc(winpercent)) 
+  # select(win, winpercent)
+winpercent %>% left_join(
+
+oneteameachrow %>% group_by(Team1) %>% summarise(SeasonPointsScored = sum(Score))
+   , by = c("win" = "Team1")
+) %>% select(-wins, -losses)
+```
+It looks like some teams won more than they should have.  
+
+Sometimes you can get lucky if you play teams that don't score much.  What would everyone's record be if you played every team every week.  That should take some "luck" out of it.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+winpercent %>% select(-league) %>% left_join(
+
+oneteameachrow %>%
+  group_by(week) %>%
+  mutate(WeekWins = rank(Score)-1) %>%
+  mutate(WeekLoses = 20-rank(Score)) %>%
+  ungroup() %>%
+  group_by(Team1, league) %>%
+  summarise(WeekWins = sum(WeekWins),WeekLoses = floor(sum(WeekLoses))) %>%
+  mutate(EveryWeekEveryTeamWinPercent = WeekWins/(WeekWins+WeekLoses)) %>%
+  arrange(desc(EveryWeekEveryTeamWinPercent)) , by = c("win" = "Team1")
+)  %>% select(-c(wins,losses))
+```
+
+### Who scored the most and least points?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+mostandleastpoints = 
+oneteameachrow %>%
+  group_by(Team1, league) %>%
+  summarise(SeasonPoints = sum(Score)) %>%
+  rename(Team = Team1) %>%
+  left_join(
+    oneteameachrow %>%
+      group_by(Team2, league) %>%
+        rename(Team = Team2) %>%
+      summarise(SeasonPointsAgainst = sum(Score))
+  ) 
+mostandleastpoints %>%
+  as.data.frame()
+```
+
+### Points For vs Points Against
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(ggrepel)
+mostandleastpoints %>%
+  left_join(winpercent %>% select(win,wins), by = c("Team"="win")) %>%
+
+  ggplot(aes(x=SeasonPoints,y=SeasonPointsAgainst, color = league)) +
+  geom_point() +
+  # geom_abline(slope = 1) +
+  geom_hline(aes(yintercept = mean(SeasonPointsAgainst)),linetype = 2) +
+  geom_vline(aes(xintercept = mean(SeasonPoints)),linetype = 2) +
+  geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  labs(title = "Points For vs Points Against: Who is lucky?", x = "Points For", y = "Points Against",caption = "ESPN in Red and YAHOO in Green (Wins)") + 
+  theme(legend.position="none") +
+  annotate("text", x = 2175, y = 1975, label = "Good and Unlucky", size = 3) +
+  annotate("text", x = 2175, y = 1550, label = "Good and Lucky", size = 3) +
+  annotate("text", x = 1650, y = 1975, label = "Bad and Unlucky", size = 3) +
+  annotate("text", x = 1650, y = 1550, label = "Bad and Lucky", size = 3) 
+```
+
+It looks like Gosset's T-Down scored a lot and had a lot of points scored against him.  Its impressive he pulled off 11 wins.  
+
+On the other hand, Brady for President scored a lot of points but only had a moderate amount scored against him - This is probably what allowed him to win 12 games.
+
+However, Last Man Standin and The Big Gronkowski didn't have that many points scored against them, so they made up for it by not scoring that many points themselves.  That was nice of you guys. 
+
+And Interestingly enought... R'm Chair Quarterback (me) is just about as average as it gets... I always strive to be mediocre.
+
+## Winning Percentage vs Every Team Every Week
+
+Another measure of luck is comparing a team's win percentage against how well a team would have done if they played every team every week.
+
+### Every Team Every Week Win Percentage
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  mutate(WeekWins = rank(Score)-1) %>%
+  mutate(WeekLoses = 20-rank(Score)) %>%
+  ungroup() %>%
+  group_by(Team1, league) %>%
+  summarise(WeekWins = sum(WeekWins),WeekLoses = sum(WeekLoses)) %>%
+  arrange(WeekWins) %>% 
+  rename(Team = Team1) %>%
+  mutate(OverallPerc = WeekWins/(WeekWins+WeekLoses)) %>%
+    left_join(winpercent %>% rename(Team = win)) %>%
+  ggplot(aes(x=winpercent,y=OverallPerc, color = league)) +
+  geom_point() +  
+  geom_abline(slope = 1) +
+  geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  annotate("text", x = .2, y = .8, label = "Unlucky", size = 5) +
+  annotate("text", x = .7, y = .2, label = "Lucky", size = 5) +
+  labs(title = "Are you as good as you should have been?", x = "16 Game Winning Percentage", y = "Every Team Every Week Win Percentage",caption = "ESPN in Red and YAHOO in Green (Wins)") +
+  theme(legend.position="none") 
+```
+
