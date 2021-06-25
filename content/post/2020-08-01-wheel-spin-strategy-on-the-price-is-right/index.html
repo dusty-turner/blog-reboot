@@ -1,0 +1,297 @@
+---
+title: "Wheel Spin Strategy On The Price Is Right"
+author: "Dusty Turner"
+date: '2020-08-01'
+slug: wheel-spin-strategy-on-the-price-is-right
+categories:
+- beatnavy
+- tidyverse
+- simulation
+- strategy
+tags:
+- beatnavy
+- tidyverse
+- simulation
+- strategy![](images/cal_beats_reese.jpg)
+cover: /media/tpir_logo.png
+---
+
+
+
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>Like many, COVID-19 completely altered our lives as the virus spread across the country and became a mainstay in our society. Though my family and I have been spared of tragedy, we’ve had to find ways to replace kid’s activities, work routines, and social interactions with other (hopefully) enriching activities… Like family games.</p>
+<center>
+<img src="images/cal_beats_reese.jpg" alt="cal" width="500">
+<figcaption>
+Ticket to Ride caused a lot of strife between my kids :)
+</figcaption>
+</center>
+<p>One thing that we’ve added to our new normal is watching <a href="https://twitter.com/PriceIsRight?s=20">“The Price is Right”</a> after dinner. We find it to be a great chance to open up talk of numbers and strategy with our kids.</p>
+<p>If executed properly, a contestant can improve their chances of getting on stage, winning games, and making it to the showcase showdown by making shrewd decisions.</p>
+<p>In this blog, we look at spinning the big wheel.</p>
+</div>
+<div id="spinning-the-wheel" class="section level2">
+<h2>Spinning the Wheel</h2>
+<p>In the price is right, the first three contestants (and second three) go head-to-head-to-head in spinning the big wheel. The player with the highest sum of two spins without going over a dollar wins and moves on to the showcase showdown.</p>
+<p>The decision each player makes is whether or not to spin a second time after their first spin.</p>
+<center>
+<img src="images/today_spin.jpg" alt="wheel" width="500">
+<figcaption>
+<a href="https://www.today.com/video/go-behind-the-scenes-of-the-price-is-right-with-sheinelle-jones-1151260739671">Photo Credit: The Today Show</a>
+</figcaption>
+</center>
+<p>The strategy is pretty simple for players two and three.</p>
+<div id="rd-player" class="section level4">
+<h4>3rd Player</h4>
+<ul>
+<li>After first spin, if you aren’t winning, spin again.<br />
+</li>
+<li>If you are tied after the first spin, spin again if you are less than .5 as your chances of not busting yet being over the previous player is better than .5 (which is the probability of winning on a spin off).<br />
+</li>
+<li>If you are tied after the first spin, do not spin again if you are greater than .5 as your chances of busting are greater than .5 (which is the probability of winning on a spin off).</li>
+</ul>
+</div>
+<div id="nd-player" class="section level4">
+<h4>2nd Player</h4>
+<ul>
+<li>After first spin, if you aren’t winning, spin again.<br />
+</li>
+<li>If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is pretty high (1-current spin value).<br />
+</li>
+<li>If you are winning after the first spin, don’t spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5 (1 - current spin value).</li>
+</ul>
+</div>
+<div id="st-player" class="section level4">
+<h4>1st Player</h4>
+<p>This is a different story. While we could work out the math, it is a little more complicated. While I’ve never been afraid of a little math, I’d much rather simulate.</p>
+<p>I’ll talk though my logic below and show my code. I do this so the reader can see my thought process and learn something or, more preferably, point out any flaws in logic or propose cleaner or more succinct ways of coding.</p>
+</div>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>In this analysis, I will play out 100,000 games where the first player only spins once. Then I will play out 100,000 games where the first player spins twice. Then I will summarize the results to see how often player 1 wins if they chose to spin a second time at each value of their first spin.</p>
+<p>As a quick aside, lets hope you are never as unlucky as this player.</p>
+<center>
+<img src="images/wheel_fall.gif" alt="wheel_fall" width="500">
+<figcaption>
+<a href="https://giphy.com/explore/price-is-right">What bad luck!</a>
+</center>
+<div id="simulate-one-game" class="section level3">
+<h3>Simulate One Game</h3>
+<p>To support the simulation, I…</p>
+<ul>
+<li>…create a function that will create the result of a single showcase showdown. This function has an option for the first player to spin only once or twice.<br />
+</li>
+<li>… summarize the results of the spins. We’ll determine the probability of player 1 winning whether they spin once or twice at each initial spin value.</li>
+</ul>
+<p>I will place comments in code to explain what is happening.</p>
+<pre class="r"><code>library(tidyverse)
+
+## Define function
+wheel_iterations &lt;- function(iteration = 1, num_spins = 1, spins = seq(.05,1,.05)){  
+
+## Begin simulate player spin ##
+player_1_first &lt;- sample(spins, 1, replace = TRUE)
+player_1_second &lt;- sample(spins, 1, replace = TRUE)
+
+player_2_first &lt;- sample(spins, 1, replace = TRUE)
+player_2_second &lt;- sample(spins, 1, replace = TRUE)
+
+player_3_first &lt;- sample(spins, 1, replace = TRUE)
+player_3_second &lt;- sample(spins, 1, replace = TRUE)
+## End simulate player spin ##
+
+## Find result of player 1 if they spin once vs twice
+if(num_spins == 2){
+player_1 &lt;- player_1_first + player_1_second
+} else {
+  player_1 &lt;- player_1_first
+}
+
+## force player 1 to lose if they bust
+player_1 &lt;- if_else(player_1 &gt; 1, 0, player_1)
+
+## set player 2&#39;s logic for spinning again
+if(player_2_first == player_1 &amp; player_2_first &lt; .5){ ## what happens if tied but spin below .5
+  player_2 &lt;- player_2_first + player_2_second
+} else if(player_2_first == player_1 &amp; player_2_first &gt;= .5){ ## what happens if tied but spin above .5
+  player_2 &lt;- player_2_first
+} else if(player_2_first &gt; player_1) { ## what happens if 2 is higher than 1
+  player_2 &lt;- player_2_first
+} else if(player_2_first &lt; player_1) { ## what happens if 3 is less than 1
+  player_2 &lt;- player_2_first + player_2_second
+} else {
+  player_2 &lt;- 10000  ## I put this here to catch spin 1 outcomes I missed
+}
+
+## Note: I only compare player 3&#39;s outcome to player 1 since this simulation is not concerned about the outcome between player 2 and 3 -- only if player 1 gets beat or not.
+
+## set player 3&#39;s logic for spinning again
+if(player_3_first == player_1 &amp; player_3_first &lt; .5){ ## what happens if tied but spin below .5
+  player_3 &lt;- player_3_first + player_3_second
+} else if(player_3_first == player_1 &amp; player_3_first &gt;= .5){ ## what happens if tied but spin above .5
+  player_3 &lt;- player_3_first
+} else if(player_3_first &gt; player_1) { ## what happens if 3 is higher than 1
+  player_3 &lt;- player_3_first
+} else if(player_3_first &lt; player_1) { ## what happens if 3 is higher than 1
+  player_3 &lt;- player_3_first + player_3_second
+} else {
+  player_3 &lt;- 10000 ## I put this here to catch spin 1 outcomes I missed
+}
+
+## accumulate output
+output &lt;-
+  tibble(iteration, player_1, player_2, player_3, player_1_first, player_1_second, player_2_first, player_2_second, player_3_first, player_3_second, num_spins)
+
+return(output)
+}</code></pre>
+<p>I’ll display one iteration below.</p>
+<pre class="r"><code>options(tibble.width = Inf)
+set.seed(42)
+wheel_iterations(iteration = 1, num_spins = 1)</code></pre>
+<pre><code>## # A tibble: 1 x 11
+##   iteration player_1 player_2 player_3 player_1_first player_1_second
+##       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;           &lt;dbl&gt;
+## 1         1     0.85     0.55      1.1           0.85            0.25
+##   player_2_first player_2_second player_3_first player_3_second num_spins
+##            &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;
+## 1           0.05             0.5            0.2             0.9         1</code></pre>
+<p>You can see from this example, player 1 wins because player 2 and player 3 busted. Along with this we maintain the information about the value of each individual spin.</p>
+</div>
+<div id="simulate-200000-games" class="section level3">
+<h3>Simulate 200,000 Games</h3>
+<p>Next, I’ll simulation 100,000 iterations of player 1 spinning once and 100,000 iterations of player 1 spinning twice and bind the rows together. You can see how long it took my computer with 8 threads to complete this task.</p>
+<pre class="r"><code>library(furrr)
+multiprocess(multiprocess)
+
+tictoc::tic()
+games &lt;-
+  1:100000 %&gt;%
+  furrr::future_map_dfr(~wheel_iterations(iteration = .x, num_spins = 1),.progress = TRUE) %&gt;%
+  bind_rows(
+    1:100000 %&gt;% furrr::future_map_dfr(~wheel_iterations(iteration = .x, num_spins = 2),.progress = TRUE)
+  )
+tictoc::toc()</code></pre>
+<pre><code>## 530.36 sec elapsed</code></pre>
+<p>To give an example of the output, I show a sample of 5 outcomes of each number of selected spins. To keep the output clean, I’ll only display the player’s final scores and whether it was one vs two spins.</p>
+<pre class="r"><code>games %&gt;% 
+  group_by(num_spins) %&gt;%
+  slice_sample(n = 5) %&gt;% 
+  select(player_1,player_2,player_3,num_spins)</code></pre>
+<pre><code>## # A tibble: 10 x 4
+## # Groups:   num_spins [2]
+##    player_1 player_2 player_3 num_spins
+##       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1     1        0.65     0.85         1
+##  2     0.35     0.95     0.85         1
+##  3     0.95     0.55     1.           1
+##  4     0.1      1        0.9          1
+##  5     0.55     0.85     0.25         1
+##  6     0        0.9      0.65         2
+##  7     0.95     1        0.85         2
+##  8     1        1        0.8          2
+##  9     0.35     0.5      1            2
+## 10     0        0.3      0.2          2</code></pre>
+</div>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p>In this next step, I’ll prepare the data for visualization.</p>
+<ol style="list-style-type: decimal">
+<li>For every spin result, we’ll force all ‘busts’ down to 0 so they will automatically lose.</li>
+<li>We’ll break all ties with a coin flip as we explained before the probability of winning a head to head battle is .5.<br />
+</li>
+<li>We’ll determine a winner.</li>
+</ol>
+<pre class="r"><code>plot_data &lt;-
+games %&gt;%
+  mutate(across(.cols = c(player_1,player_2,player_3),.fns = ~if_else(.&gt;1,0,.))) %&gt;% 
+  ## force busts to zero
+  mutate(rand_support = rbinom(n = n(),size = 1,prob = .5)) %&gt;% 
+  ## create random number to support breaking ties
+  mutate(high_number = pmax(player_1,player_2,player_3)) %&gt;%  
+  ## find max score
+  mutate(winner = as.integer(if_else(player_1 == high_number,1,0))) %&gt;% 
+  ## if high score is player 1 give win otherwise loss
+  mutate(winner = if_else(winner == 1 &amp; player_1 == player_2 | winner == 1 &amp; player_1 == player_3, rand_support, winner)) %&gt;% 
+  ## If player one wins, yet they tied another player, flip a coin for a win
+  group_by(player_1_first, num_spins) %&gt;% 
+  ## group together all player 1 first spin and 1 vs 2 total spin combinations
+  summarise(win_if_percent = mean(winner), .groups = &quot;drop_last&quot;)
+  ## determine the percentage of wins for each group</code></pre>
+<p>Lets take a look.</p>
+<pre class="r"><code>plot_data %&gt;% 
+  pivot_wider(names_from = &quot;num_spins&quot;, values_from = &quot;win_if_percent&quot;) %&gt;% 
+  janitor::clean_names()</code></pre>
+<pre><code>## # A tibble: 20 x 3
+## # Groups:   player_1_first [20]
+##    player_1_first       x1     x2
+##             &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1           0.05 0        0.228 
+##  2           0.1  0        0.159 
+##  3           0.15 0.000400 0.212 
+##  4           0.2  0.00159  0.208 
+##  5           0.25 0.00351  0.203 
+##  6           0.3  0.00671  0.206 
+##  7           0.35 0.0158   0.160 
+##  8           0.4  0.0229   0.191 
+##  9           0.45 0.0350   0.199 
+## 10           0.5  0.0644   0.195 
+## 11           0.55 0.0852   0.193 
+## 12           0.6  0.123    0.194 
+## 13           0.65 0.175    0.143 
+## 14           0.7  0.235    0.175 
+## 15           0.75 0.305    0.156 
+## 16           0.8  0.360    0.138 
+## 17           0.85 0.478    0.110 
+## 18           0.9  0.610    0.0383
+## 19           0.95 0.738    0.0443
+## 20           1    0.917    0</code></pre>
+<p>We can start to get a feel for the break point for when the first player should spin again.</p>
+</div>
+<div id="visualize" class="section level3">
+<h3>Visualize</h3>
+<p>Lets look at it visually.</p>
+<pre class="r"><code>plot_data %&gt;%
+  ggplot(aes(x = player_1_first, y = win_if_percent, color = as.factor(num_spins))) +
+  geom_line() +
+  geom_point() +
+  labs(x = &quot;Value of First Spin&quot;, y = &quot;Win Percentage of Spin Philosophy&quot;,
+       title = &quot;Probability of winning if you spin once (red) or twice (blue)&quot;,
+       subtitle = &quot;Given first spin value&quot;,
+       color = &quot;Number of Spins&quot;) +
+  theme(legend.position = &quot;bottom&quot;) +
+  ylim(0,1) +
+  scale_x_continuous(labels = scales::dollar_format(), breaks = seq(0,1,.1))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>As you can see from the plot, the simulation shows that the first spin value at which you should hold vs spin again is .7. This is a rather surprising and unsettling realization. There is a little noise in the data and it appears it is about a wash at .65.</p>
+<p>Taking a second look at this, we can reach the same conclusion via a heat map showing how the probability of winning on the big wheel balances out at about the .65 mark.</p>
+<pre class="r"><code>plot_data %&gt;%
+  ggplot(aes(x=player_1_first,y=as.factor(num_spins),fill = win_if_percent)) +
+  geom_tile(color = &quot;black&quot;) +
+  labs(x = &quot;Spin Value After 1st Spin&quot;, y = &quot;Number of Spins&quot;,
+       title = &quot;The probility of winning if Player 1 spins once vs twice&quot;,
+       subtitle = &quot;Given first spin value&quot;,
+       fill = &quot;Probability of Winning&quot;) +
+  theme(legend.position = &quot;bottom&quot;, line = element_blank(),
+        rect = element_blank(), axis.text.y = element_text(size = 20),
+        axis.text.x = element_text(angle = 90, vjust = .5)) +
+  scale_x_continuous(labels = scales::dollar_format(), breaks = seq(.05,1,.05)) +
+  scale_fill_gradientn(limits = c(0,1), colors = c(&quot;blue&quot;, &quot;red&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Final thoughts:</p>
+<ul>
+<li><p>If you are the first player, spin again if your first spin is ~.65 or less.</p></li>
+<li><p>If any readers win the big wheel using this strategy then I expect a similar reaction as Barney Stinson gave below:</p></li>
+</ul>
+<center>
+<img src="images/barney.gif" alt="barney" width="500">
+<figcaption>
+<a href="https://giphy.com/explore/price-is-right">Barney Stinson from HIMYM Celebrates</a>
+</center>
+<p>Please send me your thoughts of how to improve the analysis or code at <a href="mailto:dusty.s.turner@gmail.com">dusty.s.turner@gmail.com</a>.</p>
+</div>
