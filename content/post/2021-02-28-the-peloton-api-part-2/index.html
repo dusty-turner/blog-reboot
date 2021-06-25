@@ -1,0 +1,549 @@
+---
+title: 'The Peloton API Part 2: A Peloton Data Tribute to my Wife'
+author: "Dusty Turner"
+date: '2021-02-14'
+slug: the-peloton-api-part-2
+categories:
+- API
+- Peloton
+- tidyverse
+- fitness
+tags:
+- API
+- peloton
+- tidyverse
+- fitness
+cover: /img/bikecover.jpg
+draft: TRUE
+---
+
+
+
+<div id="peloton-r" class="section level1">
+<h1>Peloton R</h1>
+<p>In <a href="https://www.dustysturner.com/post/the-peloton-api-part-1/">part 1</a> of my Peloton API post, I explored the <a href="https://github.com/bweiher/pelotonR"><code>pelotonR</code></a> created by <a href="https://github.com/bweiher/">Ben Weiher’s</a>. It’s a great package for accessing your Peloton data and I recommend it.</p>
+<p>In part 2, I’ll explore a different <code>pelotonR</code> package from <a href="https://twitter.com/littlemissdata">Laura Ellis</a>. She provides a great <a href="https://lgellis.github.io/pelotonR/">tutorial</a> to display the functionality. I recommend this one too!</p>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<p>The objectives for this post are to…</p>
+<ol style="list-style-type: decimal">
+<li>Show how awesome my wife is.</li>
+<li>Highlight the functionality of Laura’s pelotonR package.</li>
+<li>Create visualizations from my wife and my Peloton data to show how awesome she is.</li>
+</ol>
+<p>Speaking of visualizations, here’s another picture of my wife crushing a Peloton ride</p>
+<center>
+<img src="images/riding_peloton.JPG" style="width:30.0%" alt="jill working hard on the peloton as always!" />
+[Jill Working Hard As Always!]
+</center>
+<p>In order to use this post as a teaching tool, I’ll also include my code. This also allows me to receive feedback from the community to improve my techniques.</p>
+</div>
+<div id="inspiration" class="section level2">
+<h2>Inspiration</h2>
+<p>I developed many of these plots because I was curious about the data, but I also used <a href="https://www.instagram.com/pelotondataviz/?hl=en">this page</a> and <a href="https://www.qlik.com/blog/peloton-and-qlik-the-analytics-of-it-all">this page</a> as inspiration.</p>
+<p>Enough! On with the analysis!</p>
+</div>
+</div>
+<div id="get-the-data" class="section level1">
+<h1>Get the data</h1>
+<p>Lets start with how to access your peloton data.</p>
+<p>If you haven’t already, install the <code>pelotonR</code> library from github.</p>
+<pre class="r"><code>devtools::install_github(&quot;lgellis/pelotonR&quot;)</code></pre>
+<div id="authenticate" class="section level2">
+<h2>Authenticate</h2>
+<p>Since I’m going to be pulling data for both my wife and I, I’ll authenticate both our accounts. Our passwords are saved in our <code>.RProfile</code> in a function I have saved there. If you’d like to do the same, this <a href="https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile">stack overflow post</a> is very helpful.</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(pelotonR)
+
+me_auth_response &lt;- pelotonR::authenticate(username = &quot;dusty.s.turner@gmail.com&quot;, password = get_peloton_passwords(&quot;Dusty&quot;))
+wife_auth_response &lt;- pelotonR::authenticate(username = &quot;turner.jill.e@gmail.com&quot;, password = get_peloton_passwords(&quot;Jill&quot;))</code></pre>
+<p>To access our personal data, I need to extract our user IDs from our authentication.</p>
+<pre class="r"><code>me_user_id &lt;- me_auth_response %&gt;% jsonlite::parse_json() %&gt;% .$user_id
+
+wife_user_id &lt;- wife_auth_response %&gt;% jsonlite::parse_json() %&gt;% .$user_id</code></pre>
+<p>Use the user id to request your data from the API.</p>
+<pre class="r"><code>my_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = me_user_id) %&gt;% as_tibble()
+wife_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = wife_user_id) %&gt;% as_tibble()</code></pre>
+</div>
+<div id="collect-and-organize-data" class="section level2">
+<h2>Collect and organize data</h2>
+<p>The package helps retrieve a TON of data about your workouts. The first number is the workout count, but the second number is the number of columns returned about your data.</p>
+<pre class="r"><code>my_workout_df %&gt;% dim()</code></pre>
+<pre><code>## [1] 382 119</code></pre>
+<p>As we join and organize our data, I’m only going to select the columns that I end up using later on in the analysis. If you dig through the data frame, you might find more interesting information to use.</p>
+<pre class="r"><code>interesting &lt;-
+  list(Dusty = my_workout_df,
+       Jill = wife_workout_df) %&gt;%
+  bind_rows(.id = &quot;Person&quot;) %&gt;%
+  rename_with(.fn = ~ str_remove(., pattern = &quot;workout.&quot;)) %&gt;%
+  mutate(Length = peloton.ride.duration/60, KJ = total_work/1000) %&gt;%  
+  mutate(start_time = lubridate::as_datetime(start_time, tz = &quot;EST&quot;)) %&gt;% 
+  mutate(peloton.ride.scheduled_start_time = lubridate::as_datetime(peloton.ride.scheduled_start_time, tz = &quot;EST&quot;)) %&gt;% 
+  select(Person, start_date, Length, KJ, fitness_discipline, is_total_work_personal_record, start_time, workout_type, 
+         peloton.ride.difficulty_rating_avg, peloton.ride.is_explicit, peloton.ride.overall_estimate, peloton.ride.rating, 
+         peloton.ride.total_workouts, peloton.ride.difficulty_estimate, peloton.ride.scheduled_start_time,instructor.name) </code></pre>
+<p>You’ll notice that I did several pre-processing steps.</p>
+<ol style="list-style-type: decimal">
+<li><p>I removed the work <code>workout</code> from all column names.</p></li>
+<li><p>I converted the ride duration from seconds to minutes. Minutes are a more familiar workout length than seconds for Peloton riders.</p></li>
+<li><p>I converted the <code>total_work</code> from Joules to Kilojoules. A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know. As a quick asside, riders produce wattage with their bike. If you sustain 1000 watts for 1 second you do 1 KJ of work. Okay, enough physics for today….</p></li>
+</ol>
+</div>
+</div>
+<div id="dig-into-the-data" class="section level1">
+<h1>Dig into the data!</h1>
+<p>As you can see, riding the peloton is not the only thing we do on the bike.</p>
+<pre class="r"><code>interesting %&gt;% 
+  count(Person, fitness_discipline) %&gt;% 
+  pivot_wider(names_from = Person, values_from = n, values_fill = 0)</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##   fitness_discipline Dusty  Jill
+##   &lt;chr&gt;              &lt;int&gt; &lt;int&gt;
+## 1 cycling              258   862
+## 2 meditation             3     2
+## 3 strength               1    75
+## 4 stretching            99    86
+## 5 yoga                  21     2
+## 6 bike_bootcamp          0     3
+## 7 cardio                 0     3
+## 8 running                0    11</code></pre>
+<p>I’d like to limit most of the future exploration to only cycling classes. I’d like to also have the option of only looking at rides lasting 20 minutes or longer. To support this filter that I’ll need to do over and over, I’ll set up a function that does the following:</p>
+<ol style="list-style-type: decimal">
+<li>Selects only cycling classes</li>
+<li>Renames <code>NA</code> instructors as <code>unknown</code></li>
+<li>Creates a ride number column ID</li>
+<li>Has an option to keep classes &lt; 20 minutes</li>
+<li>Has an option to remove unknown instructors</li>
+</ol>
+<pre class="r"><code>standard_filter &lt;- function(data, only_long_classes = FALSE, remove_unknown_instructors = FALSE){
+  out &lt;-
+    data %&gt;% 
+    filter(fitness_discipline == &quot;cycling&quot;) %&gt;% 
+    filter(workout_type == &quot;class&quot;) %&gt;% 
+    mutate(instructor.name = if_else(is.na(instructor.name), &quot;Unknown&quot;, instructor.name)) %&gt;% 
+    select(-c(fitness_discipline, workout_type)) %&gt;%
+    arrange(start_time) %&gt;% 
+    group_by(Person) %&gt;% 
+    mutate(ride_number = row_number()) %&gt;% 
+    ungroup() 
+  
+  if(remove_unknown_instructors){
+    out &lt;-
+      out %&gt;% 
+      filter(instructor.name != &quot;Unknown&quot;)
+  }
+  
+  if(only_long_classes){
+    out &lt;-
+      out %&gt;% 
+      filter(Length &gt;= 20)
+  }
+  
+  return(out)
+}</code></pre>
+<p>I also learned that there were several early classes of ‘bootcamp’ that my wife did which Peloton labeled ‘cycling’. Bootcamps have a much lower KJ output since cycling isn’t the main focus in these rides. This function filters those out when we look at specific charts.</p>
+<pre class="r"><code>remove_bootcamps &lt;- function(data){
+  remove_these &lt;-
+     tibble(Person = &quot;Jill&quot;, start_date = ymd(20201006), instructor.name = &quot;Jess Sims&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200918), instructor.name =  &quot;Robin Arzón&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200306), instructor.name =  &quot;Cody Rigsby&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20201001), instructor.name =  &quot;Cody Rigsby&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20201008), instructor.name =  &quot;Cody Rigsby&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200922), instructor.name =  &quot;Jess Sims&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200929), instructor.name =  &quot;Jess Sims&quot;, Length = 45) 
+  
+  # interesting %&gt;% standard_filter() %&gt;% 
+    # filter(Person == &quot;Jill&quot;, Length == 45) %&gt;% 
+    # arrange(KJ) %&gt;% select(start_date, instructor.name, KJ, Length)
+  
+  out &lt;-
+  data %&gt;% 
+    anti_join(remove_these)  
+  return(out)
+}</code></pre>
+<p>Lets take a few different looks at our data. The first question I’d like to dig into is, “Who are out favorite instructors?”</p>
+<div id="instructor-analysis" class="section level2">
+<h2>Instructor analysis</h2>
+<div id="favorite-instructors" class="section level3">
+<h3>Favorite instructors</h3>
+<pre class="r"><code>interesting %&gt;%
+  standard_filter(remove_unknown_instructors = T) %&gt;% 
+  count(Person, instructor.name) %&gt;% 
+  mutate(n = ifelse(Person == &quot;Dusty&quot;, n * -1, n)) %&gt;% 
+  group_by(instructor.name) %&gt;% 
+  mutate(order_by = max(ifelse(Person==&quot;Jill&quot;, n, 0))) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(instructor.name = fct_reorder(instructor.name, order_by)) %&gt;% 
+  ggplot(aes(x= instructor.name, y = n, fill = Person)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(breaks = c(-100,-50,0,50,100,150,200), labels = c(&quot;100&quot;, &quot;50&quot;, &quot;0&quot;, &quot;50&quot;, &quot;100&quot;, &quot;150&quot;, &quot;200&quot;)) +
+  scale_fill_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  labs(y = &quot;Number of Rides&quot;, x = &quot;&quot;) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>First things is first. Jill rides WAY more than me. But also, we can see a difference in rider preferences. She prefers Ally Love, Emma Lovewell, and Hannah Corbin, while I prefer Jess King, Kendall Toole, and Alex Toussaint.</p>
+</div>
+<div id="how-our-favorite-instructors-change-over-time" class="section level3">
+<h3>How our favorite instructors change over time</h3>
+<p>What I’d like to do is determine which instructor is our favorite by month. I’ll find out the instructor (or instructors in the event of a tie) that we proportionally have the most rides with each month - then see how that changes over time.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  mutate(month = month(start_time), year = year(start_time)) %&gt;% 
+  group_by(Person,month,year) %&gt;% 
+  filter(n()&gt;=5) %&gt;% 
+  ungroup() %&gt;% 
+  count(Person, instructor.name,month, year) %&gt;% 
+  mutate(date = lubridate::ym(str_c(year,&quot; &quot;,month))) %&gt;% 
+  group_by(Person,date) %&gt;% arrange(Person, date) %&gt;% 
+  mutate(instructor.name = if_else(n == max(n), instructor.name, &quot;Other&quot;)) %&gt;% 
+  group_by(Person, instructor.name,date) %&gt;% 
+  summarise(n = sum(n)) %&gt;% 
+  arrange(Person, date) %&gt;% 
+  group_by(Person,date) %&gt;% 
+  mutate(percent = n / sum(n)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(x = date, y = percent, fill = instructor.name)) +
+  geom_col() +
+  facet_wrap(~Person, scales = &quot;free&quot;) +
+  coord_flip() +
+  labs(title = &quot;Most popular instructor each month&quot;, subtitle = &quot;How instructor preference changes over time&quot;,
+       x = &quot;Percent of Monthly Rides&quot;, y = &quot;&quot;, fill = &quot;Instructor&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>For Jill, she started as an Ally Love fan but has spread that love to other such as Emma Lovewell, Matt Wilpers, and Cody Rigsby.</p>
+<p>Me, on the the other hand, started as a Jess King fan, but recently I’m riding more with Kendall Toole.</p>
+<p>You can tell, from this, however, that my wife spreads around her rides more than I do. She has a lot larger purple ‘other’ bar than I do each month.</p>
+</div>
+<div id="do-we-prefer-different-instructors-for-different-class-lengths" class="section level3">
+<h3>Do we prefer different instructors for different class lengths?</h3>
+<p>This makes me wonder – might we prefer to ride with different instructors if our ride will be longer (or shorter)?</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = T) %&gt;% 
+  count(Person,instructor.name,Length) %&gt;% 
+  complete(Person,instructor.name,Length) %&gt;% 
+  mutate(Length = as.factor(Length)) %&gt;% 
+  group_by(instructor.name) %&gt;% mutate(order_by = sum(n,na.rm = T)) %&gt;%
+  group_by(Person, Length) %&gt;% mutate(max_time_slot = rank(n,na.last = F)) %&gt;% 
+  mutate(most = if_else(max(max_time_slot)== max_time_slot, &quot;MAX&quot;, &quot;Not MAX&quot;)) %&gt;% 
+  mutate(most = if_else(is.na(n), &quot;NA&quot;, most)) %&gt;% 
+  ggplot(aes(x = Length, y = fct_reorder(instructor.name,order_by))) +
+  geom_tile(aes(fill = most),show.legend = F) +
+  geom_text(aes(label = n), show.legend = F) +
+  scale_fill_manual(values = c(&quot;#AE0D7A&quot;,&quot;#F7EDD4&quot;, &quot;#448D76&quot;)) +
+  facet_wrap(~Person) +
+  labs(y = &quot;Instructor&quot;, title = &quot;Preferred Instructors for each ride length&quot;) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The answer is, well… kind of.</p>
+<p>I tend to ride more with Jess King at any distance and the same is true for my wife with Ally Love.</p>
+<p>Some of the less frequented durations, like 5, 10, and 60 minutes show some unique results.</p>
+</div>
+<div id="who-are-the-more-difficult-instructors" class="section level3">
+<h3>Who are the more difficult instructors?</h3>
+<p>Based off the rides we have selected, which instructor’s rides are rated most difficult by the community.</p>
+<p>We’ll consider instructors we’ve selected for at least 10 rides of 20 minutes or more.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  mutate(instructor.name = fct_lump_min(instructor.name, min = 10)) %&gt;%
+  group_by(instructor.name) %&gt;% 
+  mutate(max_difficulty = max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(min_difficulty = min(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  group_by(instructor.name) %&gt;% 
+  mutate(median_diff = median(peloton.ride.difficulty_estimate)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(instructor.name = fct_reorder(instructor.name, median_diff)) %&gt;%
+  ggplot(aes(x = peloton.ride.difficulty_estimate, y = instructor.name)) +
+  geom_segment(aes(x = min_difficulty, xend = max_difficulty, yend = instructor.name), color = &quot;grey&quot;) +
+  geom_point(color = &quot;black&quot;) +
+  geom_point(aes(x = median_diff), color = &quot;#B32134&quot;, size = 4) +
+  geom_point(aes(x = max_difficulty), color = &quot;green&quot;, size = 4) +
+  geom_point(aes(x = min_difficulty), color = &quot;green&quot;, size = 4) +
+  scale_x_continuous(breaks = 3:10, limits = c(3,10)) +
+  labs(x = &quot;Ride Difficulty Rating&quot;, y = &quot;Instructor&quot;, title = &quot;Difficulty Ratings of our most population instructors&quot;,
+       subtitle = &quot;Sorted by median ride difficulty \nIncludes instructors with at least 10 rides \nRides 20 minutes or longer&quot;, 
+       caption = &quot;Green dots represent maximum and minimum difficulty of rides between my wife and I&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Three of my favorite instructors (Jess King, Kendall Tool, and Alex Toussaint) are in the top 4. Either this means I pick difficult rides or those of us who selected these rides are week and think they are hard :).</p>
+</div>
+<div id="instructor-race" class="section level3">
+<h3>Instructor Race</h3>
+<p>I’d really like to know the distance I’ve gone with each instructor over time. Kind of like an instructor race. However, I can’t find any distance data from this package so I’ll use KJ as a proxy.</p>
+<p><strong>Note</strong> This is a perfect opportunity to use the <code>gghighlight</code> package. I doesn’t quite work yet with faceted plots, so I am rendering two plots. To do that, I’ll write a function with a <code>name</code> argument.</p>
+<pre class="r"><code>library(gghighlight)
+
+instructor_race &lt;- function(name = &quot;Jill&quot;){
+  if(name == &quot;Dusty&quot;) {
+    limit &lt;-  5000
+    color_scale &lt;- c(&quot;#FDAC53&quot;, &quot;#9BB7D4&quot;, &quot;#A0DAA9&quot;, &quot;#E9897E&quot;, &quot;#0072B5&quot;)
+  } else{
+    limit &lt;- 10000
+    color_scale &lt;-  c(&quot;#FDAC53&quot;,&quot;#9BB7D4&quot;,&quot;#A0DAA9&quot;,&quot;#E9897E&quot;,&quot;#0072B5&quot;, &quot;#0702B5&quot;) 
+  }
+
+interesting %&gt;% 
+standard_filter() %&gt;% 
+  group_by(Person, instructor.name) %&gt;% 
+  arrange(start_time) %&gt;% 
+  mutate(Total_KJ = cumsum(KJ)) %&gt;% 
+  ungroup() %&gt;% 
+  filter(Person == name) %&gt;%
+  ggplot(aes(x = start_time, y = Total_KJ, color = instructor.name)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::comma) +
+  gghighlight(max(Total_KJ) &gt; limit, unhighlighted_params = list(color = &quot;grey&quot;)) +
+  scale_color_manual(values = color_scale) +
+  labs(x = &quot;&quot;, y = &quot;Total KJ&quot;, subtitle = str_c(name,&quot;&#39;s Instructor Race&quot;), title = &quot;KJ output by instructor over time&quot;)
+}</code></pre>
+<pre class="r"><code>instructor_race(name = &quot;Dusty&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>As expected, Jess King is off to a great start, but Kendall Tool is catching up ground!</p>
+<pre class="r"><code>instructor_race(name = &quot;Jill&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>For Jill, All Love and Emma Lovewell (lots of love going on here) are setting the pace!</p>
+</div>
+</div>
+<div id="when-do-we-like-to-ride" class="section level2">
+<h2>When do we like to ride?</h2>
+<p>I already know this answer. Pretty much every morning, when I wake up, my wife is crushing it in the basement on the Peloton. But a picture is worth 1000 KJ so lets explore this visually.</p>
+<pre class="r"><code>weekday &lt;- tibble(weekday_name = weekdays(x=as.Date(seq(7), origin=&quot;1950-01-01&quot;)),
+       weekday = c(2:7,1))
+
+interesting %&gt;% 
+  standard_filter() %&gt;%
+  select(Person, start_time) %&gt;% 
+  mutate(hour = as.factor(hour(start_time))) %&gt;% 
+  mutate(weekday = wday(start_time)) %&gt;% 
+  left_join(weekday) %&gt;%
+  mutate(weekday_name = fct_reorder(weekday_name, weekday)) %&gt;% 
+  count(Person, hour, weekday_name) %&gt;% 
+  complete(Person,hour,weekday_name) %&gt;% 
+  ggplot(aes(x = weekday_name, y = hour, fill = n))+
+  geom_tile(show.legend = F) +
+  facet_wrap(~Person) +
+  scale_x_discrete(labels = c(&quot;1&quot; = &quot;Sunday&quot;)) +
+  scale_fill_gradient2(na.value = &quot;white&quot;, low = &quot;white&quot;, high = &quot;#5932a8&quot;, mid = &quot;grey&quot;, midpoint = 10) +
+  geom_text(aes(label = n)) +
+  labs(x = &quot;Weekday&quot;, y = &quot;Hour&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>It is clear that my wife is a motivated morning rider while I’m more likely to ride in the evening. On weekends our workouts are more spread out as we are gettinga workout in when we can find space.</p>
+<div id="what-weekday-do-we-like-and-how-well-do-we-perform" class="section level3">
+<h3>What weekday do we like and how well do we perform?</h3>
+<p>I’d like to know which weekday we bike the most in and if there is a specific day that we perform better?</p>
+<p>This plot may get a little confusing, but here’s what I’m doing…</p>
+<ol style="list-style-type: decimal">
+<li>Plot the proportion of rides by day.<br />
+</li>
+<li>Color the bars by minutes biked.<br />
+</li>
+<li>Label the bars by average KJ expended per minute for each day.</li>
+</ol>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter() %&gt;% 
+  mutate(weekday = lubridate::wday(start_time)) %&gt;% 
+  left_join(weekday)  %&gt;% 
+  group_by(Person,weekday_name, weekday) %&gt;% 
+  summarise(num_rides = n(), Tot_KJ = sum(KJ), Tot_mins = sum(Length)) %&gt;% 
+  mutate(ave_KJ_per_min = round(Tot_KJ / Tot_mins, 1)) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(prop_rides = num_rides/sum(num_rides)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(weekday_name = fct_reorder(weekday_name,weekday, .desc = T)) %&gt;% 
+  mutate(max_dusty = max(ifelse(Person == &quot;Dusty&quot;, Tot_mins,0))) %&gt;% 
+  ggplot(aes(y = weekday_name, x = prop_rides, fill = Tot_mins)) +
+  geom_col() +
+  geom_text(aes(label = ave_KJ_per_min)) +
+  scale_fill_gradientn(breaks = c(0,1100,2500,5000), colors = c(&quot;grey&quot;,&quot;green&quot;,&quot;red&quot;)) +
+  facet_wrap(~Person) +
+  labs(x = &quot;Proportion of Total Rides&quot;,  y = &quot;&quot;, fill = &quot;Total Minutes&quot;,
+       title = &quot;Proportion of Rides on Each Day \nColored by Total Minutes Spent Riding&quot;,
+       subtitle = &quot;Label is Average KJ / Min on that day&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays. Our performance seems to dip on the weekends. Maybe we take it easy then to recover from our hrd weeks.</p>
+</div>
+</div>
+<div id="improvement-over-time" class="section level2">
+<h2>Improvement over time</h2>
+<p>One of the marks of fitness is improvement. Lets look at a few metrics of improvement.</p>
+<div id="kjs-per-ride" class="section level3">
+<h3>KJs per ride</h3>
+<p>Lets see how many KJs per ride we reach for different ride durations.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = F) %&gt;%
+  remove_bootcamps() %&gt;% 
+  ggplot(aes(x = start_time, y = KJ)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = F) +
+  scale_x_datetime(date_breaks = &quot;14 months&quot;, date_labels = &quot;%b %y&quot;) +
+  facet_grid(Person~Length) +
+  labs(x = &quot;Date&quot;, y = &quot;JK&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>It looks like we generally have improved our KJ ride over time. The shorter rides do not show much improvement but that’s largely because its hard to improve on a short ride, and we also use them as warm up rides.</p>
+</div>
+</div>
+<div id="personal-records-over-time" class="section level2">
+<h2>Personal Records Over Time</h2>
+<p>Another metric of improvement is how much you can increase your max output over time.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  remove_bootcamps() %&gt;% 
+  group_by(Person, Length) %&gt;% 
+  mutate(ride_number = row_number()) %&gt;% mutate(is_max = cummax(KJ)) %&gt;%   
+  mutate(max = ifelse(is_max == lag(is_max), &quot;NO&quot;, &quot;YES&quot;)) %&gt;% 
+  mutate(max = replace_na(max, &quot;NO&quot;)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(date = date(start_time)) %&gt;% 
+  mutate(date_label = ifelse(max,as.character(date),&quot;&quot;)) %&gt;% 
+  group_by(Person, Length) %&gt;% 
+  mutate(max = if_else(KJ == max(KJ), &quot;SUPER MAX&quot;, max)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(x = ride_number, y = KJ)) +
+  geom_line() +
+  geom_smooth(method = &quot;lm&quot;) +
+  geom_point(aes(size = max, color = max), show.legend = F) +
+  scale_color_manual(values = c(&quot;black&quot;, &quot;orange&quot;, &quot;blue&quot;)) +
+  scale_size_manual(values = c(.1,5,2)) +
+  facet_grid(Length~Person, scales = &quot;free&quot;) +
+  labs(x = &quot;Ride Number&quot;, y = &quot;Output: KJ&quot;, 
+       title = &quot;Personal Record Improvement Over Time&quot;, subtitle = &quot;Of the most common ride durations&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>The blue dots above show personal records we set and the orange dots show the current max output for that duration.</p>
+<p>It looks like we’ve improved over time. And it looks like I need to do more 60 minute rides.</p>
+<div id="kj-burned-per-minute-rolling-average" class="section level3">
+<h3>KJ burned per minute rolling average</h3>
+<p>One might assume that trends and max rides might not be the best metric of improvement because we often do recovery rides and such. This might throw off the results. Lets look at a rolling average of KJ ride.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  remove_bootcamps() %&gt;% 
+  mutate(KJ_per_min = KJ/Length) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(roll_avg = zoo::rollmean(x = KJ_per_min,k = 5, fill = 0, align = &quot;right&quot;)) %&gt;% 
+  arrange(start_time) %&gt;% 
+  mutate(ride_number = row_number()) %&gt;% 
+  ungroup() %&gt;%
+  filter(roll_avg != 0) %&gt;% 
+  ggplot(aes(x = start_time, y = roll_avg)) +
+  geom_line() +
+  geom_point(aes(y = KJ_per_min, color = as.factor(Length)), alpha = .3, show.legend = T) +
+  scale_y_continuous(breaks = seq(5,14,1), minor_breaks = seq(5,14,.5)) +
+  facet_wrap(~Person, scales = &quot;free_x&quot;) +
+  # facet_grid(Length~Person)
+  labs(y = &quot;KJ per Minute&quot;, y = &quot;Ride Date&quot;, color = &quot;Ride Length&quot;,
+       title = &quot;5 Ride Rolling KJ per Minute Average&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>It looks like I’ve improved over time while Jill has held steady.</p>
+</div>
+</div>
+<div id="chasing-my-wifes-greatness" class="section level2">
+<h2>Chasing My Wife’s Greatness</h2>
+<p>I’m interested in comparing my wife and I’s progression of number of rides, total KJs, and total minutes biked. She started using the Peloton before I did, so will I ever catch her in these metrics?</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = F) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(`Total KJ` = cumsum(KJ), `Total Minutes Biked` = cumsum(Length)) %&gt;% 
+  rename(`Ride Number` = ride_number) %&gt;% 
+  pivot_longer(c(`Total KJ`,`Total Minutes Biked`, `Ride Number`)) %&gt;% 
+  ggplot(aes(x=start_date, y = value, color = Person)) +
+  geom_line() +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(breaks = &quot;9 months&quot;, date_labels = &quot;%b %y&quot;) +
+  facet_wrap(~name, scales = &quot;free_y&quot;) +
+  labs(y = &quot;&quot;, x = &quot;&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>For a little while, I was catching up with my wife in all aspects - or at least keeping pace. But over the summer I spent more time working out outside (and less time on the bike). Then my wife started riding the bike double time - and left me in the dust!</p>
+<div id="net-difference-in-metrics" class="section level3">
+<h3>Net difference in metrics</h3>
+<p>Similar to the last look, I am interested in seeing how this looks in ‘net’ metrics. So, if you find the differences between our performance every day - how do we compare?</p>
+<pre class="r"><code>totals &lt;-
+interesting %&gt;% 
+  standard_filter() %&gt;% 
+  group_by(Person) %&gt;% 
+  arrange(Person,start_time) %&gt;% 
+  mutate(day = lubridate::date(start_time)) %&gt;%
+  mutate(ride_number = 1)  %&gt;% 
+  mutate(across(.cols = c(Length, KJ, ride_number), .fns = ~cumsum(.))) %&gt;% 
+  select(Person, ride_number, KJ, minutes = Length) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(minutes = minutes / 60)
+
+
+full_join(
+  totals %&gt;% filter(Person == &quot;Dusty&quot;),
+  totals %&gt;% filter(Person == &quot;Jill&quot;),
+  by = &quot;ride_number&quot;, suffix = c(&quot;_Dusty&quot;, &quot;_Jill&quot;)
+  )  %&gt;% 
+  arrange(ride_number) %&gt;% 
+  mutate(dusty_max_ride_number = max(KJ_Dusty, na.rm = T)) %&gt;% 
+  mutate(dusty_max_ride_number = max(if_else(dusty_max_ride_number == KJ_Dusty, ride_number, 0),na.rm = T)) %&gt;% 
+  fill(everything()) %&gt;%
+  mutate(`Difference in KJ` = KJ_Jill - KJ_Dusty,
+         `Difference in Minutes` = minutes_Jill - minutes_Dusty) %&gt;% 
+  pivot_longer(cols = contains(&quot;difference&quot;))  %&gt;% 
+  mutate(dusty_plus = value &lt; 0)  %&gt;% 
+  ggplot(aes(x = ride_number, y = value,color = dusty_plus)) +
+  geom_path(aes(group = 1),show.legend = F) +
+  geom_vline(aes(xintercept = dusty_max_ride_number)) +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  facet_wrap(~name, scales = &quot;free&quot;) +
+  labs(y = &quot;&quot;, x = &quot;Ride Number&quot;) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>I drew a black horizontal line at my most recent ride. It looks like I am continuously extending my lead in KJs, but my wife is kicking my tail in minutes exercised.</p>
+<pre class="r"><code>library(ggforce)
+
+full_join(
+  totals %&gt;% filter(Person == &quot;Dusty&quot;),
+  totals %&gt;% filter(Person == &quot;Jill&quot;),
+  by = &quot;ride_number&quot;, suffix = c(&quot;_Dusty&quot;, &quot;_Jill&quot;)
+  )  %&gt;% 
+  arrange(ride_number) %&gt;% 
+  mutate(dusty_max_ride_number = max(KJ_Dusty, na.rm = T)) %&gt;% 
+  mutate(dusty_max_ride_number = max(if_else(dusty_max_ride_number == KJ_Dusty, ride_number, 0),na.rm = T)) %&gt;% 
+  fill(everything())   %&gt;%
+  mutate(`Difference in KJ` = KJ_Jill - KJ_Dusty,
+         `Difference in Minutes` = minutes_Jill - minutes_Dusty) %&gt;% 
+  mutate(dusty_plus = `Difference in KJ` &lt; 0)  %&gt;% 
+  ggplot(aes(x = ride_number, y = `Difference in KJ`,color = dusty_plus)) +
+  geom_path(aes(group = 1),show.legend = F) +
+  geom_vline(aes(xintercept = dusty_max_ride_number)) +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(y = &quot;&quot;, x = &quot;Ride Number&quot;) +
+  facet_zoom(ylim = c(-17000,0000), xlim = c(0,350))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Zooming in on the net KJs, you can see I jumped out to a big lead through about 100 rides, then there is a lot of back and forth. I look forward to the day where I do enough rides to get the net KJs to 0.</p>
+</div>
+</div>
+<div id="ride-difficulty" class="section level2">
+<h2>Ride difficulty</h2>
+<p>Lastly, I’d like to take a look at the difficulty of the rides we choose.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(max_difficulty = max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(min_difficulty = min(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(median_difficulty = median(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  ggplot(aes(x = peloton.ride.difficulty_estimate, y = Person)) +
+  geom_segment(aes(x = min_difficulty, xend = max_difficulty, yend = Person)) +
+  geom_point() +
+  geom_point(aes(x = median_difficulty), color = &quot;#B32134&quot;, size = 4) +
+  geom_point(aes(x = max_difficulty), color = &quot;green&quot;, size = 4) +
+  geom_point(aes(x = min_difficulty), color = &quot;green&quot;, size = 4) +
+  scale_x_continuous(breaks = c(4:10), limits = c(4,10)) +
+  labs(x = &quot;Ride Difficulty Rating&quot;, y = &quot;&quot;, title = &quot;Difficulty ratings for each rider&quot;,
+       subtitle = &quot;Green: max and min difficulty \nRed: median difficulty&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>It appears my wife has a completed a couple of easy low rides, but also owns a few of the most difficult rides. I’ll boast that I have the higher median ride - but I need to figure out what ride Jill took for such a hard ride. :)</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  group_by(Person) %&gt;% 
+  filter(peloton.ride.difficulty_estimate == max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  ungroup() %&gt;% 
+  select(Person, peloton.ride.difficulty_estimate, instructor.name, start_date, peloton.ride.scheduled_start_time)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   Person peloton.ride.difficu~ instructor.name start_date peloton.ride.schedule~
+##   &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;           &lt;date&gt;     &lt;dttm&gt;                
+## 1 Jill                    9.61 Robin Arzón     2020-06-01 2020-05-30 11:10:00   
+## 2 Dusty                   9.43 Olivia Amato    2021-01-16 2020-01-18 14:00:00</code></pre>
+<p>I’m going to have to find this ride - I can’t be left behind!</p>
+</div>
+</div>
