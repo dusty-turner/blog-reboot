@@ -35,7 +35,6 @@ cover: /media/advent.JPG
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
-<pre><code>## [1] 1832</code></pre>
 </div>
 <div id="part-2" class="section level3">
 <h3><a href="https://adventofcode.com/2021/day/2">Part 2</a></h3>
@@ -43,6 +42,5 @@ cover: /media/advent.JPG
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
   filter(roll_sum &gt; lag(roll_sum,1)) %&gt;%
   nrow()</code></pre>
-<pre><code>## [1] 1858</code></pre>
 </div>
 </div>

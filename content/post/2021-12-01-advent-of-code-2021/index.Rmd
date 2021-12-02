@@ -36,7 +36,7 @@ library(tidyverse)
 
 ### [Part 1](https://adventofcode.com/2021/day/1)
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE, eval=F}
 tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%  
   filter(measurements > lag(measurements,1)) %>% 
   nrow()
@@ -44,7 +44,7 @@ tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%
 
 ### [Part 2](https://adventofcode.com/2021/day/2)
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE, eval=F}
 tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = "right")) %>%
   filter(roll_sum > lag(roll_sum,1)) %>%
