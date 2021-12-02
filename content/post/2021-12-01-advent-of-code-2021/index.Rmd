@@ -1,0 +1,53 @@
+---
+title: Advent of Code 2021
+author: Dusty Turner
+date: '2021-12-01'
+slug: []
+categories:
+  - R
+  - datascience
+  - learning
+  - teaching
+tags:
+  - R
+  - datascience
+  - learning
+  - teaching
+cover: /images/cover.jpg
+---
+
+Every year, the great team at [Advent of Code](adventofcode.com) lead by [ericwastl](https://twitter.com/ericwastl) develops an "Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like."  
+
+Well, I like R, so in this post I will provide my solutions to the puzzles each day.  I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!  
+
+A few notes as we get started:
+
+- Unless otherwise specified, all solutions rely on `library(tidyverse)`.
+- All data is saved in the working directory as a `.txt` file.
+- I can't promise my solutions will be the most elegant, but I will only post if they are correct!
+
+On to the solutions...
+
+## Day 1
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(tidyverse)
+```
+
+### [Part 1](https://adventofcode.com/2021/day/1)
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%  
+  filter(measurements > lag(measurements,1)) %>% 
+  nrow()
+```
+
+### [Part 2](https://adventofcode.com/2021/day/2)
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%
+  mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = "right")) %>%
+  filter(roll_sum > lag(roll_sum,1)) %>%
+  nrow()
+```
+

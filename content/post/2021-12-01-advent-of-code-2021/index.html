@@ -1,0 +1,49 @@
+---
+title: Advent of Code 2021
+author: Dusty Turner
+date: '2021-12-01'
+slug: []
+categories:
+  - R
+  - datascience
+  - learning
+  - teaching
+tags:
+  - R
+  - datascience
+  - learning
+  - teaching
+cover: /images/cover.jpg
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Every year, the great team at <a href="adventofcode.com">Advent of Code</a> lead by <a href="https://twitter.com/ericwastl">ericwastl</a> develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”</p>
+<p>Well, I like R, so in this post I will provide my solutions to the puzzles each day. I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!</p>
+<p>A few notes as we get started:</p>
+<ul>
+<li>Unless otherwise specified, all solutions rely on <code>library(tidyverse)</code>.</li>
+<li>All data is saved in the working directory as a <code>.txt</code> file.</li>
+<li>I can’t promise my solutions will be the most elegant, but I will only post if they are correct!</li>
+</ul>
+<p>On to the solutions…</p>
+<div id="day-1" class="section level2">
+<h2>Day 1</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="part-1" class="section level3">
+<h3><a href="https://adventofcode.com/2021/day/1">Part 1</a></h3>
+<pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
+  filter(measurements &gt; lag(measurements,1)) %&gt;% 
+  nrow()</code></pre>
+<pre><code>## [1] 1832</code></pre>
+</div>
+<div id="part-2" class="section level3">
+<h3><a href="https://adventofcode.com/2021/day/2">Part 2</a></h3>
+<pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
+  mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
+  filter(roll_sum &gt; lag(roll_sum,1)) %&gt;%
+  nrow()</code></pre>
+<pre><code>## [1] 1858</code></pre>
+</div>
+</div>
