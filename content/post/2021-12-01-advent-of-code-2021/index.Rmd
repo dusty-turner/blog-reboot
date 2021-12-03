@@ -15,6 +15,9 @@ tags:
   - teaching
 cover: /media/advent2.JPG
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F)
+```
 
 Every year, the great team at [Advent of Code](adventofcode.com) lead by [ericwastl](https://twitter.com/ericwastl) develops an "Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like."  
 
@@ -28,23 +31,58 @@ A few notes as we get started:
 
 On to the solutions...
 
-## Day 1
+#### Code supporting all solutions
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
 ```
 
-### [Part 1](https://adventofcode.com/2021/day/1)
+## [Day 2](https://adventofcode.com/2021/day/2)
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE, eval=F}
+#### Part 1
+
+```{r}
+tibble(x = read_lines("day_2.txt")) %>% 
+  separate(col = x, into = c("direction","distance"), convert = TRUE) %>% 
+  group_by(real_direction = direction == "forward") %>% 
+  mutate(distance = ifelse(direction == "up", distance * -1, distance)) %>% 
+  summarise(movement = sum(distance)) %>% 
+  pull(movement) %>% prod()
+```
+
+#### Part 2
+
+```{r}
+tibble(x = read_lines("day_2.txt")) %>% 
+  separate(col = x, into = c("direction","distance"), convert = TRUE) %>%
+  mutate(distance = as.double(distance)) %>% 
+  mutate(aim_change = case_when(direction == "forward" ~ 0,
+                                direction == "down" ~ distance,
+                                direction == "up" ~ -1 * distance)) %>% 
+  mutate(aim = cumsum(aim_change)) %>% 
+  mutate(horizontal_position_increase = ifelse(direction == "forward", distance, 0)) %>% 
+  mutate(depth_position_increase = ifelse(direction == "forward", aim * distance,0)) %>% 
+  mutate(horizontal_position = cumsum(horizontal_position_increase)) %>% 
+  mutate(depth_position = cumsum(depth_position_increase)) %>% 
+  slice_tail(n = 1) %>% 
+  summarise(answer = horizontal_position * depth_position) 
+
+```
+
+
+### [Day 1](https://adventofcode.com/2021/day/1)
+
+#### Part 1
+
+```{r}
 tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%  
   filter(measurements > lag(measurements,1)) %>% 
   nrow()
 ```
 
-### [Part 2](https://adventofcode.com/2021/day/2)
+#### Part 2
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE, eval=F}
+```{r}
 tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = "right")) %>%
   filter(roll_sum > lag(roll_sum,1)) %>%

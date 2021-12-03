@@ -28,19 +28,51 @@ cover: /media/advent2.JPG
 <li>I can’t promise my solutions will be the most elegant, but I will only post if they are correct!</li>
 </ul>
 <p>On to the solutions…</p>
-<div id="day-1" class="section level2">
-<h2>Day 1</h2>
-<div id="part-1" class="section level3">
-<h3><a href="https://adventofcode.com/2021/day/1">Part 1</a></h3>
+<div id="code-supporting-all-solutions" class="section level4">
+<h4>Code supporting all solutions</h4>
+<pre class="r"><code>library(tidyverse)</code></pre>
+</div>
+<div id="day-2" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
+  separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
+  group_by(real_direction = direction == &quot;forward&quot;) %&gt;% 
+  mutate(distance = ifelse(direction == &quot;up&quot;, distance * -1, distance)) %&gt;% 
+  summarise(movement = sum(distance)) %&gt;% 
+  pull(movement) %&gt;% prod()</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
+  separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
+  mutate(distance = as.double(distance)) %&gt;% 
+  mutate(aim_change = case_when(direction == &quot;forward&quot; ~ 0,
+                                direction == &quot;down&quot; ~ distance,
+                                direction == &quot;up&quot; ~ -1 * distance)) %&gt;% 
+  mutate(aim = cumsum(aim_change)) %&gt;% 
+  mutate(horizontal_position_increase = ifelse(direction == &quot;forward&quot;, distance, 0)) %&gt;% 
+  mutate(depth_position_increase = ifelse(direction == &quot;forward&quot;, aim * distance,0)) %&gt;% 
+  mutate(horizontal_position = cumsum(horizontal_position_increase)) %&gt;% 
+  mutate(depth_position = cumsum(depth_position_increase)) %&gt;% 
+  slice_tail(n = 1) %&gt;% 
+  summarise(answer = horizontal_position * depth_position) </code></pre>
+</div>
+<div id="day-1" class="section level3">
+<h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
+<div id="part-1-1" class="section level4">
+<h4>Part 1</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
 </div>
-<div id="part-2" class="section level3">
-<h3><a href="https://adventofcode.com/2021/day/2">Part 2</a></h3>
+<div id="part-2-1" class="section level4">
+<h4>Part 2</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
   filter(roll_sum &gt; lag(roll_sum,1)) %&gt;%
   nrow()</code></pre>
+</div>
 </div>
 </div>
