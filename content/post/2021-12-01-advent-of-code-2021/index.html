@@ -32,9 +32,48 @@ cover: /media/advent2.JPG
 <h4>Code supporting all solutions</h4>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
+<div id="day-3" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/3">Day 3</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
+  transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
+  pull(col) %&gt;% as_tibble() %&gt;% 
+  summarise(across(.cols = everything(), .fns = ~if_else(mean(as.numeric(.))&gt;.5,1,0))) %&gt;% 
+  pivot_longer(cols = everything(), values_to = &quot;gamma&quot;, names_to = &quot;slot&quot;)  %&gt;% 
+  mutate(epsilon = if_else(gamma == 1, 0, 1)) %&gt;% 
+  pivot_longer(cols = -slot) %&gt;% 
+  pivot_wider(names_from = slot, values_from = value) %&gt;% 
+  unite(col = &quot;binary&quot;,  where(is.double), sep = &quot;&quot;)  %&gt;% 
+  mutate(decimal = strtoi(as.double(binary), base = 2)) %&gt;% 
+  pull(decimal) %&gt;% prod()</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>data &lt;-
+tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
+  transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
+  pull(col) %&gt;% as_tibble() %&gt;% 
+  summarise(across(.cols = everything(), .fns = ~as.numeric(.))) 
+
+filter_rating &lt;- function(data, col = &quot;V1&quot;, type = &quot;oxygen&quot;){
+  if(nrow(data)==1){out &lt;- data} 
+  else if(type == &quot;oxygen&quot;){out &lt;- data[data[,col]==if_else(mean(data[,col][[1]])&gt;=.5,1,0),]}
+  else if(type == &quot;co2&quot;){out &lt;- data[data[,col]==if_else(mean(data[,col][[1]])&lt;.5,1,0),]}
+}
+  
+reduce(.x = names(data), .f = filter_rating, .init = data, &quot;oxygen&quot;) %&gt;%
+  unite(col = &quot;binary&quot;,everything(), sep = &quot;&quot;) %&gt;% 
+  pull() %&gt;% strtoi(base = 2) *
+
+reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt;%
+  unite(col = &quot;binary&quot;,everything(), sep = &quot;&quot;) %&gt;% 
+  pull() %&gt;% strtoi(base = 2)</code></pre>
+</div>
+</div>
 <div id="day-2" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
-<div id="part-1" class="section level4">
+<div id="part-1-1" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
@@ -43,7 +82,7 @@ cover: /media/advent2.JPG
   summarise(movement = sum(distance)) %&gt;% 
   pull(movement) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2" class="section level4">
+<div id="part-2-1" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
@@ -61,13 +100,13 @@ cover: /media/advent2.JPG
 </div>
 <div id="day-1" class="section level3">
 <h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
-<div id="part-1-1" class="section level4">
+<div id="part-1-2" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
 </div>
-<div id="part-2-1" class="section level4">
+<div id="part-2-2" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
