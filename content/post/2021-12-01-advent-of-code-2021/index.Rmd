@@ -36,7 +36,7 @@ On to the solutions...
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
 ```
-
+ 
 ## [Day 4](https://adventofcode.com/2021/day/4)
 
 I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board.  Then we use `purrr::accumulate()` and `purrr::possibly()` to handle errors that I intentionally create.
@@ -50,7 +50,7 @@ selections <-
   data[1] %>% str_split(",") %>% unlist() %>% str_pad(2,"left") %>% str_pad(3,"right")
 
 boards <-
-tibble(cards = data[-1]) %>% 
+  tibble(cards = data[-1]) %>% 
   filter(cards != "") %>%
   mutate(cards = str_squish(cards)) %>% 
   transmute(col = str_split_fixed(cards, pattern = " ", n = 5)) %>% 
@@ -62,36 +62,27 @@ tibble(cards = data[-1]) %>%
 boards_list <- list(boards = boards, win_card = integer(0))
 
 mark_board <- function(boards_list = boards_list, selection = selections[1]){
-  
   if(length(boards_list$win_card) > 0){stop(boards_list)}
-
   boards <- boards_list$boards
-  
   marked <-
-  boards %>% 
+    boards %>% 
     mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = "X")))
-
   row_win_card <-
-  marked %>%
+    marked %>%
     mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),"X")) %>% 
     filter(row_bingo==5)  %>% 
     pull(card_number)
-  
   col_win_card <-
-  marked %>% 
+    marked %>% 
     mutate(across(.cols = V1:V5, .fns = ~ifelse(.=="X",1,0))) %>% 
     group_by(card_number) %>% 
     summarise(across(everything(), ~sum(.))) %>% 
     filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %>% 
     pull(card_number)
-  
   card_number <- ifelse(length(row_win_card) > 0, row_win_card, ifelse(length(col_win_card) > 0, col_win_card, integer(0)))
   if(is.na(card_number)){card_number <- integer(0)}
-
   out <- list(boards = marked, win_card = card_number, selection = selection)
-    
   return(out)
-      
 }
 
 mark_board_poss <- possibly(mark_board, otherwise = NULL)
