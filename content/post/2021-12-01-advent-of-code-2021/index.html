@@ -32,10 +32,96 @@ cover: /media/advent2.JPG
 <h4>Code supporting all solutions</h4>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
+<div id="day-5" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/5">Day 5</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<!-- For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply.  I had to create a toggle for vents that were horizontal vs vertical. -->
+<pre class="r"><code>movements &lt;-
+  tibble(directions = read_lines(&quot;02_data/day_5.txt&quot;)) %&gt;%
+  mutate(directions = str_replace_all(string = directions, pattern = &quot; -&gt; &quot;, &quot;,&quot;)) %&gt;% 
+  separate(col = directions, into = c(&quot;x1&quot;, &quot;y1&quot;, &quot;x2&quot;, &quot;y2&quot;), sep = &quot;,&quot;, convert = T) %&gt;% 
+  select(x1,x2,y1,y2) 
+
+create_lines &lt;- function(move){
+
+if(move$y1==move$y2) {
+  xlow  &lt;- min(move$x1, min(move$x2))
+  xhigh &lt;- max(move$x1, min(move$x2))
+  ylow  &lt;- min(move$y1, min(move$y2))
+  yhigh &lt;- max(move$y1, min(move$y2))
+  byrow &lt;- T # for horizontal vents
+} else if (move$x1 == move$x2) {
+  ylow  &lt;- min(move$x1, min(move$x2))
+  yhigh &lt;- max(move$x1, min(move$x2))
+  xlow  &lt;- min(move$y1, min(move$y2))
+  xhigh &lt;- max(move$y1, min(move$y2))
+  byrow &lt;- F # for vertical vents
+}
+out &lt;- matrix(c(
+  rep(rep(0,1000),ylow), ## zeroes before row/col
+  c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
+  rep(rep(0,1000),999-ylow) ## zeroes after row/col
+  ), byrow = byrow, nrow = 1000, ncol = 1000)
+return(out)
+}
+
+movements %&gt;% 
+  filter(x1==x2 | y1==y2) %&gt;% 
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~create_lines(lines = .x)) %&gt;% 
+  reduce(`+`) %&gt;% as_tibble() %&gt;% 
+  pivot_longer(cols = everything()) %&gt;% 
+  filter(value &gt;=2) %&gt;% 
+  count()</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<!-- In this part some of the vents were diagonal.  I used the first function to mark the straight vents and created a second function to trace the ones at an angle.  I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.  -->
+<pre class="r"><code>cross_routes &lt;- function(move){
+
+  xlow  &lt;- min(move$x1, min(move$x2))
+  xhigh &lt;- max(move$x1, min(move$x2))
+  ylow  &lt;- min(move$y1, min(move$y2))
+  yhigh &lt;- max(move$y1, min(move$y2))
+
+mat &lt;- matrix(rep(0,1000000), ncol = 1000) # create a 1000 x 1000 matrix
+if((move$x2&gt;move$x1 &amp; move$y2&gt;move$y1) | (move$x2&lt;move$x1 &amp; move$y2&lt;move$y1)){
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xlow+i] &lt;- 1
+  }
+} else{ ## vent is top left to bottom right
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xhigh+2-i] &lt;- 1
+  }
+}## determine if vent is top right to bottom left
+return(mat)
+}
+
+striaght_lines &lt;- # from part 1
+  movements %&gt;% 
+  filter(x1==x2 | y1==y2) %&gt;% # straight lines
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~create_lines(lines = .x)) %&gt;% 
+  reduce(`+`) 
+
+diagonal_lines &lt;-
+  movements %&gt;%
+  filter(x1!=x2 &amp; y1!=y2) %&gt;% # diagonal lines
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~cross_routes(move = .x)) %&gt;% 
+  reduce(`+`) 
+ 
+as_tibble(striaght_lines + diagonal_lines) %&gt;% 
+  pivot_longer(cols = everything()) %&gt;%
+  filter(value &gt;=2) %&gt;%
+  count()</code></pre>
+</div>
+</div>
 <div id="day-4" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/4">Day 4</a></h2>
 <p>I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board. Then we use <code>purrr::accumulate()</code> and <code>purrr::possibly()</code> to handle errors that I intentionally create.</p>
-<div id="part-1" class="section level4">
+<div id="part-1-1" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>data &lt;- read_lines(&quot;day_4.txt&quot;)
 
@@ -92,7 +178,7 @@ winning_card$boards %&gt;%
   mutate(across(everything(), ~as.numeric(.))) %&gt;% 
   as.matrix() %&gt;% sum(na.rm = T) %&gt;% prod(as.numeric(winning_card$selection))</code></pre>
 </div>
-<div id="part-2" class="section level4">
+<div id="part-2-1" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>boards_list &lt;- list(boards = boards)
 
@@ -164,7 +250,7 @@ winning_card$boards %&gt;%
 <div id="day-3" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/3">Day 3</a></h2>
 <p>I rely on several pivots, <code>unite()</code>, and the iterative function <code>purrr::reduce()</code> for this problem.</p>
-<div id="part-1-1" class="section level4">
+<div id="part-1-2" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
   transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
@@ -178,7 +264,7 @@ winning_card$boards %&gt;%
   mutate(decimal = strtoi(as.double(binary), base = 2)) %&gt;% 
   pull(decimal) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-1" class="section level4">
+<div id="part-2-2" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>data &lt;-
 tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
@@ -204,7 +290,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-2" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
 <p>Today I used <code>seperate()</code> and <code>cumsum()</code> to work this problem.</p>
-<div id="part-1-2" class="section level4">
+<div id="part-1-3" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
@@ -213,7 +299,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
   summarise(movement = sum(distance)) %&gt;% 
   pull(movement) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-2" class="section level4">
+<div id="part-2-3" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
@@ -232,13 +318,13 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-1" class="section level3">
 <h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
 <p>Using <code>lag()</code> and <code>zoo::rollsum()</code> we are able to accomplish day one pretty easily.</p>
-<div id="part-1-3" class="section level4">
+<div id="part-1-4" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
 </div>
-<div id="part-2-3" class="section level4">
+<div id="part-2-4" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
