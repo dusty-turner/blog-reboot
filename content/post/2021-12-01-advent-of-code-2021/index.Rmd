@@ -39,11 +39,78 @@ library(tidyverse)
  
  
  
+## [Day 6](https://adventofcode.com/2021/day/6) 
+
+#### Part 1 and 2
+
+My gut instinct is to always think in 'tidy' coding concepts. This will get the answer, but when moving from part 1 to part 2, the time it takes to run the code becomes computationally infeasible with my computer. I'll show my 3 attempts.
+
+```{r echo=TRUE, cache=TRUE}
+initial_fish <- tibble(fish = read_lines("02_data/day_6.txt")) %>%
+  separate_rows(fish, sep = ",", convert = T) 
+
+progress_day <- function(fish = initial_fish, after_day = 1){
+fish <-
+  fish %>% 
+  mutate(fish = ifelse(fish <= 0 , "6,8", fish-1)) %>% 
+  separate_rows(fish, sep = ",", convert = T) 
+return(fish)
+}
+
+tictoc::tic()
+1:80 %>% 
+  reduce(.f = progress_day, .init = initial_fish) %>% nrow()
+tictoc::toc()
+```
+
+My second attempt was a 'non-tidy' solution, but part 2 also took too long to run for part 2.
+
+```{r}
+initial_fish <- as.numeric(unlist(strsplit(read_lines("02_data/day_6.txt"),",")))
+
+progress_day <- function(fish = initial_fish, after_day = 1) {
+  
+  add_fish <- sum(fish == 0)
+  next_day <- fish - 1
+  next_day[next_day < 0] <- 6
+
+  out <- c(next_day, rep(8, add_fish))
+return(out)  
+}
+
+tictoc::tic()
+1:80 %>% 
+  reduce(.f = progress_day, .init = initial_fish) %>% length()
+tictoc::toc()
+```
+
+Lastly, instead of building out a vector, I decided to just count the number of fish at each state of their birthing countdown.  This make things work nice and quick.
+
+```{r}
+initial_fish <- as.numeric(unlist(strsplit(read_lines("02_data/day_6.txt"),",")))
+
+progress_day <- function(fish = initial_fish, after_day = 1) {
+  
+  add_fish <- sum(fish == 0)
+  next_day <- fish - 1
+  next_day[next_day < 0] <- 6
+
+  out <- c(next_day, rep(8, add_fish))
+return(out)  
+}
+
+tictoc::tic()
+1:256 %>% 
+  reduce(.f = progress_day, .init = initial_fish) %>% length()
+tictoc::toc()
+```
+
+
 ## [Day 5](https://adventofcode.com/2021/day/5) 
 
 #### Part 1
 
-<!-- For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply.  I had to create a toggle for vents that were horizontal vs vertical. -->
+For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply.  I had to create a toggle for vents that were horizontal vs vertical.
 
 ```{r}
 movements <-
@@ -87,7 +154,7 @@ movements %>%
 
 #### Part 2
 
-<!-- In this part some of the vents were diagonal.  I used the first function to mark the straight vents and created a second function to trace the ones at an angle.  I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.  -->
+In this part some of the vents were diagonal.  I used the first function to mark the straight vents and created a second function to trace the ones at an angle.  I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.
 
 ```{r}
 cross_routes <- function(move){
