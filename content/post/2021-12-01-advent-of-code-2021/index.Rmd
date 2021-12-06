@@ -36,6 +36,101 @@ On to the solutions...
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
 ```
+ 
+ 
+ 
+## [Day 5](https://adventofcode.com/2021/day/5) 
+
+#### Part 1
+
+<!-- For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply.  I had to create a toggle for vents that were horizontal vs vertical. -->
+
+```{r}
+movements <-
+  tibble(directions = read_lines("02_data/day_5.txt")) %>%
+  mutate(directions = str_replace_all(string = directions, pattern = " -> ", ",")) %>% 
+  separate(col = directions, into = c("x1", "y1", "x2", "y2"), sep = ",", convert = T) %>% 
+  select(x1,x2,y1,y2) 
+
+create_lines <- function(move){
+
+if(move$y1==move$y2) {
+  xlow  <- min(move$x1, min(move$x2))
+  xhigh <- max(move$x1, min(move$x2))
+  ylow  <- min(move$y1, min(move$y2))
+  yhigh <- max(move$y1, min(move$y2))
+  byrow <- T # for horizontal vents
+} else if (move$x1 == move$x2) {
+  ylow  <- min(move$x1, min(move$x2))
+  yhigh <- max(move$x1, min(move$x2))
+  xlow  <- min(move$y1, min(move$y2))
+  xhigh <- max(move$y1, min(move$y2))
+  byrow <- F # for vertical vents
+}
+out <- matrix(c(
+  rep(rep(0,1000),ylow), ## zeroes before row/col
+  c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
+  rep(rep(0,1000),999-ylow) ## zeroes after row/col
+  ), byrow = byrow, nrow = 1000, ncol = 1000)
+return(out)
+}
+
+movements %>% 
+  filter(x1==x2 | y1==y2) %>% 
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~create_lines(lines = .x)) %>% 
+  reduce(`+`) %>% as_tibble() %>% 
+  pivot_longer(cols = everything()) %>% 
+  filter(value >=2) %>% 
+  count()
+```
+
+#### Part 2
+
+<!-- In this part some of the vents were diagonal.  I used the first function to mark the straight vents and created a second function to trace the ones at an angle.  I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.  -->
+
+```{r}
+cross_routes <- function(move){
+
+  xlow  <- min(move$x1, min(move$x2))
+  xhigh <- max(move$x1, min(move$x2))
+  ylow  <- min(move$y1, min(move$y2))
+  yhigh <- max(move$y1, min(move$y2))
+
+mat <- matrix(rep(0,1000000), ncol = 1000) # create a 1000 x 1000 matrix
+if((move$x2>move$x1 & move$y2>move$y1) | (move$x2<move$x1 & move$y2<move$y1)){
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xlow+i] <- 1
+  }
+} else{ ## vent is top left to bottom right
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xhigh+2-i] <- 1
+  }
+}## determine if vent is top right to bottom left
+return(mat)
+}
+
+striaght_lines <- # from part 1
+  movements %>% 
+  filter(x1==x2 | y1==y2) %>% # straight lines
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~create_lines(lines = .x)) %>% 
+  reduce(`+`) 
+
+diagonal_lines <-
+  movements %>%
+  filter(x1!=x2 & y1!=y2) %>% # diagonal lines
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~cross_routes(move = .x)) %>% 
+  reduce(`+`) 
+ 
+as_tibble(striaght_lines + diagonal_lines) %>% 
+  pivot_longer(cols = everything()) %>%
+  filter(value >=2) %>%
+  count()
+
+```
+
 
 ## [Day 4](https://adventofcode.com/2021/day/4)
 
@@ -50,7 +145,7 @@ selections <-
   data[1] %>% str_split(",") %>% unlist() %>% str_pad(2,"left") %>% str_pad(3,"right")
 
 boards <-
-tibble(cards = data[-1]) %>% 
+  tibble(cards = data[-1]) %>% 
   filter(cards != "") %>%
   mutate(cards = str_squish(cards)) %>% 
   transmute(col = str_split_fixed(cards, pattern = " ", n = 5)) %>% 
@@ -62,36 +157,27 @@ tibble(cards = data[-1]) %>%
 boards_list <- list(boards = boards, win_card = integer(0))
 
 mark_board <- function(boards_list = boards_list, selection = selections[1]){
-  
   if(length(boards_list$win_card) > 0){stop(boards_list)}
-
   boards <- boards_list$boards
-  
   marked <-
-  boards %>% 
+    boards %>% 
     mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = "X")))
-
   row_win_card <-
-  marked %>%
+    marked %>%
     mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),"X")) %>% 
     filter(row_bingo==5)  %>% 
     pull(card_number)
-  
   col_win_card <-
-  marked %>% 
+    marked %>% 
     mutate(across(.cols = V1:V5, .fns = ~ifelse(.=="X",1,0))) %>% 
     group_by(card_number) %>% 
     summarise(across(everything(), ~sum(.))) %>% 
     filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %>% 
     pull(card_number)
-  
   card_number <- ifelse(length(row_win_card) > 0, row_win_card, ifelse(length(col_win_card) > 0, col_win_card, integer(0)))
   if(is.na(card_number)){card_number <- integer(0)}
-
   out <- list(boards = marked, win_card = card_number, selection = selection)
-    
   return(out)
-      
 }
 
 mark_board_poss <- possibly(mark_board, otherwise = NULL)
