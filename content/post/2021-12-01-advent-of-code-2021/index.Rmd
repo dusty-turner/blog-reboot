@@ -16,7 +16,7 @@ tags:
 cover: /media/advent2.JPG
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F, cache = T)
 ```
 
 Every year, the great team at [Advent of Code](adventofcode.com) lead by [ericwastl](https://twitter.com/ericwastl) develops an "Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like."  
@@ -31,22 +31,82 @@ A few notes as we get started:
 
 On to the solutions...
 
-#### Code supporting all solutions
+#### Code supporting all solutions 
 
-```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, eval = T, cashe = F}
 library(tidyverse)
 ```
  
  
  
+## [Day 7](https://adventofcode.com/2021/day/7) 
+
+#### Part 1
+
+To solve part 1, I create a function that finds the distance between all points to a specific point, map across all specific points, and then find the minimum distance.
+
+<!-- dat <- read_lines("content/post/2021-12-01-advent-of-code-2021/day_7.txt") %>% str_split(",") %>% unlist() %>% as.numeric() -->
+
+```{r}
+dat <- as.numeric(unlist(str_split(read_lines("02_data/day_7.txt"),","))) 
+
+distance <- function(data = dat, position) {
+  out <- sum(abs(data - position))
+  return(out)
+}
+
+min(dat):max(dat) %>% 
+  map_dbl(.f = ~distance(data = dat, position = .x)) %>% min()
+
+```
+
+#### Part 2
+
+I alter the distance formula to find the triangular number between two numbers. This can also be factored into the binomial coefficient with the upper index being the distance between the numbers and 2 as the lower index.
+
+
+```{r}
+distance_plus <- function(data = dat, position) {
+  n <-abs(data-position)+1
+  out <- sum(choose(n,2))
+  return(out)
+}
+
+min(dat):max(dat) %>% 
+  map_dbl(.f = ~distance_plus(data = dat, position = .x)) %>% min()
+```
+
+#### Code Golfing
+
+This last code chunk is my attempt at 'code golfing' - aka - how succinct can I make my code.  I can answer both parts with fairly brief code, but I think its less understandable.
+
+```{r}
+fuel_calculation <- function(data = dat, position, type) {
+  if(type == "distance"){out <- tibble(fuel = sum(abs(data - position)), position = position, type)}
+  if(type == "triangular"){out <- tibble(fuel = sum(choose(abs(data-position)+1,2)), position = position, type)}
+  return(out)
+}
+
+rep(min(dat):max(dat), 2) %>%
+  map2_dfr(.y = c(rep("distance", length(min(dat):max(dat))), rep("triangular", length(min(dat):max(dat)))),
+    .f = ~ fuel_calculation(data = dat,position = .x, type = .y)) %>%
+  group_split(type) %>%
+  map( ~ filter(.x, fuel == min(fuel)))
+```
+
+
+
+
 ## [Day 6](https://adventofcode.com/2021/day/6) 
 
 #### Part 1 and 2
 
 My gut instinct is to always think in 'tidy' coding concepts. This will get the answer, but when moving from part 1 to part 2, the time it takes to run the code becomes computationally infeasible with my computer. I'll show my 3 attempts.
 
-```{r echo=TRUE, cache=TRUE}
-initial_fish <- tibble(fish = read_lines("02_data/day_6.txt")) %>%
+#### Strike 1
+
+```{r echo=TRUE, cache=TRUE, eval = T} 
+initial_fish <- tibble(fish = read_lines("day_6.txt")) %>%
   separate_rows(fish, sep = ",", convert = T) 
 
 progress_day <- function(fish = initial_fish, after_day = 1){
@@ -58,15 +118,18 @@ return(fish)
 }
 
 tictoc::tic()
-1:80 %>% 
+ans <- 1:80 %>% 
+# ans <- 1:256 %>% nope!
   reduce(.f = progress_day, .init = initial_fish) %>% nrow()
 tictoc::toc()
 ```
 
-My second attempt was a 'non-tidy' solution, but part 2 also took too long to run for part 2.
+My second attempt was a 'non-tidy' solution, but part 2 also took too long to run.
 
-```{r}
-initial_fish <- as.numeric(unlist(strsplit(read_lines("02_data/day_6.txt"),",")))
+#### Strike 2
+
+```{r echo=TRUE, cache=TRUE, eval = T} 
+initial_fish <- as.numeric(unlist(strsplit(readr::read_lines("day_6.txt"),",")))
 
 progress_day <- function(fish = initial_fish, after_day = 1) {
   
@@ -79,29 +142,41 @@ return(out)
 }
 
 tictoc::tic()
-1:80 %>% 
+ans <- 1:150 %>% 
+# ans <- 1:256 %>% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %>% length()
-tictoc::toc()
+tictoc::toc() 
 ```
 
-Lastly, instead of building out a vector, I decided to just count the number of fish at each state of their birthing countdown.  This make things work nice and quick.
+Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown.  This make things work nice and quick.
 
-```{r}
-initial_fish <- as.numeric(unlist(strsplit(read_lines("02_data/day_6.txt"),",")))
+#### Success!
 
-progress_day <- function(fish = initial_fish, after_day = 1) {
-  
-  add_fish <- sum(fish == 0)
-  next_day <- fish - 1
-  next_day[next_day < 0] <- 6
+```{r echo=TRUE, cache=TRUE, eval = T} 
+fish <- as.numeric(unlist(strsplit(read_lines("day_6.txt"),",")))
+ 
+initial_fish <- c(
+length(fish[fish==8]),
+length(fish[fish==7]),
+length(fish[fish==6]),
+length(fish[fish==5]),
+length(fish[fish==4]),
+length(fish[fish==3]),
+length(fish[fish==2]),
+length(fish[fish==1]),
+length(fish[fish==0]))
 
-  out <- c(next_day, rep(8, add_fish))
-return(out)  
+progress_day <- function(fish = initial_fish, after_day = 1){
+
+births = fish[9]
+get_older <- replace_na(lag(fish),0)
+out <- c(births, get_older[2], get_older[3]+births, get_older[-c(1:3)])
+return(out)
 }
 
 tictoc::tic()
-1:256 %>% 
-  reduce(.f = progress_day, .init = initial_fish) %>% length()
+ans <- 1:256 %>% 
+  reduce(.f = progress_day, .init = initial_fish) %>% sum()
 tictoc::toc()
 ```
 
@@ -114,7 +189,7 @@ For this problem, I created a matrix to track the lines of the hydrothermic vent
 
 ```{r}
 movements <-
-  tibble(directions = read_lines("02_data/day_5.txt")) %>%
+  tibble(directions = read_lines("day_5.txt")) %>%
   mutate(directions = str_replace_all(string = directions, pattern = " -> ", ",")) %>% 
   separate(col = directions, into = c("x1", "y1", "x2", "y2"), sep = ",", convert = T) %>% 
   select(x1,x2,y1,y2) 
