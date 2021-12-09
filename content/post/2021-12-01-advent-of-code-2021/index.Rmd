@@ -16,7 +16,7 @@ tags:
 cover: /media/advent2.JPG
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F, cache = T)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F, cache = F)
 ```
 
 Every year, the great team at [Advent of Code](adventofcode.com) lead by [ericwastl](https://twitter.com/ericwastl) develops an "Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like."  
@@ -43,10 +43,10 @@ library(tidyverse)
 
 #### Part 1
 
-For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens.
+<!-- For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens. -->
 
 ```{r}
-tibble(entry = read_lines("content/post/2021-12-01-advent-of-code-2021/day_8.txt")) %>%
+tibble(entry = read_lines("day_8.txt")) %>%
   separate(col = entry, into = c("NA","output"),sep = " \\| ") %>% 
   mutate(id = row_number()) %>%
   separate_rows(output, sep = " ") %>% 
@@ -58,11 +58,11 @@ tibble(entry = read_lines("content/post/2021-12-01-advent-of-code-2021/day_8.txt
 
 #### Part 2
 
-Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters.  Next I join in the output values to determine the numerical output values.
+<!-- Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters.  Next I join in the output values to determine the numerical output values. -->
 
 ```{r}
 initial <-
-  tibble(entry = read_lines("content/post/2021-12-01-advent-of-code-2021/day_8.txt")) %>%
+  tibble(entry = read_lines("day_8.txt")) %>%
   separate(col = entry, into = c("signal","output"),sep = " \\| ") %>% 
   mutate(id = row_number()) %>%
   separate_rows(signal, sep = " ") %>% 
@@ -71,7 +71,7 @@ initial <-
   select(-output)
 
 output_tbl <-
-  tibble(entry = read_lines("content/post/2021-12-01-advent-of-code-2021/day_8.txt")) %>%
+  tibble(entry = read_lines("day_8.txt")) %>%
   separate(col = entry, into = c("signal","output"),sep = " \\| ") %>% 
   mutate(id = row_number()) %>%
   separate_rows(output, sep = " ") %>% 
@@ -141,7 +141,6 @@ identify_0 <- function(known, initial){
     filter(number %in% c(1)) %>% 
     pull(signal) %>% 
     str_split("") %>% unlist()
-  
   zero <-
     initial %>% 
     anti_join(known, by = c("signal", "id")) %>% 
@@ -207,7 +206,8 @@ initial %>% group_split(id) %>%
   left_join(output_tbl, by = c("signal" = "output", "id" = "id")) %>% 
   filter(!is.na(order)) %>% arrange(order) %>% 
   group_by(id) %>% 
-  summarise(signal = str_c(signal, collapse = " "), number = as.numeric(str_c(number, collapse = ""))) %>% 
+  summarise(signal = str_c(signal, collapse = " "), 
+            number = as.numeric(str_c(number, collapse = ""))) %>% 
   summarise(solution = sum(number))
   
 ```

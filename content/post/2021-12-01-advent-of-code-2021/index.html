@@ -32,9 +32,176 @@ cover: /media/advent2.JPG
 <h4>Code supporting all solutions</h4>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
+<div id="day-8" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/8">Day 8</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<!-- For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens. -->
+<pre class="r"><code>tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;NA&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  mutate(length = nchar(output)) %&gt;% 
+  count(length) %&gt;%
+  filter(length %in% c(2,3,4,7)) %&gt;%
+  summarise(sum = sum(n))</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<!-- Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters.  Next I join in the output values to determine the numerical output values. -->
+<pre class="r"><code>initial &lt;-
+  tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;signal&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(signal, sep = &quot; &quot;) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(signal = str_c(sort(unlist(str_split(signal,&quot;&quot;))), collapse = &quot;&quot;)) %&gt;% ungroup() %&gt;% 
+  select(-output)
+
+output_tbl &lt;-
+  tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;signal&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(output = str_c(sort(unlist(str_split(output,&quot;&quot;))), collapse = &quot;&quot;)) %&gt;% ungroup() %&gt;% 
+  select(-signal) %&gt;% 
+  group_by(id) %&gt;% 
+  summarise(output = str_c(output, collapse = &quot; &quot;)) %&gt;% 
+  ungroup() %&gt;% 
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  mutate(order = row_number())
+
+identify_obvious &lt;- function(initial){
+  out &lt;- initial %&gt;% 
+    mutate(number = case_when(nchar(signal) == 2 ~ 1,
+                              nchar(signal) == 3 ~ 7,
+                              nchar(signal) == 4 ~ 4,
+                              nchar(signal) == 7 ~ 8,
+                              TRUE ~ 0
+                              )) %&gt;% 
+    filter(number !=0) %&gt;% 
+    arrange(number)
+  return(out)
+}
+  
+identify_3 &lt;- function(known, initial){
+  seven &lt;-
+    known  %&gt;% filter(number %in% c(7)) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  three &lt;-  
+    initial %&gt;% 
+    filter(nchar(signal) == 5) %&gt;% 
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% seven) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 3) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 3) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(three)
+}
+
+identify_9 &lt;- function(known, initial){
+  three &lt;-
+    known  %&gt;% filter(number %in% c(3)) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  nine &lt;-
+    initial %&gt;% 
+    filter(nchar(signal) == 6) %&gt;% 
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% three) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 5) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 9) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(nine)
+}
+
+identify_0 &lt;- function(known, initial){
+  one &lt;-
+    known  %&gt;% 
+    filter(number %in% c(1)) %&gt;% 
+    pull(signal) %&gt;% 
+    str_split(&quot;&quot;) %&gt;% unlist()
+  zero &lt;-
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    filter(nchar(signal) == 6) %&gt;%   
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% one) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 2) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 0) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(zero)
+}
+
+identify_6 &lt;- function(known, initial){
+  known &lt;-
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    filter(nchar(signal) == 6) %&gt;%
+    mutate(number = 6) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(known)
+}
+
+identify_5_2 &lt;- function(known, initial){
+  part &lt;-
+    known %&gt;% 
+    filter(number %in% c(1,4)) %&gt;% 
+    separate_rows(signal, sep = &quot;&quot;) %&gt;% 
+    group_by(signal) %&gt;% filter(n()==1) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  last &lt;- 
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    mutate(side = signal) %&gt;% 
+    separate_rows(side, sep = &quot;&quot;)  %&gt;% 
+    filter(side %in% part) %&gt;% 
+    group_by(signal) %&gt;% 
+    mutate(number = if_else(n()==2,5,2)) %&gt;% 
+    ungroup() %&gt;% select(-side) %&gt;% distinct() %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+return(last)
+}
+
+all_together &lt;- function(initial) {
+  all &lt;-
+    initial %&gt;%
+    identify_obvious() %&gt;%
+    identify_3(initial = initial) %&gt;%
+    identify_9(initial = initial) %&gt;%
+    identify_0(initial = initial) %&gt;%
+    identify_6(initial = initial) %&gt;%
+    identify_5_2(initial = initial)
+  return(all)
+}
+
+initial %&gt;% group_split(id) %&gt;% 
+  map_df(~all_together(initial = .x)) %&gt;% 
+  left_join(output_tbl, by = c(&quot;signal&quot; = &quot;output&quot;, &quot;id&quot; = &quot;id&quot;)) %&gt;% 
+  filter(!is.na(order)) %&gt;% arrange(order) %&gt;% 
+  group_by(id) %&gt;% 
+  summarise(signal = str_c(signal, collapse = &quot; &quot;), 
+            number = as.numeric(str_c(number, collapse = &quot;&quot;))) %&gt;% 
+  summarise(solution = sum(number))</code></pre>
+</div>
+</div>
 <div id="day-7" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/7">Day 7</a></h2>
-<div id="part-1" class="section level4">
+<div id="part-1-1" class="section level4">
 <h4>Part 1</h4>
 <p>To solve part 1, I create a function that finds the distance between all points to a specific point, map across all specific points, and then find the minimum distance.</p>
 <!-- dat <- read_lines("content/post/2021-12-01-advent-of-code-2021/day_7.txt") %>% str_split(",") %>% unlist() %>% as.numeric() -->
@@ -48,7 +215,7 @@ distance &lt;- function(data = dat, position) {
 min(dat):max(dat) %&gt;% 
   map_dbl(.f = ~distance(data = dat, position = .x)) %&gt;% min()</code></pre>
 </div>
-<div id="part-2" class="section level4">
+<div id="part-2-1" class="section level4">
 <h4>Part 2</h4>
 <p>I alter the distance formula to find the triangular number between two numbers. This can also be factored into the binomial coefficient with the upper index being the distance between the numbers and 2 as the lower index.</p>
 <pre class="r"><code>distance_plus &lt;- function(data = dat, position) {
@@ -100,7 +267,7 @@ ans &lt;- 1:80 %&gt;%
 # ans &lt;- 1:256 %&gt;% nope!
   reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
 tictoc::toc()</code></pre>
-<pre><code>## 38.55 sec elapsed</code></pre>
+<pre><code>## 36.97 sec elapsed</code></pre>
 <p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
 </div>
 <div id="strike-2" class="section level4">
@@ -122,7 +289,7 @@ ans &lt;- 1:150 %&gt;%
 # ans &lt;- 1:256 %&gt;% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
 tictoc::toc() </code></pre>
-<pre><code>## 36.25 sec elapsed</code></pre>
+<pre><code>## 34.98 sec elapsed</code></pre>
 <p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
 </div>
 <div id="success" class="section level4">
@@ -157,7 +324,7 @@ tictoc::toc()</code></pre>
 </div>
 <div id="day-5" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/5">Day 5</a></h2>
-<div id="part-1-1" class="section level4">
+<div id="part-1-2" class="section level4">
 <h4>Part 1</h4>
 <p>For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply. I had to create a toggle for vents that were horizontal vs vertical.</p>
 <pre class="r"><code>movements &lt;-
@@ -198,7 +365,7 @@ movements %&gt;%
   filter(value &gt;=2) %&gt;% 
   count()</code></pre>
 </div>
-<div id="part-2-1" class="section level4">
+<div id="part-2-2" class="section level4">
 <h4>Part 2</h4>
 <p>In this part some of the vents were diagonal. I used the first function to mark the straight vents and created a second function to trace the ones at an angle. I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.</p>
 <pre class="r"><code>cross_routes &lt;- function(move){
@@ -244,7 +411,7 @@ as_tibble(striaght_lines + diagonal_lines) %&gt;%
 <div id="day-4" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/4">Day 4</a></h2>
 <p>I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board. Then we use <code>purrr::accumulate()</code> and <code>purrr::possibly()</code> to handle errors that I intentionally create.</p>
-<div id="part-1-2" class="section level4">
+<div id="part-1-3" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>data &lt;- read_lines(&quot;day_4.txt&quot;)
 
@@ -301,7 +468,7 @@ winning_card$boards %&gt;%
   mutate(across(everything(), ~as.numeric(.))) %&gt;% 
   as.matrix() %&gt;% sum(na.rm = T) %&gt;% prod(as.numeric(winning_card$selection))</code></pre>
 </div>
-<div id="part-2-2" class="section level4">
+<div id="part-2-3" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>boards_list &lt;- list(boards = boards)
 
@@ -373,7 +540,7 @@ winning_card$boards %&gt;%
 <div id="day-3" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/3">Day 3</a></h2>
 <p>I rely on several pivots, <code>unite()</code>, and the iterative function <code>purrr::reduce()</code> for this problem.</p>
-<div id="part-1-3" class="section level4">
+<div id="part-1-4" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
   transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
@@ -387,7 +554,7 @@ winning_card$boards %&gt;%
   mutate(decimal = strtoi(as.double(binary), base = 2)) %&gt;% 
   pull(decimal) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-3" class="section level4">
+<div id="part-2-4" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>data &lt;-
 tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
@@ -413,7 +580,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-2" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
 <p>Today I used <code>seperate()</code> and <code>cumsum()</code> to work this problem.</p>
-<div id="part-1-4" class="section level4">
+<div id="part-1-5" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
@@ -422,7 +589,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
   summarise(movement = sum(distance)) %&gt;% 
   pull(movement) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-4" class="section level4">
+<div id="part-2-5" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
@@ -441,13 +608,13 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-1" class="section level3">
 <h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
 <p>Using <code>lag()</code> and <code>zoo::rollsum()</code> we are able to accomplish day one pretty easily.</p>
-<div id="part-1-5" class="section level4">
+<div id="part-1-6" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
 </div>
-<div id="part-2-5" class="section level4">
+<div id="part-2-6" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
