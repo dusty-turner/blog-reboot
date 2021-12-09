@@ -36,7 +36,7 @@ cover: /media/advent2.JPG
 <h2><a href="https://adventofcode.com/2021/day/8">Day 8</a></h2>
 <div id="part-1" class="section level4">
 <h4>Part 1</h4>
-<!-- For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens. -->
+<p>For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens.</p>
 <pre class="r"><code>tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
   separate(col = entry, into = c(&quot;NA&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
   mutate(id = row_number()) %&gt;%
@@ -48,7 +48,7 @@ cover: /media/advent2.JPG
 </div>
 <div id="part-2" class="section level4">
 <h4>Part 2</h4>
-<!-- Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters.  Next I join in the output values to determine the numerical output values. -->
+<p>Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters. Next I join in the output values to determine the numerical output values.</p>
 <pre class="r"><code>initial &lt;-
   tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
   separate(col = entry, into = c(&quot;signal&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
