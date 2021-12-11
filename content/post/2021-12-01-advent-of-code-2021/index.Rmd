@@ -44,11 +44,11 @@ plan(multicore)
 
 #### Part 1
 
-I use a while loop to remove all 'open' 'close' pairings.  This helps find both corrupted and broken chunks.  I find the corrupted chunks and apply the scoring mechanism. 
+I use a while loop to remove all 'open' 'close' pairings.  This helps find both corrupted and broken chunks.  I find the corrupted chunks and apply the scoring mechanism.
 
 ```{r}
 input <-
-  tibble(chunks = read_lines("02_data/day_10.txt"))
+  tibble(chunks = read_lines("day_10.txt"))
 
 syntax_error_points <- ## points for each bracket type
   tibble(chunks = c(")", "]", "}", ">"),
@@ -58,10 +58,8 @@ syntax_error_points <- ## points for each bracket type
 input_list <- list(NULL, input) ## prepare list for iteration
 
 i <- 2 ## initialize iterator 
-
 while (!isTRUE(all.equal(input_list[i], input_list[i - 1]))) {
-  input <-
-    input %>%
+  input <-  input %>%
     mutate(chunks = str_remove_all(string = chunks, pattern = "<>|\\[\\]|\\(\\)|\\{\\}"))
   i = i + 1
   input_list[[i]] <- input
@@ -78,7 +76,7 @@ input_list %>% tail(1) %>% pluck(1) %>% ## select the last list
 
 ## Part 2
 
-I take the incomplete chunks from the previous part and map over the scoirng function for the final answer.  
+I take the incomplete chunks from the previous part and map over the score_points function for the final answer.
 
 ```{r}
 incomplete_df <- ## identify chunks with incomplete strings
@@ -88,13 +86,11 @@ incomplete_df <- ## identify chunks with incomplete strings
   filter(chunks == "") %>% ## removes extraneous lines
   select(id = chunks, incomplete_strings) ## now have df with incomplete strings identified
 
-
 matching_df <- ## create scoring df for joining later
   tibble(
     chunks = c("(", "[", "{", "<"),
     right = c(")", "]", "}", ">"),
-    points = c(1, 2, 3, 4)
-  )
+    points = c(1, 2, 3, 4))
 
 incomplete_list <-  ## creates list of points
   input %>%  mutate(incomplete_strings = row_number()) %>%
@@ -109,14 +105,12 @@ incomplete_list <-  ## creates list of points
 
 score_points <- function(current_vector = points, index) {
     current_vector[index] <- current_vector[index - 1] * 5 + current_vector[index]
-    return(current_vector)
-  } ## function to execute partial scoring function
+    return(current_vector)} ## function to execute partial scoring function
 
 score_everything <- function(data) {
   2:length(data) %>%
     reduce(.f = score_points, .init = data) %>%
-    tail(1)
-} ## function which scores entire vector
+    tail(1)} ## function which scores entire vector
 
 incomplete_list %>%
   map_dbl(.f = ~ score_everything(data = .x)) %>%
