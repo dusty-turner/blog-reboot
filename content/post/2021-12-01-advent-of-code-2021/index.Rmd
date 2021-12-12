@@ -40,6 +40,103 @@ plan(multicore)
 ```
  
 
+## [Day 11](https://adventofcode.com/2021/day/11) 
+
+#### Part 1
+
+In previous attempts, I've moved through the entire plane making changes as I get to them.  This time, I took a page from [David Robinsion's](https://twitter.com/drob) playbook and used `crossing()`.  I then used a while loop to progress through the octopus stages
+
+```{r}
+test_tens <- function(iteration = x) {
+  out <-
+    iteration %>%
+    distinct(row, col, value) %>%
+    select(row, col, value) %>%
+    filter(value >= 10) %>% nrow()
+  return(out)
+}
+
+x <-
+  tibble(x = (read_lines("02_data/day_11.txt"))) %>% 
+  mutate(row = row_number()) %>% 
+  mutate(value = str_split(x,"")) %>% 
+  unnest(value) %>% 
+  mutate(value = as.numeric(value)) %>% 
+  group_by(row) %>% 
+  mutate(col = row_number()) %>% 
+  ungroup() %>% 
+  relocate(value, .after = col) %>% 
+  select(-x)
+
+adj <- expand.grid(xd = c(-1,0,1), yd = c(-1,0,1))
+
+adjacent <- function(x){
+  d <- x %>% distinct(row,col,value)
+  d2 <- x %>% distinct(row,col,value)
+  d %>% 
+    crossing(adj) %>% 
+    mutate(row2 = row +xd,
+           col2 = col + yd) %>%
+    arrange(row,col) %>% 
+    inner_join(d2, by = c(row2 = "row", col2 = "col"), suffix = c("", "2")) %>% 
+    filter(row != row2 | col != col2)  
+}
+
+flash_octopus <- function(x = x, iteration = 1) {
+  x <- x$x %>%
+    adjacent() %>%
+    mutate(across(.cols = c("value", "value2"), .fns = ~ . + 1))
+  
+  tens <- 1
+  
+  while (tens != 0) {
+    x <- x %>%
+      group_by(row, col) %>%  mutate(add_this_many = sum(value2 >= 10)) %>% ungroup() %>%
+      mutate(value = ifelse(value >= 10,-100, value)) %>%
+      mutate(value = value + add_this_many) %>%
+      adjacent()
+    
+    tens <- test_tens(x)
+  }
+  
+  flashes <- x %>% distinct(row, col, value) %>% count(did_flash = value < 0) %>% filter(did_flash) %>% pull(n)
+  
+  if (length(flashes) == 0) {flashes <- 0}
+  
+  x <- x %>% mutate(value = ifelse(value < 0, 0, value))
+  
+  x <- list(x = x, flashes = flashes)
+  
+  return(x)
+}
+
+x <- list(x = x, flashes = 0)
+
+## Answer
+accumulate(1:100, .f = flash_octopus, .init = x) %>% one_hundred %>% map(2) %>% unlist() %>% sum()
+```
+
+#### Part 2
+
+```{r}
+three_hundred <- accumulate(1:300, .f = flash_octopus, .init = x)
+
+which(unlist(map(three_hundred, 2)) == 100)[1] - 1
+```
+
+I also want to provide this function that proved helpful in viewing the matrix throughout. 
+
+```{r}
+see_matrix <- function(data = x){
+  data %>% 
+    distinct(row, col, value) %>% 
+    select(row,col,value) %>% 
+    pull(value) %>% 
+    matrix(nrow = 10, byrow = T)
+}
+```
+
+
 ## [Day 10](https://adventofcode.com/2021/day/10) 
 
 #### Part 1
