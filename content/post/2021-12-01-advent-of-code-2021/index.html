@@ -34,10 +34,251 @@ cover: /media/advent2.JPG
 library(furrr)
 plan(multicore)</code></pre>
 </div>
+<div id="day-13" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/13">Day 13</a></h2>
+<div id="part-12" class="section level4">
+<h4>Part 1/2</h4>
+<p>Today’s was a lot of fun. After parsing the data, use <code>reduce2</code> to iteratvly fold the paper. ggplot helps to read the final solution.</p>
+<pre class="r"><code>data &lt;-
+  tibble(loc = read_lines(file = &quot;day_13.txt&quot;)) %&gt;%
+  filter(!str_detect(loc, &quot;fold&quot;)) %&gt;% filter(loc != &quot;&quot;) %&gt;%
+  separate(col = loc,into = c(&quot;x&quot;, &quot;y&quot;),sep = &quot;,&quot;,convert = T) 
+
+lines &lt;-
+  tibble(loc = read_lines(file = &quot;day_13.txt&quot;)) %&gt;%
+  filter(str_detect(loc, &quot;fold&quot;)) %&gt;% filter(loc != &quot;&quot;) %&gt;% 
+  mutate(loc = str_remove(loc, &quot;fold along &quot;)) %&gt;% 
+  separate(loc, c(&quot;axis&quot;,&quot;num&quot;), &quot;=&quot;, convert = T) %&gt;% 
+  mutate(num = as.double(num))
+
+fold &lt;- function(data, axis, num) {
+  out &lt;-
+    data %&gt;%
+    mutate(x = if_else(x &gt; num &amp; axis == &quot;x&quot;, num - (x - num), as.double(x))) %&gt;%
+    mutate(y = if_else(y &gt; num &amp; axis == &quot;y&quot;, num - (y - num), as.double(y)))
+  return(out)
+  }
+
+reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;% 
+  count(x,y)  %&gt;% 
+  mutate(y = -1*y) %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  geom_tile() + theme_void()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ggplot2::theme_void()</code></pre>
+<pre><code>## List of 92
+##  $ line                      : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ rect                      : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ text                      :List of 11
+##   ..$ family       : chr &quot;&quot;
+##   ..$ face         : chr &quot;plain&quot;
+##   ..$ colour       : chr &quot;black&quot;
+##   ..$ size         : num 11
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : &#39;margin&#39; num [1:4] 0points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ title                     : NULL
+##  $ aspect.ratio              : NULL
+##  $ axis.title                : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ axis.title.x              : NULL
+##  $ axis.title.x.top          : NULL
+##  $ axis.title.x.bottom       : NULL
+##  $ axis.title.y              : NULL
+##  $ axis.title.y.left         : NULL
+##  $ axis.title.y.right        : NULL
+##  $ axis.text                 : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ axis.text.x               : NULL
+##  $ axis.text.x.top           : NULL
+##  $ axis.text.x.bottom        : NULL
+##  $ axis.text.y               : NULL
+##  $ axis.text.y.left          : NULL
+##  $ axis.text.y.right         : NULL
+##  $ axis.ticks                : NULL
+##  $ axis.ticks.x              : NULL
+##  $ axis.ticks.x.top          : NULL
+##  $ axis.ticks.x.bottom       : NULL
+##  $ axis.ticks.y              : NULL
+##  $ axis.ticks.y.left         : NULL
+##  $ axis.ticks.y.right        : NULL
+##  $ axis.ticks.length         : &#39;simpleUnit&#39; num 0points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ axis.ticks.length.x       : NULL
+##  $ axis.ticks.length.x.top   : NULL
+##  $ axis.ticks.length.x.bottom: NULL
+##  $ axis.ticks.length.y       : NULL
+##  $ axis.ticks.length.y.left  : NULL
+##  $ axis.ticks.length.y.right : NULL
+##  $ axis.line                 : NULL
+##  $ axis.line.x               : NULL
+##  $ axis.line.x.top           : NULL
+##  $ axis.line.x.bottom        : NULL
+##  $ axis.line.y               : NULL
+##  $ axis.line.y.left          : NULL
+##  $ axis.line.y.right         : NULL
+##  $ legend.background         : NULL
+##  $ legend.margin             : NULL
+##  $ legend.spacing            : NULL
+##  $ legend.spacing.x          : NULL
+##  $ legend.spacing.y          : NULL
+##  $ legend.key                : NULL
+##  $ legend.key.size           : &#39;simpleUnit&#39; num 1.2lines
+##   ..- attr(*, &quot;unit&quot;)= int 3
+##  $ legend.key.height         : NULL
+##  $ legend.key.width          : NULL
+##  $ legend.text               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ legend.text.align         : NULL
+##  $ legend.title              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ legend.title.align        : NULL
+##  $ legend.position           : chr &quot;right&quot;
+##  $ legend.direction          : NULL
+##  $ legend.justification      : NULL
+##  $ legend.box                : NULL
+##  $ legend.box.just           : NULL
+##  $ legend.box.margin         : NULL
+##  $ legend.box.background     : NULL
+##  $ legend.box.spacing        : NULL
+##  $ panel.background          : NULL
+##  $ panel.border              : NULL
+##  $ panel.spacing             : &#39;simpleUnit&#39; num 5.5points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ panel.spacing.x           : NULL
+##  $ panel.spacing.y           : NULL
+##  $ panel.grid                : NULL
+##  $ panel.grid.major          : NULL
+##  $ panel.grid.minor          : NULL
+##  $ panel.grid.major.x        : NULL
+##  $ panel.grid.major.y        : NULL
+##  $ panel.grid.minor.x        : NULL
+##  $ panel.grid.minor.y        : NULL
+##  $ panel.ontop               : logi FALSE
+##  $ plot.background           : NULL
+##  $ plot.title                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 1.2
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.title.position       : chr &quot;panel&quot;
+##  $ plot.subtitle             :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.caption              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.caption.position     : chr &quot;panel&quot;
+##  $ plot.tag                  :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 1.2
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.tag.position         : chr &quot;topleft&quot;
+##  $ plot.margin               : &#39;simpleUnit&#39; num [1:4] 0lines 0lines 0lines 0lines
+##   ..- attr(*, &quot;unit&quot;)= int 3
+##  $ strip.background          : NULL
+##  $ strip.background.x        : NULL
+##  $ strip.background.y        : NULL
+##  $ strip.placement           : NULL
+##  $ strip.text                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ strip.text.x              : NULL
+##  $ strip.text.y              : NULL
+##  $ strip.switch.pad.grid     : &#39;simpleUnit&#39; num 2.75points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ strip.switch.pad.wrap     : &#39;simpleUnit&#39; num 2.75points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;theme&quot; &quot;gg&quot;
+##  - attr(*, &quot;complete&quot;)= logi TRUE
+##  - attr(*, &quot;validate&quot;)= logi TRUE</code></pre>
+</div>
+</div>
 <div id="day-12" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/12">Day 12</a></h2>
 <div id="part-1-2" class="section level4">
 <h4>Part 1 / 2</h4>
+<p>Today was difficult to keep up with all the rules. Some of the caves were different in the examples (such as the small dead end cave had a large cave to return to in the final problem). Had to do some data filtereing mid way to help with runtime issues.</p>
 <pre class="r"><code>x &lt;- ## read in and clean data
   tibble(paths = read_lines(file = &quot;day_12.txt&quot;)) %&gt;% 
   separate(col = paths, into = c(&quot;start&quot;, &quot;end&quot;), sep = &quot;-&quot;) %&gt;% 
@@ -567,7 +808,7 @@ ans &lt;- 1:80 %&gt;%
 # ans &lt;- 1:256 %&gt;% nope!
   reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
 tictoc::toc()</code></pre>
-<pre><code>## 40.14 sec elapsed</code></pre>
+<pre><code>## 38.89 sec elapsed</code></pre>
 <p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
 </div>
 <div id="strike-2" class="section level4">
@@ -589,7 +830,7 @@ ans &lt;- 1:150 %&gt;%
 # ans &lt;- 1:256 %&gt;% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
 tictoc::toc() </code></pre>
-<pre><code>## 36.45 sec elapsed</code></pre>
+<pre><code>## 40.12 sec elapsed</code></pre>
 <p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
 </div>
 <div id="success" class="section level4">
@@ -619,7 +860,7 @@ tictoc::tic()
 ans &lt;- 1:256 %&gt;% 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% sum()
 tictoc::toc()</code></pre>
-<pre><code>## 0.01 sec elapsed</code></pre>
+<pre><code>## 0.02 sec elapsed</code></pre>
 </div>
 </div>
 <div id="day-5" class="section level2">
