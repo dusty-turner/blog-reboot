@@ -39,10 +39,11 @@ library(furrr)
 plan(multicore)
 ```
  
-
 ## [Day 12](https://adventofcode.com/2021/day/12) 
 
 #### Part 1 / 2
+
+
 
 ```{r}
 library(tidyverse)
@@ -78,19 +79,35 @@ y <- x %>% bind_rows(upr_rev_paths) %>% bind_rows(lwr_rev_paths) %>% distinct() 
 
 first <- x %>% filter(start == "start") # from the start
 
-join_change_names <- function(x = out, iter_num = 1){ ## function to go into new room
-  hold <- x %>% filter(end == "end")
-  print(nrow(hold))
-  progress <- x %>% filter(end != "end")
-  print(nrow(progress))
+join_change_names <- function(x = out, iter_num = 1, part_2 = FALSE){ 
+  hold <- x %>% filter(end == "end") ## splits data to speed up code
+  progress <- x %>% filter(end != "end") ## this is the only data needing processing
   
-  out <-
+  out_1 <-
   progress %>% 
   left_join(y, by = c("end" = "start")) %>% 
     rename_with(~str_c(.,"_x")) %>% 
     rename_with(~str_c("end"), .cols = last_col()) %>% 
     rename_with(~str_c("start"), .cols = starts_with("start")) %>% 
-    unite(all, everything(), remove = F) %>% 
+    unite(all, everything(), remove = F) 
+    
+  if(part_2==FALSE){ ## part 1 criteria
+    out <-
+    out_1 %>% 
+      filter(str_count(all, "ws")<=1) %>%
+      filter(str_count(all, "kq")<=1) %>%
+      filter(str_count(all, "yr")<=1) %>%
+      filter(str_count(all, "zo")<=1) %>%
+      filter(str_count(all, "np")<=1) %>%
+      filter(str_count(all, "xq")<=1) %>%
+      filter(str_count(all, "ra")<=1) %>%
+      select(-all) %>% 
+      bind_rows(hold)
+  }
+  
+  if(part_2==TRUE){ ### part 2 criteria
+      out <-
+      out_1 %>% 
     filter(str_count(all, "ws")<=2) %>%
     filter(str_count(all, "kq")<=2) %>%
     filter(str_count(all, "yr")<=2) %>%
@@ -109,18 +126,11 @@ join_change_names <- function(x = out, iter_num = 1){ ## function to go into new
     filter(total <= 1) %>% 
     select(-all,-ws,-kq,-yr,-zo,-np,-xq,-ra,-total) %>% 
     bind_rows(hold)
-  print(nrow(out))
+  }
   return(out)
 }
 
-1:20 %>% 
-  reduce(.f = join_change_names, .init = first) %>% 
-  unite(col = all, sep = "_", everything()) %>%
-  filter(str_detect(all, "end")) %>%
-  mutate(all = str_remove(all, pattern = "_end.*")) %>%
-  mutate(all = str_c(all,"_end")) %>%
-  distinct() %>%
-  arrange(all)
+1:20 %>% reduce(.f = join_change_names, .init = first) 
 
 ```
 
@@ -132,17 +142,8 @@ join_change_names <- function(x = out, iter_num = 1){ ## function to go into new
 In previous attempts, I've moved through the entire plane making changes as I get to them.  This time, I took a page from [David Robinsion's](https://twitter.com/drob) playbook and used `crossing()`.  I then used a while loop to progress through the octopus stages
 
 ```{r}
-test_tens <- function(iteration = x) {
-  out <-
-    iteration %>%
-    distinct(row, col, value) %>%
-    select(row, col, value) %>%
-    filter(value >= 10) %>% nrow()
-  return(out)
-}
-
 x <-
-  tibble(x = (read_lines("02_data/day_11.txt"))) %>% 
+  tibble(x = (read_lines("day_11.txt"))) %>% 
   mutate(row = row_number()) %>% 
   mutate(value = str_split(x,"")) %>% 
   unnest(value) %>% 
@@ -171,37 +172,31 @@ flash_octopus <- function(x = x, iteration = 1) {
   x <- x$x %>%
     adjacent() %>%
     mutate(across(.cols = c("value", "value2"), .fns = ~ . + 1))
-  
   tens <- 1
-  
   while (tens != 0) {
     x <- x %>%
       group_by(row, col) %>%  mutate(add_this_many = sum(value2 >= 10)) %>% ungroup() %>%
       mutate(value = ifelse(value >= 10,-100, value)) %>%
       mutate(value = value + add_this_many) %>%
       adjacent()
-    
-    tens <- test_tens(x)
+    tens <- x %>% distinct(row, col, value) %>% filter(value >= 10) %>% nrow()
   }
-  
   flashes <- x %>% distinct(row, col, value) %>% count(did_flash = value < 0) %>% filter(did_flash) %>% pull(n)
-  
   if (length(flashes) == 0) {flashes <- 0}
-  
   x <- x %>% mutate(value = ifelse(value < 0, 0, value))
-  
   x <- list(x = x, flashes = flashes)
-  
   return(x)
 }
 
 x <- list(x = x, flashes = 0)
 
-## Answer
+## Answer 1
 accumulate(1:100, .f = flash_octopus, .init = x) %>% one_hundred %>% map(2) %>% unlist() %>% sum()
 ```
 
 #### Part 2
+
+For part 2, let it run longer and find the first element that has 100 flashes.
 
 ```{r}
 three_hundred <- accumulate(1:300, .f = flash_octopus, .init = x)
