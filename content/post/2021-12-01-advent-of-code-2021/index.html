@@ -34,6 +34,78 @@ cover: /media/advent2.JPG
 library(furrr)
 plan(multicore)</code></pre>
 </div>
+<div id="day-14" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/14">Day 14</a></h2>
+<div id="strike-1" class="section level4">
+<h4>Strike 1</h4>
+<p>As with previous days, tracking the entirety of the growing string works for part 1, but not part 2.</p>
+<p>Here I grow the string according to the directions, count up all characters, and find the solution. It works fine for 10 iterations.</p>
+<pre class="r"><code>pair_insertion_rules &lt;-
+  tibble(loc = read_lines(file = &quot;02_data/day_14.txt&quot;)) %&gt;% 
+  slice(-c(1:2)) %&gt;% 
+  separate(loc, into = c(&quot;polymer&quot;, &quot;insert&quot;))
+
+polymer_template &lt;-
+  tibble(polymer = read_lines(file = &quot;02_data/day_14.txt&quot;)) %&gt;% slice(1) 
+
+grow_polymer &lt;- function(polymer = polymer_template, iter){
+  out &lt;-
+    polymer %&gt;%
+    separate_rows(polymer, sep = &quot;&quot;) %&gt;%
+    transmute(polymer = str_c(lag(polymer, 1), polymer)) %&gt;%
+    filter(!is.na(polymer)) %&gt;%
+    left_join(pair_insertion_rules, by = &quot;polymer&quot;) %&gt;%
+    transmute(add = replace_na(str_c(
+      str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+    ), str_c(&quot; &quot;, polymer[1]))) %&gt;% 
+    mutate(add = str_sub(add, 2, 3)) %&gt;%
+    summarise(polymer = str_c(add, collapse = &quot;&quot;))
+  return(out)
+}
+
+1:10 %&gt;% reduce(.f = grow_polymer, .init = polymer_template) %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;% 
+  count(polymer) %&gt;% 
+  filter(polymer !=&quot;&quot;) %&gt;% 
+  summarise(answer = max(n)-min(n))</code></pre>
+</div>
+<div id="part-12-success" class="section level4">
+<h4>Part 1/2 Success</h4>
+<p>But when time comes to do this for 40 days, everything stalls out around 21 days. However, instead of growing the string, count up all pairs as they happen.</p>
+<pre class="r"><code>first &lt;-
+  polymer_template %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;% 
+  transmute(polymer = str_c(lag(polymer,1), polymer)) %&gt;% 
+  filter(nchar(polymer)==2) %&gt;% 
+  count(polymer)
+
+iterate_step &lt;-
+  function(first = hold, iter) {
+    out &lt;-
+      first %&gt;%
+      left_join(pair_insertion_rules, by = &quot;polymer&quot;) %&gt;%
+      mutate(add = replace_na(str_c(
+        str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+      ), str_c(&quot; &quot;, polymer[1]))) %&gt;% 
+      separate_rows(add, sep = &quot;&quot;) %&gt;%
+      mutate(add = str_c(lag(add, 1), add)) %&gt;%
+      filter(nchar(add) == 2) %&gt;%
+      group_by(add) %&gt;%
+      summarise(n = sum(n)) %&gt;%
+      select(polymer = add, n)
+    return(out)
+  }
+
+reduce(1:40, .f = iterate_step, .init = first) %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;%
+  filter(polymer != &quot;&quot;) %&gt;% 
+  count(polymer, n) %&gt;% 
+  group_by(polymer) %&gt;% 
+  summarise(total = ceiling(sum(n*nn)/2)) %&gt;% 
+  ungroup() %&gt;% 
+  summarise(answer = max(total)-min(total))</code></pre>
+</div>
+</div>
 <div id="day-13" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/13">Day 13</a></h2>
 <div id="part-12" class="section level4">
@@ -64,7 +136,7 @@ reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;%
   mutate(y = -1*y) %&gt;% 
   ggplot(aes(x = x, y = y)) +
   geom_tile() + theme_void()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>ggplot2::theme_void()</code></pre>
 <pre><code>## List of 92
 ##  $ line                      : list()
@@ -790,7 +862,7 @@ rep(min(dat):max(dat), 2) %&gt;%
 <h4>Part 1 and 2</h4>
 <p>My gut instinct is to always think in ‘tidy’ coding concepts. This will get the answer, but when moving from part 1 to part 2, the time it takes to run the code becomes computationally infeasible with my computer. I’ll show my 3 attempts.</p>
 </div>
-<div id="strike-1" class="section level4">
+<div id="strike-1-1" class="section level4">
 <h4>Strike 1</h4>
 <pre class="r"><code>initial_fish &lt;- tibble(fish = read_lines(&quot;day_6.txt&quot;)) %&gt;%
   separate_rows(fish, sep = &quot;,&quot;, convert = T) 
@@ -808,7 +880,7 @@ ans &lt;- 1:80 %&gt;%
 # ans &lt;- 1:256 %&gt;% nope!
   reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
 tictoc::toc()</code></pre>
-<pre><code>## 38.89 sec elapsed</code></pre>
+<pre><code>## 40.61 sec elapsed</code></pre>
 <p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
 </div>
 <div id="strike-2" class="section level4">
@@ -830,7 +902,7 @@ ans &lt;- 1:150 %&gt;%
 # ans &lt;- 1:256 %&gt;% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
 tictoc::toc() </code></pre>
-<pre><code>## 40.12 sec elapsed</code></pre>
+<pre><code>## 37.2 sec elapsed</code></pre>
 <p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
 </div>
 <div id="success" class="section level4">
@@ -860,7 +932,7 @@ tictoc::tic()
 ans &lt;- 1:256 %&gt;% 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% sum()
 tictoc::toc()</code></pre>
-<pre><code>## 0.02 sec elapsed</code></pre>
+<pre><code>## 0.04 sec elapsed</code></pre>
 </div>
 </div>
 <div id="day-5" class="section level2">

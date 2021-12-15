@@ -43,9 +43,9 @@ plan(multicore)
 
 #### Strike 1
 
-As with previous days, tracking the entirety of the growing string works for part 1, but not part 2. 
+As with previous days, tracking the entirety of the growing string works for part 1, but not part 2.
 
-Here I grow the string according to the directions, count up all characters, and find the solution.  It works fine for 10 interations.
+Here I grow the string according to the directions, count up all characters, and find the solution.  It works fine for 10 iterations. 
 
 ```{r}
 pair_insertion_rules <-
@@ -79,13 +79,13 @@ grow_polymer <- function(polymer = polymer_template, iter){
 
 ```
 
-#### Part 1/2
+#### Part 1/2 Success
 
 But when time comes to do this for 40 days, everything stalls out around 21 days.  However, instead of growing the string, count up all pairs as they happen.
 
 ```{r}
 first <-
-polymer_template %>% 
+  polymer_template %>% 
   separate_rows(polymer, sep = "") %>% 
   transmute(polymer = str_c(lag(polymer,1), polymer)) %>% 
   filter(nchar(polymer)==2) %>% 
@@ -108,7 +108,6 @@ iterate_step <-
     return(out)
   }
 
-
 reduce(1:40, .f = iterate_step, .init = first) %>% 
   separate_rows(polymer, sep = "") %>%
   filter(polymer != "") %>% 
@@ -117,9 +116,6 @@ reduce(1:40, .f = iterate_step, .init = first) %>%
   summarise(total = ceiling(sum(n*nn)/2)) %>% 
   ungroup() %>% 
   summarise(answer = max(total)-min(total))
-  
-
-
 ```
 
 
