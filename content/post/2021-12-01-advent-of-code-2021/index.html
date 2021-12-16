@@ -34,6 +34,110 @@ cover: /media/advent2.JPG
 library(furrr)
 plan(multicore)</code></pre>
 </div>
+<div id="day-15" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/15">Day 15</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<p>My first instinct was to make this an integer program. I wasn’t able to execute it. Admittedly, I had to get some ideas from others. Once started, I was able to do both parts.</p>
+<pre class="r"><code>library(igraph)
+
+file_path &lt;- &quot;02_data/day_15.txt&quot;
+
+width &lt;- read_lines(file = file_path)[1] %&gt;% nchar()
+
+l &lt;-  matrix(1:(width * width), byrow = T, ncol = width)
+
+w &lt;- tibble(weights = read_lines(file = file_path)) %&gt;%
+  mutate(id = row_number()) %&gt;%
+  separate_rows(weights, sep = &quot;&quot;, convert = T) %&gt;%
+  filter(str_detect(weights, &quot;&quot;)) %&gt;%
+  pull(weights) %&gt;% matrix(nrow = width, byrow = T)
+
+my_graph &lt;-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %&gt;% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %&gt;% unlist()) %&gt;%
+  mutate(weight = as.vector(t(w[, -1]))) %&gt;%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %&gt;% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %&gt;% unlist()
+           ) %&gt;% 
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-1, ]))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])) %&gt;%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    ) 
+
+g2 &lt;- add_edges(make_empty_graph(n = width * width),
+                as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                weight = my_graph[, 3]$weight
+                )
+
+ans &lt;- igraph::shortest_paths(g2, from = 1, to = width * width)
+
+tibble(l = l %&gt;% as.vector(),
+       w = w %&gt;% as.vector()) %&gt;%
+  filter(l %in% ans$vpath[[1]]) %&gt;%
+  summarise(sum = sum(w)) - w[1, 1]</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>create_mat &lt;- 
+  function(mat, iter) {if_else(mat + 1 &gt; 9, 1, mat + 1) %&gt;%
+    matrix(nrow = width, byrow  = F)}
+
+mats &lt;- 1:9 %&gt;% accumulate(.f = create_mat, .init = w) %&gt;% tail(9)
+
+w &lt;- rbind(
+  cbind(w, mats[[1]], mats[[2]], mats[[3]], mats[[4]]),
+  cbind(mats[[1]], mats[[2]], mats[[3]], mats[[4]], mats[[5]]),
+  cbind(mats[[2]], mats[[3]], mats[[4]], mats[[5]], mats[[6]]),
+  cbind(mats[[3]], mats[[4]], mats[[5]], mats[[6]], mats[[7]]),
+  cbind(mats[[4]], mats[[5]], mats[[6]], mats[[7]], mats[[8]]
+  )
+)
+
+l &lt;-  matrix(1:(width * 5 * width * 5), byrow = T, ncol = width * 5)
+
+my_graph &lt;-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %&gt;% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %&gt;% unlist()
+         ) %&gt;%
+  mutate(weight = as.vector(t(w[, -1]))) %&gt;%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %&gt;% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %&gt;% unlist()
+           ) %&gt;%
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-1, ]))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    )
+
+g2 &lt;-  add_edges(make_empty_graph(n = width * 5 * width * 5),
+                 as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                 weight = my_graph[, 3]$weight
+                 )
+ans &lt;- igraph::shortest_paths(g2, from = 1, to = width * 5 * width * 5)
+
+tibble(l = l %&gt;% as.vector(),
+       w = w %&gt;% as.vector()) %&gt;%
+  filter(l %in% ans$vpath[[1]]) %&gt;%
+  summarise(sum = sum(w)) - w[1, 1]</code></pre>
+</div>
+</div>
 <div id="day-14" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/14">Day 14</a></h2>
 <div id="strike-1" class="section level4">
@@ -136,7 +240,7 @@ reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;%
   mutate(y = -1*y) %&gt;% 
   ggplot(aes(x = x, y = y)) +
   geom_tile() + theme_void()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>ggplot2::theme_void()</code></pre>
 <pre><code>## List of 92
 ##  $ line                      : list()
@@ -426,7 +530,7 @@ join_change_names &lt;- function(x = out, iter_num = 1, part_2 = FALSE){
 </div>
 <div id="day-11" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/11">Day 11</a></h2>
-<div id="part-1" class="section level4">
+<div id="part-1-1" class="section level4">
 <h4>Part 1</h4>
 <p>In previous attempts, I’ve moved through the entire plane making changes as I get to them. This time, I took a page from <a href="https://twitter.com/drob">David Robinsion’s</a> playbook and used <code>crossing()</code>. I then used a while loop to progress through the octopus stages</p>
 <pre class="r"><code>x &lt;-
@@ -480,7 +584,7 @@ x &lt;- list(x = x, flashes = 0)
 ## Answer 1
 accumulate(1:100, .f = flash_octopus, .init = x) %&gt;% one_hundred %&gt;% map(2) %&gt;% unlist() %&gt;% sum()</code></pre>
 </div>
-<div id="part-2" class="section level4">
+<div id="part-2-1" class="section level4">
 <h4>Part 2</h4>
 <p>For part 2, let it run longer and find the first element that has 100 flashes.</p>
 <pre class="r"><code>three_hundred &lt;- accumulate(1:300, .f = flash_octopus, .init = x)
@@ -498,7 +602,7 @@ which(unlist(map(three_hundred, 2)) == 100)[1] - 1</code></pre>
 </div>
 <div id="day-10" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/10">Day 10</a></h2>
-<div id="part-1-1" class="section level4">
+<div id="part-1-3" class="section level4">
 <h4>Part 1</h4>
 <p>I use a while loop to remove all ‘open’ ‘close’ pairings. This helps find both corrupted and broken chunks. I find the corrupted chunks and apply the scoring mechanism.</p>
 <pre class="r"><code>input &lt;-
@@ -528,7 +632,7 @@ input_list %&gt;% tail(1) %&gt;% pluck(1) %&gt;% ## select the last list
   summarise(score = sum(n * points)) ## score the process</code></pre>
 </div>
 </div>
-<div id="part-2-1" class="section level2">
+<div id="part-2-2" class="section level2">
 <h2>Part 2</h2>
 <p>I take the incomplete chunks from the previous part and map over the score_points function for the final answer.</p>
 <pre class="r"><code>incomplete_df &lt;- ## identify chunks with incomplete strings
@@ -570,7 +674,7 @@ incomplete_list %&gt;%
 </div>
 <div id="day-9" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/9">Day 9</a></h2>
-<div id="part-1-3" class="section level4">
+<div id="part-1-4" class="section level4">
 <h4>Part 1</h4>
 <p>To find the number of low points I map across a function that determines if each place is a depression. After the identification, I use the problems formula to sum up the risk levels.</p>
 <pre class="r"><code>input &lt;-
@@ -595,7 +699,7 @@ future_map2_dfr(.x = sort(rep(1:nrow(input),ncol(input))),
   mutate(number = number + 1) %&gt;% 
   summarise(answer = sum(number))</code></pre>
 </div>
-<div id="part-2-2" class="section level4">
+<div id="part-2-3" class="section level4">
 <h4>Part 2</h4>
 <p>I again map over a function that looks in all directions and determines if it is touching a place that is not a 9. I count the basins one at a time and add up the size of the basins.</p>
 <pre class="r"><code>id_reduce_count_replace &lt;- function(input){
@@ -647,7 +751,7 @@ tictoc::toc()
 </div>
 <div id="day-8" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/8">Day 8</a></h2>
-<div id="part-1-4" class="section level4">
+<div id="part-1-5" class="section level4">
 <h4>Part 1</h4>
 <p>For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens.</p>
 <pre class="r"><code>tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
@@ -659,7 +763,7 @@ tictoc::toc()
   filter(length %in% c(2,3,4,7)) %&gt;%
   summarise(sum = sum(n))</code></pre>
 </div>
-<div id="part-2-3" class="section level4">
+<div id="part-2-4" class="section level4">
 <h4>Part 2</h4>
 <p>Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters. Next I join in the output values to determine the numerical output values.</p>
 <pre class="r"><code>initial &lt;-
@@ -814,7 +918,7 @@ initial %&gt;% group_split(id) %&gt;%
 </div>
 <div id="day-7" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/7">Day 7</a></h2>
-<div id="part-1-5" class="section level4">
+<div id="part-1-6" class="section level4">
 <h4>Part 1</h4>
 <p>To solve part 1, I create a function that finds the distance between all points to a specific point, map across all specific points, and then find the minimum distance.</p>
 <!-- dat <- read_lines("content/post/2021-12-01-advent-of-code-2021/day_7.txt") %>% str_split(",") %>% unlist() %>% as.numeric() -->
@@ -828,7 +932,7 @@ distance &lt;- function(data = dat, position) {
 min(dat):max(dat) %&gt;% 
   map_dbl(.f = ~distance(data = dat, position = .x)) %&gt;% min()</code></pre>
 </div>
-<div id="part-2-4" class="section level4">
+<div id="part-2-5" class="section level4">
 <h4>Part 2</h4>
 <p>I alter the distance formula to find the triangular number between two numbers. This can also be factored into the binomial coefficient with the upper index being the distance between the numbers and 2 as the lower index.</p>
 <pre class="r"><code>distance_plus &lt;- function(data = dat, position) {
@@ -880,7 +984,7 @@ ans &lt;- 1:80 %&gt;%
 # ans &lt;- 1:256 %&gt;% nope!
   reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
 tictoc::toc()</code></pre>
-<pre><code>## 40.61 sec elapsed</code></pre>
+<pre><code>## 37.13 sec elapsed</code></pre>
 <p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
 </div>
 <div id="strike-2" class="section level4">
@@ -902,7 +1006,7 @@ ans &lt;- 1:150 %&gt;%
 # ans &lt;- 1:256 %&gt;% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
 tictoc::toc() </code></pre>
-<pre><code>## 37.2 sec elapsed</code></pre>
+<pre><code>## 34.28 sec elapsed</code></pre>
 <p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
 </div>
 <div id="success" class="section level4">
@@ -932,12 +1036,12 @@ tictoc::tic()
 ans &lt;- 1:256 %&gt;% 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% sum()
 tictoc::toc()</code></pre>
-<pre><code>## 0.04 sec elapsed</code></pre>
+<pre><code>## 0.02 sec elapsed</code></pre>
 </div>
 </div>
 <div id="day-5" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/5">Day 5</a></h2>
-<div id="part-1-6" class="section level4">
+<div id="part-1-7" class="section level4">
 <h4>Part 1</h4>
 <p>For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply. I had to create a toggle for vents that were horizontal vs vertical.</p>
 <pre class="r"><code>movements &lt;-
@@ -978,7 +1082,7 @@ movements %&gt;%
   filter(value &gt;=2) %&gt;% 
   count()</code></pre>
 </div>
-<div id="part-2-5" class="section level4">
+<div id="part-2-6" class="section level4">
 <h4>Part 2</h4>
 <p>In this part some of the vents were diagonal. I used the first function to mark the straight vents and created a second function to trace the ones at an angle. I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.</p>
 <pre class="r"><code>cross_routes &lt;- function(move){
@@ -1024,7 +1128,7 @@ as_tibble(striaght_lines + diagonal_lines) %&gt;%
 <div id="day-4" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/4">Day 4</a></h2>
 <p>I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board. Then we use <code>purrr::accumulate()</code> and <code>purrr::possibly()</code> to handle errors that I intentionally create.</p>
-<div id="part-1-7" class="section level4">
+<div id="part-1-8" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>data &lt;- read_lines(&quot;day_4.txt&quot;)
 
@@ -1081,7 +1185,7 @@ winning_card$boards %&gt;%
   mutate(across(everything(), ~as.numeric(.))) %&gt;% 
   as.matrix() %&gt;% sum(na.rm = T) %&gt;% prod(as.numeric(winning_card$selection))</code></pre>
 </div>
-<div id="part-2-6" class="section level4">
+<div id="part-2-7" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>boards_list &lt;- list(boards = boards)
 
@@ -1153,7 +1257,7 @@ winning_card$boards %&gt;%
 <div id="day-3" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/3">Day 3</a></h2>
 <p>I rely on several pivots, <code>unite()</code>, and the iterative function <code>purrr::reduce()</code> for this problem.</p>
-<div id="part-1-8" class="section level4">
+<div id="part-1-9" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
   transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
@@ -1167,7 +1271,7 @@ winning_card$boards %&gt;%
   mutate(decimal = strtoi(as.double(binary), base = 2)) %&gt;% 
   pull(decimal) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-7" class="section level4">
+<div id="part-2-8" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>data &lt;-
 tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
@@ -1193,7 +1297,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-2" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
 <p>Today I used <code>seperate()</code> and <code>cumsum()</code> to work this problem.</p>
-<div id="part-1-9" class="section level4">
+<div id="part-1-10" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
@@ -1202,7 +1306,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
   summarise(movement = sum(distance)) %&gt;% 
   pull(movement) %&gt;% prod()</code></pre>
 </div>
-<div id="part-2-8" class="section level4">
+<div id="part-2-9" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
   separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
@@ -1221,13 +1325,13 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
 <div id="day-1" class="section level3">
 <h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
 <p>Using <code>lag()</code> and <code>zoo::rollsum()</code> we are able to accomplish day one pretty easily.</p>
-<div id="part-1-10" class="section level4">
+<div id="part-1-11" class="section level4">
 <h4>Part 1</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
   filter(measurements &gt; lag(measurements,1)) %&gt;% 
   nrow()</code></pre>
 </div>
-<div id="part-2-9" class="section level4">
+<div id="part-2-10" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
   mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
