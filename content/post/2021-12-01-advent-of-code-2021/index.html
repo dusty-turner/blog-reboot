@@ -135,11 +135,72 @@ answers %&gt;% bind_rows(.id = &quot;id&quot;) %&gt;% filter(it_works) %&gt;%  n
 </div>
 <div id="day-16" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/16">Day 16</a></h2>
-<p>Pending</p>
+<div id="part-1-1" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>code &lt;-
+  tibble(lines = read_lines(&quot;02_data/day_16_code.txt&quot;)) %&gt;% 
+  separate(col = lines, into = c(&quot;letter&quot;,&quot;bin&quot;))
+
+rest &lt;-
+  tibble(letter = read_lines(&quot;02_data/day_16.txt&quot;)) %&gt;%
+  separate_rows(letter, sep = &quot;&quot;) %&gt;% filter(letter != &quot;&quot;) %&gt;%
+  left_join(code) %&gt;%
+  summarise(string = str_c(bin, collapse = &quot;&quot;)) %&gt;% pull(string)
+
+parse &lt;- function(rest = rest, LV = LV, PV = PV, TID = TID){
+  if(nchar(rest) &lt; 6){
+    out &lt;- list(LV = LV, PV = PV, TID = TID)
+    return(out)
+  }
+  first_3 &lt;- str_pad(str_sub(rest,1,3),width = 4, side = &quot;left&quot;, pad = 0)
+  second_3 &lt;- str_pad(str_sub(rest,4,6),width = 4, side = &quot;left&quot;, pad = 0)
+  packet_version &lt;- code[code$bin==first_3,]$letter
+  type_id &lt;- code[code$bin==second_3,]$letter
+  rest &lt;- str_sub(rest, 7,-1)
+  PV &lt;- append(PV, packet_version)  
+  TID &lt;- append(TID, type_id)
+  if(type_id!=4){
+    route &lt;- str_sub(rest,1,1)
+    rest &lt;- str_sub(rest,2,-1)
+    if(route ==1){
+      num_iter &lt;- strtoi(str_sub(rest,1,11), base = 2)
+      rest &lt;- str_sub(rest,12,-1)
+      for (i in 1:num_iter) {
+        return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+      }
+    } else if(route==0){
+      lenths_string &lt;- strtoi(str_sub(rest,1,15),base = 2)
+      rest &lt;- str_sub(rest,16,-1)
+      return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+    }
+  } else if(type_id==4){
+    id_nums &lt;- strsplit(rest,&quot;&quot;)[[1]][rep(c(T,F,F,F,F), nchar(rest)/5)]
+    num_iter &lt;- which(as.numeric(id_nums)==0)[1]
+    temp_list &lt;- vector()
+    for (i in 1:num_iter) {
+      temp &lt;- str_sub(rest, 2, 5)
+      rest &lt;- str_sub(rest, 6, -1)
+      temp_list &lt;- str_c(temp_list,temp)
+    }
+    literal_value &lt;- strtoi(temp_list,base = 2)
+    LV &lt;- append(LV, literal_value)
+    return(parse(rest = rest, LV = LV, PV = PV , TID = TID))
+  }
+  out &lt;- list(LV = LV, PV = PV, TID = TID)
+  return(out)
+}
+
+final &lt;- parse(rest = rest, LV = NULL, PV = NULL, TID = NULL)
+
+final$PV %&gt;% as.integer() %&gt;% sum()</code></pre>
+</div>
+<div id="part-2-pending" class="section level4">
+<h4>Part 2 Pending</h4>
+</div>
 </div>
 <div id="day-15" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/15">Day 15</a></h2>
-<div id="part-1-1" class="section level4">
+<div id="part-1-2" class="section level4">
 <h4>Part 1</h4>
 <p>My first instinct was to make this an integer program. I wasn’t able to execute it. Admittedly, I had to get some ideas from others. Once started, I was able to do both parts.</p>
 <pre class="r"><code>library(igraph)
@@ -343,7 +404,7 @@ reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;%
   mutate(y = -1*y) %&gt;% 
   ggplot(aes(x = x, y = y)) +
   geom_tile() + theme_void()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>ggplot2::theme_void()</code></pre>
 <pre><code>## List of 92
 ##  $ line                      : list()
@@ -555,7 +616,7 @@ reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;%
 </div>
 <div id="day-12" class="section level2">
 <h2><a href="https://adventofcode.com/2021/day/12">Day 12</a></h2>
-<div id="part-1-2" class="section level4">
+<div id="part-1-2-1" class="section level4">
 <h4>Part 1 / 2</h4>
 <p>Today was difficult to keep up with all the rules. Some of the caves were different in the examples (such as the small dead end cave had a large cave to return to in the final problem). Had to do some data filtereing mid way to help with runtime issues.</p>
 <pre class="r"><code>x &lt;- ## read in and clean data
@@ -1087,7 +1148,7 @@ ans &lt;- 1:80 %&gt;%
 # ans &lt;- 1:256 %&gt;% nope!
   reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
 tictoc::toc()</code></pre>
-<pre><code>## 37.11 sec elapsed</code></pre>
+<pre><code>## 37.14 sec elapsed</code></pre>
 <p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
 </div>
 <div id="strike-2" class="section level4">
@@ -1109,7 +1170,7 @@ ans &lt;- 1:150 %&gt;%
 # ans &lt;- 1:256 %&gt;% faster, but nope! 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
 tictoc::toc() </code></pre>
-<pre><code>## 34.98 sec elapsed</code></pre>
+<pre><code>## 33.5 sec elapsed</code></pre>
 <p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
 </div>
 <div id="success" class="section level4">
@@ -1139,7 +1200,7 @@ tictoc::tic()
 ans &lt;- 1:256 %&gt;% 
   reduce(.f = progress_day, .init = initial_fish) %&gt;% sum()
 tictoc::toc()</code></pre>
-<pre><code>## 0.01 sec elapsed</code></pre>
+<pre><code>## 0.02 sec elapsed</code></pre>
 </div>
 </div>
 <div id="day-5" class="section level2">
