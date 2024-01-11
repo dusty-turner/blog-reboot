@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>2018 Mathlete Fantasy Football Analysis</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="2018 Mathlete Fantasy Football Analysis">
+    <meta name="twitter:description" content="IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="2018 Mathlete Fantasy Football Analysis">
+  <meta property="og:description" content="IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.">
+  <meta property="og:url" content="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">2018 Mathlete Fantasy Football Analysis</h1>
+      <p class="post-meta">@Dusty Turner · Dec 29, 2018 · 10 min read</p>
+    </header>
+    <article class="post-content">
+<script src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/jquery/jquery.min.js"></script>
+<link href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/datatables-binding/datatables.js"></script>
+<link href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/crosstalk/js/crosstalk.min.js"></script>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In my previous <a href="https://dustysturner.com/post/espn-yahoo-api-navigation/">post</a>, I worked through how to get your league information from the ESPN and YAHOO APIs.</p>
+<p>The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues. I managed an ESPN league, and a colleague managed a yahoo league.</p>
+<p>This post will pick up where last post left off and do some analysis between the two leagues.</p>
+<p>I have hid my code to improve readability. If you are interested in the code for this script, send me a note, as I am happy to share.</p>
+<!-- ## Libraries -->
+</div>
+<div id="the-data" class="section level1">
+<h1>The Data</h1>
+<p>The data I use for this post comes from two leagues - one from yahoo and one from ESPN. It is all available below.</p>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157"],["Raw_and Savage","Team_Shank a Potamus","Team_Shank a Potamus","2-2-2_Mega-H-Ertz","Team_Shank a Potamus","'R'm Chair_Quarterback","Team_Shank a Potamus","Green_Baye's Theorem","Team_Shank a Potamus","Gosset's_T-Down","Viking Joe_Lindquist","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Viking Joe_Lindquist","'R'm Chair_Quarterback","Epsilon_Ballers","Team_Guns N' Rosas","'R'm Chair_Quarterback","Gosset's_T-Down","'R'm Chair_Quarterback","Las Vegas_Radians","Raw_and Savage","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Raw_and Savage","Gosset's_T-Down","Raw_and Savage","Raw_and Savage","Green_Baye's Theorem","Raw_and Savage","Epsilon_Ballers","Raw_and Savage","Viking Joe_Lindquist","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Viking Joe_Lindquist","Viking Joe_Lindquist","Green_Baye's Theorem","Epsilon_Ballers","Las Vegas_Radians","Gosset's_T-Down","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Team_Guns N' Rosas","Gosset's_T-Down","2-2-2_Mega-H-Ertz","2-2-2_Mega-H-Ertz","Green_Baye's Theorem","Team_Guns N' Rosas","Viking Joe_Lindquist","Green_Baye's Theorem","Gosset's_T-Down","Epsilon_Ballers","Green_Baye's Theorem","Green_Baye's Theorem","Team_Guns N' Rosas","Epsilon_Ballers","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Epsilon_Ballers","Team_Guns N' Rosas","Team_Guns N' Rosas","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Team_Guns N' Rosas","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","Brady for President","Lights Kamara Action","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Stampeders","Baller's Ballers","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Baller's Ballers","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Last Manning Standin","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Bama","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Bama","Brady for President","Lights Kamara Action","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos"],["Team_Shank a Potamus","Gosset's_T-Down","Viking Joe_Lindquist","Team_Shank a Potamus","Epsilon_Ballers","Team_Shank a Potamus","Team_Guns N' Rosas","Team_Shank a Potamus","Raw_and Savage","Team_Shank a Potamus","Team_Shank a Potamus","2-2-2_Mega-H-Ertz","Las Vegas_Radians","Las Vegas_Radians","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Las Vegas_Radians","'R'm Chair_Quarterback","2-2-2_Mega-H-Ertz","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Epsilon_Ballers","Team_Guns N' Rosas","Gosset's_T-Down","Epsilon_Ballers","Team_Guns N' Rosas","Raw_and Savage","Viking Joe_Lindquist","2-2-2_Mega-H-Ertz","Raw_and Savage","Las Vegas_Radians","Raw_and Savage","Gosset's_T-Down","Raw_and Savage","Raw_and Savage","Raw_and Savage","Raw_and Savage","Raw_and Savage","Las Vegas_Radians","Las Vegas_Radians","Team_Guns N' Rosas","Las Vegas_Radians","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Green_Baye's Theorem","Epsilon_Ballers","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Green_Baye's Theorem","Epsilon_Ballers","Green_Baye's Theorem","Green_Baye's Theorem","Team_Guns N' Rosas","Green_Baye's Theorem","Green_Baye's Theorem","2-2-2_Mega-H-Ertz","Epsilon_Ballers","Epsilon_Ballers","Gosset's_T-Down","Epsilon_Ballers","Epsilon_Ballers","Team_Guns N' Rosas","Epsilon_Ballers","Viking Joe_Lindquist","Gosset's_T-Down","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Gosset's_T-Down","Gosset's_T-Down","2-2-2_Mega-H-Ertz","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","Viking Joe_Lindquist","Yo_soy_Fiesta!","Last Manning Standin","Baller's Ballers","Stampeders","The Big Gronkowski","Lights Kamara Action","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","Last Manning Standin","Baller's Ballers","The Big Gronkowski","Bama","Mauled Mentos","The Big Gronkowski","Last Manning Standin","Baller's Ballers","General Puddin Pants","Bama","Mauled Mentos","Last Manning Standin","The Big Gronkowski","Stampeders","General Puddin Pants","Bama","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","Bama","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","The Big Gronkowski","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","Yo_soy_Fiesta!","Last Manning Standin","Baller's Ballers","Stampeders","The Big Gronkowski","Lights Kamara Action","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","Last Manning Standin","Baller's Ballers","The Big Gronkowski","Bama","Mauled Mentos","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Lights Kamara Action","Mauled Mentos","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","General Puddin Pants","Baller's Ballers","Baller's Ballers","Bama","General Puddin Pants","Stampeders"],[112.24,119.3,104.24,147.18,77.94,124.06,81.84,140.96,97.56,131.66,109.4,110.58,94.04,93.92,115.6,115.22,116.68,108.3,103.9,110.84,101.7,135.52,106.9,147.66,83.96,98.92,107.32,74.48,147.2,64.26,94.44,107.56,81.42,72.98,111.38,119.06,111.68,109.48,106.62,101.68,98.5,65.8,83.54,119.86,120.18,77.92,112.06,131.4,135.86,86.3,112.78,100.74,95.22,176.94,141.84,110.5,115.08,118.7,133,145.26,97.9,105.1,136.06,112.64,128.86,82.58,68.8,163.32,79,133.3,125.4,138.92,108.34,115.96,126.26,114.04,98.5,150.9,93.9,152.7,101.24,139.36,141.84,124.34,100.22,155.8,170.28,79.88,123.68,122.54,137.06,111.22,105.18,123.88,87.42,133.96,127.16,87.38,121.18,127.06,142.72,143.1,129.52,86.6,114.46,124.38,117.16,135.68,96,107.28,112.12,142.3,116.38,142.26,120.84,145.02,92.08,89.3,96.12,156.56,182.18,108.4,102.04,102.78,87.16,127.5,152.2,182.12,96.54,113.34,143.82,97.24,147.18,130.48,86.3,156.1,149.28,137.72,61.96,112.88,161.8,96.94,99.88,118.4,91.24,120.28,114.08,103.02,75.68,116.82,76.5,92.08,87.26,146.22,128,116.94,123.08],[130.66,142.74,73.68,130.88,128.98,91.52,101.2,117.46,67.56,99.82,121.28,95.34,104.92,90.26,123.32,99.74,119.04,90.84,110.44,82.54,116.84,124.54,96.6,117.34,113.62,165.22,126.78,94,136.38,103.5,118.9,94,87.88,146.52,117.2,149.78,99.64,159.42,114.68,135.26,105.04,105.58,124.28,112.28,116.26,122.9,152.66,107.48,92.94,129.86,111.96,106.42,83.48,79.78,84.3,103.56,119.8,91.94,120.08,147.88,90.36,75.64,146.9,99.7,154.48,87.22,86.8,112.22,132.78,96.2,130.02,86.58,65.92,122.82,106.84,115.32,140.42,148.4,128.12,138.4,116.1,116.46,108.06,124.28,89.24,91.74,91.54,98,112.74,102.26,108.2,111.14,98.54,107.56,81.34,127.38,124.52,127.52,94.7,135,91.32,117.3,102.98,96.62,81.58,97.3,125.78,154.44,119.1,73.42,127.44,80.86,162.7,73.54,128.04,89.76,125.1,107.96,107.32,129.94,106.46,47.46,162.74,120.36,119.2,129.22,93.2,85.22,114.8,123.26,145.42,125.48,88.4,107.82,105.44,119.34,80.84,98.28,108.46,111.82,100.72,129.9,71.8,103.14,69.78,86.64,126.5,106.8,114.92,89.44,91.16,101.08,135.82,117.46,98.48,63.14,98.86],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,1,2,3,4,5,7,8,9,10,11,12,13,14,15,2,3,4,5,6,7,8,11,12,13,14,15,16,1,2,3,4,6,8,10,11,12,15,16,3,4,5,7,9,12,13,14,16,1,6,7,9,10,14,6,8,11,15,16,1,2,9,10,5,13,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16],["espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>TeamA<\/th>\n      <th>TeamB<\/th>\n      <th>PointsA<\/th>\n      <th>PointsB<\/th>\n      <th>week<\/th>\n      <th>league<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="awards" class="section level1">
+<h1>Awards</h1>
+<p>Every week, we hand out prizes for the highest overall point total and lowest.</p>
+<div id="highest-weekly-point-total" class="section level2">
+<h2>Highest Weekly Point Total</h2>
+<p>The prizes for the highest points across both leagues is the honor of possessing the “Mug of my Mug” for the week. Yes, as you can see below, it is a mug with a picture of my face. The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face. I earned my concussion and facial fracture in a softball collision. Yes, I was called out…</p>
+<p><img src="images/mug.JPG" width="93" /></p>
+<!-- So who are the weekly highest scorers?   -->
+<p>Now, who wins the mug each week?</p>
+<pre><code>##                     Team1  Score week league
+## 1           Mauled Mentos 141.84    1  yahoo
+## 2          Yo_soy_Fiesta! 170.28    2  yahoo
+## 3       2-2-2_Mega-H-Ertz 141.84    3   espn
+## 4       Las Vegas_Radians 152.66    4   espn
+## 5       2-2-2_Mega-H-Ertz 146.52    5   espn
+## 6         Gosset&#39;s_T-Down 154.48    6   espn
+## 7    General Puddin Pants 162.70    7  yahoo
+## 8                    Bama 156.56    8  yahoo
+## 9     Brady for President 182.18    9  yahoo
+## 10          Mauled Mentos 182.12   10  yahoo
+## 11 &#39;R&#39;m Chair_Quarterback 165.22   11   espn
+## 12    Brady for President 156.10   12  yahoo
+## 13    Brady for President 161.80   13  yahoo
+## 14 &#39;R&#39;m Chair_Quarterback 147.20   14   espn
+## 15       Baller&#39;s Ballers 135.82   15  yahoo
+## 16      2-2-2_Mega-H-Ertz 176.94   16   espn</code></pre>
+</div>
+<div id="lowest-weekly-point-total" class="section level2">
+<h2>Lowest Weekly Point Total</h2>
+<p>In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.</p>
+<p><img src="images/plunger.JPG" width="42" /></p>
+<p>Here are the plunger winners.</p>
+<pre><code>##                     Team1 Score week league
+## 1      The Big Gronkowski 89.24    1  yahoo
+## 2           Mauled Mentos 79.88    2  yahoo
+## 3    Viking Joe_Lindquist 73.68    3   espn
+## 4          Raw_and Savage 81.42    4   espn
+## 5          Raw_and Savage 72.98    5   espn
+## 6    Last Manning Standin 73.42    6  yahoo
+## 7                    Bama 73.54    7  yahoo
+## 8    Lights Kamara Action 89.30    8  yahoo
+## 9    Last Manning Standin 47.46    9  yahoo
+## 10         Raw_and Savage 83.96   10   espn
+## 11   General Puddin Pants 86.30   11  yahoo
+## 12   General Puddin Pants 61.96   12  yahoo
+## 13       Baller&#39;s Ballers 69.78   13  yahoo
+## 14      2-2-2_Mega-H-Ertz 75.64   14   espn
+## 15 &#39;R&#39;m Chair_Quarterback 64.26   15   espn
+## 16   General Puddin Pants 63.14   16  yahoo</code></pre>
+</div>
+</div>
+<div id="which-leagues-are-better" class="section level1">
+<h1>Which Leagues are better?</h1>
+<p>Lets look at several metrics.</p>
+<div id="most-mugs" class="section level2">
+<h2>Most Mugs</h2>
+<pre><code>##   league TotalMugs
+## 1   espn         7
+## 2  yahoo         9</code></pre>
+</div>
+<div id="most-plungers" class="section level2">
+<h2>Most Plungers</h2>
+<pre><code>##   league TotalMugs
+## 1   espn         6
+## 2  yahoo        10</code></pre>
+</div>
+<div id="league-points" class="section level2">
+<h2>League Points</h2>
+<pre><code>##    week league WeeklyPoints
+## 1     1   espn      1156.20
+## 2     1  yahoo      1161.14
+## 3     2   espn      1140.32
+## 4     2  yahoo      1148.46
+## 5     3   espn      1020.78
+## 6     3  yahoo      1071.54
+## 7     4   espn      1119.52
+## 8     4  yahoo      1205.86
+## 9     5   espn      1101.86
+## 10    5  yahoo      1106.20
+## 11    6   espn      1195.88
+## 12    6  yahoo      1150.54
+## 13    7   espn      1092.38
+## 14    7  yahoo      1206.48
+## 15    8   espn      1157.46
+## 16    8  yahoo      1139.16
+## 17    9   espn      1077.72
+## 18    9  yahoo      1138.78
+## 19   10   espn      1220.06
+## 20   10  yahoo      1217.40
+## 21   11   espn      1213.96
+## 22   11  yahoo      1177.58
+## 23   12   espn      1161.62
+## 24   12  yahoo      1136.68
+## 25   13   espn      1083.74
+## 26   13  yahoo      1043.60
+## 27   14   espn      1063.82
+## 28   14  yahoo       847.92
+## 29   15   espn       931.02
+## 30   15  yahoo       790.16
+## 31   16   espn      1201.24
+## 32   16  yahoo       892.18</code></pre>
+</div>
+</div>
+<div id="who-is-good-and-who-is-lucky" class="section level1">
+<h1>Who is good, and who is lucky?</h1>
+<p>One of the more frustrating things in fantasy football is to score a ton of points, only to play the team who scores the most in your league. Lets look at some measures of luck.</p>
+<div id="who-played-the-most-mugs" class="section level2">
+<h2>Who played the most mugs?</h2>
+<pre><code>## # A tibble: 13 x 2
+##    Team2                  LostAgainstTheMug
+##    &lt;chr&gt;                              &lt;int&gt;
+##  1 Stampeders                             3
+##  2 Baller&#39;s Ballers                       2
+##  3 &#39;R&#39;m Chair_Quarterback                 1
+##  4 2-2-2_Mega-H-Ertz                      1
+##  5 Epsilon_Ballers                        1
+##  6 General Puddin Pants                   1
+##  7 Green_Baye&#39;s Theorem                   1
+##  8 Last Manning Standin                   1
+##  9 Lights Kamara Action                   1
+## 10 Mauled Mentos                          1
+## 11 Team_Shank a Potamus                   1
+## 12 Viking Joe_Lindquist                   1
+## 13 Yo_soy_Fiesta!                         1</code></pre>
+<p>Those poor stampeders just couldn’t catch a break!</p>
+</div>
+<div id="who-played-the-most-plungers" class="section level2">
+<h2>Who played the most plungers?</h2>
+<pre><code>## # A tibble: 11 x 2
+##    Team2                BeatTheWeakling
+##    &lt;chr&gt;                          &lt;int&gt;
+##  1 The Big Gronkowski                 3
+##  2 Baller&#39;s Ballers                   2
+##  3 Gosset&#39;s_T-Down                    2
+##  4 Green_Baye&#39;s Theorem               2
+##  5 Bama                               1
+##  6 Epsilon_Ballers                    1
+##  7 Las Vegas_Radians                  1
+##  8 Lights Kamara Action               1
+##  9 Mauled Mentos                      1
+## 10 Raw_and Savage                     1
+## 11 Stampeders                         1</code></pre>
+<p>Man, I wish I could catch some luck. Good work Big Gronkowski for beating down the little guys…</p>
+</div>
+<div id="overall-points-scored-vs-winning-percentage" class="section level2">
+<h2>Overall Points Scored vs Winning Percentage</h2>
+<p>First, who had the highest winning percentage?</p>
+<pre><code>## # A tibble: 20 x 4
+## # Groups:   win [20]
+##    win                    league winpercent SeasonPointsScored
+##    &lt;chr&gt;                  &lt;chr&gt;       &lt;dbl&gt;              &lt;dbl&gt;
+##  1 Brady for President    yahoo       0.75               2207.
+##  2 Epsilon_Ballers        espn        0.688              1854.
+##  3 Gosset&#39;s_T-Down        espn        0.688              2059.
+##  4 General Puddin Pants   yahoo       0.625              1694.
+##  5 Yo_soy_Fiesta!         yahoo       0.625              1919.
+##  6 2-2-2_Mega-H-Ertz      espn        0.562              1910.
+##  7 Baller&#39;s Ballers       yahoo       0.562              1832.
+##  8 Green_Baye&#39;s Theorem   espn        0.562              1834.
+##  9 Las Vegas_Radians      espn        0.562              1805.
+## 10 &#39;R&#39;m Chair_Quarterback espn        0.5                1767.
+## 11 Stampeders             yahoo       0.5                1660.
+## 12 Team_Guns N&#39; Rosas     espn        0.5                1757.
+## 13 Bama                   yahoo       0.438              1829.
+## 14 Lights Kamara Action   yahoo       0.438              1776.
+## 15 Mauled Mentos          yahoo       0.438              1912.
+## 16 Team_Shank a Potamus   espn        0.438              1702.
+## 17 Raw_and Savage         espn        0.375              1637.
+## 18 The Big Gronkowski     yahoo       0.312              1387.
+## 19 Last Manning Standin   yahoo       0.125              1219.
+## 20 Viking Joe_Lindquist   espn        0.125              1613.</code></pre>
+<p>It looks like some teams won more than they should have.</p>
+<p>Sometimes you can get lucky if you play teams that don’t score much. What would everyone’s record be if you played every team every week. That should take some “luck” out of it.</p>
+<pre><code>## # A tibble: 20 x 6
+## # Groups:   win [20]
+##    win              winpercent league WeekWins WeekLoses EveryWeekEveryTeamWinP~
+##    &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;                   &lt;dbl&gt;
+##  1 Brady for Presi~      0.75  yahoo      235         69                   0.773
+##  2 Epsilon_Ballers       0.688 espn       164        140                   0.539
+##  3 Gosset&#39;s_T-Down       0.688 espn       210.        94                   0.690
+##  4 General Puddin ~      0.625 yahoo      131        173                   0.431
+##  5 Yo_soy_Fiesta!        0.625 yahoo      177        127                   0.582
+##  6 2-2-2_Mega-H-Er~      0.562 espn       174        130                   0.572
+##  7 Baller&#39;s Ballers      0.562 yahoo      148.       155                   0.489
+##  8 Green_Baye&#39;s Th~      0.562 espn       156        148                   0.513
+##  9 Las Vegas_Radia~      0.562 espn       154        150                   0.507
+## 10 &#39;R&#39;m Chair_Quar~      0.5   espn       139        165                   0.457
+## 11 Stampeders            0.5   yahoo      116        188                   0.382
+## 12 Team_Guns N&#39; Ro~      0.5   espn       139        165                   0.457
+## 13 Bama                  0.438 yahoo      166        138                   0.546
+## 14 Lights Kamara A~      0.438 yahoo      146        158                   0.480
+## 15 Mauled Mentos         0.438 yahoo      174        130                   0.572
+## 16 Team_Shank a Po~      0.438 espn       129        175                   0.424
+## 17 Raw_and Savage        0.375 espn       109        195                   0.359
+## 18 The Big Gronkow~      0.312 yahoo      100        147                   0.405
+## 19 Last Manning St~      0.125 yahoo       63        184                   0.255
+## 20 Viking Joe_Lind~      0.125 espn        99        205                   0.326</code></pre>
+<div id="who-scored-the-most-and-least-points" class="section level3">
+<h3>Who scored the most and least points?</h3>
+<pre><code>##                      Team league SeasonPoints SeasonPointsAgainst
+## 1  &#39;R&#39;m Chair_Quarterback   espn      1766.70             1769.16
+## 2       2-2-2_Mega-H-Ertz   espn      1909.54             1707.10
+## 3        Baller&#39;s Ballers  yahoo      1831.74             1780.00
+## 4                    Bama  yahoo      1828.62             1958.28
+## 5     Brady for President  yahoo      2207.02             1743.94
+## 6         Epsilon_Ballers   espn      1854.02             1635.28
+## 7    General Puddin Pants  yahoo      1694.04             1717.54
+## 8         Gosset&#39;s_T-Down   espn      2059.30             1947.56
+## 9    Green_Baye&#39;s Theorem   espn      1834.08             1887.32
+## 10      Las Vegas_Radians   espn      1804.60             1816.20
+## 11   Last Manning Standin  yahoo      1218.82             1576.44
+## 12   Lights Kamara Action  yahoo      1775.62             1919.84
+## 13          Mauled Mentos  yahoo      1912.14             1776.54
+## 14         Raw_and Savage   espn      1636.82             1791.10
+## 15             Stampeders  yahoo      1659.50             1717.62
+## 16     Team_Guns N&#39; Rosas   espn      1757.18             1720.12
+## 17   Team_Shank a Potamus   espn      1701.86             1793.24
+## 18     The Big Gronkowski  yahoo      1387.12             1538.68
+## 19   Viking Joe_Lindquist   espn      1613.48             1870.50
+## 20         Yo_soy_Fiesta!  yahoo      1919.06             1704.80</code></pre>
+</div>
+<div id="points-for-vs-points-against" class="section level3">
+<h3>Points For vs Points Against</h3>
+<p><img src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>It looks like Gosset’s T-Down scored a lot and had a lot of points scored against him. Its impressive he pulled off 11 wins.</p>
+<p>On the other hand, Brady for President scored a lot of points but only had a moderate amount scored against him - This is probably what allowed him to win 12 games.</p>
+<p>However, Last Man Standin and The Big Gronkowski didn’t have that many points scored against them, so they made up for it by not scoring that many points themselves. That was nice of you guys.</p>
+<p>And Interestingly enought… R’m Chair Quarterback (me) is just about as average as it gets… I always strive to be mediocre.</p>
+</div>
+</div>
+<div id="winning-percentage-vs-every-team-every-week" class="section level2">
+<h2>Winning Percentage vs Every Team Every Week</h2>
+<p>Another measure of luck is comparing a team’s win percentage against how well a team would have done if they played every team every week.</p>
+<div id="every-team-every-week-win-percentage" class="section level3">
+<h3>Every Team Every Week Win Percentage</h3>
+<p><img src="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/army-math"><span class="tag">Army Math</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/beatnavy"><span class="tag">Beatnavy</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/espn-api"><span class="tag">ESPN API</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/yahoo-api"><span class="tag">YAHOO API</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>1839</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2024 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>

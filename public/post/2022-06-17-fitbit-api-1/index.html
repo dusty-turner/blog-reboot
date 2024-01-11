@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>Fitbit and R Part 1: Accessing Data with the Fitbit API</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="IntroductionIn part 1 of this series, I will demonstrate how to interact with the Fitbit API in R.
+Huge credit to Matt Kaye for creating the fitbitr package that provides an interface between R and the Fitbit API. If you are familiar with R and you have a Fitbit, you should have success following what I have laid out below.
+Install the fitbitr packageFrom CRAN:
+install.packages(&amp;quot;fitbitr&amp;quot;)Or the development version from github:">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="Fitbit and R Part 1: Accessing Data with the Fitbit API">
+    <meta name="twitter:description" content="IntroductionIn part 1 of this series, I will demonstrate how to interact with the Fitbit API in R.
+Huge credit to Matt Kaye for creating the fitbitr package that provides an interface between R and the Fitbit API. If you are familiar with R and you have a Fitbit, you should have success following what I have laid out below.
+Install the fitbitr packageFrom CRAN:
+install.packages(&amp;quot;fitbitr&amp;quot;)Or the development version from github:">
+    <meta name="twitter:image" content="https://www.dustysturner.com/media/Fitbit_app_icon_square.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fitbit and R Part 1: Accessing Data with the Fitbit API">
+  <meta property="og:description" content="IntroductionIn part 1 of this series, I will demonstrate how to interact with the Fitbit API in R.
+Huge credit to Matt Kaye for creating the fitbitr package that provides an interface between R and the Fitbit API. If you are familiar with R and you have a Fitbit, you should have success following what I have laid out below.
+Install the fitbitr packageFrom CRAN:
+install.packages(&amp;quot;fitbitr&amp;quot;)Or the development version from github:">
+  <meta property="og:url" content="https://www.dustysturner.com/post/2022-06-17-fitbit-api-1/">
+  <meta property="og:image" content="https://www.dustysturner.com/media/Fitbit_app_icon_square.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/2022-06-17-fitbit-api-1/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Fitbit and R Part 1: Accessing Data with the Fitbit API</h1>
+      <p class="post-meta">@Dusty Turner · Jun 17, 2022 · 6 min read</p>
+    </header>
+    <article class="post-content">
+<script src="https://www.dustysturner.com/post/2022-06-17-fitbit-api-1/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In part 1 of this series, I will demonstrate how to interact with the <a href="https://www.fitbit.com/">Fitbit</a> API in R.</p>
+<p>Huge credit to <a href="https://github.com/mrkaye97">Matt Kaye</a> for creating the <a href="https://github.com/mrkaye97/fitbitr">fitbitr package</a> that provides an interface between R and the <a href="https://dev.fitbit.com/build/reference/web-api/">Fitbit API</a>. If you are familiar with R and you have a Fitbit, you should have success following what I have laid out below.</p>
+<div id="install-the-fitbitr-package" class="section level3">
+<h3>Install the <code>fitbitr</code> package</h3>
+<p>From CRAN:</p>
+<pre class="r"><code>install.packages(&quot;fitbitr&quot;)</code></pre>
+<p>Or the development version from github:</p>
+<pre class="r"><code>devtools::install_github(&quot;mrkaye97/fitbitr&quot;)</code></pre>
+</div>
+<div id="register-for-a-fitbit-api-key" class="section level3">
+<h3>Register for a Fitbit API Key</h3>
+<p>While this information is also provided on the repo’s <a href="https://github.com/mrkaye97/fitbitr">Github page</a>, I provide similar instructions here for ease of access.</p>
+<p>You’ll need to request an API key from the <a href="https://dev.fitbit.com/apps/new">Fitbit developers webpage</a>. At this page, you should find a form similar to this.</p>
+<p>Fill out the form as accurately as possible, but I recommend the following 3 inputs I specify in the red box.</p>
+<p><img src="images/api_step_1.jpg" style="width:20.0%" /></p>
+<p>If you want to copy and paste the Redirect URL, here you go: <a href="http://localhost:1410/" class="uri">http://localhost:1410/</a></p>
+<p>After you agree to Fitbit’s terms, you receive your client ID and API key. I censored mine, but you can see below where yours will be located.</p>
+<p><img src="images/api_step_2.jpg" style="width:50.0%" /></p>
+<p>Now, the fun part…</p>
+</div>
+</div>
+<div id="access-your-fitbit-data" class="section level2">
+<h2>Access Your Fitbit Data</h2>
+<div id="authenticate-your-session" class="section level3">
+<h3>Authenticate Your Session</h3>
+<p>I’ve saved both my Client ID and Client Secret in my <code>.Revniron</code> file in the root of my repo. I saved them as <code>FITBIT_KEY</code> and <code>FITBIT_SECRET</code> respectively. Access them using the <code>Sys.getenv()</code> function.</p>
+<p>To find out more information about how to do this, look <a href="https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf">here</a>.</p>
+<p>You’ll need to generate a token using the function below.</p>
+<pre class="r"><code>library(tidyverse)
+library(fitbitr)
+
+generate_token(
+  client_id = Sys.getenv(&quot;FITBIT_KEY&quot;),
+  client_secret = Sys.getenv(&quot;FITBIT_SECRET&quot;),
+  callback = &quot;http://localhost:1410/&quot;, 
+  cache = TRUE
+)</code></pre>
+<p>When you execute this function, you should get a window that looks like this.</p>
+<p><img src="images/oauth_complete.JPG" style="width:50.0%" /></p>
+<p>As long as you set the <code>cache</code> argument to <code>TRUE</code>, you will have a token saved in a file named <code>.httr-oauth</code> in the root of your repo. For future authentications, you can simply use the function below. Should you want to create a new token every time, you can leave the <code>cashe</code> argument equal to <code>FALSE</code>.</p>
+<pre class="r"><code>load_cached_token(path = &quot;.httr-oauth&quot;)</code></pre>
+</div>
+</div>
+<div id="download-data" class="section level2">
+<h2>Download Data</h2>
+<p>There are several functions for accessing all your data tracked on Fitbit. For the purposes of this post, I’ll highlight a few. I will do deeper analysis in subsequent posts.</p>
+<div id="lifetime-performance-personal-bests" class="section level3">
+<h3>Lifetime Performance: Personal Bests</h3>
+<pre class="r"><code>lifetime_bests()</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   metric   date         value
+##   &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt;
+## 1 distance 2014-03-23    38.7
+## 2 floors   2021-03-21   136. 
+## 3 steps    2014-03-23 47985</code></pre>
+<p>I’ve had two Fitbits. One I wore for part of 2014 and one I’ve worn since the beginning of 2021.</p>
+<p>It appears I ran a marathon on 23 March 2021. (<em>Checks Old Facebook Photos</em>) Yep, The Bataan Death March in White Sands Missile Range, NM. And I apparently went on quite a hilly hike with my wife and kids in March of 2021. March is clearly an active month for me….</p>
+</div>
+<div id="lifetime-performance-totals" class="section level3">
+<h3>Lifetime Performance: Totals</h3>
+<pre class="r"><code>lifetime_totals()</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   distance floors   steps
+##      &lt;dbl&gt;  &lt;int&gt;   &lt;int&gt;
+## 1    4472.  12627 6233067</code></pre>
+<p>12K floors. Makes me feel tired just thinking about it. :)</p>
+</div>
+<div id="daily-performance-elevation-distance-steps-floors" class="section level3">
+<h3>Daily Performance: Elevation, Distance, Steps, Floors</h3>
+<p>To save some space, I display the following four daily performance outputs in one dataframe.</p>
+<pre class="r"><code>start_date &lt;- lubridate::ymd(&quot;20220501&quot;)
+end_date &lt;- lubridate::ymd(&quot;20220507&quot;)
+
+elevation &lt;- elevation(start_date = start_date, end_date = end_date)
+distance  &lt;- distance(start_date = start_date, end_date = end_date)
+steps     &lt;- steps(start_date = start_date, end_date = end_date)
+floors    &lt;- floors(start_date = start_date, end_date = end_date)
+
+reduce(.x = list(distance, steps, floors), .f = left_join, by = &quot;date&quot;, .init = elevation)</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   date       elevation distance steps floors
+##   &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 2022-05-01        27     3.77  5506      9
+## 2 2022-05-02       121    14.4  18182     40
+## 3 2022-05-03       131    10.0  11761     43
+## 4 2022-05-04        42    10.3  15103     14
+## 5 2022-05-05       121    11.2  13537     40
+## 6 2022-05-06       124    11.3  16501     41
+## 7 2022-05-07        51     8.60 12578     17</code></pre>
+<div id="special-note-about-request-dates" class="section level4">
+<h4>Special Note About Request Dates</h4>
+<p>Thought the <code>fitbitr</code> library will not stop you, the Fitbit API will only allow you to request up to 100 days of data at at time. You can read more about it in the <a href="https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date-range/">documentation</a>.</p>
+</div>
+</div>
+<div id="sleep-details" class="section level3">
+<h3>Sleep Details</h3>
+<p>There are three different functions for displaying sleep data. I display one for simplicity.</p>
+<pre class="r"><code># sleep_stage_granular(start_date = start_date,end_date =  end_date) ## not shown
+# sleep_summary(start_date = start_date, end_date = end_date) ## not shown
+sleep_stage_summary(start_date = start_date, end_date = end_date)</code></pre>
+<pre><code>## # A tibble: 28 x 5
+##    date       stage count minutes thirty_day_avg_minutes
+##    &lt;chr&gt;      &lt;chr&gt; &lt;int&gt;   &lt;int&gt;                  &lt;int&gt;
+##  1 2022-05-07 deep      4      68                     70
+##  2 2022-05-07 light    27     282                    276
+##  3 2022-05-07 rem      16     125                     79
+##  4 2022-05-07 wake     29      49                     43
+##  5 2022-05-06 deep      3      57                     73
+##  6 2022-05-06 light    30     282                    274
+##  7 2022-05-06 rem       5      71                     80
+##  8 2022-05-06 wake     28      44                     43
+##  9 2022-05-05 deep      6      88                     69
+## 10 2022-05-05 light    31     223                    287
+## # ... with 18 more rows</code></pre>
+<p>Maybe I should sleep more….</p>
+</div>
+<div id="heart-rate-by-minute" class="section level3">
+<h3>Heart Rate By Minute</h3>
+<pre class="r"><code>heart_rate_intraday(date = start_date, minutes = TRUE) ## FALSE = By Second</code></pre>
+<pre><code>## # A tibble: 1,316 x 2
+##    time                heart_rate
+##    &lt;dttm&gt;                   &lt;int&gt;
+##  1 2022-05-01 00:00:00         83
+##  2 2022-05-01 00:01:00         79
+##  3 2022-05-01 00:02:00         84
+##  4 2022-05-01 00:03:00         79
+##  5 2022-05-01 00:04:00         70
+##  6 2022-05-01 00:05:00         72
+##  7 2022-05-01 00:06:00         75
+##  8 2022-05-01 00:07:00         77
+##  9 2022-05-01 00:08:00         69
+## 10 2022-05-01 00:09:00         74
+## # ... with 1,306 more rows</code></pre>
+</div>
+<div id="heart-rate-zones" class="section level3">
+<h3>Heart Rate Zones</h3>
+<pre class="r"><code>heart_rate_zones(start_date = start_date, end_date = end_date)</code></pre>
+<pre><code>## # A tibble: 28 x 6
+##    date       zone         min_hr max_hr minutes_in_zone calories_out
+##    &lt;date&gt;     &lt;chr&gt;         &lt;int&gt;  &lt;int&gt;           &lt;int&gt;        &lt;dbl&gt;
+##  1 2022-05-01 Out of Range     30    109            1438       2119. 
+##  2 2022-05-01 Fat Burn        109    133               2         12.2
+##  3 2022-05-01 Cardio          133    164               0          0  
+##  4 2022-05-01 Peak            164    220               0          0  
+##  5 2022-05-02 Out of Range     30    108            1375       2699. 
+##  6 2022-05-02 Fat Burn        108    133              35        215. 
+##  7 2022-05-02 Cardio          133    164              13        152. 
+##  8 2022-05-02 Peak            164    220              17        209. 
+##  9 2022-05-03 Out of Range     30    108            1382       2302. 
+## 10 2022-05-03 Fat Burn        108    133              32        184. 
+## # ... with 18 more rows</code></pre>
+</div>
+<div id="activity" class="section level3">
+<h3>Activity</h3>
+<pre class="r"><code>active_fairly    &lt;- minutes_fairly_active(start_date = start_date,end_date = end_date)
+active_lighty    &lt;- minutes_lightly_active(start_date = start_date,end_date = end_date)
+active_sedentary &lt;- minutes_sedentary(start_date = start_date,end_date = end_date)
+
+reduce(.x = list(active_lighty, active_sedentary), .f = left_join, by = &quot;date&quot;, .init = active_fairly)</code></pre>
+<pre><code>## # A tibble: 7 x 4
+##   date       minutes_fairly_active minutes_lightly_active minutes_sedentary
+##   &lt;date&gt;                     &lt;dbl&gt;                  &lt;dbl&gt;             &lt;dbl&gt;
+## 1 2022-05-01                     0                    236               645
+## 2 2022-05-02                    27                    350               515
+## 3 2022-05-03                    31                    232               722
+## 4 2022-05-04                    21                    470               498
+## 5 2022-05-05                    15                    312               606
+## 6 2022-05-06                    23                    453               482
+## 7 2022-05-07                    12                    289               539</code></pre>
+<p>In future posts, I’ll do some visualizations and statistical analysis of this data!</p>
+<!-- [Matt Kaye's blog post](https://mrkaye97.medium.com/working-with-your-fitbit-data-in-r-3de95b5678c1) -->
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/api"><span class="tag">API</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/tidyverse"><span class="tag">Tidyverse</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/fitbit"><span class="tag">Fitbit</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>573</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2024 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>

@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>Advent of Code 2021</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="Every year, the great team at Advent of Code lead by ericwastl develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”
+Well, I like R, so in this post I will provide my solutions to the puzzles each day. I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="Advent of Code 2021">
+    <meta name="twitter:description" content="Every year, the great team at Advent of Code lead by ericwastl develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”
+Well, I like R, so in this post I will provide my solutions to the puzzles each day. I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!">
+    <meta name="twitter:image" content="https://www.dustysturner.com/media/advent2.JPG">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Advent of Code 2021">
+  <meta property="og:description" content="Every year, the great team at Advent of Code lead by ericwastl develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”
+Well, I like R, so in this post I will provide my solutions to the puzzles each day. I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!">
+  <meta property="og:url" content="https://www.dustysturner.com/post/2021-12-01-advent-of-code-2021/">
+  <meta property="og:image" content="https://www.dustysturner.com/media/advent2.JPG">
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/2021-12-01-advent-of-code-2021/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Advent of Code 2021</h1>
+      <p class="post-meta">@Dusty Turner · Dec 1, 2021 · 32 min read</p>
+    </header>
+    <article class="post-content">
+<script src="https://www.dustysturner.com/post/2021-12-01-advent-of-code-2021/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Every year, the great team at <a href="adventofcode.com">Advent of Code</a> lead by <a href="https://twitter.com/ericwastl">ericwastl</a> develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”</p>
+<p>Well, I like R, so in this post I will provide my solutions to the puzzles each day. I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!</p>
+<p>A few notes as we get started:</p>
+<ul>
+<li>Unless otherwise specified, all solutions rely on <code>library(tidyverse)</code>.</li>
+<li>All data is saved in the working directory as a <code>.txt</code> file.</li>
+<li>I can’t promise my solutions will be the most elegant, but I will only post if they are correct!</li>
+</ul>
+<p>On to the solutions…</p>
+<div id="code-supporting-all-solutions" class="section level4">
+<h4>Code supporting all solutions</h4>
+<pre class="r"><code>library(tidyverse)
+library(furrr)
+plan(multicore)</code></pre>
+</div>
+<div id="day-17" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/16">Day 17</a></h2>
+<div id="part-1" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>min_x &lt;- 20; max_x &lt;- 30; min_y &lt;- -10; max_y &lt;- -5
+
+start &lt;- tibble(x = 0, y = 0)
+
+move_one &lt;- function(start, initial_x, initial_y){
+  end &lt;- start %&gt;%  mutate(x = x+initial_x, y = y + initial_y)
+  return(end)
+}
+
+check_trajectory_part_1 &lt;- function(x_init = 7, y_init = -1){
+
+initial_velocity_x &lt;- x_init
+final_velocity_x &lt;- initial_velocity_x-max_x
+initial_velocity_y &lt;- y_init
+
+x_velocity_vec &lt;- initial_velocity_x:final_velocity_x
+x_velocity_vec[which(x_velocity_vec&lt;0)]=0
+y_velocity_vec &lt;- (initial_velocity_y:-200)[1:length(x_velocity_vec)]
+
+trajectory &lt;-
+  accumulate2(.x = x_velocity_vec, .y = y_velocity_vec, .f = move_one, .init = start) %&gt;%
+  bind_rows()
+
+out&lt;-
+  trajectory %&gt;%
+  mutate(all_in = x %in% min_x:max_x + y %in% max_y:min_y == 2) %&gt;%
+  mutate(one_in = sum(all_in)) %&gt;% filter(one_in !=0) %&gt;%
+  arrange(desc(y)) %&gt;% slice(2) %&gt;%
+  mutate(initial_x = x_init, initial_y = y_init)
+return(out)
+}
+
+x_poss &lt;- map_dbl(1:max_x, ~choose(.x,2))
+x_ans &lt;- c(match(x_poss[which(x_poss %in% min_x:max_x)], x_poss)) - 1
+
+y_ans &lt;- abs(min_y)-1
+
+possible_x_vec &lt;- x_ans[1]:max_x
+possible_y_vec &lt;- y_ans:min_y
+possibilities &lt;- crossing(possible_x_vec, possible_y_vec) 
+
+map2_dfr(
+  .x = possibilities$possible_x_vec,
+  .y = possibilities$possible_y_vec,
+  .f = ~ check_trajectory_part_1(x_init = .x, y_init = .y)
+) %&gt;% nrow()</code></pre>
+</div>
+<div id="part-2" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>min_x &lt;- 20; max_x &lt;- 30; min_y &lt;- -10; max_y &lt;- -5
+
+check_trajectory &lt;- function(x_init = 7, y_init = -1){
+
+  initial_velocity_x &lt;- x_init
+  final_velocity_x &lt;- initial_velocity_x-max_x
+  initial_velocity_y &lt;- y_init
+
+  x_velocity_vec &lt;- initial_velocity_x:final_velocity_x
+  x_velocity_vec[which(x_velocity_vec&lt;0)]=0
+  y_velocity_vec &lt;- (initial_velocity_y:-200)[1:length(x_velocity_vec)]
+
+  if(sum(cumsum(x_velocity_vec) %in% min_x:max_x) == 0){
+    out &lt;- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  if(sum(cumsum(y_velocity_vec) %in% min_y:max_y) == 0){
+    out &lt;- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  if(sum((cumsum(x_velocity_vec) %in% min_x:max_x)[which(cumsum(y_velocity_vec) %in% min_y:max_y == TRUE)])&gt;0){
+    out &lt;- tibble(it_works = TRUE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  out &lt;- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+  return(out)
+}
+
+possible_x_vec &lt;- x_ans[1]:max_x
+possible_y_vec &lt;- y_ans:min_y
+
+possibilities &lt;- crossing(possible_x_vec, possible_y_vec) 
+
+we_know_these_exist &lt;- crossing(possible_x_vec = min_x:max_x, possible_y_vec = min_y:max_y)
+
+possibilities &lt;- possibilities %&gt;% anti_join(we_know_these_exist) 
+
+answers &lt;-
+  map2(.x = possibilities$possible_x_vec,
+       .y = possibilities$possible_y_vec,
+       .f = ~ check_trajectory(x_init = .x, y_init = .y))
+
+answers %&gt;% bind_rows(.id = &quot;id&quot;) %&gt;% filter(it_works) %&gt;%  nrow() +
+  we_know_these_exist %&gt;% nrow()</code></pre>
+</div>
+</div>
+<div id="day-16" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/16">Day 16</a></h2>
+<div id="part-1-1" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>code &lt;-
+  tibble(lines = read_lines(&quot;02_data/day_16_code.txt&quot;)) %&gt;% 
+  separate(col = lines, into = c(&quot;letter&quot;,&quot;bin&quot;))
+
+rest &lt;-
+  tibble(letter = read_lines(&quot;02_data/day_16.txt&quot;)) %&gt;%
+  separate_rows(letter, sep = &quot;&quot;) %&gt;% filter(letter != &quot;&quot;) %&gt;%
+  left_join(code) %&gt;%
+  summarise(string = str_c(bin, collapse = &quot;&quot;)) %&gt;% pull(string)
+
+parse &lt;- function(rest = rest, LV = LV, PV = PV, TID = TID){
+  if(nchar(rest) &lt; 6){
+    out &lt;- list(LV = LV, PV = PV, TID = TID)
+    return(out)
+  }
+  first_3 &lt;- str_pad(str_sub(rest,1,3),width = 4, side = &quot;left&quot;, pad = 0)
+  second_3 &lt;- str_pad(str_sub(rest,4,6),width = 4, side = &quot;left&quot;, pad = 0)
+  packet_version &lt;- code[code$bin==first_3,]$letter
+  type_id &lt;- code[code$bin==second_3,]$letter
+  rest &lt;- str_sub(rest, 7,-1)
+  PV &lt;- append(PV, packet_version)  
+  TID &lt;- append(TID, type_id)
+  if(type_id!=4){
+    route &lt;- str_sub(rest,1,1)
+    rest &lt;- str_sub(rest,2,-1)
+    if(route ==1){
+      num_iter &lt;- strtoi(str_sub(rest,1,11), base = 2)
+      rest &lt;- str_sub(rest,12,-1)
+      for (i in 1:num_iter) {
+        return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+      }
+    } else if(route==0){
+      lenths_string &lt;- strtoi(str_sub(rest,1,15),base = 2)
+      rest &lt;- str_sub(rest,16,-1)
+      return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+    }
+  } else if(type_id==4){
+    id_nums &lt;- strsplit(rest,&quot;&quot;)[[1]][rep(c(T,F,F,F,F), nchar(rest)/5)]
+    num_iter &lt;- which(as.numeric(id_nums)==0)[1]
+    temp_list &lt;- vector()
+    for (i in 1:num_iter) {
+      temp &lt;- str_sub(rest, 2, 5)
+      rest &lt;- str_sub(rest, 6, -1)
+      temp_list &lt;- str_c(temp_list,temp)
+    }
+    literal_value &lt;- strtoi(temp_list,base = 2)
+    LV &lt;- append(LV, literal_value)
+    return(parse(rest = rest, LV = LV, PV = PV , TID = TID))
+  }
+  out &lt;- list(LV = LV, PV = PV, TID = TID)
+  return(out)
+}
+
+final &lt;- parse(rest = rest, LV = NULL, PV = NULL, TID = NULL)
+
+final$PV %&gt;% as.integer() %&gt;% sum()</code></pre>
+</div>
+<div id="part-2-pending" class="section level4">
+<h4>Part 2 Pending</h4>
+</div>
+</div>
+<div id="day-15" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/15">Day 15</a></h2>
+<div id="part-1-2" class="section level4">
+<h4>Part 1</h4>
+<p>My first instinct was to make this an integer program. I wasn’t able to execute it. Admittedly, I had to get some ideas from others. Once started, I was able to do both parts.</p>
+<pre class="r"><code>library(igraph)
+
+file_path &lt;- &quot;02_data/day_15.txt&quot;
+
+width &lt;- read_lines(file = file_path)[1] %&gt;% nchar()
+
+l &lt;-  matrix(1:(width * width), byrow = T, ncol = width)
+
+w &lt;- tibble(weights = read_lines(file = file_path)) %&gt;%
+  mutate(id = row_number()) %&gt;%
+  separate_rows(weights, sep = &quot;&quot;, convert = T) %&gt;%
+  filter(str_detect(weights, &quot;&quot;)) %&gt;%
+  pull(weights) %&gt;% matrix(nrow = width, byrow = T)
+
+my_graph &lt;-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %&gt;% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %&gt;% unlist()) %&gt;%
+  mutate(weight = as.vector(t(w[, -1]))) %&gt;%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %&gt;% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %&gt;% unlist()
+           ) %&gt;% 
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-1, ]))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])) %&gt;%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    ) 
+
+g2 &lt;- add_edges(make_empty_graph(n = width * width),
+                as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                weight = my_graph[, 3]$weight
+                )
+
+ans &lt;- igraph::shortest_paths(g2, from = 1, to = width * width)
+
+tibble(l = l %&gt;% as.vector(),
+       w = w %&gt;% as.vector()) %&gt;%
+  filter(l %in% ans$vpath[[1]]) %&gt;%
+  summarise(sum = sum(w)) - w[1, 1]</code></pre>
+</div>
+<div id="part-2-1" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>create_mat &lt;- 
+  function(mat, iter) {if_else(mat + 1 &gt; 9, 1, mat + 1) %&gt;%
+    matrix(nrow = width, byrow  = F)}
+
+mats &lt;- 1:9 %&gt;% accumulate(.f = create_mat, .init = w) %&gt;% tail(9)
+
+w &lt;- rbind(
+  cbind(w, mats[[1]], mats[[2]], mats[[3]], mats[[4]]),
+  cbind(mats[[1]], mats[[2]], mats[[3]], mats[[4]], mats[[5]]),
+  cbind(mats[[2]], mats[[3]], mats[[4]], mats[[5]], mats[[6]]),
+  cbind(mats[[3]], mats[[4]], mats[[5]], mats[[6]], mats[[7]]),
+  cbind(mats[[4]], mats[[5]], mats[[6]], mats[[7]], mats[[8]]
+  )
+)
+
+l &lt;-  matrix(1:(width * 5 * width * 5), byrow = T, ncol = width * 5)
+
+my_graph &lt;-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %&gt;% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %&gt;% unlist()
+         ) %&gt;%
+  mutate(weight = as.vector(t(w[, -1]))) %&gt;%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %&gt;% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %&gt;% unlist()
+           ) %&gt;%
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-1, ]))) %&gt;%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])
+           ) %&gt;%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    )
+
+g2 &lt;-  add_edges(make_empty_graph(n = width * 5 * width * 5),
+                 as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                 weight = my_graph[, 3]$weight
+                 )
+ans &lt;- igraph::shortest_paths(g2, from = 1, to = width * 5 * width * 5)
+
+tibble(l = l %&gt;% as.vector(),
+       w = w %&gt;% as.vector()) %&gt;%
+  filter(l %in% ans$vpath[[1]]) %&gt;%
+  summarise(sum = sum(w)) - w[1, 1]</code></pre>
+</div>
+</div>
+<div id="day-14" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/14">Day 14</a></h2>
+<div id="strike-1" class="section level4">
+<h4>Strike 1</h4>
+<p>As with previous days, tracking the entirety of the growing string works for part 1, but not part 2.</p>
+<p>Here I grow the string according to the directions, count up all characters, and find the solution. It works fine for 10 iterations.</p>
+<pre class="r"><code>pair_insertion_rules &lt;-
+  tibble(loc = read_lines(file = &quot;02_data/day_14.txt&quot;)) %&gt;% 
+  slice(-c(1:2)) %&gt;% 
+  separate(loc, into = c(&quot;polymer&quot;, &quot;insert&quot;))
+
+polymer_template &lt;-
+  tibble(polymer = read_lines(file = &quot;02_data/day_14.txt&quot;)) %&gt;% slice(1) 
+
+grow_polymer &lt;- function(polymer = polymer_template, iter){
+  out &lt;-
+    polymer %&gt;%
+    separate_rows(polymer, sep = &quot;&quot;) %&gt;%
+    transmute(polymer = str_c(lag(polymer, 1), polymer)) %&gt;%
+    filter(!is.na(polymer)) %&gt;%
+    left_join(pair_insertion_rules, by = &quot;polymer&quot;) %&gt;%
+    transmute(add = replace_na(str_c(
+      str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+    ), str_c(&quot; &quot;, polymer[1]))) %&gt;% 
+    mutate(add = str_sub(add, 2, 3)) %&gt;%
+    summarise(polymer = str_c(add, collapse = &quot;&quot;))
+  return(out)
+}
+
+1:10 %&gt;% reduce(.f = grow_polymer, .init = polymer_template) %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;% 
+  count(polymer) %&gt;% 
+  filter(polymer !=&quot;&quot;) %&gt;% 
+  summarise(answer = max(n)-min(n))</code></pre>
+</div>
+<div id="part-12-success" class="section level4">
+<h4>Part 1/2 Success</h4>
+<p>But when time comes to do this for 40 days, everything stalls out around 21 days. However, instead of growing the string, count up all pairs as they happen.</p>
+<pre class="r"><code>first &lt;-
+  polymer_template %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;% 
+  transmute(polymer = str_c(lag(polymer,1), polymer)) %&gt;% 
+  filter(nchar(polymer)==2) %&gt;% 
+  count(polymer)
+
+iterate_step &lt;-
+  function(first = hold, iter) {
+    out &lt;-
+      first %&gt;%
+      left_join(pair_insertion_rules, by = &quot;polymer&quot;) %&gt;%
+      mutate(add = replace_na(str_c(
+        str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+      ), str_c(&quot; &quot;, polymer[1]))) %&gt;% 
+      separate_rows(add, sep = &quot;&quot;) %&gt;%
+      mutate(add = str_c(lag(add, 1), add)) %&gt;%
+      filter(nchar(add) == 2) %&gt;%
+      group_by(add) %&gt;%
+      summarise(n = sum(n)) %&gt;%
+      select(polymer = add, n)
+    return(out)
+  }
+
+reduce(1:40, .f = iterate_step, .init = first) %&gt;% 
+  separate_rows(polymer, sep = &quot;&quot;) %&gt;%
+  filter(polymer != &quot;&quot;) %&gt;% 
+  count(polymer, n) %&gt;% 
+  group_by(polymer) %&gt;% 
+  summarise(total = ceiling(sum(n*nn)/2)) %&gt;% 
+  ungroup() %&gt;% 
+  summarise(answer = max(total)-min(total))</code></pre>
+</div>
+</div>
+<div id="day-13" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/13">Day 13</a></h2>
+<div id="part-12" class="section level4">
+<h4>Part 1/2</h4>
+<p>Today’s was a lot of fun. After parsing the data, use <code>reduce2</code> to iteratvly fold the paper. ggplot helps to read the final solution.</p>
+<pre class="r"><code>data &lt;-
+  tibble(loc = read_lines(file = &quot;day_13.txt&quot;)) %&gt;%
+  filter(!str_detect(loc, &quot;fold&quot;)) %&gt;% filter(loc != &quot;&quot;) %&gt;%
+  separate(col = loc,into = c(&quot;x&quot;, &quot;y&quot;),sep = &quot;,&quot;,convert = T) 
+
+lines &lt;-
+  tibble(loc = read_lines(file = &quot;day_13.txt&quot;)) %&gt;%
+  filter(str_detect(loc, &quot;fold&quot;)) %&gt;% filter(loc != &quot;&quot;) %&gt;% 
+  mutate(loc = str_remove(loc, &quot;fold along &quot;)) %&gt;% 
+  separate(loc, c(&quot;axis&quot;,&quot;num&quot;), &quot;=&quot;, convert = T) %&gt;% 
+  mutate(num = as.double(num))
+
+fold &lt;- function(data, axis, num) {
+  out &lt;-
+    data %&gt;%
+    mutate(x = if_else(x &gt; num &amp; axis == &quot;x&quot;, num - (x - num), as.double(x))) %&gt;%
+    mutate(y = if_else(y &gt; num &amp; axis == &quot;y&quot;, num - (y - num), as.double(y)))
+  return(out)
+  }
+
+reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %&gt;% 
+  count(x,y)  %&gt;% 
+  mutate(y = -1*y) %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  geom_tile() + theme_void()</code></pre>
+<p><img src="https://www.dustysturner.com/post/2021-12-01-advent-of-code-2021/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>ggplot2::theme_void()</code></pre>
+<pre><code>## List of 92
+##  $ line                      : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ rect                      : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ text                      :List of 11
+##   ..$ family       : chr &quot;&quot;
+##   ..$ face         : chr &quot;plain&quot;
+##   ..$ colour       : chr &quot;black&quot;
+##   ..$ size         : num 11
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : &#39;margin&#39; num [1:4] 0points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ title                     : NULL
+##  $ aspect.ratio              : NULL
+##  $ axis.title                : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ axis.title.x              : NULL
+##  $ axis.title.x.top          : NULL
+##  $ axis.title.x.bottom       : NULL
+##  $ axis.title.y              : NULL
+##  $ axis.title.y.left         : NULL
+##  $ axis.title.y.right        : NULL
+##  $ axis.text                 : list()
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_blank&quot; &quot;element&quot;
+##  $ axis.text.x               : NULL
+##  $ axis.text.x.top           : NULL
+##  $ axis.text.x.bottom        : NULL
+##  $ axis.text.y               : NULL
+##  $ axis.text.y.left          : NULL
+##  $ axis.text.y.right         : NULL
+##  $ axis.ticks                : NULL
+##  $ axis.ticks.x              : NULL
+##  $ axis.ticks.x.top          : NULL
+##  $ axis.ticks.x.bottom       : NULL
+##  $ axis.ticks.y              : NULL
+##  $ axis.ticks.y.left         : NULL
+##  $ axis.ticks.y.right        : NULL
+##  $ axis.ticks.length         : &#39;simpleUnit&#39; num 0points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ axis.ticks.length.x       : NULL
+##  $ axis.ticks.length.x.top   : NULL
+##  $ axis.ticks.length.x.bottom: NULL
+##  $ axis.ticks.length.y       : NULL
+##  $ axis.ticks.length.y.left  : NULL
+##  $ axis.ticks.length.y.right : NULL
+##  $ axis.line                 : NULL
+##  $ axis.line.x               : NULL
+##  $ axis.line.x.top           : NULL
+##  $ axis.line.x.bottom        : NULL
+##  $ axis.line.y               : NULL
+##  $ axis.line.y.left          : NULL
+##  $ axis.line.y.right         : NULL
+##  $ legend.background         : NULL
+##  $ legend.margin             : NULL
+##  $ legend.spacing            : NULL
+##  $ legend.spacing.x          : NULL
+##  $ legend.spacing.y          : NULL
+##  $ legend.key                : NULL
+##  $ legend.key.size           : &#39;simpleUnit&#39; num 1.2lines
+##   ..- attr(*, &quot;unit&quot;)= int 3
+##  $ legend.key.height         : NULL
+##  $ legend.key.width          : NULL
+##  $ legend.text               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ legend.text.align         : NULL
+##  $ legend.title              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ legend.title.align        : NULL
+##  $ legend.position           : chr &quot;right&quot;
+##  $ legend.direction          : NULL
+##  $ legend.justification      : NULL
+##  $ legend.box                : NULL
+##  $ legend.box.just           : NULL
+##  $ legend.box.margin         : NULL
+##  $ legend.box.background     : NULL
+##  $ legend.box.spacing        : NULL
+##  $ panel.background          : NULL
+##  $ panel.border              : NULL
+##  $ panel.spacing             : &#39;simpleUnit&#39; num 5.5points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ panel.spacing.x           : NULL
+##  $ panel.spacing.y           : NULL
+##  $ panel.grid                : NULL
+##  $ panel.grid.major          : NULL
+##  $ panel.grid.minor          : NULL
+##  $ panel.grid.major.x        : NULL
+##  $ panel.grid.major.y        : NULL
+##  $ panel.grid.minor.x        : NULL
+##  $ panel.grid.minor.y        : NULL
+##  $ panel.ontop               : logi FALSE
+##  $ plot.background           : NULL
+##  $ plot.title                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 1.2
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.title.position       : chr &quot;panel&quot;
+##  $ plot.subtitle             :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.caption              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : &#39;margin&#39; num [1:4] 5.5points 0points 0points 0points
+##   .. ..- attr(*, &quot;unit&quot;)= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.caption.position     : chr &quot;panel&quot;
+##  $ plot.tag                  :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 1.2
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ plot.tag.position         : chr &quot;topleft&quot;
+##  $ plot.margin               : &#39;simpleUnit&#39; num [1:4] 0lines 0lines 0lines 0lines
+##   ..- attr(*, &quot;unit&quot;)= int 3
+##  $ strip.background          : NULL
+##  $ strip.background.x        : NULL
+##  $ strip.background.y        : NULL
+##  $ strip.placement           : NULL
+##  $ strip.text                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : &#39;rel&#39; num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;element_text&quot; &quot;element&quot;
+##  $ strip.text.x              : NULL
+##  $ strip.text.y              : NULL
+##  $ strip.switch.pad.grid     : &#39;simpleUnit&#39; num 2.75points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  $ strip.switch.pad.wrap     : &#39;simpleUnit&#39; num 2.75points
+##   ..- attr(*, &quot;unit&quot;)= int 8
+##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;theme&quot; &quot;gg&quot;
+##  - attr(*, &quot;complete&quot;)= logi TRUE
+##  - attr(*, &quot;validate&quot;)= logi TRUE</code></pre>
+</div>
+</div>
+<div id="day-12" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/12">Day 12</a></h2>
+<div id="part-1-2-1" class="section level4">
+<h4>Part 1 / 2</h4>
+<p>Today was difficult to keep up with all the rules. Some of the caves were different in the examples (such as the small dead end cave had a large cave to return to in the final problem). Had to do some data filtereing mid way to help with runtime issues.</p>
+<pre class="r"><code>x &lt;- ## read in and clean data
+  tibble(paths = read_lines(file = &quot;day_12.txt&quot;)) %&gt;% 
+  separate(col = paths, into = c(&quot;start&quot;, &quot;end&quot;), sep = &quot;-&quot;) %&gt;% 
+  rename_with(toupper) %&gt;% 
+  mutate(start = if_else(END == &quot;start&quot; | START == &quot;end&quot;, END, START)) %&gt;% 
+  mutate(end = if_else(start == END, START, END)) %&gt;% 
+  select(start,end) 
+
+upr_rev_paths &lt;- x %&gt;% ## large caves can go back and forth
+  filter(str_detect(start, &#39;[:upper:]&#39;)|str_detect(end, &#39;[:upper:]&#39;)) %&gt;%
+  filter(end != &quot;end&quot; &amp; start != &quot;start&quot;) %&gt;%
+  select(start = end, end = start)
+
+remove_these &lt;- x %&gt;% ## caves that are a dead end
+  pivot_longer(everything()) %&gt;% 
+  filter(!str_detect(value, &#39;[:upper:]&#39;)) %&gt;% count(value) %&gt;% filter(n==1) %&gt;% pull(value)
+
+lwr_rev_paths &lt;- x %&gt;% ## small caves reverse path
+  filter(end != &quot;end&quot; &amp; start != &quot;start&quot;) %&gt;% 
+  filter(!str_detect(start, &#39;[:upper:]&#39;)) %&gt;% 
+  filter(!str_detect(end, &#39;[:upper:]&#39;)) %&gt;% 
+  select(start = end, end = start) %&gt;% 
+  filter(!start %in% remove_these | !end %in% remove_these)
+
+y &lt;- x %&gt;% bind_rows(upr_rev_paths) %&gt;% bind_rows(lwr_rev_paths) %&gt;% distinct() ## all cave paths
+
+first &lt;- x %&gt;% filter(start == &quot;start&quot;) # from the start
+
+join_change_names &lt;- function(x = out, iter_num = 1, part_2 = FALSE){ 
+  hold &lt;- x %&gt;% filter(end == &quot;end&quot;) ## splits data to speed up code
+  progress &lt;- x %&gt;% filter(end != &quot;end&quot;) ## this is the only data needing processing
+  out_1 &lt;- progress %&gt;% 
+  left_join(y, by = c(&quot;end&quot; = &quot;start&quot;)) %&gt;% 
+    rename_with(~str_c(.,&quot;_x&quot;)) %&gt;% 
+    rename_with(~str_c(&quot;end&quot;), .cols = last_col()) %&gt;% 
+    rename_with(~str_c(&quot;start&quot;), .cols = starts_with(&quot;start&quot;)) %&gt;% 
+    unite(all, everything(), remove = F) 
+  if(part_2==FALSE){ ## part 1 criteria
+    out &lt;- out_1 %&gt;% 
+      filter(str_count(all, &quot;ws&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;kq&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;yr&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;zo&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;np&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;xq&quot;)&lt;=1) %&gt;%
+      filter(str_count(all, &quot;ra&quot;)&lt;=1) %&gt;%
+      select(-all) %&gt;% 
+      bind_rows(hold)}
+  if(part_2==TRUE){ ### part 2 criteria
+    out &lt;- out_1 %&gt;% 
+      filter(str_count(all, &quot;ws&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;kq&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;yr&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;zo&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;np&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;xq&quot;)&lt;=2) %&gt;%
+      filter(str_count(all, &quot;ra&quot;)&lt;=2) %&gt;%
+      mutate(ws = str_count(all, &quot;ws&quot;)==2) %&gt;%
+      mutate(kq = str_count(all, &quot;kq&quot;)==2) %&gt;%
+      mutate(yr = str_count(all, &quot;yr&quot;)==2) %&gt;%
+      mutate(zo = str_count(all, &quot;zo&quot;)==2) %&gt;%
+      mutate(np = str_count(all, &quot;np&quot;)==2) %&gt;%
+      mutate(xq = str_count(all, &quot;xq&quot;)==2) %&gt;%
+      mutate(ra = str_count(all, &quot;ra&quot;)==2) %&gt;%
+      mutate(total = ws + kq + yr + zo + np + xq + ra) %&gt;% 
+      filter(total &lt;= 1) %&gt;% 
+      select(-all,-ws,-kq,-yr,-zo,-np,-xq,-ra,-total) %&gt;% 
+      bind_rows(hold)}
+  return(out)}
+
+1:20 %&gt;% reduce(.f = join_change_names, .init = first) </code></pre>
+</div>
+</div>
+<div id="day-11" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/11">Day 11</a></h2>
+<div id="part-1-3" class="section level4">
+<h4>Part 1</h4>
+<p>In previous attempts, I’ve moved through the entire plane making changes as I get to them. This time, I took a page from <a href="https://twitter.com/drob">David Robinsion’s</a> playbook and used <code>crossing()</code>. I then used a while loop to progress through the octopus stages</p>
+<pre class="r"><code>x &lt;-
+  tibble(x = (read_lines(&quot;day_11.txt&quot;))) %&gt;% 
+  mutate(row = row_number()) %&gt;% 
+  mutate(value = str_split(x,&quot;&quot;)) %&gt;% 
+  unnest(value) %&gt;% 
+  mutate(value = as.numeric(value)) %&gt;% 
+  group_by(row) %&gt;% 
+  mutate(col = row_number()) %&gt;% 
+  ungroup() %&gt;% 
+  relocate(value, .after = col) %&gt;% 
+  select(-x)
+
+adj &lt;- expand.grid(xd = c(-1,0,1), yd = c(-1,0,1))
+
+adjacent &lt;- function(x){
+  d &lt;- x %&gt;% distinct(row,col,value)
+  d2 &lt;- x %&gt;% distinct(row,col,value)
+  d %&gt;% 
+    crossing(adj) %&gt;% 
+    mutate(row2 = row +xd,
+           col2 = col + yd) %&gt;%
+    arrange(row,col) %&gt;% 
+    inner_join(d2, by = c(row2 = &quot;row&quot;, col2 = &quot;col&quot;), suffix = c(&quot;&quot;, &quot;2&quot;)) %&gt;% 
+    filter(row != row2 | col != col2)  
+}
+
+flash_octopus &lt;- function(x = x, iteration = 1) {
+  x &lt;- x$x %&gt;%
+    adjacent() %&gt;%
+    mutate(across(.cols = c(&quot;value&quot;, &quot;value2&quot;), .fns = ~ . + 1))
+  tens &lt;- 1
+  while (tens != 0) {
+    x &lt;- x %&gt;%
+      group_by(row, col) %&gt;%  mutate(add_this_many = sum(value2 &gt;= 10)) %&gt;% ungroup() %&gt;%
+      mutate(value = ifelse(value &gt;= 10,-100, value)) %&gt;%
+      mutate(value = value + add_this_many) %&gt;%
+      adjacent()
+    tens &lt;- x %&gt;% distinct(row, col, value) %&gt;% filter(value &gt;= 10) %&gt;% nrow()
+  }
+  flashes &lt;- x %&gt;% distinct(row, col, value) %&gt;% count(did_flash = value &lt; 0) %&gt;% filter(did_flash) %&gt;% pull(n)
+  if (length(flashes) == 0) {flashes &lt;- 0}
+  x &lt;- x %&gt;% mutate(value = ifelse(value &lt; 0, 0, value))
+  x &lt;- list(x = x, flashes = flashes)
+  return(x)
+}
+
+x &lt;- list(x = x, flashes = 0)
+
+## Answer 1
+accumulate(1:100, .f = flash_octopus, .init = x) %&gt;% one_hundred %&gt;% map(2) %&gt;% unlist() %&gt;% sum()</code></pre>
+</div>
+<div id="part-2-2" class="section level4">
+<h4>Part 2</h4>
+<p>For part 2, let it run longer and find the first element that has 100 flashes.</p>
+<pre class="r"><code>three_hundred &lt;- accumulate(1:300, .f = flash_octopus, .init = x)
+
+which(unlist(map(three_hundred, 2)) == 100)[1] - 1</code></pre>
+<p>I also want to provide this function that proved helpful in viewing the matrix throughout.</p>
+<pre class="r"><code>see_matrix &lt;- function(data = x){
+  data %&gt;% 
+    distinct(row, col, value) %&gt;% 
+    select(row,col,value) %&gt;% 
+    pull(value) %&gt;% 
+    matrix(nrow = 10, byrow = T)
+}</code></pre>
+</div>
+</div>
+<div id="day-10" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/10">Day 10</a></h2>
+<div id="part-1-4" class="section level4">
+<h4>Part 1</h4>
+<p>I use a while loop to remove all ‘open’ ‘close’ pairings. This helps find both corrupted and broken chunks. I find the corrupted chunks and apply the scoring mechanism.</p>
+<pre class="r"><code>input &lt;-
+  tibble(chunks = read_lines(&quot;day_10.txt&quot;))
+
+syntax_error_points &lt;- ## points for each bracket type
+  tibble(chunks = c(&quot;)&quot;, &quot;]&quot;, &quot;}&quot;, &quot;&gt;&quot;),
+         points = c(3, 57, 1197, 25137)
+         )
+
+input_list &lt;- list(NULL, input) ## prepare list for iteration
+
+i &lt;- 2 ## initialize iterator 
+while (!isTRUE(all.equal(input_list[i], input_list[i - 1]))) {
+  input &lt;-  input %&gt;%
+    mutate(chunks = str_remove_all(string = chunks, pattern = &quot;&lt;&gt;|\\[\\]|\\(\\)|\\{\\}&quot;))
+  i = i + 1
+  input_list[[i]] &lt;- input
+} ## this iteratively removes all open/closed pairings until the df does not change between iterations
+
+input_list %&gt;% tail(1) %&gt;% pluck(1) %&gt;% ## select the last list
+  mutate(chunks = str_remove_all(string = chunks, pattern = &quot;&lt;|\\[|\\(|\\{&quot;)) %&gt;% ## remove openings
+  filter(chunks != &quot;&quot;) %&gt;% ## remove extraneous lines
+  mutate(chunks = str_sub(chunks, 1, 1)) %&gt;% ## select the first opening
+  count(chunks) %&gt;% ## count them up!
+  left_join(syntax_error_points, by = &quot;chunks&quot;) %&gt;%  ## join in points
+  summarise(score = sum(n * points)) ## score the process</code></pre>
+</div>
+</div>
+<div id="part-2-3" class="section level2">
+<h2>Part 2</h2>
+<p>I take the incomplete chunks from the previous part and map over the score_points function for the final answer.</p>
+<pre class="r"><code>incomplete_df &lt;- ## identify chunks with incomplete strings
+  input_list %&gt;% tail(1) %&gt;% pluck(1) %&gt;% ## selects list element with all open/closed pairs removed
+  mutate(chunks = str_remove_all(string = chunks, pattern = &quot;&lt;|\\[|\\(|\\{&quot;)) %&gt;% ## removes opens
+  mutate(incomplete_strings = row_number()) %&gt;% ## ids each pattern
+  filter(chunks == &quot;&quot;) %&gt;% ## removes extraneous lines
+  select(id = chunks, incomplete_strings) ## now have df with incomplete strings identified
+
+matching_df &lt;- ## create scoring df for joining later
+  tibble(
+    chunks = c(&quot;(&quot;, &quot;[&quot;, &quot;{&quot;, &quot;&lt;&quot;),
+    right = c(&quot;)&quot;, &quot;]&quot;, &quot;}&quot;, &quot;&gt;&quot;),
+    points = c(1, 2, 3, 4))
+
+incomplete_list &lt;-  ## creates list of points
+  input %&gt;%  mutate(incomplete_strings = row_number()) %&gt;%
+  semi_join(incomplete_df, by = &quot;incomplete_strings&quot;) %&gt;% ## only keep the chunks that are incomplete
+  separate_rows(chunks, sep = &quot;&quot;) %&gt;% 
+  left_join(matching_df, by = &quot;chunks&quot;) %&gt;% ## add in points
+  filter(!is.na(right)) %&gt;%
+  group_by(incomplete_strings) %&gt;% mutate(row_num = row_number()) %&gt;% arrange(desc(row_num)) %&gt;%
+  select(-row_num) %&gt;% ## puts the chunks in the right order
+  group_split() %&gt;% ## splits them for future map function
+  map(.f = ~ pull(.data = .x, points)) ## only keeps the column we want
+
+score_points &lt;- function(current_vector = points, index) {
+    current_vector[index] &lt;- current_vector[index - 1] * 5 + current_vector[index]
+    return(current_vector)} ## function to execute partial scoring function
+
+score_everything &lt;- function(data) {
+  2:length(data) %&gt;%
+    reduce(.f = score_points, .init = data) %&gt;%
+    tail(1)} ## function which scores entire vector
+
+incomplete_list %&gt;%
+  map_dbl(.f = ~ score_everything(data = .x)) %&gt;%
+  sort() %&gt;% median() ## maps all lists over scoring function</code></pre>
+</div>
+<div id="day-9" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/9">Day 9</a></h2>
+<div id="part-1-5" class="section level4">
+<h4>Part 1</h4>
+<p>To find the number of low points I map across a function that determines if each place is a depression. After the identification, I use the problems formula to sum up the risk levels.</p>
+<pre class="r"><code>input &lt;-
+  matrix(read_lines(&quot;02_data/day_9.txt&quot;)) %&gt;% 
+  strsplit(&quot;&quot;) %&gt;% unlist() %&gt;% as.numeric() %&gt;% matrix(byrow = T, nrow = 100) 
+
+checker &lt;- function(row, col){
+  if(col &lt; ncol(input)){right &lt;- input[row,col]-input[row,col+1] &lt; 0}else{right&lt;-1} # check right
+  if(col != 1)         {left  &lt;- input[row,col]-input[row,col-1] &lt; 0}else{left&lt;-1}  # check left
+  if(row != 1)         {upper &lt;- input[row,col]-input[row-1,col] &lt; 0}else{upper&lt;-1} # check up
+  if(row &lt; nrow(input)){lower &lt;- input[row,col]-input[row+1,col] &lt; 0}else{lower&lt;-1} # check down
+  
+  out &lt;- tibble(number = input[row,col], row = row, col = col, 
+                num_increase = sum(right,left,upper,lower)) # this sums every direction that has an increase
+  return(out)
+}
+
+future_map2_dfr(.x = sort(rep(1:nrow(input),ncol(input))),
+                .y = rep(1:ncol(input),nrow(input)),
+                .f = ~checker(row = .x,col = .y), .progress = T) %&gt;% 
+  filter(num_increase == 4) %&gt;% 
+  mutate(number = number + 1) %&gt;% 
+  summarise(answer = sum(number))</code></pre>
+</div>
+<div id="part-2-4" class="section level4">
+<h4>Part 2</h4>
+<p>I again map over a function that looks in all directions and determines if it is touching a place that is not a 9. I count the basins one at a time and add up the size of the basins.</p>
+<pre class="r"><code>id_reduce_count_replace &lt;- function(input){
+  input &lt;- unique.matrix(input$input, MARGIN = 1) ## gets rid of rows already searched to speed up code
+  input &lt;- t(input) %&gt;% str_c(collapse = &quot;&quot;) %&gt;% str_replace(pattern = &quot;[^X]&quot;, replacement = &quot;B&quot;) %&gt;% 
+    str_split(pattern = &quot;&quot;) %&gt;% unlist() %&gt;% matrix(byrow = T, nrow = nrow(input))
+    ## above determines first spot of basin in top row
+  identified_basin &lt;- reduce2(.x = ## there is probably a better way to come up with these vectors to map over
+                                c(sort(rep(1:nrow(input),ncol(input))),
+                                  rev(sort(rep(1:nrow(input),ncol(input)))),
+                                  sort(rep(1:nrow(input),ncol(input))),
+                                  rev(sort(rep(1:nrow(input),ncol(input))))),
+                              .y = 
+                                c(rep(1:ncol(input),nrow(input)),
+                                  rep(1:ncol(input),nrow(input)),
+                                  rev(rep(1:ncol(input),nrow(input)),
+                                  rep(1:ncol(input),nrow(input)))), 
+                              .f = sweep, .init = input) ## iterates over all places on matrix to determine if basin
+  
+  basin_size &lt;- identified_basin %&gt;%  str_count(&quot;B&quot;) %&gt;% sum() # identify to of new basin
+
+  input &lt;- str_replace_all(identified_basin,&quot;B&quot;, &quot;X&quot;) %&gt;% matrix(byrow = F, nrow = nrow(input)) # delete basin tracking
+  
+  if(sum(str_count(input, pattern = &quot;X&quot;))==sum(nchar(input))){message(&quot;Finished&quot;)} # create an error if complete
+
+  return(list(input = input, basin_size = basin_size))
+}
+
+initial &lt;-
+  matrix(read_lines(&quot;02_data/day_9.txt&quot;)) %&gt;%
+  strsplit(&quot;&quot;) %&gt;% unlist() %&gt;% str_replace_all(pattern = &quot;9&quot;,&quot;X&quot;) %&gt;% 
+  matrix(byrow = T, nrow = 100) 
+
+input &lt;- list(input = initial, basin_size = NULL)
+
+sweep &lt;- function(input, row, col){
+  if(col != ncol(input))  {input[row,col][input[row,col+1]==&quot;B&quot; &amp;&amp; input[row,col] !=&quot;X&quot;] &lt;- &quot;B&quot;} # look right
+  if(row != nrow(input))  {input[row,col][input[row+1,col]==&quot;B&quot; &amp;&amp; input[row,col] !=&quot;X&quot;] &lt;- &quot;B&quot;} # look down
+  if(col != 1)            {input[row,col][input[row,col-1]==&quot;B&quot; &amp;&amp; input[row,col] !=&quot;X&quot;] &lt;- &quot;B&quot;} # look left
+  if(row != 1)            {input[row,col][input[row-1,col]==&quot;B&quot; &amp;&amp; input[row,col] !=&quot;X&quot;] &lt;- &quot;B&quot;} # look up
+  return(input)
+}
+
+tictoc::tic()
+accumulate(.x = 1:225, .f = id_reduce_count_replace, .init = input) %&gt;% map(2) %&gt;% unlist() %&gt;% sort() %&gt;% tail(3) %&gt;% prod()
+tictoc::toc()
+## took just under 300 seconds</code></pre>
+</div>
+</div>
+<div id="day-8" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/8">Day 8</a></h2>
+<div id="part-1-6" class="section level4">
+<h4>Part 1</h4>
+<p>For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens.</p>
+<pre class="r"><code>tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;NA&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  mutate(length = nchar(output)) %&gt;% 
+  count(length) %&gt;%
+  filter(length %in% c(2,3,4,7)) %&gt;%
+  summarise(sum = sum(n))</code></pre>
+</div>
+<div id="part-2-5" class="section level4">
+<h4>Part 2</h4>
+<p>Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters. Next I join in the output values to determine the numerical output values.</p>
+<pre class="r"><code>initial &lt;-
+  tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;signal&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(signal, sep = &quot; &quot;) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(signal = str_c(sort(unlist(str_split(signal,&quot;&quot;))), collapse = &quot;&quot;)) %&gt;% ungroup() %&gt;% 
+  select(-output)
+
+output_tbl &lt;-
+  tibble(entry = read_lines(&quot;day_8.txt&quot;)) %&gt;%
+  separate(col = entry, into = c(&quot;signal&quot;,&quot;output&quot;),sep = &quot; \\| &quot;) %&gt;% 
+  mutate(id = row_number()) %&gt;%
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(output = str_c(sort(unlist(str_split(output,&quot;&quot;))), collapse = &quot;&quot;)) %&gt;% ungroup() %&gt;% 
+  select(-signal) %&gt;% 
+  group_by(id) %&gt;% 
+  summarise(output = str_c(output, collapse = &quot; &quot;)) %&gt;% 
+  ungroup() %&gt;% 
+  separate_rows(output, sep = &quot; &quot;) %&gt;% 
+  mutate(order = row_number())
+
+identify_obvious &lt;- function(initial){
+  out &lt;- initial %&gt;% 
+    mutate(number = case_when(nchar(signal) == 2 ~ 1,
+                              nchar(signal) == 3 ~ 7,
+                              nchar(signal) == 4 ~ 4,
+                              nchar(signal) == 7 ~ 8,
+                              TRUE ~ 0
+                              )) %&gt;% 
+    filter(number !=0) %&gt;% 
+    arrange(number)
+  return(out)
+}
+  
+identify_3 &lt;- function(known, initial){
+  seven &lt;-
+    known  %&gt;% filter(number %in% c(7)) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  three &lt;-  
+    initial %&gt;% 
+    filter(nchar(signal) == 5) %&gt;% 
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% seven) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 3) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 3) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(three)
+}
+
+identify_9 &lt;- function(known, initial){
+  three &lt;-
+    known  %&gt;% filter(number %in% c(3)) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  nine &lt;-
+    initial %&gt;% 
+    filter(nchar(signal) == 6) %&gt;% 
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% three) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 5) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 9) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(nine)
+}
+
+identify_0 &lt;- function(known, initial){
+  one &lt;-
+    known  %&gt;% 
+    filter(number %in% c(1)) %&gt;% 
+    pull(signal) %&gt;% 
+    str_split(&quot;&quot;) %&gt;% unlist()
+  zero &lt;-
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    filter(nchar(signal) == 6) %&gt;%   
+    mutate(split = signal) %&gt;% 
+    separate_rows(split, sep = &quot;&quot;) %&gt;% 
+    filter(split %in% one) %&gt;% 
+    group_by(signal) %&gt;% filter(n() == 2) %&gt;% ungroup(signal) %&gt;% 
+    distinct(signal, .keep_all = T) %&gt;% 
+    select(-split) %&gt;% 
+    mutate(number = 0) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(zero)
+}
+
+identify_6 &lt;- function(known, initial){
+  known &lt;-
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    filter(nchar(signal) == 6) %&gt;%
+    mutate(number = 6) %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+  return(known)
+}
+
+identify_5_2 &lt;- function(known, initial){
+  part &lt;-
+    known %&gt;% 
+    filter(number %in% c(1,4)) %&gt;% 
+    separate_rows(signal, sep = &quot;&quot;) %&gt;% 
+    group_by(signal) %&gt;% filter(n()==1) %&gt;% 
+    pull(signal) %&gt;% str_split(&quot;&quot;) %&gt;% unlist()
+  last &lt;- 
+    initial %&gt;% 
+    anti_join(known, by = c(&quot;signal&quot;, &quot;id&quot;)) %&gt;% 
+    mutate(side = signal) %&gt;% 
+    separate_rows(side, sep = &quot;&quot;)  %&gt;% 
+    filter(side %in% part) %&gt;% 
+    group_by(signal) %&gt;% 
+    mutate(number = if_else(n()==2,5,2)) %&gt;% 
+    ungroup() %&gt;% select(-side) %&gt;% distinct() %&gt;% 
+    bind_rows(known) %&gt;% 
+    arrange(number)
+return(last)
+}
+
+all_together &lt;- function(initial) {
+  all &lt;-
+    initial %&gt;%
+    identify_obvious() %&gt;%
+    identify_3(initial = initial) %&gt;%
+    identify_9(initial = initial) %&gt;%
+    identify_0(initial = initial) %&gt;%
+    identify_6(initial = initial) %&gt;%
+    identify_5_2(initial = initial)
+  return(all)
+}
+
+initial %&gt;% group_split(id) %&gt;% 
+  map_df(~all_together(initial = .x)) %&gt;% 
+  left_join(output_tbl, by = c(&quot;signal&quot; = &quot;output&quot;, &quot;id&quot; = &quot;id&quot;)) %&gt;% 
+  filter(!is.na(order)) %&gt;% arrange(order) %&gt;% 
+  group_by(id) %&gt;% 
+  summarise(signal = str_c(signal, collapse = &quot; &quot;), 
+            number = as.numeric(str_c(number, collapse = &quot;&quot;))) %&gt;% 
+  summarise(solution = sum(number))</code></pre>
+</div>
+</div>
+<div id="day-7" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/7">Day 7</a></h2>
+<div id="part-1-7" class="section level4">
+<h4>Part 1</h4>
+<p>To solve part 1, I create a function that finds the distance between all points to a specific point, map across all specific points, and then find the minimum distance.</p>
+<!-- dat <- read_lines("content/post/2021-12-01-advent-of-code-2021/day_7.txt") %>% str_split(",") %>% unlist() %>% as.numeric() -->
+<pre class="r"><code>dat &lt;- as.numeric(unlist(str_split(read_lines(&quot;02_data/day_7.txt&quot;),&quot;,&quot;))) 
+
+distance &lt;- function(data = dat, position) {
+  out &lt;- sum(abs(data - position))
+  return(out)
+}
+
+min(dat):max(dat) %&gt;% 
+  map_dbl(.f = ~distance(data = dat, position = .x)) %&gt;% min()</code></pre>
+</div>
+<div id="part-2-6" class="section level4">
+<h4>Part 2</h4>
+<p>I alter the distance formula to find the triangular number between two numbers. This can also be factored into the binomial coefficient with the upper index being the distance between the numbers and 2 as the lower index.</p>
+<pre class="r"><code>distance_plus &lt;- function(data = dat, position) {
+  n &lt;-abs(data-position)+1
+  out &lt;- sum(choose(n,2))
+  return(out)
+}
+
+min(dat):max(dat) %&gt;% 
+  map_dbl(.f = ~distance_plus(data = dat, position = .x)) %&gt;% min()</code></pre>
+</div>
+<div id="code-golfing" class="section level4">
+<h4>Code Golfing</h4>
+<p>This last code chunk is my attempt at ‘code golfing’ - aka - how succinct can I make my code. I can answer both parts with fairly brief code, but I think its less understandable.</p>
+<pre class="r"><code>fuel_calculation &lt;- function(data = dat, position, type) {
+  if(type == &quot;distance&quot;){out &lt;- tibble(fuel = sum(abs(data - position)), position = position, type)}
+  if(type == &quot;triangular&quot;){out &lt;- tibble(fuel = sum(choose(abs(data-position)+1,2)), position = position, type)}
+  return(out)
+}
+
+rep(min(dat):max(dat), 2) %&gt;%
+  map2_dfr(.y = c(rep(&quot;distance&quot;, length(min(dat):max(dat))), rep(&quot;triangular&quot;, length(min(dat):max(dat)))),
+    .f = ~ fuel_calculation(data = dat,position = .x, type = .y)) %&gt;%
+  group_split(type) %&gt;%
+  map( ~ filter(.x, fuel == min(fuel)))</code></pre>
+</div>
+</div>
+<div id="day-6" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/6">Day 6</a></h2>
+<div id="part-1-and-2" class="section level4">
+<h4>Part 1 and 2</h4>
+<p>My gut instinct is to always think in ‘tidy’ coding concepts. This will get the answer, but when moving from part 1 to part 2, the time it takes to run the code becomes computationally infeasible with my computer. I’ll show my 3 attempts.</p>
+</div>
+<div id="strike-1-1" class="section level4">
+<h4>Strike 1</h4>
+<pre class="r"><code>initial_fish &lt;- tibble(fish = read_lines(&quot;day_6.txt&quot;)) %&gt;%
+  separate_rows(fish, sep = &quot;,&quot;, convert = T) 
+
+progress_day &lt;- function(fish = initial_fish, after_day = 1){
+fish &lt;-
+  fish %&gt;% 
+  mutate(fish = ifelse(fish &lt;= 0 , &quot;6,8&quot;, fish-1)) %&gt;% 
+  separate_rows(fish, sep = &quot;,&quot;, convert = T) 
+return(fish)
+}
+
+tictoc::tic()
+ans &lt;- 1:80 %&gt;% 
+# ans &lt;- 1:256 %&gt;% nope!
+  reduce(.f = progress_day, .init = initial_fish) %&gt;% nrow()
+tictoc::toc()</code></pre>
+<pre><code>## 37.14 sec elapsed</code></pre>
+<p>My second attempt was a ‘non-tidy’ solution, but part 2 also took too long to run.</p>
+</div>
+<div id="strike-2" class="section level4">
+<h4>Strike 2</h4>
+<pre class="r"><code>initial_fish &lt;- as.numeric(unlist(strsplit(readr::read_lines(&quot;day_6.txt&quot;),&quot;,&quot;)))
+
+progress_day &lt;- function(fish = initial_fish, after_day = 1) {
+  
+  add_fish &lt;- sum(fish == 0)
+  next_day &lt;- fish - 1
+  next_day[next_day &lt; 0] &lt;- 6
+
+  out &lt;- c(next_day, rep(8, add_fish))
+return(out)  
+}
+
+tictoc::tic()
+ans &lt;- 1:150 %&gt;% 
+# ans &lt;- 1:256 %&gt;% faster, but nope! 
+  reduce(.f = progress_day, .init = initial_fish) %&gt;% length()
+tictoc::toc() </code></pre>
+<pre><code>## 33.5 sec elapsed</code></pre>
+<p>Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown. This make things work nice and quick.</p>
+</div>
+<div id="success" class="section level4">
+<h4>Success!</h4>
+<pre class="r"><code>fish &lt;- as.numeric(unlist(strsplit(read_lines(&quot;day_6.txt&quot;),&quot;,&quot;)))
+ 
+initial_fish &lt;- c(
+length(fish[fish==8]),
+length(fish[fish==7]),
+length(fish[fish==6]),
+length(fish[fish==5]),
+length(fish[fish==4]),
+length(fish[fish==3]),
+length(fish[fish==2]),
+length(fish[fish==1]),
+length(fish[fish==0]))
+
+progress_day &lt;- function(fish = initial_fish, after_day = 1){
+
+births = fish[9]
+get_older &lt;- replace_na(lag(fish),0)
+out &lt;- c(births, get_older[2], get_older[3]+births, get_older[-c(1:3)])
+return(out)
+}
+
+tictoc::tic()
+ans &lt;- 1:256 %&gt;% 
+  reduce(.f = progress_day, .init = initial_fish) %&gt;% sum()
+tictoc::toc()</code></pre>
+<pre><code>## 0.02 sec elapsed</code></pre>
+</div>
+</div>
+<div id="day-5" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/5">Day 5</a></h2>
+<div id="part-1-8" class="section level4">
+<h4>Part 1</h4>
+<p>For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply. I had to create a toggle for vents that were horizontal vs vertical.</p>
+<pre class="r"><code>movements &lt;-
+  tibble(directions = read_lines(&quot;day_5.txt&quot;)) %&gt;%
+  mutate(directions = str_replace_all(string = directions, pattern = &quot; -&gt; &quot;, &quot;,&quot;)) %&gt;% 
+  separate(col = directions, into = c(&quot;x1&quot;, &quot;y1&quot;, &quot;x2&quot;, &quot;y2&quot;), sep = &quot;,&quot;, convert = T) %&gt;% 
+  select(x1,x2,y1,y2) 
+
+create_lines &lt;- function(move){
+
+if(move$y1==move$y2) {
+  xlow  &lt;- min(move$x1, min(move$x2))
+  xhigh &lt;- max(move$x1, min(move$x2))
+  ylow  &lt;- min(move$y1, min(move$y2))
+  yhigh &lt;- max(move$y1, min(move$y2))
+  byrow &lt;- T # for horizontal vents
+} else if (move$x1 == move$x2) {
+  ylow  &lt;- min(move$x1, min(move$x2))
+  yhigh &lt;- max(move$x1, min(move$x2))
+  xlow  &lt;- min(move$y1, min(move$y2))
+  xhigh &lt;- max(move$y1, min(move$y2))
+  byrow &lt;- F # for vertical vents
+}
+out &lt;- matrix(c(
+  rep(rep(0,1000),ylow), ## zeroes before row/col
+  c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
+  rep(rep(0,1000),999-ylow) ## zeroes after row/col
+  ), byrow = byrow, nrow = 1000, ncol = 1000)
+return(out)
+}
+
+movements %&gt;% 
+  filter(x1==x2 | y1==y2) %&gt;% 
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~create_lines(lines = .x)) %&gt;% 
+  reduce(`+`) %&gt;% as_tibble() %&gt;% 
+  pivot_longer(cols = everything()) %&gt;% 
+  filter(value &gt;=2) %&gt;% 
+  count()</code></pre>
+</div>
+<div id="part-2-7" class="section level4">
+<h4>Part 2</h4>
+<p>In this part some of the vents were diagonal. I used the first function to mark the straight vents and created a second function to trace the ones at an angle. I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.</p>
+<pre class="r"><code>cross_routes &lt;- function(move){
+
+  xlow  &lt;- min(move$x1, min(move$x2))
+  xhigh &lt;- max(move$x1, min(move$x2))
+  ylow  &lt;- min(move$y1, min(move$y2))
+  yhigh &lt;- max(move$y1, min(move$y2))
+
+mat &lt;- matrix(rep(0,1000000), ncol = 1000) # create a 1000 x 1000 matrix
+if((move$x2&gt;move$x1 &amp; move$y2&gt;move$y1) | (move$x2&lt;move$x1 &amp; move$y2&lt;move$y1)){
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xlow+i] &lt;- 1
+  }
+} else{ ## vent is top left to bottom right
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xhigh+2-i] &lt;- 1
+  }
+}## determine if vent is top right to bottom left
+return(mat)
+}
+
+striaght_lines &lt;- # from part 1
+  movements %&gt;% 
+  filter(x1==x2 | y1==y2) %&gt;% # straight lines
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~create_lines(lines = .x)) %&gt;% 
+  reduce(`+`) 
+
+diagonal_lines &lt;-
+  movements %&gt;%
+  filter(x1!=x2 &amp; y1!=y2) %&gt;% # diagonal lines
+  group_split(row_number(), .keep = F) %&gt;% 
+  purrr::map(~cross_routes(move = .x)) %&gt;% 
+  reduce(`+`) 
+ 
+as_tibble(striaght_lines + diagonal_lines) %&gt;% 
+  pivot_longer(cols = everything()) %&gt;%
+  filter(value &gt;=2) %&gt;%
+  count()</code></pre>
+</div>
+</div>
+<div id="day-4" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/4">Day 4</a></h2>
+<p>I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board. Then we use <code>purrr::accumulate()</code> and <code>purrr::possibly()</code> to handle errors that I intentionally create.</p>
+<div id="part-1-9" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>data &lt;- read_lines(&quot;day_4.txt&quot;)
+
+selections &lt;-
+  data[1] %&gt;% str_split(&quot;,&quot;) %&gt;% unlist() %&gt;% str_pad(2,&quot;left&quot;) %&gt;% str_pad(3,&quot;right&quot;)
+
+boards &lt;-
+  tibble(cards = data[-1]) %&gt;% 
+  filter(cards != &quot;&quot;) %&gt;%
+  mutate(cards = str_squish(cards)) %&gt;% 
+  transmute(col = str_split_fixed(cards, pattern = &quot; &quot;, n = 5)) %&gt;% 
+  pull(col) %&gt;% as_tibble() %&gt;% 
+  mutate(across(.cols = everything(),.fns = ~str_pad(str_pad(.,2,&quot;left&quot;),3,&quot;right&quot;))) %&gt;% 
+  mutate(card_number = sort(rep(1:(n()/5),5))) %&gt;% 
+  mutate(winner = 0)
+
+boards_list &lt;- list(boards = boards, win_card = integer(0))
+
+mark_board &lt;- function(boards_list = boards_list, selection = selections[1]){
+  if(length(boards_list$win_card) &gt; 0){stop(boards_list)}
+  boards &lt;- boards_list$boards
+  marked &lt;-
+    boards %&gt;% 
+    mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = &quot;X&quot;)))
+  row_win_card &lt;-
+    marked %&gt;%
+    mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),&quot;X&quot;)) %&gt;% 
+    filter(row_bingo==5)  %&gt;% 
+    pull(card_number)
+  col_win_card &lt;-
+    marked %&gt;% 
+    mutate(across(.cols = V1:V5, .fns = ~ifelse(.==&quot;X&quot;,1,0))) %&gt;% 
+    group_by(card_number) %&gt;% 
+    summarise(across(everything(), ~sum(.))) %&gt;% 
+    filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %&gt;% 
+    pull(card_number)
+  card_number &lt;- ifelse(length(row_win_card) &gt; 0, row_win_card, ifelse(length(col_win_card) &gt; 0, col_win_card, integer(0)))
+  if(is.na(card_number)){card_number &lt;- integer(0)}
+  out &lt;- list(boards = marked, win_card = card_number, selection = selection)
+  return(out)
+}
+
+mark_board_poss &lt;- possibly(mark_board, otherwise = NULL)
+
+winning_card &lt;- 
+selections %&gt;% 
+  accumulate(.f = mark_board_poss, .init = boards_list) %&gt;% 
+  discard(is.null) %&gt;% 
+  pluck(length(.)) 
+
+winning_card$boards %&gt;% 
+  filter(card_number == winning_card$win_card) %&gt;% 
+  select(-card_number) %&gt;% 
+  mutate(across(everything(), ~as.numeric(.))) %&gt;% 
+  as.matrix() %&gt;% sum(na.rm = T) %&gt;% prod(as.numeric(winning_card$selection))</code></pre>
+</div>
+<div id="part-2-8" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>boards_list &lt;- list(boards = boards)
+
+mark_board_2 &lt;- function(boards_list = boards_list, selection = selections[41]){
+
+  if(max(boards_list$boards$winner)==100){stop(boards_list)}
+  
+  boards &lt;- boards_list$boards
+  
+  marked &lt;-
+    boards %&gt;% 
+    mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = &quot;X&quot;)))
+  
+  row_win_card &lt;-
+    marked %&gt;%
+    mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),&quot;X&quot;)) %&gt;% 
+    filter(row_bingo==5)  %&gt;% 
+    pull(card_number)
+  
+  col_win_card &lt;-
+    marked %&gt;% 
+    mutate(across(.cols = V1:V5, .fns = ~ifelse(.==&quot;X&quot;,1,0))) %&gt;% 
+    group_by(card_number) %&gt;% 
+    summarise(across(everything(), ~sum(.))) %&gt;% 
+    filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %&gt;% 
+    pull(card_number)
+  
+  if(length(row_win_card)&gt;0 &amp; nrow(marked) == 5){
+    marked &lt;- 
+      marked %&gt;% 
+      mutate(winner = 100)
+    return(out &lt;- list(boards = marked, selection = selection))
+    } else if(length(row_win_card)&gt;0){
+    marked &lt;- 
+    marked %&gt;% 
+      filter(!card_number %in% row_win_card)
+  }
+  if(length(col_win_card)&gt;0 &amp; nrow(marked) == 5){
+    marked &lt;- 
+    marked %&gt;% 
+      mutate(winner = 100)
+    return(out &lt;- list(boards = marked, selection = selection))
+  } else if(length(col_win_card)&gt;0){
+    marked &lt;- 
+    marked %&gt;% 
+      filter(!card_number %in% col_win_card)
+  }
+  
+  out &lt;- list(boards = marked, selection = selection)
+  
+  return(out)
+  
+}
+
+mark_board_2_poss &lt;- possibly(mark_board_2, otherwise = NULL)
+
+winning_card &lt;-
+selections %&gt;% 
+  accumulate(mark_board_2_poss, .init = boards_list) %&gt;% 
+  discard(is.null) %&gt;% 
+  pluck(length(.))
+
+winning_card$boards %&gt;% 
+  select(V1:V5) %&gt;% 
+  mutate(across(everything(), ~as.numeric(.))) %&gt;% 
+  as.matrix() %&gt;% sum(na.rm = T) %&gt;% prod(as.numeric(winning_card$selection))</code></pre>
+</div>
+</div>
+<div id="day-3" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/3">Day 3</a></h2>
+<p>I rely on several pivots, <code>unite()</code>, and the iterative function <code>purrr::reduce()</code> for this problem.</p>
+<div id="part-1-10" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
+  transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
+  pull(col) %&gt;% as_tibble() %&gt;% 
+  summarise(across(.cols = everything(), .fns = ~if_else(mean(as.numeric(.))&gt;.5,1,0))) %&gt;% 
+  pivot_longer(cols = everything(), values_to = &quot;gamma&quot;, names_to = &quot;slot&quot;)  %&gt;% 
+  mutate(epsilon = if_else(gamma == 1, 0, 1)) %&gt;% 
+  pivot_longer(cols = -slot) %&gt;% 
+  pivot_wider(names_from = slot, values_from = value) %&gt;% 
+  unite(col = &quot;binary&quot;,  where(is.double), sep = &quot;&quot;)  %&gt;% 
+  mutate(decimal = strtoi(as.double(binary), base = 2)) %&gt;% 
+  pull(decimal) %&gt;% prod()</code></pre>
+</div>
+<div id="part-2-9" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>data &lt;-
+tibble(binary = read_lines(&quot;day_3.txt&quot;)) %&gt;% 
+  transmute(col = str_split_fixed(binary, pattern = &quot;&quot;, n = nchar(binary))) %&gt;% 
+  pull(col) %&gt;% as_tibble() %&gt;% 
+  summarise(across(.cols = everything(), .fns = ~as.numeric(.))) 
+
+filter_rating &lt;- function(data, col = &quot;V1&quot;, type = &quot;oxygen&quot;){
+  if(nrow(data)==1){out &lt;- data} 
+  else if(type == &quot;oxygen&quot;){out &lt;- data[data[,col]==if_else(mean(data[,col][[1]])&gt;=.5,1,0),]}
+  else if(type == &quot;co2&quot;){out &lt;- data[data[,col]==if_else(mean(data[,col][[1]])&lt;.5,1,0),]}
+}
+  
+reduce(.x = names(data), .f = filter_rating, .init = data, &quot;oxygen&quot;) %&gt;%
+  unite(col = &quot;binary&quot;,everything(), sep = &quot;&quot;) %&gt;% 
+  pull() %&gt;% strtoi(base = 2) *
+
+reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt;%
+  unite(col = &quot;binary&quot;,everything(), sep = &quot;&quot;) %&gt;% 
+  pull() %&gt;% strtoi(base = 2)</code></pre>
+</div>
+</div>
+<div id="day-2" class="section level2">
+<h2><a href="https://adventofcode.com/2021/day/2">Day 2</a></h2>
+<p>Today I used <code>seperate()</code> and <code>cumsum()</code> to work this problem.</p>
+<div id="part-1-11" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
+  separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;% 
+  group_by(real_direction = direction == &quot;forward&quot;) %&gt;% 
+  mutate(distance = ifelse(direction == &quot;up&quot;, distance * -1, distance)) %&gt;% 
+  summarise(movement = sum(distance)) %&gt;% 
+  pull(movement) %&gt;% prod()</code></pre>
+</div>
+<div id="part-2-10" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>tibble(x = read_lines(&quot;day_2.txt&quot;)) %&gt;% 
+  separate(col = x, into = c(&quot;direction&quot;,&quot;distance&quot;), convert = TRUE) %&gt;%
+  mutate(distance = as.double(distance)) %&gt;% 
+  mutate(aim_change = case_when(direction == &quot;forward&quot; ~ 0,
+                                direction == &quot;down&quot; ~ distance,
+                                direction == &quot;up&quot; ~ -1 * distance)) %&gt;% 
+  mutate(aim = cumsum(aim_change)) %&gt;% 
+  mutate(horizontal_position_increase = ifelse(direction == &quot;forward&quot;, distance, 0)) %&gt;% 
+  mutate(depth_position_increase = ifelse(direction == &quot;forward&quot;, aim * distance,0)) %&gt;% 
+  mutate(horizontal_position = cumsum(horizontal_position_increase)) %&gt;% 
+  mutate(depth_position = cumsum(depth_position_increase)) %&gt;% 
+  slice_tail(n = 1) %&gt;% 
+  summarise(answer = horizontal_position * depth_position) </code></pre>
+</div>
+<div id="day-1" class="section level3">
+<h3><a href="https://adventofcode.com/2021/day/1">Day 1</a></h3>
+<p>Using <code>lag()</code> and <code>zoo::rollsum()</code> we are able to accomplish day one pretty easily.</p>
+<div id="part-1-12" class="section level4">
+<h4>Part 1</h4>
+<pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%  
+  filter(measurements &gt; lag(measurements,1)) %&gt;% 
+  nrow()</code></pre>
+</div>
+<div id="part-2-11" class="section level4">
+<h4>Part 2</h4>
+<pre class="r"><code>tibble(measurements = as.numeric(read_lines(&quot;day1.txt&quot;))) %&gt;%
+  mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = &quot;right&quot;)) %&gt;%
+  filter(roll_sum &gt; lag(roll_sum,1)) %&gt;%
+  nrow()</code></pre>
+</div>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/r"><span class="tag">R</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/learning"><span class="tag">Learning</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/teaching"><span class="tag">Teaching</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>771</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2024 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>

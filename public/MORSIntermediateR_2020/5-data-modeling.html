@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Data Modeling | Intermediate R</title>
+  <meta name="description" content="5 Data Modeling | Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Data Modeling | Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Data Modeling | Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner and Robert Ward" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-functional-programming.html"/>
+<link rel="next" href="6-text-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#distance-learning-challenges"><i class="fa fa-check"></i><b>1.2</b> Distance Learning Challenges</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#class-structure"><i class="fa fa-check"></i><b>1.3</b> Class Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#learning-recommendations"><i class="fa fa-check"></i><b>1.4</b> Learning Recommendations</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.5</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instructors-introduction"><i class="fa fa-check"></i><b>1.6</b> Instructors Introduction</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.7</b> Course Intent</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.8</b> Tidy Ecosystem</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.9</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#prerequisite-packages"><i class="fa fa-check"></i><b>1.10</b> Prerequisite Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>3.2</b> Scatter Plot</a></li>
+<li class="chapter" data-level="3.3" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.3</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-functional-programming.html"><a href="4-functional-programming.html"><i class="fa fa-check"></i><b>4</b> Functional Programming</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-functional-programming.html"><a href="4-functional-programming.html#an-interesting-question"><i class="fa fa-check"></i><b>4.1</b> An Interesting Question</a></li>
+<li class="chapter" data-level="4.2" data-path="4-functional-programming.html"><a href="4-functional-programming.html#a-more-general-question"><i class="fa fa-check"></i><b>4.2</b> A More General Question</a></li>
+<li class="chapter" data-level="4.3" data-path="4-functional-programming.html"><a href="4-functional-programming.html#even-more-generally-writing-a-function"><i class="fa fa-check"></i><b>4.3</b> Even More Generally: Writing a Function</a></li>
+<li class="chapter" data-level="4.4" data-path="4-functional-programming.html"><a href="4-functional-programming.html#iteration-with-functions-purrr"><i class="fa fa-check"></i><b>4.4</b> Iteration with functions: <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-data-modeling.html"><a href="5-data-modeling.html"><i class="fa fa-check"></i><b>5</b> Data Modeling</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-data-for-analysis"><i class="fa fa-check"></i><b>5.1</b> Prepare Data For Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-data-modeling.html"><a href="5-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>5.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="5.3" data-path="5-data-modeling.html"><a href="5-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>5.3</b> Split Data test/train</a></li>
+<li class="chapter" data-level="5.4" data-path="5-data-modeling.html"><a href="5-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>5.4</b> Preprocess Data</a></li>
+<li class="chapter" data-level="5.5" data-path="5-data-modeling.html"><a href="5-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>5.5</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="5.6" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>5.6</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="5.7" data-path="5-data-modeling.html"><a href="5-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>5.7</b> Specify Models</a></li>
+<li class="chapter" data-level="5.8" data-path="5-data-modeling.html"><a href="5-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>5.8</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="5.9" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>5.9</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="5.10" data-path="5-data-modeling.html"><a href="5-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>5.10</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="5.11" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-models-with-best-parameters"><i class="fa fa-check"></i><b>5.11</b> Execute Models With Best Parameters</a></li>
+<li class="chapter" data-level="5.12" data-path="5-data-modeling.html"><a href="5-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>5.12</b> Compare Models</a></li>
+<li class="chapter" data-level="5.13" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>5.13</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="5.14" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>5.14</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="5.15" data-path="5-data-modeling.html"><a href="5-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>5.15</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-text-analysis.html"><a href="6-text-analysis.html"><i class="fa fa-check"></i><b>6</b> Text Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-text-analysis.html"><a href="6-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>6.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="6.2" data-path="6-text-analysis.html"><a href="6-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>6.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="6.3" data-path="6-text-analysis.html"><a href="6-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>6.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="6.4" data-path="6-text-analysis.html"><a href="6-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>6.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="6.5" data-path="6-text-analysis.html"><a href="6-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>6.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="6.6" data-path="6-text-analysis.html"><a href="6-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>6.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="6.7" data-path="6-text-analysis.html"><a href="6-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>6.7</b> Visualizations</a></li>
+<li class="chapter" data-level="6.8" data-path="6-text-analysis.html"><a href="6-text-analysis.html#n-gram-analysis"><i class="fa fa-check"></i><b>6.8</b> N-Gram Analysis</a></li>
+<li class="chapter" data-level="6.9" data-path="6-text-analysis.html"><a href="6-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>6.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="6.10" data-path="6-text-analysis.html"><a href="6-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>6.10</b> Topic Modeling</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-modeling" class="section level1">
+<h1><span class="header-section-number">5</span> Data Modeling</h1>
+<p>In the last year or so, <a href="%22https://twitter.com/topepos%22">Max Kuhn</a>, working for RStudio, has developed <code>tidymodels</code>. Tidymodels is a modeling framework that follows tidy coding principles. It provides a streamlined technique for preprocessing, execution, and validation</p>
+<p>In this section, you will learn:</p>
+<ol style="list-style-type: decimal">
+<li>A small amount of data exploration.</li>
+<li>The basics of <code>tidymodels</code></li>
+</ol>
+<ul>
+<li>splitting data</li>
+<li>running multiple models</li>
+<li>cross validation</li>
+<li>selecting the best model</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>How to parallelize your code</li>
+</ol>
+<p>In this section, we will use the following libraries and data:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb150-2" title="2"><span class="kw">library</span>(tidymodels)</a>
+<a class="sourceLine" id="cb150-3" title="3"><span class="kw">library</span>(recipes)</a>
+<a class="sourceLine" id="cb150-4" title="4"><span class="kw">library</span>(tune)</a>
+<a class="sourceLine" id="cb150-5" title="5"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb150-6" title="6"><span class="kw">library</span>(doFuture)</a>
+<a class="sourceLine" id="cb150-7" title="7"><span class="kw">library</span>(yardstick)</a>
+<a class="sourceLine" id="cb150-8" title="8"><span class="kw">library</span>(vip)</a>
+<a class="sourceLine" id="cb150-9" title="9"></a>
+<a class="sourceLine" id="cb150-10" title="10">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb150-11" title="11"><span class="st">  </span><span class="kw">clean_names</span>()</a>
+<a class="sourceLine" id="cb150-12" title="12"></a>
+<a class="sourceLine" id="cb150-13" title="13">hofdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/HallOfFame.csv&quot;</span>) </a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   playerID = col_character(),
+##   yearid = col_double(),
+##   votedBy = col_character(),
+##   ballots = col_double(),
+##   needed = col_double(),
+##   votes = col_double(),
+##   inducted = col_character(),
+##   category = col_character(),
+##   needed_note = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">head</span>(data)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 22
+##   player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb   hbp    sh    sf  gidp
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0     0    NA    NA    NA    NA    NA
+## 2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4     0    NA    NA    NA    NA    NA
+## 3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2     5    NA    NA    NA    NA    NA
+## 4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0     2    NA    NA    NA    NA    NA
+## 5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2     1    NA    NA    NA    NA    NA
+## 6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0     1    NA    NA    NA    NA    NA</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">head</span>(hofdata)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##   playerID  yearid votedBy ballots needed votes inducted category needed_note
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;      
+## 1 cobbty01    1936 BBWAA       226    170   222 Y        Player   &lt;NA&gt;       
+## 2 ruthba01    1936 BBWAA       226    170   215 Y        Player   &lt;NA&gt;       
+## 3 wagneho01   1936 BBWAA       226    170   215 Y        Player   &lt;NA&gt;       
+## 4 mathech01   1936 BBWAA       226    170   205 Y        Player   &lt;NA&gt;       
+## 5 johnswa01   1936 BBWAA       226    170   189 Y        Player   &lt;NA&gt;       
+## 6 lajoina01   1936 BBWAA       226    170   146 N        Player   &lt;NA&gt;</code></pre>
+<p>Lets try to develop an informed answer to the question: What baseball statistics help indicate whether or not a baseball player will make the Hall of Fame?</p>
+<div id="prepare-data-for-analysis" class="section level2">
+<h2><span class="header-section-number">5.1</span> Prepare Data For Analysis</h2>
+<p>For this analysis, lets organize our data to identify players who are in the hall of fame as well as those eligible.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">hofdata &lt;-</a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="st">  </span>hofdata <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-3" title="3"><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-4" title="4"><span class="st">  </span><span class="kw">select</span>(player_id, inducted) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hof =</span> <span class="kw">ifelse</span>(inducted<span class="op">==</span><span class="st">&quot;Y&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-6" title="6"><span class="st">  </span><span class="kw">filter</span>(hof<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb156-7" title="7"></a>
+<a class="sourceLine" id="cb156-8" title="8">hofdata <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">count</span>(inducted)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   inducted     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 Y          317</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1">years_played &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb158-2" title="2">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb158-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb158-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(year_id, <span class="dt">.fns =</span> <span class="kw">c</span>(<span class="st">&quot;min&quot;</span> =<span class="st"> </span>min, <span class="st">&quot;max&quot;</span> =<span class="st"> </span>max))) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># dplyr 1.0.0</span></a>
+<a class="sourceLine" id="cb158-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_years =</span> year_id_max <span class="op">-</span><span class="st"> </span>year_id_min)</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1">years_played</a></code></pre></div>
+<pre><code>## # A tibble: 18,915 x 4
+##    player_id year_id_min year_id_max total_years
+##    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 aardsda01        2004        2015          11
+##  2 aaronha01        1954        1976          22
+##  3 aaronto01        1962        1971           9
+##  4 aasedo01         1977        1990          13
+##  5 abadan01         2001        2006           5
+##  6 abadfe01         2010        2016           6
+##  7 abadijo01        1875        1875           0
+##  8 abbated01        1897        1910          13
+##  9 abbeybe01        1892        1896           4
+## 10 abbeych01        1893        1897           4
+## # ... with 18,905 more rows</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">hof &lt;-</a>
+<a class="sourceLine" id="cb162-2" title="2"><span class="st">  </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-4" title="4"><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="kw">list</span>(<span class="op">~</span><span class="kw">sum</span>(.,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb162-5" title="5"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb162-6" title="6"><span class="st">  </span><span class="kw">left_join</span>(years_played, <span class="dt">by =</span> <span class="st">&quot;player_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-7" title="7"><span class="st">  </span><span class="kw">left_join</span>(hofdata, <span class="dt">by =</span> <span class="st">&quot;player_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-8" title="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">inducted =</span> <span class="kw">if_else</span>(inducted<span class="op">==</span><span class="st">&quot;Y&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-9" title="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">inducted =</span> <span class="kw">replace_na</span>(inducted, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-10" title="10"><span class="st">  </span><span class="kw">filter</span>(total_years <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-11" title="11"><span class="st">  </span><span class="co"># filter(g&gt;=1000) %&gt;% </span></a>
+<a class="sourceLine" id="cb162-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">inducted =</span> <span class="kw">as.factor</span>(inducted)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb162-13" title="13"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>hof)</a>
+<a class="sourceLine" id="cb162-14" title="14"></a>
+<a class="sourceLine" id="cb162-15" title="15">hof</a></code></pre></div>
+<pre><code>## # A tibble: 3,475 x 22
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb   hbp    sh    sf  gidp year_id_min year_id_max total_years inducted
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   
+##  1 aardsda01   331     4     0     0     0     0     0     0     0     0     0     2     0     0     1     0     0        2004        2015          11 0       
+##  2 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383   293    32    21   121   328        1954        1976          22 1       
+##  3 aasedo01    448     5     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0        1977        1990          13 0       
+##  4 abbated01   855  3044   355   772    99    43    11   324   142     0   289    16     0    33    93     0     0        1897        1910          13 0       
+##  5 abbotgl01   248     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0        1973        1984          11 0       
+##  6 abbotji01   263    21     0     2     0     0     0     3     0     0     0    10     0     0     3     0     1        1989        1999          10 0       
+##  7 abbotpa01   162    20     2     5     1     0     0     2     0     0     0     6     0     0     5     0     0        1990        2004          14 0       
+##  8 abernte02   681   181    12    25     3     0     0     9     0     0     6    74     0     2    15     0     4        1955        1972          17 0       
+##  9 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840   115    33     7    85   165        1996        2014          18 0       
+## 10 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499    31    17    41    30   149        1958        1970          12 0       
+## # ... with 3,465 more rows</code></pre>
+<div id="filter-for-hof-eligible-players" class="section level3 unnumbered">
+<h3>Filter for HOF Eligible Players</h3>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year_id_max <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2012</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb164-3" title="3"><span class="st">  </span><span class="kw">count</span>(inducted) </a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   inducted     n
+##   &lt;fct&gt;    &lt;int&gt;
+## 1 0         2921
+## 2 1          232</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">hofmod &lt;-</a>
+<a class="sourceLine" id="cb166-2" title="2">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb166-3" title="3"><span class="st">  </span><span class="kw">filter</span>(year_id_max <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2012</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb166-4" title="4"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;year&quot;</span>))</a>
+<a class="sourceLine" id="cb166-5" title="5">hofmod</a></code></pre></div>
+<pre><code>## # A tibble: 3,153 x 19
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb   hbp    sh    sf  gidp inducted
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;   
+##  1 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383   293    32    21   121   328 1       
+##  2 aasedo01    448     5     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0 0       
+##  3 abbated01   855  3044   355   772    99    43    11   324   142     0   289    16     0    33    93     0     0 0       
+##  4 abbotgl01   248     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 0       
+##  5 abbotji01   263    21     0     2     0     0     0     3     0     0     0    10     0     0     3     0     1 0       
+##  6 abbotpa01   162    20     2     5     1     0     0     2     0     0     0     6     0     0     5     0     0 0       
+##  7 abernte02   681   181    12    25     3     0     0     9     0     0     6    74     0     2    15     0     4 0       
+##  8 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499    31    17    41    30   149 0       
+##  9 adamsba01   482  1019    79   216    31    15     3    75     1     1    53   177     0     1    35     0     0 0       
+## 10 adamsbo03  1281  4019   591  1082   188    49    37   303    67    30   414   447     1    17    78     5    62 0       
+## # ... with 3,143 more rows</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1">hoftest &lt;-</a>
+<a class="sourceLine" id="cb168-2" title="2">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb168-3" title="3"><span class="st">  </span><span class="kw">filter</span>(year_id_max <span class="op">&gt;</span><span class="st"> </span><span class="dv">2012</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb168-4" title="4"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;year&quot;</span>),<span class="op">-</span>inducted)</a>
+<a class="sourceLine" id="cb168-5" title="5">hoftest</a></code></pre></div>
+<pre><code>## # A tibble: 322 x 18
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb   hbp    sh    sf  gidp
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aardsda01   331     4     0     0     0     0     0     0     0     0     0     2     0     0     1     0     0
+##  2 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840   115    33     7    85   165
+##  3 adamsmi03   410     2     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  4 affelje01   774    17     0     3     0     0     0     2     0     0     2     6     0     0     0     0     0
+##  5 alberma01   452    35     1     3     1     0     0     0     0     0     0    21     0     0     3     0     0
+##  6 andinro01   481  1344   159   313    58     1    18    97    24    12   113   313     2     6    21     7    42
+##  7 ankieri01   653  1921   260   462   101    10    76   251    21    12   162   555    13    12     8    12    31
+##  8 arroybr01   421   603    35    77    16     0     6    29     1     0    14   266     0     1    82     3     8
+##  9 atchisc01   300     2     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0
+## 10 ayalalu01   534    14     0     4     1     0     0     0     0     0     0     3     0     0     3     0     0
+## # ... with 312 more rows</code></pre>
+</div>
+</div>
+<div id="data-exploration" class="section level2">
+<h2><span class="header-section-number">5.2</span> Data Exploration</h2>
+<p>Percentage of players in the dataset who are in the HOF</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">hofmod <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(inducted) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">prop =</span> n<span class="op">/</span><span class="kw">sum</span>(n))</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   inducted     n   prop
+##   &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;
+## 1 0         2921 0.926 
+## 2 1          232 0.0736</code></pre>
+<p>Visual difference in statistics between HOF and non HOF</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb172-2" title="2"><span class="st">  </span><span class="kw">select</span>(g<span class="op">:</span>gidp, inducted) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb172-3" title="3"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> g<span class="op">:</span>gidp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb172-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(inducted,name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb172-5" title="5"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb172-6" title="6">    <span class="dt">lwr_quantile =</span> <span class="kw">quantile</span>(value, <span class="kw">c</span>(.<span class="dv">025</span>)),</a>
+<a class="sourceLine" id="cb172-7" title="7">    <span class="dt">median =</span> <span class="kw">quantile</span>(value, <span class="kw">c</span>(.<span class="dv">5</span>)),</a>
+<a class="sourceLine" id="cb172-8" title="8">    <span class="dt">upper_quantile =</span> <span class="kw">quantile</span>(value, <span class="kw">c</span>(.<span class="dv">975</span>)),</a>
+<a class="sourceLine" id="cb172-9" title="9">            ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb172-10" title="10"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>inducted,<span class="dt">y=</span>median)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb172-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb172-12" title="12"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr_quantile, <span class="dt">ymax =</span> upper_quantile)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb172-13" title="13"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb172-14" title="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span> <span class="st">&quot;&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Differences Between HOF and non-HOF&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb172-15" title="15"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>name, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;inducted&#39; (override with `.groups` argument)</code></pre>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>Well, won’t players who are in the HOF had played longer? Therefore they should have more hits, home runs, etc?</p>
+<p>Lets compare the number of games of players in the HOF vs out of the HOF.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb174-2" title="2"><span class="st">  </span><span class="kw">select</span>(g, inducted) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb174-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>g, <span class="dt">fill =</span> inducted)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb174-4" title="4"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb174-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Games&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;HOF&quot;</span>,</a>
+<a class="sourceLine" id="cb174-6" title="6">       <span class="dt">title =</span> <span class="st">&quot;Density of Game / HOF Stats&quot;</span>)</a></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>Lets look at this for every statistic</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1">hof <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb175-2" title="2"><span class="st">  </span><span class="kw">select</span>(g<span class="op">:</span>gidp, inducted) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb175-3" title="3"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> g<span class="op">:</span>gidp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb175-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>value, <span class="dt">fill =</span> inducted)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb175-5" title="5"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb175-6" title="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>name, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb175-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;HOF&quot;</span>,</a>
+<a class="sourceLine" id="cb175-8" title="8">       <span class="dt">title =</span> <span class="st">&quot;Density of Stats for Players In/Out of HOF&quot;</span>)</a></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+</div>
+<div id="split-data-testtrain" class="section level2">
+<h2><span class="header-section-number">5.3</span> Split Data test/train</h2>
+<p>To begin modeling, we’ll need to split our data into a testing, training, and validation set.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">set.seed</span>(<span class="kw">str_length</span>(<span class="st">&quot;beatnavy&quot;</span>))</a>
+<a class="sourceLine" id="cb176-2" title="2">hof_initial_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(hofmod, <span class="dt">prop =</span> <span class="fl">0.80</span>)</a>
+<a class="sourceLine" id="cb176-3" title="3">hof_initial_split</a></code></pre></div>
+<pre><code>## &lt;2523/630/3153&gt;</code></pre>
+</div>
+<div id="preprocess-data" class="section level2">
+<h2><span class="header-section-number">5.4</span> Preprocess Data</h2>
+<p>A recipe is a description of what steps should be applied to a data set in order to get it ready for data analysis.</p>
+<p><code>tidymodels</code> / <code>recipes</code> currently offers about 30 ‘steps’. More documentation for the <code>recipes</code> package is <a href="https://recipes.tidymodels.org/reference/index.html">here</a></p>
+<p>We first specify the “recipe” or specify what we are trying to model and with what data.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">recipe</span>(inducted <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> <span class="kw">training</span>(hof_initial_split))</a></code></pre></div>
+<pre><code>## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         18</code></pre>
+<p>From here, we need to specify other preprocessing steps. We will add these to the recipe.</p>
+<p>Once we complete these steps, we ‘prep’ the data.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">preprocessing_recipe &lt;-</a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="st">  </span><span class="kw">recipe</span>(inducted <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> <span class="kw">training</span>(hof_initial_split)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb180-3" title="3"><span class="st">  </span><span class="kw">step_knnimpute</span>(<span class="kw">all_numeric</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-4" title="4"><span class="st">  </span><span class="kw">step_center</span>(<span class="kw">all_numeric</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-5" title="5"><span class="st">  </span><span class="kw">step_scale</span>(<span class="kw">all_numeric</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-6" title="6"><span class="st">  </span><span class="kw">step_rm</span>(player_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb180-7" title="7"><span class="st">  </span><span class="kw">prep</span>()</a>
+<a class="sourceLine" id="cb180-8" title="8">preprocessing_recipe</a></code></pre></div>
+<pre><code>## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         18
+## 
+## Training data contained 2523 data points and no missing data.
+## 
+## Operations:
+## 
+## K-nearest neighbor imputation for player_id, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ibb, hbp, sh, sf, gidp, g [trained]
+## Centering for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ibb, hbp, sh, sf, gidp [trained]
+## Scaling for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ibb, hbp, sh, sf, gidp [trained]
+## Variables removed player_id [trained]</code></pre>
+</div>
+<div id="apply-preprocessing" class="section level2">
+<h2><span class="header-section-number">5.5</span> Apply Preprocessing</h2>
+<p>For a recipe with at least one preprocessing operations that has been trained by <code>recipe()</code>, apply the computations to the data.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">hof_training_preprocessed_tbl &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb182-2" title="2"><span class="st">  </span>preprocessing_recipe <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-3" title="3"><span class="st">  </span><span class="kw">bake</span>(<span class="kw">training</span>(hof_initial_split))</a>
+<a class="sourceLine" id="cb182-4" title="4"></a>
+<a class="sourceLine" id="cb182-5" title="5">hof_training_preprocessed_tbl</a></code></pre></div>
+<pre><code>## # A tibble: 2,523 x 18
+##         g     ab       r      h    x2b    x3b      hr     rbi      sb     cs     bb     so    ibb     hbp      sh     sf   gidp inducted
+##     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;   
+##  1  3.72   3.65   4.29    3.95   3.62   1.99   7.24    4.97    1.69    1.70   3.55   2.83   7.85   0.439  -0.415   4.56   4.65  1       
+##  2 -0.770 -1.06  -0.919  -0.980 -0.926 -0.747 -0.606  -0.891  -0.550  -0.619 -0.847 -0.911 -0.444 -0.673  -0.820  -0.590 -0.714 0       
+##  3 -1.09  -1.06  -0.919  -0.980 -0.926 -0.747 -0.606  -0.891  -0.550  -0.619 -0.847 -0.920 -0.444 -0.673  -0.820  -0.590 -0.714 0       
+##  4 -1.06  -1.05  -0.919  -0.977 -0.926 -0.747 -0.606  -0.884  -0.550  -0.619 -0.847 -0.892 -0.444 -0.673  -0.762  -0.590 -0.697 0       
+##  5 -1.22  -1.05  -0.914  -0.973 -0.919 -0.747 -0.606  -0.886  -0.550  -0.619 -0.847 -0.903 -0.444 -0.673  -0.724  -0.590 -0.714 0       
+##  6 -0.403 -0.993 -0.890  -0.947 -0.904 -0.747 -0.606  -0.868  -0.550  -0.619 -0.828 -0.719 -0.444 -0.604  -0.531  -0.590 -0.648 0       
+##  7  0.360  0.470 -0.0125  0.355  0.262 -0.215 -0.0132  0.0431 -0.279   0.301 -0.195  0.432  0.433 -0.0824 -0.0299  0.688  1.72  0       
+##  8 -0.717 -0.674 -0.730  -0.698 -0.700 -0.327 -0.574  -0.700  -0.540  -0.587 -0.681 -0.440 -0.444 -0.638  -0.146  -0.590 -0.714 0       
+##  9  0.543  0.470  0.498   0.433  0.444  0.624 -0.221  -0.118   0.0751  0.332  0.452  0.292 -0.416 -0.0824  0.683  -0.377  0.301 0       
+## 10  0.768  1.06   1.11    1.09   0.889  0.596 -0.512   0.115   0.886   0.967  0.574 -0.315 -0.444  0.300   1.80   -0.590 -0.485 0       
+## # ... with 2,513 more rows</code></pre>
+</div>
+<div id="prepare-cross-validation" class="section level2">
+<h2><span class="header-section-number">5.6</span> Prepare Cross Validation</h2>
+<p>This partitions our data into <code>v</code> folds. In our case, 5.</p>
+<p>This yields a data frame with a nested list of training / testing data.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">set.seed</span>(<span class="kw">str_length</span>(<span class="st">&quot;beatnavy&quot;</span>))</a>
+<a class="sourceLine" id="cb184-2" title="2">hof_cv_folds &lt;-</a>
+<a class="sourceLine" id="cb184-3" title="3"><span class="st">  </span><span class="kw">training</span>(hof_initial_split) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb184-4" title="4"><span class="st">    </span><span class="kw">bake</span>(preprocessing_recipe, <span class="dt">new_data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="st">    </span><span class="kw">vfold_cv</span>(<span class="dt">v =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb184-6" title="6">hof_cv_folds</a></code></pre></div>
+<pre><code>## #  5-fold cross-validation 
+## # A tibble: 5 x 2
+##   splits           id   
+##   &lt;named list&gt;     &lt;chr&gt;
+## 1 &lt;split [2K/505]&gt; Fold1
+## 2 &lt;split [2K/505]&gt; Fold2
+## 3 &lt;split [2K/505]&gt; Fold3
+## 4 &lt;split [2K/504]&gt; Fold4
+## 5 &lt;split [2K/504]&gt; Fold5</code></pre>
+</div>
+<div id="specify-models" class="section level2">
+<h2><span class="header-section-number">5.7</span> Specify Models</h2>
+<p>Now that we’ve prepared our data, we must specify the models which want to compare. We’ll look at 2.</p>
+<p>You must first specify the model type (<code>logistic_reg()</code> and <code>rand_forest</code> in the examples below). There are many to choose from in the parsnip package. Documentation can be found <a href="tidyverse.org/blog/2018/11/parsnip-0-0-1/">here</a>.</p>
+<p>The motivation behind this package from the documentation, "Modeling functions across different R packages can have very different interfaces. If you would like to try different approaches, there is a lot of syntactical minutiae to remember. The problem worsens when you move in-between platforms.</p>
+<p>“<code>parsnip</code> tries to solve this by providing similar interfaces to models. For example, if you are fitting a random forest model and would like to adjust the number of trees in the forest there are different argument names to remember depending on the random forest package you chose…” (such as <code>rf</code> or <code>randomforest</code>).</p>
+<p>After you specify the model type, you can provide</p>
+<div id="glm-model" class="section level3 unnumbered">
+<h3>GLM Model</h3>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">glmnet_model &lt;-</a>
+<a class="sourceLine" id="cb186-2" title="2"><span class="st">  </span><span class="kw">logistic_reg</span>(<span class="dt">mode =</span> <span class="st">&quot;classification&quot;</span>,</a>
+<a class="sourceLine" id="cb186-3" title="3">    <span class="dt">penalty =</span> <span class="kw">tune</span>(),</a>
+<a class="sourceLine" id="cb186-4" title="4">    <span class="dt">mixture =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb186-5" title="5"><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>)</a>
+<a class="sourceLine" id="cb186-6" title="6"></a>
+<a class="sourceLine" id="cb186-7" title="7">glmnet_model</a></code></pre></div>
+<pre><code>## Logistic Regression Model Specification (classification)
+## 
+## Main Arguments:
+##   penalty = tune()
+##   mixture = tune()
+## 
+## Computational engine: glmnet</code></pre>
+</div>
+<div id="random-forest-model" class="section level3 unnumbered">
+<h3>Random Forest Model</h3>
+<p>Notice how in the previous model and in this model, I specified several tuning parameters. Other than <code>penalty</code>, and <code>mixture</code>, there are many to chose from. These include <code>mode</code>, <code>mtry</code>, <code>trees</code>, and <code>min_n</code> among others.. I can specify these values, but I have chose to ‘tune’ them through cross validation in later steps.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">forest_model &lt;-</a>
+<a class="sourceLine" id="cb188-2" title="2"><span class="st">  </span><span class="kw">rand_forest</span>(</a>
+<a class="sourceLine" id="cb188-3" title="3">    <span class="dt">mode =</span> <span class="st">&quot;classification&quot;</span>,</a>
+<a class="sourceLine" id="cb188-4" title="4">    <span class="dt">mtry =</span> <span class="kw">tune</span>(),</a>
+<a class="sourceLine" id="cb188-5" title="5">    <span class="dt">trees =</span> <span class="kw">tune</span>(),</a>
+<a class="sourceLine" id="cb188-6" title="6">    <span class="dt">min_n =</span> <span class="kw">tune</span>()</a>
+<a class="sourceLine" id="cb188-7" title="7">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb188-8" title="8"><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;randomForest&quot;</span>, <span class="dt">objective =</span> <span class="st">&quot;reg:squarederror&quot;</span>)</a>
+<a class="sourceLine" id="cb188-9" title="9"></a>
+<a class="sourceLine" id="cb188-10" title="10">forest_model</a></code></pre></div>
+<pre><code>## Random Forest Model Specification (classification)
+## 
+## Main Arguments:
+##   mtry = tune()
+##   trees = tune()
+##   min_n = tune()
+## 
+## Engine-Specific Arguments:
+##   objective = reg:squarederror
+## 
+## Computational engine: randomForest</code></pre>
+</div>
+</div>
+<div id="create-grid-of-parameters-to-validate-over" class="section level2">
+<h2><span class="header-section-number">5.8</span> Create Grid of Parameters to Validate Over</h2>
+<p>Here we specify the tuning parameters for cross validation and take a look visually at the parameter space we are covering in efforts to reach the best model.</p>
+<div id="glm-model-1" class="section level3 unnumbered">
+<h3>GLM Model</h3>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">glmnet_params &lt;-<span class="st"> </span><span class="kw">parameters</span>(<span class="kw">penalty</span>(), <span class="kw">mixture</span>())</a>
+<a class="sourceLine" id="cb190-2" title="2">glmnet_params</a></code></pre></div>
+<pre><code>## Collection of 2 parameters for tuning
+## 
+##       id parameter type object class
+##  penalty        penalty    nparam[+]
+##  mixture        mixture    nparam[+]</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">set.seed</span>(<span class="kw">str_length</span>(<span class="st">&quot;beatnavy&quot;</span>))</a>
+<a class="sourceLine" id="cb192-2" title="2">glmnet_grid =<span class="st"> </span><span class="kw">grid_max_entropy</span>(glmnet_params, <span class="dt">size =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb192-3" title="3">glmnet_grid</a></code></pre></div>
+<pre><code>## # A tibble: 20 x 2
+##     penalty mixture
+##       &lt;dbl&gt;   &lt;dbl&gt;
+##  1 6.31e- 9  0.558 
+##  2 3.73e- 4  0.368 
+##  3 2.05e- 9  0.805 
+##  4 1.71e-10  0.0903
+##  5 6.00e- 1  0.620 
+##  6 2.15e- 8  0.195 
+##  7 1.72e- 2  0.850 
+##  8 1.78e-10  0.317 
+##  9 8.94e- 4  0.947 
+## 10 5.45e- 7  0.809 
+## 11 3.69e- 5  0.0202
+## 12 3.71e- 2  0.0778
+## 13 3.01e- 7  0.993 
+## 14 2.49e- 4  0.703 
+## 15 2.49e- 8  0.0277
+## 16 9.08e- 7  0.532 
+## 17 3.13e- 1  0.344 
+## 18 3.80e-10  0.671 
+## 19 6.00e- 7  0.294 
+## 20 4.37e- 4  0.176</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">glmnet_grid <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb194-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(penalty, mixture)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb194-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb194-4" title="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb194-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Max Entropy Grid&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Penalty (log scale)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mixture&quot;</span>)</a></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="random-forest-model-1" class="section level3 unnumbered">
+<h3>Random Forest Model</h3>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1">forest_params &lt;-<span class="st"> </span><span class="kw">parameters</span>(<span class="kw">mtry</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">6</span>)), <span class="kw">trees</span>(), <span class="kw">min_n</span>())</a>
+<a class="sourceLine" id="cb195-2" title="2">forest_params</a></code></pre></div>
+<pre><code>## Collection of 3 parameters for tuning
+## 
+##     id parameter type object class
+##   mtry           mtry    nparam[+]
+##  trees          trees    nparam[+]
+##  min_n          min_n    nparam[+]</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">set.seed</span>(<span class="kw">str_length</span>(<span class="st">&quot;beatnavy&quot;</span>))</a>
+<a class="sourceLine" id="cb197-2" title="2">forest_grid &lt;-<span class="st"> </span><span class="kw">grid_max_entropy</span>(forest_params, <span class="dt">size =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb197-3" title="3">forest_grid</a></code></pre></div>
+<pre><code>## # A tibble: 30 x 3
+##     mtry trees min_n
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1     3  1714     5
+##  2     4   368    28
+##  3     3  1607    39
+##  4     3  1207    14
+##  5     5    42    37
+##  6     4   892    27
+##  7     3  1154    25
+##  8     5  1678     2
+##  9     4   607    10
+## 10     3   803    37
+## # ... with 20 more rows</code></pre>
+</div>
+</div>
+<div id="execute-cross-validation" class="section level2">
+<h2><span class="header-section-number">5.9</span> Execute Cross Validation</h2>
+<div id="parallel-processing" class="section level3">
+<h3><span class="header-section-number">5.9.1</span> Parallel Processing</h3>
+<p>The great thing about cross validation is that tunes parameters to find the model which performs the best on the out-of-sample test data.</p>
+<p>The problem is that this can be computationally intensive.</p>
+<p>Thankfully <code>tidymodels</code> is capable of running over multiple cores. You can see from the code below my computer has 4 cores. Your mileage may vary.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1">all_cores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>(<span class="dt">logical =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb199-2" title="2">all_cores</a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="kw">registerDoFuture</span>()</a>
+<a class="sourceLine" id="cb201-2" title="2">cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(all_cores)</a>
+<a class="sourceLine" id="cb201-3" title="3"><span class="kw">plan</span>(cluster, <span class="dt">workers =</span> cl)</a></code></pre></div>
+</div>
+<div id="glm-model-2" class="section level3 unnumbered">
+<h3>GLM Model</h3>
+<p>The code below kicks off the cross validation of your model. You can see the time it takes to run the code over multiple cores</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">tictoc<span class="op">::</span><span class="kw">tic</span>()</a>
+<a class="sourceLine" id="cb202-2" title="2">glmnet_stage_<span class="dv">1</span>_cv_results_tbl &lt;-<span class="st"> </span><span class="kw">tune_grid</span>(</a>
+<a class="sourceLine" id="cb202-3" title="3">          <span class="dt">object =</span> glmnet_model, </a>
+<a class="sourceLine" id="cb202-4" title="4">          inducted <span class="op">~</span><span class="st"> </span>., </a>
+<a class="sourceLine" id="cb202-5" title="5">          <span class="dt">resamples =</span> hof_cv_folds, </a>
+<a class="sourceLine" id="cb202-6" title="6">          <span class="dt">grid =</span> glmnet_grid, </a>
+<a class="sourceLine" id="cb202-7" title="7">          <span class="co"># grid = forest_grid, </span></a>
+<a class="sourceLine" id="cb202-8" title="8">          <span class="dt">metrics =</span> <span class="kw">metric_set</span>(accuracy, kap, roc_auc), </a>
+<a class="sourceLine" id="cb202-9" title="9">          <span class="dt">control =</span> <span class="kw">control_grid</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb202-10" title="10">          )</a>
+<a class="sourceLine" id="cb202-11" title="11">tictoc<span class="op">::</span><span class="kw">toc</span>()</a></code></pre></div>
+<pre><code>## 37.58 sec elapsed</code></pre>
+<p>The output of the cross validation is a tibble with nested columns. Of note, in the columns are the data and the performance.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">glmnet_stage_<span class="dv">1</span>_cv_results_tbl</a></code></pre></div>
+<pre><code>## #  5-fold cross-validation 
+## # A tibble: 5 x 4
+##   splits           id    .metrics          .notes          
+## * &lt;named list&gt;     &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          
+## 1 &lt;split [2K/505]&gt; Fold1 &lt;tibble [60 x 5]&gt; &lt;tibble [0 x 1]&gt;
+## 2 &lt;split [2K/505]&gt; Fold2 &lt;tibble [60 x 5]&gt; &lt;tibble [0 x 1]&gt;
+## 3 &lt;split [2K/505]&gt; Fold3 &lt;tibble [60 x 5]&gt; &lt;tibble [0 x 1]&gt;
+## 4 &lt;split [2K/504]&gt; Fold4 &lt;tibble [60 x 5]&gt; &lt;tibble [0 x 1]&gt;
+## 5 &lt;split [2K/504]&gt; Fold5 &lt;tibble [60 x 5]&gt; &lt;tibble [0 x 1]&gt;</code></pre>
+<p>We can manipulate the dataframe to extract the data we need, however, the <code>tune</code> package provides a function to help us out.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">glmnet_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb206-2" title="2">glmnet_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;kap&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb206-3" title="3">glmnet_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;roc_auc&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 15 x 7
+##     penalty mixture .metric  .estimator  mean     n std_err
+##       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 2.05e- 9   0.805 accuracy binary     0.935     5 0.00361
+##  2 6.31e- 9   0.558 accuracy binary     0.935     5 0.00361
+##  3 5.45e- 7   0.809 accuracy binary     0.935     5 0.00361
+##  4 9.08e- 7   0.532 accuracy binary     0.935     5 0.00361
+##  5 3.80e-10   0.671 accuracy binary     0.935     5 0.00348
+##  6 2.05e- 9   0.805 kap      binary     0.378     5 0.0273 
+##  7 6.31e- 9   0.558 kap      binary     0.378     5 0.0273 
+##  8 5.45e- 7   0.809 kap      binary     0.378     5 0.0273 
+##  9 9.08e- 7   0.532 kap      binary     0.378     5 0.0273 
+## 10 3.80e-10   0.671 kap      binary     0.376     5 0.0264 
+## 11 6.31e- 9   0.558 roc_auc  binary     0.837     5 0.0168 
+## 12 9.08e- 7   0.532 roc_auc  binary     0.837     5 0.0168 
+## 13 3.80e-10   0.671 roc_auc  binary     0.837     5 0.0169 
+## 14 6.00e- 7   0.294 roc_auc  binary     0.836     5 0.0168 
+## 15 1.78e-10   0.317 roc_auc  binary     0.836     5 0.0168</code></pre>
+</div>
+<div id="random-forest-model-2" class="section level3 unnumbered">
+<h3>Random Forest Model</h3>
+<p>This following code took quite a bit of time - but would have taken about 5 times as long if not parallelized.</p>
+<p>Since we explained the code above, we will not break up this code below.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">tictoc<span class="op">::</span><span class="kw">tic</span>()</a>
+<a class="sourceLine" id="cb208-2" title="2">forest_stage_<span class="dv">1</span>_cv_results_tbl &lt;-<span class="st"> </span><span class="kw">tune_grid</span>(</a>
+<a class="sourceLine" id="cb208-3" title="3">    <span class="dt">formula   =</span> inducted <span class="op">~</span><span class="st"> </span>.,</a>
+<a class="sourceLine" id="cb208-4" title="4">    <span class="dt">model     =</span> forest_model,</a>
+<a class="sourceLine" id="cb208-5" title="5">    <span class="dt">resamples =</span> hof_cv_folds,</a>
+<a class="sourceLine" id="cb208-6" title="6">    <span class="dt">grid      =</span> forest_grid,</a>
+<a class="sourceLine" id="cb208-7" title="7">    <span class="dt">metrics   =</span> <span class="kw">metric_set</span>(accuracy, kap, roc_auc),</a>
+<a class="sourceLine" id="cb208-8" title="8">    <span class="dt">control   =</span> <span class="kw">control_grid</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb208-9" title="9">)</a>
+<a class="sourceLine" id="cb208-10" title="10">tictoc<span class="op">::</span><span class="kw">toc</span>()</a></code></pre></div>
+<pre><code>## 153.64 sec elapsed</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">forest_stage_<span class="dv">1</span>_cv_results_tbl </a></code></pre></div>
+<pre><code>## #  5-fold cross-validation 
+## # A tibble: 5 x 4
+##   splits           id    .metrics          .notes          
+## * &lt;named list&gt;     &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          
+## 1 &lt;split [2K/505]&gt; Fold1 &lt;tibble [90 x 6]&gt; &lt;tibble [0 x 1]&gt;
+## 2 &lt;split [2K/505]&gt; Fold2 &lt;tibble [90 x 6]&gt; &lt;tibble [0 x 1]&gt;
+## 3 &lt;split [2K/505]&gt; Fold3 &lt;tibble [90 x 6]&gt; &lt;tibble [0 x 1]&gt;
+## 4 &lt;split [2K/504]&gt; Fold4 &lt;tibble [90 x 6]&gt; &lt;tibble [0 x 1]&gt;
+## 5 &lt;split [2K/504]&gt; Fold5 &lt;tibble [90 x 6]&gt; &lt;tibble [0 x 1]&gt;</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">forest_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb212-2" title="2">forest_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;kap&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb212-3" title="3">forest_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">show_best</span>(<span class="st">&quot;roc_auc&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 15 x 8
+##     mtry trees min_n .metric  .estimator  mean     n std_err
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1     6  1096    13 accuracy binary     0.944     5 0.00417
+##  2     3   985    11 accuracy binary     0.944     5 0.00467
+##  3     5  1678     2 accuracy binary     0.944     5 0.00310
+##  4     3  1714     5 accuracy binary     0.943     5 0.00445
+##  5     5  1753    27 accuracy binary     0.943     5 0.00445
+##  6     6  1096    13 kap      binary     0.510     5 0.0262 
+##  7     5  1678     2 kap      binary     0.508     5 0.0214 
+##  8     3   985    11 kap      binary     0.507     5 0.0294 
+##  9     3  1714     5 kap      binary     0.505     5 0.0267 
+## 10     5  1974    13 kap      binary     0.504     5 0.0266 
+## 11     3   877     3 roc_auc  binary     0.927     5 0.00282
+## 12     3  1714     5 roc_auc  binary     0.924     5 0.00193
+## 13     4   906    16 roc_auc  binary     0.922     5 0.00275
+## 14     4   607    10 roc_auc  binary     0.922     5 0.00148
+## 15     4  1942    21 roc_auc  binary     0.922     5 0.00159</code></pre>
+</div>
+</div>
+<div id="select-best-parameters" class="section level2">
+<h2><span class="header-section-number">5.10</span> Select Best Parameters</h2>
+<p>Now that both models are cross validated, we can select the tuning parameters which minimized our error metric.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">params_glmnet_best &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb214-2" title="2"><span class="st">  </span>glmnet_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb214-3" title="3"><span class="st">  </span><span class="kw">select_best</span>(<span class="st">&quot;roc_auc&quot;</span>)</a>
+<a class="sourceLine" id="cb214-4" title="4"></a>
+<a class="sourceLine" id="cb214-5" title="5">params_glmnet_best</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##         penalty mixture
+##           &lt;dbl&gt;   &lt;dbl&gt;
+## 1 0.00000000631   0.558</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">params_forest_best &lt;-</a>
+<a class="sourceLine" id="cb216-2" title="2"><span class="st">  </span>forest_stage_<span class="dv">1</span>_cv_results_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb216-3" title="3"><span class="st">  </span><span class="kw">select_best</span>(<span class="st">&quot;roc_auc&quot;</span>)</a>
+<a class="sourceLine" id="cb216-4" title="4"></a>
+<a class="sourceLine" id="cb216-5" title="5">params_forest_best</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##    mtry trees min_n
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1     3   877     3</code></pre>
+</div>
+<div id="execute-models-with-best-parameters" class="section level2">
+<h2><span class="header-section-number">5.11</span> Execute Models With Best Parameters</h2>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1">glmnet_stage_<span class="dv">2</span>_model &lt;-</a>
+<a class="sourceLine" id="cb218-2" title="2"><span class="st">  </span>glmnet_model <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb218-3" title="3"><span class="st">  </span><span class="kw">finalize_model</span>(<span class="dt">parameters =</span> params_glmnet_best)</a>
+<a class="sourceLine" id="cb218-4" title="4"></a>
+<a class="sourceLine" id="cb218-5" title="5">glmnet_stage_<span class="dv">2</span>_model</a></code></pre></div>
+<pre><code>## Logistic Regression Model Specification (classification)
+## 
+## Main Arguments:
+##   penalty = 6.31006806439131e-09
+##   mixture = 0.55818817159161
+## 
+## Computational engine: glmnet</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1">forest_stage_<span class="dv">2</span>_model &lt;-</a>
+<a class="sourceLine" id="cb220-2" title="2"><span class="st">  </span>forest_model <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb220-3" title="3"><span class="st">  </span><span class="kw">finalize_model</span>(params_forest_best)</a>
+<a class="sourceLine" id="cb220-4" title="4"></a>
+<a class="sourceLine" id="cb220-5" title="5">forest_stage_<span class="dv">2</span>_model</a></code></pre></div>
+<pre><code>## Random Forest Model Specification (classification)
+## 
+## Main Arguments:
+##   mtry = 3
+##   trees = 877
+##   min_n = 3
+## 
+## Engine-Specific Arguments:
+##   objective = reg:squarederror
+## 
+## Computational engine: randomForest</code></pre>
+</div>
+<div id="compare-models" class="section level2">
+<h2><span class="header-section-number">5.12</span> Compare Models</h2>
+<p>Now we need to compare the ‘winning’ specifications from our two models to see which one performs best on our error metric.</p>
+<p>First we apply our preprocessing recipe to our training and test sets.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">train_processed &lt;-</a>
+<a class="sourceLine" id="cb222-2" title="2"><span class="st">  </span><span class="kw">training</span>(hof_initial_split) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb222-3" title="3"><span class="st">  </span><span class="kw">bake</span>(preprocessing_recipe, <span class="dt">new_data =</span> .)</a>
+<a class="sourceLine" id="cb222-4" title="4"></a>
+<a class="sourceLine" id="cb222-5" title="5">test_processed &lt;-</a>
+<a class="sourceLine" id="cb222-6" title="6"><span class="st">  </span><span class="kw">testing</span>(hof_initial_split) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb222-7" title="7"><span class="st">  </span><span class="kw">bake</span>(preprocessing_recipe, <span class="dt">new_data =</span> .)</a></code></pre></div>
+<p>Next, we are identifying the variable in which we are predicting (inducted in this instance), then using the <code>metrics</code> function from the <code>yardstick</code> library to estimate the performance of each model.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">target_expr &lt;-</a>
+<a class="sourceLine" id="cb223-2" title="2"><span class="st">  </span>preprocessing_recipe <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb223-3" title="3"><span class="st">    </span><span class="kw">pluck</span>(<span class="st">&quot;last_term_info&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-4" title="4"><span class="st">    </span><span class="kw">filter</span>(role <span class="op">==</span><span class="st"> &quot;outcome&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-5" title="5"><span class="st">    </span><span class="kw">pull</span>(variable) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-6" title="6"><span class="st">    </span><span class="kw">sym</span>()</a>
+<a class="sourceLine" id="cb223-7" title="7"></a>
+<a class="sourceLine" id="cb223-8" title="8">glmnet_stage_<span class="dv">2</span>_metrics &lt;-</a>
+<a class="sourceLine" id="cb223-9" title="9"><span class="st">  </span>glmnet_stage_<span class="dv">2</span>_model <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-10" title="10"><span class="st">  </span><span class="kw">fit</span>(<span class="dt">formula =</span> inducted <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> train_processed) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-11" title="11"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">new_data =</span> test_processed) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-12" title="12"><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">testing</span>(hof_initial_split)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-13" title="13"><span class="st">  </span><span class="kw">metrics</span>(<span class="op">!!</span><span class="st"> </span>target_expr, .pred_class)</a>
+<a class="sourceLine" id="cb223-14" title="14"></a>
+<a class="sourceLine" id="cb223-15" title="15">forest_stage_<span class="dv">2</span>_metrics &lt;-<span class="st">   </span></a>
+<a class="sourceLine" id="cb223-16" title="16"><span class="st">  </span>forest_stage_<span class="dv">2</span>_model <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-17" title="17"><span class="st">  </span><span class="kw">fit</span>(<span class="dt">formula =</span> inducted <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> train_processed) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-18" title="18"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">new_data =</span> test_processed) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-19" title="19"><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">testing</span>(hof_initial_split)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-20" title="20"><span class="st">  </span><span class="kw">metrics</span>(<span class="op">!!</span><span class="st"> </span>target_expr, .pred_class)</a></code></pre></div>
+<p>Here, we pretty up the code for easy consumption.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">glmnet_stage_<span class="dv">2</span>_metrics <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb224-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mod =</span> <span class="st">&quot;glmnet&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb224-3" title="3"><span class="st">  </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb224-4" title="4">    forest_stage_<span class="dv">2</span>_metrics <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb224-5" title="5"><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">mod =</span> <span class="st">&quot;forest&quot;</span>)</a>
+<a class="sourceLine" id="cb224-6" title="6">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb224-7" title="7"><span class="st">  </span><span class="kw">arrange</span>(.metric,<span class="op">-</span>.estimate)</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   .metric  .estimator .estimate mod   
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 accuracy binary         0.946 forest
+## 2 accuracy binary         0.941 glmnet
+## 3 kap      binary         0.425 forest
+## 4 kap      binary         0.345 glmnet</code></pre>
+<p>Looks like the Random Forest is the better model.</p>
+</div>
+<div id="run-best-model-on-all-data" class="section level2">
+<h2><span class="header-section-number">5.13</span> Run Best Model on All Data</h2>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1">model_final &lt;-forest_stage_<span class="dv">2</span>_model <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb226-2" title="2"><span class="st">    </span><span class="kw">fit</span>(inducted <span class="op">~</span><span class="st"> </span>. , <span class="dt">data =</span> <span class="kw">bake</span>(preprocessing_recipe, <span class="dt">new_data =</span> hofmod))</a></code></pre></div>
+</div>
+<div id="run-model-on-new-data" class="section level2">
+<h2><span class="header-section-number">5.14</span> Run Model on New Data</h2>
+</div>
+<div id="variable-importance" class="section level2">
+<h2><span class="header-section-number">5.15</span> Variable Importance</h2>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">vip</span>(model_final) <span class="op">+</span></a>
+<a class="sourceLine" id="cb227-2" title="2"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Model Importance - HOF Prediction&quot;</span>) </a></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><a href="https://www.r-bloggers.com/product-price-prediction-a-tidy-hyperparameter-tuning-and-cross-validation-tutorial/">Many Thanks</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-functional-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-text-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Intermediate R</title>
+  <meta name="description" content="Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner and Robert Ward" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="2-data-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#distance-learning-challenges"><i class="fa fa-check"></i><b>1.2</b> Distance Learning Challenges</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#class-structure"><i class="fa fa-check"></i><b>1.3</b> Class Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#learning-recommendations"><i class="fa fa-check"></i><b>1.4</b> Learning Recommendations</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.5</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instructors-introduction"><i class="fa fa-check"></i><b>1.6</b> Instructors Introduction</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.7</b> Course Intent</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.8</b> Tidy Ecosystem</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.9</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#prerequisite-packages"><i class="fa fa-check"></i><b>1.10</b> Prerequisite Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>3.2</b> Scatter Plot</a></li>
+<li class="chapter" data-level="3.3" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.3</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-functional-programming.html"><a href="4-functional-programming.html"><i class="fa fa-check"></i><b>4</b> Functional Programming</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-functional-programming.html"><a href="4-functional-programming.html#an-interesting-question"><i class="fa fa-check"></i><b>4.1</b> An Interesting Question</a></li>
+<li class="chapter" data-level="4.2" data-path="4-functional-programming.html"><a href="4-functional-programming.html#a-more-general-question"><i class="fa fa-check"></i><b>4.2</b> A More General Question</a></li>
+<li class="chapter" data-level="4.3" data-path="4-functional-programming.html"><a href="4-functional-programming.html#even-more-generally-writing-a-function"><i class="fa fa-check"></i><b>4.3</b> Even More Generally: Writing a Function</a></li>
+<li class="chapter" data-level="4.4" data-path="4-functional-programming.html"><a href="4-functional-programming.html#iteration-with-functions-purrr"><i class="fa fa-check"></i><b>4.4</b> Iteration with functions: <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-data-modeling.html"><a href="5-data-modeling.html"><i class="fa fa-check"></i><b>5</b> Data Modeling</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-data-for-analysis"><i class="fa fa-check"></i><b>5.1</b> Prepare Data For Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-data-modeling.html"><a href="5-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>5.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="5.3" data-path="5-data-modeling.html"><a href="5-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>5.3</b> Split Data test/train</a></li>
+<li class="chapter" data-level="5.4" data-path="5-data-modeling.html"><a href="5-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>5.4</b> Preprocess Data</a></li>
+<li class="chapter" data-level="5.5" data-path="5-data-modeling.html"><a href="5-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>5.5</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="5.6" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>5.6</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="5.7" data-path="5-data-modeling.html"><a href="5-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>5.7</b> Specify Models</a></li>
+<li class="chapter" data-level="5.8" data-path="5-data-modeling.html"><a href="5-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>5.8</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="5.9" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>5.9</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="5.10" data-path="5-data-modeling.html"><a href="5-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>5.10</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="5.11" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-models-with-best-parameters"><i class="fa fa-check"></i><b>5.11</b> Execute Models With Best Parameters</a></li>
+<li class="chapter" data-level="5.12" data-path="5-data-modeling.html"><a href="5-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>5.12</b> Compare Models</a></li>
+<li class="chapter" data-level="5.13" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>5.13</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="5.14" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>5.14</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="5.15" data-path="5-data-modeling.html"><a href="5-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>5.15</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-text-analysis.html"><a href="6-text-analysis.html"><i class="fa fa-check"></i><b>6</b> Text Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-text-analysis.html"><a href="6-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>6.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="6.2" data-path="6-text-analysis.html"><a href="6-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>6.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="6.3" data-path="6-text-analysis.html"><a href="6-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>6.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="6.4" data-path="6-text-analysis.html"><a href="6-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>6.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="6.5" data-path="6-text-analysis.html"><a href="6-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>6.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="6.6" data-path="6-text-analysis.html"><a href="6-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>6.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="6.7" data-path="6-text-analysis.html"><a href="6-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>6.7</b> Visualizations</a></li>
+<li class="chapter" data-level="6.8" data-path="6-text-analysis.html"><a href="6-text-analysis.html#n-gram-analysis"><i class="fa fa-check"></i><b>6.8</b> N-Gram Analysis</a></li>
+<li class="chapter" data-level="6.9" data-path="6-text-analysis.html"><a href="6-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>6.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="6.10" data-path="6-text-analysis.html"><a href="6-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>6.10</b> Topic Modeling</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Intermediate R</h1>
+<p class="author"><em>MAJ Dusty Turner and Robert Ward</em></p>
+<p class="date"><em>15 JUN 2020</em></p>
+</div>
+<div id="class-introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Class Introduction</h1>
+<p>Topics</p>
+<ol style="list-style-type: decimal">
+<li>Data Manipulation</li>
+<li>Data Visualization</li>
+<li>Functional Programming</li>
+<li>Data Modeling</li>
+<li>Text Analysis</li>
+</ol>
+<p>Incorporating Intermediate R Techniques</p>
+<div id="expectations" class="section level2">
+<h2><span class="header-section-number">1.1</span> Expectations</h2>
+<p>By taking this course, we assume you have a working knowledge of the following…</p>
+<ol style="list-style-type: decimal">
+<li>Base R and RStudio Functionality</li>
+<li>Basic ‘tidy’ concepts</li>
+<li>Introductory Statistics</li>
+<li>Dad Jokes</li>
+</ol>
+<p>Give it a shot, if its too much or too little, will not be offended if you leave.</p>
+<p>Its okay to struggle.</p>
+</div>
+<div id="distance-learning-challenges" class="section level2">
+<h2><span class="header-section-number">1.2</span> Distance Learning Challenges</h2>
+<ol style="list-style-type: decimal">
+<li>Expected to be in person</li>
+<li>Unknown number of students in class</li>
+<li>Asking Questions - both verbally and in chat</li>
+<li>How to know if you are following along</li>
+<li>Speed of going through the material</li>
+</ol>
+</div>
+<div id="class-structure" class="section level2">
+<h2><span class="header-section-number">1.3</span> Class Structure</h2>
+<ol style="list-style-type: decimal">
+<li>7 HOURS!</li>
+<li>~ 50:10 Work to break - 1 HR Lunch</li>
+<li>We will ask for feedback to get a feel for understanding</li>
+<li>We will try to answer questions in chat</li>
+</ol>
+</div>
+<div id="learning-recommendations" class="section level2">
+<h2><span class="header-section-number">1.4</span> Learning Recommendations</h2>
+<ol style="list-style-type: decimal">
+<li>Use RMD files provided in repo (will get this this later)</li>
+<li>Take notes with comments</li>
+<li>Execute code along with us</li>
+<li>Ask questions in chat</li>
+</ol>
+</div>
+<div id="class-introductions" class="section level2">
+<h2><span class="header-section-number">1.5</span> Class Introductions</h2>
+<p>Might pass on this given the classroom size.</p>
+<p>Around the (virtual) room:</p>
+<ul>
+<li>Where you are from:</li>
+<li>Who you work for:</li>
+<li>How you are involved in Data Science:
+(ie - statistics, coding, application building, manager, etc)
+<!-- - Why you sat in that seat: --></li>
+<li>R Coding Experience</li>
+<li>Favorite sports team:</li>
+</ul>
+</div>
+<div id="instructors-introduction" class="section level2">
+<h2><span class="header-section-number">1.6</span> Instructors Introduction</h2>
+<div id="maj-dusty-turner" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> MAJ Dusty Turner</h3>
+<p>Army</p>
+<ul>
+<li>Combat Engineer</li>
+<li>Platoon Leader / XO / Company Commander</li>
+<li>Geospatial / Sapper / Route Clearance</li>
+<li>Hawaii / White Sands Missile Range / Iraq / Afghanistan</li>
+</ul>
+<p>Education</p>
+<ul>
+<li>West Point ’07
+<ul>
+<li>Operations Research, BS</li>
+</ul></li>
+<li>Missouri University of Science and Technology ’12
+<ul>
+<li>Engineering Management, MS</li>
+</ul></li>
+<li>THE Ohio State ’16
+<ul>
+<li>Integrated Systems Engineering, MS</li>
+<li>Applied Statistics, Graduate Minor</li>
+</ul></li>
+</ul>
+<p>Data Science</p>
+<ul>
+<li>R User Since ’14</li>
+<li>Catch me on Twitter <a href="http://www.twitter.com/dtdusty"><code>@dtdusty</code></a></li>
+<li><a href="http://dusty-turner.netlify.com/" class="uri">http://dusty-turner.netlify.com/</a></li>
+</ul>
+</div>
+<div id="robert-ward" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Robert Ward</h3>
+<p>Education</p>
+<ul>
+<li>University of Chicago, ’13
+<ul>
+<li>Political Science &amp; English, BA</li>
+</ul></li>
+<li>Columbia University School of International and Public Affairs, ’18
+<ul>
+<li>Master of International Affairs, Specialization in Advanced Policy and Economic Analysis</li>
+</ul></li>
+</ul>
+<p>Data Science</p>
+<ul>
+<li>R user since 2011; also know some python and forgot some Stata</li>
+<li>Worked for GAO Applied Research &amp; Methods</li>
+<li>ORSA at CAA and Army Leader Dashboard/Vantage PM team</li>
+</ul>
+</div>
+</div>
+<div id="course-intent" class="section level2">
+<h2><span class="header-section-number">1.7</span> Course Intent</h2>
+<ul>
+<li>Be interactive</li>
+<li>Ask questions at any point</li>
+<li>Don’t let me move too fast (or too slow)</li>
+<li>Run the code with me</li>
+<li>Use course materials (we’ll get to that in a second)</li>
+</ul>
+</div>
+<div id="tidy-ecosystem" class="section level2">
+<h2><span class="header-section-number">1.8</span> Tidy Ecosystem</h2>
+<p><img src="images/tidyverse.png" /></p>
+<p><img src="images/tidymodels.png" /></p>
+</div>
+<div id="get-course-documents" class="section level2">
+<h2><span class="header-section-number">1.9</span> Get Course Documents</h2>
+<p><a href="https://github.com/dusty-turner/MORS-Intermediate-R">github repo</a></p>
+<p>SSH:</p>
+<p><code>git clone git@github.com:dusty-turner/MORS-Intermediate-R.git</code></p>
+<p>HTTPS:</p>
+<p><a href="https://github.com/dusty-turner/MORS-Intermediate-R.git" class="uri">https://github.com/dusty-turner/MORS-Intermediate-R.git</a></p>
+<div id="r-markdown" class="section level3">
+<h3><span class="header-section-number">1.9.1</span> {-} R Markdown</h3>
+<p>While we’re here, lets do a quick overview of R Markdown.</p>
+</div>
+</div>
+<div id="prerequisite-packages" class="section level2">
+<h2><span class="header-section-number">1.10</span> Prerequisite Packages</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(</a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="st">&quot;tidyverse&quot;</span>,</a>
+<a class="sourceLine" id="cb1-3" title="3">  <span class="st">&quot;janitor&quot;</span>,</a>
+<a class="sourceLine" id="cb1-4" title="4">  <span class="st">&quot;gganimate&quot;</span>,</a>
+<a class="sourceLine" id="cb1-5" title="5">  <span class="st">&quot;purrr&quot;</span>,</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="st">&quot;tidymodels&quot;</span>,</a>
+<a class="sourceLine" id="cb1-7" title="7">  <span class="st">&quot;tune&quot;</span>,</a>
+<a class="sourceLine" id="cb1-8" title="8">  <span class="st">&quot;doFuture&quot;</span>,</a>
+<a class="sourceLine" id="cb1-9" title="9">  <span class="st">&quot;vip&quot;</span>,</a>
+<a class="sourceLine" id="cb1-10" title="10">  <span class="st">&quot;stringi&quot;</span>,</a>
+<a class="sourceLine" id="cb1-11" title="11">  <span class="st">&quot;topicmodels&quot;</span>,</a>
+<a class="sourceLine" id="cb1-12" title="12">  <span class="st">&quot;yardstick&quot;</span>,</a>
+<a class="sourceLine" id="cb1-13" title="13">  <span class="st">&quot;recipe&quot;</span>,</a>
+<a class="sourceLine" id="cb1-14" title="14">  <span class="dt">dependencies =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb1-15" title="15">  )</a></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="2-data-manipulation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

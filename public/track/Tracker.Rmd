@@ -1,0 +1,22 @@
+---
+title: "Tracker"
+author: "Dusty Turner and Jim Pleuss"
+date: "`r format(Sys.time(), '%d %B, %Y, %S')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Today's results.5
+
+
+
+```{r}
+accuracy_overall %>% 
+  bind_rows(accuracy_daily %>% arrange(desc(date))) %>%
+  select(date, MAE, n) %>% 
+  gt::gt()
+```
+

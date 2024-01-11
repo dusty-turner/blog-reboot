@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>The Peloton API Part 1: Accessing and Exploring</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
+Jill Smiling After Her 600th Ride (and new record)!Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="The Peloton API Part 1: Accessing and Exploring">
+    <meta name="twitter:description" content="In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
+Jill Smiling After Her 600th Ride (and new record)!Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.">
+    <meta name="twitter:image" content="https://www.dustysturner.com/media/bikecover.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Peloton API Part 1: Accessing and Exploring">
+  <meta property="og:description" content="In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
+Jill Smiling After Her 600th Ride (and new record)!Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.">
+  <meta property="og:url" content="https://www.dustysturner.com/post/the-peloton-api-part-1/">
+  <meta property="og:image" content="https://www.dustysturner.com/media/bikecover.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/the-peloton-api-part-1/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">The Peloton API Part 1: Accessing and Exploring</h1>
+      <p class="post-meta">@Dusty Turner · Aug 9, 2020 · 7 min read</p>
+    </header>
+    <article class="post-content">
+
+
+<p>In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.</p>
+<center>
+<img src="images/peloton_wife_1.jpg" alt="peloton" width="500">
+<figcaption>
+Jill Smiling After Her 600th Ride (and new record)!
+</figcaption>
+</center>
+<p>Over the last few months, a few works projects have taught me a lot about <code>purrr</code>, functional programming, collaborative projects, and APIs.</p>
+<p>In the next few Peloton blog posts, I hope to show a few things:</p>
+<ol style="list-style-type: decimal">
+<li>How to access the Peloton API.</li>
+<li>The power of <code>purrr</code> and functional programming.</li>
+<li>That I am the superior Peloton rider… or maybe not.</li>
+</ol>
+<p>This first post will focus on accessing the Peloton API.</p>
+<div id="the-peloton-api" class="section level1">
+<h1>The Peloton API</h1>
+<p>Thanks <a href="https://github.com/bweiher/">Ben Weiher</a> for creating the <a href="https://github.com/bweiher/pelotonR"><code>pelotonR</code> package</a>. I was able to submit a couple pull requests that (I think) improved its capabilities. Thanks Ben for being a gracious repo owner and accepting these pull requests.</p>
+<p>Oh, and while you are here, follow me on Peloton. My user name is <a href="https://members.onepeloton.com/members/DTDusty/overview">DTDusty</a></p>
+<div id="install-pelotonr" class="section level2">
+<h2>Install <code>pelotonR</code></h2>
+<p>First, to install the package, you can run the following code to download/install it from Ben’s repo.</p>
+<pre class="r"><code>devtools::install_github(&quot;bweiher/pelotonR&quot;)</code></pre>
+</div>
+<div id="load-libraries" class="section level2">
+<h2>Load Libraries</h2>
+<p>Let’s fire up <code>pelotonR</code> and, as always, the <code>tidyverse</code> and take them for a spin.</p>
+<pre class="r"><code>library(pelotonR)
+library(tidyverse)
+library(lubridate)</code></pre>
+</div>
+<div id="connect-to-api" class="section level2">
+<h2>Connect To API</h2>
+<p>Use your Peloton email address and password.</p>
+<pre class="r"><code>peloton_auth(login = &quot;your.email@domain.com&quot;, password = &quot;cl3v3r_pa$$w0rd&quot;)</code></pre>
+<p>After connecting to the API, you can get your info with the following function.</p>
+<pre class="r"><code>me &lt;- get_my_info() </code></pre>
+<p>For our own edification, here is a list of all the output columns alphabetized.</p>
+<blockquote>
+<p>allow_marketing, birthday, block_explicit, block_prenatal, can_charge, contract_agreements, created_at, created_country, customized_heart_rate_zones, customized_max_heart_rate, cycling_ftp, cycling_ftp_source, cycling_ftp_workout_id, cycling_workout_ftp, default_heart_rate_zones, default_max_heart_rate, email, estimated_cycling_ftp, external_music_auth_list, facebook_access_token, facebook_id, first_name, gender, hardware_settings, has_active_device_subscription, has_active_digital_subscription, has_signed_waiver, height, id, image_url, instructor_id, is_complete_profile, is_demo, is_effort_score_enabled, is_external_beta_tester, is_fitbit_authenticated, is_internal_beta_tester, is_profile_private, is_provisional, is_strava_authenticated, last_name, last_workout_at, locale, location, member_groups, middle_initial, name, obfuscated_email, paired_devices, phone_number, quick_hits, referrals_made, total_followers, total_following, total_non_pedaling_metric_workouts, total_pedaling_metric_workouts, total_pending_followers, total_workouts, username, v1_referrals_made, weight, workout_counts</p>
+</blockquote>
+</div>
+<div id="explore-api" class="section level2">
+<h2>Explore API</h2>
+<p>Currently, the pelotonR package has a nice function for exploring your information. As with most APIs the data is stored in JSON format The function below extracts the data and unpacks some of the nested lists.</p>
+<p>Here it is below:</p>
+<pre class="r"><code>my_workout_df &lt;- get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = &quot;ride,ride.instructor&quot;, parse_dates = T)
+my_workout_df </code></pre>
+<pre><code>## # A tibble: 398 x 89
+##    created_at          device_type  end_time            fitness_discipline
+##    &lt;dttm&gt;              &lt;chr&gt;        &lt;dttm&gt;              &lt;chr&gt;             
+##  1 2021-06-20 20:59:24 home_bike_v1 2021-06-20 21:19:25 stretching        
+##  2 2021-06-20 20:48:58 home_bike_v1 2021-06-20 20:58:59 stretching        
+##  3 2021-03-24 20:06:30 home_bike_v1 2021-03-24 20:27:27 cycling           
+##  4 2021-03-24 19:58:42 home_bike_v1 2021-03-24 20:03:40 cycling           
+##  5 2021-03-17 20:41:26 home_bike_v1 2021-03-17 21:02:21 cycling           
+##  6 2021-03-17 20:31:24 home_bike_v1 2021-03-17 20:36:22 cycling           
+##  7 2021-03-08 20:24:45 home_bike_v1 2021-03-08 20:45:40 cycling           
+##  8 2021-03-08 20:16:04 home_bike_v1 2021-03-08 20:21:01 cycling           
+##  9 2021-03-05 20:40:23 home_bike_v1 2021-03-05 21:01:20 cycling           
+## 10 2021-03-05 20:32:06 home_bike_v1 2021-03-05 20:37:05 cycling           
+## # ... with 388 more rows, and 85 more variables: has_pedaling_metrics &lt;lgl&gt;,
+## #   has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
+## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;,
+## #   peloton_id &lt;chr&gt;, platform &lt;chr&gt;, start_time &lt;dttm&gt;, status &lt;chr&gt;,
+## #   timezone &lt;chr&gt;, title &lt;chr&gt;, total_work &lt;dbl&gt;, user_id &lt;chr&gt;,
+## #   workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
+## #   total_video_buffering_seconds &lt;int&gt;,
+## #   v2_total_video_watch_time_seconds &lt;dbl&gt;,
+## #   v2_total_video_buffering_seconds &lt;dbl&gt;,
+## #   total_music_audio_play_seconds &lt;chr&gt;,
+## #   total_music_audio_buffer_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
+## #   device_time_created_at &lt;dttm&gt;, strava_id &lt;chr&gt;, fitbit_id &lt;chr&gt;,
+## #   effort_zones &lt;chr&gt;, ride_has_closed_captions &lt;lgl&gt;,
+## #   ride_content_provider &lt;chr&gt;, ride_content_format &lt;chr&gt;,
+## #   ride_description &lt;chr&gt;, ride_difficulty_rating_avg &lt;dbl&gt;,
+## #   ride_difficulty_rating_count &lt;int&gt;, ride_difficulty_level &lt;chr&gt;,
+## #   ride_duration &lt;int&gt;, ride_extra_images &lt;chr&gt;,
+## #   ride_fitness_discipline &lt;chr&gt;, ride_fitness_discipline_display_name &lt;chr&gt;,
+## #   ride_has_pedaling_metrics &lt;lgl&gt;, ride_home_peloton_id &lt;chr&gt;, ride_id &lt;chr&gt;,
+## #   ride_image_url &lt;chr&gt;, ride_instructor_id &lt;chr&gt;, ride_is_archived &lt;lgl&gt;,
+## #   ride_is_closed_caption_shown &lt;lgl&gt;, ride_is_explicit &lt;lgl&gt;,
+## #   ride_is_live_in_studio_only &lt;lgl&gt;, ride_language &lt;chr&gt;, ride_length &lt;int&gt;,
+## #   ride_live_stream_id &lt;chr&gt;, ride_live_stream_url &lt;chr&gt;, ride_location &lt;chr&gt;,
+## #   ride_metrics &lt;list&gt;, ride_origin_locale &lt;chr&gt;,
+## #   ride_original_air_time &lt;dttm&gt;, ride_overall_rating_avg &lt;dbl&gt;,
+## #   ride_overall_rating_count &lt;int&gt;, ride_pedaling_start_offset &lt;int&gt;,
+## #   ride_pedaling_end_offset &lt;int&gt;, ride_pedaling_duration &lt;int&gt;,
+## #   ride_rating &lt;int&gt;, ride_ride_type_id &lt;chr&gt;, ride_ride_type_ids &lt;list&gt;,
+## #   ride_sample_vod_stream_url &lt;chr&gt;, ride_scheduled_start_time &lt;dttm&gt;,
+## #   ride_series_id &lt;chr&gt;, ride_sold_out &lt;lgl&gt;, ride_studio_peloton_id &lt;chr&gt;,
+## #   ride_title &lt;chr&gt;, ride_total_ratings &lt;int&gt;,
+## #   ride_total_in_progress_workouts &lt;int&gt;, ride_total_workouts &lt;int&gt;,
+## #   ride_vod_stream_url &lt;chr&gt;, ride_vod_stream_id &lt;chr&gt;,
+## #   ride_class_type_ids &lt;list&gt;, ride_difficulty_estimate &lt;dbl&gt;,
+## #   ride_overall_estimate &lt;dbl&gt;, ride_availability &lt;list&gt;,
+## #   ride_is_dynamic_video_eligible &lt;lgl&gt;, ride_is_fixed_distance &lt;lgl&gt;,
+## #   ride_dynamic_video_recorded_speed_in_mph &lt;dbl&gt;, ride_distance &lt;dbl&gt;,
+## #   ride_distance_unit &lt;chr&gt;, ride_distance_display_value &lt;chr&gt;,
+## #   ride_instructor &lt;list&gt;</code></pre>
+<p>You can see the function returns quite a bit of information - one row per workout.</p>
+<!-- ![](images/peloton_wife_2.jpg) -->
+<center>
+<figcaption>
+And here’s Jill on one of those workouts!
+</figcaption>
+<img src="images/peloton_wife_2.jpg" alt="peloton" width="500">
+</center>
+</div>
+<div id="dig-in-deeper-into-the-api" class="section level2">
+<h2>Dig in deeper into the API</h2>
+<p>The Peloton API has a lot more information that you cannot yet access in the library. As I get more familiar with the API / library, I may do a few more pull requests. In the meantime, lets see what else we can find.</p>
+<p>What we see in the <code>my_workout</code> dataframe above list element that contains the instructor ID.</p>
+<pre class="r"><code>my_workout_df %&gt;%
+  select(ride_instructor) %&gt;% 
+  group_by(ride_instructor) %&gt;%
+  group_split() %&gt;% 
+  purrr::map(~unnest(.x)) %&gt;% 
+  purrr::map(~slice(.x, 1)) %&gt;% 
+  purrr::map_dfr(~unnest(.x))</code></pre>
+<pre><code>## # A tibble: 33 x 1
+##    ride_instructor                 
+##    &lt;chr&gt;                           
+##  1 561f95c405734d8488ed8dcc8980d599
+##  2 1b79e462bd564b6ca5ec728f1a5c2af0
+##  3 4904612965164231a37143805a387e40
+##  4 048f0ce00edb4427b2dced6cbeb107fd
+##  5 7f3de5e78bb44d8591a0f77f760478c3
+##  6 05735e106f0747d2a112d32678be8afd
+##  7 2e57092bee334c8c8dcb9fe16ba5308c
+##  8 4672db841da0495caf4b8f9cda405512
+##  9 c0a9505d8135412d824cf3c97406179b
+## 10 f6f2d613dc344e4bbf6428cd34697820
+## # ... with 23 more rows</code></pre>
+<p>While I was selective in what I extracted from this JSON, I do not see instructor name. Lets see what we can find if we dig into the API.</p>
+<div id="access-api" class="section level3">
+<h3>Access API</h3>
+<p>To find the instructor information, we need to use the correct instructor endpoint. Some API’s are not documented very well, so you have to get lucky sometimes to find these.</p>
+<pre class="r"><code>pull &lt;- httr::GET(url = str_c(&quot;https://api.onepeloton.com/api/instructor?limit=1000&amp;page=0&quot;))
+parsed &lt;- jsonlite::fromJSON(httr::content(pull, &quot;text&quot;, encoding = &quot;UTF-8&quot;), simplifyVector = FALSE)
+pull</code></pre>
+<pre><code>## Response [https://api.onepeloton.com/api/instructor?limit=1000&amp;page=0]
+##   Date: 2021-06-24 16:00
+##   Status: 200
+##   Content-Type: application/json
+##   Size: 190 kB</code></pre>
+<p>Status 200 means success!</p>
+<p>This function below will pull out one instructor’s information. There is a LOT more information for each instructor – but I will only extract a few interesting headings.</p>
+<pre class="r"><code>instructor_function &lt;- function(num = 2) {
+  tibble(
+    instructor_name = pluck(parsed$data, num, c(&quot;name&quot;)),
+    ride_instructor_id = pluck(parsed$data, num, c(&quot;id&quot;)),
+    ride_instructor_bio = pluck(parsed$data, num, c(&quot;bio&quot;)),
+    ride_instructor_background = list(pluck(parsed$data, num, c(&quot;fitness_disciplines&quot;)))
+  )
+}
+
+instructor_function(5)</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##   instructor_name ride_instructor_id  ride_instructor_bio      ride_instructor_~
+##   &lt;chr&gt;           &lt;chr&gt;               &lt;chr&gt;                    &lt;list&gt;           
+## 1 Ally Love       731d7b7f6b414a4989~ &quot;As a model, dancer, ce~ &lt;list [1]&gt;</code></pre>
+<center>
+<a href="https://www.instagram.com/allymisslove/?hl=en">Ally Love</a>, my wife’s favorite!
+</center>
+<center>
+<img src="images/ally_love.png" alt="Ally Love" height="500">
+<figcaption>
+<a href="https://www.onepeloton.com/instructors/bike/AllyMissLove">Photo Credit: Peloton Website</a>
+</figcaption>
+</center>
+<p>Lets get a look at how we can access the data of all the Peloton instructors.</p>
+<pre class="r"><code>instructor_df &lt;-
+1:parse_list_to_df(parsed, 
+                   parse_dates = T, 
+                   dictionary = list(numeric = c(&quot;v2_total_video_buffering_seconds&quot;, &quot;ride_distance&quot;,
+    &quot;v2_total_video_watch_time_seconds&quot;)))$total %&gt;%
+  purrr::map_dfr(~ instructor_function(num = .x))
+instructor_df</code></pre>
+<pre><code>## # A tibble: 41 x 4
+##    instructor_name  ride_instructor_id ride_instructor_bio     ride_instructor_~
+##    &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;                   &lt;list&gt;           
+##  1 Aditi Shah       b8c2734e18a7496fa~ &quot;To Aditi, yoga goes b~ &lt;list [2]&gt;       
+##  2 Adrian Williams  f962a2b1b34d424ca~ &quot;Adrian is a powerhous~ &lt;list [6]&gt;       
+##  3 Anna Greenberg   a8c56f162c964e939~ &quot;When Anna first turne~ &lt;list [2]&gt;       
+##  4 Alex Toussaint   2e57092bee334c8c8~ &quot;Alex Toussaint has a ~ &lt;list [1]&gt;       
+##  5 Ally Love        731d7b7f6b414a498~ &quot;As a model, dancer, c~ &lt;list [1]&gt;       
+##  6 Andy Speer       c9fa21c2004c4544a~ &quot;Andy takes a techniqu~ &lt;list [6]&gt;       
+##  7 Becs Gentry      286fc17080d34406a~ &quot;Becs joins Peloton fr~ &lt;list [3]&gt;       
+##  8 Ben Alldis       7f3de5e78bb44d859~ &quot;Growing up, Ben was a~ &lt;list [2]&gt;       
+##  9 Bradley Rose     01f636dc54a145239~ &quot;If there’s one thing ~ &lt;list [1]&gt;       
+## 10 Callie Gullicks~ 255c81782f7242c9a~ &quot;Callie radiates sunsh~ &lt;list [3]&gt;       
+## # ... with 31 more rows</code></pre>
+<p>There’s all the instructors. Now lets join them to our workout dataframe. You can see the additional columns of instructor information at the end of the dataframe.</p>
+<pre class="r"><code>my_workout_df &lt;-
+  my_workout_df %&gt;%
+  left_join(instructor_df)
+
+my_workout_df %&gt;% 
+  select(created_at ,name, instructor_name) %&gt;% 
+  filter(!is.na(instructor_name)) %&gt;% 
+  slice_head(n = 5)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   created_at          name               instructor_name
+##   &lt;dttm&gt;              &lt;chr&gt;              &lt;chr&gt;          
+## 1 2021-06-20 20:59:24 Stretching Workout Hannah Corbin  
+## 2 2021-06-20 20:48:58 Stretching Workout Jess Sims      
+## 3 2021-03-24 20:06:30 Cycling Workout    Kendall Toole  
+## 4 2021-03-24 19:58:42 Cycling Workout    Kendall Toole  
+## 5 2021-03-17 20:41:26 Cycling Workout    Jess King</code></pre>
+</div>
+</div>
+<div id="visualize" class="section level2">
+<h2>Visualize</h2>
+<p>In my next plot post, I’ll do more to explore the data in the API. In the meantime, lets take a look at which instructors I seem to prefer!</p>
+<pre class="r"><code>my_workout_df %&gt;% 
+  filter(created_at &lt;= ymd(20200809)) %&gt;% 
+  filter(fitness_discipline == &quot;cycling&quot;) %&gt;%
+  count(instructor_name,fitness_discipline) %&gt;% 
+  filter(!is.na(instructor_name)) %&gt;% 
+  mutate(instructor_name = fct_lump_min(instructor_name,5,w = n)) %&gt;% 
+  group_by(instructor_name) %&gt;% summarise(n = sum(n),.groups = &quot;drop_last&quot;) %&gt;% arrange(-n) %&gt;% 
+  ggplot(aes(x=fct_reorder(instructor_name,n),y=n,fill = instructor_name)) +
+  geom_col(position = &quot;dodge&quot;) +
+  scale_fill_manual(values = wesanderson::wes_palette(&quot;Rushmore1&quot;, n = 8,type = &quot;continuous&quot;)) +
+  coord_flip() +
+  labs(title = &quot;My Favorite Instructors&quot;, x = &quot;&quot;, y = &quot;Rides&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-1/index_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<center>
+<a href="https://www.instagram.com/jesskingnyc/?hl=en">Jess King</a>, <a href="https://www.instagram.com/hannahcorbinnyc/?hl=en">Hannah Corbin</a>, <a href="https://www.instagram.com/alextoussaint25/?hl=en">Alex Toussaint</a>: My three favorite instructors!
+</center>
+<center>
+<img src="images/peloton_favorites.JPG" alt="Peloton Favorites" height="500">
+<figcaption>
+<a href="https://www.onepeloton.com/instructors/bike/">Photo Credit: Peloton Website</a>
+</figcaption>
+</center>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/peloton"><span class="tag">Peloton</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/api"><span class="tag">API</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/fitness"><span class="tag">Fitness</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>1250</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2024 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>

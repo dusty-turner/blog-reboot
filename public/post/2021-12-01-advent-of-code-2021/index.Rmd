@@ -1,0 +1,1420 @@
+---
+title: Advent of Code 2021
+author: Dusty Turner
+date: '2021-12-01'
+slug: []
+categories:
+  - R
+  - datascience
+  - learning
+  - teaching
+tags:
+  - R
+  - Data Science
+  - learning
+  - teaching
+cover: /media/advent2.JPG
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, paged.print=FALSE, eval=F, cache = F)
+```
+
+Every year, the great team at [Advent of Code](adventofcode.com) lead by [ericwastl](https://twitter.com/ericwastl) develops an "Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like."  
+
+Well, I like R, so in this post I will provide my solutions to the puzzles each day.  I plan on using this post to learn and teach and hopefully I am able to stay up-to-date!  
+
+A few notes as we get started: 
+
+- Unless otherwise specified, all solutions rely on `library(tidyverse)`.
+- All data is saved in the working directory as a `.txt` file.
+- I can't promise my solutions will be the most elegant, but I will only post if they are correct!
+
+On to the solutions...
+
+#### Code supporting all solutions 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, eval = T, cashe = T}
+library(tidyverse)
+library(furrr)
+plan(multicore)
+```
+ 
+## [Day 17](https://adventofcode.com/2021/day/16) 
+ 
+#### Part 1
+```{r}
+min_x <- 20; max_x <- 30; min_y <- -10; max_y <- -5
+
+start <- tibble(x = 0, y = 0)
+
+move_one <- function(start, initial_x, initial_y){
+  end <- start %>%  mutate(x = x+initial_x, y = y + initial_y)
+  return(end)
+}
+
+check_trajectory_part_1 <- function(x_init = 7, y_init = -1){
+
+initial_velocity_x <- x_init
+final_velocity_x <- initial_velocity_x-max_x
+initial_velocity_y <- y_init
+
+x_velocity_vec <- initial_velocity_x:final_velocity_x
+x_velocity_vec[which(x_velocity_vec<0)]=0
+y_velocity_vec <- (initial_velocity_y:-200)[1:length(x_velocity_vec)]
+
+trajectory <-
+  accumulate2(.x = x_velocity_vec, .y = y_velocity_vec, .f = move_one, .init = start) %>%
+  bind_rows()
+
+out<-
+  trajectory %>%
+  mutate(all_in = x %in% min_x:max_x + y %in% max_y:min_y == 2) %>%
+  mutate(one_in = sum(all_in)) %>% filter(one_in !=0) %>%
+  arrange(desc(y)) %>% slice(2) %>%
+  mutate(initial_x = x_init, initial_y = y_init)
+return(out)
+}
+
+x_poss <- map_dbl(1:max_x, ~choose(.x,2))
+x_ans <- c(match(x_poss[which(x_poss %in% min_x:max_x)], x_poss)) - 1
+
+y_ans <- abs(min_y)-1
+
+possible_x_vec <- x_ans[1]:max_x
+possible_y_vec <- y_ans:min_y
+possibilities <- crossing(possible_x_vec, possible_y_vec) 
+
+map2_dfr(
+  .x = possibilities$possible_x_vec,
+  .y = possibilities$possible_y_vec,
+  .f = ~ check_trajectory_part_1(x_init = .x, y_init = .y)
+) %>% nrow()
+
+```
+
+#### Part 2
+
+```{r}
+min_x <- 20; max_x <- 30; min_y <- -10; max_y <- -5
+
+check_trajectory <- function(x_init = 7, y_init = -1){
+
+  initial_velocity_x <- x_init
+  final_velocity_x <- initial_velocity_x-max_x
+  initial_velocity_y <- y_init
+
+  x_velocity_vec <- initial_velocity_x:final_velocity_x
+  x_velocity_vec[which(x_velocity_vec<0)]=0
+  y_velocity_vec <- (initial_velocity_y:-200)[1:length(x_velocity_vec)]
+
+  if(sum(cumsum(x_velocity_vec) %in% min_x:max_x) == 0){
+    out <- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  if(sum(cumsum(y_velocity_vec) %in% min_y:max_y) == 0){
+    out <- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  if(sum((cumsum(x_velocity_vec) %in% min_x:max_x)[which(cumsum(y_velocity_vec) %in% min_y:max_y == TRUE)])>0){
+    out <- tibble(it_works = TRUE, x_init = x_init, y_init =y_init)
+    return(out)
+  }
+  out <- tibble(it_works = FALSE, x_init = x_init, y_init =y_init)
+  return(out)
+}
+
+possible_x_vec <- x_ans[1]:max_x
+possible_y_vec <- y_ans:min_y
+
+possibilities <- crossing(possible_x_vec, possible_y_vec) 
+
+we_know_these_exist <- crossing(possible_x_vec = min_x:max_x, possible_y_vec = min_y:max_y)
+
+possibilities <- possibilities %>% anti_join(we_know_these_exist) 
+
+answers <-
+  map2(.x = possibilities$possible_x_vec,
+       .y = possibilities$possible_y_vec,
+       .f = ~ check_trajectory(x_init = .x, y_init = .y))
+
+answers %>% bind_rows(.id = "id") %>% filter(it_works) %>%  nrow() +
+  we_know_these_exist %>% nrow()
+
+```
+
+
+## [Day 16](https://adventofcode.com/2021/day/16) 
+
+#### Part 1
+
+```{r}
+code <-
+  tibble(lines = read_lines("02_data/day_16_code.txt")) %>% 
+  separate(col = lines, into = c("letter","bin"))
+
+rest <-
+  tibble(letter = read_lines("02_data/day_16.txt")) %>%
+  separate_rows(letter, sep = "") %>% filter(letter != "") %>%
+  left_join(code) %>%
+  summarise(string = str_c(bin, collapse = "")) %>% pull(string)
+
+parse <- function(rest = rest, LV = LV, PV = PV, TID = TID){
+  if(nchar(rest) < 6){
+    out <- list(LV = LV, PV = PV, TID = TID)
+    return(out)
+  }
+  first_3 <- str_pad(str_sub(rest,1,3),width = 4, side = "left", pad = 0)
+  second_3 <- str_pad(str_sub(rest,4,6),width = 4, side = "left", pad = 0)
+  packet_version <- code[code$bin==first_3,]$letter
+  type_id <- code[code$bin==second_3,]$letter
+  rest <- str_sub(rest, 7,-1)
+  PV <- append(PV, packet_version)  
+  TID <- append(TID, type_id)
+  if(type_id!=4){
+    route <- str_sub(rest,1,1)
+    rest <- str_sub(rest,2,-1)
+    if(route ==1){
+      num_iter <- strtoi(str_sub(rest,1,11), base = 2)
+      rest <- str_sub(rest,12,-1)
+      for (i in 1:num_iter) {
+        return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+      }
+    } else if(route==0){
+      lenths_string <- strtoi(str_sub(rest,1,15),base = 2)
+      rest <- str_sub(rest,16,-1)
+      return(parse(rest = rest, LV = LV, PV = PV, TID = TID))
+    }
+  } else if(type_id==4){
+    id_nums <- strsplit(rest,"")[[1]][rep(c(T,F,F,F,F), nchar(rest)/5)]
+    num_iter <- which(as.numeric(id_nums)==0)[1]
+    temp_list <- vector()
+    for (i in 1:num_iter) {
+      temp <- str_sub(rest, 2, 5)
+      rest <- str_sub(rest, 6, -1)
+      temp_list <- str_c(temp_list,temp)
+    }
+    literal_value <- strtoi(temp_list,base = 2)
+    LV <- append(LV, literal_value)
+    return(parse(rest = rest, LV = LV, PV = PV , TID = TID))
+  }
+  out <- list(LV = LV, PV = PV, TID = TID)
+  return(out)
+}
+
+final <- parse(rest = rest, LV = NULL, PV = NULL, TID = NULL)
+
+final$PV %>% as.integer() %>% sum()
+```
+
+
+#### Part 2 Pending
+
+## [Day 15](https://adventofcode.com/2021/day/15) 
+
+#### Part 1
+
+My first instinct was to make this an integer program. I wasn't able to execute it. Admittedly, I had to get some ideas from others.  Once started, I was able to do both parts.
+
+```{r}
+library(igraph)
+
+file_path <- "02_data/day_15.txt"
+
+width <- read_lines(file = file_path)[1] %>% nchar()
+
+l <-  matrix(1:(width * width), byrow = T, ncol = width)
+
+w <- tibble(weights = read_lines(file = file_path)) %>%
+  mutate(id = row_number()) %>%
+  separate_rows(weights, sep = "", convert = T) %>%
+  filter(str_detect(weights, "")) %>%
+  pull(weights) %>% matrix(nrow = width, byrow = T)
+
+my_graph <-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %>% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %>% unlist()) %>%
+  mutate(weight = as.vector(t(w[, -1]))) %>%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %>% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %>% unlist()
+           ) %>% 
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %>%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %>%
+      mutate(weight = as.vector(w[-1, ]))) %>%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])) %>%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    ) 
+
+g2 <- add_edges(make_empty_graph(n = width * width),
+                as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                weight = my_graph[, 3]$weight
+                )
+
+ans <- igraph::shortest_paths(g2, from = 1, to = width * width)
+
+tibble(l = l %>% as.vector(),
+       w = w %>% as.vector()) %>%
+  filter(l %in% ans$vpath[[1]]) %>%
+  summarise(sum = sum(w)) - w[1, 1]
+```
+
+#### Part 2 
+
+```{r}
+create_mat <- 
+  function(mat, iter) {if_else(mat + 1 > 9, 1, mat + 1) %>%
+    matrix(nrow = width, byrow  = F)}
+
+mats <- 1:9 %>% accumulate(.f = create_mat, .init = w) %>% tail(9)
+
+w <- rbind(
+  cbind(w, mats[[1]], mats[[2]], mats[[3]], mats[[4]]),
+  cbind(mats[[1]], mats[[2]], mats[[3]], mats[[4]], mats[[5]]),
+  cbind(mats[[2]], mats[[3]], mats[[4]], mats[[5]], mats[[6]]),
+  cbind(mats[[3]], mats[[4]], mats[[5]], mats[[6]], mats[[7]]),
+  cbind(mats[[4]], mats[[5]], mats[[6]], mats[[7]], mats[[8]]
+  )
+)
+
+l <-  matrix(1:(width * 5 * width * 5), byrow = T, ncol = width * 5)
+
+my_graph <-
+  tibble(x = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-c(nrow(l))] + (.x * nrow(l))) %>% unlist(),
+         y = map(.x = 0:(nrow(l) - 1), ~ l[1, ][-1] + (.x * nrow(l))) %>% unlist()
+         ) %>%
+  mutate(weight = as.vector(t(w[, -1]))) %>%
+  bind_rows(
+    tibble(x = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-1] + (.x * ncol(l))) %>% unlist(),
+           y = map(.x = 0:(ncol(l) - 1), ~ l[1, ][-c(ncol(l))] + (.x * ncol(l))) %>% unlist()
+           ) %>%
+      mutate(weight = as.vector(t(w[, -nrow(w)])))) %>%
+  bind_rows(
+    tibble(x = as.vector(l[-c(nrow(l)), ]),
+           y = as.vector(l[-1, ])
+           ) %>%
+      mutate(weight = as.vector(w[-1, ]))) %>%
+  bind_rows(
+    tibble(x = as.vector(l[-1, ]),
+           y = as.vector(l[-c(nrow(l)), ])
+           ) %>%
+      mutate(weight = as.vector(w[-nrow(w), ]))
+    )
+
+g2 <-  add_edges(make_empty_graph(n = width * 5 * width * 5),
+                 as.matrix(t(my_graph[1:nrow(my_graph), 1:2])),
+                 weight = my_graph[, 3]$weight
+                 )
+ans <- igraph::shortest_paths(g2, from = 1, to = width * 5 * width * 5)
+
+tibble(l = l %>% as.vector(),
+       w = w %>% as.vector()) %>%
+  filter(l %in% ans$vpath[[1]]) %>%
+  summarise(sum = sum(w)) - w[1, 1]
+
+```
+
+
+## [Day 14](https://adventofcode.com/2021/day/14) 
+
+#### Strike 1
+
+As with previous days, tracking the entirety of the growing string works for part 1, but not part 2.
+
+Here I grow the string according to the directions, count up all characters, and find the solution.  It works fine for 10 iterations. 
+
+```{r}
+pair_insertion_rules <-
+  tibble(loc = read_lines(file = "02_data/day_14.txt")) %>% 
+  slice(-c(1:2)) %>% 
+  separate(loc, into = c("polymer", "insert"))
+
+polymer_template <-
+  tibble(polymer = read_lines(file = "02_data/day_14.txt")) %>% slice(1) 
+
+grow_polymer <- function(polymer = polymer_template, iter){
+  out <-
+    polymer %>%
+    separate_rows(polymer, sep = "") %>%
+    transmute(polymer = str_c(lag(polymer, 1), polymer)) %>%
+    filter(!is.na(polymer)) %>%
+    left_join(pair_insertion_rules, by = "polymer") %>%
+    transmute(add = replace_na(str_c(
+      str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+    ), str_c(" ", polymer[1]))) %>% 
+    mutate(add = str_sub(add, 2, 3)) %>%
+    summarise(polymer = str_c(add, collapse = ""))
+  return(out)
+}
+
+1:10 %>% reduce(.f = grow_polymer, .init = polymer_template) %>% 
+  separate_rows(polymer, sep = "") %>% 
+  count(polymer) %>% 
+  filter(polymer !="") %>% 
+  summarise(answer = max(n)-min(n))
+
+```
+
+#### Part 1/2 Success
+
+But when time comes to do this for 40 days, everything stalls out around 21 days.  However, instead of growing the string, count up all pairs as they happen.
+
+```{r}
+first <-
+  polymer_template %>% 
+  separate_rows(polymer, sep = "") %>% 
+  transmute(polymer = str_c(lag(polymer,1), polymer)) %>% 
+  filter(nchar(polymer)==2) %>% 
+  count(polymer)
+
+iterate_step <-
+  function(first = hold, iter) {
+    out <-
+      first %>%
+      left_join(pair_insertion_rules, by = "polymer") %>%
+      mutate(add = replace_na(str_c(
+        str_sub(polymer, 1, 1), insert, str_sub(polymer, 2, 2)
+      ), str_c(" ", polymer[1]))) %>% 
+      separate_rows(add, sep = "") %>%
+      mutate(add = str_c(lag(add, 1), add)) %>%
+      filter(nchar(add) == 2) %>%
+      group_by(add) %>%
+      summarise(n = sum(n)) %>%
+      select(polymer = add, n)
+    return(out)
+  }
+
+reduce(1:40, .f = iterate_step, .init = first) %>% 
+  separate_rows(polymer, sep = "") %>%
+  filter(polymer != "") %>% 
+  count(polymer, n) %>% 
+  group_by(polymer) %>% 
+  summarise(total = ceiling(sum(n*nn)/2)) %>% 
+  ungroup() %>% 
+  summarise(answer = max(total)-min(total))
+```
+
+
+## [Day 13](https://adventofcode.com/2021/day/13) 
+
+#### Part 1/2 
+
+Today's was a lot of fun.  After parsing the data, use `reduce2` to iteratvly fold the paper.  ggplot helps to read the final solution.
+
+```{r eval=T, fig.height=1, cache=T}
+data <-
+  tibble(loc = read_lines(file = "day_13.txt")) %>%
+  filter(!str_detect(loc, "fold")) %>% filter(loc != "") %>%
+  separate(col = loc,into = c("x", "y"),sep = ",",convert = T) 
+
+lines <-
+  tibble(loc = read_lines(file = "day_13.txt")) %>%
+  filter(str_detect(loc, "fold")) %>% filter(loc != "") %>% 
+  mutate(loc = str_remove(loc, "fold along ")) %>% 
+  separate(loc, c("axis","num"), "=", convert = T) %>% 
+  mutate(num = as.double(num))
+
+fold <- function(data, axis, num) {
+  out <-
+    data %>%
+    mutate(x = if_else(x > num & axis == "x", num - (x - num), as.double(x))) %>%
+    mutate(y = if_else(y > num & axis == "y", num - (y - num), as.double(y)))
+  return(out)
+  }
+
+reduce2(.x = lines$axis, .y = lines$num, .f = fold, .init = data) %>% 
+  count(x,y)  %>% 
+  mutate(y = -1*y) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_tile() + theme_void()
+
+ggplot2::theme_void()
+```
+
+
+## [Day 12](https://adventofcode.com/2021/day/12) 
+
+#### Part 1 / 2
+
+Today was difficult to keep up with all the rules.  Some of the caves were different in the examples (such as the small dead end cave had a large cave to return to in the final problem).  Had to do some data filtereing mid way to help with runtime issues.
+
+```{r}
+x <- ## read in and clean data
+  tibble(paths = read_lines(file = "day_12.txt")) %>% 
+  separate(col = paths, into = c("start", "end"), sep = "-") %>% 
+  rename_with(toupper) %>% 
+  mutate(start = if_else(END == "start" | START == "end", END, START)) %>% 
+  mutate(end = if_else(start == END, START, END)) %>% 
+  select(start,end) 
+
+upr_rev_paths <- x %>% ## large caves can go back and forth
+  filter(str_detect(start, '[:upper:]')|str_detect(end, '[:upper:]')) %>%
+  filter(end != "end" & start != "start") %>%
+  select(start = end, end = start)
+
+remove_these <- x %>% ## caves that are a dead end
+  pivot_longer(everything()) %>% 
+  filter(!str_detect(value, '[:upper:]')) %>% count(value) %>% filter(n==1) %>% pull(value)
+
+lwr_rev_paths <- x %>% ## small caves reverse path
+  filter(end != "end" & start != "start") %>% 
+  filter(!str_detect(start, '[:upper:]')) %>% 
+  filter(!str_detect(end, '[:upper:]')) %>% 
+  select(start = end, end = start) %>% 
+  filter(!start %in% remove_these | !end %in% remove_these)
+
+y <- x %>% bind_rows(upr_rev_paths) %>% bind_rows(lwr_rev_paths) %>% distinct() ## all cave paths
+
+first <- x %>% filter(start == "start") # from the start
+
+join_change_names <- function(x = out, iter_num = 1, part_2 = FALSE){ 
+  hold <- x %>% filter(end == "end") ## splits data to speed up code
+  progress <- x %>% filter(end != "end") ## this is the only data needing processing
+  out_1 <- progress %>% 
+  left_join(y, by = c("end" = "start")) %>% 
+    rename_with(~str_c(.,"_x")) %>% 
+    rename_with(~str_c("end"), .cols = last_col()) %>% 
+    rename_with(~str_c("start"), .cols = starts_with("start")) %>% 
+    unite(all, everything(), remove = F) 
+  if(part_2==FALSE){ ## part 1 criteria
+    out <- out_1 %>% 
+      filter(str_count(all, "ws")<=1) %>%
+      filter(str_count(all, "kq")<=1) %>%
+      filter(str_count(all, "yr")<=1) %>%
+      filter(str_count(all, "zo")<=1) %>%
+      filter(str_count(all, "np")<=1) %>%
+      filter(str_count(all, "xq")<=1) %>%
+      filter(str_count(all, "ra")<=1) %>%
+      select(-all) %>% 
+      bind_rows(hold)}
+  if(part_2==TRUE){ ### part 2 criteria
+    out <- out_1 %>% 
+      filter(str_count(all, "ws")<=2) %>%
+      filter(str_count(all, "kq")<=2) %>%
+      filter(str_count(all, "yr")<=2) %>%
+      filter(str_count(all, "zo")<=2) %>%
+      filter(str_count(all, "np")<=2) %>%
+      filter(str_count(all, "xq")<=2) %>%
+      filter(str_count(all, "ra")<=2) %>%
+      mutate(ws = str_count(all, "ws")==2) %>%
+      mutate(kq = str_count(all, "kq")==2) %>%
+      mutate(yr = str_count(all, "yr")==2) %>%
+      mutate(zo = str_count(all, "zo")==2) %>%
+      mutate(np = str_count(all, "np")==2) %>%
+      mutate(xq = str_count(all, "xq")==2) %>%
+      mutate(ra = str_count(all, "ra")==2) %>%
+      mutate(total = ws + kq + yr + zo + np + xq + ra) %>% 
+      filter(total <= 1) %>% 
+      select(-all,-ws,-kq,-yr,-zo,-np,-xq,-ra,-total) %>% 
+      bind_rows(hold)}
+  return(out)}
+
+1:20 %>% reduce(.f = join_change_names, .init = first) 
+
+```
+
+
+## [Day 11](https://adventofcode.com/2021/day/11) 
+
+#### Part 1
+
+In previous attempts, I've moved through the entire plane making changes as I get to them.  This time, I took a page from [David Robinsion's](https://twitter.com/drob) playbook and used `crossing()`.  I then used a while loop to progress through the octopus stages
+
+```{r}
+x <-
+  tibble(x = (read_lines("day_11.txt"))) %>% 
+  mutate(row = row_number()) %>% 
+  mutate(value = str_split(x,"")) %>% 
+  unnest(value) %>% 
+  mutate(value = as.numeric(value)) %>% 
+  group_by(row) %>% 
+  mutate(col = row_number()) %>% 
+  ungroup() %>% 
+  relocate(value, .after = col) %>% 
+  select(-x)
+
+adj <- expand.grid(xd = c(-1,0,1), yd = c(-1,0,1))
+
+adjacent <- function(x){
+  d <- x %>% distinct(row,col,value)
+  d2 <- x %>% distinct(row,col,value)
+  d %>% 
+    crossing(adj) %>% 
+    mutate(row2 = row +xd,
+           col2 = col + yd) %>%
+    arrange(row,col) %>% 
+    inner_join(d2, by = c(row2 = "row", col2 = "col"), suffix = c("", "2")) %>% 
+    filter(row != row2 | col != col2)  
+}
+
+flash_octopus <- function(x = x, iteration = 1) {
+  x <- x$x %>%
+    adjacent() %>%
+    mutate(across(.cols = c("value", "value2"), .fns = ~ . + 1))
+  tens <- 1
+  while (tens != 0) {
+    x <- x %>%
+      group_by(row, col) %>%  mutate(add_this_many = sum(value2 >= 10)) %>% ungroup() %>%
+      mutate(value = ifelse(value >= 10,-100, value)) %>%
+      mutate(value = value + add_this_many) %>%
+      adjacent()
+    tens <- x %>% distinct(row, col, value) %>% filter(value >= 10) %>% nrow()
+  }
+  flashes <- x %>% distinct(row, col, value) %>% count(did_flash = value < 0) %>% filter(did_flash) %>% pull(n)
+  if (length(flashes) == 0) {flashes <- 0}
+  x <- x %>% mutate(value = ifelse(value < 0, 0, value))
+  x <- list(x = x, flashes = flashes)
+  return(x)
+}
+
+x <- list(x = x, flashes = 0)
+
+## Answer 1
+accumulate(1:100, .f = flash_octopus, .init = x) %>% one_hundred %>% map(2) %>% unlist() %>% sum()
+```
+
+#### Part 2
+
+For part 2, let it run longer and find the first element that has 100 flashes.
+
+```{r}
+three_hundred <- accumulate(1:300, .f = flash_octopus, .init = x)
+
+which(unlist(map(three_hundred, 2)) == 100)[1] - 1
+```
+
+I also want to provide this function that proved helpful in viewing the matrix throughout. 
+
+```{r}
+see_matrix <- function(data = x){
+  data %>% 
+    distinct(row, col, value) %>% 
+    select(row,col,value) %>% 
+    pull(value) %>% 
+    matrix(nrow = 10, byrow = T)
+}
+```
+
+
+## [Day 10](https://adventofcode.com/2021/day/10) 
+
+#### Part 1
+
+I use a while loop to remove all 'open' 'close' pairings.  This helps find both corrupted and broken chunks.  I find the corrupted chunks and apply the scoring mechanism.
+
+```{r}
+input <-
+  tibble(chunks = read_lines("day_10.txt"))
+
+syntax_error_points <- ## points for each bracket type
+  tibble(chunks = c(")", "]", "}", ">"),
+         points = c(3, 57, 1197, 25137)
+         )
+
+input_list <- list(NULL, input) ## prepare list for iteration
+
+i <- 2 ## initialize iterator 
+while (!isTRUE(all.equal(input_list[i], input_list[i - 1]))) {
+  input <-  input %>%
+    mutate(chunks = str_remove_all(string = chunks, pattern = "<>|\\[\\]|\\(\\)|\\{\\}"))
+  i = i + 1
+  input_list[[i]] <- input
+} ## this iteratively removes all open/closed pairings until the df does not change between iterations
+
+input_list %>% tail(1) %>% pluck(1) %>% ## select the last list
+  mutate(chunks = str_remove_all(string = chunks, pattern = "<|\\[|\\(|\\{")) %>% ## remove openings
+  filter(chunks != "") %>% ## remove extraneous lines
+  mutate(chunks = str_sub(chunks, 1, 1)) %>% ## select the first opening
+  count(chunks) %>% ## count them up!
+  left_join(syntax_error_points, by = "chunks") %>%  ## join in points
+  summarise(score = sum(n * points)) ## score the process
+```
+
+## Part 2
+
+I take the incomplete chunks from the previous part and map over the score_points function for the final answer.
+
+```{r}
+incomplete_df <- ## identify chunks with incomplete strings
+  input_list %>% tail(1) %>% pluck(1) %>% ## selects list element with all open/closed pairs removed
+  mutate(chunks = str_remove_all(string = chunks, pattern = "<|\\[|\\(|\\{")) %>% ## removes opens
+  mutate(incomplete_strings = row_number()) %>% ## ids each pattern
+  filter(chunks == "") %>% ## removes extraneous lines
+  select(id = chunks, incomplete_strings) ## now have df with incomplete strings identified
+
+matching_df <- ## create scoring df for joining later
+  tibble(
+    chunks = c("(", "[", "{", "<"),
+    right = c(")", "]", "}", ">"),
+    points = c(1, 2, 3, 4))
+
+incomplete_list <-  ## creates list of points
+  input %>%  mutate(incomplete_strings = row_number()) %>%
+  semi_join(incomplete_df, by = "incomplete_strings") %>% ## only keep the chunks that are incomplete
+  separate_rows(chunks, sep = "") %>% 
+  left_join(matching_df, by = "chunks") %>% ## add in points
+  filter(!is.na(right)) %>%
+  group_by(incomplete_strings) %>% mutate(row_num = row_number()) %>% arrange(desc(row_num)) %>%
+  select(-row_num) %>% ## puts the chunks in the right order
+  group_split() %>% ## splits them for future map function
+  map(.f = ~ pull(.data = .x, points)) ## only keeps the column we want
+
+score_points <- function(current_vector = points, index) {
+    current_vector[index] <- current_vector[index - 1] * 5 + current_vector[index]
+    return(current_vector)} ## function to execute partial scoring function
+
+score_everything <- function(data) {
+  2:length(data) %>%
+    reduce(.f = score_points, .init = data) %>%
+    tail(1)} ## function which scores entire vector
+
+incomplete_list %>%
+  map_dbl(.f = ~ score_everything(data = .x)) %>%
+  sort() %>% median() ## maps all lists over scoring function
+
+```
+
+
+## [Day 9](https://adventofcode.com/2021/day/9) 
+
+#### Part 1
+
+To find the number of low points I map across a function that determines if each place is a depression. After the identification, I use the problems formula to sum up the risk levels.
+
+```{r}
+input <-
+  matrix(read_lines("02_data/day_9.txt")) %>% 
+  strsplit("") %>% unlist() %>% as.numeric() %>% matrix(byrow = T, nrow = 100) 
+
+checker <- function(row, col){
+  if(col < ncol(input)){right <- input[row,col]-input[row,col+1] < 0}else{right<-1} # check right
+  if(col != 1)         {left  <- input[row,col]-input[row,col-1] < 0}else{left<-1}  # check left
+  if(row != 1)         {upper <- input[row,col]-input[row-1,col] < 0}else{upper<-1} # check up
+  if(row < nrow(input)){lower <- input[row,col]-input[row+1,col] < 0}else{lower<-1} # check down
+  
+  out <- tibble(number = input[row,col], row = row, col = col, 
+                num_increase = sum(right,left,upper,lower)) # this sums every direction that has an increase
+  return(out)
+}
+
+future_map2_dfr(.x = sort(rep(1:nrow(input),ncol(input))),
+                .y = rep(1:ncol(input),nrow(input)),
+                .f = ~checker(row = .x,col = .y), .progress = T) %>% 
+  filter(num_increase == 4) %>% 
+  mutate(number = number + 1) %>% 
+  summarise(answer = sum(number))
+```
+
+#### Part 2
+
+I again map over a function that looks in all directions and determines if it is touching a place that is not a 9. I count the basins one at a time and add up the size of the basins.
+
+```{r}
+id_reduce_count_replace <- function(input){
+  input <- unique.matrix(input$input, MARGIN = 1) ## gets rid of rows already searched to speed up code
+  input <- t(input) %>% str_c(collapse = "") %>% str_replace(pattern = "[^X]", replacement = "B") %>% 
+    str_split(pattern = "") %>% unlist() %>% matrix(byrow = T, nrow = nrow(input))
+    ## above determines first spot of basin in top row
+  identified_basin <- reduce2(.x = ## there is probably a better way to come up with these vectors to map over
+                                c(sort(rep(1:nrow(input),ncol(input))),
+                                  rev(sort(rep(1:nrow(input),ncol(input)))),
+                                  sort(rep(1:nrow(input),ncol(input))),
+                                  rev(sort(rep(1:nrow(input),ncol(input))))),
+                              .y = 
+                                c(rep(1:ncol(input),nrow(input)),
+                                  rep(1:ncol(input),nrow(input)),
+                                  rev(rep(1:ncol(input),nrow(input)),
+                                  rep(1:ncol(input),nrow(input)))), 
+                              .f = sweep, .init = input) ## iterates over all places on matrix to determine if basin
+  
+  basin_size <- identified_basin %>%  str_count("B") %>% sum() # identify to of new basin
+
+  input <- str_replace_all(identified_basin,"B", "X") %>% matrix(byrow = F, nrow = nrow(input)) # delete basin tracking
+  
+  if(sum(str_count(input, pattern = "X"))==sum(nchar(input))){message("Finished")} # create an error if complete
+
+  return(list(input = input, basin_size = basin_size))
+}
+
+initial <-
+  matrix(read_lines("02_data/day_9.txt")) %>%
+  strsplit("") %>% unlist() %>% str_replace_all(pattern = "9","X") %>% 
+  matrix(byrow = T, nrow = 100) 
+
+input <- list(input = initial, basin_size = NULL)
+
+sweep <- function(input, row, col){
+  if(col != ncol(input))  {input[row,col][input[row,col+1]=="B" && input[row,col] !="X"] <- "B"} # look right
+  if(row != nrow(input))  {input[row,col][input[row+1,col]=="B" && input[row,col] !="X"] <- "B"} # look down
+  if(col != 1)            {input[row,col][input[row,col-1]=="B" && input[row,col] !="X"] <- "B"} # look left
+  if(row != 1)            {input[row,col][input[row-1,col]=="B" && input[row,col] !="X"] <- "B"} # look up
+  return(input)
+}
+
+tictoc::tic()
+accumulate(.x = 1:225, .f = id_reduce_count_replace, .init = input) %>% map(2) %>% unlist() %>% sort() %>% tail(3) %>% prod()
+tictoc::toc()
+## took just under 300 seconds
+
+```
+
+
+## [Day 8](https://adventofcode.com/2021/day/8) 
+
+#### Part 1
+
+For part 1, I separate the string to grab the element of interest, I count the length of the unique output values, and count how many time this happens.
+
+```{r}
+tibble(entry = read_lines("day_8.txt")) %>%
+  separate(col = entry, into = c("NA","output"),sep = " \\| ") %>% 
+  mutate(id = row_number()) %>%
+  separate_rows(output, sep = " ") %>% 
+  mutate(length = nchar(output)) %>% 
+  count(length) %>%
+  filter(length %in% c(2,3,4,7)) %>%
+  summarise(sum = sum(n))
+```
+
+#### Part 2
+
+Part 2 is a little less elegant. I extract the signal patterns and use a set of functions to identify which strings become each number. I then map over all entrys to identify the letters.  Next I join in the output values to determine the numerical output values.
+
+```{r}
+initial <-
+  tibble(entry = read_lines("day_8.txt")) %>%
+  separate(col = entry, into = c("signal","output"),sep = " \\| ") %>% 
+  mutate(id = row_number()) %>%
+  separate_rows(signal, sep = " ") %>% 
+  rowwise() %>% 
+  mutate(signal = str_c(sort(unlist(str_split(signal,""))), collapse = "")) %>% ungroup() %>% 
+  select(-output)
+
+output_tbl <-
+  tibble(entry = read_lines("day_8.txt")) %>%
+  separate(col = entry, into = c("signal","output"),sep = " \\| ") %>% 
+  mutate(id = row_number()) %>%
+  separate_rows(output, sep = " ") %>% 
+  rowwise() %>% 
+  mutate(output = str_c(sort(unlist(str_split(output,""))), collapse = "")) %>% ungroup() %>% 
+  select(-signal) %>% 
+  group_by(id) %>% 
+  summarise(output = str_c(output, collapse = " ")) %>% 
+  ungroup() %>% 
+  separate_rows(output, sep = " ") %>% 
+  mutate(order = row_number())
+
+identify_obvious <- function(initial){
+  out <- initial %>% 
+    mutate(number = case_when(nchar(signal) == 2 ~ 1,
+                              nchar(signal) == 3 ~ 7,
+                              nchar(signal) == 4 ~ 4,
+                              nchar(signal) == 7 ~ 8,
+                              TRUE ~ 0
+                              )) %>% 
+    filter(number !=0) %>% 
+    arrange(number)
+  return(out)
+}
+  
+identify_3 <- function(known, initial){
+  seven <-
+    known  %>% filter(number %in% c(7)) %>% 
+    pull(signal) %>% str_split("") %>% unlist()
+  three <-  
+    initial %>% 
+    filter(nchar(signal) == 5) %>% 
+    mutate(split = signal) %>% 
+    separate_rows(split, sep = "") %>% 
+    filter(split %in% seven) %>% 
+    group_by(signal) %>% filter(n() == 3) %>% ungroup(signal) %>% 
+    distinct(signal, .keep_all = T) %>% 
+    select(-split) %>% 
+    mutate(number = 3) %>% 
+    bind_rows(known) %>% 
+    arrange(number)
+  return(three)
+}
+
+identify_9 <- function(known, initial){
+  three <-
+    known  %>% filter(number %in% c(3)) %>% 
+    pull(signal) %>% str_split("") %>% unlist()
+  nine <-
+    initial %>% 
+    filter(nchar(signal) == 6) %>% 
+    mutate(split = signal) %>% 
+    separate_rows(split, sep = "") %>% 
+    filter(split %in% three) %>% 
+    group_by(signal) %>% filter(n() == 5) %>% ungroup(signal) %>% 
+    distinct(signal, .keep_all = T) %>% 
+    select(-split) %>% 
+    mutate(number = 9) %>% 
+    bind_rows(known) %>% 
+    arrange(number)
+  return(nine)
+}
+
+identify_0 <- function(known, initial){
+  one <-
+    known  %>% 
+    filter(number %in% c(1)) %>% 
+    pull(signal) %>% 
+    str_split("") %>% unlist()
+  zero <-
+    initial %>% 
+    anti_join(known, by = c("signal", "id")) %>% 
+    filter(nchar(signal) == 6) %>%   
+    mutate(split = signal) %>% 
+    separate_rows(split, sep = "") %>% 
+    filter(split %in% one) %>% 
+    group_by(signal) %>% filter(n() == 2) %>% ungroup(signal) %>% 
+    distinct(signal, .keep_all = T) %>% 
+    select(-split) %>% 
+    mutate(number = 0) %>% 
+    bind_rows(known) %>% 
+    arrange(number)
+  return(zero)
+}
+
+identify_6 <- function(known, initial){
+  known <-
+    initial %>% 
+    anti_join(known, by = c("signal", "id")) %>% 
+    filter(nchar(signal) == 6) %>%
+    mutate(number = 6) %>% 
+    bind_rows(known) %>% 
+    arrange(number)
+  return(known)
+}
+
+identify_5_2 <- function(known, initial){
+  part <-
+    known %>% 
+    filter(number %in% c(1,4)) %>% 
+    separate_rows(signal, sep = "") %>% 
+    group_by(signal) %>% filter(n()==1) %>% 
+    pull(signal) %>% str_split("") %>% unlist()
+  last <- 
+    initial %>% 
+    anti_join(known, by = c("signal", "id")) %>% 
+    mutate(side = signal) %>% 
+    separate_rows(side, sep = "")  %>% 
+    filter(side %in% part) %>% 
+    group_by(signal) %>% 
+    mutate(number = if_else(n()==2,5,2)) %>% 
+    ungroup() %>% select(-side) %>% distinct() %>% 
+    bind_rows(known) %>% 
+    arrange(number)
+return(last)
+}
+
+all_together <- function(initial) {
+  all <-
+    initial %>%
+    identify_obvious() %>%
+    identify_3(initial = initial) %>%
+    identify_9(initial = initial) %>%
+    identify_0(initial = initial) %>%
+    identify_6(initial = initial) %>%
+    identify_5_2(initial = initial)
+  return(all)
+}
+
+initial %>% group_split(id) %>% 
+  map_df(~all_together(initial = .x)) %>% 
+  left_join(output_tbl, by = c("signal" = "output", "id" = "id")) %>% 
+  filter(!is.na(order)) %>% arrange(order) %>% 
+  group_by(id) %>% 
+  summarise(signal = str_c(signal, collapse = " "), 
+            number = as.numeric(str_c(number, collapse = ""))) %>% 
+  summarise(solution = sum(number))
+  
+```
+
+
+## [Day 7](https://adventofcode.com/2021/day/7) 
+
+#### Part 1
+
+To solve part 1, I create a function that finds the distance between all points to a specific point, map across all specific points, and then find the minimum distance.
+
+<!-- dat <- read_lines("content/post/2021-12-01-advent-of-code-2021/day_7.txt") %>% str_split(",") %>% unlist() %>% as.numeric() -->
+
+```{r}
+dat <- as.numeric(unlist(str_split(read_lines("02_data/day_7.txt"),","))) 
+
+distance <- function(data = dat, position) {
+  out <- sum(abs(data - position))
+  return(out)
+}
+
+min(dat):max(dat) %>% 
+  map_dbl(.f = ~distance(data = dat, position = .x)) %>% min()
+
+```
+
+#### Part 2
+
+I alter the distance formula to find the triangular number between two numbers. This can also be factored into the binomial coefficient with the upper index being the distance between the numbers and 2 as the lower index.
+
+
+```{r}
+distance_plus <- function(data = dat, position) {
+  n <-abs(data-position)+1
+  out <- sum(choose(n,2))
+  return(out)
+}
+
+min(dat):max(dat) %>% 
+  map_dbl(.f = ~distance_plus(data = dat, position = .x)) %>% min()
+```
+
+#### Code Golfing
+
+This last code chunk is my attempt at 'code golfing' - aka - how succinct can I make my code.  I can answer both parts with fairly brief code, but I think its less understandable.
+
+```{r}
+fuel_calculation <- function(data = dat, position, type) {
+  if(type == "distance"){out <- tibble(fuel = sum(abs(data - position)), position = position, type)}
+  if(type == "triangular"){out <- tibble(fuel = sum(choose(abs(data-position)+1,2)), position = position, type)}
+  return(out)
+}
+
+rep(min(dat):max(dat), 2) %>%
+  map2_dfr(.y = c(rep("distance", length(min(dat):max(dat))), rep("triangular", length(min(dat):max(dat)))),
+    .f = ~ fuel_calculation(data = dat,position = .x, type = .y)) %>%
+  group_split(type) %>%
+  map( ~ filter(.x, fuel == min(fuel)))
+```
+
+
+
+
+## [Day 6](https://adventofcode.com/2021/day/6) 
+
+#### Part 1 and 2
+
+My gut instinct is to always think in 'tidy' coding concepts. This will get the answer, but when moving from part 1 to part 2, the time it takes to run the code becomes computationally infeasible with my computer. I'll show my 3 attempts.
+
+#### Strike 1
+
+```{r echo=TRUE, cache=TRUE, eval = T} 
+initial_fish <- tibble(fish = read_lines("day_6.txt")) %>%
+  separate_rows(fish, sep = ",", convert = T) 
+
+progress_day <- function(fish = initial_fish, after_day = 1){
+fish <-
+  fish %>% 
+  mutate(fish = ifelse(fish <= 0 , "6,8", fish-1)) %>% 
+  separate_rows(fish, sep = ",", convert = T) 
+return(fish)
+}
+
+tictoc::tic()
+ans <- 1:80 %>% 
+# ans <- 1:256 %>% nope!
+  reduce(.f = progress_day, .init = initial_fish) %>% nrow()
+tictoc::toc()
+```
+
+My second attempt was a 'non-tidy' solution, but part 2 also took too long to run.
+
+#### Strike 2
+
+```{r echo=TRUE, cache=TRUE, eval = T} 
+initial_fish <- as.numeric(unlist(strsplit(readr::read_lines("day_6.txt"),",")))
+
+progress_day <- function(fish = initial_fish, after_day = 1) {
+  
+  add_fish <- sum(fish == 0)
+  next_day <- fish - 1
+  next_day[next_day < 0] <- 6
+
+  out <- c(next_day, rep(8, add_fish))
+return(out)  
+}
+
+tictoc::tic()
+ans <- 1:150 %>% 
+# ans <- 1:256 %>% faster, but nope! 
+  reduce(.f = progress_day, .init = initial_fish) %>% length()
+tictoc::toc() 
+```
+
+Lastly, instead of building out a vector for each fish, I decided to count the number of fish at each state of their birthing countdown.  This make things work nice and quick.
+
+#### Success!
+
+```{r echo=TRUE, cache=TRUE, eval = T} 
+fish <- as.numeric(unlist(strsplit(read_lines("day_6.txt"),",")))
+ 
+initial_fish <- c(
+length(fish[fish==8]),
+length(fish[fish==7]),
+length(fish[fish==6]),
+length(fish[fish==5]),
+length(fish[fish==4]),
+length(fish[fish==3]),
+length(fish[fish==2]),
+length(fish[fish==1]),
+length(fish[fish==0]))
+
+progress_day <- function(fish = initial_fish, after_day = 1){
+
+births = fish[9]
+get_older <- replace_na(lag(fish),0)
+out <- c(births, get_older[2], get_older[3]+births, get_older[-c(1:3)])
+return(out)
+}
+
+tictoc::tic()
+ans <- 1:256 %>% 
+  reduce(.f = progress_day, .init = initial_fish) %>% sum()
+tictoc::toc()
+```
+
+
+## [Day 5](https://adventofcode.com/2021/day/5) 
+
+#### Part 1
+
+For this problem, I created a matrix to track the lines of the hydrothermic vents. In part one, each line was straight so I was able to build this matrix fairly simply.  I had to create a toggle for vents that were horizontal vs vertical.
+
+```{r}
+
+movements <-
+  tibble(directions = read_lines("day_5.txt")) %>%
+  mutate(directions = str_replace_all(string = directions, pattern = " -> ", ",")) %>% 
+  separate(col = directions, into = c("x1", "y1", "x2", "y2"), sep = ",", convert = T) %>% 
+  select(x1,x2,y1,y2) 
+
+create_lines <- function(lines){
+
+move <- lines
+
+if(move$y1==move$y2) {
+  xlow  <- min(move$x1, min(move$x2))
+  xhigh <- max(move$x1, min(move$x2))
+  ylow  <- min(move$y1, min(move$y2))
+  yhigh <- max(move$y1, min(move$y2))
+  byrow <- T
+} else if (move$x1 == move$x2) {
+  ylow  <- min(move$x1, min(move$x2))
+  yhigh <- max(move$x1, min(move$x2))
+  xlow  <- min(move$y1, min(move$y2))
+  xhigh <- max(move$y1, min(move$y2))
+  byrow <- F
+}
+
+out <-
+  matrix(
+    c(
+      rep(rep(0,1000),ylow), ## zeroes before row/col
+      c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
+      rep(rep(0,1000),999-ylow) ## zeroes after row/col
+      ), byrow = byrow, nrow = 1000, ncol = 1000
+    )
+
+return(out)
+
+}
+
+movements %>% 
+  filter(x1==x2 | y1==y2) %>% 
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~create_lines(lines = .x)) %>% 
+  reduce(`+`) %>% 
+  as_tibble() %>% 
+  pivot_longer(cols = everything()) %>% 
+  filter(value >=2) %>% 
+  count()
+```
+
+#### Part 2
+
+In this part some of the vents were diagonal.  I used the first function to mark the straight vents and created a second function to trace the ones at an angle.  I had to condition this off the top right to bottom left lines verses the top left to bottom right lines.
+
+```{r}
+cross_routes <- function(move){
+
+  xlow  <- min(move$x1, min(move$x2))
+  xhigh <- max(move$x1, min(move$x2))
+  ylow  <- min(move$y1, min(move$y2))
+  yhigh <- max(move$y1, min(move$y2))
+
+mat <- matrix(rep(0,1000000), ncol = 1000) # create a 1000 x 1000 matrix
+if((move$x2>move$x1 & move$y2>move$y1) | (move$x2<move$x1 & move$y2<move$y1)){
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xlow+i] <- 1
+  }
+} else{ ## vent is top left to bottom right
+  for (i in 1:length(xlow:xhigh)) {
+    mat[ylow+i,xhigh+2-i] <- 1
+  }
+}## determine if vent is top right to bottom left
+return(mat)
+}
+
+striaght_lines <- # from part 1
+  movements %>% 
+  filter(x1==x2 | y1==y2) %>% # straight lines
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~create_lines(lines = .x)) %>% 
+  reduce(`+`) 
+
+diagonal_lines <-
+  movements %>%
+  filter(x1!=x2 & y1!=y2) %>% # diagonal lines
+  group_split(row_number(), .keep = F) %>% 
+  purrr::map(~cross_routes(move = .x)) %>% 
+  reduce(`+`) 
+ 
+as_tibble(striaght_lines + diagonal_lines) %>% 
+  pivot_longer(cols = everything()) %>%
+  filter(value >=2) %>%
+  count()
+
+```
+
+
+## [Day 4](https://adventofcode.com/2021/day/4)
+
+I feel like this could be done more simply, but today I create a function that take the bingo number, adjudicates each board, determines if there is a winner, then outputs the next board.  Then we use `purrr::accumulate()` and `purrr::possibly()` to handle errors that I intentionally create.
+
+#### Part 1
+
+```{r}
+data <- read_lines("day_4.txt")
+
+selections <-
+  data[1] %>% str_split(",") %>% unlist() %>% str_pad(2,"left") %>% str_pad(3,"right")
+
+boards <-
+  tibble(cards = data[-1]) %>% 
+  filter(cards != "") %>%
+  mutate(cards = str_squish(cards)) %>% 
+  transmute(col = str_split_fixed(cards, pattern = " ", n = 5)) %>% 
+  pull(col) %>% as_tibble() %>% 
+  mutate(across(.cols = everything(),.fns = ~str_pad(str_pad(.,2,"left"),3,"right"))) %>% 
+  mutate(card_number = sort(rep(1:(n()/5),5))) %>% 
+  mutate(winner = 0)
+
+boards_list <- list(boards = boards, win_card = integer(0))
+
+mark_board <- function(boards_list = boards_list, selection = selections[1]){
+  if(length(boards_list$win_card) > 0){stop(boards_list)}
+  boards <- boards_list$boards
+  marked <-
+    boards %>% 
+    mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = "X")))
+  row_win_card <-
+    marked %>%
+    mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),"X")) %>% 
+    filter(row_bingo==5)  %>% 
+    pull(card_number)
+  col_win_card <-
+    marked %>% 
+    mutate(across(.cols = V1:V5, .fns = ~ifelse(.=="X",1,0))) %>% 
+    group_by(card_number) %>% 
+    summarise(across(everything(), ~sum(.))) %>% 
+    filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %>% 
+    pull(card_number)
+  card_number <- ifelse(length(row_win_card) > 0, row_win_card, ifelse(length(col_win_card) > 0, col_win_card, integer(0)))
+  if(is.na(card_number)){card_number <- integer(0)}
+  out <- list(boards = marked, win_card = card_number, selection = selection)
+  return(out)
+}
+
+mark_board_poss <- possibly(mark_board, otherwise = NULL)
+
+winning_card <- 
+selections %>% 
+  accumulate(.f = mark_board_poss, .init = boards_list) %>% 
+  discard(is.null) %>% 
+  pluck(length(.)) 
+
+winning_card$boards %>% 
+  filter(card_number == winning_card$win_card) %>% 
+  select(-card_number) %>% 
+  mutate(across(everything(), ~as.numeric(.))) %>% 
+  as.matrix() %>% sum(na.rm = T) %>% prod(as.numeric(winning_card$selection))
+```
+
+#### Part 2
+
+```{r}
+boards_list <- list(boards = boards)
+
+mark_board_2 <- function(boards_list = boards_list, selection = selections[41]){
+
+  if(max(boards_list$boards$winner)==100){stop(boards_list)}
+  
+  boards <- boards_list$boards
+  
+  marked <-
+    boards %>% 
+    mutate(across(.cols = 1:5, .fns = ~str_replace_all(string = ., pattern = selection, replacement = "X")))
+  
+  row_win_card <-
+    marked %>%
+    mutate(row_bingo = str_count(str_c(V1,V2,V3,V4,V5),"X")) %>% 
+    filter(row_bingo==5)  %>% 
+    pull(card_number)
+  
+  col_win_card <-
+    marked %>% 
+    mutate(across(.cols = V1:V5, .fns = ~ifelse(.=="X",1,0))) %>% 
+    group_by(card_number) %>% 
+    summarise(across(everything(), ~sum(.))) %>% 
+    filter(V1 ==5|V2 ==5|V3 ==5|V4 ==5|V5 ==5) %>% 
+    pull(card_number)
+  
+  if(length(row_win_card)>0 & nrow(marked) == 5){
+    marked <- 
+      marked %>% 
+      mutate(winner = 100)
+    return(out <- list(boards = marked, selection = selection))
+    } else if(length(row_win_card)>0){
+    marked <- 
+    marked %>% 
+      filter(!card_number %in% row_win_card)
+  }
+  if(length(col_win_card)>0 & nrow(marked) == 5){
+    marked <- 
+    marked %>% 
+      mutate(winner = 100)
+    return(out <- list(boards = marked, selection = selection))
+  } else if(length(col_win_card)>0){
+    marked <- 
+    marked %>% 
+      filter(!card_number %in% col_win_card)
+  }
+  
+  out <- list(boards = marked, selection = selection)
+  
+  return(out)
+  
+}
+
+mark_board_2_poss <- possibly(mark_board_2, otherwise = NULL)
+
+winning_card <-
+selections %>% 
+  accumulate(mark_board_2_poss, .init = boards_list) %>% 
+  discard(is.null) %>% 
+  pluck(length(.))
+
+winning_card$boards %>% 
+  select(V1:V5) %>% 
+  mutate(across(everything(), ~as.numeric(.))) %>% 
+  as.matrix() %>% sum(na.rm = T) %>% prod(as.numeric(winning_card$selection))
+```
+
+
+## [Day 3](https://adventofcode.com/2021/day/3)
+
+I rely on several pivots, `unite()`, and the iterative function `purrr::reduce()` for this problem. 
+
+#### Part 1
+
+```{r}
+tibble(binary = read_lines("day_3.txt")) %>% 
+  transmute(col = str_split_fixed(binary, pattern = "", n = nchar(binary))) %>% 
+  pull(col) %>% as_tibble() %>% 
+  summarise(across(.cols = everything(), .fns = ~if_else(mean(as.numeric(.))>.5,1,0))) %>% 
+  pivot_longer(cols = everything(), values_to = "gamma", names_to = "slot")  %>% 
+  mutate(epsilon = if_else(gamma == 1, 0, 1)) %>% 
+  pivot_longer(cols = -slot) %>% 
+  pivot_wider(names_from = slot, values_from = value) %>% 
+  unite(col = "binary",  where(is.double), sep = "")  %>% 
+  mutate(decimal = strtoi(as.double(binary), base = 2)) %>% 
+  pull(decimal) %>% prod()
+```
+
+#### Part 2
+
+```{r}
+data <-
+tibble(binary = read_lines("day_3.txt")) %>% 
+  transmute(col = str_split_fixed(binary, pattern = "", n = nchar(binary))) %>% 
+  pull(col) %>% as_tibble() %>% 
+  summarise(across(.cols = everything(), .fns = ~as.numeric(.))) 
+
+filter_rating <- function(data, col = "V1", type = "oxygen"){
+  if(nrow(data)==1){out <- data} 
+  else if(type == "oxygen"){out <- data[data[,col]==if_else(mean(data[,col][[1]])>=.5,1,0),]}
+  else if(type == "co2"){out <- data[data[,col]==if_else(mean(data[,col][[1]])<.5,1,0),]}
+}
+  
+reduce(.x = names(data), .f = filter_rating, .init = data, "oxygen") %>%
+  unite(col = "binary",everything(), sep = "") %>% 
+  pull() %>% strtoi(base = 2) *
+
+reduce(.x = names(data), .f = filter_rating, .init = data, "co2") %>%
+  unite(col = "binary",everything(), sep = "") %>% 
+  pull() %>% strtoi(base = 2)
+
+```
+
+
+## [Day 2](https://adventofcode.com/2021/day/2)
+
+Today I used `seperate()` and `cumsum()` to work this problem.
+
+#### Part 1
+
+```{r}
+tibble(x = read_lines("day_2.txt")) %>% 
+  separate(col = x, into = c("direction","distance"), convert = TRUE) %>% 
+  group_by(real_direction = direction == "forward") %>% 
+  mutate(distance = ifelse(direction == "up", distance * -1, distance)) %>% 
+  summarise(movement = sum(distance)) %>% 
+  pull(movement) %>% prod()
+```
+
+#### Part 2
+
+```{r}
+tibble(x = read_lines("day_2.txt")) %>% 
+  separate(col = x, into = c("direction","distance"), convert = TRUE) %>%
+  mutate(distance = as.double(distance)) %>% 
+  mutate(aim_change = case_when(direction == "forward" ~ 0,
+                                direction == "down" ~ distance,
+                                direction == "up" ~ -1 * distance)) %>% 
+  mutate(aim = cumsum(aim_change)) %>% 
+  mutate(horizontal_position_increase = ifelse(direction == "forward", distance, 0)) %>% 
+  mutate(depth_position_increase = ifelse(direction == "forward", aim * distance,0)) %>% 
+  mutate(horizontal_position = cumsum(horizontal_position_increase)) %>% 
+  mutate(depth_position = cumsum(depth_position_increase)) %>% 
+  slice_tail(n = 1) %>% 
+  summarise(answer = horizontal_position * depth_position) 
+
+```
+
+
+### [Day 1](https://adventofcode.com/2021/day/1)
+
+Using `lag()` and `zoo::rollsum()` we are able to accomplish day one pretty easily.
+
+#### Part 1
+
+```{r}
+tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%  
+  filter(measurements > lag(measurements,1)) %>% 
+  nrow()
+```
+
+#### Part 2
+
+```{r}
+tibble(measurements = as.numeric(read_lines("day1.txt"))) %>%
+  mutate(roll_sum = zoo::rollsum(measurements,3, fill = NA, align = "right")) %>%
+  filter(roll_sum > lag(roll_sum,1)) %>%
+  nrow()
+```
+
