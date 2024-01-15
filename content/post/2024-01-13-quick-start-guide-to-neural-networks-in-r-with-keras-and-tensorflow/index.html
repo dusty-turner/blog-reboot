@@ -5,8 +5,12 @@ date: '2024-01-12'
 slug: []
 categories:
   - Neural Networks
+  - Machine Learning
+  - Data Science
 tags:
   - Neural Networks
+  - Machine Learning
+  - Data Science
 cover: /media/tfk.png
 ---
 
@@ -23,7 +27,7 @@ cover: /media/tfk.png
 <h2>Prerequisites</h2>
 <p>Since {Keras} is a Python-based package, you’ll need to ensure you have Python installed. You can download Python from <a href="https://www.python.org/downloads/">the official Python website</a>. After setting up Python, you’ll need to install Keras and {TensorFlow} in R. The following explanation, taken from the {Keras} documentation, details the installation process:</p>
 <blockquote>
-<p>This function will install Tensorflow and all Keras dependencies. This is a thin wrapper around <code>tensorflow::install_tensorflow()</code>, with the only difference being that this includes by default additional extra packages that keras expects, and the default version of tensorflow installed by <code>install_keras()</code> may at times be different from the default installed by <code>install_tensorflow()</code>. The default version of tensorflow installed by <code>install_keras()</code> is “2.13”.</p>
+<p>This function will install Tensorflow and all Keras dependencies. This is a thin wrapper around <code>tensorflow::install_tensorflow()</code>, with the only difference being that this includes by default additional extra packages that keras expects, and the default version of tensorflow installed by <code>install_keras()</code> may at times be different from the default installed by <code>install_tensorflow()</code>.</p>
 </blockquote>
 <pre class="r"><code>install.packages(&quot;keras&quot;)
 install_keras()</code></pre>
@@ -534,19 +538,19 @@ data &lt;- tibble(
 </div>
 <div id="neural-network" class="section level2">
 <h2>Neural Network</h2>
-<p><strong>Split into test and train</strong></p>
-<pre class="r"><code>library(keras)</code></pre>
-<pre><code>## Warning: package &#39;keras&#39; was built under R version 4.3.2</code></pre>
-<pre class="r"><code>set.seed(0)
+<p><strong>Split into Test and Train</strong></p>
+<pre class="r"><code>library(keras)
+
+set.seed(0)
 
 split_index &lt;- sample(1:nrow(data), size = 0.8 * nrow(data))
 train_data &lt;- data[split_index, ]
 test_data &lt;- data[-split_index, ]</code></pre>
 <div id="define-the-model-architecture" class="section level3">
 <h3>Define the Model Architecture</h3>
-<pre class="r"><code>model &lt;- keras_model_sequential() %&gt;%
-  layer_dense(units = 100, activation = &#39;relu&#39;, input_shape = ncol(train_data) - 1) %&gt;%
-  layer_dense(units = 100, activation = &#39;relu&#39;) %&gt;%
+<pre class="r"><code>model &lt;- keras_model_sequential() |&gt;
+  layer_dense(units = 100, activation = &#39;relu&#39;, input_shape = ncol(train_data) - 1) |&gt;
+  layer_dense(units = 100, activation = &#39;relu&#39;) |&gt;
   layer_dense(units = 1, activation = &#39;sigmoid&#39;)</code></pre>
 <p><strong>Model Architecture Details</strong></p>
 <ul>
@@ -568,9 +572,9 @@ test_data &lt;- data[-split_index, ]</code></pre>
 </ul>
 </div>
 <div id="compile-the-model" class="section level3">
-<h3>Compile the model</h3>
+<h3>Compile the Model</h3>
 <p>The next block of code “compiles” the model and configures it for training. It sets up up the optimizer, loss function, and metrics:</p>
-<pre class="r"><code>model %&gt;% compile(
+<pre class="r"><code>model |&gt; compile(
   optimizer = &#39;adam&#39;,
   loss = &#39;binary_crossentropy&#39;,
   metrics = c(&#39;accuracy&#39;, 
@@ -606,9 +610,9 @@ test_data &lt;- data[-split_index, ]</code></pre>
 </div>
 </div>
 <div id="fitting-the-model" class="section level2">
-<h2>Fitting the model</h2>
+<h2>Fitting the Model</h2>
 <p>The following code block is for fitting (training) the neural network model. It specifies the training data, number of training cycles (epochs), and other important parameters:</p>
-<pre class="r"><code>history &lt;- model %&gt;% fit(
+<pre class="r"><code>history &lt;- model |&gt; fit(
   x = as.matrix(train_data[,-7]),
   y = as.matrix(train_data[,7]),
   epochs = 20,
@@ -656,12 +660,12 @@ test_data &lt;- data[-split_index, ]</code></pre>
 test_data |&gt; mutate(predictions = predict(model, as.matrix(test_data[,-7]), verbose = 0)[,1]) |&gt; 
   mutate(binary_prediction = as.factor(ifelse(predictions &gt; .5,1,0))) </code></pre>
 <div id="evaluating-the-model" class="section level2">
-<h2>Evaluating the model</h2>
+<h2>Evaluating the Model</h2>
 <p>We can find the accuracy, prediction, and recall using {keras} or…</p>
-<pre class="r"><code>out &lt;- model %&gt;% evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
+<pre class="r"><code>out &lt;- model |&gt; evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
 out </code></pre>
 <pre><code>##      loss  accuracy precision    recall 
-## 0.2398572 0.8923611 0.8254620 0.7528090</code></pre>
+## 0.2405091 0.8963293 0.8256513 0.7715356</code></pre>
 <p>…using {yardstick}.</p>
 <pre class="r"><code>library(yardstick)
 classification_metrics &lt;- metric_set(accuracy, precision, recall)
@@ -1123,13 +1127,13 @@ test_data_w_preds |&gt;
   <tbody class="gt_table_body">
     <tr><td headers=".metric" class="gt_row gt_left">accuracy</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">89.15%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">89.55%</td></tr>
     <tr><td headers=".metric" class="gt_row gt_left">precision</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">91.28%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">91.87%</td></tr>
     <tr><td headers=".metric" class="gt_row gt_left">recall</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">94.20%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">94.07%</td></tr>
   </tbody>
   
   
@@ -1139,7 +1143,7 @@ test_data_w_preds |&gt;
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="thats-a-wrap" class="section level2">
-<h2>That’s a wrap</h2>
+<h2>That’s a Wrap</h2>
 <p>I’ve tried to provide step-by-step introductions to implement a neural network for in R using the {Keras} package. We walked through generating reproducible sample data, defining a simple neural network architecture, training the model, making predictions on new data, and evaluating model performance. This guide should equip beginners with the initial skills needed to start building and applying neural networks to their own tabular data.</p>
 <p>While neural networks can appear complex, breaking the process down into digestible steps makes them more accessible. With the right data preprocessing, model configuration, training parameters and performance metrics, neural networks can be powerful tools for tackling complex data patterns. The R ecosystem, with packages like {Keras} and {Tensorflow}, provides a convenient platform for leveraging the strengths of neural networks. By following this guide and adjusting the components to their specific use case, you should now (hopefully) be able to start neural network modeling in R.</p>
 </div>

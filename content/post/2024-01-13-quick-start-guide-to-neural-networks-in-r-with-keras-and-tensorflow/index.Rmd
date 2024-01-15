@@ -5,8 +5,12 @@ date: '2024-01-12'
 slug: []
 categories:
   - Neural Networks
+  - Machine Learning
+  - Data Science
 tags:
   - Neural Networks
+  - Machine Learning
+  - Data Science
 cover: /media/tfk.png
 ---
 
@@ -22,7 +26,7 @@ Neural networks, a crucial part of machine learning, emulate the human brain's n
 
 Since {Keras} is a Python-based package, you'll need to ensure you have Python installed. You can download Python from [the official Python website](https://www.python.org/downloads/). After setting up Python, you'll need to install Keras and {TensorFlow} in R. The following explanation, taken from the {Keras} documentation, details the installation process:
 
-> This function will install Tensorflow and all Keras dependencies. This is a thin wrapper around `tensorflow::install_tensorflow()`, with the only difference being that this includes by default additional extra packages that keras expects, and the default version of tensorflow installed by `install_keras()` may at times be different from the default installed by `install_tensorflow()`. The default version of tensorflow installed by `install_keras()` is "2.13".
+> This function will install Tensorflow and all Keras dependencies. This is a thin wrapper around `tensorflow::install_tensorflow()`, with the only difference being that this includes by default additional extra packages that keras expects, and the default version of tensorflow installed by `install_keras()` may at times be different from the default installed by `install_tensorflow()`.
 
 ```{r eval=FALSE}
 install.packages("keras")
@@ -102,9 +106,9 @@ data |>
 
 ## Neural Network
 
-**Split into test and train**
+**Split into Test and Train**
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(keras)
 
 set.seed(0)
@@ -117,9 +121,9 @@ test_data <- data[-split_index, ]
 ### Define the Model Architecture
 
 ```{r}
-model <- keras_model_sequential() %>%
-  layer_dense(units = 100, activation = 'relu', input_shape = ncol(train_data) - 1) %>%
-  layer_dense(units = 100, activation = 'relu') %>%
+model <- keras_model_sequential() |>
+  layer_dense(units = 100, activation = 'relu', input_shape = ncol(train_data) - 1) |>
+  layer_dense(units = 100, activation = 'relu') |>
   layer_dense(units = 1, activation = 'sigmoid')
 ```
 
@@ -147,12 +151,12 @@ Choosing the optimal structure and functions for your neural network involves ba
 
 - **Advanced Layer Types**: For certain types of data, especially sequential data like time series or text, using advanced layer types such as Long Short-Term Memory (LSTM) (for time series) or Convolutional Neural Networks (CNNs) might be beneficial (text, imagery). 
 
-### Compile the model
+### Compile the Model
 
 The next block of code "compiles" the model and configures it for training. It sets up up the optimizer, loss function, and metrics:
 
 ```{r}
-model %>% compile(
+model |> compile(
   optimizer = 'adam',
   loss = 'binary_crossentropy',
   metrics = c('accuracy', 
@@ -183,13 +187,13 @@ model %>% compile(
 Selecting the right combination of these parameters should reflect the specific characteristics of your data and the problem you are solving.
 
 
-## Fitting the model
+## Fitting the Model
 
 The following code block is for fitting (training) the neural network model. It specifies the training data, number of training cycles (epochs), and other important parameters:
 
 
 ```{r}
-history <- model %>% fit(
+history <- model |> fit(
   x = as.matrix(train_data[,-7]),
   y = as.matrix(train_data[,7]),
   epochs = 20,
@@ -245,12 +249,12 @@ test_data |> mutate(predictions = predict(model, as.matrix(test_data[,-7]), verb
   mutate(binary_prediction = as.factor(ifelse(predictions > .5,1,0))) 
 ```
 
-## Evaluating the model
+## Evaluating the Model
 
 We can find the accuracy, prediction, and recall using {keras} or...
 
 ```{r}
-out <- model %>% evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
+out <- model |> evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
 out 
 ```
 
@@ -283,7 +287,7 @@ test_data_w_preds |>
   theme_minimal()
 ```
 
-## That's a wrap
+## That's a Wrap
 
 I've tried to provide step-by-step introductions to implement a neural network for in R using the {Keras} package. We walked through generating reproducible sample data, defining a simple neural network architecture, training the model, making predictions on new data, and evaluating model performance. This guide should equip beginners with the initial skills needed to start building and applying neural networks to their own tabular data.
 
