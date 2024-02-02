@@ -1,0 +1,277 @@
+---
+title: Getting Started with GPU-Accelerated Machine Learning on AWS EC2 using R and
+  TensorFlow
+author: Dusty Turner
+date: '2024-01-29'
+slug: []
+categories:
+  - Neural Networks
+  - TensorFlow
+  - Keras
+  - AWS
+  - Data Science
+  - R
+  - Python
+tags:
+  - Neural Networks
+  - TensorFlow
+  - Keras
+  - AWS
+  - Data Science
+  - R
+  - Python
+cover: /media/aws_icon.PNG 
+--- 
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>I’ve been looking for an all-in-one place to explain how to start from nothing to having a GPU-accelerated machine learning platform that runs RStudio Server with TensorFlow through reticulate.</p>
+<p>In this post, I will explain how to…</p>
+<ol style="list-style-type: decimal">
+<li>Set up an EC2 instance in AWS with GPU capabilities</li>
+<li>Install RStudio Server with the latest versions of R</li>
+<li>Install the correct versions of Python with Recitulate</li>
+<li>Install TensorFlow and Keras to run deep learning models</li>
+</ol>
+</div>
+<div id="set-up-an-ec2-instance" class="section level2">
+<h2>Set up an EC2 instance</h2>
+<div id="log-in-to-aws" class="section level3">
+<h3>Log in to AWS</h3>
+<p>For a new account, select “Root User”.</p>
+<p><img src="images/aws_home.PNG" /></p>
+</div>
+<div id="navigate-to-ec2-then-launch-instance" class="section level3">
+<h3>Navigate to EC2 then “Launch Instance”</h3>
+<p>Do not worry about the default region but do make note of which region you are in.</p>
+<p><img src="images/launch_instance.PNG" /></p>
+</div>
+<div id="fill-out-instance-information" class="section level3">
+<h3>Fill Out Instance Information</h3>
+<p><strong>Name</strong>: Does not matter at all</p>
+<p><strong>Application and OS Images (Amazon Machine Image)</strong>:</p>
+<p>An Amazon Machine Image (AMI) is a pre-configured setup for your instance that includes an operating system and any additional software required for specific needs. We will select a basic AMI that has the building blocks to meet our deep learning needs. There are some AMIs that will do have everything you may want (and more) for deep learning, but they often come at a cost.</p>
+<p>Under quick start, select Ubuntu.</p>
+<p>Then under the Amazon Machine Image (AMI) drop down menu, select the Deep Learning OSS Nvidia Driver AMI GPU TensorFlow 2.13 (Ubuntu 20.04) selection shown below.</p>
+<p><img src="images/ami_info.PNG" /></p>
+<p>I recommend this AMI because it comes pre-installed with necessary drivers and TensorFlow, streamlining the process of setting up a deep learning environment. This AMI is tailored for machine learning applications, ensuring compatibility and ease of use for projects involving TensorFlow and R.</p>
+<p><strong>Instance Type</strong></p>
+<p>Here’s where cost comes in to play. Instances that support GPUs are the ‘p’ instances. The cheapest instance is the p2 which supports 1 GPU and 4 CPUs.</p>
+<p>If you want more than 4 CPUs, you’ll have to request those through the AWS Support.</p>
+<p>If you want ANY GPUs, you’ll have to request through AWS Support. From my experience, the request can take a few days and the fewer the GPUs you request the quicker the approval time.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="37%" />
+<col width="7%" />
+<col width="10%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instance Type</th>
+<th>GPUs</th>
+<th>vCPUs</th>
+<th>Memory</th>
+<th>Cost (Per Hour, Ohio Region)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p2.xlarge</td>
+<td>1 NVIDIA K80 GPU</td>
+<td>4</td>
+<td>61 GiB</td>
+<td>$0.96</td>
+</tr>
+<tr class="even">
+<td>p2.8xlarge</td>
+<td>8 NVIDIA K80 GPUs</td>
+<td>32</td>
+<td>488 GiB</td>
+<td>$7.20</td>
+</tr>
+<tr class="odd">
+<td>p2.16xlarge</td>
+<td>16 NVIDIA K80 GPUs</td>
+<td>64</td>
+<td>732 GiB</td>
+<td>$14.40</td>
+</tr>
+<tr class="even">
+<td>p3.2xlarge</td>
+<td>1 NVIDIA Tesla V100 GPU</td>
+<td>8</td>
+<td>61 GiB</td>
+<td>$3.00</td>
+</tr>
+<tr class="odd">
+<td>p3.8xlarge</td>
+<td>4 NVIDIA Tesla V100 GPUs</td>
+<td>32</td>
+<td>244 GiB</td>
+<td>$12.24</td>
+</tr>
+<tr class="even">
+<td>p3.16xlarge</td>
+<td>8 NVIDIA Tesla V100 GPUs</td>
+<td>64</td>
+<td>488 GiB</td>
+<td>$24.48</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Costs are specific to the Ohio region and are subject to change. Additional costs for data transfer and storage apply. For the most current pricing, refer to the <a href="https://aws.amazon.com/ec2/pricing/">AWS Pricing page</a>.</p>
+<p><img src="images/instances.PNG" /></p>
+<p><strong>Key Pair</strong></p>
+<p>Click “Create new key pair” and select options according to your preferences.</p>
+<p><img src="images/key_pair.PNG" /></p>
+<p><strong>Network Settings</strong></p>
+<p>You will likely need to create a security group. I recommend defaults, but you can make alterations here if you like.</p>
+<p><img src="images/network_settings.PNG" /></p>
+<p><strong>Configure Storage</strong></p>
+<p>You can go with the default settings. If you think you need more storage you can up this value.</p>
+<p><img src="images/configure_storage.PNG" /></p>
+<p><strong>Launch Instance</strong></p>
+<p>At this point, you can launch the instance. AWS will create a virtual computer according to your specifications and take you to your Instances Dashboard.</p>
+</div>
+<div id="edit-security-group" class="section level3">
+<h3>Edit Security Group</h3>
+<p>Now we’ll take a step that will allow us to access our RStudio server in a subsequent step.</p>
+<p>The image below shows the instances page with a few locations highlighted with a black box (and a few places redacted). Click the box next to your instance. That should bring up information about your instance below.</p>
+<p>Click the “security” tab below that. The click the security group. Mine is called “launch-wizard-2”.</p>
+<p><img src="images/security.PNG" /></p>
+<p>I will not show the subsequent images because there is too much information to redact but here are the instructions.</p>
+<ol style="list-style-type: decimal">
+<li>Click the blue box next to your security group id.</li>
+<li>Below, select the “Inbound rules” header.</li>
+<li>In the top right of that tab, click “Edit inbound rules”. This will take you to another page.</li>
+<li>Here, you should have a SSH rule for port 22. We want to add another rule by clicking “Add rule” at the bottom.</li>
+<li>For type, select “Custom TCP”.<br />
+</li>
+<li>Make the Port range 8787.</li>
+</ol>
+</div>
+<div id="launch-instance" class="section level3">
+<h3>Launch Instance</h3>
+<ol style="list-style-type: decimal">
+<li>Navigate back to your instances page.</li>
+<li>Check the box next to your instance.</li>
+<li>Click the instance state drop down from the top right of the page.</li>
+<li>Click start instance.</li>
+</ol>
+<p>If you have the approvals for GPUs, this instance should start.</p>
+</div>
+</div>
+<div id="install-rstudio-server" class="section level2">
+<h2>Install RStudio Server</h2>
+<p>Now that we’ve started our instance, lets open up a terminal.</p>
+<ol style="list-style-type: decimal">
+<li>In the instances page, click the box next to your instance.</li>
+<li>In the top right of the page, click “connect”.</li>
+<li>You should see the image below. Use the default setting (to include the Username Ubuntu), and click connect.</li>
+</ol>
+<p><img src="images/connect_terminal.PNG" /></p>
+<div id="installing-rstudio-server-with-latest-version-of-r" class="section level3">
+<h3>Installing RStudio Server with Latest Version of R</h3>
+<p>To set up RStudio Server on an AWS EC2 instance, follow these steps in the terminal:</p>
+<ol style="list-style-type: decimal">
+<li>Update Your System</li>
+</ol>
+<pre class="bash"><code>sudo apt-get update
+sudo apt-get upgrade</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Install R</li>
+</ol>
+<p>Add the CRAN repository to get the latest version of R:</p>
+<pre class="bash"><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo add-apt-repository &#39;deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/&#39;</code></pre>
+<p>Install R</p>
+<pre class="bash"><code>sudo apt-get update
+sudo apt-get install r-base</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Install RStudio Server</li>
+</ol>
+<p>Download the latest version of RStudio Server:</p>
+<pre class="bash"><code>sudo apt-get install gdebi-core
+wget https://download2.RStudio.org/server/focal/amd64/RStudio-server-2023.12.0-369-amd64.deb
+sudo gdebi RStudio-server-2023.12.0-369-amd64.deb</code></pre>
+<p>This includes the latest as of the publication date of this blog. Check the POSIT webpage <a href="https://posit.co/download/RStudio-server/">https://posit.co/download/RStudio-server/</a>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Verify Installation</li>
+</ol>
+<p>Verify that RStudio Server is running</p>
+<pre class="bash"><code>sudo RStudio-server verify-installation</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Set Password</li>
+</ol>
+<p>You’ll want to set the password for your RSudio Server instance that we’ll access in a minute. To do this, run the code below. You’ll be required to enter your password twice.</p>
+<pre class="bash"><code>sudo passwd ubuntu</code></pre>
+</div>
+<div id="access-rstudio-server" class="section level3">
+<h3>Access RStudio Server</h3>
+<p>Navigate back to your instances page and click the box next to your instance.</p>
+<p>Look below and find your “Public IPv4 address”. Copy this address.</p>
+<p>Open your web browser and navigate to <a href="http://" class="uri">http://</a><Your-EC2-Instance-Public-IP>:8787. Replace <Your-EC2-Instance-Public-IP> with your actual EC2 instance’s public IP address.</p>
+<p>Ensure you use “http” and not “https”.</p>
+<p><img src="images/rstudio_server.PNG" /></p>
+<p>Now you should have access to RStudio!</p>
+</div>
+</div>
+<div id="install-tools-for-deeplearning-in-rstudio" class="section level2">
+<h2>Install Tools for Deeplearning in RStudio</h2>
+<p>Now that you have a working RStudio Instance, you will need to have installed Reticulate, Python, and TensorFlow. There are multiple ways to do this to include installing Python from the command line. However, I’ve found doing this often creates versioning issues between TensorFlow, Reticulate, and Python. The simplest way to avoid these issues is to install everything in the following order.</p>
+<ol style="list-style-type: decimal">
+<li>Install Reticulate</li>
+</ol>
+<p>Reticulate is the package in R that allows you to execute Python code within an R environment, bridging the gap between R and Python and enabling seamless integration of the two.</p>
+<pre class="r"><code>install.packages(&quot;reticulate)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Install the TensorFlow R Package</li>
+</ol>
+<p>This installs the tools that allows you to install the TensorFlow Python Tools</p>
+<pre class="r"><code>install.packages(&quot;TensorFlow)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Install the TensorFlow Python Package</li>
+</ol>
+<p>The code below installs TensorFlow within a Python environment managed by Reticulate. This also manages the installation of Python by ensuring proper versioning. This helps ensure that the Python environment is set up in a way that is compatible with the Reticulate package.</p>
+<pre class="r"><code>TensorFlow::install_TensorFlow()</code></pre>
+</div>
+<div id="run-neural-network-over-multiple-gpus" class="section level2">
+<h2>Run Neural Network Over Multiple GPUs</h2>
+<p>While not the point of this post, I want to provide a short example of how to execute a neural network over multiple GPUs.</p>
+<p>Assuming you have data and other desired projects, this code will work for multiple GPUs.</p>
+<pre class="r"><code># Load the necessary libraries
+library(tensorflow)
+library(keras)
+
+# Define a strategy for multi-GPU training
+strategy &lt;- tf$distribute$MirroredStrategy()
+
+# Wrap the model building and compilation within the strategy scope
+with(strategy$scope(), {
+  model &lt;- keras_model_sequential() %&gt;%
+    layer_conv_2d(filters = 32, kernel_size = c(3,3), activation = &#39;relu&#39;, input_shape = c(28, 28, 1)) %&gt;%
+    layer_max_pooling_2d(pool_size = c(2, 2)) %&gt;%
+    layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = &#39;relu&#39;) %&gt;%
+    layer_max_pooling_2d(pool_size = c(2, 2)) %&gt;%
+    layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = &#39;relu&#39;) %&gt;%
+    layer_flatten() %&gt;%
+    layer_dense(units = 64, activation = &#39;relu&#39;) %&gt;%
+    layer_dense(units = 10, activation = &#39;softmax&#39;)
+
+  model %&gt;% compile(
+    optimizer = &#39;adam&#39;,
+    loss = &#39;sparse_categorical_crossentropy&#39;,
+    metrics = c(&#39;accuracy&#39;)
+  )
+})
+
+# Train the model
+model %&gt;% fit(train_images, train_labels, epochs = 5, batch_size = 64)
+
+# Evaluate the model
+model %&gt;% evaluate(test_images, test_labels)</code></pre>
+</div>

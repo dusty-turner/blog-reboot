@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>Quick Start Guide to Neural Networks in R with Keras and Tensorflow</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="Quick Start Guide to Neural Networks in R with Keras and TensorflowI’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="Quick Start Guide to Neural Networks in R with Keras and Tensorflow">
+    <meta name="twitter:description" content="Quick Start Guide to Neural Networks in R with Keras and TensorflowI’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.">
+    <meta name="twitter:image" content="https://www.dustysturner.com/media/tfk.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Quick Start Guide to Neural Networks in R with Keras and Tensorflow">
+  <meta property="og:description" content="Quick Start Guide to Neural Networks in R with Keras and TensorflowI’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.">
+  <meta property="og:url" content="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/">
+  <meta property="og:image" content="https://www.dustysturner.com/media/tfk.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Quick Start Guide to Neural Networks in R with Keras and Tensorflow</h1>
+      <p class="post-meta">@Dusty Turner · Jan 12, 2024 · 17 min read</p>
+    </header>
+    <article class="post-content">
+
+
+<div id="quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow" class="section level1">
+<h1>Quick Start Guide to Neural Networks in R with Keras and Tensorflow</h1>
+<p>I’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Neural networks, a crucial part of machine learning, emulate the human brain’s network of neurons to process and learn from data. They are exceptionally adept at handling complex tasks such as pattern recognition, image and speech processing, natural language processing (NLP), time series prediction, and various classification challenges. This guide offers a hands-on example of how to use neural networks in R with {Keras} and {TensorFlow}, covering everything from data creation to model training and evaluation, specifically tailored for those looking to apply neural networks to tabular data.</p>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>Since {Keras} is a Python-based package, you’ll need to ensure you have Python installed. You can download Python from <a href="https://www.python.org/downloads/">the official Python website</a>. After setting up Python, you’ll need to install Keras and {TensorFlow} in R. The following explanation, taken from the {Keras} documentation, details the installation process:</p>
+<blockquote>
+<p>This function will install Tensorflow and all Keras dependencies. This is a thin wrapper around <code>tensorflow::install_tensorflow()</code>, with the only difference being that this includes by default additional extra packages that keras expects, and the default version of tensorflow installed by <code>install_keras()</code> may at times be different from the default installed by <code>install_tensorflow()</code>.</p>
+</blockquote>
+<pre class="r"><code>install.packages(&quot;keras&quot;)
+install_keras()</code></pre>
+</div>
+<div id="example-for-tabular-data" class="section level2">
+<h2>Example for Tabular Data</h2>
+<p>Now, let’s start by creating some sample synthetic data for a neural network in R. We will use the keras package, a high-level neural networks API running on top of TensorFlow, which is a powerful open-source software library for machine learning.</p>
+<div id="create-sample-data" class="section level3">
+<h3>Create Sample Data</h3>
+<p>I will create reproducible synthetic data to simulate a real-world dataset. This should allow you to have the same data on your compute as you follow along.</p>
+<p>Notice how in this data I have centered and scaled the continuous covariates. This is a <em>must</em> for your neural network.</p>
+<pre class="r"><code>library(tidyverse)
+
+set.seed(0)  # For reproducibility
+
+n_samples &lt;- 10000
+
+# The bias term here is used to adjust the distribution of the binary outcome.
+bias = -log(.001)  
+
+# Generate data
+data &lt;- tibble(
+  factor_1 = rnorm(n_samples),  # Normally distributed data
+  factor_2 = rnorm(n_samples, mean = 5, sd = 2) + 0.5 * factor_1,  # Correlated with factor_1
+  factor_3 = runif(n_samples, min = -1, max = 1),  # Uniformly distributed data
+  factor_4 = rbinom(n_samples, size = 10, prob = 0.5),  # Binomially distributed data
+  factor_5 = factor_3 * factor_4,  # Interaction term
+  factor_6 = sample(0:1, n_samples, replace = TRUE)  # Binary data
+) |&gt; 
+  # The outcome is a binary variable created using a logistic function (plogis)
+  # of the factors, which simulates a complex relationship.
+  mutate(outcome = rbinom(n(), 1, 
+                          prob = plogis(factor_1 - 2 * factor_2 + factor_3 * factor_4 - 
+                                          factor_5 + factor_6 + bias)
+                          )
+         ) |&gt; 
+  mutate(across(.cols = c(factor_4, factor_6, outcome), .fns = as.factor)) |&gt; 
+  mutate(across(.cols = is.numeric, .fns = ~(.-mean(.)/sd(.)))) |&gt; 
+  mutate(across(.cols = everything(), .fns = ~as.numeric(as.character(.))))</code></pre>
+</div>
+<div id="outcome-percentage" class="section level3">
+<h3>Outcome Percentage</h3>
+<p>We can see a fairly reasonable split of the outcome in this data.</p>
+<div id="dwowunsowf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dwowunsowf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dwowunsowf thead, #dwowunsowf tbody, #dwowunsowf tfoot, #dwowunsowf tr, #dwowunsowf td, #dwowunsowf th {
+  border-style: none;
+}
+
+#dwowunsowf p {
+  margin: 0;
+  padding: 0;
+}
+
+#dwowunsowf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dwowunsowf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dwowunsowf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dwowunsowf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dwowunsowf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dwowunsowf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dwowunsowf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dwowunsowf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dwowunsowf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dwowunsowf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dwowunsowf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dwowunsowf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dwowunsowf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dwowunsowf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dwowunsowf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dwowunsowf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dwowunsowf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dwowunsowf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dwowunsowf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dwowunsowf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dwowunsowf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dwowunsowf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dwowunsowf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dwowunsowf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dwowunsowf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dwowunsowf .gt_left {
+  text-align: left;
+}
+
+#dwowunsowf .gt_center {
+  text-align: center;
+}
+
+#dwowunsowf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dwowunsowf .gt_font_normal {
+  font-weight: normal;
+}
+
+#dwowunsowf .gt_font_bold {
+  font-weight: bold;
+}
+
+#dwowunsowf .gt_font_italic {
+  font-style: italic;
+}
+
+#dwowunsowf .gt_super {
+  font-size: 65%;
+}
+
+#dwowunsowf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dwowunsowf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dwowunsowf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dwowunsowf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dwowunsowf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dwowunsowf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dwowunsowf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="outcome">outcome</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent">Percent</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="outcome" class="gt_row gt_right">0</td>
+<td headers="Percent" class="gt_row gt_right">72.13%</td></tr>
+    <tr><td headers="outcome" class="gt_row gt_right">1</td>
+<td headers="Percent" class="gt_row gt_right">27.87%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="visualize-data" class="section level3">
+<h3>Visualize Data</h3>
+<p>From the plot below, you can see the the relationship a select number of factors has with the outcome.</p>
+<p><img src="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="neural-network" class="section level2">
+<h2>Neural Network</h2>
+<p><strong>Split into Test and Train</strong></p>
+<pre class="r"><code>library(keras)
+
+set.seed(0)
+
+split_index &lt;- sample(1:nrow(data), size = 0.8 * nrow(data))
+train_data &lt;- data[split_index, ]
+test_data &lt;- data[-split_index, ]</code></pre>
+<div id="define-the-model-architecture" class="section level3">
+<h3>Define the Model Architecture</h3>
+<pre class="r"><code>model &lt;- keras_model_sequential() |&gt;
+  layer_dense(units = 100, activation = &#39;relu&#39;, input_shape = ncol(train_data) - 1) |&gt;
+  layer_dense(units = 100, activation = &#39;relu&#39;) |&gt;
+  layer_dense(units = 1, activation = &#39;sigmoid&#39;)</code></pre>
+<p><strong>Model Architecture Details</strong></p>
+<ul>
+<li><p><strong>Hidden Layers</strong>: The model includes two hidden layers, each with 100 neurons and using the ‘relu’ (Rectified Linear Unit) activation function. Alternatives to ‘relu’ include ‘tanh’ and others, each having its own merits depending on the specific use case.</p></li>
+<li><p><strong>Output Layer</strong>: The final dense layer makes the predictions. I use a ‘sigmoid’ activation function here, which is ideal for binary classification tasks as it returns values between 0 and 1, indicating the probability of the target class.</p></li>
+<li><p><strong>Input Shape</strong>: The <code>input_shape</code> in the first layer is set to match the number of predictor columns in the data. This ensures that the model correctly processes the input features.</p></li>
+<li><p><strong>Sequential Model</strong>: I’ve chosen a sequential model for its simplicity and effectiveness in stacking layers linearly. However, other options like functional API models exist, which allow for more complex architectures.</p></li>
+</ul>
+</div>
+<div id="selecting-the-best-options" class="section level3">
+<h3>Selecting the Best Options</h3>
+<p>Choosing the optimal structure and functions for your neural network involves balancing several factors:</p>
+<ul>
+<li><p><strong>Data Characteristics</strong>: Understanding the shape, size, and type of your data is fundamental. Different data types might require different network architectures.</p></li>
+<li><p><strong>Modeling Objective</strong>: What you are trying to predict or classify directly influences your choice of architecture and activation functions.</p></li>
+<li><p><strong>Complexity of Relationships</strong>: The complexity in your data’s relationships can dictate the depth and complexity of the neural network required.</p></li>
+<li><p><strong>Experience and Experimentation</strong>: Selecting the best model is a cross between your own experience and experimentation. Running several models with different configurations and analyzing their performance is the best approach though the cost is the time it takes to run the models.</p></li>
+<li><p><strong>Advanced Layer Types</strong>: For certain types of data, especially sequential data like time series or text, using advanced layer types such as Long Short-Term Memory (LSTM) (for time series) or Convolutional Neural Networks (CNNs) might be beneficial (text, imagery).</p></li>
+</ul>
+</div>
+<div id="compile-the-model" class="section level3">
+<h3>Compile the Model</h3>
+<p>The next block of code “compiles” the model and configures it for training. It sets up up the optimizer, loss function, and metrics:</p>
+<pre class="r"><code>model |&gt; compile(
+  optimizer = &#39;adam&#39;,
+  loss = &#39;binary_crossentropy&#39;,
+  metrics = c(&#39;accuracy&#39;, 
+              metric_precision(), 
+              metric_recall())
+)</code></pre>
+<div id="understanding-the-compile-configuration" class="section level4">
+<h4>Understanding the Compile Configuration</h4>
+<ul>
+<li><strong>Optimizer (<code>optimizer = 'adam'</code>):</strong>
+<ul>
+<li>The optimizer is responsible for updating the weights of the neurons during training.</li>
+<li>The ‘adam’ optimizer is a popular choice due to its efficiency with large datasets and high-dimensional spaces.</li>
+<li>Alternatives like ‘sgd’ (Stochastic Gradient Descent) and ‘rmsprop’ are also available, each suited to different types of problems.</li>
+</ul></li>
+<li><strong>Loss Function (<code>loss = 'binary_crossentropy'</code>):</strong>
+<ul>
+<li>This function quantifies the difference between the expected outcome and the predictions made by the model.</li>
+<li>Binary Crossentropy (log loss) is works well for for binary classification.</li>
+<li>Other options include ‘mean_squared_error’ for regression tasks and ‘categorical_crossentropy’ for multi-class classification.</li>
+</ul></li>
+<li><strong>Metrics</strong>:
+<ul>
+<li>Metrics are used to evaluate the performance of the model. They are not used in the training process but provide insight into how well the model is performing.</li>
+<li><code>metric_accuracy()</code> assesses the overall correctness of the predictions.</li>
+<li><code>metric_precision()</code> measures the proportion of positive identifications that were actually correct.</li>
+<li><code>metric_recall()</code> calculates the proportion of actual positives that were correctly identified.</li>
+<li>Other metrics include but are not limited to <code>metric_mse()</code> (mean squared error), <code>metric_mae()</code> (mean absolute error), and <code>metric_auc()</code>.</li>
+</ul></li>
+</ul>
+<p>Selecting the right combination of these parameters should reflect the specific characteristics of your data and the problem you are solving.</p>
+</div>
+</div>
+</div>
+<div id="fitting-the-model" class="section level2">
+<h2>Fitting the Model</h2>
+<p>The following code block is for fitting (training) the neural network model. It specifies the training data, number of training cycles (epochs), and other important parameters:</p>
+<pre class="r"><code>history &lt;- model |&gt; fit(
+  x = as.matrix(train_data[,-7]),
+  y = as.matrix(train_data[,7]),
+  epochs = 20,
+  batch_size = 100,
+  validation_split = 0.3, 
+  verbose = FALSE
+)</code></pre>
+<p>Below is a look at the model’s metrics by epoch.</p>
+<p><img src="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div id="understanding-the-model-training-configuration" class="section level3">
+<h3>Understanding the Model Training Configuration</h3>
+<ul>
+<li><strong>x/y</strong>:
+<ul>
+<li>These represent the training and test sets, respectively.</li>
+<li>The <code>x</code> (features) must be in a format acceptable by the model, typically a matrix or array in numerical format. The number of columns in <code>x</code> should match the number of input features the model expects.</li>
+<li>The <code>y</code> (target) also needs to be in a numerical format, either as a vector for regression or binary classification, or as a one-hot encoded matrix for multi-class classification.</li>
+</ul></li>
+<li><strong>Epochs (<code>epochs = 20</code>)</strong>:
+<ul>
+<li>An epoch represents one complete pass through the entire training dataset. Here, the model will go through the dataset 20 times.</li>
+<li>The more epochs, the longer the model has to learn the data. However, there’s a risk of overfitting to the training set. This can be mitigated with techniques such as regularization, dropout between layers, and model callbacks, which are not included in this example.</li>
+</ul></li>
+<li><strong>Batch Size (<code>batch_size = 100</code>)</strong>:
+<ul>
+<li>This defines the number of samples that will be propagated through the network in one pass. A smaller batch size means less memory usage but potentially less accurate estimation of gradients. I recommended you use as large of a batch size as your computer can handle and you have patience for.</li>
+</ul></li>
+<li><strong>Validation Split (<code>validation_split = 0.3</code>)</strong>:
+<ul>
+<li>This parameter reserves a portion of the training data (30% in this case) for validation. The model’s performance on this validation set provides a good indication of its generalization to unseen data.</li>
+</ul></li>
+<li><strong>Verbose (<code>verbose = FALSE</code>)</strong>:
+<ul>
+<li>This controls the level of verbosity of the training process output. It is set to <code>FALSE</code> here to suppress the progress messages for each epoch. This is done to avoid cluttering the description, but I recommended you set it to <code>TRUE</code> to follow its progress.</li>
+</ul></li>
+</ul>
+<p>The <code>fit</code> function tunes the model to your data by adjusting the weights. The <code>history</code> object captures details about the training process, which can be used for further analysis and understanding of the model’s performance over time.</p>
+</div>
+</div>
+</div>
+<div id="make-predictions" class="section level1">
+<h1>Make Predictions</h1>
+<p>We can make predictions using the standard <code>predict()</code> method.</p>
+<pre class="r"><code>test_data_w_preds &lt;-
+test_data |&gt; mutate(predictions = predict(model, as.matrix(test_data[,-7]), verbose = 0)[,1]) |&gt; 
+  mutate(binary_prediction = as.factor(ifelse(predictions &gt; .5,1,0))) </code></pre>
+<div id="evaluating-the-model" class="section level2">
+<h2>Evaluating the Model</h2>
+<p>We can find the accuracy, prediction, and recall using {keras} or…</p>
+<pre class="r"><code>out &lt;- model |&gt; evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
+out </code></pre>
+<pre><code>##      loss  accuracy precision    recall 
+## 0.2474161 0.8903770 0.8597701 0.7003745</code></pre>
+<p>…using {yardstick}.</p>
+<pre class="r"><code>library(yardstick)
+classification_metrics &lt;- metric_set(accuracy, precision, recall)
+
+test_data_w_preds |&gt; 
+  mutate(outcome = as.factor(outcome)) |&gt; 
+  classification_metrics(truth = outcome, estimate = binary_prediction) |&gt; 
+  gt::gt() |&gt; 
+  gt::fmt_percent(columns = .estimate)</code></pre>
+<div id="eytqrpyfdg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eytqrpyfdg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eytqrpyfdg thead, #eytqrpyfdg tbody, #eytqrpyfdg tfoot, #eytqrpyfdg tr, #eytqrpyfdg td, #eytqrpyfdg th {
+  border-style: none;
+}
+
+#eytqrpyfdg p {
+  margin: 0;
+  padding: 0;
+}
+
+#eytqrpyfdg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eytqrpyfdg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eytqrpyfdg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eytqrpyfdg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eytqrpyfdg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eytqrpyfdg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eytqrpyfdg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eytqrpyfdg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eytqrpyfdg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eytqrpyfdg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eytqrpyfdg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eytqrpyfdg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eytqrpyfdg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eytqrpyfdg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eytqrpyfdg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eytqrpyfdg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eytqrpyfdg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eytqrpyfdg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eytqrpyfdg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eytqrpyfdg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eytqrpyfdg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eytqrpyfdg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eytqrpyfdg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eytqrpyfdg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eytqrpyfdg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eytqrpyfdg .gt_left {
+  text-align: left;
+}
+
+#eytqrpyfdg .gt_center {
+  text-align: center;
+}
+
+#eytqrpyfdg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eytqrpyfdg .gt_font_normal {
+  font-weight: normal;
+}
+
+#eytqrpyfdg .gt_font_bold {
+  font-weight: bold;
+}
+
+#eytqrpyfdg .gt_font_italic {
+  font-style: italic;
+}
+
+#eytqrpyfdg .gt_super {
+  font-size: 65%;
+}
+
+#eytqrpyfdg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eytqrpyfdg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eytqrpyfdg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eytqrpyfdg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eytqrpyfdg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eytqrpyfdg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eytqrpyfdg .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".metric">.metric</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".estimator">.estimator</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id=".estimate">.estimate</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers=".metric" class="gt_row gt_left">accuracy</td>
+<td headers=".estimator" class="gt_row gt_left">binary</td>
+<td headers=".estimate" class="gt_row gt_right">88.95%</td></tr>
+    <tr><td headers=".metric" class="gt_row gt_left">precision</td>
+<td headers=".estimator" class="gt_row gt_left">binary</td>
+<td headers=".estimate" class="gt_row gt_right">89.78%</td></tr>
+    <tr><td headers=".metric" class="gt_row gt_left">recall</td>
+<td headers=".estimator" class="gt_row gt_left">binary</td>
+<td headers=".estimate" class="gt_row gt_right">95.84%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>And a vew at the confusion matrix for good measure.</p>
+<p><img src="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="thats-a-wrap" class="section level2">
+<h2>That’s a Wrap</h2>
+<p>I’ve tried to provide step-by-step introductions to implement a neural network for in R using the {Keras} package. We walked through generating reproducible sample data, defining a simple neural network architecture, training the model, making predictions on new data, and evaluating model performance. This guide should equip beginners with the initial skills needed to start building and applying neural networks to their own tabular data.</p>
+<p>While neural networks can appear complex, breaking the process down into digestible steps makes them more accessible. With the right data preprocessing, model configuration, training parameters and performance metrics, neural networks can be powerful tools for tackling complex data patterns. The R ecosystem, with packages like {Keras} and {Tensorflow}, provides a convenient platform for leveraging the strengths of neural networks. By following this guide and adjusting the components to their specific use case, you should now (hopefully) be able to start neural network modeling in R.</p>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/neural-networks"><span class="tag">Neural Networks</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/machine-learning"><span class="tag">Machine Learning</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2024 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

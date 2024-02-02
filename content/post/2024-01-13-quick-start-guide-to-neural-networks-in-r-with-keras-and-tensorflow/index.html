@@ -665,7 +665,7 @@ test_data |&gt; mutate(predictions = predict(model, as.matrix(test_data[,-7]), v
 <pre class="r"><code>out &lt;- model |&gt; evaluate(as.matrix(test_data[,-7]), test_data[,7]$outcome, verbose = FALSE) 
 out </code></pre>
 <pre><code>##      loss  accuracy precision    recall 
-## 0.2405091 0.8963293 0.8256513 0.7715356</code></pre>
+## 0.2474161 0.8903770 0.8597701 0.7003745</code></pre>
 <p>…using {yardstick}.</p>
 <pre class="r"><code>library(yardstick)
 classification_metrics &lt;- metric_set(accuracy, precision, recall)
@@ -1127,13 +1127,13 @@ test_data_w_preds |&gt;
   <tbody class="gt_table_body">
     <tr><td headers=".metric" class="gt_row gt_left">accuracy</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">89.55%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">88.95%</td></tr>
     <tr><td headers=".metric" class="gt_row gt_left">precision</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">91.87%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">89.78%</td></tr>
     <tr><td headers=".metric" class="gt_row gt_left">recall</td>
 <td headers=".estimator" class="gt_row gt_left">binary</td>
-<td headers=".estimate" class="gt_row gt_right">94.07%</td></tr>
+<td headers=".estimate" class="gt_row gt_right">95.84%</td></tr>
   </tbody>
   
   

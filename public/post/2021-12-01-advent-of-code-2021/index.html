@@ -229,7 +229,6 @@ Well, I like R, so in this post I will provide my solutions to the puzzles each 
       <p class="post-meta">@Dusty Turner · Dec 1, 2021 · 32 min read</p>
     </header>
     <article class="post-content">
-<script src="https://www.dustysturner.com/post/2021-12-01-advent-of-code-2021/index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>Every year, the great team at <a href="adventofcode.com">Advent of Code</a> lead by <a href="https://twitter.com/ericwastl">ericwastl</a> develops an “Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.”</p>
@@ -1427,34 +1426,43 @@ tictoc::toc()</code></pre>
   separate(col = directions, into = c(&quot;x1&quot;, &quot;y1&quot;, &quot;x2&quot;, &quot;y2&quot;), sep = &quot;,&quot;, convert = T) %&gt;% 
   select(x1,x2,y1,y2) 
 
-create_lines &lt;- function(move){
+create_lines &lt;- function(lines){
+
+move &lt;- lines
 
 if(move$y1==move$y2) {
   xlow  &lt;- min(move$x1, min(move$x2))
   xhigh &lt;- max(move$x1, min(move$x2))
   ylow  &lt;- min(move$y1, min(move$y2))
   yhigh &lt;- max(move$y1, min(move$y2))
-  byrow &lt;- T # for horizontal vents
+  byrow &lt;- T
 } else if (move$x1 == move$x2) {
   ylow  &lt;- min(move$x1, min(move$x2))
   yhigh &lt;- max(move$x1, min(move$x2))
   xlow  &lt;- min(move$y1, min(move$y2))
   xhigh &lt;- max(move$y1, min(move$y2))
-  byrow &lt;- F # for vertical vents
+  byrow &lt;- F
 }
-out &lt;- matrix(c(
-  rep(rep(0,1000),ylow), ## zeroes before row/col
-  c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
-  rep(rep(0,1000),999-ylow) ## zeroes after row/col
-  ), byrow = byrow, nrow = 1000, ncol = 1000)
+
+out &lt;-
+  matrix(
+    c(
+      rep(rep(0,1000),ylow), ## zeroes before row/col
+      c(rep(0,xlow),rep(1,xhigh-xlow+1), rep(0,999-xhigh)), ## row/col of 1s
+      rep(rep(0,1000),999-ylow) ## zeroes after row/col
+      ), byrow = byrow, nrow = 1000, ncol = 1000
+    )
+
 return(out)
+
 }
 
 movements %&gt;% 
   filter(x1==x2 | y1==y2) %&gt;% 
   group_split(row_number(), .keep = F) %&gt;% 
   purrr::map(~create_lines(lines = .x)) %&gt;% 
-  reduce(`+`) %&gt;% as_tibble() %&gt;% 
+  reduce(`+`) %&gt;% 
+  as_tibble() %&gt;% 
   pivot_longer(cols = everything()) %&gt;% 
   filter(value &gt;=2) %&gt;% 
   count()</code></pre>
@@ -1733,7 +1741,7 @@ reduce(.x = names(data), .f = filter_rating, .init = data, &quot;co2&quot;) %&gt
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>773</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>789</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
