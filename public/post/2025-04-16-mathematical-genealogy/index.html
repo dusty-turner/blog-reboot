@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+  
+  <title>Mathematical Genealogy</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Dusty Turner">
+  <meta name="description" content="IntroAs I near the end of my PhD, my advisor David Kahle submitted my information to the Mathematics Genealogy Project. It was pretty cool to explore the academic lineage I come from — sort of like discovering a scholarly family tree. With some help from ChatGPT, I put together a script to scrape and visualize my genealogy.
+Since most of the code was generated through a series of back-and-forths with GPT, I won’t walk through every line here, but you can expand the code block below if you’re curious.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@dtdusty">
+    <meta name="twitter:title" content="Mathematical Genealogy">
+    <meta name="twitter:description" content="IntroAs I near the end of my PhD, my advisor David Kahle submitted my information to the Mathematics Genealogy Project. It was pretty cool to explore the academic lineage I come from — sort of like discovering a scholarly family tree. With some help from ChatGPT, I put together a script to scrape and visualize my genealogy.
+Since most of the code was generated through a series of back-and-forths with GPT, I won’t walk through every line here, but you can expand the code block below if you’re curious.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Mathematical Genealogy">
+  <meta property="og:description" content="IntroAs I near the end of my PhD, my advisor David Kahle submitted my information to the Mathematics Genealogy Project. It was pretty cool to explore the academic lineage I come from — sort of like discovering a scholarly family tree. With some help from ChatGPT, I put together a script to scrape and visualize my genealogy.
+Since most of the code was generated through a series of back-and-forths with GPT, I won’t walk through every line here, but you can expand the code block below if you’re curious.">
+  <meta property="og:url" content="https://www.dustysturner.com/post/2025-04-16-mathematical-genealogy/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo ">
+
+
+<link rel="canonical" href="https://www.dustysturner.com/post/2025-04-16-mathematical-genealogy/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo">
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Dusty Turner">
+<meta name="msapplication-tooltip" content="Dusty Turner">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.dustysturner.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.dustysturner.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.dustysturner.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.dustysturner.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.dustysturner.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.dustysturner.com/manifest.json">
+
+
+<link rel="preload" href="https://www.dustysturner.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.dustysturner.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.dustysturner.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.dustysturner.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://www.dustysturner.com/"><img class="avatar" src="https://www.dustysturner.com/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://www.dustysturner.com/">Dusty Turner</a></h2>
+  
+  <p class="subtitle">~ Data Science - Lightly Edited ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.dustysturner.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/dusty-turner">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/cv.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/presentations/">Presentations</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.dustysturner.com/community/">Community</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:dusty.s.turner@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/dusty-turner" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/dtdusty" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/dusty-turner-34a148112/" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Mathematical Genealogy</h1>
+      <p class="post-meta">@Dusty Turner · Apr 16, 2025 · 7 min read</p>
+    </header>
+    <article class="post-content">
+
+
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<p>As I near the end of my PhD, my advisor <a href="https://www.kahle.io/">David Kahle</a> submitted my information to the <a href="https://www.genealogy.math.ndsu.nodak.edu/index.php">Mathematics Genealogy Project</a>. It was pretty cool to explore the academic lineage I come from — sort of like discovering a scholarly family tree. With some help from ChatGPT, I put together a script to scrape and visualize my genealogy.</p>
+<p>Since most of the code was generated through a series of back-and-forths with GPT, I won’t walk through every line here, but you can expand the code block below if you’re curious.</p>
+<div id="code-click-to-expand" class="section level3">
+<h3>Code (click to expand)</h3>
+<details>
+<summary>
+View Code
+</summary>
+<pre class="r"><code>#!/usr/bin/env Rscript
+
+library(rvest)
+library(xml2)
+library(stringr)
+library(tidyverse)
+library(igraph)
+library(ggraph)
+library(memoise)
+
+# ---------------------------
+# 1) Single-Pass Page Parser
+# ---------------------------
+# Memoized so each page is fetched only once
+raw_parse_mgp_page &lt;- function(url) {
+  Sys.sleep(0.5)
+  message(&quot;Fetching page: &quot;, url)
+  
+  page_html &lt;- tryCatch(read_html(url), error=function(e) NULL)
+  if (is.null(page_html)) {
+    return(list(name=NA_character_, year=NA_character_, advisors=character(0)))
+  }
+  
+  # Name
+  h2_node &lt;- html_node(page_html, &quot;h2&quot;)
+  nm &lt;- NA_character_
+  if (!is.null(h2_node) &amp;&amp; !is.na(h2_node)) {
+    nm &lt;- str_squish(html_text(h2_node, trim=TRUE))
+  }
+  
+  # Year
+  div_node &lt;- html_node(page_html, xpath=&quot;//div[contains(., &#39;Ph.D. &#39;)]&quot;)
+  yr &lt;- NA_character_
+  if (!is.null(div_node) &amp;&amp; !is.na(div_node)) {
+    txt &lt;- html_text(div_node, trim=TRUE)
+    found &lt;- str_extract(txt, &quot;\\b\\d{4}\\b&quot;)
+    if (!is.na(found)) {
+      yr &lt;- found
+    }
+  }
+  
+  # Advisors
+  adv_pars  &lt;- html_nodes(page_html, xpath=&quot;//p[contains(., &#39;Advisor&#39;)]&quot;)
+  adv_links &lt;- html_nodes(adv_pars, &quot;a&quot;)
+  advs &lt;- character(0)
+  if (length(adv_links) &gt; 0) {
+    hrefs     &lt;- na.omit(html_attr(adv_links, &quot;href&quot;))
+    abs_links &lt;- vapply(hrefs, function(x) url_absolute(x, url), character(1))
+    pat       &lt;- &quot;id\\.php\\?id=[0-9]+$&quot;
+    advs      &lt;- abs_links[grepl(pat, abs_links)]
+  }
+  
+  list(name=nm, year=yr, advisors=advs)
+}
+parse_mgp_page &lt;- memoise(raw_parse_mgp_page)
+
+# ---------------------------
+# 2) One-level parse for secondary advisors
+# ---------------------------
+collect_secondary_one_level &lt;- function(sec_url, visited, name_map, year_map) {
+  if (sec_url %in% visited) {
+    return(list(
+      visited=visited,
+      name_map=name_map,
+      year_map=year_map,
+      edges=data.frame(child=character(0), advisor=character(0))
+    ))
+  }
+  visited &lt;- c(visited, sec_url)
+  
+  info_sec &lt;- parse_mgp_page(sec_url)
+  name_map[[sec_url]] &lt;- info_sec$name
+  year_map[[sec_url]] &lt;- info_sec$year
+  
+  edges_here &lt;- data.frame(child=character(0), advisor=character(0))
+  if (length(info_sec$advisors)&gt;0) {
+    firstA &lt;- info_sec$advisors[1]
+    edges_here &lt;- data.frame(child=sec_url, advisor=firstA, stringsAsFactors=FALSE)
+    
+    if (!(firstA %in% visited)) {
+      visited &lt;- c(visited, firstA)
+      infoA &lt;- parse_mgp_page(firstA)
+      name_map[[firstA]] &lt;- infoA$name
+      year_map[[firstA]] &lt;- infoA$year
+    }
+  }
+  
+  list(visited=visited, name_map=name_map, year_map=year_map, edges=edges_here)
+}
+
+# ---------------------------
+# 3) collect_ancestors()
+#    - Full recursion on first advisor
+#    - partial or full recursion for secondaries
+# ---------------------------
+collect_ancestors &lt;- function(start_url,
+                              visited=NULL,
+                              name_map=NULL,
+                              year_map=NULL,
+                              partial_secondary=TRUE) {
+  if (is.null(visited))  visited  &lt;- character(0)
+  if (is.null(name_map)) name_map &lt;- list()
+  if (is.null(year_map)) year_map &lt;- list()
+  
+  if (start_url %in% visited) {
+    return(list(
+      visited=visited,
+      name_map=name_map,
+      year_map=year_map,
+      edges=data.frame(child=character(0), advisor=character(0))
+    ))
+  }
+  visited &lt;- c(visited, start_url)
+  
+  info &lt;- parse_mgp_page(start_url)
+  name_map[[start_url]] &lt;- info$name
+  year_map[[start_url]] &lt;- info$year
+  
+  if (length(info$advisors)&gt;0) {
+    edges_here &lt;- data.frame(
+      child   = rep(start_url, length(info$advisors)),
+      advisor = info$advisors,
+      stringsAsFactors=FALSE
+    )
+  } else {
+    edges_here &lt;- data.frame(child=character(0), advisor=character(0))
+  }
+  all_edges &lt;- edges_here
+  
+  if (length(info$advisors) &gt; 0) {
+    # fully recurse on first advisor
+    firstA &lt;- info$advisors[1]
+    r_first &lt;- collect_ancestors(
+      firstA, visited, name_map, year_map,
+      partial_secondary=partial_secondary
+    )
+    visited   &lt;- r_first$visited
+    name_map  &lt;- r_first$name_map
+    year_map  &lt;- r_first$year_map
+    all_edges &lt;- rbind(all_edges, r_first$edges)
+    
+    # secondary advisors
+    if (length(info$advisors) &gt; 1) {
+      for (sec in info$advisors[-1]) {
+        if (partial_secondary) {
+          # parse them once
+          r_sec &lt;- collect_secondary_one_level(sec, visited, name_map, year_map)
+        } else {
+          # same recursion
+          r_sec &lt;- collect_ancestors(sec, visited, name_map, year_map,
+                                     partial_secondary=FALSE)
+        }
+        visited   &lt;- r_sec$visited
+        name_map  &lt;- r_sec$name_map
+        year_map  &lt;- r_sec$year_map
+        all_edges &lt;- rbind(all_edges, r_sec$edges)
+      }
+    }
+  }
+  
+  list(
+    visited=visited,
+    name_map=name_map,
+    year_map=year_map,
+    edges=all_edges
+  )
+}
+
+# ---------------------------
+# 4) Build a single genealogical &quot;tree&quot; for childUrl
+#    =&gt; color = child&#39;s last name
+# ---------------------------
+get_last_name &lt;- function(full_name) {
+  if (is.na(full_name) || !nzchar(full_name)) return(&quot;Unknown&quot;)
+  parts &lt;- str_split(full_name, &quot;\\s+&quot;)[[1]]
+  tail(parts,1)
+}
+
+build_one_tree &lt;- function(child_url, partial_secondary=TRUE) {
+  # parse child&#39;s page once to get child&#39;s last name
+  child_info   &lt;- parse_mgp_page(child_url)
+  child_name   &lt;- child_info$name
+  child_last   &lt;- get_last_name(child_name)
+  if (!nzchar(child_last)) child_last &lt;- &quot;Unknown&quot;
+  
+  # gather
+  res &lt;- collect_ancestors(child_url, partial_secondary=partial_secondary)
+  
+  visited_urls &lt;- res$visited
+  edges_df     &lt;- res$edges
+  
+  node_df &lt;- data.frame(
+    url   = visited_urls,
+    name  = sapply(visited_urls, function(u) res$name_map[[u]]),
+    year  = sapply(visited_urls, function(u) res$year_map[[u]]),
+    color = child_last,   # entire set =&gt; child&#39;s last name
+    stringsAsFactors=FALSE
+  )
+  edges_igraph &lt;- edges_df %&gt;% rename(from=advisor, to=child)
+  
+  list(nodes=node_df, edges=edges_igraph)
+}
+
+# ---------------------------
+# 5) Merge genealogies =&gt; single igraph with color mixture
+# ---------------------------
+merge_two_trees &lt;- function(treeA, treeB) {
+  merged_nodes &lt;- full_join(treeA$nodes, treeB$nodes, by=&quot;url&quot;, suffix=c(&quot;.A&quot;,&quot;.B&quot;))
+  merged_nodes &lt;- merged_nodes %&gt;%
+    mutate(
+      final_name = coalesce(name.A, name.B),
+      final_year = coalesce(year.A, year.B),
+      color_combined = case_when(
+        !is.na(color.A) &amp; !is.na(color.B) ~ &quot;shared&quot;,
+        !is.na(color.A)                   ~ color.A,
+        !is.na(color.B)                   ~ color.B,
+        TRUE                              ~ &quot;unknown&quot;
+      )
+    ) %&gt;%
+    select(
+      url,
+      name  = final_name,
+      year  = final_year,
+      color = color_combined
+    )
+  
+  merged_edges &lt;- bind_rows(treeA$edges, treeB$edges) %&gt;% distinct()
+  merged_edges &lt;- merged_edges %&gt;%
+    filter(from %in% merged_nodes$url, to %in% merged_nodes$url)
+  
+  g &lt;- graph_from_data_frame(merged_edges, directed=TRUE, vertices=merged_nodes)
+  return(g)
+}
+
+# ---------------------------
+# 6) A single function that either:
+#    - Plots a single genealogical tree, or
+#    - Merges two genealogies &amp; plots them
+# ---------------------------
+plotGenealogy &lt;- function(childA_url,
+                          childB_url=NULL,
+                          partialA=TRUE,
+                          partialB=TRUE) {
+  # If childB is NULL =&gt; single genealogical tree
+  if (is.null(childB_url)) {
+    treeA &lt;- build_one_tree(childA_url, partial_secondary=partialA)
+    g &lt;- graph_from_data_frame(treeA$edges, directed=TRUE, vertices=treeA$nodes)
+  } else {
+    # build two genealogies &amp; merge
+    treeA &lt;- build_one_tree(childA_url, partial_secondary=partialA)
+    treeB &lt;- build_one_tree(childB_url, partial_secondary=partialB)
+    g     &lt;- merge_two_trees(treeA, treeB)
+  }
+  
+  # 1) If no label assigned, build it from name + year
+  if (! &quot;label&quot; %in% vertex_attr_names(g)) {
+    V(g)$label &lt;- paste0(
+      ifelse(is.na(V(g)$name), &quot;??&quot;, V(g)$name),
+      &quot; (&quot;,
+      ifelse(is.na(V(g)$year), &quot;??&quot;, V(g)$year),
+      &quot;)&quot;
+    )
+  }
+  
+  # 2) Create a layered layout =&gt; &#39;sugiyama&#39;
+  lay &lt;- create_layout(g, layout=&quot;tree&quot;)
+  
+  p &lt;- ggraph(lay) +
+    geom_edge_link(
+      arrow=arrow(length=unit(2,&quot;mm&quot;)),
+      end_cap=circle(2,&quot;mm&quot;),
+      alpha=0.6,
+      check_overlap=TRUE
+    ) +
+    geom_node_point(aes(color=color), size=4) +
+    geom_node_text(aes(label=label), hjust=0, nudge_x=0.1, check_overlap=TRUE) +
+    theme_void()
+  
+  # We&#39;ll define a separate color scale =&gt; we only have last names, &#39;shared&#39;, &#39;unknown&#39;
+  # Let&#39;s gather them
+  node_cols &lt;- unique(V(g)$color)
+  # special ones
+  special_cols &lt;- c(&quot;shared&quot;,&quot;unknown&quot;)
+  last_names &lt;- setdiff(node_cols, special_cols)
+  
+  color_map &lt;- c()
+  i &lt;- 1
+  # A small palette approach
+  color_for_name &lt;- function(nm, i) {
+    if (i==1) return(&quot;red&quot;)
+    if (i==2) return(&quot;blue&quot;)
+    # fallback =&gt; green, orange, black, etc.
+    palette &lt;- c(&quot;green&quot;,&quot;orange&quot;,&quot;cyan&quot;,&quot;brown&quot;,&quot;hotpink&quot;,&quot;black&quot;)
+    if ((i-2) &lt;= length(palette)) {
+      return(palette[i-2])
+    }
+    return(&quot;black&quot;)
+  }
+  for (ln in last_names) {
+    color_map[ln] &lt;- color_for_name(ln, i)
+    i &lt;- i+1
+  }
+  color_map[&quot;shared&quot;]  &lt;- &quot;purple&quot;
+  color_map[&quot;unknown&quot;] &lt;- &quot;grey&quot;
+  
+  # build labels =&gt; last name =&gt; last name, &#39;shared&#39; =&gt; &#39;shared&#39;, &#39;unknown&#39; =&gt; &#39;unknown&#39;
+  label_map &lt;- c()
+  for (ln in last_names) {
+    label_map[ln] &lt;- ln
+  }
+  label_map[&quot;shared&quot;]  &lt;- &quot;shared&quot;
+  label_map[&quot;unknown&quot;] &lt;- &quot;unknown&quot;
+  
+  p &lt;- p + scale_color_manual(
+    name   = &quot;Genealogy&quot;,
+    values = color_map,
+    breaks = names(label_map),
+    labels = label_map
+  )
+  
+  # done
+  print(p)
+  invisible(p)
+}</code></pre>
+</details>
+<hr />
+</div>
+<div id="david-kahles-lineage" class="section level3">
+<h3>David Kahle’s Lineage</h3>
+<p>Here’s a look at my advisor’s academic lineage. I followed the first advisor all the way up the tree, but kept second advisors to a single level to keep the graph from getting too tangled.</p>
+<pre class="r"><code>Kahle &lt;- &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=159440&quot;
+
+plotGenealogy(Kahle, partialA=TRUE)</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=159440</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34578</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12693</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12694</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12545</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12546</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34254</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=26995</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=17865</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=17864</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=38586</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=53410</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=54440</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143084</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143083</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143082</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143045</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=182092</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=131399</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=126659</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=125938</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=125888</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=182045</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=125760</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143044</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=152648</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143011</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=60985</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=129628</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=125125</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=146036</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=108295</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=108266</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34266</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12544</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=12543</code></pre>
+<p><img src="https://www.dustysturner.com/post/2025-04-16-mathematical-genealogy/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="dr.-sturdivants-lineage" class="section level3">
+<h3>Dr. Sturdivant’s Lineage</h3>
+<p>And here’s one for <a href="https://www.genealogy.math.ndsu.nodak.edu/id.php?id=145799">Dr. Sturdivant</a>, who also has an interesting but separate academic branch.</p>
+<pre class="r"><code>Sturdivant &lt;- &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34072&quot;
+
+plotGenealogy(Sturdivant, partialA=TRUE)</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34072</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=26992</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=38753</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=10357</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=5129</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=7616</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=10385</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=7868</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=7611</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=7401</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=7402</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=29642</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=18231</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=18230</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=66476</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=57670</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=72669</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=21235</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=137705</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=143630</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=128986</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=128046</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=127710</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=127668</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=19964</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=17946</code></pre>
+<pre><code>## Fetching page: https://www.genealogy.math.ndsu.nodak.edu/id.php?id=37346</code></pre>
+<p><img src="https://www.dustysturner.com/post/2025-04-16-mathematical-genealogy/index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="comparing-genealogies" class="section level3">
+<h3>Comparing Genealogies</h3>
+<pre class="r"><code># plotGenealogy(
+#     childA_url = &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=159440&quot;,
+#     childB_url = &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=145799&quot;,
+#     partialA = TRUE,
+#     partialB = TRUE
+#   )
+
+
+# partial recursion on secondaries</code></pre>
+<p>These genealogies don’t overlap, but it’s fascinating when lineages do—especially across countries, centuries, and fields. Here’s a merged view that shows overlaps visually:</p>
+<ul>
+<li><strong>Red</strong>: My lineage (Kahle)<br />
+</li>
+<li><strong>Blue</strong>: Dr. Sturdivant’s lineage<br />
+</li>
+<li><strong>Purple</strong>: Shared nodes (if any)<br />
+</li>
+<li><strong>Gray</strong>: Missing or unknown information</li>
+</ul>
+<div class="float">
+<img src="https://www.dustysturner.com/images/merged_genealogy.png" alt="Merged Tree" />
+<div class="figcaption">Merged Tree</div>
+</div>
+<hr />
+</div>
+<div id="final-thoughts" class="section level3">
+<h3>Final Thoughts</h3>
+<p>This was a fun side project—part historical research, part data wrangling. The MGP is a great tool for exploring the mathematical “family tree” you’re a part of. If you’re in academia and haven’t checked your own lineage, give it a look. You might be surprised where it leads.</p>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.dustysturner.com/tags/r"><span class="tag">R</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/web-scraping"><span class="tag">Web Scraping</span></a></li>
+        
+          <li><a href="https://www.dustysturner.com/tags/chatgpt"><span class="tag">ChatGPT</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2025 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.dustysturner.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PVH8CWDYYN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
