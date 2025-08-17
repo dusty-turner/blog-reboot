@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-1 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-926848e180fe37381eff1ce4acf5d783.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206-AY26-1/index.html" aria-current="page"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY26-1/lesson-1.html">Lesson 1</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-1-intro-and-preliminaries" id="toc-lesson-1-intro-and-preliminaries" class="nav-link active" data-scroll-target="#lesson-1-intro-and-preliminaries">Lesson 1: Intro and Preliminaries</a>
+  <ul class="collapse">
+  <li><a href="#welcome" id="toc-welcome" class="nav-link" data-scroll-target="#welcome">Welcome!</a>
+  <ul class="collapse">
+  <li><a href="#lets-pick-a-section-marcher" id="toc-lets-pick-a-section-marcher" class="nav-link" data-scroll-target="#lets-pick-a-section-marcher">Lets Pick A Section Marcher</a></li>
+  </ul></li>
+  <li><a href="#introductions" id="toc-introductions" class="nav-link" data-scroll-target="#introductions">Introductions</a>
+  <ul class="collapse">
+  <li><a href="#cadet-introductions" id="toc-cadet-introductions" class="nav-link" data-scroll-target="#cadet-introductions">Cadet Introductions</a></li>
+  <li><a href="#ltc-dusty-turner-phd-center-point-texas" id="toc-ltc-dusty-turner-phd-center-point-texas" class="nav-link" data-scroll-target="#ltc-dusty-turner-phd-center-point-texas">LTC Dusty Turner, PhD: Center Point, Texas</a></li>
+  <li><a href="#jill-saline-michigan" id="toc-jill-saline-michigan" class="nav-link" data-scroll-target="#jill-saline-michigan">Jill: Saline, Michigan</a></li>
+  <li><a href="#cal-las-cruces-new-mexico" id="toc-cal-las-cruces-new-mexico" class="nav-link" data-scroll-target="#cal-las-cruces-new-mexico">Cal: Las Cruces, New Mexico</a></li>
+  <li><a href="#reese-columbus-ohio" id="toc-reese-columbus-ohio" class="nav-link" data-scroll-target="#reese-columbus-ohio">Reese: Columbus, Ohio</a></li>
+  </ul></li>
+  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a>
+  <ul class="collapse">
+  <li><a href="#what-are-your-expectations-of-ma206" id="toc-what-are-your-expectations-of-ma206" class="nav-link" data-scroll-target="#what-are-your-expectations-of-ma206">What Are Your Expectations of MA206?</a></li>
+  <li><a href="#what-do-you-expect-of-me" id="toc-what-do-you-expect-of-me" class="nav-link" data-scroll-target="#what-do-you-expect-of-me">What Do You Expect of Me?</a></li>
+  <li><a href="#what-you-can-expect-from-me" id="toc-what-you-can-expect-from-me" class="nav-link" data-scroll-target="#what-you-can-expect-from-me">What You Can Expect from Me</a></li>
+  <li><a href="#expectations-i-have-for-you" id="toc-expectations-i-have-for-you" class="nav-link" data-scroll-target="#expectations-i-have-for-you">Expectations I Have for You</a></li>
+  <li><a href="#class-rules" id="toc-class-rules" class="nav-link" data-scroll-target="#class-rules">Class Rules</a></li>
+  </ul></li>
+  <li><a href="#course-overview-admin" id="toc-course-overview-admin" class="nav-link" data-scroll-target="#course-overview-admin">Course Overview / Admin</a>
+  <ul class="collapse">
+  <li><a href="#ma206-story" id="toc-ma206-story" class="nav-link" data-scroll-target="#ma206-story">MA206 Story</a></li>
+  <li><a href="#course-support" id="toc-course-support" class="nav-link" data-scroll-target="#course-support">Course Support</a></li>
+  </ul></li>
+  <li><a href="#mandatory-and-important-briefings" id="toc-mandatory-and-important-briefings" class="nav-link" data-scroll-target="#mandatory-and-important-briefings">Mandatory and Important Briefings</a></li>
+  <li><a href="#lesson-1" id="toc-lesson-1" class="nav-link" data-scroll-target="#lesson-1">Lesson 1</a>
+  <ul class="collapse">
+  <li><a href="#how-i-would-have-prepared-for-this-lesson" id="toc-how-i-would-have-prepared-for-this-lesson" class="nav-link" data-scroll-target="#how-i-would-have-prepared-for-this-lesson">How I would have prepared for this lesson:</a></li>
+  <li><a href="#the-six-step-method" id="toc-the-six-step-method" class="nav-link" data-scroll-target="#the-six-step-method">The Six-Step Method</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today:</a></li>
+  <li><a href="#lesson-2" id="toc-lesson-2" class="nav-link" data-scroll-target="#lesson-2">Lesson 2</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-1-intro-and-preliminaries" class="level1">
+<h1>Lesson 1: Intro and Preliminaries</h1>
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome!</h2>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<p><img src="assets/img/mathlete-nation.jpg" class="img-fluid"></p>
+<p><br></p>
+<p><img src="assets/img/correlation_2x.png" class="img-fluid"></p>
+<p><br></p>
+<p><a href="https://xkcd.com/552/">https://xkcd.com/552/</a></p>
+<p><br> <br></p>
+<section id="lets-pick-a-section-marcher" class="level3">
+<h3 class="anchored" data-anchor-id="lets-pick-a-section-marcher">Lets Pick A Section Marcher</h3>
+<p><br></p>
+<p><img src="assets/img/diceandcoins.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="introductions" class="level2">
+<h2 class="anchored" data-anchor-id="introductions">Introductions</h2>
+<section id="cadet-introductions" class="level3">
+<h3 class="anchored" data-anchor-id="cadet-introductions">Cadet Introductions</h3>
+<p>Please Share:</p>
+<ul>
+<li>Name<br>
+</li>
+<li>Hometown<br>
+</li>
+<li>Company<br>
+</li>
+<li>Birthday<br>
+</li>
+<li>Did you come directly from high school?<br>
+</li>
+<li>Academic Major</li>
+<li>What you do in the Corps (Sport, Club, etc)<br>
+</li>
+<li>Favorite sports team<br>
+</li>
+<li>Possible Branch<br>
+</li>
+<li>Why you picked your seat today</li>
+</ul>
+</section>
+<section id="ltc-dusty-turner-phd-center-point-texas" class="level3">
+<h3 class="anchored" data-anchor-id="ltc-dusty-turner-phd-center-point-texas">LTC Dusty Turner, PhD: Center Point, Texas</h3>
+<p><br></p>
+<p><img src="assets/img/armylogos.png" class="img-fluid"></p>
+<p><br></p>
+<div class="compact">
+<ul>
+<li>2003-2007 <strong>BS, Operations Research</strong>: <span style="color:#E1B500;">United States Military Academy (USMA)</span><br>
+</li>
+<li>2007-2008 <strong>Engineer Basic Officer Course</strong>: Fort Leonard Wood, Missouri<br>
+</li>
+<li>2008-2011 <strong>Platoon Leader / XO / AS3</strong>: Schofield Barracks, HI / Iraq<br>
+</li>
+<li>2011-2012 <strong>Engineer Captain’s Career Course</strong>: Missouri S&amp;T<br>
+</li>
+<li>2012 <strong>MS, Engineering Management</strong>: <span style="color:#115740;">Missouri S&amp;T</span><br>
+</li>
+<li>2012-2014 <strong>Company Commander</strong>: White Sands Missile Range, NM / Afghanistan<br>
+</li>
+<li>2014-2016 <strong>MS, Integrated Systems Engineering</strong>: <span style="color:#BB0000;">The Ohio State University</span><br>
+</li>
+<li>2016-2019 <strong>Assistant Professor</strong>: United States Military Academy, West Point<br>
+</li>
+<li>2019-2022 <strong>ORSA / Data Scientist</strong>: Center for Army Analysis, Ft. Belvoir<br>
+</li>
+<li>2022-2025 <strong>PhD, Statistical Science</strong>: <span style="color:#154734;">Baylor University (Waco, TX)</span><br>
+</li>
+<li>2025-? <strong>Academy Professor</strong>: United States Military Academy, West Point</li>
+</ul>
+</div>
+<p><br></p>
+<p><img src="assets/img/schoollogos.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>places <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">place =</span> <span class="fu">c</span>(<span class="st">"USMA (West Point, NY)"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Schofield Barracks, HI"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Missouri S&amp;T (Rolla, MO)"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"White Sands Missile Range, NM"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"The Ohio State University (Columbus, OH)"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Baylor University (Waco, TX)"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Center for Army Analysis (Ft. Belvoir, VA)"</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fu">c</span>(<span class="fl">41.391</span>, <span class="fl">21.483</span>, <span class="fl">37.954</span>, <span class="fl">32.389</span>, <span class="fl">39.999</span>, <span class="fl">31.549</span>, <span class="fl">38.711</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">lng =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">73.959</span>, <span class="sc">-</span><span class="fl">158.063</span>, <span class="sc">-</span><span class="fl">91.774</span>, <span class="sc">-</span><span class="fl">106.491</span>, <span class="sc">-</span><span class="fl">83.018</span>, <span class="sc">-</span><span class="fl">97.114</span>, <span class="sc">-</span><span class="fl">77.147</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(places) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>lng, <span class="sc">~</span>lat,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">6</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="st">"red"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.85</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLabelOnlyMarkers</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>lng, <span class="sc">~</span>lat,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># label = ~place,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">labelOptions =</span> <span class="fu">labelOptions</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">noHide =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">direction =</span> <span class="st">"top"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">textOnly =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="fu">list</span>(<span class="st">"color"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"font-size"</span> <span class="ot">=</span> <span class="st">"12px"</span>, <span class="st">"font-weight"</span> <span class="ot">=</span> <span class="st">"bold"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-76a90b41dc1703087f40" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-76a90b41dc1703087f40">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[41.391,21.483,37.954,32.389,39.999,31.549,38.711],[-73.959,-158.063,-91.774,-106.491,-83.018,-97.114,-77.14700000000001],6,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.85},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[41.391,21.483,37.954,32.389,39.999,31.549,38.711],[-73.959,-158.063,-91.774,-106.491,-83.018,-97.114,-77.14700000000001],{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":true,"direction":"top","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":true,"style":{"color":"black","font-size":"12px","font-weight":"bold"},"className":"","sticky":true},null]}],"limits":{"lat":[21.483,41.391],"lng":[-158.063,-73.959]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="jill-saline-michigan" class="level3">
+<h3 class="anchored" data-anchor-id="jill-saline-michigan">Jill: Saline, Michigan</h3>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+<div style="text-align: center;">
+<p><img src="assets/img/jill1.jpg" width="300"></p>
+</div>
+<div style="text-align: center;">
+<p><img src="assets/img/jill2.jpg" width="300"></p>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>2000–2004 <strong>BS, Economics</strong>: <span style="color:#18453B;">Michigan State University</span><br>
+</li>
+<li>2004–2010 <strong>Project Manager</strong>: Epic Systems<br>
+</li>
+<li>2011–2020 <strong>Consultant / Build Analyst (Epic Radiant &amp; Cadence)</strong>
+<ul>
+<li>2011–2013 <strong>Epic Radiant Build Consultant</strong>: Intellistar Consulting<br>
+</li>
+<li>2014 <strong>Epic Radiant Build Analyst</strong>: Vonlay<br>
+</li>
+<li>2016–2017 <strong>Epic Radiant Build Analyst</strong>: Huron<br>
+</li>
+<li>2018–2020 <strong>Epic Cadence Build Analyst</strong>: Bluetree Network<br>
+</li>
+</ul></li>
+<li>2020–Present <strong>Solutions &amp; Application Architect / Principal Analyst</strong>: Mayo Clinic<br>
+</li>
+</ul>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+<div style="text-align: center;">
+<p><img src="assets/img/epic.svg" width="200"></p>
+</div>
+<div style="text-align: center;">
+<p><img src="assets/img/mayo.png" width="200"></p>
+</div>
+</div>
+</section>
+<section id="cal-las-cruces-new-mexico" class="level3">
+<h3 class="anchored" data-anchor-id="cal-las-cruces-new-mexico">Cal: Las Cruces, New Mexico</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-11" role="tab" aria-controls="tabset-1-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-12" role="tab" aria-controls="tabset-1-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-13" role="tab" aria-controls="tabset-1-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-14" role="tab" aria-controls="tabset-1-14" aria-selected="false">14</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="assets/img/cal/calturnerdrive.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="assets/img/cal/caltigerspitch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><img src="assets/img/cal/calcatch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p><img src="assets/img/cal/calwarriors.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p><img src="assets/img/cal/calrangers.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p><img src="assets/img/cal/calasrunning.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<p><img src="assets/img/cal/calaspitching.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<p><img src="assets/img/cal/calbarehand.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+<p><img src="assets/img/cal/calasbat.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-10-tab">
+<p><img src="assets/img/cal/calassectionchamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-11-tab">
+<p><img src="assets/img/cal/caltxstatechampian.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-12-tab">
+<p><img src="assets/img/cal/caltv.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-13-tab">
+<p><img src="assets/img/cal/calviolin.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-14-tab">
+<p><img src="assets/img/cal/calchess.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="reese-columbus-ohio" class="level3">
+<h3 class="anchored" data-anchor-id="reese-columbus-ohio">Reese: Columbus, Ohio</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-13" role="tab" aria-controls="tabset-2-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-14" role="tab" aria-controls="tabset-2-14" aria-selected="false">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-15" role="tab" aria-controls="tabset-2-15" aria-selected="false">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-16" role="tab" aria-controls="tabset-2-16" aria-selected="false">16</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-17-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-17" role="tab" aria-controls="tabset-2-17" aria-selected="false">17</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><img src="assets/img/reese/reesecenter.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><img src="assets/img/reese/reesedance.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p><img src="assets/img/reese/reesebasketball.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p><img src="assets/img/reese/reesepitch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p><img src="assets/img/reese/reeesewarriorscatch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<p><img src="assets/img/reese/reesebackhand.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
+<p><img src="assets/img/reese/reesecoach.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
+<p><img src="assets/img/reese/reesewin.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-9-tab">
+<p><img src="assets/img/reese/reesellhit.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-10-tab">
+<p><img src="assets/img/reese/reeseashit.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-11-tab">
+<p><img src="assets/img/reese/reesehitas.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
+<p><img src="assets/img/reese/reesejump.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-13-tab">
+<p><img src="assets/img/reese/reesejumpcj.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-14-tab">
+<p><img src="assets/img/reese/reesesectionchamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-15-tab">
+<p><img src="assets/img/reese/reesedistrict.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-16" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-16-tab">
+<p><img src="assets/img/reese/reesestatechamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-17" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-17-tab">
+<p><img src="assets/img/reese/reesebackflip.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="expectations" class="level2">
+<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<section id="what-are-your-expectations-of-ma206" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-your-expectations-of-ma206">What Are Your Expectations of MA206?</h3>
+<p><br> <br> <br> <br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/nofun.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Develop a Base of Knowledge<br>
+</li>
+<li>Leverage Technology<br>
+</li>
+<li>Communicate Concepts and Results<br>
+</li>
+<li>Problem Solving Techniques<br>
+</li>
+<li>Develop habits of mind<br>
+</li>
+<li>Develop an interdisciplinary perspective</li>
+</ul>
+</section>
+<section id="what-do-you-expect-of-me" class="level3">
+<h3 class="anchored" data-anchor-id="what-do-you-expect-of-me">What Do You Expect of Me?</h3>
+</section>
+<section id="what-you-can-expect-from-me" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-can-expect-from-me">What You Can Expect from Me</h3>
+<ul>
+<li>Arrive prepared for each lesson<br>
+</li>
+<li>Encourage independent thinking</li>
+<li>Maintain professionalism and respect at all times<br>
+</li>
+<li>Uphold the values of the Corps and our institution<br>
+</li>
+<li>Clear guidance and expectations for assignments<br>
+</li>
+<li>Be a professional mentor<br>
+</li>
+<li>Make Mistakes</li>
+</ul>
+</section>
+<section id="expectations-i-have-for-you" class="level3">
+<h3 class="anchored" data-anchor-id="expectations-i-have-for-you">Expectations I Have for You</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/teamwork.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Be responsible for your learning</li>
+<li>Arrive prepared for each lesson<br>
+</li>
+<li>Engage actively in discussions and exercises<br>
+</li>
+<li>Maintain professionalism and respect at all times<br>
+</li>
+<li>Uphold the values of the Corps and our institution - you are junior members of this profession<br>
+</li>
+<li>Communicate early if challenges arise<br>
+</li>
+<li>Make mistakes</li>
+</ul>
+</section>
+<section id="class-rules" class="level3">
+<h3 class="anchored" data-anchor-id="class-rules">Class Rules</h3>
+<ul>
+<li>Computers will only be used for course materials only<br>
+</li>
+<li>No food or gum allowed in the classroom<br>
+</li>
+<li>Only drinks in spill-proof containers are allowed<br>
+</li>
+<li>Leave bags, backpacks, coats, and hats in the hallway<br>
+</li>
+<li>Stay awake in class. Stand up if you are tired<br>
+</li>
+<li>Arrive on time and do not start packing up before I dismiss the class<br>
+</li>
+<li>Be respectful when others are speaking<br>
+</li>
+<li>Support the section marcher</li>
+</ul>
+</section>
+</section>
+<section id="course-overview-admin" class="level2">
+<h2 class="anchored" data-anchor-id="course-overview-admin">Course Overview / Admin</h2>
+<section id="ma206-story" class="level3">
+<h3 class="anchored" data-anchor-id="ma206-story">MA206 Story</h3>
+<ol type="1">
+<li>Probability
+<ul>
+<li>Foundations: preliminaries, dataset exploration, tidyverse basics<br>
+</li>
+<li>Core Probability: principles, conditional probability, rules of random variables<br>
+</li>
+<li>Random Variables: discrete, continuous, and named distributions</li>
+</ul></li>
+<li>Statistical Tests
+<ul>
+<li>One-sample tests: one proportion Z-test, one mean T-test<br>
+</li>
+<li>Confidence Intervals: categorical and quantitative data<br>
+</li>
+<li>Comparative tests: two proportion Z-test, two mean T-test, paired data<br>
+</li>
+<li>Broader Concepts: generalization, causation, and investigation labs</li>
+</ul></li>
+<li>Regression
+<ul>
+<li>Correlation &amp; Simple Linear Regression<br>
+</li>
+<li>Multiple Linear Regression (I–III)<br>
+</li>
+<li>Applications: project work, presentations, writer’s workshop, course review</li>
+</ul></li>
+</ol>
+</section>
+<section id="course-support" class="level3">
+<h3 class="anchored" data-anchor-id="course-support">Course Support</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295">Canvas</a></li>
+<li>Calendar (<a href="https://westpoint.instructure.com/courses/10295/files/3018881?wrap=1">Day 1</a>) (<a href="https://westpoint.instructure.com/courses/10295/files/3042345?wrap=1">Day 2</a>)</li>
+<li><a href="https://education.wiley.com/ng-course-dashboard/index.html#/course-resources">Book: <em>Introduction to Statistical Investigations</em></a> (Digital or hard copy authorized)<br>
+</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/course-guide">Course Guide</a>
+<ul>
+<li>Course Admin<br>
+</li>
+<li>Specific Help / Instructions<br>
+</li>
+<li>R Code<br>
+</li>
+</ul></li>
+<li>Graded Assignments</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Day 0 Assignment</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Generative AI Certification</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>Exploration Exercises (6 @ 10 points each)</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>Statistical Investigation Labs:<br> - SIL 1 (25)<br> - SIL 2 (25)</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>WPR 1</td>
+<td>125</td>
+</tr>
+<tr class="even">
+<td>WPR 2</td>
+<td>140</td>
+</tr>
+<tr class="odd">
+<td>Course Project:<br> - Milestone 1 – Setup and Data (25)<br> - Milestone 2 – EDA (25)<br> - Milestone 3 – Intro &amp; Academic Articles (30)<br> - Milestone 4 – Literature Review (25)<br> - Milestone 5 – Methodology (30)<br> - Milestone 6 – Results, Discussion, Conclusion (60)<br> - In-Progress Review (20)<br> - Presentation (50)<br> - Milestone 7 – Writer’s Workshop (25)<br> - Final Turn In (30)</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td>TEE</td>
+<td>285</td>
+</tr>
+<tr class="odd">
+<td><strong>TOTAL</strong></td>
+<td><strong>1000</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/course-project">Project</a></li>
+<li>A note on course grades</li>
+<li>Where to get this presentation</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For assignments worth less than 20 points that are turned in late:</p>
+<p>50% reduction if turned in before Lesson 30 For assignments turned in late worth 20 points or more:</p>
+<p>10% reduction per day until assignment is worth 0 points (10 days late)</p>
+</div>
+</div>
+</section>
+</section>
+<section id="mandatory-and-important-briefings" class="level2">
+<h2 class="anchored" data-anchor-id="mandatory-and-important-briefings">Mandatory and Important Briefings</h2>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295/files/3075046/download?download_frd=1">Academic Integrity Brief</a><br>
+</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/files/3075045/download?download_frd=1">Academic Security</a></li>
+</ul>
+</section>
+<section id="lesson-1" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-1">Lesson 1</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/lesson1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<section id="how-i-would-have-prepared-for-this-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="how-i-would-have-prepared-for-this-lesson">How I would have prepared for this lesson:</h3>
+<ol type="1">
+<li>Go to Lesson 1 on <a href="https://westpoint.instructure.com/courses/10295">Canvas</a></li>
+<li>Note the objectives</li>
+<li>Do the reading</li>
+<li>Watch the videos</li>
+<li>Note the Course Guide<br>
+</li>
+<li>Do the Homework (If applicable)</li>
+</ol>
+</section>
+<section id="the-six-step-method" class="level3">
+<h3 class="anchored" data-anchor-id="the-six-step-method">The Six-Step Method</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/plobsolvingsteps.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<section id="example-1-basketball-heights" class="level4">
+<h4 class="anchored" data-anchor-id="example-1-basketball-heights">Example 1: Basketball Heights</h4>
+<ol type="1">
+<li><p><strong>Ask a question</strong><br>
+<em>Do basketball cadets tend to be taller than cadets who aren’t on the basketball team?</em></p></li>
+<li><p><strong>Design a study and collect data</strong><br>
+<em>Measure the heights of some basketball cadets and some non-basketball cadets.</em></p></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Basketball cadets: 71, 72, 73, 74, 75, 75, 75, 75, 76, 76, 76, 77, 77, 77, 78 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Non-basketball cadets: 68, 68, 70, 70, 70, 70, 70, 70, 72, 73</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Explore the data</strong><br>
+Average basketball cadet height: <strong>75.1 in</strong><br>
+Average non-basketball cadet height: <strong>70.1 in</strong></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-1_files/figure-html/height-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p><strong>Draw inferences</strong><br>
+The basketball group is taller by about <strong>5 inches</strong> in this sample.</p></li>
+<li><p><strong>Formulate conclusions</strong><br>
+<em>Looks like basketball cadets are taller.</em></p></li>
+<li><p><strong>Look back and ahead</strong><br>
+You could improve this by measuring more cadets or using a statistical test.</p></li>
+</ol>
+</section>
+<section id="exapmple-2-the-monty-hall-problem" class="level4">
+<h4 class="anchored" data-anchor-id="exapmple-2-the-monty-hall-problem">Exapmple 2: The Monty Hall Problem</h4>
+<ol type="1">
+<li><p><strong>Ask a question</strong><br>
+<em>If the host opens a goat door, are you better off sticking with your first door or switching to the other unopened door?</em></p></li>
+<li><p><strong>Design a study and collect data</strong><br>
+<em>We simulate the game many times and record whether “stay” or “switch” wins the car.</em></p></li>
+<li><p><strong>Explore the data</strong></p></li>
+<li><p><strong>Draw inferences</strong></p></li>
+<li><p><strong>Formulate conclusions</strong></p></li>
+<li><p><strong>Look back and ahead</strong></p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today:</h3>
+<ul>
+<li>Any questions for me?</li>
+</ul>
+</section>
+<section id="lesson-2" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-2">Lesson 2</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/lesson-2-project-dataset-exploration?module_item_id=623733">Lesson 2</a></li>
+</ul>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-1-instructions">Project Milestone 1</a>: Due 22 Aug (Friday) All Sections - Read through this and come to class with questions</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/assignments/225944">GenAI Certification</a>: Due 25 August (Monday) All Sections</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY26-1/index.html" class="pagination-link" aria-label="Course Information">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course Information</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
