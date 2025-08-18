@@ -1,5 +1,38 @@
 [
   {
+    "objectID": "MA206-AY26-1/lesson-2.html",
+    "href": "MA206-AY26-1/lesson-2.html",
+    "title": "Lesson 2: Project Dataset Exploration",
+    "section": "",
+    "text": "Your browser does not support the video tag. \n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLets navigate to it on Canvas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis are just ideas on where to get data\n\nWe’ll talk about the Dataset Worksheet in a moment\n\n\n\n\n\n\nWhat is synthetic data?\n\n\nCode\nlibrary(tidyverse)\nset.seed(206)\nn &lt;- 300\n\ndf &lt;- \n  tibble(id = 1:n) |&gt; \n  mutate(# Categorical variables\n    sport  = as.factor(sample(c(\"Handball\", \"Lacrosse\", \"Track\"), size = n, replace = TRUE, prob = c(0.33, 0.34, 0.33))),\n    gender = as.factor(sample(c(\"Female\", \"Male\"), size = n, replace = TRUE, prob = c(0.45, 0.55)))\n  ) |&gt; \n  mutate(# Quantitative variables\n    height_cm = round(rnorm(n, mean = ifelse(gender == \"Male\", 178, 166) + ifelse(sport == \"Track\", -1.0, ifelse(sport == \"Lacrosse\", 0.5, 0)), sd = 6.5), 1),\n    training_hours = pmax(0, round(rnorm(n, mean = ifelse(sport == \"Track\", 7.5, ifelse(sport == \"Lacrosse\", 6.0, 5.5)), sd = 2.0), 1)\n    )\n  ) |&gt; \n  mutate(# Response variable (run time in minutes)\n    run_time_min = 16.5 + \n      ifelse(sport == \"Handball\", 1.0, \n             ifelse(sport == \"Lacrosse\", 0.6, -1.4)) + \n      ifelse(gender == \"Female\", 0.7, 0) + (-0.22) * training_hours + (0.015) * height_cm + \n      ifelse(sport == \"Track\", -0.05 * training_hours, 0) + rnorm(n, 0, 0.8), run_time_min = round(pmin(pmax(run_time_min, 11), 24), 2)\n       )\n\n# Quick peek\ndf |&gt;  slice_head(n = 10)\n\n\n# A tibble: 10 × 6\n      id sport    gender height_cm training_hours run_time_min\n   &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;\n 1     1 Handball Female      171.            5.7         18.3\n 2     2 Track    Male        183.            7.9         14.5\n 3     3 Handball Female      152.            6.5         18.7\n 4     4 Lacrosse Male        187.            5.8         19.3\n 5     5 Lacrosse Male        179.            5.8         19.2\n 6     6 Lacrosse Female      170.            6.8         19.1\n 7     7 Track    Female      160.            6.4         17.2\n 8     8 Handball Male        172.            6.6         19.6\n 9     9 Track    Male        165.            8.7         14.6\n10    10 Handball Female      160.            3.9         19.3\n\n\n\n\n\n\n\nDid we satisfy this?\n\n\n\n\n\nHow about this?\n\n\n\n\n\nOkay, now this?\n\n\n\n\n\nAnd finally, this?\n\n\n\n\n\n\n\n\nThis is where you show me you’ve met the criteria.\n\n\n\n\n\nAnnex B\n\n\n\n\nGenAI Assignment\n\n\n\n\n\n\nAny questions for me?\n\n\n\n\n\nLesson 2\n\n\n\n\n\nProject Milestone 1: Due 22 Aug (Friday) All Sections - Read through this and come to class with questions\nGenAI Certification: Due 25 August (Monday) All Sections",
+    "crumbs": [
+      "MA206-AY26-1",
+      "Lesson 2"
+    ]
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-2.html#welcome",
+    "href": "MA206-AY26-1/lesson-2.html#welcome",
+    "title": "Lesson 2: Project Dataset Exploration",
+    "section": "",
+    "text": "Your browser does not support the video tag. \n\n\n\n\n\n  Your browser does not support the video tag.",
+    "crumbs": [
+      "MA206-AY26-1",
+      "Lesson 2"
+    ]
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-2.html#before-you-leave",
+    "href": "MA206-AY26-1/lesson-2.html#before-you-leave",
+    "title": "Lesson 2: Project Dataset Exploration",
+    "section": "",
+    "text": "Any questions for me?\n\n\n\n\n\nLesson 2\n\n\n\n\n\nProject Milestone 1: Due 22 Aug (Friday) All Sections - Read through this and come to class with questions\nGenAI Certification: Due 25 August (Monday) All Sections",
+    "crumbs": [
+      "MA206-AY26-1",
+      "Lesson 2"
+    ]
+  },
+  {
     "objectID": "MA206-AY26-1/index.html",
     "href": "MA206-AY26-1/index.html",
     "title": "Course Administration",
@@ -107,6 +140,28 @@
     "crumbs": [
       "MA206-AY26-1",
       "Lesson 1"
+    ]
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-2.html#project-milestone-1",
+    "href": "MA206-AY26-1/lesson-2.html#project-milestone-1",
+    "title": "Lesson 2: Project Dataset Exploration",
+    "section": "",
+    "text": "Lets navigate to it on Canvas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis are just ideas on where to get data\n\nWe’ll talk about the Dataset Worksheet in a moment\n\n\n\n\n\n\nWhat is synthetic data?\n\n\nCode\nlibrary(tidyverse)\nset.seed(206)\nn &lt;- 300\n\ndf &lt;- \n  tibble(id = 1:n) |&gt; \n  mutate(# Categorical variables\n    sport  = as.factor(sample(c(\"Handball\", \"Lacrosse\", \"Track\"), size = n, replace = TRUE, prob = c(0.33, 0.34, 0.33))),\n    gender = as.factor(sample(c(\"Female\", \"Male\"), size = n, replace = TRUE, prob = c(0.45, 0.55)))\n  ) |&gt; \n  mutate(# Quantitative variables\n    height_cm = round(rnorm(n, mean = ifelse(gender == \"Male\", 178, 166) + ifelse(sport == \"Track\", -1.0, ifelse(sport == \"Lacrosse\", 0.5, 0)), sd = 6.5), 1),\n    training_hours = pmax(0, round(rnorm(n, mean = ifelse(sport == \"Track\", 7.5, ifelse(sport == \"Lacrosse\", 6.0, 5.5)), sd = 2.0), 1)\n    )\n  ) |&gt; \n  mutate(# Response variable (run time in minutes)\n    run_time_min = 16.5 + \n      ifelse(sport == \"Handball\", 1.0, \n             ifelse(sport == \"Lacrosse\", 0.6, -1.4)) + \n      ifelse(gender == \"Female\", 0.7, 0) + (-0.22) * training_hours + (0.015) * height_cm + \n      ifelse(sport == \"Track\", -0.05 * training_hours, 0) + rnorm(n, 0, 0.8), run_time_min = round(pmin(pmax(run_time_min, 11), 24), 2)\n       )\n\n# Quick peek\ndf |&gt;  slice_head(n = 10)\n\n\n# A tibble: 10 × 6\n      id sport    gender height_cm training_hours run_time_min\n   &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;\n 1     1 Handball Female      171.            5.7         18.3\n 2     2 Track    Male        183.            7.9         14.5\n 3     3 Handball Female      152.            6.5         18.7\n 4     4 Lacrosse Male        187.            5.8         19.3\n 5     5 Lacrosse Male        179.            5.8         19.2\n 6     6 Lacrosse Female      170.            6.8         19.1\n 7     7 Track    Female      160.            6.4         17.2\n 8     8 Handball Male        172.            6.6         19.6\n 9     9 Track    Male        165.            8.7         14.6\n10    10 Handball Female      160.            3.9         19.3\n\n\n\n\n\n\n\nDid we satisfy this?\n\n\n\n\n\nHow about this?\n\n\n\n\n\nOkay, now this?\n\n\n\n\n\nAnd finally, this?\n\n\n\n\n\n\n\n\nThis is where you show me you’ve met the criteria.\n\n\n\n\n\nAnnex B",
+    "crumbs": [
+      "MA206-AY26-1",
+      "Lesson 2"
+    ]
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-2.html#genai-assignment-due-25-aug",
+    "href": "MA206-AY26-1/lesson-2.html#genai-assignment-due-25-aug",
+    "title": "Lesson 2: Project Dataset Exploration",
+    "section": "",
+    "text": "GenAI Assignment",
+    "crumbs": [
+      "MA206-AY26-1",
+      "Lesson 2"
     ]
   }
 ]
