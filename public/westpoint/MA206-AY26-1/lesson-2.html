@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/lesson-3.html" rel="next">
 <link href="../MA206-AY26-1/lesson-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -103,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -176,6 +206,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Lesson 2</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3: In Development</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -193,6 +229,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
   <li><a href="#are-you-tired-of-these-yet" id="toc-are-you-tired-of-these-yet" class="nav-link" data-scroll-target="#are-you-tired-of-these-yet">Are You Tired of These Yet?</a></li>
   </ul></li>
+  <li><a href="#genai-assignment-due-25-aug" id="toc-genai-assignment-due-25-aug" class="nav-link" data-scroll-target="#genai-assignment-due-25-aug">GenAI Assignment (Due 25 Aug)</a></li>
+  <li><a href="#project-the-long-view" id="toc-project-the-long-view" class="nav-link" data-scroll-target="#project-the-long-view">Project: The Long View</a>
+  <ul class="collapse">
+  <li><a href="#so-what-are-we-doing-anyway" id="toc-so-what-are-we-doing-anyway" class="nav-link" data-scroll-target="#so-what-are-we-doing-anyway">So what are we doing anyway?</a></li>
+  </ul></li>
   <li><a href="#project-milestone-1" id="toc-project-milestone-1" class="nav-link" data-scroll-target="#project-milestone-1">Project Milestone 1</a>
   <ul class="collapse">
   <li><a href="#guidance-on-assistance" id="toc-guidance-on-assistance" class="nav-link" data-scroll-target="#guidance-on-assistance">Guidance on Assistance</a></li>
@@ -201,13 +242,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#toc-instructions" id="toc-toc-instructions" class="nav-link" data-scroll-target="#toc-instructions">TOC Instructions</a></li>
   <li><a href="#dataset-conversation" id="toc-dataset-conversation" class="nav-link" data-scroll-target="#dataset-conversation">Dataset Conversation</a></li>
   <li><a href="#about-that-dataset-worksheet" id="toc-about-that-dataset-worksheet" class="nav-link" data-scroll-target="#about-that-dataset-worksheet">About that Dataset Worksheet</a></li>
-  <li><a href="#to-get-ahead" id="toc-to-get-ahead" class="nav-link" data-scroll-target="#to-get-ahead">To Get Ahead</a></li>
+  <li><a href="#example-data-critique" id="toc-example-data-critique" class="nav-link" data-scroll-target="#example-data-critique">Example Data Critique</a></li>
   </ul></li>
-  <li><a href="#genai-assignment-due-25-aug" id="toc-genai-assignment-due-25-aug" class="nav-link" data-scroll-target="#genai-assignment-due-25-aug">GenAI Assignment (Due 25 Aug)</a></li>
+  <li><a href="#so-where-can-i-get-data" id="toc-so-where-can-i-get-data" class="nav-link" data-scroll-target="#so-where-can-i-get-data">So Where Can I Get Data?</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
   <ul class="collapse">
+  <li><a href="#to-get-ahead" id="toc-to-get-ahead" class="nav-link" data-scroll-target="#to-get-ahead">To Get Ahead</a></li>
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today:</a></li>
-  <li><a href="#lesson-2" id="toc-lesson-2" class="nav-link" data-scroll-target="#lesson-2">Lesson 2</a></li>
+  <li><a href="#lesson-3-principles-of-probability" id="toc-lesson-3-principles-of-probability" class="nav-link" data-scroll-target="#lesson-3-principles-of-probability">Lesson 3 Principles of Probability</a></li>
   <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
   </ul></li>
   </ul></li>
@@ -267,6 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="before-we-start" class="level4">
 <h4 class="anchored" data-anchor-id="before-we-start">Before We Start</h4>
+<p>Don’t forget</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/img/nofun.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
@@ -275,8 +318,127 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
+<section id="genai-assignment-due-25-aug" class="level2">
+<h2 class="anchored" data-anchor-id="genai-assignment-due-25-aug">GenAI Assignment (Due 25 Aug)</h2>
+<p><a href="https://westpoint.instructure.com/courses/10295/assignments/225944">GenAI Assignment</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/generalai.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="project-the-long-view" class="level2">
+<h2 class="anchored" data-anchor-id="project-the-long-view">Project: The Long View</h2>
+<section id="so-what-are-we-doing-anyway" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-are-we-doing-anyway">So what are we doing anyway?</h3>
+<center>
+<a href="https://westpoint.instructure.com/courses/10295/pages/course-project">Let’s go to Canvas</a>
+</center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/dazedandconfused.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Your work will result in a <a href="https://westpoint.instructure.com/courses/10295/pages/course-project">presentation</a> and a <a href="https://westpoint.instructure.com/courses/10295/pages/course-project">technical report</a>.</p>
+<p>Both these files are found on Canvas.</p>
+<p>Ultimately, you are going to conduct a linear regression where you determine how much one variable impacted by other variables. For example:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel Efficiency vs. Vehicle Weight"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \quad i = 1, 2, \dots, n\)</span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel Efficiency vs. Vehicle Weight"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But there might be multiple things that can impact our dependent variable.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">as.factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel Efficiency vs. Vehicle Weight and Cylinders"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \varepsilon_i,
+\quad i = 1, 2, \dots, n\)</span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">as.factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel Efficiency vs. Vehicle Weight and Cylinders"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="project-milestone-1" class="level2">
 <h2 class="anchored" data-anchor-id="project-milestone-1">Project Milestone 1</h2>
+<p>This milestone sets up your binder and makes sure you have acceptable data.</p>
 <p>Lets navigate to it on <a href="https://westpoint.instructure.com/courses/10295">Canvas</a></p>
 <section id="guidance-on-assistance" class="level3">
 <h3 class="anchored" data-anchor-id="guidance-on-assistance">Guidance on Assistance</h3>
@@ -324,35 +486,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="assets/img/milestone1-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
-<p>What is synthetic data?</p>
+<p><strong>What is synthetic data?</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">206</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n) <span class="sc">|&gt;</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Categorical variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sport  =</span> <span class="fu">as.factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Handball"</span>, <span class="st">"Lacrosse"</span>, <span class="st">"Track"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.33</span>, <span class="fl">0.34</span>, <span class="fl">0.33</span>))),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">as.factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.55</span>)))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Quantitative variables</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">height_cm =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>, <span class="dv">178</span>, <span class="dv">166</span>) <span class="sc">+</span> <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="sc">-</span><span class="fl">1.0</span>, <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)), <span class="at">sd =</span> <span class="fl">6.5</span>), <span class="dv">1</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">training_hours =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="fl">7.5</span>, <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">6.0</span>, <span class="fl">5.5</span>)), <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="dv">1</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Response variable (run time in minutes)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time_min =</span> <span class="fl">16.5</span> <span class="sc">+</span> </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Handball"</span>, <span class="fl">1.0</span>, </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>             <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">0.6</span>, <span class="sc">-</span><span class="fl">1.4</span>)) <span class="sc">+</span> </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"Female"</span>, <span class="fl">0.7</span>, <span class="dv">0</span>) <span class="sc">+</span> (<span class="sc">-</span><span class="fl">0.22</span>) <span class="sc">*</span> training_hours <span class="sc">+</span> (<span class="fl">0.015</span>) <span class="sc">*</span> height_cm <span class="sc">+</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="sc">-</span><span class="fl">0.05</span> <span class="sc">*</span> training_hours, <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.8</span>), <span class="at">run_time_min =</span> <span class="fu">round</span>(<span class="fu">pmin</span>(<span class="fu">pmax</span>(run_time_min, <span class="dv">11</span>), <span class="dv">24</span>), <span class="dv">2</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>       )</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick peek</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">206</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n) <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Categorical variables</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sport  =</span> <span class="fu">as.factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Handball"</span>, <span class="st">"Lacrosse"</span>, <span class="st">"Track"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.33</span>, <span class="fl">0.34</span>, <span class="fl">0.33</span>))),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">as.factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.55</span>)))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Quantitative variables</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">height_cm =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>, <span class="dv">178</span>, <span class="dv">166</span>) <span class="sc">+</span> <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="sc">-</span><span class="fl">1.0</span>, <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)), <span class="at">sd =</span> <span class="fl">6.5</span>), <span class="dv">1</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">training_hours =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="fl">7.5</span>, <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">6.0</span>, <span class="fl">5.5</span>)), <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="co"># Response variable (run time in minutes)</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time_min =</span> <span class="fl">16.5</span> <span class="sc">+</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Handball"</span>, <span class="fl">1.0</span>, </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>             <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Lacrosse"</span>, <span class="fl">0.6</span>, <span class="sc">-</span><span class="fl">1.4</span>)) <span class="sc">+</span> </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"Female"</span>, <span class="fl">0.7</span>, <span class="dv">0</span>) <span class="sc">+</span> (<span class="sc">-</span><span class="fl">0.22</span>) <span class="sc">*</span> training_hours <span class="sc">+</span> (<span class="fl">0.015</span>) <span class="sc">*</span> height_cm <span class="sc">+</span> </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sport <span class="sc">==</span> <span class="st">"Track"</span>, <span class="sc">-</span><span class="fl">0.05</span> <span class="sc">*</span> training_hours, <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.8</span>), <span class="at">run_time_min =</span> <span class="fu">round</span>(<span class="fu">pmin</span>(<span class="fu">pmax</span>(run_time_min, <span class="dv">11</span>), <span class="dv">24</span>), <span class="dv">2</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick peek</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
@@ -393,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="assets/img/milestone1-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
-<p>And finally, this?</p>
+<p>And finally, this!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/img/milestone1-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -406,33 +568,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <iframe src="assets/files/datasetworksheet.pdf" width="100%" height="1150px" style="border: none;">
 </iframe>
 </section>
+<section id="example-data-critique" class="level3">
+<h3 class="anchored" data-anchor-id="example-data-critique">Example Data Critique</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+# ℹ 53,930 more rows</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span>diamonds <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     carat               cut        color        clarity          depth      
+ Min.   :0.2000   Fair     : 1610   D: 6775   SI1    :13065   Min.   :43.00  
+ 1st Qu.:0.4000   Good     : 4906   E: 9797   VS2    :12258   1st Qu.:61.00  
+ Median :0.7000   Very Good:12082   F: 9542   SI2    : 9194   Median :61.80  
+ Mean   :0.7979   Premium  :13791   G:11292   VS1    : 8171   Mean   :61.75  
+ 3rd Qu.:1.0400   Ideal    :21551   H: 8304   VVS2   : 5066   3rd Qu.:62.50  
+ Max.   :5.0100                     I: 5422   VVS1   : 3655   Max.   :79.00  
+                                    J: 2808   (Other): 2531                  
+     table           price             x                y         
+ Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
+ 1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720  
+ Median :57.00   Median : 2401   Median : 5.700   Median : 5.710  
+ Mean   :57.46   Mean   : 3933   Mean   : 5.731   Mean   : 5.735  
+ 3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540  
+ Max.   :95.00   Max.   :18823   Max.   :10.740   Max.   :58.900  
+                                                                  
+       z         
+ Min.   : 0.000  
+ 1st Qu.: 2.910  
+ Median : 3.530  
+ Mean   : 3.539  
+ 3rd Qu.: 4.040  
+ Max.   :31.800  
+                 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="so-where-can-i-get-data" class="level2">
+<h2 class="anchored" data-anchor-id="so-where-can-i-get-data">So Where Can I Get Data?</h2>
+<p>I’m glad you asked!</p>
+<iframe src="assets/files/MA206_ProjectTips.pdf" width="100%" height="1150px" style="border: none;">
+</iframe>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
 <section id="to-get-ahead" class="level3">
 <h3 class="anchored" data-anchor-id="to-get-ahead">To Get Ahead</h3>
 <p><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-1-instructions">Annex B</a></p>
 </section>
-</section>
-<section id="genai-assignment-due-25-aug" class="level2">
-<h2 class="anchored" data-anchor-id="genai-assignment-due-25-aug">GenAI Assignment (Due 25 Aug)</h2>
-<p><a href="https://westpoint.instructure.com/courses/10295/assignments/225944">GenAI Assignment</a></p>
-</section>
-<section id="before-you-leave" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today:</h3>
 <ul>
 <li>Any questions for me?</li>
 </ul>
 </section>
-<section id="lesson-2" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-2">Lesson 2</h3>
+<section id="lesson-3-principles-of-probability" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-3-principles-of-probability">Lesson 3 Principles of Probability</h3>
 <ul>
-<li><a href="https://westpoint.instructure.com/courses/10295/pages/lesson-2-project-dataset-exploration?module_item_id=623733">Lesson 2</a></li>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/lesson-3-principles-of-probability?module_item_id=623729">Lesson 2</a></li>
 </ul>
 </section>
 <section id="upcoming-graded-events" class="level3">
 <h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
 <ul>
-<li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-1-instructions">Project Milestone 1</a>: Due 22 Aug (Friday) All Sections - Read through this and come to class with questions</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-1-instructions">Project Milestone 1</a>: Due 22 Aug (Friday) All Sections</li>
 <li><a href="https://westpoint.instructure.com/courses/10295/assignments/225944">GenAI Certification</a>: Due 25 August (Monday) All Sections</li>
 </ul>
 
@@ -866,6 +1085,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../MA206-AY26-1/lesson-3.html" class="pagination-link" aria-label="Lesson 3: In Development">
+        <span class="nav-page-text">Lesson 3: In Development</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
