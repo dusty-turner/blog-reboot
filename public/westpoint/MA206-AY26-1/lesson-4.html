@@ -214,8 +214,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a></li>
   <li><a href="#multiplication-rule" id="toc-multiplication-rule" class="nav-link" data-scroll-target="#multiplication-rule">Multiplication Rule</a></li>
-  <li><a href="#from-multiplication-rule-to-the-law-of-total-probability" id="toc-from-multiplication-rule-to-the-law-of-total-probability" class="nav-link" data-scroll-target="#from-multiplication-rule-to-the-law-of-total-probability">From Multiplication Rule to the Law of Total Probability</a></li>
-  <li><a href="#law-of-total-probability-general-form" id="toc-law-of-total-probability-general-form" class="nav-link" data-scroll-target="#law-of-total-probability-general-form">Law of Total Probability (General Form)</a></li>
+  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability">Law of Total Probability</a></li>
   <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ Theorem</a></li>
   <li><a href="#tree-diagram-representation" id="toc-tree-diagram-representation" class="nav-link" data-scroll-target="#tree-diagram-representation">Tree Diagram Representation</a></li>
   </ul></li>
@@ -224,7 +223,7 @@ window.Quarto = {
   <li><a href="#conditional-probability-1" id="toc-conditional-probability-1" class="nav-link" data-scroll-target="#conditional-probability-1">1. Conditional Probability</a></li>
   <li><a href="#multiplication-rule-1" id="toc-multiplication-rule-1" class="nav-link" data-scroll-target="#multiplication-rule-1">2. Multiplication Rule</a></li>
   <li><a href="#tree-diagram" id="toc-tree-diagram" class="nav-link" data-scroll-target="#tree-diagram">3. Tree Diagram</a></li>
-  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability">4. Law of Total Probability</a></li>
+  <li><a href="#law-of-total-probability-1" id="toc-law-of-total-probability-1" class="nav-link" data-scroll-target="#law-of-total-probability-1">4. Law of Total Probability</a></li>
   <li><a href="#bayes-theorem-1" id="toc-bayes-theorem-1" class="nav-link" data-scroll-target="#bayes-theorem-1">5. Bayes’ Theorem</a></li>
   </ul></li>
   <li><a href="#take-home-problem-spam-filter" id="toc-take-home-problem-spam-filter" class="nav-link" data-scroll-target="#take-home-problem-spam-filter">Take Home Problem: Spam Filter</a>
@@ -574,6 +573,7 @@ P(B \mid A)\,P(A) &amp;= P(A \cap B)
 P(A \cap B) &amp;= P(A \mid B)P(B) = P(B \mid A)P(A)
 &amp;&amp; \text{final multiplication rule}
 \end{align}\]</span></p>
+<p><strong>Intuition</strong>: To find the chance that both happen, compute the chance that one happens, then multiply by the chance the other happens given that.</p>
 <p><strong>Example (Factory Machines)</strong></p>
 <p>Using the rule, compute <span class="math inline">\(P(D \cap M_B)\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Answer">
@@ -603,15 +603,13 @@ P(D \cap M_B) = (0.04)(0.60) = 0.024.
 </div>
 </div>
 </div>
-<p><strong>Intuition</strong>: To find the chance that both happen, compute the chance that one happens, then multiply by the chance the other happens given that.</p>
-</section>
-<section id="from-multiplication-rule-to-the-law-of-total-probability" class="level3">
-<h3 class="anchored" data-anchor-id="from-multiplication-rule-to-the-law-of-total-probability">From Multiplication Rule to the Law of Total Probability</h3>
+<section id="from-multiplication-rule-to-the-law-of-total-probability" class="level4">
+<h4 class="anchored" data-anchor-id="from-multiplication-rule-to-the-law-of-total-probability">From Multiplication Rule to the Law of Total Probability</h4>
 <p>The <strong>multiplication rule</strong> shows us how to express the probability of two events happening together in terms of a conditional probability:</p>
 <p><span class="math display">\[
 P(A \cap B) = P(A \mid B)\, P(B).
 \]</span></p>
-<p>Now imagine that the whole sample space can be split into two <strong>non-overlapping cases</strong> <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> (for example: “athlete” vs.&nbsp;“not an athlete”).<br>
+<p>Now imagine that the whole sample space can be split into two <strong>non-overlapping cases (aka mutually exclusive)</strong> <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> (for example: “athlete” vs.&nbsp;“not an athlete”).<br>
 Since <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> cover all possibilities, any time <span class="math inline">\(A\)</span> happens, it must happen <strong>either with <span class="math inline">\(B_1\)</span> or with <span class="math inline">\(B_2\)</span></strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -631,8 +629,9 @@ P((A \cap B_1) \cup (A \cap B_2)) = P(A \cap B_1) + P(A \cap B_2).
 P(A) = P(A | B_1)P(B_1) + P(A | B_2)P(B_2).
 \]</span></p>
 </section>
-<section id="law-of-total-probability-general-form" class="level3">
-<h3 class="anchored" data-anchor-id="law-of-total-probability-general-form">Law of Total Probability (General Form)</h3>
+</section>
+<section id="law-of-total-probability" class="level3">
+<h3 class="anchored" data-anchor-id="law-of-total-probability">Law of Total Probability</h3>
 <p>What we just derived for two outcomes extends to any partition of the sample space.<br>
 If <span class="math inline">\(B_1, B_2, \ldots, B_k\)</span> are <strong>mutually exclusive and exhaustive</strong> events, then for any event <span class="math inline">\(A\)</span>:</p>
 <p><span class="math display">\[
@@ -852,8 +851,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="law-of-total-probability" class="level3">
-<h3 class="anchored" data-anchor-id="law-of-total-probability">4. Law of Total Probability</h3>
+<section id="law-of-total-probability-1" class="level3">
+<h3 class="anchored" data-anchor-id="law-of-total-probability-1">4. Law of Total Probability</h3>
 <p>What is <span class="math inline">\(P(+)\)</span>, the probability that a randomly chosen person tests positive?</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Answer">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
