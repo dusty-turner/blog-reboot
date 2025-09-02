@@ -210,7 +210,7 @@ window.Quarto = {
   <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
   <li><a href="#updates" id="toc-updates" class="nav-link" data-scroll-target="#updates">Updates</a></li>
   <li><a href="#milestone-2-recap" id="toc-milestone-2-recap" class="nav-link" data-scroll-target="#milestone-2-recap">Milestone 2 Recap</a></li>
-  <li><a href="#discrete-distributions-of-ransom-variables" id="toc-discrete-distributions-of-ransom-variables" class="nav-link" data-scroll-target="#discrete-distributions-of-ransom-variables">Discrete Distributions of Ransom Variables</a>
+  <li><a href="#discrete-distributions-of-random-variables" id="toc-discrete-distributions-of-random-variables" class="nav-link" data-scroll-target="#discrete-distributions-of-random-variables">Discrete Distributions of Random Variables</a>
   <ul class="collapse">
   <li><a href="#determine-the-probability-distribution-of-a-discrete-random-variable" id="toc-determine-the-probability-distribution-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#determine-the-probability-distribution-of-a-discrete-random-variable">Determine the probability distribution of a discrete random variable</a></li>
   <li><a href="#calculate-the-expected-value-of-a-discrete-random-variable" id="toc-calculate-the-expected-value-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#calculate-the-expected-value-of-a-discrete-random-variable">Calculate the expected value of a discrete random variable</a></li>
@@ -359,16 +359,22 @@ Previously 1-0
 <li>Don’t forget Annex B</li>
 </ul>
 </section>
-<section id="discrete-distributions-of-ransom-variables" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-distributions-of-ransom-variables">Discrete Distributions of Ransom Variables</h2>
+<section id="discrete-distributions-of-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-distributions-of-random-variables">Discrete Distributions of Random Variables</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/img/drv-chatgpt.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
+<p>Not that type of discrete random variable…</p>
+<p>A random variable is a rule (or function) that assigns a number to each possible outcome of a random process.</p>
+<ul>
+<li><strong>Discrete random variable</strong>: takes on a countable set of values (like dice rolls, coin flips, number of emails received in a day).<br>
+</li>
+<li><strong>Continuous random variable</strong>: takes on values from an interval or continuum (like height, time, or temperature).</li>
+</ul>
 <section id="determine-the-probability-distribution-of-a-discrete-random-variable" class="level3">
 <h3 class="anchored" data-anchor-id="determine-the-probability-distribution-of-a-discrete-random-variable">Determine the probability distribution of a discrete random variable</h3>
-<p><strong>Example A — Fair die</strong></p>
 <p>Let <span class="math inline">\(X\in\{1,2,3,4,5,6\}\)</span> be the points shown on one fair die roll.</p>
 <table class="caption-top table">
 <thead>
@@ -413,7 +419,6 @@ P(X=x) =
 <p><span class="math display">\[
 \mu_X = E[X] = \sum_x x \cdot P(X=x).
 \]</span></p>
-<p><strong>Example A — Fair die</strong></p>
 <p><span class="math display">\[
 E[X] = 1\cdot\tfrac16 + 2\cdot\tfrac16 + 3\cdot\tfrac16 + 4\cdot\tfrac16 + 5\cdot\tfrac16 + 6\cdot\tfrac16
 = \tfrac{21}{6} = 3.5.
@@ -421,7 +426,6 @@ E[X] = 1\cdot\tfrac16 + 2\cdot\tfrac16 + 3\cdot\tfrac16 + 4\cdot\tfrac16 + 5\cdo
 </section>
 <section id="interpret-the-expected-value-of-a-discrete-random-variable" class="level3">
 <h3 class="anchored" data-anchor-id="interpret-the-expected-value-of-a-discrete-random-variable">Interpret the expected value of a discrete random variable</h3>
-<p><strong>Example A — Fair die</strong></p>
 <p>Over many rolls, the long-run average face value is <span class="math inline">\(3.5\)</span> (even though no single roll shows <span class="math inline">\(3.5\)</span>).</p>
 </section>
 <section id="calculate-the-variance-and-standard-deviation-of-a-discrete-random-variable" class="level3">
@@ -431,7 +435,6 @@ E[X] = 1\cdot\tfrac16 + 2\cdot\tfrac16 + 3\cdot\tfrac16 + 4\cdot\tfrac16 + 5\cdo
 \]</span> and the standard deviation is <span class="math display">\[
 \mathrm{SD}(X)=\sqrt{\mathrm{Var}(X)}.
 \]</span></p>
-<p><strong>Example A — Fair die</strong></p>
 <p><span class="math display">\[
 \mathrm{Var}(X)=\left(1-3.5\right)^2\cdot\tfrac16
 +\left(2-3.5\right)^2\cdot\tfrac16
@@ -471,8 +474,8 @@ Answer
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>There are <span class="math inline">\(2^4 = 16\)</span> equally likely outcomes.<br>
-Let M = make, X = miss.</p>
+<!-- There are $2^4 = 16$ equally likely outcomes.   -->
+<p>Let M = make, X = miss.</p>
 <ul>
 <li><span class="math inline">\(Y=0\)</span> (no makes): <span class="math inline">\(XXXX\)</span><br>
 </li>
@@ -622,9 +625,9 @@ So in most 4-shot sequences, the player makes <strong>about 1 to 3 shots</strong
 <p>A bag contains 3 balls: one <strong>red</strong>, one <strong>blue</strong>, and one <strong>green</strong>.<br>
 You draw one ball at random. Let</p>
 <p><span class="math inline">\(X =\)</span> the number of points you score, where<br>
-- red = 0 points<br>
-- blue = 1 point<br>
-- green = 2 points</p>
+- red = 3 points<br>
+- blue = 6 points<br>
+- green = 12 points</p>
 <ol type="1">
 <li>What is the probability distribution of <span class="math inline">\(X\)</span>?<br>
 </li>
@@ -651,14 +654,14 @@ Answers
 <ol type="1">
 <li>Each outcome is equally likely:</li>
 </ol>
-<p><span class="math inline">\(P(X=0) = \tfrac{1}{3}, \quad P(X=1) = \tfrac{1}{3}, \quad P(X=2) = \tfrac{1}{3}\)</span></p>
+<p><span class="math inline">\(P(X=3) = \tfrac{1}{3}, \quad P(X=6) = \tfrac{1}{3}, \quad P(X=12) = \tfrac{1}{3}\)</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: right;"><span class="math inline">\(x\)</span></th>
-<th style="text-align: right;">0</th>
-<th style="text-align: right;">1</th>
-<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">6</th>
+<th style="text-align: right;">12</th>
 </tr>
 </thead>
 <tbody>
@@ -673,26 +676,26 @@ Answers
 <ol start="2" type="1">
 <li></li>
 </ol>
-<p><span class="math inline">\(E[X] = 0 \, P(X=0) + 1 \, P(X=1) + 2 \, P(X=2)\)</span></p>
-<p><span class="math inline">\(= 0 \, \tfrac{1}{3} + 1 \, \tfrac{1}{3} + 2 \, \tfrac{1}{3}\)</span></p>
-<p><span class="math inline">\(= \tfrac{3}{3} = 1\)</span></p>
+<p><span class="math inline">\(E[X] = 3 \, P(X=3) + 6 \, P(X=6) + 12 \, P(X=12)\)</span></p>
+<p><span class="math inline">\(= 3 \cdot \tfrac{1}{3} + 6 \cdot \tfrac{1}{3} + 12 \cdot \tfrac{1}{3}\)</span></p>
+<p><span class="math inline">\(= \tfrac{21}{3} = 7\)</span></p>
 <ol start="3" type="1">
 <li></li>
 </ol>
-<p>On average, you score 1 point per draw.<br>
-Even though you never literally score exactly 1 point every time, the long-run average balances to 1.</p>
+<p>On average, you score 7 points per draw.<br>
+This doesn’t mean you ever score exactly 7, but across many draws, the outcomes balance to that average.</p>
 <ol start="4" type="1">
 <li></li>
 </ol>
-<p><span class="math inline">\(\mathrm{Var}(X) = (0-1)^2 \, \tfrac{1}{3} + (1-1)^2 \, \tfrac{1}{3} + (2-1)^2 \, \tfrac{1}{3}\)</span></p>
-<p><span class="math inline">\(= (1) \, \tfrac{1}{3} + (0) \, \tfrac{1}{3} + (1) \, \tfrac{1}{3}\)</span></p>
-<p><span class="math inline">\(= \tfrac{2}{3}\)</span></p>
-<p><span class="math inline">\(\mathrm{SD}(X) = \sqrt{\tfrac{2}{3}} \approx 0.816\)</span></p>
+<p><span class="math inline">\(\mathrm{Var}(X) = (3-7)^2 \, \tfrac{1}{3} + (6-7)^2 \, \tfrac{1}{3} + (12-7)^2 \, \tfrac{1}{3}\)</span></p>
+<p><span class="math inline">\(= (16)\tfrac{1}{3} + (1)\tfrac{1}{3} + (25)\tfrac{1}{3}\)</span></p>
+<p><span class="math inline">\(= \tfrac{42}{3} = 14\)</span></p>
+<p><span class="math inline">\(\mathrm{SD}(X) = \sqrt{14} \approx 3.742\)</span></p>
 <ol start="5" type="1">
 <li></li>
 </ol>
-<p>The outcomes are usually within about 0.8 points of the mean of 1.<br>
-That means most draws are near 1 point, but there is still variability because sometimes you get 0 or 2 instead.</p>
+<p>Most outcomes fall within about 3.7 points of the mean of 7.<br>
+That means the scores vary moderately, depending on whether you draw the low (3), medium (6), or high (12) ball.</p>
 </div>
 </div>
 </div>
