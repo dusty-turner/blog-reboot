@@ -257,15 +257,27 @@ window.Quarto = {
   </ul></li>
   <li><a href="#calculate-expected-values-of-linear-transformations-of-random-variables" id="toc-calculate-expected-values-of-linear-transformations-of-random-variables" class="nav-link" data-scroll-target="#calculate-expected-values-of-linear-transformations-of-random-variables">Calculate expected values of linear transformations of random variables</a>
   <ul class="collapse">
-  <li><a href="#scenario-setup" id="toc-scenario-setup" class="nav-link" data-scroll-target="#scenario-setup">Scenario Setup</a></li>
   <li><a href="#event-a-ball-game-pdf" id="toc-event-a-ball-game-pdf" class="nav-link" data-scroll-target="#event-a-ball-game-pdf">Event A: Ball game PDF</a></li>
   <li><a href="#event-b-coin-game-pdf" id="toc-event-b-coin-game-pdf" class="nav-link" data-scroll-target="#event-b-coin-game-pdf">Event B: Coin game PDF</a></li>
   <li><a href="#combined-game-add-the-winnings" id="toc-combined-game-add-the-winnings" class="nav-link" data-scroll-target="#combined-game-add-the-winnings">Combined Game: Add the Winnings</a></li>
+  <li><a href="#shortcut-use-linear-transformation-rules-way-easier" id="toc-shortcut-use-linear-transformation-rules-way-easier" class="nav-link" data-scroll-target="#shortcut-use-linear-transformation-rules-way-easier">Shortcut: Use linear transformation rules (way easier)</a></li>
   </ul></li>
+  <li><a href="#expected-value-and-variance-rules" id="toc-expected-value-and-variance-rules" class="nav-link" data-scroll-target="#expected-value-and-variance-rules">Expected Value and Variance Rules</a>
+  <ul class="collapse">
+  <li><a href="#what-if-it-costs-10-to-play" id="toc-what-if-it-costs-10-to-play" class="nav-link" data-scroll-target="#what-if-it-costs-10-to-play">What if it costs $10 to play?</a></li>
+  </ul></li>
+  <li><a href="#spinner-game" id="toc-spinner-game" class="nav-link" data-scroll-target="#spinner-game">Spinner Game</a>
+  <ul class="collapse">
+  <li><a href="#step-1.-expected-value-and-variance-of-each-spinner" id="toc-step-1.-expected-value-and-variance-of-each-spinner" class="nav-link" data-scroll-target="#step-1.-expected-value-and-variance-of-each-spinner">Step 1. Expected value and variance of each spinner</a></li>
+  <li><a href="#step-2.-combined-prize" id="toc-step-2.-combined-prize" class="nav-link" data-scroll-target="#step-2.-combined-prize">Step 2. Combined prize</a></li>
+  <li><a href="#step-3.-bonus-round" id="toc-step-3.-bonus-round" class="nav-link" data-scroll-target="#step-3.-bonus-round">Step 3. Bonus round</a></li>
+  <li><a href="#step-4.-cost-to-play" id="toc-step-4.-cost-to-play" class="nav-link" data-scroll-target="#step-4.-cost-to-play">Step 4. Cost to play</a></li>
+  </ul></li>
+  <li><a href="#board-problem-two-bags-of-balls-unequal-probabilities" id="toc-board-problem-two-bags-of-balls-unequal-probabilities" class="nav-link" data-scroll-target="#board-problem-two-bags-of-balls-unequal-probabilities">Board Problem: Two Bags of Balls (unequal probabilities)</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today:</a></li>
-  <li><a href="#lesson-7" id="toc-lesson-7" class="nav-link" data-scroll-target="#lesson-7">Lesson 7</a></li>
+  <li><a href="#lesson-8" id="toc-lesson-8" class="nav-link" data-scroll-target="#lesson-8">Lesson 8</a></li>
   <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
   </ul></li>
   </ul></li>
@@ -552,23 +564,9 @@ P(X &gt; 4) = P(5) + P(6) = \tfrac{1}{6} + \tfrac{1}{6} = \tfrac{2}{6} = \tfrac{
 </section>
 <section id="calculate-expected-values-of-linear-transformations-of-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-expected-values-of-linear-transformations-of-random-variables">Calculate expected values of linear transformations of random variables</h2>
-<section id="scenario-setup" class="level3">
-<h3 class="anchored" data-anchor-id="scenario-setup">Scenario Setup</h3>
-<p>We play one of two games:</p>
-<ul>
-<li><strong>Event A (Ball game):</strong> Draw one ball uniformly at random from a hat with three balls:
-<ul>
-<li>Red earns $3, Blue earns $6, Green earns $12.</li>
-</ul></li>
-<li><strong>Event B (Coin game):</strong> Flip a fair coin:
-<ul>
-<li>Tails earns $0, Heads earns $5.</li>
-</ul></li>
-</ul>
-<p>We’ll (1) build each game’s PDF, (2) compute <strong>expected value</strong> and <strong>variance</strong> directly from the PDF, and then (3) re-do the “pay to play” version using <strong>linear transformations</strong>.</p>
-</section>
 <section id="event-a-ball-game-pdf" class="level3">
 <h3 class="anchored" data-anchor-id="event-a-ball-game-pdf">Event A: Ball game PDF</h3>
+<p>Draw one ball uniformly at random from a hat with three balls: - Red earns $3, Blue earns $6, Green earns $12.</p>
 <p>Outcomes and probabilities (uniform over three balls):</p>
 <table class="caption-top table">
 <thead>
@@ -605,6 +603,7 @@ E[X_A] \;=\; 3\cdot\tfrac13 + 6\cdot\tfrac13 + 12\cdot\tfrac13
 </section>
 <section id="event-b-coin-game-pdf" class="level3">
 <h3 class="anchored" data-anchor-id="event-b-coin-game-pdf">Event B: Coin game PDF</h3>
+<p>Flip a fair coin: - Tails earns $0, Heads earns $5.</p>
 <p>Fair coin: Heads/Tails with probability <span class="math inline">\(1/2\)</span> each.</p>
 <table class="caption-top table">
 <thead>
@@ -635,18 +634,8 @@ E[X_B] \;=\; 0\cdot\tfrac12 + 5\cdot\tfrac12 \;=\; 2.5.
 </section>
 <section id="combined-game-add-the-winnings" class="level3">
 <h3 class="anchored" data-anchor-id="combined-game-add-the-winnings">Combined Game: Add the Winnings</h3>
-<p>Now let the random variable<br>
-<span class="math display">\[
-Y = X_A + X_B
-\]</span> be the total winnings from playing <strong>both</strong> the Ball game and the Coin game.</p>
-<ul>
-<li><span class="math inline">\(X_A\)</span>: Ball game, values <span class="math inline">\(\{3,6,12\}\)</span> with probability <span class="math inline">\(1/3\)</span> each<br>
-</li>
-<li><span class="math inline">\(X_B\)</span>: Coin game, values <span class="math inline">\(\{0,5\}\)</span> with probability <span class="math inline">\(1/2\)</span> each</li>
-</ul>
-<section id="step-1-construct-the-pmf" class="level4">
-<h4 class="anchored" data-anchor-id="step-1-construct-the-pmf">Step 1: Construct the PMF</h4>
-<p>Each pair <span class="math inline">\((X_A, X_B)\)</span> has probability <span class="math inline">\((1/3)(1/2)=1/6\)</span>. The possible sums:</p>
+<p>Now imagine a scenario where one draws a ball and flips a coin and earns the value of the draw and the flip.</p>
+<p><strong>New PDF.</strong> Each pair <span class="math inline">\((X_A, X_B)\)</span> has probability <span class="math inline">\((1/3)(1/2)=1/6\)</span>. The possible sums:</p>
 <ul>
 <li><span class="math inline">\(3+0=3\)</span><br>
 </li>
@@ -685,39 +674,242 @@ Y = X_A + X_B
 </tr>
 </tbody>
 </table>
-<hr>
-</section>
-<section id="step-2-expected-value" class="level4">
-<h4 class="anchored" data-anchor-id="step-2-expected-value">Step 2: Expected Value</h4>
-<p>Compute directly:</p>
-<p><span class="math display">\[
+<p><strong>Expected Value (from the PDF)</strong> <span class="math display">\[
 E[Y] = \sum_y y \, P(Y=y)
-= \tfrac{1}{6}(3+6+8+11+12+17).
+= \tfrac{1}{6}(3+6+8+11+12+17)
+= \tfrac{57}{6} = 9.5.
 \]</span></p>
-<p><span class="math display">\[
-E[Y] = \tfrac{57}{6} = 9.5.
-\]</span></p>
-<p>Or use linearity:</p>
-<p><span class="math display">\[
-E[Y] = E[X_A] + E[X_B] = 7 + 2.5 = 9.5.
-\]</span></p>
-<hr>
-</section>
-<section id="step-3-variance-and-standard-deviation" class="level4">
-<h4 class="anchored" data-anchor-id="step-3-variance-and-standard-deviation">Step 3: Variance and Standard Deviation</h4>
-<p>Compute directly:</p>
-<p><span class="math display">\[
-\operatorname{Var}(Y) = \sum_y (y - E[Y])^2 \, P(Y=y).
-\]</span></p>
-<p>Or use independence:</p>
-<p><span class="math display">\[
-\operatorname{Var}(Y) = \operatorname{Var}(X_A) + \operatorname{Var}(X_B) = 14 + 6.25 = 20.25.
+<p><strong>Variance From the PDF</strong> <span class="math display">\[
+\operatorname{Var}(Y)
+= \tfrac{1}{6}\bigl((3-9.5)^2 + (6-9.5)^2 + (8-9.5)^2 + (11-9.5)^2 + (12-9.5)^2 + (17-9.5)^2\bigr)
+= \tfrac{1}{6}(42.25 + 12.25 + 2.25 + 2.25 + 6.25 + 56.25)
+= \tfrac{121.5}{6} = 20.25.
 \]</span></p>
 <p><span class="math display">\[
 \mathrm{SD}(Y) = \sqrt{20.25} = 4.5.
 \]</span></p>
 </section>
+<section id="shortcut-use-linear-transformation-rules-way-easier" class="level3">
+<h3 class="anchored" data-anchor-id="shortcut-use-linear-transformation-rules-way-easier">Shortcut: Use linear transformation rules (way easier)</h3>
+<p>We <em>could</em> grind through the PMF, but this is faster—everything collapses into two lines:</p>
+<ul>
+<li><p><strong>Linearity of expectation (always true):</strong> <span class="math display">\[
+E[aX + bY + c] = a\,E[X] + b\,E[Y] + c
+\]</span></p></li>
+<li><p><strong>Variance: Independence Required:</strong> <span class="math display">\[
+\operatorname{Var}(aX + bY + c) = a^2 \operatorname{Var}(X) + b^2 \operatorname{Var}(Y)
+\quad\text{if } X \perp Y.
+\]</span> Apply to <span class="math inline">\(Y=X_A+X_B\)</span> with <span class="math inline">\(X_A \perp X_B\)</span>: <span class="math display">\[
+E[Y]=E[X_A]+E[X_B]=7+2.5=9.5,\qquad
+\operatorname{Var}(Y)=\operatorname{Var}(X_A)+\operatorname{Var}(X_B)=14+6.25=20.25,
+\]</span> <span class="math display">\[
+\mathrm{SD}(Y)=\sqrt{20.25}=4.5.
+\]</span></p></li>
+</ul>
 </section>
+</section>
+<section id="expected-value-and-variance-rules" class="level2">
+<h2 class="anchored" data-anchor-id="expected-value-and-variance-rules">Expected Value and Variance Rules</h2>
+<ul>
+<li><p><strong>Expectation is linear (no conditions):</strong> <span class="math display">\[
+E[aX + bY + c] \;=\; a\,E[X] + b\,E[Y] + c
+\]</span></p></li>
+<li><p><strong>Variance (independence required):</strong> <span class="math display">\[
+\operatorname{Var}(aX + bY + c) \;=\; a^2 \operatorname{Var}(X) + b^2 \operatorname{Var}(Y)
+\]</span></p></li>
+<li><p><strong>Standard deviation:</strong><br>
+<span class="math display">\[
+\mathrm{SD}(X) = \sqrt{\operatorname{Var}(X)}.
+\]</span></p></li>
+</ul>
+<section id="what-if-it-costs-10-to-play" class="level3">
+<h3 class="anchored" data-anchor-id="what-if-it-costs-10-to-play">What if it costs $10 to play?</h3>
+<p>Now suppose the player <strong>pays $10 up front</strong> before playing the ball game (<span class="math inline">\(X_A\)</span>) and coin game (<span class="math inline">\(X_B\)</span>).<br>
+The <strong>net winnings</strong> are <span class="math display">\[
+W = X_A + X_B - 10.
+\]</span></p>
+<p>Using the linear rules from the start:</p>
+<ul>
+<li><p><strong>Expectation:</strong> <span class="math display">\[
+E[W] = E[X_A] + E[X_B] - 10 = 7 + 2.5 - 10 = -0.5.
+\]</span></p></li>
+<li><p><strong>Variance (independence of <span class="math inline">\(X_A\)</span> and <span class="math inline">\(X_B\)</span>):</strong> <span class="math display">\[
+\operatorname{Var}(W) = \operatorname{Var}(X_A + X_B - 10)
+= \operatorname{Var}(X_A) + \operatorname{Var}(X_B)
+= 14 + 6.25 = 20.25.
+\]</span></p></li>
+<li><p><strong>Standard deviation:</strong> <span class="math display">\[
+\mathrm{SD}(W) = \sqrt{20.25} = 4.5.
+\]</span></p></li>
+</ul>
+</section>
+</section>
+<section id="spinner-game" class="level2">
+<h2 class="anchored" data-anchor-id="spinner-game">Spinner Game</h2>
+<p><strong>Spinner A:</strong><br>
+- $2 with probability <span class="math inline">\(0.5\)</span><br>
+- $5 with probability <span class="math inline">\(0.3\)</span><br>
+- $10 with probability <span class="math inline">\(0.2\)</span></p>
+<p>So <span class="math inline">\(X_A\)</span> is a discrete random variable.</p>
+<p><strong>Spinner B:</strong><br>
+- $1 with probability <span class="math inline">\(0.4\)</span><br>
+- $4 with probability <span class="math inline">\(0.6\)</span></p>
+<p>So <span class="math inline">\(X_B\)</span> is a discrete random variable.</p>
+<section id="step-1.-expected-value-and-variance-of-each-spinner" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-expected-value-and-variance-of-each-spinner">Step 1. Expected value and variance of each spinner</h3>
+<p><strong>Spinner A:</strong> <span class="math display">\[
+E[X_A] = 2(0.5) + 5(0.3) + 10(0.2) = 4.5
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(X_A)
+= 0.5(2-4.5)^2 + 0.3(5-4.5)^2 + 0.2(10-4.5)^2
+= 3.125 + 0.075 + 6.05 = 9.25.
+\]</span></p>
+<p><strong>Spinner B:</strong> <span class="math display">\[
+E[X_B] = 1(0.4) + 4(0.6) = 2.8
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(X_B) = 0.4(1-2.8)^2 + 0.6(4-2.8)^2
+= 1.296 + 0.864 = 2.16.
+\]</span></p>
+</section>
+<section id="step-2.-combined-prize" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-combined-prize">Step 2. Combined prize</h3>
+<p>In this game show, you play both games concurrently. Calculate the expected value and variance of the games together.</p>
+<p>Let <span class="math inline">\(Y = X_A + X_B\)</span>, assuming independence.</p>
+<p><span class="math display">\[
+E[Y] = E[X_A] + E[X_B] = 4.5 + 2.8 = 7.3
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(Y) = \operatorname{Var}(X_A) + \operatorname{Var}(X_B) = 9.25 + 2.16 = 11.41.
+\]</span></p>
+<p><span class="math display">\[
+\mathrm{SD}(Y) = \sqrt{11.41} \approx 3.38.
+\]</span></p>
+</section>
+<section id="step-3.-bonus-round" class="level3">
+<h3 class="anchored" data-anchor-id="step-3.-bonus-round">Step 3. Bonus round</h3>
+<p>Now suppose in a <strong>bonus round</strong> the winnings are doubled for Spinner A and tripled for Spinner B.<br>
+Define: <span class="math display">\[
+W = 2X_A + 3X_B.
+\]</span></p>
+<p><strong>Expectation:</strong> <span class="math display">\[
+E[W] = 2E[X_A] + 3E[X_B] = 2(4.5) + 3(2.8) = 9 + 8.4 = 17.4.
+\]</span></p>
+<p><strong>Variance:</strong> <span class="math display">\[
+\operatorname{Var}(W) = 2^2 \operatorname{Var}(X_A) + 3^2 \operatorname{Var}(X_B)
+= 4(9.25) + 9(2.16) = 37 + 19.44 = 56.44.
+\]</span></p>
+<p><strong>Standard deviation:</strong> <span class="math display">\[
+\mathrm{SD}(W) = \sqrt{56.44} \approx 7.52.
+\]</span></p>
+</section>
+<section id="step-4.-cost-to-play" class="level3">
+<h3 class="anchored" data-anchor-id="step-4.-cost-to-play">Step 4. Cost to play</h3>
+<p>Now suppose it costs $15 to enter the bonus round.<br>
+The <strong>net winnings</strong> are <span class="math display">\[
+Z = 2X_A + 3X_B - 15.
+\]</span></p>
+<p><strong>Expectation:</strong> <span class="math display">\[
+E[Z] = 2E[2X_A] + 3E[X_B] - 15.
+\]</span> <span class="math display">\[
+E[Z] = 2(4.5) + 3(2.8) - 15 = 2.4.
+\]</span></p>
+<p><strong>Variance (Assuming Independence):</strong> <span class="math display">\[
+\operatorname{Var}(Z) = \operatorname{Var}(2X_A + 3X_B - 15).
+\]</span> <span class="math display">\[
+= 2^2 \operatorname{Var}(X_A) + 3^2 \operatorname{Var}(X_B),
+\]</span> <span class="math display">\[
+= 4(9.25) + 9(2.16) = 37 + 19.44 = 56.44.
+\]</span></p>
+<p><strong>Standard deviation:</strong> <span class="math display">\[
+\mathrm{SD}(Z) = \sqrt{\operatorname{Var}(Z)} = \sqrt{56.44} \approx 7.52.
+\]</span></p>
+</section>
+</section>
+<section id="board-problem-two-bags-of-balls-unequal-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="board-problem-two-bags-of-balls-unequal-probabilities">Board Problem: Two Bags of Balls (unequal probabilities)</h2>
+<p>You draw <strong>one ball from each bag</strong>, independently.</p>
+<p><strong>Bag A</strong> (5 balls total):<br>
+- 2 red balls worth $3 each,<br>
+- 2 blue balls worth $7 each,<br>
+- 1 gold ball worth $15.<br>
+Let <span class="math inline">\(X_A\)</span> be the payout from Bag A.</p>
+<p><strong>Bag B</strong> (4 balls total):<br>
+- 1 black ball worth $0,<br>
+- 1 green ball worth $4,<br>
+- 2 purple balls worth $8.<br>
+Let <span class="math inline">\(X_B\)</span> be the payout from Bag B.</p>
+<ol type="1">
+<li><strong>Find <span class="math inline">\(E[X_A]\)</span> and <span class="math inline">\(\operatorname{Var}(X_A)\)</span></strong> from the PDF definition.<br>
+</li>
+<li><strong>Find <span class="math inline">\(E[X_B]\)</span> and <span class="math inline">\(\operatorname{Var}(X_B)\)</span></strong> from the PDF definition.<br>
+</li>
+<li>Compute the expected value of both games played together assuming independence.<br>
+</li>
+<li><strong>Bonus round with scaling and a fee.</strong> In a special round, the payout is multiplied: you get <strong>three times</strong> the Bag A value but <strong>half</strong> the Bag B value, <strong>then</strong> pay a flat fee of $20.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>1) Bag A.</strong> Probabilities: <span class="math inline">\(P(X_A=3)=\tfrac{2}{5}\)</span>, <span class="math inline">\(P(X_A=7)=\tfrac{2}{5}\)</span>, <span class="math inline">\(P(X_A=15)=\tfrac{1}{5}\)</span>.</p>
+<p><span class="math display">\[
+E[X_A] = 3\cdot\tfrac{2}{5} + 7\cdot\tfrac{2}{5} + 15\cdot\tfrac{1}{5}
+= \tfrac{6+14+15}{5} = 7.
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(X_A) = 0.4(3-7)^2 + 0.4(7-7)^2 + 0.2(15-7)^2
+= 0.4(16) + 0 + 0.2(64) = 6.4 + 12.8 = 19.2.
+\]</span></p>
+<p><strong>2) Bag B.</strong> Probabilities: <span class="math inline">\(P(X_B=0)=\tfrac{1}{4}\)</span>, <span class="math inline">\(P(X_B=4)=\tfrac{1}{4}\)</span>, <span class="math inline">\(P(X_B=8)=\tfrac{1}{2}\)</span>.</p>
+<p><span class="math display">\[
+E[X_B] = 0\cdot\tfrac{1}{4} + 4\cdot\tfrac{1}{4} + 8\cdot\tfrac{1}{2}
+= 1 + 4 = 5.
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(X_B) = 0.25(0-5)^2 + 0.25(4-5)^2 + 0.5(8-5)^2
+= 0.25(25) + 0.25(1) + 0.5(9)
+= 6.25 + 0.25 + 4.5 = 11.
+\]</span></p>
+<p><strong>3) Both bags together.</strong> Let <span class="math inline">\(Y = X_A + X_B\)</span>.</p>
+<p><span class="math display">\[
+E[Y] = E[X_A] + E[X_B] = 7 + 5 = 12.
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(Y) = \operatorname{Var}(X_A) + \operatorname{Var}(X_B)
+= 19.2 + 11 = 30.2.
+\]</span></p>
+<p><span class="math display">\[
+\mathrm{SD}(Y) = \sqrt{30.2} \approx 5.50.
+\]</span></p>
+<p><strong>4) Bonus round with fee.</strong></p>
+<p><span class="math display">\[
+Z = 3X_A + \tfrac{1}{2}X_B - 20.
+\]</span></p>
+<p>Expectation: <span class="math display">\[
+E[Z] = 3E[X_A] + \tfrac{1}{2}E[X_B] - 20
+= 3(7) + 0.5(5) - 20
+= 21 + 2.5 - 20 = 3.5.
+\]</span></p>
+<p>Variance: <span class="math display">\[
+\operatorname{Var}(Z) = 3^2 \operatorname{Var}(X_A) + \left(\tfrac{1}{2}\right)^2 \operatorname{Var}(X_B)
+= 9(19.2) + 0.25(11) = 172.8 + 2.75 = 175.55.
+\]</span></p>
+<p>Standard deviation: <span class="math display">\[
+\mathrm{SD}(Z) = \sqrt{175.55} \approx 13.25.
+\]</span></p>
+</div>
+</div>
+</div>
 </section>
 <section id="before-you-leave" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
@@ -727,17 +919,16 @@ E[Y] = E[X_A] + E[X_B] = 7 + 2.5 = 9.5.
 <li>Any questions for me?</li>
 </ul>
 </section>
-<section id="lesson-7" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-7">Lesson 7</h3>
-<ul>
-<li><a href="https://westpoint.instructure.com/courses/10295/pages/lesson-7-random-variable-rules?module_item_id=623731">Lesson 7</a></li>
-</ul>
+<section id="lesson-8" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-8">Lesson 8</h3>
+<!-- - [Lesson 7](https://westpoint.instructure.com/courses/10295/pages/lesson-7-random-variable-rules?module_item_id=623731) -->
 </section>
 <section id="upcoming-graded-events" class="level3">
 <h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<!-- - [Milestone 2 / Tidyverse Tutorial](https://westpoint.instructure.com/courses/10295): Due 0700 Lesson 7 -->
 <ul>
-<li><a href="https://westpoint.instructure.com/courses/10295">Milestone 2 / Tidyverse Tutorial</a>: Due 0700 Lesson 7</li>
 <li>WPR 1: Lesson 10</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/assignments/216498">Exploration Exercise 11.3B</a></li>
 <li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-3-instructions">Project Milestone 3</a>: Due Canvas Lesson 7 <!-- - [GenAI Certification](https://westpoint.instructure.com/courses/10295/assignments/225944): Due 25 August (Monday) All Sections --></li>
 </ul>
 
