@@ -712,9 +712,9 @@ P(X \le 70) = \int_{-\infty}^{70} \frac{1}{3\sqrt{2\pi}}
 \]</span></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">70</span>, <span class="at">mean =</span> <span class="dv">68</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">70</span>, <span class="at">mean =</span> <span class="dv">68</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8413447</code></pre>
+<pre><code>[1] 0.7475075</code></pre>
 </div>
 </div>
 <hr>
@@ -983,16 +983,83 @@ Answer
 </div>
 <hr>
 <ol start="3" type="1">
-<li>CDF <span class="math display">\[
-F_X(x)=
-\begin{cases}
-0, &amp; x&lt;2, \\[6pt]
-\dfrac{x}{2}-1, &amp; 2 \le x &lt; 3, \\[6pt]
-\dfrac{x^{2}+7}{32}, &amp; 3 \le x \le 5, \\[6pt]
-1, &amp; x&gt;5~.
-\end{cases}
-\]</span></li>
+<li>From PDF to CDF</li>
 </ol>
+<p>We want the cumulative distribution function (CDF):</p>
+<p><span class="math display">\[
+F_X(x) = P(X \leq x) = \int_{-\infty}^{x} f_X(t)\,dt
+\]</span></p>
+<p>where the PDF is</p>
+<p><span class="math display">\[
+f_X(t) =
+\begin{cases}
+\dfrac{1}{2}, &amp; 2 \le t &lt; 3, \\[6pt]
+\dfrac{t}{16}, &amp; 3 \le t \le 5, \\[6pt]
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<section id="case-1-x-2" class="level4">
+<h4 class="anchored" data-anchor-id="case-1-x-2">Case 1: <span class="math inline">\(x &lt; 2\)</span></h4>
+<p>No probability has accumulated yet:</p>
+<p><span class="math display">\[
+F_X(x) = 0.
+\]</span></p>
+</section>
+<section id="case-2-2-le-x-3" class="level4">
+<h4 class="anchored" data-anchor-id="case-2-2-le-x-3">Case 2: <span class="math inline">\(2 \le x &lt; 3\)</span></h4>
+<p>We integrate from 2 up to <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+F_X(x) = \int_{2}^{x} \frac{1}{2}\,dt
+= \left[\frac{t}{2}\right]_{t=2}^{t=x}
+= \frac{x}{2} - \frac{2}{2}
+= \frac{x}{2} - 1.
+\]</span></p>
+</section>
+<section id="case-3-3-le-x-le-5" class="level4">
+<h4 class="anchored" data-anchor-id="case-3-3-le-x-le-5">Case 3: <span class="math inline">\(3 \le x \le 5\)</span></h4>
+<p>We add all mass up to 3 <strong>plus</strong> the integral from 3 to <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+F_X(x) = \int_{2}^{3} \frac{1}{2}\,dt \;+\; \int_{3}^{x} \frac{t}{16}\,dt.
+\]</span></p>
+<p>First part:</p>
+<p><span class="math display">\[
+\int_{2}^{3} \frac{1}{2}\,dt
+= \left[\frac{t}{2}\right]_{2}^{3}
+= \frac{3}{2} - \frac{2}{2}
+= 0.5.
+\]</span></p>
+<p>Second part (leaving the constant inside):</p>
+<p><span class="math display">\[
+\int_{3}^{x} \frac{t}{16}\,dt
+= \left[\frac{t^2}{32}\right]_{t=3}^{t=x}
+= \frac{x^2}{32} - \frac{9}{32}
+= \frac{x^2 - 9}{32}.
+\]</span></p>
+<p>So together:</p>
+<p><span class="math display">\[
+F_X(x) = 0.5 + \frac{x^2 - 9}{32}
+= \frac{16}{32} + \frac{x^2 - 9}{32}
+= \frac{x^2 + 7}{32}.
+\]</span></p>
+</section>
+<section id="case-4-x-5" class="level4">
+<h4 class="anchored" data-anchor-id="case-4-x-5">Case 4: <span class="math inline">\(x &gt; 5\)</span></h4>
+<p>All probability mass is included:</p>
+<p><span class="math display">\[
+F_X(x) = 1.
+\]</span></p>
+</section>
+<section id="final-cdf" class="level4">
+<h4 class="anchored" data-anchor-id="final-cdf">Final CDF</h4>
+<p><span class="math display">\[
+F_X(x) =
+\begin{cases}
+0, &amp; x &lt; 2, \\[6pt]
+\dfrac{x}{2} - 1, &amp; 2 \le x &lt; 3, \\[6pt]
+\dfrac{x^2 + 7}{32}, &amp; 3 \le x \le 5, \\[6pt]
+1, &amp; x &gt; 5~.
+\end{cases}
+\]</span></p>
 <hr>
 <ol start="4" type="1">
 <li>Since <span class="math inline">\(2.6 \in [2,3)\)</span>, <span class="math display">\[
@@ -1015,6 +1082,7 @@ P(2.5 \le X \le 4)
 \end{aligned}
 \]</span></li>
 </ol>
+</section>
 </div>
 </div>
 </div>
