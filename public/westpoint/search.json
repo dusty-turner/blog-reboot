@@ -310,9 +310,9 @@
   {
     "objectID": "MA206-AY26-1/lesson-10.html",
     "href": "MA206-AY26-1/lesson-10.html",
-    "title": "Temp",
+    "title": "Lesson 10 — Test Day",
     "section": "",
-    "text": "Temp\nDownload Cal-Violin.zip\nDownload Cal-Violin1\nDownload Cal-Violin1\n\n\n–&gt;      \n\n\n\n\n\n\n\n\n\n\n\n\n\n–&gt;\n\n–&gt;\n\n–&gt;  –&gt;  –&gt;  –&gt;  –&gt;\n\n–&gt;\n\n\n–&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–&gt;\n\n–&gt;\n\n\n\n\n–&gt;",
+    "text": "Lesson 10 — Test Day",
     "crumbs": [
       "MA206-AY26-1",
       "Lesson 10"
@@ -753,5 +753,47 @@
       "MA206-AY26-1",
       "Lesson 8"
     ]
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html",
+    "href": "MA206-AY26-1/lesson-11.html",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "General Instructions\nMath Writing Template: 20 Points\nAcademic Articles Worksheet: 10 Points\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\nDuring my son and his team’s Little League World Series Run, Cal got on base \\(18\\) out of \\(35\\) times. I did some research and noticed that across all of Texas East Little Leagues, the average on base percentage was \\(40\\%\\).\nIs he really better at this or is this just by chance?\nHow can we approach this?\nLets rephrase the questions. If the average player gets on base at a \\(40\\%\\) rate, what is the probably that you would observe someone get on base \\(18/35=.514\\) or more extreme?\nHow can we approach this?\nLets pretend we redid his season over and over again assuming he was a \\(40\\%\\) hitter. How unlikely are we to see him have a \\(.517\\) season?\n\nlibrary(tidyverse)\n\nrbinom(n = 35, size = 1, prob = .4)\nsum(rbinom(n = 35, size = 1, prob = .4))\nsum(rbinom(n = 35, size = 1, prob = .4))/35\n\nn &lt;- 10000\n\nsim_results &lt;- \n  tibble(trial = 1:n,\n         successes = replicate(n, sum(rbinom(n = 35, size = 1, prob = 0.4)))\n         ) |&gt;\n  mutate(proportion = successes / 35)\n\nsim_results\n\n# bins &lt;- sim_results$successes |&gt; range() |&gt; diff()\nbins &lt;- sim_results$successes |&gt; unique() |&gt; range() |&gt; diff()\n\nsim_results |&gt; \n  ggplot(aes(x = proportion)) +\n  geom_histogram(bins = bins+1) +\n  geom_vline(xintercept = .514, color = \"firebrick\", linetype = 5, linewidth = 2)\n\nsim_results |&gt; \n  mutate(greater = proportion &gt; .514) |&gt; \n  summarise(prop = sum(greater)/n())\n\n\n\n\n\n\n\n\nNull hypothesis: \\(H_0 : \\pi = 0.40\\)\n\nAlternative hypothesis: \\(H_A : \\pi &gt; 0.40\\)\n\n\n\n\n\n\\(n = 35\\) plate appearances\n\n\\(x = 18\\) successes (on base)\n\n\\(\\hat \\pi = \\tfrac{18}{35} \\approx 0.514\\)\n\n\n\n\n\\[\nSE = \\sqrt{\\frac{\\pi_0(1-\\pi_0)}{n}}\n= \\sqrt{\\frac{0.40(0.60)}{35}}\n\\approx 0.083\n\\]\n\n\n\n\\[\nz = \\frac{\\hat \\pi - p_0}{SE}\n= \\frac{0.514 - 0.40}{0.083}\n\\approx 1.37\n\\]\n\n\n\nFor a one-tailed test:\n\\[\np = P(Z \\geq 1.37) \\approx 0.085\n\\]\n\n1 - pnorm(q = 1.37, mean = 0, sd = 1)\n\n[1] 0.08534345\n\n\n\n\n\nAt \\(\\alpha = 0.05\\), the \\(p\\)-value is larger than the cutoff.\n- We do not have strong enough evidence to conclude this player is truly better than average.\n- The result is suggestive (since \\(p \\approx 0.085\\)), but with only 35 plate appearances the evidence is not statistically significant.\n- A larger sample would give a clearer answer.\n\n\n\n\n\n\n\nAny questions for me?\n\n\n\n\n\nProject Milestone 3: Due Canvas 22 Sept\nExploration Exercise 1.5: Due at 0700 on Lesson 13\n24 September 2025 for Day 1\n\n25 September 2025 for Day 2)\nWPR 2: Lesson 22"
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html#lets-talk-milestone-3",
+    "href": "MA206-AY26-1/lesson-11.html#lets-talk-milestone-3",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "General Instructions\nMath Writing Template: 20 Points\nAcademic Articles Worksheet: 10 Points\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n  Your browser does not support the video tag."
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html#before-you-leave",
+    "href": "MA206-AY26-1/lesson-11.html#before-you-leave",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "Any questions for me?\n\n\n\n\n\nProject Milestone 3: Due Canvas 22 Sept\nExploration Exercise 1.5: Due at 0700 on Lesson 13\n24 September 2025 for Day 1\n\n25 September 2025 for Day 2)\nWPR 2: Lesson 22"
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html#little-league-on-base-percentage",
+    "href": "MA206-AY26-1/lesson-11.html#little-league-on-base-percentage",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "During my son and his team’s Little League World Series Run, Cal got on base \\(18\\) out of \\(35\\) times. I did some research and noticed that across all of Texas East Little Leagues, the average on base percentage was \\(40\\%\\).\nIs he really better at this or is this just by chance?\nHow can we approach this?\nLets rephrase the questions. If the average player gets on base at a \\(40\\%\\) rate, what is the probably that you would observe someone get on base \\(18/35=.514\\) or more extreme?\nHow can we approach this?\nLets pretend we redid his season over and over again assuming he was a \\(40\\%\\) hitter. How unlikely are we to see him have a \\(.517\\) season?\n\nlibrary(tidyverse)\n\nrbinom(n = 35, size = 1, prob = .4)\nsum(rbinom(n = 35, size = 1, prob = .4))\nsum(rbinom(n = 35, size = 1, prob = .4))/35\n\nn &lt;- 10000\n\nsim_results &lt;- \n  tibble(trial = 1:n,\n         successes = replicate(n, sum(rbinom(n = 35, size = 1, prob = 0.4)))\n         ) |&gt;\n  mutate(proportion = successes / 35)\n\nsim_results\n\n# bins &lt;- sim_results$successes |&gt; range() |&gt; diff()\nbins &lt;- sim_results$successes |&gt; unique() |&gt; range() |&gt; diff()\n\nsim_results |&gt; \n  ggplot(aes(x = proportion)) +\n  geom_histogram(bins = bins+1) +\n  geom_vline(xintercept = .514, color = \"firebrick\", linetype = 5, linewidth = 2)\n\nsim_results |&gt; \n  mutate(greater = proportion &gt; .514) |&gt; \n  summarise(prop = sum(greater)/n())"
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html#problem-little-league-on-base-percentage",
+    "href": "MA206-AY26-1/lesson-11.html#problem-little-league-on-base-percentage",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "In his All-Star run, Cal reached base \\(18\\) times in \\(35\\) plate appearances, for an on-base percentage of\n\\[\n\\hat p = \\frac{18}{35} \\approx 0.514.\n\\]\nSuppose the average kid in the league gets on base \\(40\\%\\) of the time.\nQuestion: Is there evidence that this player is better at getting on base than other kids, or could this just be due to random chance?\n\n\n\n\nNull hypothesis: \\(H_0 : p = 0.40\\)\n\nAlternative hypothesis: \\(H_A : p &gt; 0.40\\)\n\n\n\n\n\n\n\\(n = 35\\) plate appearances\n\n\\(x = 18\\) successes (on base)\n\n\\(\\hat p = \\tfrac{18}{35} \\approx 0.514\\)\n\n\n\n\n\n\\[\nSE = \\sqrt{\\frac{p_0(1-p_0)}{n}}\n= \\sqrt{\\frac{0.40(0.60)}{35}}\n\\approx 0.083\n\\]\n\n\n\n\n\\[\nz = \\frac{\\hat p - p_0}{SE}\n= \\frac{0.514 - 0.40}{0.083}\n\\approx 1.37\n\\]\n\n\n\n\nFor a one-tailed test:\n\\[\np = P(Z \\geq 1.37) \\approx 0.085\n\\]\n(using the standard Normal distribution).\n\n\n\n\nAt \\(\\alpha = 0.05\\), the \\(p\\)-value is larger than the cutoff.\n- We do not have strong enough evidence to conclude this player is truly better than average.\n- The result is suggestive (since \\(p \\approx 0.085\\)), but with only 35 plate appearances the evidence is not statistically significant.\n- A larger sample would give a clearer answer."
+  },
+  {
+    "objectID": "MA206-AY26-1/lesson-11.html#lets-formalize-this-a-little-bit",
+    "href": "MA206-AY26-1/lesson-11.html#lets-formalize-this-a-little-bit",
+    "title": "Lesson 11: One Proportion Z-Test",
+    "section": "",
+    "text": "Null hypothesis: \\(H_0 : \\pi = 0.40\\)\n\nAlternative hypothesis: \\(H_A : \\pi &gt; 0.40\\)\n\n\n\n\n\n\\(n = 35\\) plate appearances\n\n\\(x = 18\\) successes (on base)\n\n\\(\\hat \\pi = \\tfrac{18}{35} \\approx 0.514\\)\n\n\n\n\n\\[\nSE = \\sqrt{\\frac{\\pi_0(1-\\pi_0)}{n}}\n= \\sqrt{\\frac{0.40(0.60)}{35}}\n\\approx 0.083\n\\]\n\n\n\n\\[\nz = \\frac{\\hat \\pi - p_0}{SE}\n= \\frac{0.514 - 0.40}{0.083}\n\\approx 1.37\n\\]\n\n\n\nFor a one-tailed test:\n\\[\np = P(Z \\geq 1.37) \\approx 0.085\n\\]\n\n1 - pnorm(q = 1.37, mean = 0, sd = 1)\n\n[1] 0.08534345\n\n\n\n\n\nAt \\(\\alpha = 0.05\\), the \\(p\\)-value is larger than the cutoff.\n- We do not have strong enough evidence to conclude this player is truly better than average.\n- The result is suggestive (since \\(p \\approx 0.085\\)), but with only 35 plate appearances the evidence is not statistically significant.\n- A larger sample would give a clearer answer."
   }
 ]
