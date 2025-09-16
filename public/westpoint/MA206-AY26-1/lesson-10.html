@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/lesson-11.html" rel="next">
 <link href="../MA206-AY26-1/lesson-9.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -191,6 +192,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lesson 10</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -201,7 +208,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lesson-10-test-day" id="toc-lesson-10-test-day" class="nav-link active" data-scroll-target="#lesson-10-test-day">Lesson 10 — Test Day</a></li>
+  <li><a href="#lesson-10-test-day" id="toc-lesson-10-test-day" class="nav-link active" data-scroll-target="#lesson-10-test-day">Lesson 10 — Test Day</a>
+  <ul class="collapse">
+  <li><a href="#wpr" id="toc-wpr" class="nav-link" data-scroll-target="#wpr">WPR</a></li>
+  <li><a href="#wpr-complete" id="toc-wpr-complete" class="nav-link" data-scroll-target="#wpr-complete">WPR Complete</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -213,28 +224,14 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="lesson-10-test-day" class="level1">
 <h1>Lesson 10 — Test Day</h1>
-<canvas id="matrix" width="1000" height="300" style="background:black;">
-</canvas>
-<script>
-const c=document.getElementById("matrix"),ctx=c.getContext("2d");
-c.height=300; c.width=window.innerWidth;
-const chars="01";
-const font_size=14; const cols=c.width/font_size;
-const drops=Array(Math.floor(cols)).fill(1);
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.05)"; ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle="#0F0"; ctx.font=font_size+"px monospace";
-  drops.forEach((y,i)=>{
-    const text=chars.charAt(Math.floor(Math.random()*chars.length));
-    ctx.fillText(text,i*font_size,y*font_size);
-    if(y*font_size>c.height&&Math.random()>0.975) drops[i]=0;
-    drops[i]++;
-  });
-}
-setInterval(draw,35);
-</script>
+<section id="wpr" class="level2">
+<h2 class="anchored" data-anchor-id="wpr">WPR</h2>
+</section>
+<section id="wpr-complete" class="level2">
+<h2 class="anchored" data-anchor-id="wpr-complete">WPR Complete</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -644,6 +641,9 @@ setInterval(draw,35);
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../MA206-AY26-1/lesson-11.html" class="pagination-link" aria-label="Lesson 11">
+        <span class="nav-page-text">Lesson 11</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
