@@ -488,7 +488,7 @@ Note
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>one_season <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">35</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>one_season</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0 1 0 1 1 1 0 0 1 0 0 0 0 0 1 0 0 0 1 1 0 0 1 1 1 0 0 0 0 0 1 0 1 0 0</code></pre>
+<pre><code> [1] 0 0 0 0 0 1 0 0 0 0 1 0 0 1 1 1 0 0 1 0 0 0 0 1 1 1 0 0 1 1 0 0 0 0 0</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -496,12 +496,12 @@ Note
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>on_base_at_bats <span class="ot">&lt;-</span> <span class="fu">sum</span>(one_season)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>on_base_at_bats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
+<pre><code>[1] 11</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as a proportion</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>on_base_at_bats <span class="sc">/</span> <span class="fu">length</span>(one_season)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3714286</code></pre>
+<pre><code>[1] 0.3142857</code></pre>
 </div>
 </div>
 </section>
@@ -523,11 +523,11 @@ Note
   trial rocks proportion
   &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;
 1     1    15      0.429
-2     2    13      0.371
-3     3    14      0.4  
-4     4    10      0.286
-5     5    14      0.4  
-6     6    15      0.429</code></pre>
+2     2    20      0.571
+3     3    16      0.457
+4     4     8      0.229
+5     5    13      0.371
+6     6    14      0.4  </code></pre>
 </div>
 </div>
 </section>
@@ -574,7 +574,7 @@ Note
 <pre><code># A tibble: 1 × 1
   prob_more_extreme
               &lt;dbl&gt;
-1             0.116</code></pre>
+1             0.114</code></pre>
 </div>
 </div>
 </section>
@@ -862,16 +862,16 @@ z = \frac{\hat{\pi} - \pi_0}{SE}
 <pre><code># A tibble: 10,000 × 3
    trial rocks pihat
    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
- 1     1     5 0.263
- 2     2     5 0.263
- 3     3     4 0.211
- 4     4     5 0.263
- 5     5     4 0.211
- 6     6     4 0.211
- 7     7     8 0.421
- 8     8     9 0.474
- 9     9     6 0.316
-10    10     8 0.421
+ 1     1     4 0.211
+ 2     2     4 0.211
+ 3     3     5 0.263
+ 4     4     3 0.158
+ 5     5     9 0.474
+ 6     6     9 0.474
+ 7     7     6 0.316
+ 8     8     7 0.368
+ 9     9     7 0.368
+10    10     7 0.368
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -909,7 +909,7 @@ z = \frac{\hat{\pi} - \pi_0}{SE}
 <pre><code># A tibble: 1 × 1
    p_val
    &lt;dbl&gt;
-1 0.0484</code></pre>
+1 0.0481</code></pre>
 </div>
 </div>
 </section>
@@ -966,7 +966,7 @@ p = 2 \times P(Z \geq |z|)
 <pre><code>              n           R_obs       pihat_obs             pi0          z_stat 
         19.0000          2.0000          0.1050          0.3330         -2.1090 
 sim_p_two_sided   z_p_two_sided           alpha 
-         0.0484          0.0350          0.0500 </code></pre>
+         0.0481          0.0350          0.0500 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simulation-based decision: Reject H0 (evidence of ≠ 1/3) </code></pre>
