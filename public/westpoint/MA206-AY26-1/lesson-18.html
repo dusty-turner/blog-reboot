@@ -627,6 +627,7 @@ z = \frac{\hat{p} - \pi_0}{\sqrt{\frac{\hat{p}\,(1-\hat{p})}{n}}}
 <p><span class="math display">\[
 \hat{p} \;\pm\; z_{\,1-\alpha/2}\,\sqrt{\frac{\hat{p}\,(1-\hat{p})}{n}}
 \]</span></p>
+<p>I am <span class="math inline">\((1 - \alpha)\%\)</span> confident that the true population proportion <span class="math inline">\(\pi\)</span> lies between <span class="math inline">\([\text{lower bound}, \text{upper bound}]\)</span>.</p>
 </section>
 <section id="review-t-tests-for-one-mean" class="level3">
 <h3 class="anchored" data-anchor-id="review-t-tests-for-one-mean">Review: <span class="math inline">\(t\)</span>-Tests for One Mean</h3>
@@ -688,7 +689,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
 <p><span class="math display">\[
 \bar{x} \;\pm\; t_{\,1-\alpha/2,\;df}\,\frac{s}{\sqrt{n}},
 \qquad df = n-1
-\]</span></p>
+\]</span> I am <span class="math inline">\((1 - \alpha)\%\)</span> confident that the true population mean <span class="math inline">\((\mu)\)</span> lies between <span class="math inline">\([\text{lower bound}, \text{upper bound}]\)</span>.</p>
 </section>
 <section id="interpreting-the-p-value" class="level3">
 <h3 class="anchored" data-anchor-id="interpreting-the-p-value">Interpreting the <span class="math inline">\(p\)</span>-value</h3>
@@ -837,6 +838,12 @@ z \;=\; \frac{(\hat p_1-\hat p_2)-(\pi_1-\pi_2)}{\sqrt{\hat p(1-\hat p)\left(\fr
 <p><span class="math inline">\(\text{Margin of Error} = 1.96 \times 0.0469 = 0.0919\)</span></p>
 <p><span class="math inline">\(95\%\ \text{CI} = 0.0815 \;\pm\; 0.0919 = (-0.0104,\; 0.1735)\)</span></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>SE_un  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p1_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> p1_hat)<span class="sc">/</span>n1 <span class="sc">+</span> p2_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> p2_hat)<span class="sc">/</span>n2)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>diff_hat <span class="ot">&lt;-</span> p1_hat <span class="sc">-</span> p2_hat</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">c</span>(diff_hat <span class="sc">-</span> z_star<span class="sc">*</span>SE_un, diff_hat <span class="sc">+</span> z_star<span class="sc">*</span>SE_un))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.006413271  0.169460890</code></pre>
 </div>
