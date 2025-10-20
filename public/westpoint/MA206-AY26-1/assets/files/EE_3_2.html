@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="SOLUTIONS">
 
 <title>Exploration Exercise 3.2 – LTC Dusty Turner</title>
 <style>
@@ -20,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -168,12 +202,6 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>SOLUTIONS </p>
-          </div>
-  </div>
     
   
     
@@ -234,12 +262,24 @@ Instead, we estimate a <strong>plausible range</strong> for <span class="math in
 <span class="math inline">\(H_0: \pi = 0.362\)</span> vs.&nbsp;<span class="math inline">\(H_A: \pi \neq 0.362\)</span>.<br>
 Use R to calculate the standardized test statistic and the two-sided p-value. Based on your result, would you reject or fail to reject the null hypothesis at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Given values</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2015</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="fl">0.311</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fl">0.362</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>SD_pi <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(null <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> null) <span class="sc">/</span> n)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (phat <span class="sc">-</span> null) <span class="sc">/</span> SD_pi</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>SD_pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.010706</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -4.763685</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.900887e-06</code></pre>
 </div>
@@ -262,12 +302,20 @@ It tells us how much <span class="math inline">\(\hat{p}\)</span> would vary acr
 Test <span class="math inline">\(H_0: \pi = 0.50\)</span> vs.&nbsp;<span class="math inline">\(H_A: \pi \neq 0.50\)</span>.<br>
 Report your test statistic, p-value, and conclusion given <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>null2 <span class="ot">&lt;-</span> <span class="fl">0.50</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>SD_pi2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(null2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> null2) <span class="sc">/</span> n)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>z_stat2 <span class="ot">&lt;-</span> (phat <span class="sc">-</span> null2) <span class="sc">/</span> SD_pi2</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>p_value2 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat2)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>SD_pi2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01113865</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>z_stat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -16.96795</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p_value2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -282,6 +330,8 @@ Note: the <span class="math inline">\(p\)</span>-value isn’t literally zero, i
 <p><strong>Q9.</strong> Calculate the standard error (SE<span class="math inline">\(_{\hat{p}}\)</span>) for this study.<br>
 How does it compare to the SD<span class="math inline">\(_\pi\)</span> values from Questions #7 and #8? Explain why they differ.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SE_phat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> phat) <span class="sc">/</span> n)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>SE_phat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01031222</code></pre>
 </div>
@@ -295,6 +345,12 @@ It is slightly smaller because <span class="math inline">\(\hat{p}=0.311\)</span
 <p><strong>Q10.</strong> Calculate and interpret a 95% confidence interval for <span class="math inline">\(\pi\)</span>.<br>
 Explain what the interval means in the context of this study.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>confidence <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span> confidence</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>z_crit_95 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="at">p=</span><span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ci_lower_95 <span class="ot">&lt;-</span> phat <span class="sc">-</span> z_crit_95 <span class="sc">*</span> SE_phat</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ci_upper_95 <span class="ot">&lt;-</span> phat <span class="sc">+</span> z_crit_95 <span class="sc">*</span> SE_phat</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(ci_lower_95, ci_upper_95)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2907884 0.3312116</code></pre>
 </div>
@@ -308,6 +364,12 @@ About 95% of such intervals from repeated samples would contain the true <span c
 <p><strong>Q11.</strong> Calculate a 99% confidence interval for <span class="math inline">\(\pi\)</span>.<br>
 Compare it to your 95% interval. How do the midpoint and margin of error change?</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>confidence<span class="ot">&lt;-</span><span class="fl">0.99</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> confidence</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>z_crit_99 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ci_lower_99 <span class="ot">&lt;-</span> phat <span class="sc">-</span> z_crit_99 <span class="sc">*</span> SE_phat</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ci_upper_99 <span class="ot">&lt;-</span> phat <span class="sc">+</span> z_crit_99 <span class="sc">*</span> SE_phat</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(ci_lower_99, ci_upper_99)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2844375 0.3375625</code></pre>
 </div>
@@ -321,6 +383,12 @@ A higher confidence level increases the margin of error.</p>
 <p><strong>Q12.</strong> Suppose that the GSS had only taken a sample size of <span class="math inline">\(n = 215\)</span>.<br>
 How would this change your confidence interval?</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>n_small <span class="ot">&lt;-</span> <span class="dv">215</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>SE_small <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> phat) <span class="sc">/</span> n_small)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fl">1.96</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>lower_small <span class="ot">&lt;-</span> phat <span class="sc">-</span> z_star <span class="sc">*</span> SE_small</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>upper_small <span class="ot">&lt;-</span> phat <span class="sc">+</span> z_star <span class="sc">*</span> SE_small</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lower_small, upper_small)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2491234 0.3728766</code></pre>
 </div>

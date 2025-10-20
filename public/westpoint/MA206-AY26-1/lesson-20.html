@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/lesson-19.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -101,7 +137,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -119,7 +155,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">MA206-AY26-1</span></a>
   </li>  
 </ul>
@@ -128,10 +164,161 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY26-1/lesson-20.html">Lesson 20</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-20.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -143,9 +330,11 @@ window.Quarto = {
   <li><a href="#lesson-administration" id="toc-lesson-administration" class="nav-link" data-scroll-target="#lesson-administration">Lesson Administration</a>
   <ul class="collapse">
   <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
-  <li><a href="#exploration-exercise-3.2-next-lesson---hard-copy" id="toc-exploration-exercise-3.2-next-lesson---hard-copy" class="nav-link" data-scroll-target="#exploration-exercise-3.2-next-lesson---hard-copy">Exploration Exercise 3.2 (Next Lesson - HARD COPY!!)</a></li>
-  <li><a href="#milestone-5" id="toc-milestone-5" class="nav-link" data-scroll-target="#milestone-5">Milestone 5</a></li>
+  <li><a href="#sil-1-next-class-review" id="toc-sil-1-next-class-review" class="nav-link" data-scroll-target="#sil-1-next-class-review">SIL 1 (Next Class Review)</a></li>
+  <li><a href="#exploration-exercise-3.2-grade-this-class" id="toc-exploration-exercise-3.2-grade-this-class" class="nav-link" data-scroll-target="#exploration-exercise-3.2-grade-this-class">Exploration Exercise 3.2 (Grade This Class)</a></li>
   <li><a href="#sil-2" id="toc-sil-2" class="nav-link" data-scroll-target="#sil-2">SIL 2</a></li>
+  <li><a href="#wpr-2" id="toc-wpr-2" class="nav-link" data-scroll-target="#wpr-2">WPR 2</a></li>
+  <li><a href="#milestone-5" id="toc-milestone-5" class="nav-link" data-scroll-target="#milestone-5">Milestone 5</a></li>
   </ul></li>
   <li><a href="#running-review" id="toc-running-review" class="nav-link" data-scroll-target="#running-review">Running Review</a>
   <ul class="collapse">
@@ -156,6 +345,17 @@ window.Quarto = {
   <li><a href="#interpreting-the-p-value" id="toc-interpreting-the-p-value" class="nav-link" data-scroll-target="#interpreting-the-p-value">Interpreting the <span class="math inline">\(p\)</span>-value</a></li>
   <li><a href="#other-notes" id="toc-other-notes" class="nav-link" data-scroll-target="#other-notes">Other Notes</a></li>
   </ul></li>
+  <li><a href="#paired-t-test" id="toc-paired-t-test" class="nav-link" data-scroll-target="#paired-t-test">Paired <span class="math inline">\(t\)</span>-Test</a>
+  <ul class="collapse">
+  <li><a href="#example-fitness-training" id="toc-example-fitness-training" class="nav-link" data-scroll-target="#example-fitness-training">Example: Fitness Training</a></li>
+  <li><a href="#step-1-hypotheses" id="toc-step-1-hypotheses" class="nav-link" data-scroll-target="#step-1-hypotheses">Step 1: Hypotheses</a></li>
+  <li><a href="#step-2-test-statistic" id="toc-step-2-test-statistic" class="nav-link" data-scroll-target="#step-2-test-statistic">Step 2: Test Statistic</a></li>
+  <li><a href="#step-3-compute" id="toc-step-3-compute" class="nav-link" data-scroll-target="#step-3-compute">Step 3: Compute</a></li>
+  <li><a href="#step-4-decision" id="toc-step-4-decision" class="nav-link" data-scroll-target="#step-4-decision">Step 4: Decision</a></li>
+  <li><a href="#step-5-confidence-interval" id="toc-step-5-confidence-interval" class="nav-link" data-scroll-target="#step-5-confidence-interval">Step 5: Confidence Interval</a></li>
+  <li><a href="#validity-scope" id="toc-validity-scope" class="nav-link" data-scroll-target="#validity-scope">Validity &amp; Scope</a></li>
+  </ul></li>
+  <li><a href="#board-problem-does-caffeine-improve-reaction-time" id="toc-board-problem-does-caffeine-improve-reaction-time" class="nav-link" data-scroll-target="#board-problem-does-caffeine-improve-reaction-time">Board Problem: Does caffeine improve reaction time?</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today:</a></li>
@@ -198,25 +398,31 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="calendar">Calendar</h3>
 <section id="day-1" class="level4">
 <h4 class="anchored" data-anchor-id="day-1">Day 1</h4>
-<!-- ![](assets/img/lesson/lesson19day1.png) -->
+<p><img src="assets/img/lesson/lesson20day1.png" class="img-fluid"></p>
 </section>
 <section id="day-2" class="level4">
 <h4 class="anchored" data-anchor-id="day-2">Day 2</h4>
-<!-- ![](assets/img/lesson/lesson19day2.png) -->
-<!-- ![](assets/img/lesson/lesson-19.png) -->
-<!-- ### SIL 1 (Redeployment) -->
+<p><img src="assets/img/lesson/lesson20day2.png" class="img-fluid"></p>
+<p><img src="assets/img/lesson/lesson-20.png" class="img-fluid"></p>
 </section>
 </section>
-<section id="exploration-exercise-3.2-next-lesson---hard-copy" class="level3">
-<h3 class="anchored" data-anchor-id="exploration-exercise-3.2-next-lesson---hard-copy">Exploration Exercise 3.2 (Next Lesson - HARD COPY!!)</h3>
+<section id="sil-1-next-class-review" class="level3">
+<h3 class="anchored" data-anchor-id="sil-1-next-class-review">SIL 1 (Next Class Review)</h3>
+</section>
+<section id="exploration-exercise-3.2-grade-this-class" class="level3">
+<h3 class="anchored" data-anchor-id="exploration-exercise-3.2-grade-this-class">Exploration Exercise 3.2 (Grade This Class)</h3>
 <p>Lets go over the grading plan and <a href="assets/files/EE_3_2.html">solution</a> and take about 10 minutes.</p>
+</section>
+<section id="sil-2" class="level3">
+<h3 class="anchored" data-anchor-id="sil-2">SIL 2</h3>
 <ul>
-<li>⏰ Due on <strong>Lesson 19</strong><br>
-<!-- - [Lets take a look at it](https://westpoint.instructure.com/courses/10295) -->
+<li><a href="https://westpoint.instructure.com/courses/10295/assignments/224233">Details</a></li>
+</ul>
+</section>
+<section id="wpr-2" class="level3">
+<h3 class="anchored" data-anchor-id="wpr-2">WPR 2</h3>
 <ul>
-<li><strong>Day 1:</strong> Tuesday, <strong>16 Oct 2025</strong></li>
-<li><strong>Day 2:</strong> Wednesday, <strong>17 Oct 2025</strong></li>
-</ul></li>
+<li>Lesson 22</li>
 </ul>
 </section>
 <section id="milestone-5" class="level3">
@@ -224,12 +430,6 @@ window.Quarto = {
 <ul>
 <li>Due <strong>0700 on 7 November</strong></li>
 <li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-5-instructions">Instructions</a></li>
-</ul>
-</section>
-<section id="sil-2" class="level3">
-<h3 class="anchored" data-anchor-id="sil-2">SIL 2</h3>
-<ul>
-<li><a href="https://westpoint.instructure.com/courses/10295/assignments/224233">Details</a></li>
 </ul>
 <!-- ### TEE Schedule -->
 <!-- | Date             | Start | End  | -->
@@ -604,6 +804,289 @@ t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{\tfrac{s_1^2}{n_1} + \tfrac{s_2^2}{
 </tbody>
 </table>
 </section>
+</section>
+<section id="paired-t-test" class="level2">
+<h2 class="anchored" data-anchor-id="paired-t-test">Paired <span class="math inline">\(t\)</span>-Test</h2>
+<p>Sometimes we do not have two <em>independent</em> groups, but instead two measurements on the <strong>same subjects</strong> (or matched pairs).<br>
+Examples:</p>
+<ul>
+<li>Before/after training scores<br>
+</li>
+<li>Left vs.&nbsp;right leg strength in the same person</li>
+</ul>
+<p>In these cases, we analyze the <strong>differences within pairs</strong> rather than treating them as two independent samples. This essentially becomes a one mean hypothesis test from before.</p>
+<section id="example-fitness-training" class="level3">
+<h3 class="anchored" data-anchor-id="example-fitness-training">Example: Fitness Training</h3>
+<p>Researchers measured cadets’ mile times <strong>before</strong> and <strong>after</strong> a new training program. The same 22 cadets were tested twice.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Cadet</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>7.20</td>
+<td>7.80</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>6.95</td>
+<td>7.60</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>7.40</td>
+<td>8.10</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>7.00</td>
+<td>6.70</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>6.85</td>
+<td>6.60</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>7.25</td>
+<td>7.00</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>We want to test if the program <strong>reduces</strong> mile time on average.</p>
+</section>
+<section id="step-1-hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-hypotheses">Step 1: Hypotheses</h3>
+<p>Let <span class="math inline">\(d = \text{Before – After}\)</span>.</p>
+<ul>
+<li>Null: <span class="math inline">\(H_0:\ \mu_d = 0\)</span> (no change)<br>
+</li>
+<li>Alternative: <span class="math inline">\(H_A:\ \mu_d &gt; 0\)</span> (before is greater than after <span class="math inline">\(\;\Rightarrow\;\)</span> improved performance)</li>
+</ul>
+</section>
+<section id="step-2-test-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-test-statistic">Step 2: Test Statistic</h3>
+<p>We compute a <strong>one-sample <span class="math inline">\(t\)</span>-test</strong> on the differences:</p>
+<p><span class="math display">\[
+t \;=\; \frac{\bar{d} - 0}{s_d/\sqrt{n}}, \qquad df = n-1
+\]</span></p>
+</section>
+<section id="step-3-compute" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-compute">Step 3: Compute</h3>
+<p><span class="math display">\[
+t = \frac{-0.143}{.325/\sqrt{22}}
+   = \frac{-0.143}{0.067}
+   \approx 2.06
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.20</span>,<span class="fl">6.95</span>,<span class="fl">7.40</span>,<span class="fl">7.00</span>,<span class="fl">6.85</span>,<span class="fl">7.25</span>,<span class="fl">7.05</span>,<span class="fl">6.90</span>,<span class="fl">7.10</span>,<span class="fl">6.80</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.15</span>,<span class="fl">7.05</span>,<span class="fl">7.20</span>,<span class="fl">6.85</span>,<span class="fl">7.30</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.10</span>,<span class="fl">7.05</span>,<span class="fl">7.25</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.80</span>,<span class="fl">7.60</span>,<span class="fl">8.10</span>,<span class="fl">6.70</span>,<span class="fl">6.60</span>,<span class="fl">7.00</span>,<span class="fl">6.90</span>,<span class="fl">6.55</span>,<span class="fl">6.85</span>,<span class="fl">6.50</span>,<span class="fl">6.70</span>,<span class="fl">6.65</span>,<span class="fl">6.85</span>,<span class="fl">6.80</span>,<span class="fl">6.95</span>,<span class="fl">6.60</span>,<span class="fl">7.00</span>,<span class="fl">6.75</span>,<span class="fl">6.70</span>,<span class="fl">6.85</span>,<span class="fl">6.80</span>,<span class="fl">6.95</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> before <span class="sc">-</span> after</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(d)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(d)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(d)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df   <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> dbar <span class="sc">/</span> (sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p_val  <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t_stat, df)   <span class="co"># one-sided, "&lt;" since After &lt; Before</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">n =</span> n, <span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">t_stat =</span> t_stat, <span class="at">df =</span> df, <span class="at">p_val =</span> p_val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n
+[1] 22
+
+$dbar
+[1] 0.1431818
+
+$sd
+[1] 0.3252455
+
+$t_stat
+[1] 2.064847
+
+$df
+[1] 21
+
+$p_val
+[1] 0.02575202</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-decision" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-decision">Step 4: Decision</h3>
+<p><span class="math inline">\(p \approx 0.026 &lt; 0.05\)</span><br>
+<span class="math inline">\(\;\;\Rightarrow\)</span> Reject <span class="math inline">\(H_0\)</span>.</p>
+<p>We are 95% confident that the true mean difference in performance on mile time between the before and after is greater than 0.</p>
+</section>
+<section id="step-5-confidence-interval" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-confidence-interval">Step 5: Confidence Interval</h3>
+<p>95% CI for <span class="math inline">\(\mu_d\)</span>:</p>
+<p><span class="math display">\[
+\bar{d} \;\pm\; t_{.025,\,df}\,\frac{s_d}{\sqrt{n}}
+\]</span></p>
+<p><span class="math display">\[
+= 0.143 \;\pm\; (2.08)(0.325)  
+= 0.143\;\pm\; 0.144  
+= (-0.001,\; 0.287)
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, df)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>CI95 <span class="ot">&lt;-</span> <span class="fu">c</span>(dbar <span class="sc">+</span> tcrit<span class="sc">*</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(n)), dbar <span class="sc">-</span> tcrit<span class="sc">*</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(n)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">df =</span> df, <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$dbar
+[1] 0.1431818
+
+$sd
+[1] 0.3252455
+
+$df
+[1] 21
+
+$tcrit
+[1] -2.079614
+
+$CI95
+[1] -0.001023956  0.287387592</code></pre>
+</div>
+</div>
+<p>We are 95% confident that the training reduces mile time by <strong>-.001 to 0.287 minutes</strong>.</p>
+<p>Yes, the CI includes 0. So in a <span class="math inline">\(\neq\)</span> alternative hypothesis this would fail to reject.</p>
+</section>
+<section id="validity-scope" class="level3">
+<h3 class="anchored" data-anchor-id="validity-scope">Validity &amp; Scope</h3>
+<ul>
+<li><strong>Validity:</strong> Differences are independent, approximately normal, and <span class="math inline">\(n=22\)</span> is a reasonably large sample.<br>
+</li>
+<li><strong>Scope:</strong>
+<ul>
+<li>If cadets were randomly sampled <span class="math inline">\(\;\Rightarrow\;\)</span> generalize to population.<br>
+</li>
+<li>If cadets were randomly assigned <span class="math inline">\(\;\Rightarrow\;\)</span> can claim causation.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="board-problem-does-caffeine-improve-reaction-time" class="level2">
+<h2 class="anchored" data-anchor-id="board-problem-does-caffeine-improve-reaction-time">Board Problem: Does caffeine improve reaction time?</h2>
+<p>A group of cadets test whether drinking a small cup of coffee <strong>improves</strong> reaction time (measured in seconds). Each cadet is tested <strong>before</strong> and <strong>after</strong> drinking coffee.</p>
+<ul>
+<li><span class="math inline">\(n=12\)</span> cadets<br>
+</li>
+<li>Mean difference (Before – After): <span class="math inline">\(\bar{d} = 0.18\)</span> seconds<br>
+</li>
+<li>Standard deviation of differences: <span class="math inline">\(s_d = 0.22\)</span> seconds</li>
+</ul>
+<p>Test, at <span class="math inline">\(\alpha=0.05\)</span>, whether coffee <strong>reduces average reaction time</strong> (i.e., improves performance). Also construct a <strong>95% CI</strong> for <span class="math inline">\(\mu_d\)</span>.</p>
+<ul>
+<li>Define parameters and state hypotheses.<br>
+</li>
+<li>Compute the test statistic, degrees of freedom, and one-sided <span class="math inline">\(p\)</span>-value.<br>
+</li>
+<li>Make a decision and interpret.<br>
+</li>
+<li>Give the 95% CI and interpret it in context.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="hypotheses" class="level4">
+<h4 class="anchored" data-anchor-id="hypotheses">Hypotheses</h4>
+<p><span class="math inline">\(H_0:\ \mu_d = 0 \quad\text{vs}\quad H_A:\ \mu_d &gt; 0\)</span><br>
+(where <span class="math inline">\(d =\)</span> Before – After, so <span class="math inline">\(d&gt;0\)</span> means improvement)</p>
+</section>
+<section id="test-statistic" class="level4">
+<h4 class="anchored" data-anchor-id="test-statistic">Test statistic</h4>
+<p><span class="math display">\[
+t = \frac{\bar{d} - 0}{s_d/\sqrt{n}}
+= \frac{0.18}{0.22/\sqrt{12}}
+= \frac{0.18}{0.064}
+\approx 2.81
+\]</span></p>
+<p>Degrees of freedom: <span class="math inline">\(df = n-1 = 11\)</span></p>
+<p>One-sided <span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.008\)</span>.</p>
+<p><strong>Decision:</strong> Reject <span class="math inline">\(H_0\)</span>.<br>
+<strong>Conclusion:</strong> There is strong evidence that coffee improves reaction time.</p>
+</section>
+<section id="confidence-interval" class="level4">
+<h4 class="anchored" data-anchor-id="confidence-interval">95% Confidence Interval</h4>
+<p><span class="math display">\[
+\bar{d} \;\pm\; t_{0.975,\,df}\,\frac{s_d}{\sqrt{n}}
+= 0.18 \;\pm\; (2.20)(0.064)
+= 0.18 \;\pm\; 0.14
+= (0.04,\; 0.32)
+\]</span></p>
+<p>We are 95% confident that coffee reduces average reaction time by <strong>0.04 to 0.32 seconds</strong>.</p>
+</section>
+<section id="r-code-to-verify" class="level4">
+<h4 class="anchored" data-anchor-id="r-code-to-verify">R code to verify</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fl">0.18</span>; sd <span class="ot">&lt;-</span> <span class="fl">0.22</span>; n <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> dbar <span class="sc">/</span> (sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p_val <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t_stat, df)  <span class="co"># one-sided, "greater"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>CI95 <span class="ot">&lt;-</span> dbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> tcrit <span class="sc">*</span> (sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">n =</span> n, <span class="at">df =</span> df,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">t_stat =</span> t_stat, <span class="at">p_val =</span> p_val,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$dbar
+[1] 0.18
+
+$sd
+[1] 0.22
+
+$n
+[1] 12
+
+$df
+[1] 11
+
+$t_stat
+[1] 2.834265
+
+$p_val
+[1] 0.008123858
+
+$tcrit
+[1] 2.200985
+
+$CI95
+[1] 0.04021867 0.31978133</code></pre>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
 </section>
 <section id="before-you-leave" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
@@ -1027,6 +1510,15 @@ t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{\tfrac{s_1^2}{n_1} + \tfrac{s_2^2}{
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY26-1/lesson-19.html" class="pagination-link" aria-label="Lesson 19">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 19</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
