@@ -641,6 +641,9 @@ n\beta_0 &amp;= \sum_{i=1}^n y_i - \beta_1 \sum_{i=1}^n x_i \\[6pt]
 </section>
 <section id="step-4-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="step-4-interpretation">Step 4: Interpretation</h4>
+<p><span class="math display">\[
+\hat{y}_i = \beta_0 + \beta_1 x_i
+\]</span></p>
 <ul>
 <li><span class="math inline">\(\hat{\beta}_1\)</span> is the <strong>slope</strong> — how much <span class="math inline">\(y\)</span> changes on average when <span class="math inline">\(x\)</span> increases by 1.<br>
 </li>
@@ -739,6 +742,29 @@ Multiple R-squared:  0.7528,    Adjusted R-squared:  0.7446
 F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled" title="For a little more depth">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+For a little more depth
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The test statistic here is calculated as</p>
+<p><span class="math display">\[
+t = \frac{\beta_1 - \text{null}}{SE} = \frac{37.2851}{1.8776} = 19.858
+\]</span></p>
+<p>And if you remember…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(<span class="fl">19.858</span>), <span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="model-fit" class="level3">
 <h3 class="anchored" data-anchor-id="model-fit">Model Fit</h3>
@@ -794,7 +820,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -803,7 +829,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Step 1: Fit the regression models</strong></p>
 <div class="cell">
