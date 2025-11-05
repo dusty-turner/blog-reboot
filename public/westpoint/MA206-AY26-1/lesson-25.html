@@ -384,7 +384,8 @@ window.Quarto = {
   <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal Distribution</a></li>
   <li><a href="#equal-variance" id="toc-equal-variance" class="nav-link" data-scroll-target="#equal-variance">Equal Variance</a></li>
   </ul></li>
-  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In Class Exercise</a></li>
+  <li><a href="#adventure-one---example-of-what-to-do-for-milestone-5" id="toc-adventure-one---example-of-what-to-do-for-milestone-5" class="nav-link" data-scroll-target="#adventure-one---example-of-what-to-do-for-milestone-5">Adventure One - Example of what to do for Milestone 5</a></li>
+  <li><a href="#in-class-exercise---adventure-two---will-revisit-lesson-26" id="toc-in-class-exercise---adventure-two---will-revisit-lesson-26" class="nav-link" data-scroll-target="#in-class-exercise---adventure-two---will-revisit-lesson-26">In Class Exercise - Adventure Two - Will revisit lesson 26</a></li>
   <li><a href="#partial-solution" id="toc-partial-solution" class="nav-link" data-scroll-target="#partial-solution">Partial Solution</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
   <ul class="collapse">
@@ -719,11 +720,312 @@ You must verify that each observation is independent (e.g., different cars, peop
 </div>
 </section>
 </section>
-<section id="in-class-exercise" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-exercise">In Class Exercise</h2>
+<section id="adventure-one---example-of-what-to-do-for-milestone-5" class="level2">
+<h2 class="anchored" data-anchor-id="adventure-one---example-of-what-to-do-for-milestone-5">Adventure One - Example of what to do for Milestone 5</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"diamonds"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(cut, clarity, price, color)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> price, <span class="at">colour =</span> color)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> price <span class="sc">~</span> carat <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> y <span class="sc">+</span> z <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity, <span class="at">data =</span> diamonds)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price ~ carat + depth + table + x + y + z + cut + 
+    color + clarity, data = diamonds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21376.0   -592.4   -183.5    376.4  10694.2 
+
+Coefficients:
+             Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)  5753.762    396.630   14.507  &lt; 2e-16 ***
+carat       11256.978     48.628  231.494  &lt; 2e-16 ***
+depth         -63.806      4.535  -14.071  &lt; 2e-16 ***
+table         -26.474      2.912   -9.092  &lt; 2e-16 ***
+x           -1008.261     32.898  -30.648  &lt; 2e-16 ***
+y               9.609     19.333    0.497  0.61918    
+z             -50.119     33.486   -1.497  0.13448    
+cut.L         584.457     22.478   26.001  &lt; 2e-16 ***
+cut.Q        -301.908     17.994  -16.778  &lt; 2e-16 ***
+cut.C         148.035     15.483    9.561  &lt; 2e-16 ***
+cut^4         -20.794     12.377   -1.680  0.09294 .  
+color.L     -1952.160     17.342 -112.570  &lt; 2e-16 ***
+color.Q      -672.054     15.777  -42.597  &lt; 2e-16 ***
+color.C      -165.283     14.725  -11.225  &lt; 2e-16 ***
+color^4        38.195     13.527    2.824  0.00475 ** 
+color^5       -95.793     12.776   -7.498 6.59e-14 ***
+color^6       -48.466     11.614   -4.173 3.01e-05 ***
+clarity.L    4097.431     30.259  135.414  &lt; 2e-16 ***
+clarity.Q   -1925.004     28.227  -68.197  &lt; 2e-16 ***
+clarity.C     982.205     24.152   40.668  &lt; 2e-16 ***
+clarity^4    -364.918     19.285  -18.922  &lt; 2e-16 ***
+clarity^5     233.563     15.752   14.828  &lt; 2e-16 ***
+clarity^6       6.883     13.715    0.502  0.61575    
+clarity^7      90.640     12.103    7.489 7.06e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1130 on 53916 degrees of freedom
+Multiple R-squared:  0.9198,    Adjusted R-squared:  0.9198 
+F-statistic: 2.688e+04 on 23 and 53916 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> price <span class="sc">~</span> carat <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> z <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity, <span class="at">data =</span> diamonds)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price ~ carat + depth + table + x + z + cut + color + 
+    clarity, data = diamonds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21378.8   -592.5   -183.5    376.3  10694.1 
+
+Coefficients:
+             Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)  5768.782    395.474   14.587  &lt; 2e-16 ***
+carat       11257.752     48.602  231.630  &lt; 2e-16 ***
+depth         -64.003      4.517  -14.168  &lt; 2e-16 ***
+table         -26.501      2.911   -9.103  &lt; 2e-16 ***
+x           -1000.354     28.795  -34.740  &lt; 2e-16 ***
+z             -47.925     33.194   -1.444  0.14880    
+cut.L         584.600     22.476   26.010  &lt; 2e-16 ***
+cut.Q        -302.211     17.983  -16.805  &lt; 2e-16 ***
+cut.C         148.446     15.461    9.601  &lt; 2e-16 ***
+cut^4         -20.619     12.371   -1.667  0.09559 .  
+color.L     -1952.179     17.342 -112.572  &lt; 2e-16 ***
+color.Q      -672.075     15.777  -42.599  &lt; 2e-16 ***
+color.C      -165.277     14.725  -11.224  &lt; 2e-16 ***
+color^4        38.193     13.526    2.824  0.00475 ** 
+color^5       -95.780     12.776   -7.497 6.64e-14 ***
+color^6       -48.452     11.614   -4.172 3.02e-05 ***
+clarity.L    4097.613     30.256  135.431  &lt; 2e-16 ***
+clarity.Q   -1925.133     28.226  -68.205  &lt; 2e-16 ***
+clarity.C     982.322     24.150   40.676  &lt; 2e-16 ***
+clarity^4    -364.976     19.285  -18.926  &lt; 2e-16 ***
+clarity^5     233.635     15.751   14.833  &lt; 2e-16 ***
+clarity^6       6.871     13.715    0.501  0.61640    
+clarity^7      90.622     12.103    7.487 7.13e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1130 on 53917 degrees of freedom
+Multiple R-squared:  0.9198,    Adjusted R-squared:  0.9198 
+F-statistic: 2.81e+04 on 22 and 53917 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Candidate model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> price <span class="sc">~</span> carat <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity, <span class="at">data =</span> diamonds)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price ~ carat + depth + table + x + cut + color + 
+    clarity, data = diamonds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21385.0   -592.4   -183.7    376.5  10694.6 
+
+Coefficients:
+             Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)  5935.107    378.328   15.688  &lt; 2e-16 ***
+carat       11256.968     48.600  231.626  &lt; 2e-16 ***
+depth         -66.769      4.091  -16.322  &lt; 2e-16 ***
+table         -26.457      2.911   -9.089  &lt; 2e-16 ***
+x           -1029.478     20.549  -50.098  &lt; 2e-16 ***
+cut.L         584.717     22.476   26.015  &lt; 2e-16 ***
+cut.Q        -302.037     17.983  -16.795  &lt; 2e-16 ***
+cut.C         148.065     15.459    9.578  &lt; 2e-16 ***
+cut^4         -21.253     12.364   -1.719  0.08562 .  
+color.L     -1952.128     17.342 -112.568  &lt; 2e-16 ***
+color.Q      -672.207     15.777  -42.608  &lt; 2e-16 ***
+color.C      -165.451     14.724  -11.236  &lt; 2e-16 ***
+color^4        38.261     13.526    2.829  0.00468 ** 
+color^5       -95.816     12.776   -7.500 6.50e-14 ***
+color^6       -48.441     11.614   -4.171 3.04e-05 ***
+clarity.L    4096.912     30.253  135.423  &lt; 2e-16 ***
+clarity.Q   -1924.681     28.224  -68.192  &lt; 2e-16 ***
+clarity.C     982.004     24.149   40.664  &lt; 2e-16 ***
+clarity^4    -364.870     19.285  -18.920  &lt; 2e-16 ***
+clarity^5     233.449     15.751   14.822  &lt; 2e-16 ***
+clarity^6       6.973     13.715    0.508  0.61114    
+clarity^7      90.738     12.103    7.497 6.63e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1130 on 53918 degrees of freedom
+Multiple R-squared:  0.9198,    Adjusted R-squared:  0.9198 
+F-statistic: 2.944e+04 on 21 and 53918 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(cut, color, clarity)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> price <span class="sc">~</span> carat <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity <span class="sc">+</span> carat<span class="sc">:</span>color, <span class="at">data =</span> diamonds)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price ~ carat + depth + table + x + cut + color + 
+    clarity + carat:color, data = diamonds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-16732.9   -513.8   -136.6    358.5  10550.5 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   10393.339    359.347  28.923  &lt; 2e-16 ***
+carat         12646.011     49.034 257.900  &lt; 2e-16 ***
+depth           -97.355      3.860 -25.223  &lt; 2e-16 ***
+table           -28.297      2.735 -10.348  &lt; 2e-16 ***
+x             -1624.864     20.623 -78.791  &lt; 2e-16 ***
+cut.L           594.594     21.114  28.161  &lt; 2e-16 ***
+cut.Q          -274.247     16.896 -16.232  &lt; 2e-16 ***
+cut.C           132.434     14.523   9.119  &lt; 2e-16 ***
+cut^4           -12.347     11.613  -1.063  0.28770    
+color.L         329.781     34.252   9.628  &lt; 2e-16 ***
+color.Q         513.842     31.643  16.239  &lt; 2e-16 ***
+color.C        -119.817     29.087  -4.119 3.81e-05 ***
+color^4          69.759     26.171   2.665  0.00769 ** 
+color^5         250.440     24.647  10.161  &lt; 2e-16 ***
+color^6         125.580     22.195   5.658 1.54e-08 ***
+clarity.L      4113.880     28.459 144.556  &lt; 2e-16 ***
+clarity.Q     -1981.152     26.554 -74.607  &lt; 2e-16 ***
+clarity.C       991.093     22.698  43.665  &lt; 2e-16 ***
+clarity^4      -353.021     18.117 -19.485  &lt; 2e-16 ***
+clarity^5       208.673     14.801  14.099  &lt; 2e-16 ***
+clarity^6        26.858     12.884   2.085  0.03711 *  
+clarity^7       107.303     11.372   9.436  &lt; 2e-16 ***
+carat:color.L -2454.649     34.150 -71.878  &lt; 2e-16 ***
+carat:color.Q -1020.521     31.031 -32.887  &lt; 2e-16 ***
+carat:color.C   212.081     29.261   7.248 4.29e-13 ***
+carat:color^4    19.164     27.152   0.706  0.48031    
+carat:color^5  -396.193     26.071 -15.196  &lt; 2e-16 ***
+carat:color^6  -192.062     24.204  -7.935 2.14e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1061 on 53912 degrees of freedom
+Multiple R-squared:  0.9293,    Adjusted R-squared:  0.9292 
+F-statistic: 2.623e+04 on 27 and 53912 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Candidate model</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mod5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> price <span class="sc">~</span> carat <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity <span class="sc">+</span> carat<span class="sc">:</span>color <span class="sc">+</span> clarity<span class="sc">:</span>carat, <span class="at">data =</span> diamonds)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price ~ carat + depth + table + x + cut + color + 
+    clarity + carat:color + clarity:carat, data = diamonds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-22707.3   -301.6     -0.9    271.9   8784.4 
+
+Coefficients:
+                 Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)     21244.877    290.112   73.230  &lt; 2e-16 ***
+carat           16453.723     45.710  359.960  &lt; 2e-16 ***
+depth            -163.331      3.068  -53.232  &lt; 2e-16 ***
+table             -39.541      2.158  -18.324  &lt; 2e-16 ***
+x               -3095.798     18.360 -168.620  &lt; 2e-16 ***
+cut.L             514.155     16.659   30.863  &lt; 2e-16 ***
+cut.Q            -163.316     13.343  -12.239  &lt; 2e-16 ***
+cut.C              71.287     11.459    6.221 4.98e-10 ***
+cut^4               7.700      9.160    0.841  0.40059    
+color.L           667.031     27.200   24.523  &lt; 2e-16 ***
+color.Q           367.411     25.005   14.694  &lt; 2e-16 ***
+color.C            15.497     22.987    0.674  0.50022    
+color^4           104.494     20.654    5.059 4.22e-07 ***
+color^5           200.370     19.445   10.305  &lt; 2e-16 ***
+color^6            24.333     17.523    1.389  0.16495    
+clarity.L       -3011.134     48.745  -61.774  &lt; 2e-16 ***
+clarity.Q        1767.264     44.991   39.280  &lt; 2e-16 ***
+clarity.C       -1411.691     37.984  -37.166  &lt; 2e-16 ***
+clarity^4         863.630     30.089   28.703  &lt; 2e-16 ***
+clarity^5        -454.165     24.029  -18.901  &lt; 2e-16 ***
+clarity^6         112.514     20.512    5.485 4.15e-08 ***
+clarity^7         -91.019     17.879   -5.091 3.58e-07 ***
+carat:color.L   -2936.145     27.224 -107.853  &lt; 2e-16 ***
+carat:color.Q    -861.382     24.531  -35.114  &lt; 2e-16 ***
+carat:color.C      33.212     23.141    1.435  0.15124    
+carat:color^4     -64.953     21.442   -3.029  0.00245 ** 
+carat:color^5    -293.108     20.575  -14.246  &lt; 2e-16 ***
+carat:color^6     -24.459     19.136   -1.278  0.20119    
+carat:clarity.L  7881.781     51.240  153.820  &lt; 2e-16 ***
+carat:clarity.Q -2165.582     45.783  -47.301  &lt; 2e-16 ***
+carat:clarity.C  1714.611     41.112   41.706  &lt; 2e-16 ***
+carat:clarity^4  -945.245     36.053  -26.218  &lt; 2e-16 ***
+carat:clarity^5   488.264     31.404   15.548  &lt; 2e-16 ***
+carat:clarity^6    28.838     27.156    1.062  0.28827    
+carat:clarity^7   279.667     21.976   12.726  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 837 on 53905 degrees of freedom
+Multiple R-squared:  0.956, Adjusted R-squared:  0.956 
+F-statistic: 3.445e+04 on 34 and 53905 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Linear</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod5, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Inedpendence</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># N </span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod5, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#E </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod5, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-9-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="in-class-exercise---adventure-two---will-revisit-lesson-26" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise---adventure-two---will-revisit-lesson-26">In Class Exercise - Adventure Two - Will revisit lesson 26</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 53,940 × 10
    carat cut       color clarity depth table price     x     y     z
@@ -799,13 +1101,13 @@ Can you draw a cause-and-effect conclusion about carat size and diamond price? W
 </ul></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diamond Price by Cut Quality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diamond Price by Cut Quality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -814,8 +1116,8 @@ Can you draw a cause-and-effect conclusion about carat size and diamond price? W
 <li>Create a simple linear model for <code>price</code> using <code>carat</code> as the Explanatory Variable and <code>price</code> as the Response Variable.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, <span class="at">data =</span> diamonds)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, <span class="at">data =</span> diamonds)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -852,13 +1154,13 @@ F-statistic: 3.041e+05 on 1 and 53938 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Generate a scatterplot of <code>price</code> (y-axis) versus <code>carat</code> (x-axis), colored by <code>cut</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diamond Price vs. Carat, by Cut"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diamond Price vs. Carat, by Cut"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -872,8 +1174,8 @@ F-statistic: 3.041e+05 on 1 and 53938 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Fit a multiple regression model for <code>price</code> using both <code>carat</code> and <code>cut</code> as Explanatory Variables.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> cut, <span class="at">data =</span> diamonds)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> cut, <span class="at">data =</span> diamonds)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -913,8 +1215,8 @@ F-statistic: 6.437e+04 on 5 and 53934 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p>Create a multiple regression model for <code>price</code> using both <code>carat</code> and <code>cut</code>, <strong>including an interaction</strong> between them.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">*</span> cut, <span class="at">data =</span> diamonds)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">*</span> cut, <span class="at">data =</span> diamonds)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -973,11 +1275,11 @@ F-statistic: 3.653e+04 on 9 and 53930 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="linearity-1" class="level4">
 <h4 class="anchored" data-anchor-id="linearity-1">Linearity</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -990,11 +1292,11 @@ F-statistic: 3.653e+04 on 9 and 53930 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="normal-distribution-1" class="level4">
 <h4 class="anchored" data-anchor-id="normal-distribution-1">Normal Distribution</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1003,11 +1305,11 @@ F-statistic: 3.653e+04 on 9 and 53930 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="equal-variance-1" class="level4">
 <h4 class="anchored" data-anchor-id="equal-variance-1">Equal Variance</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
