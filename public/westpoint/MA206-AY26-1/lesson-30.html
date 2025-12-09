@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/lesson-29.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,10 +105,39 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -90,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">MA206-AY26-1</span></a>
   </li>  
 </ul>
@@ -99,10 +164,221 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY26-1/lesson-30.html">Lesson 30</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-30.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -114,14 +390,30 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#lesson-administration" id="toc-lesson-administration" class="nav-link" data-scroll-target="#lesson-administration">Lesson Administration</a>
   <ul class="collapse">
   <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#army-math-basketball" id="toc-army-math-basketball" class="nav-link" data-scroll-target="#army-math-basketball">Army Math Basketball</a></li>
+  <li><a href="#army-math-volleyball" id="toc-army-math-volleyball" class="nav-link" data-scroll-target="#army-math-volleyball">Army Math Volleyball</a></li>
   <li><a href="#milestone-8" id="toc-milestone-8" class="nav-link" data-scroll-target="#milestone-8">Milestone 8</a></li>
   <li><a href="#tee-schedule" id="toc-tee-schedule" class="nav-link" data-scroll-target="#tee-schedule">TEE Schedule</a></li>
   </ul></li>
-  <li><a href="#course-review" id="toc-course-review" class="nav-link" data-scroll-target="#course-review">Course Review</a>
+  <li><a href="#tee-overview" id="toc-tee-overview" class="nav-link" data-scroll-target="#tee-overview">TEE Overview</a>
   <ul class="collapse">
-  <li><a href="#topics-covered-this-semester" id="toc-topics-covered-this-semester" class="nav-link" data-scroll-target="#topics-covered-this-semester">Topics Covered This Semester</a></li>
+  <li><a href="#tee-admin" id="toc-tee-admin" class="nav-link" data-scroll-target="#tee-admin">TEE Admin</a></li>
+  </ul></li>
+  <li><a href="#course-review---non-exhaustive-list-of-topics" id="toc-course-review---non-exhaustive-list-of-topics" class="nav-link" data-scroll-target="#course-review---non-exhaustive-list-of-topics">Course Review - Non Exhaustive List of Topics</a>
+  <ul class="collapse">
+  <li><a href="#study-design-data" id="toc-study-design-data" class="nav-link" data-scroll-target="#study-design-data">Study Design &amp; Data</a></li>
+  <li><a href="#parameters-vs-statistics" id="toc-parameters-vs-statistics" class="nav-link" data-scroll-target="#parameters-vs-statistics">Parameters vs Statistics</a></li>
+  <li><a href="#probability-rules" id="toc-probability-rules" class="nav-link" data-scroll-target="#probability-rules">Probability Rules</a></li>
+  <li><a href="#random-variables-distributions" id="toc-random-variables-distributions" class="nav-link" data-scroll-target="#random-variables-distributions">Random Variables &amp; Distributions</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a></li>
+  </ul></li>
+  <li><a href="#in-class-examples" id="toc-in-class-examples" class="nav-link" data-scroll-target="#in-class-examples">In-Class Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1</a></li>
+  <li><a href="#example-2-multiple-linear-regression-with-interaction" id="toc-example-2-multiple-linear-regression-with-interaction" class="nav-link" data-scroll-target="#example-2-multiple-linear-regression-with-interaction">Example 2: Multiple Linear Regression with Interaction</a></li>
   <li><a href="#exam-preparation" id="toc-exam-preparation" class="nav-link" data-scroll-target="#exam-preparation">Exam Preparation</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul></li>
   <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank You</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
@@ -170,6 +462,156 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="assets/img/lesson/lesson-30.png" class="img-fluid"></p>
 </section>
 </section>
+<section id="army-math-basketball" class="level3">
+<h3 class="anchored" data-anchor-id="army-math-basketball">Army Math Basketball</h3>
+<p><strong>Math vs USMAPS</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 3-1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 3-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>4-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs USMAPS</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 4-1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 4-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>5-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs Garrison</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 5-1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 5-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>5-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs Garrison</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 5-1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 5-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>6-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="army-math-volleyball" class="level3">
+<h3 class="anchored" data-anchor-id="army-math-volleyball">Army Math Volleyball</h3>
+<p><strong>Math vs EECS</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 2-0">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 2-0
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>3-0</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs EECS</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 3-0">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 3-0
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>4-0</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
 <section id="milestone-8" class="level3">
 <h3 class="anchored" data-anchor-id="milestone-8">Milestone 8</h3>
 <ul>
@@ -192,52 +634,590 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Wed, 17 Dec 2025</td>
+<td>0730</td>
+<td>1100</td>
+</tr>
+<tr class="even">
+<td>Wed, 17 Dec 2025</td>
 <td>1300</td>
 <td>1630</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Thu, 18 Dec 2025</td>
 <td>0730</td>
 <td>1100</td>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled" title="G1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+G1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Wed, 17 Dec (1300-1630): TH324</strong></p>
+<ul>
+<li>Afari-Aikins, John</li>
+<li>Coldren, Nathan</li>
+<li>Conti, Annabella</li>
+<li>Freeman, Brandon</li>
+<li>George, Joshua</li>
+<li>Goetz, Charles</li>
+</ul>
+<p><strong>Wed, 17 Dec (1300-1630): TH322</strong></p>
+<ul>
+<li>Lavery, Harrison</li>
+<li>McDaniel, Jack</li>
+<li>McDonnell, Hunter</li>
+</ul>
+<p><strong>Wed, 17 Dec (1300-1630): TH323</strong></p>
+<ul>
+<li>McKillop, John</li>
+<li>Meers, Tehya</li>
+<li>Midberry, James</li>
+</ul>
+<p><strong>Wed, 17 Dec (1300-1630): TH321 </strong></p>
+<ul>
+<li>Minicozzi, John</li>
+<li>Noack, Macoy</li>
+</ul>
+<p><strong>Thu, 18 Dec (0730-1100)</strong></p>
+<ul>
+<li>Din, Jenna</li>
+<li>Gupta, Aarav</li>
+<li>Lawrence, Karina</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="H1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+H1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Wed, 17 Dec (0730-1100): BH 171A</strong></p>
+<ul>
+<li>Zagame, Samuel</li>
+</ul>
+<p><strong>Wed, 17 Dec (1300-1630): TH322</strong></p>
+<ul>
+<li>Arengo, Mary</li>
+<li>Chambers, Cherokee</li>
+<li>Dohl, Chad</li>
+<li>Hudson-Odoi, Vanessa</li>
+<li>Kinkead, Lucas</li>
+<li>Records, Benjamin</li>
+<li>Shelton, Sawyer</li>
+<li>Stockbower, Tatiana</li>
+<li>Thanepohn, Trevor</li>
+<li>Walter, Benjamin</li>
+<li>Wills, Liam</li>
+<li>Wint, Logan</li>
+</ul>
+<p><strong>Thu, 18 Dec (0730-1100)</strong></p>
+<ul>
+<li>Chau, Paul</li>
+<li>Johnson, Joseph</li>
+<li>Rubio, Andrew</li>
+<li>Sager, Campbell</li>
+<li>Vann, Nehemiah</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="I1">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+I1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Wed, 17 Dec (1300-1630): TH323</strong></p>
+<ul>
+<li>Aguilar Winchell, Benjamin</li>
+<li>Ahn, David</li>
+<li>Andrade, Elena</li>
+<li>Bettencourt, Jacob</li>
+<li>Bhutani, Dillon</li>
+<li>Campbell, Evan</li>
+<li>Forgues, Barbara</li>
+<li>Jo, Alex</li>
+<li>Lanham, Logan</li>
+<li>Maan, Bahawal</li>
+<li>Schwartz, Joseph</li>
+<li>Sindler, Allan</li>
+<li>Tahmazian, Isabela</li>
+<li>Wamre, Gabrielle</li>
+</ul>
+<p><strong>Thu, 18 Dec (0730-1100)</strong></p>
+<ul>
+<li>Helmkamp, Braeden</li>
+<li>Ogordi, Daniel</li>
+<li>Park, Sangwoo</li>
+<li>Smith, Gennaro</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="I2">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+I2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Wed, 17 Dec (1300-1630) TH: 321</strong></p>
+<ul>
+<li>Ardisana, James</li>
+<li>Bachmann, Christian</li>
+<li>Barksdale, Jordon</li>
+<li>Barvitskie, Mason</li>
+<li>Corbett, Chas</li>
+<li>Davidson, Justin</li>
+<li>Groebner, Samuel</li>
+<li>Harris, Parker</li>
+<li>Kim, Danny</li>
+<li>Mantell, Jack</li>
+<li>McKane, Angelina</li>
+<li>Nguyen, Ta</li>
+<li>Oxendine, Jake</li>
+<li>Patterson, Alyssa</li>
+<li>Speaks, Brennan</li>
+</ul>
+<p><strong>Thu, 18 Dec (0730-1100)</strong></p>
+<ul>
+<li>Arterberry, Myles</li>
+<li>McPherson, Paige</li>
+<li>Williams, Caleb</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="course-review" class="level2">
-<h2 class="anchored" data-anchor-id="course-review">Course Review</h2>
-<section id="topics-covered-this-semester" class="level3">
-<h3 class="anchored" data-anchor-id="topics-covered-this-semester">Topics Covered This Semester</h3>
-<p><strong>Probability &amp; Distributions</strong> - Conditional probability - Discrete distributions (Binomial, Poisson) - Continuous distributions (Normal, t-distribution)</p>
-<p><strong>Hypothesis Testing</strong> - One proportion z-test - One mean t-test - Two proportion z-test - Two mean t-test - Paired t-test</p>
-<p><strong>Confidence Intervals</strong> - For proportions - For means - For differences</p>
-<p><strong>Statistical Concepts</strong> - p-values and significance levels - Type I and Type II errors - Validity conditions - Generalization and causation</p>
-<p><strong>Regression Analysis</strong> - Simple linear regression - Multiple linear regression - Interactions - Model validity (LINE conditions)</p>
+<section id="tee-overview" class="level2">
+<h2 class="anchored" data-anchor-id="tee-overview">TEE Overview</h2>
+<p><a href="https://westpoint.instructure.com/courses/10295/files/3458940/">TEE Cover Sheet</a></p>
+<section id="tee-admin" class="level3">
+<h3 class="anchored" data-anchor-id="tee-admin">TEE Admin</h3>
+<p><strong>Authorized Resources:</strong></p>
+<ul>
+<li>Your computer with access to a blank RStudio document (.R, .rmd, or .qmd tab)</li>
+<li>Course Guide</li>
+<li>Tidyverse Tutorial</li>
+<li>Two pages (front and back) of personally handwritten notes</li>
+<li>Issued calculator</li>
+</ul>
+<p><strong>Unauthorized Resources:</strong></p>
+<ul>
+<li>Internet</li>
+<li>Generative AI</li>
+<li>Textbook</li>
+<li>Course applets</li>
+<li>Email or other electronic communications</li>
+<li>Music devices</li>
+<li>Friends / Instructor</li>
+</ul>
+<p><strong>Important Reminders:</strong></p>
+<ul>
+<li>Show enough work to logically present your thought process (R code or equations) - demonstrate mastery of course material, not simply a correct answer</li>
+<li>Prepare RStudio by clicking the broom button in “History,” “Environment,” and “Plots” panes; use CTRL+L to clear the Console</li>
+<li>Academic security: Do not discuss content until released on <strong>19 December @ 1630</strong></li>
+</ul>
+<p><strong>Advice:</strong></p>
+<ul>
+<li>Don’t just put down an answer - show how you got to that answer even if you used R/calculator</li>
+<li>You’ve been taught everything on this exam!</li>
+</ul>
+</section>
+</section>
+<section id="course-review---non-exhaustive-list-of-topics" class="level2">
+<h2 class="anchored" data-anchor-id="course-review---non-exhaustive-list-of-topics">Course Review - Non Exhaustive List of Topics</h2>
+<section id="study-design-data" class="level3">
+<h3 class="anchored" data-anchor-id="study-design-data">Study Design &amp; Data</h3>
+<ul>
+<li>Identify observational units in a study</li>
+<li>Recognize variable types (categorical vs quantitative)</li>
+<li>Distinguish between observational study and experimental study</li>
+<li>Identify confounding variables</li>
+<li>Know sampling methods (convenience sample, random sample, etc.)</li>
+<li>Choose appropriate plot types based on variable type:
+<ul>
+<li>Categorical: bar graph</li>
+<li>Quantitative: histogram, dot plot, box plot</li>
+</ul></li>
+</ul>
+</section>
+<section id="parameters-vs-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-vs-statistics">Parameters vs Statistics</h3>
+<ul>
+<li>Know the difference between parameter (population) and statistic (sample)</li>
+<li>Know when we can claim causality (random assignment)</li>
+<li>Know when we can claim generalization (random sampling)</li>
+</ul>
+</section>
+<section id="probability-rules" class="level3">
+<h3 class="anchored" data-anchor-id="probability-rules">Probability Rules</h3>
+<ul>
+<li>Addition Rule: <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
+<li>Multiplication Rule: <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B|A)\)</span></li>
+<li>Complement Rule: <span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
+<li>Conditional Probability: <span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></li>
+<li>Bayes’ Theorem: <span class="math inline">\(P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}\)</span></li>
+<li>Mutually Exclusive: <span class="math inline">\(P(A \cap B) = 0\)</span>, so <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+<li>Independence: <span class="math inline">\(P(A|B) = P(A)\)</span>, so <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span></li>
+</ul>
+</section>
+<section id="random-variables-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="random-variables-distributions">Random Variables &amp; Distributions</h3>
+<ul>
+<li>Know when to use PMF, PDF, and CDF for discrete and continuous variables</li>
+<li>Calculate probabilities using PMF (discrete) and PDF (continuous)</li>
+<li>Go from PDF to CDF for continuous random variables to include piecewise PDFs (integration)</li>
+<li>Calculate expected value <span class="math inline">\(E(X)\)</span>, variance <span class="math inline">\(Var(X)\)</span>, and standard deviation <span class="math inline">\(SD(X)\)</span></li>
+<li>Apply linear transformation rules: <span class="math inline">\(E(aX + b) = aE(X) + b\)</span> and <span class="math inline">\(Var(aX + b) = a^2 Var(X)\)</span></li>
+</ul>
+</section>
+<section id="hypothesis-testing" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h3>
+<p>Know when to use each test, validity conditions, and how to execute:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One-proportion z-test</td>
+<td>One categorical variable, testing proportion against a value</td>
+</tr>
+<tr class="even">
+<td>One-sample t-test</td>
+<td>One quantitative variable, testing mean against a value</td>
+</tr>
+<tr class="odd">
+<td>Two-proportion z-test</td>
+<td>Comparing proportions between two groups</td>
+</tr>
+<tr class="even">
+<td>Two-sample t-test</td>
+<td>Comparing means between two independent groups</td>
+</tr>
+<tr class="odd">
+<td>Paired t-test</td>
+<td>Comparing means for paired/matched data</td>
+</tr>
+</tbody>
+</table>
+<p>For each test, know how to:</p>
+<ul>
+<li>Write null and alternative hypotheses (symbols and words)</li>
+<li>Check validity conditions</li>
+<li>Calculate statistic, standardized statistic, and p-value</li>
+<li>Interpret p-value (probability of observing data at least as extreme, given null is true)</li>
+<li>Draw conclusions comparing p-value to significance level</li>
+<li>Know when to use z-distribution vs t-distribution:
+<ul>
+<li><strong>z</strong>: proportions (known population standard deviation)</li>
+<li><strong>t</strong>: means (unknown population standard deviation, using sample SD)</li>
+</ul></li>
+</ul>
+</section>
+<section id="confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h3>
+<ul>
+<li>Interpret confidence intervals correctly</li>
+<li>Calculate margin of error (half the width of CI)</li>
+<li>Determine if a value is plausible based on CI</li>
+</ul>
+</section>
+<section id="linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression">Linear Regression</h3>
+<ul>
+<li>Describe scatterplot characteristics: direction, form, strength of association</li>
+<li>Execute simple and multiple linear regression with data</li>
+<li>Interpret coefficients for continuous variables (“for each 1-unit increase…”)</li>
+<li>Interpret coefficients for categorical variables (“compared to the reference group…”)</li>
+<li>Interpret coefficients “after controlling for” or “after accounting for” other variables</li>
+<li>Interpret interaction terms</li>
+<li>Compare models using p-values and <span class="math inline">\(R^2\)</span></li>
+<li>Assess statistical significance of coefficients</li>
+</ul>
+</section>
+</section>
+<section id="in-class-examples" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-examples">In-Class Examples</h2>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example 1</h3>
+<p>Researchers studied where people stop when approaching a stop sign. Do people have a preference for stopping position, or do they choose randomly between stopping as a single car, following another car, or leading a group?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Stop <span class="ot">&lt;-</span> ma206data<span class="sc">::</span>chap8_Stop</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Stop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  position_stop
+  &lt;chr&gt;        
+1 single       
+2 single       
+3 single       
+4 single       
+5 single       
+6 single       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Stop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>position_stop
+follow   lead single 
+    98     42    176 </code></pre>
+</div>
+</div>
+<p><strong>Step 1: Set up hypotheses</strong></p>
+<p>If people had no preference, they would choose each position with equal probability (1/3).</p>
+<p><span class="math inline">\(H_0: p = 1/3\)</span> (no preference - people choose “single” at the same rate as random chance)</p>
+<p><span class="math inline">\(H_a: p &gt; 1/3\)</span> (people prefer to stop as a single car)</p>
+<p><strong>Step 2: Calculate the statistic</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count successes (single) and total</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Stop)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sum</span>(Stop<span class="sc">$</span>position_stop <span class="sc">==</span> <span class="st">"single"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"n ="</span>, n, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n = 316 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"x (single) ="</span>, x, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x (single) = 176 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-hat ="</span>, <span class="fu">round</span>(p_hat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-hat = 0.557 </code></pre>
+</div>
+</div>
+<p><strong>Step 3: Conduct the test</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Null hypothesis value</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_0 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error under the null</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_0) <span class="sc">/</span> n)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized statistic (z-score)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (p_hat <span class="sc">-</span> p_0) <span class="sc">/</span> SE</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Standard Error ="</span>, <span class="fu">round</span>(SE, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Standard Error = 0.0265 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"z ="</span>, <span class="fu">round</span>(z, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z = 8.433 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value (one-sided, greater than)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value ="</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value = 0 </code></pre>
+</div>
+</div>
+<p><strong>Step 4: Confidence Interval</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For CI, use standard error based on p-hat (not p_0)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>SE_ci <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 90% CI (for alpha = 0.10)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.95</span>)  <span class="co"># one-sided, so 0.95</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>CI_lower <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> z_star <span class="sc">*</span> SE_ci</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>CI_upper <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> z_star <span class="sc">*</span> SE_ci</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"90% CI: ("</span>, <span class="fu">round</span>(CI_lower, <span class="dv">3</span>), <span class="st">","</span>, <span class="fu">round</span>(CI_upper, <span class="dv">3</span>), <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>90% CI: ( 0.511 , 0.603 )</code></pre>
+</div>
+</div>
+<p><strong>Step 5: Draw conclusion</strong></p>
+<p>Compare p-value to significance level and state conclusion in context.</p>
+</section>
+<section id="example-2-multiple-linear-regression-with-interaction" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-multiple-linear-regression-with-interaction">Example 2: Multiple Linear Regression with Interaction</h3>
+<p>Researchers want to understand factors that affect lung capacity (FEV - Forced Expiratory Volume). They collected data on age, height, gender, and smoking status.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> ma206data<span class="sc">::</span>fev</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FEV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+    Age   FEV Height Gender Smoker
+  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+1    11  3.90   67   Female no    
+2    11  3.98   68.5 Male   no    
+3     8  2.17   57   Male   no    
+4    11  3.74   68   Male   no    
+5    11  2.94   63   Female no    
+6    15  2.73   63   Female no    </code></pre>
+</div>
+</div>
+<section id="part-a-scatterplot" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-scatterplot">Part A: Scatterplot</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FEV, <span class="fu">aes</span>(<span class="at">x =</span> Height, <span class="at">y =</span> FEV)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height (inches)"</span>, <span class="at">y =</span> <span class="st">"FEV (liters)"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Height vs. Lung Capacity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Lets talk association direction, form, and strength:</p>
+<p><strong>Direction:</strong></p>
+<p><strong>Form:</strong></p>
+<p><strong>Strength:</strong></p>
+</section>
+<section id="part-b-multiple-linear-regression-no-interaction" class="level4">
+<h4 class="anchored" data-anchor-id="part-b-multiple-linear-regression-no-interaction">Part B: Multiple Linear Regression (No Interaction)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FEV <span class="sc">~</span> Height <span class="sc">+</span> Age <span class="sc">+</span> Smoker, <span class="at">data =</span> FEV)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = FEV ~ Height + Age + Smoker, data = FEV)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.5349 -0.2903 -0.0146  0.2812  1.9197 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -4.77287    0.24718 -19.309  &lt; 2e-16 ***
+Height       0.11288    0.00520  21.707  &lt; 2e-16 ***
+Age          0.05142    0.01049   4.900 1.24e-06 ***
+Smokeryes   -0.13031    0.06685  -1.949   0.0517 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4422 on 589 degrees of freedom
+Multiple R-squared:  0.7466,    Adjusted R-squared:  0.7454 
+F-statistic: 578.6 on 3 and 589 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><strong>Interpretation of Height coefficient:</strong></p>
+<p>After controlling for Age and Smoker status, for each additional inch of height, FEV increases by approximately ___ liters, on average.</p>
+<p><strong>Interpretation of Smoker coefficient:</strong></p>
+<p>After controlling for Height and Age, smokers have an FEV that is approximately ___ liters [higher/lower] than non-smokers, on average.</p>
+<p><strong>Is Height statistically significant at <span class="math inline">\(\alpha = 0.10\)</span>?</strong></p>
+<p>Look at p-value for Height coefficient.</p>
+</section>
+<section id="part-c-multiple-linear-regression-with-interaction" class="level4">
+<h4 class="anchored" data-anchor-id="part-c-multiple-linear-regression-with-interaction">Part C: Multiple Linear Regression (With Interaction)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FEV <span class="sc">~</span> Height <span class="sc">*</span> Smoker <span class="sc">+</span> Age, <span class="at">data =</span> FEV)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = FEV ~ Height * Smoker + Age, data = FEV)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.51896 -0.28187 -0.01598  0.27434  1.92389 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      -4.603951   0.252466 -18.236  &lt; 2e-16 ***
+Height            0.109355   0.005309  20.599  &lt; 2e-16 ***
+Smokeryes        -3.781015   1.261569  -2.997  0.00284 ** 
+Age               0.056087   0.010552   5.315 1.51e-07 ***
+Height:Smokeryes  0.055393   0.019115   2.898  0.00390 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4395 on 588 degrees of freedom
+Multiple R-squared:  0.7502,    Adjusted R-squared:  0.7485 
+F-statistic: 441.5 on 4 and 588 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><strong>Does smoking status change the association between Height and FEV?</strong></p>
+<p>Look at the p-value for the interaction term (Height:Smokeryes). If p-value &lt; <span class="math inline">\(\alpha\)</span>, then yes, the relationship between Height and FEV differs for smokers vs non-smokers.</p>
+</section>
+<section id="part-d-model-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="part-d-model-comparison">Part D: Model Comparison</h4>
+<p>Which model would you recommend?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>R-squared</th>
+<th>Key p-values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model 1 (no interaction)</td>
+<td>___</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Model 2 (with interaction)</td>
+<td>___</td>
+<td>Interaction p-value: ___</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> If the interaction term is not significant, prefer the simpler model (Model 1). If significant, the interaction model (Model 2) better captures the relationship.</p>
+</section>
 </section>
 <section id="exam-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="exam-preparation">Exam Preparation</h3>
 <ul>
-<li>Review all Exploration Exercises</li>
-<li>Review WPR 1 and WPR 2</li>
-<li>Review Board Problems from lessons 11-27</li>
-<li>Practice with course project analysis</li>
-<li>Review your note sheets</li>
-</ul>
-</section>
-<section id="resources" class="level3">
-<h3 class="anchored" data-anchor-id="resources">Resources</h3>
-<ul>
-<li>Course Guide</li>
-<li>Canvas modules and assignments</li>
-<li>Previous WPRs with feedback</li>
-<li>Board problem solutions</li>
-<li>Milestone feedback</li>
+<li>Review Course Related Reviews with Solutiosn for WPR1 and WPR2</li>
+<li>Review <a href="https://westpoint.instructure.com/courses/10295/pages/lesson-10-wpr-1">WPR 1</a> and <a href="https://westpoint.instructure.com/courses/10295/pages/lesson-22-wpr-2">WPR 2</a><br>
+</li>
+<li>Review all Exploration Exercises<br>
+</li>
+<li>Review Board Problems</li>
+<li>Work these problems as if you’ve never seen them before - don’t just skip to the answer and assume you know it.</li>
 </ul>
 </section>
 </section>
 <section id="thank-you" class="level2">
 <h2 class="anchored" data-anchor-id="thank-you">Thank You</h2>
 <p>Thank you for a great semester in MA206! Good luck on your TEE and future endeavors.</p>
+<p><img src="assets/img/memorial/class1.jpg" class="img-fluid"></p>
+<p><img src="assets/img/memorial/class2.jpg" class="img-fluid"></p>
 </section>
 <section id="before-you-leave" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
@@ -653,6 +1633,15 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY26-1/lesson-29.html" class="pagination-link" aria-label="Lesson 29">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 29</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
