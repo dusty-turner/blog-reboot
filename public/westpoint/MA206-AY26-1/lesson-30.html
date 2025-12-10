@@ -402,9 +402,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#course-review---non-exhaustive-list-of-topics" id="toc-course-review---non-exhaustive-list-of-topics" class="nav-link" data-scroll-target="#course-review---non-exhaustive-list-of-topics">Course Review - Non Exhaustive List of Topics</a>
   <ul class="collapse">
+  <li><a href="#probability-rules" id="toc-probability-rules" class="nav-link" data-scroll-target="#probability-rules">Probability Rules</a></li>
   <li><a href="#study-design-data" id="toc-study-design-data" class="nav-link" data-scroll-target="#study-design-data">Study Design &amp; Data</a></li>
   <li><a href="#parameters-vs-statistics" id="toc-parameters-vs-statistics" class="nav-link" data-scroll-target="#parameters-vs-statistics">Parameters vs Statistics</a></li>
-  <li><a href="#probability-rules" id="toc-probability-rules" class="nav-link" data-scroll-target="#probability-rules">Probability Rules</a></li>
   <li><a href="#random-variables-distributions" id="toc-random-variables-distributions" class="nav-link" data-scroll-target="#random-variables-distributions">Random Variables &amp; Distributions</a></li>
   <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
@@ -861,6 +861,18 @@ I2
 </section>
 <section id="course-review---non-exhaustive-list-of-topics" class="level2">
 <h2 class="anchored" data-anchor-id="course-review---non-exhaustive-list-of-topics">Course Review - Non Exhaustive List of Topics</h2>
+<section id="probability-rules" class="level3">
+<h3 class="anchored" data-anchor-id="probability-rules">Probability Rules</h3>
+<ul>
+<li>Addition Rule: <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
+<li>Multiplication Rule: <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B|A)\)</span></li>
+<li>Complement Rule: <span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
+<li>Conditional Probability: <span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></li>
+<li>Bayes’ Theorem: <span class="math inline">\(P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}\)</span></li>
+<li>Mutually Exclusive: <span class="math inline">\(P(A \cap B) = 0\)</span>, so <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+<li>Independence: <span class="math inline">\(P(A|B) = P(A)\)</span>, so <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span></li>
+</ul>
+</section>
 <section id="study-design-data" class="level3">
 <h3 class="anchored" data-anchor-id="study-design-data">Study Design &amp; Data</h3>
 <ul>
@@ -882,18 +894,6 @@ I2
 <li>Know the difference between parameter (population) and statistic (sample)</li>
 <li>Know when we can claim causality (random assignment)</li>
 <li>Know when we can claim generalization (random sampling)</li>
-</ul>
-</section>
-<section id="probability-rules" class="level3">
-<h3 class="anchored" data-anchor-id="probability-rules">Probability Rules</h3>
-<ul>
-<li>Addition Rule: <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
-<li>Multiplication Rule: <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B|A)\)</span></li>
-<li>Complement Rule: <span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
-<li>Conditional Probability: <span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></li>
-<li>Bayes’ Theorem: <span class="math inline">\(P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}\)</span></li>
-<li>Mutually Exclusive: <span class="math inline">\(P(A \cap B) = 0\)</span>, so <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
-<li>Independence: <span class="math inline">\(P(A|B) = P(A)\)</span>, so <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span></li>
 </ul>
 </section>
 <section id="random-variables-distributions" class="level3">
@@ -943,7 +943,7 @@ I2
 </tr>
 </tbody>
 </table>
-<p>For each test, know how to:</p>
+<p><a href="https://dustysturner.com/westpoint/ma206-ay26-1/lesson-21">For each test, know how to</a>:</p>
 <ul>
 <li>Write null and alternative hypotheses (symbols and words)</li>
 <li>Check validity conditions</li>
@@ -1030,6 +1030,7 @@ follow   lead single
 </div>
 </div>
 <p><strong>Step 3: Conduct the test</strong></p>
+<p><span class="math display">\[z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Null hypothesis value</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_0 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span></span>
@@ -1056,6 +1057,7 @@ follow   lead single
 </div>
 </div>
 <p><strong>Step 4: Confidence Interval</strong></p>
+<p><span class="math display">\[\hat{p} \pm z^* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For CI, use standard error based on p-hat (not p_0)</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>SE_ci <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
