@@ -90,6 +90,35 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -177,6 +206,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#lets-pick-a-section-marcher" id="toc-lets-pick-a-section-marcher" class="nav-link" data-scroll-target="#lets-pick-a-section-marcher">Let’s Pick A Section Marcher</a></li>
   </ul></li>
+  <li><a href="#whats-different-about-ma206x" id="toc-whats-different-about-ma206x" class="nav-link" data-scroll-target="#whats-different-about-ma206x">What’s Different About MA206x?</a></li>
   <li><a href="#introductions" id="toc-introductions" class="nav-link" data-scroll-target="#introductions">Introductions</a>
   <ul class="collapse">
   <li><a href="#cadet-introductions" id="toc-cadet-introductions" class="nav-link" data-scroll-target="#cadet-introductions">Cadet Introductions</a></li>
@@ -197,12 +227,14 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#ma206x-story" id="toc-ma206x-story" class="nav-link" data-scroll-target="#ma206x-story">MA206x Story</a></li>
   <li><a href="#course-support" id="toc-course-support" class="nav-link" data-scroll-target="#course-support">Course Support</a></li>
+  <li><a href="#a-note-on-ai" id="toc-a-note-on-ai" class="nav-link" data-scroll-target="#a-note-on-ai">A Note on AI</a></li>
   <li><a href="#graded-assignments" id="toc-graded-assignments" class="nav-link" data-scroll-target="#graded-assignments">Graded Assignments</a></li>
   </ul></li>
-  <li><a href="#the-six-step-method" id="toc-the-six-step-method" class="nav-link" data-scroll-target="#the-six-step-method">The Six-Step Method</a>
+  <li><a href="#todays-lesson" id="toc-todays-lesson" class="nav-link" data-scroll-target="#todays-lesson">Today’s Lesson</a>
   <ul class="collapse">
-  <li><a href="#example-1-basketball-heights" id="toc-example-1-basketball-heights" class="nav-link" data-scroll-target="#example-1-basketball-heights">Example 1: Basketball Heights</a></li>
-  <li><a href="#example-2-the-monty-hall-problem" id="toc-example-2-the-monty-hall-problem" class="nav-link" data-scroll-target="#example-2-the-monty-hall-problem">Example 2: The Monty Hall Problem</a></li>
+  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The Big Picture</a></li>
+  <li><a href="#parameters-vs-statistics" id="toc-parameters-vs-statistics" class="nav-link" data-scroll-target="#parameters-vs-statistics">Parameters vs Statistics</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables">Types of Variables</a></li>
   </ul></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
@@ -249,8 +281,31 @@ ul.task-list li input[type="checkbox"] {
 <div style="text-align: center;">
 <p><img src="../MA206-AY26-1/assets/img/diceandcoins.png" class="img-fluid" style="width:60.0%"></p>
 </div>
+<p><strong>Section Marcher Duties:</strong></p>
+<ul>
+<li>Take roll and report attendance</li>
+<li>Designate a different inspector each day (find a system - rotate alphabetically?)</li>
+<li>Everyone will do this multiple times</li>
+</ul>
+<p><strong>Inspections:</strong></p>
+<ul>
+<li>Polite check of uniforms - the idea is to help each other look right</li>
+<li>No one is getting in trouble. We’re just helping each other avoid mistakes.</li>
+<li>You can do the inspection before class starts</li>
+</ul>
 <hr>
 </section>
+</section>
+<section id="whats-different-about-ma206x" class="level2">
+<h2 class="anchored" data-anchor-id="whats-different-about-ma206x">What’s Different About MA206x?</h2>
+<p>This is <strong>MA206x</strong>, not MA206. Some trepidation? Sure. Fear? None needed.</p>
+<ul>
+<li><strong>Tintle → Devore</strong>: Simulation-first approach → classical probability foundation</li>
+<li><strong>Fewer out-of-class graded events</strong>: AI is changing how we assess learning</li>
+<li><strong>R in Vantage</strong>: Same language, new platform</li>
+</ul>
+<p>More details later.</p>
+<hr>
 </section>
 <section id="introductions" class="level2">
 <h2 class="anchored" data-anchor-id="introductions">Introductions</h2>
@@ -377,7 +432,7 @@ Career Timeline
 <section id="cal-las-cruces-new-mexico" class="level3">
 <h3 class="anchored" data-anchor-id="cal-las-cruces-new-mexico">Cal: Las Cruces, New Mexico</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-11" role="tab" aria-controls="tabset-1-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-12" role="tab" aria-controls="tabset-1-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-13" role="tab" aria-controls="tabset-1-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-14" role="tab" aria-controls="tabset-1-14" aria-selected="false">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-15" role="tab" aria-controls="tabset-1-15" aria-selected="false">15</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-11" role="tab" aria-controls="tabset-1-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-12" role="tab" aria-controls="tabset-1-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-13" role="tab" aria-controls="tabset-1-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-14" role="tab" aria-controls="tabset-1-14" aria-selected="false">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-15" role="tab" aria-controls="tabset-1-15" aria-selected="false">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-16" role="tab" aria-controls="tabset-1-16" aria-selected="false">16</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><img src="../MA206-AY26-1/assets/img/cal/calturnerdrive.jpg" class="img-fluid" style="width:100.0%"></p>
@@ -419,9 +474,12 @@ Career Timeline
 <p><img src="../MA206-AY26-1/assets/img/cal/caltv.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 <div id="tabset-1-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-14-tab">
-<p><img src="../MA206-AY26-1/assets/img/cal/calviolin.jpg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="../MA206-AY26-1/assets/img/cal/cal-marad-4.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 <div id="tabset-1-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-15-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calviolin.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-16" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-16-tab">
 <p><img src="../MA206-AY26-1/assets/img/cal/calchess.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
@@ -431,7 +489,7 @@ Career Timeline
 <section id="reese-columbus-ohio" class="level3">
 <h3 class="anchored" data-anchor-id="reese-columbus-ohio">Reese: Columbus, Ohio</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-13" role="tab" aria-controls="tabset-2-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-14" role="tab" aria-controls="tabset-2-14" aria-selected="false">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-15" role="tab" aria-controls="tabset-2-15" aria-selected="false">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-16" role="tab" aria-controls="tabset-2-16" aria-selected="false">16</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-17-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-17" role="tab" aria-controls="tabset-2-17" aria-selected="false">17</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-13" role="tab" aria-controls="tabset-2-13" aria-selected="false">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-14" role="tab" aria-controls="tabset-2-14" aria-selected="false">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-15" role="tab" aria-controls="tabset-2-15" aria-selected="false">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-16" role="tab" aria-controls="tabset-2-16" aria-selected="false">16</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-17-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-17" role="tab" aria-controls="tabset-2-17" aria-selected="false">17</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-18-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-18" role="tab" aria-controls="tabset-2-18" aria-selected="false">18</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-19-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-19" role="tab" aria-controls="tabset-2-19" aria-selected="false">19</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-20-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-20" role="tab" aria-controls="tabset-2-20" aria-selected="false">20</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-21-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-21" role="tab" aria-controls="tabset-2-21" aria-selected="false">21</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-22-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-22" role="tab" aria-controls="tabset-2-22" aria-selected="false">22</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p><img src="../MA206-AY26-1/assets/img/reese/reesecenter.jpg" class="img-fluid" style="width:100.0%"></p>
@@ -464,24 +522,39 @@ Career Timeline
 <p><img src="../MA206-AY26-1/assets/img/reese/reeseashit.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 <div id="tabset-2-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-11-tab">
-<p><img src="../MA206-AY26-1/assets/img/reese/reesehitas.jpg" class="img-fluid" style="width:100.0%"></p>
-</div>
-<div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
-<p><img src="../MA206-AY26-1/assets/img/reese/reesejump.jpg" class="img-fluid" style="width:100.0%"></p>
-</div>
-<div id="tabset-2-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-13-tab">
-<p><img src="../MA206-AY26-1/assets/img/reese/reesejumpcj.jpg" class="img-fluid" style="width:100.0%"></p>
-</div>
-<div id="tabset-2-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-14-tab">
 <p><img src="../MA206-AY26-1/assets/img/reese/reesesectionchamp.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
-<div id="tabset-2-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-15-tab">
+<div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesehitas.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-13-tab">
 <p><img src="../MA206-AY26-1/assets/img/reese/reesedistrict.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
+<div id="tabset-2-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-14-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesejump.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-15-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesejumpcj.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
 <div id="tabset-2-16" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-16-tab">
-<p><img src="../MA206-AY26-1/assets/img/reese/reesestatechamp.jpg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-1.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 <div id="tabset-2-17" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-17-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-1.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-18" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-18-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-2.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-19" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-19-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-4.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-20" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-20-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-4/rv5.PNG" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-21" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-21-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesestatechamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-22" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-22-tab">
 <p><img src="../MA206-AY26-1/assets/img/reese/reesebackflip.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
@@ -496,7 +569,7 @@ Career Timeline
 <div style="text-align: center; margin: 30px 0;">
 <p><img src="../MA206-AY26-1/assets/img/nofun.png" class="img-fluid" style="width:60.0%"></p>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="Course Goals">
+<div class="callout callout-style-default callout-note callout-titled" title="Course Goals">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -508,11 +581,12 @@ Course Goals
 <div class="callout-body-container callout-body">
 <ul>
 <li>Develop a Base of Knowledge</li>
-<li>Leverage Technology</li>
+<li>Leverage Technology and Army Platforms</li>
 <li>Communicate Concepts and Results</li>
 <li>Problem Solving Techniques</li>
-<li>Develop habits of mind</li>
-<li>Develop an interdisciplinary perspective</li>
+<li>Develop Habits of Mind</li>
+<li>Develop an Interdisciplinary Perspective</li>
+<li>Responsible use of AI</li>
 </ul>
 </div>
 </div>
@@ -573,8 +647,7 @@ Your Responsibilities
 <li>Arrive prepared for each lesson</li>
 <li>Engage actively in discussions and exercises</li>
 <li>Maintain professionalism and respect at all times</li>
-<li>Uphold the values of the Corps and our institution - you are junior members of this profession</li>
-<li>Communicate early if challenges arise</li>
+<li>Uphold the values of the Corps and our institution - you are junior members of this profession <!-- - Communicate early if challenges arise --></li>
 <li>Make mistakes</li>
 </ul>
 </div>
@@ -627,10 +700,6 @@ Classroom Policies
 <td>Arrive on time; don’t pack up early</td>
 </tr>
 <tr class="odd">
-<td><strong>Respect</strong></td>
-<td>Be respectful when others speak</td>
-</tr>
-<tr class="even">
 <td><strong>Leadership</strong></td>
 <td>Support the section marcher</td>
 </tr>
@@ -638,6 +707,7 @@ Classroom Policies
 </table>
 </div>
 </div>
+<!-- | **Respect** | Be respectful when others speak | -->
 <hr>
 </section>
 </section>
@@ -645,19 +715,22 @@ Classroom Policies
 <h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
 <section id="ma206x-story" class="level3">
 <h3 class="anchored" data-anchor-id="ma206x-story">MA206x Story</h3>
-<div class="callout callout-style-default callout-warning callout-titled" title="Course Topics">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Course Topics
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Course topic outline is being updated for AY26-2. Details coming soon.</p>
-</div>
-</div>
+<p><strong>Block 1: Foundations</strong> (WPR I)</p>
+<ul>
+<li>Descriptive Statistics - Types of data, sampling, measures of location &amp; variability, EDA</li>
+<li>Probability - Basics, conditional probability, counting &amp; independence</li>
+<li>Distributions - Discrete (binomial, Poisson) and continuous (normal, exponential)</li>
+</ul>
+<p><strong>Block 2: Inference</strong> (WPR II)</p>
+<ul>
+<li>Inference Foundations - Central limit theorem, confidence intervals</li>
+<li>Hypothesis Testing - One-sample t-test, one-proportion z-test, two-sample t-test, paired data, two-proportion z-test</li>
+</ul>
+<p><strong>Block 3: Modeling</strong> (Project &amp; TEE)</p>
+<ul>
+<li>Regression - Simple linear regression, multiple linear regression, causality &amp; confounding</li>
+<li>ANOVA</li>
+</ul>
 <hr>
 </section>
 <section id="course-support" class="level3">
@@ -682,19 +755,35 @@ Resources
 <tbody>
 <tr class="odd">
 <td><strong>Canvas</strong></td>
-<td><em>(Link TBD)</em></td>
+<td><a href="https://westpoint.instructure.com/courses/11418">MA206x Canvas</a></td>
+</tr>
+<tr class="even">
+<td><strong>Cengage WebAssign</strong></td>
+<td><a href="https://westpoint.instructure.com/courses/11418/modules/items/676828">Cengage WebAssign</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Army Vantage</strong></td>
+<td><a href="http://vantage.army.mil/">Army Vantage</a></td>
 </tr>
 <tr class="even">
 <td><strong>Calendar</strong></td>
-<td><em>(TBD)</em></td>
+<td><a href="assets/files/Calendar_26_2.pdf">Course Calendar</a></td>
 </tr>
 <tr class="odd">
 <td><strong>Textbook</strong></td>
 <td><a href="https://www.cengage.com/c/probability-and-statistics-for-engineering-and-the-sciences-9e-devore/">Devore: <em>Probability and Statistics for Engineering and the Sciences</em></a></td>
 </tr>
 <tr class="even">
-<td><strong>Course Guide</strong></td>
-<td><em>(TBD)</em> - Course Admin, Help, R Code</td>
+<td><strong>Syllabus</strong></td>
+<td><a href="assets/files/Syllabus_26_2.pdf">Course Syllabus</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Documentation Brief</strong></td>
+<td><a href="assets/files/Documentation-Brief-AY26-2.pptx">Doc of Sources, Ack of Assistance, Cover Page</a></td>
+</tr>
+<tr class="even">
+<td><strong>Academic Security Brief</strong></td>
+<td><a href="assets/files/Academic-Security-AY26-2.pptx">Academic Security AY26-2</a></td>
 </tr>
 </tbody>
 </table>
@@ -702,224 +791,131 @@ Resources
 </div>
 <hr>
 </section>
+<section id="a-note-on-ai" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-ai">A Note on AI</h3>
+<ul>
+<li>AI is welcome and encouraged on WebAssign. Screenshot the question… maybe.</li>
+<li>But when WPR time comes - no AI. So use it as a tool for learning, not a crutch.</li>
+<li>WebAssign is 15% of the course. You should get most/all those points.</li>
+<li>Don’t get those points at the peril of your WPR grades - that’s 60% of the course.</li>
+<li>WebAssign is forgiving: 5 tries per sub-question.</li>
+<li>Don’t forget documentation. Just tell me what you did.</li>
+</ul>
+<hr>
+</section>
 <section id="graded-assignments" class="level3">
 <h3 class="anchored" data-anchor-id="graded-assignments">Graded Assignments</h3>
-<div class="callout callout-style-default callout-note callout-titled" title="Grading">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Grading
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Grading breakdown will be provided once finalized.</p>
-</div>
-</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assignment</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WebAssign Homework</td>
+<td>150</td>
+</tr>
+<tr class="even">
+<td>WPR I</td>
+<td>175</td>
+</tr>
+<tr class="odd">
+<td>WPR II</td>
+<td>175</td>
+</tr>
+<tr class="even">
+<td>Exploratory Data Analysis</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>Tech Report</td>
+<td>125</td>
+</tr>
+<tr class="even">
+<td>Project Presentation</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>TEE</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td><strong>1000</strong></td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 </section>
-<section id="the-six-step-method" class="level2">
-<h2 class="anchored" data-anchor-id="the-six-step-method">The Six-Step Method</h2>
-<div style="text-align: center; margin: 20px 0;">
-<p><img src="../MA206-AY26-1/assets/img/plobsolvingsteps.png" class="img-fluid" style="width:70.0%"></p>
-</div>
-<hr>
-<section id="example-1-basketball-heights" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-basketball-heights">Example 1: Basketball Heights</h3>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 1: Ask a Question">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 1: Ask a Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Do basketball cadets tend to be taller than cadets who aren’t on the basketball team?</em></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 2: Design a Study and Collect Data">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 2: Design a Study and Collect Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Measure the heights of some basketball cadets and some non-basketball cadets.</em></p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Basketball cadets: 71, 72, 73, 74, 75, 75, 75, 75, 76, 76, 76, 77, 77, 77, 78 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Non-basketball cadets: 68, 68, 70, 70, 70, 70, 70, 70, 72, 73</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 3: Explore the Data">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 3: Explore the Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="todays-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lesson">Today’s Lesson</h2>
+<section id="the-big-picture" class="level3">
+<h3 class="anchored" data-anchor-id="the-big-picture">The Big Picture</h3>
+<p>Why do we collect data? Because we want to learn about something bigger than what we can directly observe.</p>
 <ul>
-<li>Average basketball cadet height: <strong>75.1 in</strong></li>
-<li>Average non-basketball cadet height: <strong>70.1 in</strong></li>
+<li><strong>Population</strong>: The entire group we want to learn about</li>
+<li><strong>Sample</strong>: The subset we actually observe</li>
+<li><strong>Process</strong>: An ongoing mechanism that generates data over time</li>
 </ul>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lesson-1_files/figure-html/height-plot-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 4: Draw Inferences">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 4: Draw Inferences
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The basketball group is taller by about <strong>5 inches</strong> in this sample.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 5: Formulate Conclusions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 5: Formulate Conclusions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Looks like basketball cadets are taller.</em></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Step 6: Look Back and Ahead">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 6: Look Back and Ahead
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You could improve this by measuring more cadets or using a statistical test.</p>
-</div>
-</div>
+<p>The whole course builds on this: we use <strong>samples</strong> to make claims about <strong>populations</strong>. That’s inference.</p>
 <hr>
 </section>
-<section id="example-2-the-monty-hall-problem" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-the-monty-hall-problem">Example 2: The Monty Hall Problem</h3>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 1: Ask a Question">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="parameters-vs-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-vs-statistics">Parameters vs Statistics</h3>
+<style>
+#params-table td:first-child { white-space: nowrap; }
+</style>
+<div id="params-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 31%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Population</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What we have</strong></td>
+<td>Usually unknown</td>
+<td>Observable data</td>
+</tr>
+<tr class="even">
+<td><strong>Notation</strong></td>
+<td>Greek letters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(p\)</span>)</td>
+<td>Latin letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\hat{p}\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><strong>Term</strong></td>
+<td>Parameter</td>
+<td>Statistic</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="callout-title-container flex-fill">
-Step 1: Ask a Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>If the host opens a goat door, are you better off sticking with your first door or switching to the other unopened door?</em></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 2: Design a Study and Collect Data">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 2: Design a Study and Collect Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>We simulate the game many times and record whether “stay” or “switch” wins the car.</em></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 3: Explore the Data">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 3: Explore the Data
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><em>(To be completed in class)</em></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 4: Draw Inferences">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 4: Draw Inferences
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><em>(To be completed in class)</em></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 5: Formulate Conclusions">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 5: Formulate Conclusions
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><em>(To be completed in class)</em></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Step 6: Look Back and Ahead">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step 6: Look Back and Ahead
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><em>(To be completed in class)</em></p>
-</div>
-</div>
-</div>
+<p>A <strong>statistic</strong> estimates a <strong>parameter</strong>. This is the foundation of Blocks 2 and 3.</p>
+<hr>
+</section>
+<section id="types-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-variables">Types of Variables</h3>
+<ul>
+<li><strong>Categorical</strong>: Labels or categories (e.g., branch, major, yes/no)</li>
+<li><strong>Quantitative</strong>: Numbers with meaningful arithmetic (e.g., height, GPA, time)</li>
+</ul>
+<p>Why does this matter? The type of variable determines:</p>
+<ul>
+<li>How you summarize it (proportions vs means)</li>
+<li>How you visualize it (bar charts vs histograms)</li>
+<li>Which inference method you use (z-test for proportions vs t-test for means)</li>
+</ul>
 <hr>
 </section>
 </section>
@@ -927,15 +923,31 @@ Step 6: Look Back and Ahead
 <h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
-<p>Any questions for me?</p>
+<ul>
+<li>Population vs Sample vs Process</li>
+<li>Parameters vs Statistics</li>
+<li>Categorical vs Quantitative variables</li>
+</ul>
+<p>Any questions?</p>
+<hr>
 </section>
 <section id="next-lesson" class="level3">
 <h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
-<p>Lesson 2 <em>(Link TBD)</em></p>
+<p><a href="lesson-2.html">Lesson 2: Sampling &amp; Study Design</a></p>
+<ul>
+<li>Observational studies vs designed experiments</li>
+<li>Common sampling methods and biases</li>
+<li>Why randomization matters</li>
+</ul>
+<hr>
 </section>
 <section id="upcoming-graded-events" class="level3">
 <h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
-<p>TBD</p>
+<ul>
+<li><strong>WebAssign 1.2</strong> - Due before Lesson 2</li>
+<li><strong>Exploratory Data Analysis</strong> - Due Lesson 9</li>
+<li><strong>WPR I</strong> - Lesson 16</li>
+</ul>
 
 
 </section>
