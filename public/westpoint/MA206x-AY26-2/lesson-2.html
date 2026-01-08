@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-2 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-89a4c75c28f39d544352a2d30bce53fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-2.html">Lesson 2</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-2-sampling-study-design" id="toc-lesson-2-sampling-study-design" class="nav-link active" data-scroll-target="#lesson-2-sampling-study-design">Lesson 2: Sampling &amp; Study Design</a>
+  <ul class="collapse">
+  <li><a href="#dmath-basketball" id="toc-dmath-basketball" class="nav-link" data-scroll-target="#dmath-basketball">DMath Basketball!!</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a>
+  <ul class="collapse">
+  <li><a href="#dont-forget" id="toc-dont-forget" class="nav-link" data-scroll-target="#dont-forget">Don’t Forget</a></li>
+  <li><a href="#mandatory-and-important-briefings" id="toc-mandatory-and-important-briefings" class="nav-link" data-scroll-target="#mandatory-and-important-briefings">Mandatory and Important Briefings</a></li>
+  <li><a href="#a-note-on-ai" id="toc-a-note-on-ai" class="nav-link" data-scroll-target="#a-note-on-ai">A Note on AI</a></li>
+  <li><a href="#graded-assignments" id="toc-graded-assignments" class="nav-link" data-scroll-target="#graded-assignments">Graded Assignments</a></li>
+  </ul></li>
+  <li><a href="#request-a-vantage-account" id="toc-request-a-vantage-account" class="nav-link" data-scroll-target="#request-a-vantage-account">Request a Vantage Account</a></li>
+  <li><a href="#lesson-1-review" id="toc-lesson-1-review" class="nav-link" data-scroll-target="#lesson-1-review">Lesson 1 Review</a>
+  <ul class="collapse">
+  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The Big Picture</a></li>
+  <li><a href="#parameters-vs-statistics" id="toc-parameters-vs-statistics" class="nav-link" data-scroll-target="#parameters-vs-statistics">Parameters vs Statistics</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables">Types of Variables</a></li>
+  </ul></li>
+  <li><a href="#lesson-2-content" id="toc-lesson-2-content" class="nav-link" data-scroll-target="#lesson-2-content">Lesson 2 Content</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#why-visualize-data" id="toc-why-visualize-data" class="nav-link" data-scroll-target="#why-visualize-data">Why Visualize Data?</a></li>
+  <li><a href="#four-types-of-displays" id="toc-four-types-of-displays" class="nav-link" data-scroll-target="#four-types-of-displays">Four Types of Displays</a>
+  <ul class="collapse">
+  <li><a href="#comparing-the-four-display-types" id="toc-comparing-the-four-display-types" class="nav-link" data-scroll-target="#comparing-the-four-display-types">Comparing the Four Display Types</a></li>
+  <li><a href="#what-can-you-learn-from-each" id="toc-what-can-you-learn-from-each" class="nav-link" data-scroll-target="#what-can-you-learn-from-each">What Can You Learn From Each?</a></li>
+  <li><a href="#when-to-use-each-display" id="toc-when-to-use-each-display" class="nav-link" data-scroll-target="#when-to-use-each-display">When to Use Each Display</a></li>
+  </ul></li>
+  <li><a href="#describing-distributions" id="toc-describing-distributions" class="nav-link" data-scroll-target="#describing-distributions">Describing Distributions</a>
+  <ul class="collapse">
+  <li><a href="#the-four-key-features" id="toc-the-four-key-features" class="nav-link" data-scroll-target="#the-four-key-features">The Four Key Features</a></li>
+  <li><a href="#shape-symmetry-and-skewness" id="toc-shape-symmetry-and-skewness" class="nav-link" data-scroll-target="#shape-symmetry-and-skewness">Shape: Symmetry and Skewness</a></li>
+  <li><a href="#shape-modality" id="toc-shape-modality" class="nav-link" data-scroll-target="#shape-modality">Shape: Modality</a></li>
+  <li><a href="#identifying-outliers" id="toc-identifying-outliers" class="nav-link" data-scroll-target="#identifying-outliers">Identifying Outliers</a></li>
+  </ul></li>
+  <li><a href="#example-cadet-heights" id="toc-example-cadet-heights" class="nav-link" data-scroll-target="#example-cadet-heights">Example: Cadet Heights</a>
+  <ul class="collapse">
+  <li><a href="#stem-and-leaf-display" id="toc-stem-and-leaf-display" class="nav-link" data-scroll-target="#stem-and-leaf-display">Stem-and-Leaf Display</a></li>
+  <li><a href="#dotplot" id="toc-dotplot" class="nav-link" data-scroll-target="#dotplot">Dotplot</a></li>
+  <li><a href="#histogram-frequency" id="toc-histogram-frequency" class="nav-link" data-scroll-target="#histogram-frequency">Histogram (Frequency)</a></li>
+  <li><a href="#histogram-relative-frequency" id="toc-histogram-relative-frequency" class="nav-link" data-scroll-target="#histogram-relative-frequency">Histogram (Relative Frequency)</a></li>
+  <li><a href="#side-by-side-comparison" id="toc-side-by-side-comparison" class="nav-link" data-scroll-target="#side-by-side-comparison">Side-by-Side Comparison</a></li>
+  <li><a href="#describing-the-cadet-heights-distribution" id="toc-describing-the-cadet-heights-distribution" class="nav-link" data-scroll-target="#describing-the-cadet-heights-distribution">Describing the Cadet Heights Distribution</a></li>
+  </ul></li>
+  <li><a href="#practice-problem" id="toc-practice-problem" class="nav-link" data-scroll-target="#practice-problem">Practice Problem</a></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-2-sampling-study-design" class="level1">
+<h1>Lesson 2: Sampling &amp; Study Design</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<!-- ## Welcome! -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="cal" class="level4">
+<h4 class="anchored" data-anchor-id="cal">Cal</h4>
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="../MA206-AY26-1/assets/video/calhit.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</section>
+<section id="reese" class="level4">
+<h4 class="anchored" data-anchor-id="reese">Reese</h4>
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="../MA206-AY26-1/assets/video/reesehit.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+<hr>
+</section>
+<section id="dmath-basketball" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-basketball">DMath Basketball!!</h3>
+<p><strong>Math vs TBD</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 6-2">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Previously 6-2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>6-2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<section id="dont-forget" class="level3">
+<h3 class="anchored" data-anchor-id="dont-forget">Don’t Forget</h3>
+<div style="text-align: center;">
+<p><img src="../MA206-AY26-1/assets/img/nofun.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+</section>
+<section id="mandatory-and-important-briefings" class="level3">
+<h3 class="anchored" data-anchor-id="mandatory-and-important-briefings">Mandatory and Important Briefings</h3>
+<ul>
+<li><a href="assets/files/Documentation-Brief-AY26-2.pptx">Academic Integrity Brief</a></li>
+<li><a href="assets/files/Academic-Security-AY26-2.pptx">Academic Security</a></li>
+</ul>
+</section>
+<section id="a-note-on-ai" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-ai">A Note on AI</h3>
+<ul>
+<li>AI is welcome and encouraged on WebAssign. Screenshot the question… maybe.</li>
+<li>But when WPR time comes - no AI. So use it as a tool for learning, not a crutch.</li>
+<li>WebAssign is 15% of the course. You should get most/all those points.</li>
+<li>Don’t get those points at the peril of your WPR grades - that’s 60% of the course.</li>
+<li>WebAssign is forgiving: 5 tries per sub-question.</li>
+<li>Don’t forget documentation. Just tell me what you did.</li>
+</ul>
+</section>
+<section id="graded-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="graded-assignments">Graded Assignments</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assignment</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WebAssign Homework</td>
+<td>150</td>
+</tr>
+<tr class="even">
+<td>WPR I</td>
+<td>175</td>
+</tr>
+<tr class="odd">
+<td>WPR II</td>
+<td>175</td>
+</tr>
+<tr class="even">
+<td>Exploratory Data Analysis</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>Tech Report</td>
+<td>125</td>
+</tr>
+<tr class="even">
+<td>Project Presentation</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>TEE</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td><strong>1000</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="request-a-vantage-account" class="level2">
+<h2 class="anchored" data-anchor-id="request-a-vantage-account">Request a Vantage Account</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Action Required">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Action Required
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before we continue, everyone needs to request an account on <strong>Vantage</strong> - the Army’s data science platform where we’ll be using R this semester.</p>
+<ol type="1">
+<li>Go to <a href="https://vantage.army.mil/">https://vantage.army.mil/</a></li>
+<li>Click <strong>Request Account</strong></li>
+<li>Fill out the required information</li>
+<li><strong>For Commander email, use:</strong> <code>jonathan.l.day3.mil@army.mil</code></li>
+<li>Wait for approval (may take 1-2 days)</li>
+</ol>
+<p>We’ll be using Vantage for the project throughout the course.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="lesson-1-review" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-1-review">Lesson 1 Review</h2>
+<section id="the-big-picture" class="level3">
+<h3 class="anchored" data-anchor-id="the-big-picture">The Big Picture</h3>
+<p>Why do we collect data? Because we want to learn about something bigger than what we can directly observe.</p>
+<ul>
+<li><strong>Population</strong>: The entire group we want to learn about</li>
+<li><strong>Sample</strong>: The subset we actually observe</li>
+<li><strong>Process</strong>: An ongoing mechanism that generates data over time</li>
+</ul>
+<p>The whole course builds on this: we use <strong>samples</strong> to make claims about <strong>populations</strong>. That’s inference.</p>
+<hr>
+</section>
+<section id="parameters-vs-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-vs-statistics">Parameters vs Statistics</h3>
+<style>
+#params-table td:first-child { white-space: nowrap; }
+</style>
+<div id="params-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 31%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Population</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What we have</strong></td>
+<td>Usually unknown</td>
+<td>Observable data</td>
+</tr>
+<tr class="even">
+<td><strong>Notation</strong></td>
+<td>Greek letters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(p\)</span>)</td>
+<td>Latin letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\hat{p}\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A <strong>statistic</strong> estimates a <strong>parameter</strong>. This is the foundation of Blocks 2 and 3.</p>
+<hr>
+</section>
+<section id="types-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-variables">Types of Variables</h3>
+<ul>
+<li><strong>Categorical</strong>: Labels or categories (e.g., branch, major, yes/no)</li>
+<li><strong>Quantitative</strong>: Numbers with meaningful arithmetic (e.g., height, GPA, time)</li>
+</ul>
+<p>Why does this matter? The type of variable determines:</p>
+<ul>
+<li>How you summarize it (proportions vs means)</li>
+<li>How you visualize it (bar charts vs histograms)</li>
+<li>Which inference method you use (z-test for proportions vs t-test for means)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="lesson-2-content" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-2-content">Lesson 2 Content</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Construct and interpret stem-and-leaf displays</li>
+<li>Create and interpret dotplots</li>
+<li>Build and analyze histograms and frequency distributions</li>
+<li>Describe distributions in terms of shape, center, spread, and outliers</li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Section 1.2: Pictorial and Tabular Methods in Descriptive Statistics</p>
+<hr>
+</section>
+</section>
+<section id="why-visualize-data" class="level2">
+<h2 class="anchored" data-anchor-id="why-visualize-data">Why Visualize Data?</h2>
+<p>Before calculating any numbers, we should <strong>look at the data</strong>. Visual displays help us:</p>
+<ul>
+<li>Identify the <strong>shape</strong> of the distribution</li>
+<li>Find a <strong>typical value</strong> (center)</li>
+<li>See how much <strong>variability</strong> exists (spread)</li>
+<li>Spot <strong>outliers</strong> and <strong>gaps</strong></li>
+<li>Check for <strong>symmetry</strong> or <strong>skewness</strong></li>
+</ul>
+<hr>
+</section>
+<section id="four-types-of-displays" class="level2">
+<h2 class="anchored" data-anchor-id="four-types-of-displays">Four Types of Displays</h2>
+<section id="comparing-the-four-display-types" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-the-four-display-types">Comparing the Four Display Types</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Display</th>
+<th>Description</th>
+<th>Best Sample Size</th>
+<th>Preserves Exact Values?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stem-and-leaf</strong></td>
+<td>Split each number into stem (leading digits) and leaf (trailing digit)</td>
+<td>Small (n &lt; 50)</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><strong>Dotplot</strong></td>
+<td>Place a dot for each observation on a number line; stack repeated values</td>
+<td>Small (n &lt; 30)</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><strong>Histogram (Frequency)</strong></td>
+<td>Divide range into bins; bar height = count in each bin</td>
+<td>Any size</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><strong>Histogram (Relative Freq)</strong></td>
+<td>Divide range into bins; bar height = proportion in each bin</td>
+<td>Any size</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="what-can-you-learn-from-each" class="level3">
+<h3 class="anchored" data-anchor-id="what-can-you-learn-from-each">What Can You Learn From Each?</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Display</th>
+<th style="text-align: center;">Shape</th>
+<th style="text-align: center;">Center</th>
+<th style="text-align: center;">Spread</th>
+<th style="text-align: center;">Outliers</th>
+<th style="text-align: center;">Exact Values</th>
+<th style="text-align: center;">Compare Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stem-and-leaf</strong></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Limited</td>
+</tr>
+<tr class="even">
+<td><strong>Dotplot</strong></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Good</td>
+</tr>
+<tr class="odd">
+<td><strong>Histogram (Frequency)</strong></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Approximate</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Difficult</td>
+</tr>
+<tr class="even">
+<td><strong>Histogram (Relative Freq)</strong></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Approximate</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"><strong>Best</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="when-to-use-each-display" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-each-display">When to Use Each Display</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Display</th>
+<th>Use When…</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stem-and-leaf</strong></td>
+<td>Small dataset, want to preserve exact values</td>
+<td>Quiz scores for your 18-person section</td>
+</tr>
+<tr class="even">
+<td><strong>Dotplot</strong></td>
+<td>Small dataset with repeated values</td>
+<td>Number of absences per cadet</td>
+</tr>
+<tr class="odd">
+<td><strong>Histogram (Frequency)</strong></td>
+<td>Larger dataset, want raw counts per bin</td>
+<td>APFT scores for an entire battalion</td>
+</tr>
+<tr class="even">
+<td><strong>Histogram (Relative Freq)</strong></td>
+<td>Comparing groups of <strong>different sizes</strong></td>
+<td>Run times: Company A (120 soldiers) vs Company B (85 soldiers)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="describing-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="describing-distributions">Describing Distributions</h2>
+<section id="the-four-key-features" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-key-features">The Four Key Features</h3>
+<p>When describing any distribution, always address:</p>
+<ol type="1">
+<li><strong>Shape</strong>: Symmetric, skewed left, skewed right, unimodal, bimodal?</li>
+<li><strong>Center</strong>: Where is the “typical” value?</li>
+<li><strong>Spread</strong>: How much variability is there?</li>
+<li><strong>Outliers</strong>: Any unusual observations?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Memory Aid">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Memory Aid
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>S-C-S-O</strong>: Shape, Center, Spread, Outliers</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="shape-symmetry-and-skewness" class="level3">
+<h3 class="anchored" data-anchor-id="shape-symmetry-and-skewness">Shape: Symmetry and Skewness</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 38%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Shape</th>
+<th>Description</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Symmetric</strong></td>
+<td>Left and right sides are mirror images</td>
+<td>Mean ≈ Median</td>
+</tr>
+<tr class="even">
+<td><strong>Skewed Right</strong></td>
+<td>Long tail extends to the right</td>
+<td>Mean &gt; Median</td>
+</tr>
+<tr class="odd">
+<td><strong>Skewed Left</strong></td>
+<td>Long tail extends to the left</td>
+<td>Mean &lt; Median</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Skewed right: Income, home prices</li>
+<li>Skewed left: Age at retirement, exam scores with a ceiling</li>
+</ul>
+<hr>
+</section>
+<section id="shape-modality" class="level3">
+<h3 class="anchored" data-anchor-id="shape-modality">Shape: Modality</h3>
+<ul>
+<li><strong>Unimodal</strong>: One peak (most common)</li>
+<li><strong>Bimodal</strong>: Two distinct peaks (may indicate two subgroups)</li>
+<li><strong>Multimodal</strong>: Multiple peaks</li>
+<li><strong>Uniform</strong>: Roughly flat, no clear peak</li>
+</ul>
+<hr>
+</section>
+<section id="identifying-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="identifying-outliers">Identifying Outliers</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Outlier">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Outlier
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An observation that falls far from the rest of the data. Could indicate:</p>
+<ul>
+<li>Data entry error</li>
+<li>Measurement error</li>
+<li>A genuinely unusual observation</li>
+<li>A different population</li>
+</ul>
+</div>
+</div>
+<p><strong>Always investigate outliers</strong> - don’t automatically remove them!</p>
+<hr>
+</section>
+</section>
+<section id="example-cadet-heights" class="level2">
+<h2 class="anchored" data-anchor-id="example-cadet-heights">Example: Cadet Heights</h2>
+<p>Let’s use simulated height data for 30 cadets to demonstrate all four display types.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Heights (inches): 65, 66, 67, 67, 68, 68, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 71, 71, 71, 71, 73, 73, 73, 73, 74, 74, 75</code></pre>
+</div>
+</div>
+<hr>
+<section id="stem-and-leaf-display" class="level3">
+<h3 class="anchored" data-anchor-id="stem-and-leaf-display">Stem-and-Leaf Display</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Stem | Leaves</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-----+--------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  6 | 5 6 7 7 8 8 9 9
+  7 | 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 3 3 3 3 4 4 5</code></pre>
+</div>
+</div>
+<p><strong>Reading it:</strong> The row “6 | 5 6 7 7 8 8 9 9” represents heights of 65, 66, 67, 67, 68, 68, 69, 69 inches.</p>
+<p><strong>Interpreting with S-C-S-O:</strong></p>
+<ul>
+<li><strong>Shape</strong>: Roughly symmetric (similar number of leaves on each stem), unimodal</li>
+<li><strong>Center</strong>: The 7 stem has many more leaves, so center is around 70 inches</li>
+<li><strong>Spread</strong>: Values range from 65 to 75 inches (range = 10 inches)</li>
+<li><strong>Outliers</strong>: No values stand apart from the rest</li>
+</ul>
+<p><strong>Unique advantage:</strong> We can recover every exact data value! We know there are exactly two cadets who are 67 inches tall.</p>
+<hr>
+</section>
+<section id="dotplot" class="level3">
+<h3 class="anchored" data-anchor-id="dotplot">Dotplot</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpreting with S-C-S-O:</strong></p>
+<ul>
+<li><strong>Shape</strong>: Roughly symmetric with one clear peak (unimodal); dots cluster in the middle</li>
+<li><strong>Center</strong>: The tallest stack of dots is at 70 inches - this is our center</li>
+<li><strong>Spread</strong>: Dots extend from about 65 to 75 inches</li>
+<li><strong>Outliers</strong>: No dots are isolated far from the others</li>
+</ul>
+<p><strong>Unique advantage:</strong> Easy to see exact values AND repeated values (stacked dots). The height of 70 inches appears 9 times - we can count the dots!</p>
+<hr>
+</section>
+<section id="histogram-frequency" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-frequency">Histogram (Frequency)</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpreting with S-C-S-O:</strong></p>
+<ul>
+<li><strong>Shape</strong>: Roughly symmetric (bars rise then fall), unimodal (one peak)</li>
+<li><strong>Center</strong>: Tallest bar is at 70-72 inches, so center is around 70-71</li>
+<li><strong>Spread</strong>: Data spans from about 64 to 76 inches</li>
+<li><strong>Outliers</strong>: No bars are isolated from the main distribution</li>
+</ul>
+<p><strong>Unique advantage:</strong> Shows <strong>counts</strong> - we can say “15 cadets are between 70-72 inches tall.” Good for understanding raw numbers.</p>
+<hr>
+</section>
+<section id="histogram-relative-frequency" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-relative-frequency">Histogram (Relative Frequency)</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpreting with S-C-S-O:</strong></p>
+<ul>
+<li><strong>Shape</strong>: Same as frequency histogram - symmetric, unimodal</li>
+<li><strong>Center</strong>: Peak is at 70-72 inches</li>
+<li><strong>Spread</strong>: Same range, 64 to 76 inches</li>
+<li><strong>Outliers</strong>: None visible</li>
+</ul>
+<p><strong>Unique advantage:</strong> Shows <strong>proportions</strong> - we can say “about 50% of cadets are between 70-72 inches tall.” Essential for comparing groups of different sizes (e.g., comparing this section of 30 to another section of 18).</p>
+<hr>
+</section>
+<section id="side-by-side-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="side-by-side-comparison">Side-by-Side Comparison</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="describing-the-cadet-heights-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="describing-the-cadet-heights-distribution">Describing the Cadet Heights Distribution</h3>
+<p>Using <strong>S-C-S-O</strong>:</p>
+<ul>
+<li><strong>Shape</strong>: Roughly symmetric, unimodal</li>
+<li><strong>Center</strong>: Around 70 inches</li>
+<li><strong>Spread</strong>: Ranges from about 64 to 76 inches</li>
+<li><strong>Outliers</strong>: None obvious</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="practice-problem" class="level2">
+<h2 class="anchored" data-anchor-id="practice-problem">Practice Problem</h2>
+<p>The following data represents the number of hours cadets studied for a WPR:</p>
+<p>3, 5, 4, 8, 6, 5, 12, 4, 5, 7, 6, 5, 4, 6, 5, 3, 5, 6, 4, 5</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Create a stem-and-leaf display for this data</li>
+<li>Describe the distribution (shape, center, spread, outliers)</li>
+<li>What is the relative frequency of cadets who studied 5 or more hours?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Stem-and-leaf display:</li>
+</ol>
+<pre><code>Stem | Leaves
+   0 | 3 3 4 4 4 4 5 5 5 5 5 5 5 6 6 6 6 7 8
+   1 | 2</code></pre>
+<ol start="2" type="1">
+<li><p><strong>Shape</strong>: Roughly symmetric with a possible outlier; unimodal <strong>Center</strong>: Around 5 hours <strong>Spread</strong>: 3 to 12 hours (range of 9) <strong>Outliers</strong>: 12 hours appears to be an outlier</p></li>
+<li><p>Count of values ≥ 5: 13 out of 20 Relative frequency = 13/20 = 0.65 or 65%</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li>Stem-and-leaf displays: preserve data while showing shape</li>
+<li>Dotplots: simple visual for small datasets</li>
+<li>Histograms: frequency distributions for larger datasets</li>
+<li>Describing distributions: Shape, Center, Spread, Outliers (S-C-S-O)</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-3.html">Lesson 3: Measures of Location</a></p>
+<ul>
+<li>Mean, median, and mode</li>
+<li>Percentiles and quartiles</li>
+<li>Comparing measures of center for different distributions</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 1.3</strong> - Due before Lesson 3</li>
+<li><strong>Exploratory Data Analysis</strong> - Due Lesson 9</li>
+<li><strong>WPR I</strong> - Lesson 16</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-1.html" class="pagination-link" aria-label="Lesson 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 1</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
