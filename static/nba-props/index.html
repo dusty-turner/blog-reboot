@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Elastic Net Prediction Model" />
+<meta name="author" content="Random Forest Model (tracking Elastic Net)" />
 
 
 <title>NBA Player Props - Daily Betting Guide</title>
@@ -1591,12 +1591,21 @@ font-size: 0.95em;
 
 
 <h1 class="title toc-ignore">NBA Player Props - Daily Betting Guide</h1>
-<h4 class="author">Elastic Net Prediction Model</h4>
-<h4 class="date">January 12, 2026 at 11:38 PM ET</h4>
+<h4 class="author">Random Forest Model (tracking Elastic Net)</h4>
+<h4 class="date">January 13, 2026 at 06:51 AM ET</h4>
 
 </div>
 
 
+<div style="background-color: #cce5ff; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+<h4 style="margin: 0; color: #004085;">
+Morning Update - Yesterday’s Performance
+</h4>
+<p style="margin: 5px 0 0 0; color: #004085;">
+Focus: Results from yesterday’s bets. Lines for today may not be
+available yet.
+</p>
+</div>
 <div id="bets" class="section level1 tabset tabset-fade tabset-pills">
 <h1 class="tabset tabset-fade tabset-pills">Bets</h1>
 <div id="todays-picks" class="section level2">
@@ -1615,6 +1624,13 @@ font-size: 0.95em;
 </div>
 <div id="all-bets" class="section level2">
 <h2>All Bets</h2>
+</div>
+<div id="model-comparison" class="section level2">
+<h2>Model Comparison</h2>
+<p>This section compares predictions from both models to track which
+performs better.</p>
+<p>Model comparison data not yet available. Will populate after first
+dual-model run.</p>
 </div>
 <div id="yesterdays-results" class="section level2">
 <h2>Yesterday’s Results</h2>
@@ -1769,101 +1785,131 @@ within each NBA season.</p>
 <h1 class="tabset tabset-fade tabset-pills">Methodology</h1>
 <div id="the-model" class="section level2">
 <h2>The Model</h2>
-<p>The prediction model is an <strong>Elastic Net regression</strong> (a
-regularized linear model that combines L1 and L2 penalties). It was
-trained on player-game data using walk-forward validation.</p>
+<p>The primary prediction model is a <strong>Random Forest</strong>
+ensemble (100 trees, mtry=4). We also run <strong>Elastic Net</strong>
+in parallel to compare performance over time.</p>
+<div id="why-random-forest" class="section level3">
+<h3>Why Random Forest?</h3>
+<p>Model comparison on historical data showed:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>MAE</th>
+<th>HIGH Conf ROI</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Random Forest</strong></td>
+<td>5.55</td>
+<td><strong>+1.7%</strong></td>
+<td>Primary model</td>
+</tr>
+<tr class="even">
+<td>Elastic Net</td>
+<td>5.41</td>
+<td>+1.6%</td>
+<td>Tracked for comparison</td>
+</tr>
+<tr class="odd">
+<td>XGBoost</td>
+<td>5.40</td>
+<td>-1.4%</td>
+<td>Best MAE but worse ROI</td>
+</tr>
+</tbody>
+</table>
+<p>Random Forest has slightly higher MAE but better HIGH confidence ROI,
+which is what matters for betting.</p>
+</div>
 <div id="model-features-12-predictors" class="section level3">
 <h3>Model Features (12 predictors)</h3>
+<p>Both models use the same features:</p>
 <table>
-<colgroup>
-<col width="25%" />
-<col width="37%" />
-<col width="37%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Feature</th>
-<th>Coefficient</th>
+<th>Importance</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>career_avg_pts</code></td>
-<td><strong>+0.465</strong></td>
-<td>Career scoring average (most important)</td>
-</tr>
-<tr class="even">
 <td><code>roll_pts_9</code></td>
-<td><strong>+0.214</strong></td>
+<td><strong>High</strong></td>
 <td>9-game rolling average points</td>
-</tr>
-<tr class="odd">
-<td><code>roll_mp_3</code></td>
-<td><strong>+0.092</strong></td>
-<td>3-game rolling average minutes</td>
 </tr>
 <tr class="even">
 <td><code>roll_pts_3</code></td>
-<td><strong>+0.084</strong></td>
+<td><strong>High</strong></td>
 <td>3-game rolling average points</td>
 </tr>
 <tr class="odd">
-<td><code>roll_usg_5</code></td>
-<td><strong>+0.078</strong></td>
-<td>5-game rolling usage percentage</td>
+<td><code>career_avg_pts</code></td>
+<td><strong>High</strong></td>
+<td>Career scoring average</td>
 </tr>
 <tr class="even">
-<td><code>roll_pts_5</code></td>
-<td><strong>+0.033</strong></td>
-<td>5-game rolling average points</td>
-</tr>
-<tr class="odd">
 <td><code>roll_pts_7</code></td>
-<td><strong>+0.023</strong></td>
+<td>Medium</td>
 <td>7-game rolling average points</td>
 </tr>
+<tr class="odd">
+<td><code>roll_pts_5</code></td>
+<td>Medium</td>
+<td>5-game rolling average points</td>
+</tr>
 <tr class="even">
-<td><code>roll_usg_3</code></td>
-<td><strong>+0.011</strong></td>
-<td>3-game rolling usage percentage</td>
+<td><code>roll_mp_3</code></td>
+<td>Medium</td>
+<td>3-game rolling average minutes</td>
 </tr>
 <tr class="odd">
-<td><code>days_rest</code></td>
-<td><strong>-0.010</strong></td>
-<td>Days since last game</td>
+<td><code>roll_usg_3</code></td>
+<td>Medium</td>
+<td>3-game rolling usage percentage</td>
 </tr>
 <tr class="even">
-<td><code>roll_3pa_3</code></td>
-<td><strong>-0.020</strong></td>
-<td>3-game rolling 3-point attempts</td>
+<td><code>roll_usg_5</code></td>
+<td>Medium</td>
+<td>5-game rolling usage percentage</td>
 </tr>
 <tr class="odd">
 <td><code>roll_pts_sd_5</code></td>
-<td><strong>-0.021</strong></td>
+<td>Low</td>
 <td>5-game scoring variance (consistency)</td>
 </tr>
 <tr class="even">
-<td><code>(Intercept)</code></td>
-<td><strong>-1.476</strong></td>
-<td>Baseline adjustment</td>
+<td><code>roll_3pa_3</code></td>
+<td>Low</td>
+<td>3-game rolling 3-point attempts</td>
+</tr>
+<tr class="odd">
+<td><code>days_rest</code></td>
+<td>Low</td>
+<td>Days since last game</td>
+</tr>
+<tr class="even">
+<td><code>roll_mp_5</code></td>
+<td>Low</td>
+<td>5-game rolling average minutes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Model MAE: 4.60 points</strong> (competitive with Vegas
-lines)</p>
 </div>
 <div id="why-these-features-matter" class="section level3">
 <h3>Why These Features Matter</h3>
 <ul>
-<li><strong>Career average dominates</strong> (0.465): Players tend to
+<li><strong>Rolling averages dominate</strong>: The model heavily
+weights recent performance (9-game average is most important)</li>
+<li><strong>Career average anchors predictions</strong>: Players tend to
 regress toward their long-term mean</li>
-<li><strong>Longer rolling windows matter more</strong> (0.214 for
-9-game vs 0.084 for 3-game): Recent hot/cold streaks are noise</li>
-<li><strong>Minutes predict points</strong> (0.092): More playing time =
-more scoring opportunities</li>
-<li><strong>Variance is penalized</strong> (-0.021): Inconsistent
-scorers are harder to predict</li>
+<li><strong>Minutes predict points</strong>: More playing time = more
+scoring opportunities</li>
+<li><strong>Consistency matters</strong>: High variance scorers are
+harder to predict</li>
 </ul>
 </div>
 </div>
@@ -1884,9 +1930,10 @@ prediction and betting lines</li>
 </div>
 <div id="step-2-generate-predictions" class="section level3">
 <h3>Step 2: Generate Predictions</h3>
-<p>For each player-game, the Elastic Net model predicts expected points
-using the features above. All features use <strong>lagged data</strong>
-(we only know what happened before the game).</p>
+<p>For each player-game, the Random Forest model predicts expected
+points using the features above. All features use <strong>lagged
+data</strong> (we only know what happened before the game). We also
+generate Elastic Net predictions for comparison tracking.</p>
 </div>
 <div id="step-3-calculate-edge" class="section level3">
 <h3>Step 3: Calculate Edge</h3>
@@ -2064,7 +2111,7 @@ thresholds.</p>
 </tbody>
 </table>
 <hr />
-<p><em>Report generated: 2026-01-12 11:38:37 PM ET</em></p>
+<p><em>Report generated: 2026-01-13 06:51:17 AM ET</em></p>
 <p><em>Model: Walk-Forward Elastic Net | Data: 56,264+ matched
 player-games | MAE: 4.60 points</em></p>
 </div>
