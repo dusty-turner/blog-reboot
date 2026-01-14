@@ -2536,5 +2536,225 @@
       "MA206x-AY26-2",
       "Lesson 3"
     ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html",
+    "href": "MA206x-AY26-2/lesson-4.html",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "123\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMath vs AWPAD\n\n\n\n\n\n\nPreviously 7-0\n\n\n\n\n\n\n8-0\n\n\n\n\n\n\n\n\n\nMath vs AWPAD\n\n\n\n\n\n\nPreviously 8-0\n\n\n\n\n\n\n8-1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVantage\n\n\n\nLet’s go to Vantage and see if things are working.\n\n\n\n\n\n\n\n\nLast lesson we learned three ways to measure the “center” of a distribution:\n\n\n\nMeasure\nFormula\nResistant?\nBest For\n\n\n\n\nMean\n\\(\\bar{x} = \\frac{\\sum x_i}{n}\\)\nNo\nSymmetric data\n\n\nMedian\nMiddle value\nYes\nSkewed data/outliers\n\n\nMode\nMost frequent\nYes\nCategorical data\n\n\n\nWe also learned about percentiles, quartiles, and the five-number summary.\n\n\n\n\n\n\nKey Insight from Lesson 3\n\n\n\nTwo datasets can have the same mean and median but look very different! Today we learn how to quantify that difference.\n\n\n\n\n\n\n\n\n\n\nCalculate and interpret range and inter-quartile range (IQR)\nCalculate and interpret variance and standard deviation\n\n\n\n\nDevore, Section 1.4: Measures of Variability\n\n\n\n\n\n\n\nConsider two archery targets:\n\n\n\n\n\n\n\n\n\nBoth archers might have similar average positions, but Archer A is clearly more consistent. We need measures of spread or variability to capture this difference.\n\n\n\n\n\nThe range is the simplest measure of spread:\n\\[\n\\text{Range} = \\text{Maximum} - \\text{Minimum}\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nMaximum: 88 \n\n\nMinimum: 72 \n\n\nRange: 16 points\n\n\nProblems with the range:\n\nUses only 2 data points (ignores everything in between)\nVery sensitive to outliers\nTends to increase with sample size\n\n\n\n\n\nThe interquartile range (IQR) measures the spread of the middle 50% of the data:\n\\[\n\\text{IQR} = Q_3 - Q_1\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nQ1 (25th percentile): 76.5 \n\n\nQ3 (75th percentile): 83.5 \n\n\nIQR: 7 points\n\n\nAdvantages of IQR:\n\nResistant to outliers (uses quartiles, not extremes)\nFocuses on the “typical” spread of the data\nUseful for identifying outliers (1.5 × IQR rule)\n\n\n\n\n\nAn observation is a potential outlier if it falls:\n\nBelow \\(Q_1 - 1.5 \\times \\text{IQR}\\), or\nAbove \\(Q_3 + 1.5 \\times \\text{IQR}\\)\n\n\n\nSalaries (thousands): 45, 48, 52, 55, 58, 62, 68, 72, 85, 250 \n\n\nQ1: 52.75 \n\n\nQ3: 71 \n\n\nIQR: 18.25 \n\n\nLower fence: 25.375 \n\n\nUpper fence: 98.375 \n\n\nOutliers: 250 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe boxplot automatically shows values beyond 1.5 × IQR as individual points.\n\n\n\n\n\n\nTo measure spread, we want to know how far observations are from the center. The deviation of observation \\(x_i\\) from the mean is:\n\\[\nx_i - \\bar{x}\n\\]\nProblem: If we sum all deviations, they always equal zero!\n\n\nData: 2, 4, 6, 8, 10 \n\n\nMean: 6 \n\n\nDeviations: -4, -2, 0, 2, 4 \n\n\nSum of deviations: 0 \n\n\nSolution: Square the deviations before summing!\n\n\n\n\nThe sample variance (\\(s^2\\)) is the average of the squared deviations (with a small adjustment):\n\\[\ns^2 = \\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2\n\\]\n\n\n\n\n\n\nWhy n-1?\n\n\n\nWe divide by \\(n-1\\) instead of \\(n\\) because we lose one “degree of freedom” when we estimate the mean from the same data. This gives us an unbiased estimate of the population variance. We’ll discuss this more when we cover inference.\n\n\n\n\n\n\nStep-by-step method:\n\nCalculate the mean \\(\\bar{x}\\)\nSubtract the mean from each value: \\((x_i - \\bar{x})\\)\nSquare each deviation: \\((x_i - \\bar{x})^2\\)\nSum the squared deviations: \\(\\sum(x_i - \\bar{x})^2\\)\nDivide by \\(n-1\\)\n\n\n\n\n\n\n\nData: 4, 7, 5, 9, 10 \n\n\nStep 1 - Mean: 7 \n\n\nStep 2-3 - Deviations and Squared Deviations:\n\n\nx_i      (x_i - x̄)  (x_i - x̄)²                     \n\n\n--------------------------------------------------\n\n\n4        -3.0         9.00           \n7        0.0          0.00           \n5        -2.0         4.00           \n9        2.0          4.00           \n10       3.0          9.00           \n\n\n--------------------------------------------------\n\n\n\nStep 4 - Sum of squared deviations: 26 \n\n\nStep 5 - Variance (s²): 26 / 4 = 6.5 \n\n\n\n\n\n\nThe sample standard deviation (\\(s\\)) is the square root of the variance:\n\\[\ns = \\sqrt{s^2} = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}\n\\]\n\n\nData: 4, 7, 5, 9, 10 \n\n\nVariance (s²): 6.5 \n\n\nStandard Deviation (s): 2.55 \n\n\nWhy take the square root?\n\nThe variance is in squared units (e.g., dollars², inches²)\nThe standard deviation is in the original units (e.g., dollars, inches)\nThis makes interpretation much easier!\n\n\n\n\n\nThe standard deviation tells us roughly how far a typical observation is from the mean.\n\n\n\n\n\n\n\n\n\nMean: 70.92 \n\n\nStandard Deviation: 4.56 \n\n\nMost scores fall between 66.4 and 75.5 \n\n\n\n\n\n\n\n\n\n\n\n\n\nProperty\nDescription\n\n\n\n\nAlways non-negative\n\\(s \\geq 0\\), equals 0 only when all values are identical\n\n\nSame units as data\nUnlike variance, which is in squared units\n\n\nSensitive to outliers\nLike the mean, outliers inflate \\(s\\)\n\n\nUseful benchmarks\nFor bell-shaped data: ~68% within 1 SD, ~95% within 2 SD\n\n\n\n\n\n\n\n\n\n\n\n\nMeasure\nFormula\nResistant?\nUses All Data?\n\n\n\n\nRange\nMax - Min\nNo\nNo (only 2 points)\n\n\nIQR\n\\(Q_3 - Q_1\\)\nYes\nNo (only quartiles)\n\n\nVariance\n\\(s^2 = \\frac{\\sum(x_i-\\bar{x})^2}{n-1}\\)\nNo\nYes\n\n\nStd Dev\n\\(s = \\sqrt{s^2}\\)\nNo\nYes\n\n\n\n\n\n\n\n\n\n\nSituation\nRecommended Measure\n\n\n\n\nQuick summary\nRange (but note its limitations)\n\n\nData with outliers\nIQR\n\n\nIdentifying outliers\n1.5 × IQR rule\n\n\nGeneral purpose\nStandard deviation\n\n\nStatistical inference\nVariance/Standard deviation\n\n\n\n\n\n\n\n\n\nRule of Thumb\n\n\n\nReport IQR when you report the median; report standard deviation when you report the mean.\n\n\n\n\n\n\n\n\n\nThe following data represents the number of hours cadets slept last night:\n5, 6, 6, 7, 7, 7, 8, 8, 9\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the range\nCalculate the IQR\nCalculate the variance and standard deviation\nAre there any outliers using the 1.5 × IQR rule?\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\nRange = 9 - 5 = 4 hours\nIQR calculation:\n\nOrdered: 5, 6, 6, 7, 7, 7, 8, 8, 9\nQ1 = 6, Q3 = 8\nIQR = 8 - 6 = 2 hours\n\nVariance and SD:\n\nMean = (5+6+6+7+7+7+8+8+9)/9 = 63/9 = 7\nDeviations: -2, -1, -1, 0, 0, 0, 1, 1, 2\nSquared: 4, 1, 1, 0, 0, 0, 1, 1, 4\nSum = 12\nVariance = 12/8 = 1.5 hours²\nStandard deviation = √1.5 = 1.22 hours\n\nOutlier check:\n\nLower fence = Q1 - 1.5(IQR) = 6 - 1.5(2) = 3\nUpper fence = Q3 + 1.5(IQR) = 8 + 1.5(2) = 11\nAll values between 3 and 11, so no outliers\n\n\n\n\n\n\n\n\n\nTwo PT instructors recorded 2-mile run times (in minutes) for their sections:\nSection A: 14, 15, 15, 16, 16, 16, 17, 17, 18 Section B: 12, 13, 16, 16, 16, 16, 19, 20, 20\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the mean for each section\nCalculate the standard deviation for each section\nWhich section is more consistent? How do you know?\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\n\nSection A:\n\n\n  Mean: 16 minutes\n\n\n  SD: 1.22 minutes\n\n\nSection B:\n\n\n  Mean: 16.44 minutes\n\n\n  SD: 2.83 minutes\n\n\n\nBoth sections have a mean of approximately 16 minutes\nSection A: SD ≈ 1.22 minutes Section B: SD ≈ 2.92 minutes\nSection A is more consistent because it has a smaller standard deviation. Even though both sections have the same average run time, Section A’s times are clustered more tightly around the mean.\n\n\n\n\n\n\n\n\nA dataset has the following five-number summary: - Min = 10 - Q1 = 25 - Median = 35 - Q3 = 45 - Max = 100\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the IQR\nDetermine the outlier fences\nIs the maximum value (100) an outlier?\nSketch what the boxplot would look like\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\nIQR = Q3 - Q1 = 45 - 25 = 20\nOutlier fences:\n\nLower fence = Q1 - 1.5(IQR) = 25 - 1.5(20) = 25 - 30 = -5\nUpper fence = Q3 + 1.5(IQR) = 45 + 1.5(20) = 45 + 30 = 75\n\nYes, 100 is an outlier because it exceeds the upper fence of 75\nBoxplot sketch:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRange: Max - Min; simple but sensitive to outliers\nIQR: Q3 - Q1; resistant to outliers, measures middle 50%\n1.5 × IQR Rule: Values beyond \\(Q_1 - 1.5 \\times \\text{IQR}\\) or \\(Q_3 + 1.5 \\times \\text{IQR}\\) are potential outliers\nVariance (\\(s^2\\)): Average squared deviation from the mean\nStandard Deviation (\\(s\\)): Square root of variance; in original units\n\n\n\n\n\n\n\nRemember\n\n\n\n\nReport IQR with the median (for skewed data or outliers)\nReport standard deviation with the mean (for symmetric data)\nStandard deviation ≈ “typical distance from the mean”\n\n\n\n\n\n\n\n\n\n\n\nRange and IQR as simple measures of spread\nThe 1.5 × IQR rule for identifying outliers\nVariance and standard deviation as comprehensive measures\nWhen to use each measure of variability\n\nAny questions?\n\n\n\n\nLesson 5: Exploratory Data Analysis Lab\n\nExecute EDA using appropriate graphs and summaries\nJustify choices of displays for variable types\nCommunicate findings with clear, concise annotations\n\n\n\n\n\n\nWebAssign 1.4 - Due before Lesson 5\nExploratory Data Analysis - Due Lesson 9\nWPR I - Lesson 16",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#lesson-3-review",
+    "href": "MA206x-AY26-2/lesson-4.html#lesson-3-review",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Last lesson we learned three ways to measure the “center” of a distribution:\n\n\n\nMeasure\nFormula\nResistant?\nBest For\n\n\n\n\nMean\n\\(\\bar{x} = \\frac{\\sum x_i}{n}\\)\nNo\nSymmetric data\n\n\nMedian\nMiddle value\nYes\nSkewed data/outliers\n\n\nMode\nMost frequent\nYes\nCategorical data\n\n\n\nWe also learned about percentiles, quartiles, and the five-number summary.\n\n\n\n\n\n\nKey Insight from Lesson 3\n\n\n\nTwo datasets can have the same mean and median but look very different! Today we learn how to quantify that difference.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#lesson-4-content",
+    "href": "MA206x-AY26-2/lesson-4.html#lesson-4-content",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Calculate and interpret range and inter-quartile range (IQR)\nCalculate and interpret variance and standard deviation\n\n\n\n\nDevore, Section 1.4: Measures of Variability",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#why-measure-variability",
+    "href": "MA206x-AY26-2/lesson-4.html#why-measure-variability",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Consider two archery targets:\n\n\n\n\n\n\n\n\n\nBoth archers might have similar average positions, but Archer A is clearly more consistent. We need measures of spread or variability to capture this difference.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#simple-measures-of-spread",
+    "href": "MA206x-AY26-2/lesson-4.html#simple-measures-of-spread",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The range is the simplest measure of spread:\n\\[\n\\text{Range} = \\text{Maximum} - \\text{Minimum}\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nMaximum: 88 \n\n\nMinimum: 72 \n\n\nRange: 16 points\n\n\nProblems with the range:\n\nUses only 2 data points (ignores everything in between)\nVery sensitive to outliers\nTends to increase with sample size\n\n\n\n\n\nThe interquartile range (IQR) measures the spread of the middle 50% of the data:\n\\[\n\\text{IQR} = Q_3 - Q_1\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nQ1 (25th percentile): 76.5 \n\n\nQ3 (75th percentile): 83.5 \n\n\nIQR: 7 points\n\n\nAdvantages of IQR:\n\nResistant to outliers (uses quartiles, not extremes)\nFocuses on the “typical” spread of the data\nUseful for identifying outliers (1.5 × IQR rule)\n\n\n\n\n\nAn observation is a potential outlier if it falls:\n\nBelow \\(Q_1 - 1.5 \\times \\text{IQR}\\), or\nAbove \\(Q_3 + 1.5 \\times \\text{IQR}\\)\n\n\n\nSalaries (thousands): 45, 48, 52, 55, 58, 62, 68, 72, 85, 250 \n\n\nQ1: 52.75 \n\n\nQ3: 71 \n\n\nIQR: 18.25 \n\n\nLower fence: 25.375 \n\n\nUpper fence: 98.375 \n\n\nOutliers: 250 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe boxplot automatically shows values beyond 1.5 × IQR as individual points.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#variance-and-standard-deviation",
+    "href": "MA206x-AY26-2/lesson-4.html#variance-and-standard-deviation",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "To measure spread, we want to know how far observations are from the center. The deviation of observation \\(x_i\\) from the mean is:\n\\[\nx_i - \\bar{x}\n\\]\nProblem: If we sum all deviations, they always equal zero!\n\n\nData: 2, 4, 6, 8, 10 \n\n\nMean: 6 \n\n\nDeviations: -4, -2, 0, 2, 4 \n\n\nSum of deviations: 0 \n\n\nSolution: Square the deviations before summing!",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#comparing-measures-of-spread",
+    "href": "MA206x-AY26-2/lesson-4.html#comparing-measures-of-spread",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Measure\nFormula\nResistant?\nUses All Data?\n\n\n\n\nRange\nMax - Min\nNo\nNo (only 2 points)\n\n\nIQR\n\\(Q_3 - Q_1\\)\nYes\nNo (only quartiles)\n\n\nVariance\n\\(s^2 = \\frac{\\sum(x_i-\\bar{x})^2}{n-1}\\)\nNo\nYes\n\n\nStd Dev\n\\(s = \\sqrt{s^2}\\)\nNo\nYes\n\n\n\n\n\n\n\n\n\n\nSituation\nRecommended Measure\n\n\n\n\nQuick summary\nRange (but note its limitations)\n\n\nData with outliers\nIQR\n\n\nIdentifying outliers\n1.5 × IQR rule\n\n\nGeneral purpose\nStandard deviation\n\n\nStatistical inference\nVariance/Standard deviation\n\n\n\n\n\n\n\n\n\nRule of Thumb\n\n\n\nReport IQR when you report the median; report standard deviation when you report the mean.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#practice-problems",
+    "href": "MA206x-AY26-2/lesson-4.html#practice-problems",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The following data represents the number of hours cadets slept last night:\n5, 6, 6, 7, 7, 7, 8, 8, 9\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the range\nCalculate the IQR\nCalculate the variance and standard deviation\nAre there any outliers using the 1.5 × IQR rule?\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\nRange = 9 - 5 = 4 hours\nIQR calculation:\n\nOrdered: 5, 6, 6, 7, 7, 7, 8, 8, 9\nQ1 = 6, Q3 = 8\nIQR = 8 - 6 = 2 hours\n\nVariance and SD:\n\nMean = (5+6+6+7+7+7+8+8+9)/9 = 63/9 = 7\nDeviations: -2, -1, -1, 0, 0, 0, 1, 1, 2\nSquared: 4, 1, 1, 0, 0, 0, 1, 1, 4\nSum = 12\nVariance = 12/8 = 1.5 hours²\nStandard deviation = √1.5 = 1.22 hours\n\nOutlier check:\n\nLower fence = Q1 - 1.5(IQR) = 6 - 1.5(2) = 3\nUpper fence = Q3 + 1.5(IQR) = 8 + 1.5(2) = 11\nAll values between 3 and 11, so no outliers\n\n\n\n\n\n\n\n\n\nTwo PT instructors recorded 2-mile run times (in minutes) for their sections:\nSection A: 14, 15, 15, 16, 16, 16, 17, 17, 18 Section B: 12, 13, 16, 16, 16, 16, 19, 20, 20\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the mean for each section\nCalculate the standard deviation for each section\nWhich section is more consistent? How do you know?\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\n\nSection A:\n\n\n  Mean: 16 minutes\n\n\n  SD: 1.22 minutes\n\n\nSection B:\n\n\n  Mean: 16.44 minutes\n\n\n  SD: 2.83 minutes\n\n\n\nBoth sections have a mean of approximately 16 minutes\nSection A: SD ≈ 1.22 minutes Section B: SD ≈ 2.92 minutes\nSection A is more consistent because it has a smaller standard deviation. Even though both sections have the same average run time, Section A’s times are clustered more tightly around the mean.\n\n\n\n\n\n\n\n\nA dataset has the following five-number summary: - Min = 10 - Q1 = 25 - Median = 35 - Q3 = 45 - Max = 100\n\n\n\n\n\n\nQuestions\n\n\n\n\n\n\nCalculate the IQR\nDetermine the outlier fences\nIs the maximum value (100) an outlier?\nSketch what the boxplot would look like\n\n\n\n\n\n\n\n\n\n\nAnswers\n\n\n\n\n\n\nIQR = Q3 - Q1 = 45 - 25 = 20\nOutlier fences:\n\nLower fence = Q1 - 1.5(IQR) = 25 - 1.5(20) = 25 - 30 = -5\nUpper fence = Q3 + 1.5(IQR) = 45 + 1.5(20) = 45 + 30 = 75\n\nYes, 100 is an outlier because it exceeds the upper fence of 75\nBoxplot sketch:",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#summary",
+    "href": "MA206x-AY26-2/lesson-4.html#summary",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Range: Max - Min; simple but sensitive to outliers\nIQR: Q3 - Q1; resistant to outliers, measures middle 50%\n1.5 × IQR Rule: Values beyond \\(Q_1 - 1.5 \\times \\text{IQR}\\) or \\(Q_3 + 1.5 \\times \\text{IQR}\\) are potential outliers\nVariance (\\(s^2\\)): Average squared deviation from the mean\nStandard Deviation (\\(s\\)): Square root of variance; in original units\n\n\n\n\n\n\n\nRemember\n\n\n\n\nReport IQR with the median (for skewed data or outliers)\nReport standard deviation with the mean (for symmetric data)\nStandard deviation ≈ “typical distance from the mean”",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#before-you-leave",
+    "href": "MA206x-AY26-2/lesson-4.html#before-you-leave",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Range and IQR as simple measures of spread\nThe 1.5 × IQR rule for identifying outliers\nVariance and standard deviation as comprehensive measures\nWhen to use each measure of variability\n\nAny questions?\n\n\n\n\nLesson 5: Exploratory Data Analysis Lab\n\nExecute EDA using appropriate graphs and summaries\nJustify choices of displays for variable types\nCommunicate findings with clear, concise annotations\n\n\n\n\n\n\nWebAssign 1.4 - Due before Lesson 5\nExploratory Data Analysis - Due Lesson 9\nWPR I - Lesson 16",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#go-to-vantage",
+    "href": "MA206x-AY26-2/lesson-4.html#go-to-vantage",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Vantage\n\n\n\nLet’s go to Vantage and see if things are working.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#the-range",
+    "href": "MA206x-AY26-2/lesson-4.html#the-range",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The range is the simplest measure of spread:\n\\[\n\\text{Range} = \\text{Maximum} - \\text{Minimum}\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nMaximum: 88 \n\n\nMinimum: 72 \n\n\nRange: 16 points\n\n\nProblems with the range:\n\nUses only 2 data points (ignores everything in between)\nVery sensitive to outliers\nTends to increase with sample size",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#the-interquartile-range-iqr",
+    "href": "MA206x-AY26-2/lesson-4.html#the-interquartile-range-iqr",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The interquartile range (IQR) measures the spread of the middle 50% of the data:\n\\[\n\\text{IQR} = Q_3 - Q_1\n\\]\n\n\nQuiz scores: 72, 75, 78, 80, 82, 85, 88 \n\n\nQ1 (25th percentile): 76.5 \n\n\nQ3 (75th percentile): 83.5 \n\n\nIQR: 7 points\n\n\nAdvantages of IQR:\n\nResistant to outliers (uses quartiles, not extremes)\nFocuses on the “typical” spread of the data\nUseful for identifying outliers (1.5 × IQR rule)",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#the-1.5-iqr-rule-for-outliers",
+    "href": "MA206x-AY26-2/lesson-4.html#the-1.5-iqr-rule-for-outliers",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "An observation is a potential outlier if it falls:\n\nBelow \\(Q_1 - 1.5 \\times \\text{IQR}\\), or\nAbove \\(Q_3 + 1.5 \\times \\text{IQR}\\)\n\n\n\nSalaries (thousands): 45, 48, 52, 55, 58, 62, 68, 72, 85, 250 \n\n\nQ1: 52.75 \n\n\nQ3: 71 \n\n\nIQR: 18.25 \n\n\nLower fence: 25.375 \n\n\nUpper fence: 98.375 \n\n\nOutliers: 250 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe boxplot automatically shows values beyond 1.5 × IQR as individual points.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#the-sample-variance",
+    "href": "MA206x-AY26-2/lesson-4.html#the-sample-variance",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The sample variance (\\(s^2\\)) is the average of the squared deviations (with a small adjustment):\n\\[\ns^2 = \\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2\n\\]\n\n\n\n\n\n\nWhy n-1?\n\n\n\nWe divide by \\(n-1\\) instead of \\(n\\) because we lose one “degree of freedom” when we estimate the mean from the same data. This gives us an unbiased estimate of the population variance. We’ll discuss this more when we cover inference.",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#computing-the-sample-variance",
+    "href": "MA206x-AY26-2/lesson-4.html#computing-the-sample-variance",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Step-by-step method:\n\nCalculate the mean \\(\\bar{x}\\)\nSubtract the mean from each value: \\((x_i - \\bar{x})\\)\nSquare each deviation: \\((x_i - \\bar{x})^2\\)\nSum the squared deviations: \\(\\sum(x_i - \\bar{x})^2\\)\nDivide by \\(n-1\\)",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#example-calculating-variance",
+    "href": "MA206x-AY26-2/lesson-4.html#example-calculating-variance",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Data: 4, 7, 5, 9, 10 \n\n\nStep 1 - Mean: 7 \n\n\nStep 2-3 - Deviations and Squared Deviations:\n\n\nx_i      (x_i - x̄)  (x_i - x̄)²                     \n\n\n--------------------------------------------------\n\n\n4        -3.0         9.00           \n7        0.0          0.00           \n5        -2.0         4.00           \n9        2.0          4.00           \n10       3.0          9.00           \n\n\n--------------------------------------------------\n\n\n\nStep 4 - Sum of squared deviations: 26 \n\n\nStep 5 - Variance (s²): 26 / 4 = 6.5",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#the-sample-standard-deviation",
+    "href": "MA206x-AY26-2/lesson-4.html#the-sample-standard-deviation",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The sample standard deviation (\\(s\\)) is the square root of the variance:\n\\[\ns = \\sqrt{s^2} = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}\n\\]\n\n\nData: 4, 7, 5, 9, 10 \n\n\nVariance (s²): 6.5 \n\n\nStandard Deviation (s): 2.55 \n\n\nWhy take the square root?\n\nThe variance is in squared units (e.g., dollars², inches²)\nThe standard deviation is in the original units (e.g., dollars, inches)\nThis makes interpretation much easier!",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#interpreting-standard-deviation",
+    "href": "MA206x-AY26-2/lesson-4.html#interpreting-standard-deviation",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "The standard deviation tells us roughly how far a typical observation is from the mean.\n\n\n\n\n\n\n\n\n\nMean: 70.92 \n\n\nStandard Deviation: 4.56 \n\n\nMost scores fall between 66.4 and 75.5",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
+  },
+  {
+    "objectID": "MA206x-AY26-2/lesson-4.html#properties-of-standard-deviation",
+    "href": "MA206x-AY26-2/lesson-4.html#properties-of-standard-deviation",
+    "title": "Lesson 4: Measures of Variability",
+    "section": "",
+    "text": "Property\nDescription\n\n\n\n\nAlways non-negative\n\\(s \\geq 0\\), equals 0 only when all values are identical\n\n\nSame units as data\nUnlike variance, which is in squared units\n\n\nSensitive to outliers\nLike the mean, outliers inflate \\(s\\)\n\n\nUseful benchmarks\nFor bell-shaped data: ~68% within 1 SD, ~95% within 2 SD",
+    "crumbs": [
+      "MA206x-AY26-2",
+      "Lesson 4"
+    ]
   }
 ]
