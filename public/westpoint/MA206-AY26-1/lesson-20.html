@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../MA206-AY26-1/lesson-19.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-89a4c75c28f39d544352a2d30bce53fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -145,6 +146,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">LTC Dusty Turner</span>
     </a>
@@ -187,6 +190,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -966,7 +973,7 @@ t = \frac{-0.143}{.325/\sqrt{22}}
    \approx 2.06
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.20</span>,<span class="fl">6.95</span>,<span class="fl">7.40</span>,<span class="fl">7.00</span>,<span class="fl">6.85</span>,<span class="fl">7.25</span>,<span class="fl">7.05</span>,<span class="fl">6.90</span>,<span class="fl">7.10</span>,<span class="fl">6.80</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.15</span>,<span class="fl">7.05</span>,<span class="fl">7.20</span>,<span class="fl">6.85</span>,<span class="fl">7.30</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.10</span>,<span class="fl">7.05</span>,<span class="fl">7.25</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.20</span>,<span class="fl">6.95</span>,<span class="fl">7.40</span>,<span class="fl">7.00</span>,<span class="fl">6.85</span>,<span class="fl">7.25</span>,<span class="fl">7.05</span>,<span class="fl">6.90</span>,<span class="fl">7.10</span>,<span class="fl">6.80</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.15</span>,<span class="fl">7.05</span>,<span class="fl">7.20</span>,<span class="fl">6.85</span>,<span class="fl">7.30</span>,<span class="fl">7.00</span>,<span class="fl">6.95</span>,<span class="fl">7.10</span>,<span class="fl">7.05</span>,<span class="fl">7.25</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.80</span>,<span class="fl">7.60</span>,<span class="fl">8.10</span>,<span class="fl">6.70</span>,<span class="fl">6.60</span>,<span class="fl">7.00</span>,<span class="fl">6.90</span>,<span class="fl">6.55</span>,<span class="fl">6.85</span>,<span class="fl">6.50</span>,<span class="fl">6.70</span>,<span class="fl">6.65</span>,<span class="fl">6.85</span>,<span class="fl">6.80</span>,<span class="fl">6.95</span>,<span class="fl">6.60</span>,<span class="fl">7.00</span>,<span class="fl">6.75</span>,<span class="fl">6.70</span>,<span class="fl">6.85</span>,<span class="fl">6.80</span>,<span class="fl">6.95</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -979,7 +986,7 @@ t = \frac{-0.143}{.325/\sqrt{22}}
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> dbar <span class="sc">/</span> (sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p_val  <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t_stat, df)   <span class="co"># one-sided, "&lt;" since After &lt; Before</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">n =</span> n, <span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">t_stat =</span> t_stat, <span class="at">df =</span> df, <span class="at">p_val =</span> p_val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">n =</span> n, <span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">t_stat =</span> t_stat, <span class="at">df =</span> df, <span class="at">p_val =</span> p_val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$n
 [1] 22
@@ -1019,11 +1026,11 @@ $p_val
 = (-0.001,\; 0.287)
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, df)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, df)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>CI95 <span class="ot">&lt;-</span> <span class="fu">c</span>(dbar <span class="sc">+</span> tcrit<span class="sc">*</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(n)), dbar <span class="sc">-</span> tcrit<span class="sc">*</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(n)))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">df =</span> df, <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">df =</span> df, <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$dbar
 [1] 0.1431818
@@ -1079,12 +1086,12 @@ $CI95
 <li>Give the 95% CI and interpret it in context.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Note</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1121,7 +1128,7 @@ t = \frac{\bar{d} - 0}{s_d/\sqrt{n}}
 <section id="r-code-to-verify" class="level4">
 <h4 class="anchored" data-anchor-id="r-code-to-verify">R code to verify</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fl">0.18</span>; sd <span class="ot">&lt;-</span> <span class="fl">0.22</span>; n <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fl">0.18</span>; sd <span class="ot">&lt;-</span> <span class="fl">0.22</span>; n <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> dbar <span class="sc">/</span> (sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
@@ -1132,7 +1139,7 @@ t = \frac{\bar{d} - 0}{s_d/\sqrt{n}}
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">dbar =</span> dbar, <span class="at">sd =</span> sd, <span class="at">n =</span> n, <span class="at">df =</span> df,</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">t_stat =</span> t_stat, <span class="at">p_val =</span> p_val,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">tcrit =</span> tcrit, <span class="at">CI95 =</span> CI95)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$dbar
 [1] 0.18
@@ -1238,13 +1245,14 @@ $CI95
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
