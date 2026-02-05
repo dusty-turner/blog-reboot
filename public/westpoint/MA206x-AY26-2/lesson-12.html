@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-12 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-11.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-12.html">Lesson 12</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-12-continuous-random-variables" id="toc-lesson-12-continuous-random-variables" class="nav-link active" data-scroll-target="#lesson-12-continuous-random-variables">Lesson 12: Continuous Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#what-we-did-lessons-611" id="toc-what-we-did-lessons-611" class="nav-link" data-scroll-target="#what-we-did-lessons-611">What We Did: Lessons 6–11</a>
+  <ul class="collapse">
+  <li><a href="#quick-review-probability-basics-lesson-6" id="toc-quick-review-probability-basics-lesson-6" class="nav-link" data-scroll-target="#quick-review-probability-basics-lesson-6">Quick Review: Probability Basics (Lesson 6)</a></li>
+  <li><a href="#quick-review-conditional-probability-lesson-7" id="toc-quick-review-conditional-probability-lesson-7" class="nav-link" data-scroll-target="#quick-review-conditional-probability-lesson-7">Quick Review: Conditional Probability (Lesson 7)</a></li>
+  <li><a href="#quick-review-counting-independence-lesson-8" id="toc-quick-review-counting-independence-lesson-8" class="nav-link" data-scroll-target="#quick-review-counting-independence-lesson-8">Quick Review: Counting &amp; Independence (Lesson 8)</a></li>
+  <li><a href="#quick-review-discrete-random-variables-lesson-9" id="toc-quick-review-discrete-random-variables-lesson-9" class="nav-link" data-scroll-target="#quick-review-discrete-random-variables-lesson-9">Quick Review: Discrete Random Variables (Lesson 9)</a></li>
+  <li><a href="#quick-review-binomial-distribution-lesson-10" id="toc-quick-review-binomial-distribution-lesson-10" class="nav-link" data-scroll-target="#quick-review-binomial-distribution-lesson-10">Quick Review: Binomial Distribution (Lesson 10)</a></li>
+  <li><a href="#quick-review-poisson-distribution-lesson-11" id="toc-quick-review-poisson-distribution-lesson-11" class="nav-link" data-scroll-target="#quick-review-poisson-distribution-lesson-11">Quick Review: Poisson Distribution (Lesson 11)</a></li>
+  </ul></li>
+  <li><a href="#what-were-doing-lesson-12" id="toc-what-were-doing-lesson-12" class="nav-link" data-scroll-target="#what-were-doing-lesson-12">What We’re Doing: Lesson 12</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#reese" id="toc-reese" class="nav-link" data-scroll-target="#reese">Reese</a></li>
+  <li><a href="#cal" id="toc-cal" class="nav-link" data-scroll-target="#cal">Cal</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#from-discrete-to-continuous" id="toc-from-discrete-to-continuous" class="nav-link" data-scroll-target="#from-discrete-to-continuous">From Discrete to Continuous</a>
+  <ul class="collapse">
+  <li><a href="#the-big-shift" id="toc-the-big-shift" class="nav-link" data-scroll-target="#the-big-shift">The Big Shift</a></li>
+  <li><a href="#discrete-vs.-continuous-a-comparison" id="toc-discrete-vs.-continuous-a-comparison" class="nav-link" data-scroll-target="#discrete-vs.-continuous-a-comparison">Discrete vs.&nbsp;Continuous: A Comparison</a></li>
+  </ul></li>
+  <li><a href="#probability-density-functions-pdfs" id="toc-probability-density-functions-pdfs" class="nav-link" data-scroll-target="#probability-density-functions-pdfs">Probability Density Functions (PDFs)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-pdf" id="toc-what-is-a-pdf" class="nav-link" data-scroll-target="#what-is-a-pdf">What is a PDF?</a></li>
+  <li><a href="#example-uniform-distribution" id="toc-example-uniform-distribution" class="nav-link" data-scroll-target="#example-uniform-distribution">Example: Uniform Distribution</a></li>
+  <li><a href="#computing-probabilities-from-the-pdf" id="toc-computing-probabilities-from-the-pdf" class="nav-link" data-scroll-target="#computing-probabilities-from-the-pdf">Computing Probabilities from the PDF</a></li>
+  <li><a href="#px-c-0-for-continuous-rvs" id="toc-px-c-0-for-continuous-rvs" class="nav-link" data-scroll-target="#px-c-0-for-continuous-rvs"><span class="math inline">\(P(X = c) = 0\)</span> for Continuous RVs</a></li>
+  </ul></li>
+  <li><a href="#the-cumulative-distribution-function-cdf" id="toc-the-cumulative-distribution-function-cdf" class="nav-link" data-scroll-target="#the-cumulative-distribution-function-cdf">The Cumulative Distribution Function (CDF)</a>
+  <ul class="collapse">
+  <li><a href="#cdf-for-continuous-rvs" id="toc-cdf-for-continuous-rvs" class="nav-link" data-scroll-target="#cdf-for-continuous-rvs">CDF for Continuous RVs</a></li>
+  <li><a href="#example-cdf-of-the-uniform-distribution" id="toc-example-cdf-of-the-uniform-distribution" class="nav-link" data-scroll-target="#example-cdf-of-the-uniform-distribution">Example: CDF of the Uniform Distribution</a></li>
+  </ul></li>
+  <li><a href="#a-non-uniform-example" id="toc-a-non-uniform-example" class="nav-link" data-scroll-target="#a-non-uniform-example">A Non-Uniform Example</a>
+  <ul class="collapse">
+  <li><a href="#triangular-pdf" id="toc-triangular-pdf" class="nav-link" data-scroll-target="#triangular-pdf">Triangular PDF</a></li>
+  </ul></li>
+  <li><a href="#expected-value-and-variance" id="toc-expected-value-and-variance" class="nav-link" data-scroll-target="#expected-value-and-variance">Expected Value and Variance</a>
+  <ul class="collapse">
+  <li><a href="#continuous-versions" id="toc-continuous-versions" class="nav-link" data-scroll-target="#continuous-versions">Continuous Versions</a></li>
+  <li><a href="#example-uniform-distribution-parameters" id="toc-example-uniform-distribution-parameters" class="nav-link" data-scroll-target="#example-uniform-distribution-parameters">Example: Uniform Distribution Parameters</a></li>
+  <li><a href="#example-triangular-distribution-parameters" id="toc-example-triangular-distribution-parameters" class="nav-link" data-scroll-target="#example-triangular-distribution-parameters">Example: Triangular Distribution Parameters</a></li>
+  <li><a href="#r-for-continuous-distributions" id="toc-r-for-continuous-distributions" class="nav-link" data-scroll-target="#r-for-continuous-distributions">R for Continuous Distributions</a></li>
+  </ul></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-equipment-inspection-time" id="toc-problem-1-equipment-inspection-time" class="nav-link" data-scroll-target="#problem-1-equipment-inspection-time">Problem 1: Equipment Inspection Time</a></li>
+  <li><a href="#problem-2-sentry-duty-wait-time" id="toc-problem-2-sentry-duty-wait-time" class="nav-link" data-scroll-target="#problem-2-sentry-duty-wait-time">Problem 2: Sentry Duty Wait Time</a></li>
+  <li><a href="#problem-3-fuel-consumption" id="toc-problem-3-fuel-consumption" class="nav-link" data-scroll-target="#problem-3-fuel-consumption">Problem 3: Fuel Consumption</a></li>
+  <li><a href="#problem-4-marksmanship-score" id="toc-problem-4-marksmanship-score" class="nav-link" data-scroll-target="#problem-4-marksmanship-score">Problem 4: Marksmanship Score</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-12-continuous-random-variables" class="level1">
+<h1>Lesson 12: Continuous Random Variables</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-12_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Normal distribution — when you go from discrete to continuous, suddenly everything is about areas under curves.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="what-we-did-lessons-611" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-611">What We Did: Lessons 6–11</h2>
+<section id="quick-review-probability-basics-lesson-6" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-probability-basics-lesson-6">Quick Review: Probability Basics (Lesson 6)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 6">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sample Spaces and Events:</strong></p>
+<ul>
+<li>Sample space <span class="math inline">\(S\)</span> = set of all possible outcomes</li>
+<li>Event = subset of the sample space</li>
+<li>Operations: Union (<span class="math inline">\(A \cup B\)</span>), Intersection (<span class="math inline">\(A \cap B\)</span>), Complement (<span class="math inline">\(A^c\)</span>)</li>
+</ul>
+<p><strong>Kolmogorov Axioms:</strong></p>
+<ol type="1">
+<li><span class="math inline">\(P(A) \geq 0\)</span></li>
+<li><span class="math inline">\(P(S) = 1\)</span></li>
+<li>For mutually exclusive events: <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+</ol>
+<p><strong>Key Rules:</strong></p>
+<ul>
+<li>Complement Rule: <span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
+<li>Addition Rule: <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="quick-review-conditional-probability-lesson-7" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-conditional-probability-lesson-7">Quick Review: Conditional Probability (Lesson 7)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 7">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 7
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Conditional Probability:</strong> <span class="math display">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]</span></p>
+<p><strong>Multiplication Rule:</strong> <span class="math display">\[P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)\]</span></p>
+<p><strong>Law of Total Probability:</strong> <span class="math display">\[P(A) = P(B) \cdot P(A \mid B) + P(B^c) \cdot P(A \mid B^c)\]</span></p>
+<p><strong>Bayes’ Theorem:</strong> <span class="math display">\[P(B \mid A) = \frac{P(B) \cdot P(A \mid B)}{P(B) \cdot P(A \mid B) + P(B^c) \cdot P(A \mid B^c)}\]</span></p>
+</div>
+</div>
+</section>
+<section id="quick-review-counting-independence-lesson-8" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-counting-independence-lesson-8">Quick Review: Counting &amp; Independence (Lesson 8)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 8">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 8
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Counting Formulas:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 45%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>With Replacement</strong></th>
+<th style="text-align: center;"><strong>Without Replacement</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ordered</strong></td>
+<td style="text-align: center;"><span class="math inline">\(n^k\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(n,k) = \frac{n!}{(n-k)!}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Unordered</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\binom{n+k-1}{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Independence:</strong></p>
+<ul>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span></li>
+<li>Equivalently: <span class="math inline">\(P(A \mid B) = P(A)\)</span></li>
+<li>Independent <span class="math inline">\(\neq\)</span> Mutually Exclusive!</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="quick-review-discrete-random-variables-lesson-9" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-discrete-random-variables-lesson-9">Quick Review: Discrete Random Variables (Lesson 9)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 9">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 9
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Random Variables:</strong></p>
+<ul>
+<li>A random variable <span class="math inline">\(X\)</span> assigns a numerical value to each outcome in a sample space</li>
+<li>Discrete RVs take finite or countably infinite values</li>
+</ul>
+<p><strong>PMF:</strong> <span class="math inline">\(p(x) = P(X = x)\)</span> with <span class="math inline">\(p(x) \geq 0\)</span> and <span class="math inline">\(\sum p(x) = 1\)</span></p>
+<p><strong>CDF:</strong> <span class="math inline">\(F(x) = P(X \leq x) = \sum_{y \leq x} p(y)\)</span></p>
+<p><strong>Expected Value:</strong> <span class="math inline">\(E(X) = \sum x \cdot p(x)\)</span></p>
+<p><strong>Variance:</strong> <span class="math inline">\(Var(X) = \sum (x - \mu)^2 \cdot p(x) = E(X^2) - [E(X)]^2\)</span></p>
+</div>
+</div>
+</section>
+<section id="quick-review-binomial-distribution-lesson-10" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-binomial-distribution-lesson-10">Quick Review: Binomial Distribution (Lesson 10)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 10">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 10
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>BINS Conditions:</strong></p>
+<ol type="1">
+<li><strong>B</strong>inary outcomes (success/failure)</li>
+<li><strong>I</strong>ndependent trials</li>
+<li><strong>N</strong>umber of trials is fixed (<span class="math inline">\(n\)</span>)</li>
+<li><strong>S</strong>ame probability (<span class="math inline">\(p\)</span>) each trial</li>
+</ol>
+<p><strong>Key Formulas:</strong> If <span class="math inline">\(X \sim \text{Binomial}(n, p)\)</span>:</p>
+<ul>
+<li>PMF: <span class="math inline">\(P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}\)</span></li>
+<li>Mean: <span class="math inline">\(E(X) = np\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = np(1-p)\)</span></li>
+</ul>
+<p><strong>R Functions:</strong> <code>dbinom(x, size, prob)</code> for PMF, <code>pbinom(x, size, prob)</code> for CDF</p>
+</div>
+</div>
+</section>
+<section id="quick-review-poisson-distribution-lesson-11" class="level3">
+<h3 class="anchored" data-anchor-id="quick-review-poisson-distribution-lesson-11">Quick Review: Poisson Distribution (Lesson 11)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 11">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 11
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>When to Use Poisson:</strong></p>
+<ul>
+<li>Counting events in a <strong>fixed interval</strong> (time, area, volume)</li>
+<li>Events occur <strong>independently</strong> at a <strong>constant average rate</strong> <span class="math inline">\(\lambda\)</span></li>
+</ul>
+<p><strong>Key Formulas:</strong> If <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span>:</p>
+<ul>
+<li>PMF: <span class="math inline">\(P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}, \quad x = 0, 1, 2, \ldots\)</span></li>
+<li>Mean: <span class="math inline">\(E(X) = \lambda\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = \lambda\)</span></li>
+</ul>
+<p><strong>R Functions:</strong> <code>dpois(x, lambda)</code> for PMF, <code>ppois(x, lambda)</code> for CDF</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-were-doing-lesson-12" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-12">What We’re Doing: Lesson 12</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Interpret PDFs and areas as probabilities</li>
+<li>Compute probabilities from PDFs and CDFs</li>
+<li>Find <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(Var(X)\)</span> for continuous random variables</li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Sections 4.1, 4.2</p>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="reese" class="level3">
+<h3 class="anchored" data-anchor-id="reese">Reese</h3>
+<!-- TODO: Add Reese videos/photos -->
+<!-- Example format:
+<video width="100%" controls>
+  <source src="assets/img/VIDEO_FILE.mp4" type="video/mp4">
+</video>
+
+![](assets/img/IMAGE_FILE.jpg){fig-align="center" width="50%"}
+-->
+</section>
+<section id="cal" class="level3">
+<h3 class="anchored" data-anchor-id="cal">Cal</h3>
+<!-- TODO: Add Cal photos -->
+<!-- Example format:
+![](assets/img/DSC_XXXX.jpeg){fig-align="center" width="50%"}
+-->
+<hr>
+<!-- ### DMath Volleyball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 11-1"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/volleyball.png){fig-align="center" width="50%"}
+
+### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 8-2"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"} -->
+<hr>
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts: Continuous Random Variables">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts: Continuous Random Variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Continuous vs.&nbsp;Discrete:</strong></p>
+<ul>
+<li>Discrete RVs: probabilities come from a <strong>PMF</strong> — <span class="math inline">\(P(X = x)\)</span></li>
+<li>Continuous RVs: probabilities come from <strong>areas under a PDF</strong> — <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)\,dx\)</span></li>
+</ul>
+<p><strong>Probability Density Function (PDF):</strong> <span class="math inline">\(f(x)\)</span> where:</p>
+<ul>
+<li><span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x)\,dx = 1\)</span></li>
+<li><span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)\,dx\)</span></li>
+</ul>
+<p><strong>Cumulative Distribution Function (CDF):</strong> <span class="math display">\[F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt\]</span></p>
+<p><strong>Expected Value and Variance:</strong></p>
+<ul>
+<li><span class="math inline">\(E(X) = \int_{-\infty}^{\infty} x \cdot f(x)\,dx\)</span></li>
+<li><span class="math inline">\(Var(X) = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x)\,dx = E(X^2) - [E(X)]^2\)</span></li>
+</ul>
+<p><strong>Critical Difference:</strong> For continuous RVs, <span class="math inline">\(P(X = c) = 0\)</span> for any single value <span class="math inline">\(c\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="from-discrete-to-continuous" class="level2">
+<h2 class="anchored" data-anchor-id="from-discrete-to-continuous">From Discrete to Continuous</h2>
+<section id="the-big-shift" class="level3">
+<h3 class="anchored" data-anchor-id="the-big-shift">The Big Shift</h3>
+<p>In Lessons 9–11, we worked with <strong>discrete</strong> random variables — they take on countable values (0, 1, 2, …), and we assign probability to each value using a PMF.</p>
+<p>But many quantities in the real world are <strong>continuous</strong>:</p>
+<ul>
+<li>Time until a piece of equipment fails</li>
+<li>Weight of ammunition in a crate</li>
+<li>Distance a mortar round travels</li>
+<li>Body temperature of a soldier</li>
+</ul>
+<p>For these, <span class="math inline">\(X\)</span> can take <strong>any value</strong> in an interval. There are infinitely (uncountably!) many possible values, so we can’t assign probability to each one individually.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="The Key Idea">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The Key Idea
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For continuous random variables, we don’t ask “What is <span class="math inline">\(P(X = x)\)</span>?” — that probability is always <strong>zero</strong>.</p>
+<p>Instead, we ask “What is <span class="math inline">\(P(a \leq X \leq b)\)</span>?” — the probability that <span class="math inline">\(X\)</span> falls in an <strong>interval</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="discrete-vs.-continuous-a-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-vs.-continuous-a-comparison">Discrete vs.&nbsp;Continuous: A Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 32%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Discrete</th>
+<th>Continuous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Values</strong></td>
+<td>Countable (0, 1, 2, …)</td>
+<td>Any value in an interval</td>
+</tr>
+<tr class="even">
+<td><strong>Probability of one value</strong></td>
+<td><span class="math inline">\(P(X = x) = p(x) &gt; 0\)</span></td>
+<td><span class="math inline">\(P(X = x) = 0\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Probability of interval</strong></td>
+<td>Sum the PMF: <span class="math inline">\(\sum p(x)\)</span></td>
+<td>Area under PDF: <span class="math inline">\(\int f(x)\,dx\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Distribution function</strong></td>
+<td>PMF: <span class="math inline">\(p(x)\)</span></td>
+<td>PDF: <span class="math inline">\(f(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>CDF</strong></td>
+<td>Step function</td>
+<td>Smooth curve</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="probability-density-functions-pdfs" class="level2">
+<h2 class="anchored" data-anchor-id="probability-density-functions-pdfs">Probability Density Functions (PDFs)</h2>
+<section id="what-is-a-pdf" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-pdf">What is a PDF?</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Probability Density Function (PDF)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Probability Density Function (PDF)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>probability density function</strong> <span class="math inline">\(f(x)\)</span> for a continuous random variable <span class="math inline">\(X\)</span> satisfies:</p>
+<ol type="1">
+<li><span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x)\,dx = 1\)</span> (total area under the curve equals 1)</li>
+</ol>
+<p>Probabilities are computed as <strong>areas under the curve</strong>:</p>
+<p><span class="math display">\[P(a \leq X \leq b) = \int_a^b f(x)\,dx\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="PDF Values Are NOT Probabilities!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>PDF Values Are NOT Probabilities!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unlike the PMF, the value <span class="math inline">\(f(x)\)</span> is <strong>not</strong> <span class="math inline">\(P(X = x)\)</span>. The PDF gives <strong>density</strong>, not probability. In fact, <span class="math inline">\(f(x)\)</span> can be greater than 1!</p>
+<p>Probability only comes from <strong>areas</strong> — integrating the PDF over an interval.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-uniform-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="example-uniform-distribution">Example: Uniform Distribution</h3>
+<p>A supply convoy is scheduled to arrive between 0800 and 1000 (a 2-hour window). The actual arrival time is equally likely to be any time in that window.</p>
+<p>Let <span class="math inline">\(X\)</span> = arrival time (in hours after 0800), so <span class="math inline">\(X\)</span> ranges from 0 to 2.</p>
+<p>The PDF is:</p>
+<p><span class="math display">\[f(x) = \begin{cases} \frac{1}{2} &amp; 0 \leq x \leq 2 \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-12_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Verify:</strong> The total area is <span class="math inline">\(\frac{1}{2} \times 2 = 1\)</span>. ✓</p>
+<hr>
+</section>
+<section id="computing-probabilities-from-the-pdf" class="level3">
+<h3 class="anchored" data-anchor-id="computing-probabilities-from-the-pdf">Computing Probabilities from the PDF</h3>
+<p><strong>What is the probability the convoy arrives in the first hour (before 0900)?</strong></p>
+<p><span class="math display">\[P(0 \leq X \leq 1) = \int_0^1 \frac{1}{2}\,dx = \frac{1}{2} \times 1 = 0.5\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-12_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>What about <span class="math inline">\(P(0.5 \leq X \leq 1.5)\)</span> — arrives between 0830 and 0930?</strong></p>
+<p><span class="math display">\[P(0.5 \leq X \leq 1.5) = \int_{0.5}^{1.5} \frac{1}{2}\,dx = \frac{1}{2} \times 1 = 0.5\]</span></p>
+<p>For a uniform distribution on <span class="math inline">\([a,b]\)</span>: any interval of the <strong>same length</strong> has the <strong>same probability</strong>.</p>
+<hr>
+</section>
+<section id="px-c-0-for-continuous-rvs" class="level3">
+<h3 class="anchored" data-anchor-id="px-c-0-for-continuous-rvs"><span class="math inline">\(P(X = c) = 0\)</span> for Continuous RVs</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="A Critical Fact">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>A Critical Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For any continuous random variable:</p>
+<p><span class="math display">\[P(X = c) = \int_c^c f(x)\,dx = 0\]</span></p>
+<p>The “area” under a curve at a single point is zero.</p>
+<p><strong>Practical consequence:</strong></p>
+<p><span class="math display">\[P(a \leq X \leq b) = P(a &lt; X &lt; b) = P(a \leq X &lt; b) = P(a &lt; X \leq b)\]</span></p>
+<p>It doesn’t matter whether we include the endpoints — the probability is the same!</p>
+</div>
+</div>
+<p>This is very different from discrete RVs, where <span class="math inline">\(P(X = x)\)</span> can be large. For continuous RVs, probability only accumulates over <strong>intervals</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="the-cumulative-distribution-function-cdf" class="level2">
+<h2 class="anchored" data-anchor-id="the-cumulative-distribution-function-cdf">The Cumulative Distribution Function (CDF)</h2>
+<section id="cdf-for-continuous-rvs" class="level3">
+<h3 class="anchored" data-anchor-id="cdf-for-continuous-rvs">CDF for Continuous RVs</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Cumulative Distribution Function">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Cumulative Distribution Function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The CDF of a continuous random variable <span class="math inline">\(X\)</span> with PDF <span class="math inline">\(f(x)\)</span> is:</p>
+<p><span class="math display">\[F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt\]</span></p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><span class="math inline">\(F(x)\)</span> is non-decreasing</li>
+<li><span class="math inline">\(\lim_{x \to -\infty} F(x) = 0\)</span> and <span class="math inline">\(\lim_{x \to \infty} F(x) = 1\)</span></li>
+<li><span class="math inline">\(P(a \leq X \leq b) = F(b) - F(a)\)</span></li>
+<li><span class="math inline">\(f(x) = F'(x)\)</span> — the PDF is the derivative of the CDF</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-cdf-of-the-uniform-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="example-cdf-of-the-uniform-distribution">Example: CDF of the Uniform Distribution</h3>
+<p>For our convoy arrival time <span class="math inline">\(X \sim \text{Uniform}(0, 2)\)</span>:</p>
+<p><span class="math display">\[F(x) = \begin{cases} 0 &amp; x &lt; 0 \\ \frac{x}{2} &amp; 0 \leq x \leq 2 \\ 1 &amp; x &gt; 2 \end{cases}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-12_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Using the CDF:</strong> <span class="math inline">\(P(0.5 \leq X \leq 1.5) = F(1.5) - F(0.5) = \frac{1.5}{2} - \frac{0.5}{2} = 0.75 - 0.25 = 0.50\)</span></p>
+<hr>
+</section>
+</section>
+<section id="a-non-uniform-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-non-uniform-example">A Non-Uniform Example</h2>
+<section id="triangular-pdf" class="level3">
+<h3 class="anchored" data-anchor-id="triangular-pdf">Triangular PDF</h3>
+<p>Suppose a platoon’s patrol completion time (in hours) follows a triangular distribution:</p>
+<p><span class="math display">\[f(x) = \begin{cases} x &amp; 0 \leq x \leq 1 \\ 2 - x &amp; 1 &lt; x \leq 2 \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-12_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Verify it’s a valid PDF:</strong></p>
+<p><span class="math display">\[\int_0^1 x\,dx + \int_1^2 (2-x)\,dx = \frac{1}{2} + \frac{1}{2} = 1 \quad \checkmark\]</span></p>
+<p><strong>What is <span class="math inline">\(P(X \leq 0.5)\)</span>?</strong></p>
+<p><span class="math display">\[P(X \leq 0.5) = \int_0^{0.5} x\,dx = \frac{x^2}{2}\Bigg|_0^{0.5} = \frac{0.25}{2} = 0.125\]</span></p>
+<p>Only a 12.5% chance the patrol finishes in under 30 minutes — most of the probability mass is near <span class="math inline">\(x = 1\)</span>.</p>
+<p><strong>What is <span class="math inline">\(P(0.5 \leq X \leq 1.5)\)</span>?</strong></p>
+<p><span class="math display">\[P(0.5 \leq X \leq 1.5) = \int_{0.5}^{1} x\,dx + \int_1^{1.5} (2-x)\,dx\]</span></p>
+<p><span class="math display">\[= \left[\frac{x^2}{2}\right]_{0.5}^{1} + \left[2x - \frac{x^2}{2}\right]_1^{1.5}\]</span></p>
+<p><span class="math display">\[= \left(\frac{1}{2} - \frac{0.25}{2}\right) + \left(\left(3 - \frac{2.25}{2}\right) - \left(2 - \frac{1}{2}\right)\right)\]</span></p>
+<p><span class="math display">\[= 0.375 + 0.375 = 0.75\]</span></p>
+<hr>
+</section>
+</section>
+<section id="expected-value-and-variance" class="level2">
+<h2 class="anchored" data-anchor-id="expected-value-and-variance">Expected Value and Variance</h2>
+<section id="continuous-versions" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-versions">Continuous Versions</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Expected Value and Variance for Continuous RVs">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Expected Value and Variance for Continuous RVs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X\)</span> is a continuous random variable with PDF <span class="math inline">\(f(x)\)</span>:</p>
+<p><strong>Expected Value (Mean):</strong> <span class="math display">\[E(X) = \mu = \int_{-\infty}^{\infty} x \cdot f(x)\,dx\]</span></p>
+<p><strong>Expected Value of <span class="math inline">\(g(X)\)</span>:</strong> <span class="math display">\[E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x)\,dx\]</span></p>
+<p><strong>Variance:</strong> <span class="math display">\[Var(X) = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x)\,dx = E(X^2) - [E(X)]^2\]</span></p>
+<p><strong>Standard Deviation:</strong> <span class="math display">\[SD(X) = \sigma = \sqrt{Var(X)}\]</span></p>
+</div>
+</div>
+<p>These are the <strong>exact same concepts</strong> as in the discrete case — just replace sums (<span class="math inline">\(\sum\)</span>) with integrals (<span class="math inline">\(\int\)</span>).</p>
+<hr>
+</section>
+<section id="example-uniform-distribution-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="example-uniform-distribution-parameters">Example: Uniform Distribution Parameters</h3>
+<p>For <span class="math inline">\(X \sim \text{Uniform}(a, b)\)</span> with <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span> on <span class="math inline">\([a, b]\)</span>:</p>
+<p><span class="math display">\[E(X) = \int_a^b x \cdot \frac{1}{b-a}\,dx = \frac{a+b}{2}\]</span></p>
+<p><span class="math display">\[Var(X) = \frac{(b-a)^2}{12}\]</span></p>
+<p>For our convoy arrival time with <span class="math inline">\(a = 0\)</span>, <span class="math inline">\(b = 2\)</span>:</p>
+<p><span class="math display">\[E(X) = \frac{0 + 2}{2} = 1 \text{ hour (expected arrival: 0900)}\]</span></p>
+<p><span class="math display">\[Var(X) = \frac{(2-0)^2}{12} = \frac{1}{3} \approx 0.333 \text{ hours}^2\]</span></p>
+<p><span class="math display">\[SD(X) = \sqrt{\frac{1}{3}} \approx 0.577 \text{ hours} \approx 35 \text{ minutes}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Uniform Distribution Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Uniform Distribution Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X \sim \text{Uniform}(a, b)\)</span>:</p>
+<ul>
+<li>PDF: <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span> for <span class="math inline">\(a \leq x \leq b\)</span></li>
+<li>CDF: <span class="math inline">\(F(x) = \frac{x - a}{b - a}\)</span> for <span class="math inline">\(a \leq x \leq b\)</span></li>
+<li>Mean: <span class="math inline">\(E(X) = \frac{a+b}{2}\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = \frac{(b-a)^2}{12}\)</span></li>
+</ul>
+<p><strong>R Functions:</strong> <code>dunif(x, min, max)</code> for PDF, <code>punif(x, min, max)</code> for CDF</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-triangular-distribution-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="example-triangular-distribution-parameters">Example: Triangular Distribution Parameters</h3>
+<p>For our triangular PDF with patrol completion time:</p>
+<p><span class="math display">\[E(X) = \int_0^1 x \cdot x\,dx + \int_1^2 x(2-x)\,dx\]</span></p>
+<p><span class="math display">\[= \int_0^1 x^2\,dx + \int_1^2 (2x - x^2)\,dx\]</span></p>
+<p><span class="math display">\[= \frac{1}{3} + \left[x^2 - \frac{x^3}{3}\right]_1^2\]</span></p>
+<p><span class="math display">\[= \frac{1}{3} + \left(4 - \frac{8}{3}\right) - \left(1 - \frac{1}{3}\right) = \frac{1}{3} + \frac{4}{3} - \frac{2}{3} = 1\]</span></p>
+<p>The expected patrol time is 1 hour — right at the peak of the triangle. Makes sense!</p>
+<hr>
+</section>
+<section id="r-for-continuous-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="r-for-continuous-distributions">R for Continuous Distributions</h3>
+<p>For the uniform distribution, R provides built-in functions:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PDF at x = 0.5 for Uniform(0, 2)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="fl">0.5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CDF at x = 1.5: P(X &lt;= 1.5)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">1.5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(0.5 &lt;= X &lt;= 1.5)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">1.5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">2</span>) <span class="sc">-</span> <span class="fu">punif</span>(<span class="fl">0.5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<p>For custom PDFs, we can use <code>integrate()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the triangular PDF</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tri_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="dv">1</span>, x,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="sc">-</span> x, <span class="dv">0</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify total area = 1</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(tri_pdf, <span class="at">lower =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">upper =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 with absolute error &lt; 9.2e-05</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(X &lt;= 0.5)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(tri_pdf, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.125 with absolute error &lt; 1.4e-15</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E(X)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) x <span class="sc">*</span> <span class="fu">tri_pdf</span>(x), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 with absolute error &lt; 1.1e-14</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-equipment-inspection-time" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-equipment-inspection-time">Problem 1: Equipment Inspection Time</h3>
+<p>At an arms room, the time (in minutes) for a weapon inspection follows a continuous distribution with PDF:</p>
+<p><span class="math display">\[f(x) = \begin{cases} \frac{x}{18} &amp; 0 \leq x \leq 6 \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Verify that <span class="math inline">\(f(x)\)</span> is a valid PDF (show the total area equals 1).</p></li>
+<li><p>What is the probability an inspection takes less than 3 minutes?</p></li>
+<li><p>What is <span class="math inline">\(P(2 \leq X \leq 5)\)</span>?</p></li>
+<li><p>Find the CDF <span class="math inline">\(F(x)\)</span>.</p></li>
+<li><p>Find <span class="math inline">\(E(X)\)</span> — the expected inspection time.</p></li>
+<li><p>Find <span class="math inline">\(Var(X)\)</span> and <span class="math inline">\(SD(X)\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(\int_0^6 \frac{x}{18}\,dx = \frac{x^2}{36}\Big|_0^6 = \frac{36}{36} = 1\)</span> ✓</p></li>
+<li><p><span class="math inline">\(P(X &lt; 3) = \int_0^3 \frac{x}{18}\,dx = \frac{x^2}{36}\Big|_0^3 = \frac{9}{36} = 0.25\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) x <span class="sc">/</span> <span class="dv">18</span>, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.25 with absolute error &lt; 2.8e-15</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(2 \leq X \leq 5) = \int_2^5 \frac{x}{18}\,dx = \frac{x^2}{36}\Big|_2^5 = \frac{25}{36} - \frac{4}{36} = \frac{21}{36} \approx 0.583\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) x <span class="sc">/</span> <span class="dv">18</span>, <span class="at">lower =</span> <span class="dv">2</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.5833333 with absolute error &lt; 6.5e-15</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>For <span class="math inline">\(0 \leq x \leq 6\)</span>: <span class="math display">\[F(x) = \int_0^x \frac{t}{18}\,dt = \frac{x^2}{36}\]</span></li>
+</ol>
+<p>So: <span class="math inline">\(F(x) = \begin{cases} 0 &amp; x &lt; 0 \\ x^2/36 &amp; 0 \leq x \leq 6 \\ 1 &amp; x &gt; 6 \end{cases}\)</span></p>
+<ol start="5" type="a">
+<li><span class="math inline">\(E(X) = \int_0^6 x \cdot \frac{x}{18}\,dx = \int_0^6 \frac{x^2}{18}\,dx = \frac{x^3}{54}\Big|_0^6 = \frac{216}{54} = 4\)</span> minutes</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) x <span class="sc">*</span> (x <span class="sc">/</span> <span class="dv">18</span>), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4 with absolute error &lt; 4.4e-14</code></pre>
+</div>
+</div>
+<ol start="6" type="a">
+<li><span class="math inline">\(E(X^2) = \int_0^6 x^2 \cdot \frac{x}{18}\,dx = \int_0^6 \frac{x^3}{18}\,dx = \frac{x^4}{72}\Big|_0^6 = \frac{1296}{72} = 18\)</span></li>
+</ol>
+<p><span class="math inline">\(Var(X) = E(X^2) - [E(X)]^2 = 18 - 16 = 2\)</span> min<span class="math inline">\(^2\)</span></p>
+<p><span class="math inline">\(SD(X) = \sqrt{2} \approx 1.414\)</span> minutes</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>EX2 <span class="ot">&lt;-</span> <span class="fu">integrate</span>(<span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (x <span class="sc">/</span> <span class="dv">18</span>), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">6</span>)<span class="sc">$</span>value</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>EX2 <span class="sc">-</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>  <span class="co"># Var(X)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(EX2 <span class="sc">-</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)  <span class="co"># SD(X)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.414214</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-sentry-duty-wait-time" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-sentry-duty-wait-time">Problem 2: Sentry Duty Wait Time</h3>
+<p>A sentry expects a supply truck sometime during their 4-hour shift. The arrival time is uniformly distributed over the 4-hour window. Let <span class="math inline">\(X\)</span> = time (in hours) until the truck arrives.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Write down the PDF and identify the distribution of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>What is <span class="math inline">\(P(X \leq 1)\)</span> — the truck arrives in the first hour?</p></li>
+<li><p>What is <span class="math inline">\(P(1 \leq X \leq 3)\)</span>?</p></li>
+<li><p>What are <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(SD(X)\)</span>?</p></li>
+<li><p>The sentry’s shift ends at hour 4. They get relieved early at hour 3. What is the probability the truck has already arrived?</p></li>
+<li><p>What is the probability the truck arrives in the last 30 minutes of the shift?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(X \sim \text{Uniform}(0, 4)\)</span>, so <span class="math inline">\(f(x) = \frac{1}{4}\)</span> for <span class="math inline">\(0 \leq x \leq 4\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 1) = \frac{1}{4} \times 1 = 0.25\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.25</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(1 \leq X \leq 3) = \frac{1}{4} \times 2 = 0.50\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">3</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>) <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li><span class="math inline">\(E(X) = \frac{0 + 4}{2} = 2\)</span> hours</li>
+</ol>
+<p><span class="math inline">\(Var(X) = \frac{(4-0)^2}{12} = \frac{16}{12} = \frac{4}{3}\)</span></p>
+<p><span class="math inline">\(SD(X) = \sqrt{4/3} \approx 1.155\)</span> hours</p>
+<ol start="5" type="a">
+<li><span class="math inline">\(P(X \leq 3) = F(3) = \frac{3}{4} = 0.75\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">3</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+</div>
+<ol start="6" type="a">
+<li><span class="math inline">\(P(3.5 \leq X \leq 4) = \frac{1}{4} \times 0.5 = 0.125\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>) <span class="sc">-</span> <span class="fu">punif</span>(<span class="fl">3.5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.125</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-fuel-consumption" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-fuel-consumption">Problem 3: Fuel Consumption</h3>
+<p>A tactical vehicle’s fuel consumption rate (gallons per mile) on a certain terrain follows the PDF:</p>
+<p><span class="math display">\[f(x) = \begin{cases} 6x(1-x) &amp; 0 \leq x \leq 1 \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Verify this is a valid PDF.</p></li>
+<li><p>What is the probability the fuel consumption rate is less than 0.5 gallons per mile?</p></li>
+<li><p>What is the probability the rate is between 0.25 and 0.75?</p></li>
+<li><p>Find <span class="math inline">\(E(X)\)</span> — the expected fuel consumption rate.</p></li>
+<li><p>Find <span class="math inline">\(Var(X)\)</span> and <span class="math inline">\(SD(X)\)</span>.</p></li>
+<li><p>Is it more likely that the rate is above or below 0.5? Explain.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(\int_0^1 6x(1-x)\,dx = \int_0^1 (6x - 6x^2)\,dx = \left[3x^2 - 2x^3\right]_0^1 = 3 - 2 = 1\)</span> ✓</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) <span class="dv">6</span> <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 with absolute error &lt; 1.1e-14</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li><span class="math inline">\(P(X &lt; 0.5) = \int_0^{0.5} 6x(1-x)\,dx = \left[3x^2 - 2x^3\right]_0^{0.5} = 0.75 - 0.25 = 0.50\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) <span class="dv">6</span> <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.5 with absolute error &lt; 5.6e-15</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(0.25 \leq X \leq 0.75) = \int_{0.25}^{0.75} 6x(1-x)\,dx\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) <span class="dv">6</span> <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x), <span class="at">lower =</span> <span class="fl">0.25</span>, <span class="at">upper =</span> <span class="fl">0.75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.6875 with absolute error &lt; 7.6e-15</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li><span class="math inline">\(E(X) = \int_0^1 x \cdot 6x(1-x)\,dx = \int_0^1 (6x^2 - 6x^3)\,dx = \left[2x^3 - \frac{3x^4}{2}\right]_0^1 = 2 - 1.5 = 0.5\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) x <span class="sc">*</span> <span class="dv">6</span> <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.5 with absolute error &lt; 5.6e-15</code></pre>
+</div>
+</div>
+<ol start="5" type="a">
+<li><span class="math inline">\(E(X^2) = \int_0^1 x^2 \cdot 6x(1-x)\,dx = \int_0^1 (6x^3 - 6x^4)\,dx = \left[\frac{3x^4}{2} - \frac{6x^5}{5}\right]_0^1 = 1.5 - 1.2 = 0.3\)</span></li>
+</ol>
+<p><span class="math inline">\(Var(X) = 0.3 - 0.25 = 0.05\)</span></p>
+<p><span class="math inline">\(SD(X) = \sqrt{0.05} \approx 0.224\)</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>EX2 <span class="ot">&lt;-</span> <span class="fu">integrate</span>(<span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">6</span> <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x), <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)<span class="sc">$</span>value</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>EX2 <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">^</span><span class="dv">2</span>  <span class="co"># Var(X)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(EX2 <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">^</span><span class="dv">2</span>)  <span class="co"># SD(X)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2236068</code></pre>
+</div>
+</div>
+<ol start="6" type="a">
+<li>Exactly equally likely! The PDF <span class="math inline">\(f(x) = 6x(1-x)\)</span> is <strong>symmetric</strong> about <span class="math inline">\(x = 0.5\)</span>, and we showed <span class="math inline">\(P(X &lt; 0.5) = 0.50\)</span>. So <span class="math inline">\(P(X &gt; 0.5) = 0.50\)</span> as well.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-marksmanship-score" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-marksmanship-score">Problem 4: Marksmanship Score</h3>
+<p>A cadet’s marksmanship score on a standardized assessment is uniformly distributed between 60 and 100 points. Let <span class="math inline">\(X\)</span> = the cadet’s score.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>What is the PDF of <span class="math inline">\(X\)</span>?</p></li>
+<li><p>What is <span class="math inline">\(P(X \geq 90)\)</span> — the probability of scoring 90 or above?</p></li>
+<li><p>What is the probability the score is between 70 and 85?</p></li>
+<li><p>What are <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(SD(X)\)</span>?</p></li>
+<li><p>A score of 80 or above is “Expert.” What percentage of cadets qualify as Expert?</p></li>
+<li><p>Given that a cadet scored at least 75, what is the probability they scored at least 90? (<em>Hint:</em> use conditional probability with the CDF)</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(X \sim \text{Uniform}(60, 100)\)</span>, so <span class="math inline">\(f(x) = \frac{1}{100-60} = \frac{1}{40}\)</span> for <span class="math inline">\(60 \leq x \leq 100\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 90) = \frac{100 - 90}{40} = \frac{10}{40} = 0.25\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">90</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.25</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(70 \leq X \leq 85) = \frac{85 - 70}{40} = \frac{15}{40} = 0.375\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">85</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>) <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">70</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.375</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li><span class="math inline">\(E(X) = \frac{60 + 100}{2} = 80\)</span></li>
+</ol>
+<p><span class="math inline">\(Var(X) = \frac{(100 - 60)^2}{12} = \frac{1600}{12} \approx 133.33\)</span></p>
+<p><span class="math inline">\(SD(X) = \sqrt{133.33} \approx 11.55\)</span></p>
+<ol start="5" type="a">
+<li><span class="math inline">\(P(X \geq 80) = \frac{100 - 80}{40} = \frac{20}{40} = 0.50\)</span> — 50% qualify as Expert.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">80</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<ol start="6" type="a">
+<li><span class="math inline">\(P(X \geq 90 \mid X \geq 75) = \frac{P(X \geq 90)}{P(X \geq 75)} = \frac{10/40}{25/40} = \frac{10}{25} = 0.40\)</span></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">90</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>)) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">punif</span>(<span class="dv">75</span>, <span class="at">min =</span> <span class="dv">60</span>, <span class="at">max =</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li><strong>Continuous</strong> RVs have probabilities given by <strong>areas under the PDF</strong>, not by the PMF</li>
+<li>PDF: <span class="math inline">\(f(x) \geq 0\)</span> and <span class="math inline">\(\int f(x)\,dx = 1\)</span> — but <span class="math inline">\(f(x)\)</span> is density, not probability</li>
+<li>CDF: <span class="math inline">\(F(x) = P(X \leq x)\)</span> — use it to compute <span class="math inline">\(P(a \leq X \leq b) = F(b) - F(a)\)</span></li>
+<li><span class="math inline">\(P(X = c) = 0\)</span> for continuous RVs — endpoints don’t matter</li>
+<li><span class="math inline">\(E(X)\)</span> and <span class="math inline">\(Var(X)\)</span> use integrals instead of sums, but the formulas are analogous</li>
+<li>R: <code>dunif()</code>, <code>punif()</code> for uniform; <code>integrate()</code> for custom PDFs</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-13.html">Lesson 13: Normal Distribution</a></p>
+<ul>
+<li>Standardize and use normal probabilities</li>
+<li>Find normal quantiles for given tail areas</li>
+<li>Assess plausibility using normal models</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 4.1–4.2</strong> - Due before Lesson 13</li>
+<li><strong>Lesson 15</strong> - Review (Lessons 1–14)</li>
+<li><strong>WPR I</strong> - Lesson 16</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-11.html" class="pagination-link" aria-label="Lesson 11">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 11</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
