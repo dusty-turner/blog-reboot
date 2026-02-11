@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-14 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-13.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-14.html">Lesson 14</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-14-exponential-distribution" id="toc-lesson-14-exponential-distribution" class="nav-link active" data-scroll-target="#lesson-14-exponential-distribution">Lesson 14: Exponential Distribution</a>
+  <ul class="collapse">
+  <li><a href="#what-we-did-lessons-613" id="toc-what-we-did-lessons-613" class="nav-link" data-scroll-target="#what-we-did-lessons-613">What We Did: Lessons 6–13</a></li>
+  <li><a href="#what-were-doing-lesson-14" id="toc-what-were-doing-lesson-14" class="nav-link" data-scroll-target="#what-were-doing-lesson-14">What We’re Doing: Lesson 14</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#wpr-i-reminder" id="toc-wpr-i-reminder" class="nav-link" data-scroll-target="#wpr-i-reminder">WPR I Reminder</a>
+  <ul class="collapse">
+  <li><a href="#study-materials-also-available-on-canvas" id="toc-study-materials-also-available-on-canvas" class="nav-link" data-scroll-target="#study-materials-also-available-on-canvas">Study Materials (also available on Canvas)</a></li>
+  <li><a href="#no-r-on-wpr-i" id="toc-no-r-on-wpr-i" class="nav-link" data-scroll-target="#no-r-on-wpr-i">No R on WPR I</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#reese" id="toc-reese" class="nav-link" data-scroll-target="#reese">Reese</a></li>
+  <li><a href="#cal" id="toc-cal" class="nav-link" data-scroll-target="#cal">Cal</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#quick-normal-review-from-lesson-13" id="toc-quick-normal-review-from-lesson-13" class="nav-link" data-scroll-target="#quick-normal-review-from-lesson-13">Quick Normal Review (from Lesson 13)</a>
+  <ul class="collapse">
+  <li><a href="#the-normal-pdf" id="toc-the-normal-pdf" class="nav-link" data-scroll-target="#the-normal-pdf">The Normal PDF</a></li>
+  <li><a href="#expected-value-and-variance" id="toc-expected-value-and-variance" class="nav-link" data-scroll-target="#expected-value-and-variance">Expected Value and Variance</a></li>
+  <li><a href="#computing-normal-probabilities" id="toc-computing-normal-probabilities" class="nav-link" data-scroll-target="#computing-normal-probabilities">Computing Normal Probabilities</a></li>
+  </ul></li>
+  <li><a href="#the-exponential-distribution" id="toc-the-exponential-distribution" class="nav-link" data-scroll-target="#the-exponential-distribution">The Exponential Distribution</a>
+  <ul class="collapse">
+  <li><a href="#connection-to-poisson" id="toc-connection-to-poisson" class="nav-link" data-scroll-target="#connection-to-poisson">Connection to Poisson</a></li>
+  <li><a href="#the-pdf-and-cdf" id="toc-the-pdf-and-cdf" class="nav-link" data-scroll-target="#the-pdf-and-cdf">The PDF and CDF</a></li>
+  </ul></li>
+  <li><a href="#mean-variance-and-standard-deviation" id="toc-mean-variance-and-standard-deviation" class="nav-link" data-scroll-target="#mean-variance-and-standard-deviation">Mean, Variance, and Standard Deviation</a>
+  <ul class="collapse">
+  <li><a href="#the-rate-mean-relationship" id="toc-the-rate-mean-relationship" class="nav-link" data-scroll-target="#the-rate-mean-relationship">The Rate-Mean Relationship</a></li>
+  </ul></li>
+  <li><a href="#computing-exponential-probabilities" id="toc-computing-exponential-probabilities" class="nav-link" data-scroll-target="#computing-exponential-probabilities">Computing Exponential Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#the-cdf-advantage" id="toc-the-cdf-advantage" class="nav-link" data-scroll-target="#the-cdf-advantage">The CDF Advantage</a></li>
+  <li><a href="#r-functions-for-the-exponential-distribution" id="toc-r-functions-for-the-exponential-distribution" class="nav-link" data-scroll-target="#r-functions-for-the-exponential-distribution">R Functions for the Exponential Distribution</a></li>
+  <li><a href="#px-leq-a-less-than" id="toc-px-leq-a-less-than" class="nav-link" data-scroll-target="#px-leq-a-less-than"><span class="math inline">\(P(X \leq a)\)</span> — Less Than</a></li>
+  <li><a href="#px-a-greater-than" id="toc-px-a-greater-than" class="nav-link" data-scroll-target="#px-a-greater-than"><span class="math inline">\(P(X &gt; a)\)</span> — Greater Than</a></li>
+  <li><a href="#pa-x-b-between-two-values" id="toc-pa-x-b-between-two-values" class="nav-link" data-scroll-target="#pa-x-b-between-two-values"><span class="math inline">\(P(a &lt; X &lt; b)\)</span> — Between Two Values</a></li>
+  </ul></li>
+  <li><a href="#the-memoryless-property" id="toc-the-memoryless-property" class="nav-link" data-scroll-target="#the-memoryless-property">The Memoryless Property</a></li>
+  <li><a href="#exponential-vs.-normal-side-by-side" id="toc-exponential-vs.-normal-side-by-side" class="nav-link" data-scroll-target="#exponential-vs.-normal-side-by-side">Exponential vs.&nbsp;Normal: Side by Side</a></li>
+  <li><a href="#all-distributions-so-far" id="toc-all-distributions-so-far" class="nav-link" data-scroll-target="#all-distributions-so-far">All Distributions So Far</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-supply-convoy-arrivals" id="toc-problem-1-supply-convoy-arrivals" class="nav-link" data-scroll-target="#problem-1-supply-convoy-arrivals">Problem 1: Supply Convoy Arrivals</a></li>
+  <li><a href="#problem-2-radio-equipment-failures" id="toc-problem-2-radio-equipment-failures" class="nav-link" data-scroll-target="#problem-2-radio-equipment-failures">Problem 2: Radio Equipment Failures</a></li>
+  <li><a href="#problem-3-time-between-ied-discoveries" id="toc-problem-3-time-between-ied-discoveries" class="nav-link" data-scroll-target="#problem-3-time-between-ied-discoveries">Problem 3: Time Between IED Discoveries</a></li>
+  <li><a href="#problem-4-mess-hall-service-times" id="toc-problem-4-mess-hall-service-times" class="nav-link" data-scroll-target="#problem-4-mess-hall-service-times">Problem 4: Mess Hall Service Times</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-14-exponential-distribution" class="level1">
+<h1>Lesson 14: Exponential Distribution</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>The exponential distribution models waiting times — how long until the next event happens.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="WPR I Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>WPR I Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of the <strong>normal distribution</strong> material from Lesson 13 will be testable on WPR I — but not everything due to the power outage class cancellation. We’ll review the key normal distribution concepts you need to know at the start of today’s lesson before moving on to the exponential distribution.</p>
+</div>
+</div>
+<hr>
+<section id="what-we-did-lessons-613" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-613">What We Did: Lessons 6–13</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Lessons 6–13">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Lessons 6–13
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 6: Probability Basics">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 6: Probability Basics
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Sample Spaces and Events:</strong></p>
+<ul>
+<li>Sample space <span class="math inline">\(S\)</span> = set of all possible outcomes</li>
+<li>Event = subset of the sample space</li>
+<li>Operations: Union (<span class="math inline">\(A \cup B\)</span>), Intersection (<span class="math inline">\(A \cap B\)</span>), Complement (<span class="math inline">\(A^c\)</span>)</li>
+</ul>
+<p><strong>Kolmogorov Axioms:</strong></p>
+<ol type="1">
+<li><span class="math inline">\(P(A) \geq 0\)</span></li>
+<li><span class="math inline">\(P(S) = 1\)</span></li>
+<li>For mutually exclusive events: <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+</ol>
+<p><strong>Key Rules:</strong></p>
+<ul>
+<li>Complement Rule: <span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
+<li>Addition Rule: <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 7: Conditional Probability">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 7: Conditional Probability
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Conditional Probability:</strong> <span class="math display">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]</span></p>
+<p><strong>Multiplication Rule:</strong> <span class="math display">\[P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)\]</span></p>
+<p><strong>Law of Total Probability:</strong> <span class="math display">\[P(A) = P(B) \cdot P(A \mid B) + P(B^c) \cdot P(A \mid B^c)\]</span></p>
+<p><strong>Bayes’ Theorem:</strong> <span class="math display">\[P(B \mid A) = \frac{P(B) \cdot P(A \mid B)}{P(B) \cdot P(A \mid B) + P(B^c) \cdot P(A \mid B^c)}\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 8: Counting &amp; Independence">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 8: Counting &amp; Independence
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Counting Formulas:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 45%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>With Replacement</strong></th>
+<th style="text-align: center;"><strong>Without Replacement</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ordered</strong></td>
+<td style="text-align: center;"><span class="math inline">\(n^k\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(n,k) = \frac{n!}{(n-k)!}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Unordered</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\binom{n+k-1}{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Independence:</strong></p>
+<ul>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span></li>
+<li>Equivalently: <span class="math inline">\(P(A \mid B) = P(A)\)</span></li>
+<li>Independent <span class="math inline">\(\neq\)</span> Mutually Exclusive!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 9: Discrete Random Variables">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 9: Discrete Random Variables
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Random Variables:</strong></p>
+<ul>
+<li>A random variable <span class="math inline">\(X\)</span> assigns a numerical value to each outcome in a sample space</li>
+<li>Discrete RVs take finite or countably infinite values</li>
+</ul>
+<p><strong>PMF:</strong> <span class="math inline">\(p(x) = P(X = x)\)</span> with <span class="math inline">\(p(x) \geq 0\)</span> and <span class="math inline">\(\sum p(x) = 1\)</span></p>
+<p><strong>CDF:</strong> <span class="math inline">\(F(x) = P(X \leq x) = \sum_{y \leq x} p(y)\)</span></p>
+<p><strong>Expected Value:</strong> <span class="math inline">\(E(X) = \sum x \cdot p(x)\)</span></p>
+<p><strong>Variance:</strong> <span class="math inline">\(Var(X) = \sum (x - \mu)^2 \cdot p(x) = E(X^2) - [E(X)]^2\)</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 10: Binomial Distribution">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 10: Binomial Distribution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>BINS Conditions:</strong></p>
+<ol type="1">
+<li><strong>B</strong>inary outcomes (success/failure)</li>
+<li><strong>I</strong>ndependent trials</li>
+<li><strong>N</strong>umber of trials is fixed (<span class="math inline">\(n\)</span>)</li>
+<li><strong>S</strong>ame probability (<span class="math inline">\(p\)</span>) each trial</li>
+</ol>
+<p><strong>Key Formulas:</strong> If <span class="math inline">\(X \sim \text{Binomial}(n, p)\)</span>:</p>
+<ul>
+<li>PMF: <span class="math inline">\(P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}\)</span></li>
+<li>Mean: <span class="math inline">\(E(X) = np\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = np(1-p)\)</span></li>
+</ul>
+<p><strong>R Functions:</strong> <code>dbinom(x, size, prob)</code> for PMF, <code>pbinom(x, size, prob)</code> for CDF</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 11: Poisson Distribution">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 11: Poisson Distribution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>When to Use Poisson:</strong></p>
+<ul>
+<li>Counting events in a <strong>fixed interval</strong> (time, area, volume)</li>
+<li>Events occur <strong>independently</strong> at a <strong>constant average rate</strong> <span class="math inline">\(\lambda\)</span></li>
+</ul>
+<p><strong>Key Formulas:</strong> If <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span>:</p>
+<ul>
+<li>PMF: <span class="math inline">\(P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}, \quad x = 0, 1, 2, \ldots\)</span></li>
+<li>Mean: <span class="math inline">\(E(X) = \lambda\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = \lambda\)</span></li>
+</ul>
+<p><strong>R Functions:</strong> <code>dpois(x, lambda)</code> for PMF, <code>ppois(x, lambda)</code> for CDF</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 12: Continuous Random Variables">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 12: Continuous Random Variables
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Continuous vs.&nbsp;Discrete:</strong></p>
+<ul>
+<li>Discrete RVs: probabilities come from a <strong>PMF</strong> — <span class="math inline">\(P(X = x)\)</span></li>
+<li>Continuous RVs: probabilities come from <strong>areas under a PDF</strong> — <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)\,dx\)</span></li>
+</ul>
+<p><strong>Probability Density Function (PDF):</strong> <span class="math inline">\(f(x)\)</span> where:</p>
+<ul>
+<li><span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x)\,dx = 1\)</span></li>
+<li><span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)\,dx\)</span></li>
+</ul>
+<p><strong>CDF:</strong> <span class="math inline">\(F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt\)</span></p>
+<p><strong>Key Facts:</strong></p>
+<ul>
+<li><span class="math inline">\(P(X = c) = 0\)</span> for any single value <span class="math inline">\(c\)</span></li>
+<li><span class="math inline">\(E(X) = \int x \cdot f(x)\,dx\)</span></li>
+<li><span class="math inline">\(Var(X) = E(X^2) - [E(X)]^2\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 13: Normal Distribution">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 13: Normal Distribution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>The Normal Distribution:</strong> If <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>:</p>
+<ul>
+<li>Bell-shaped, symmetric about <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(E(X) = \mu\)</span>, <span class="math inline">\(Var(X) = \sigma^2\)</span>, <span class="math inline">\(SD(X) = \sigma\)</span></li>
+</ul>
+<p><strong>Standardization:</strong> <span class="math inline">\(Z = \frac{X - \mu}{\sigma} \sim N(0, 1)\)</span></p>
+<p><strong>Unstandardization:</strong> <span class="math inline">\(X = \mu + Z\sigma\)</span></p>
+<p><strong>R Functions:</strong></p>
+<ul>
+<li><code>pnorm(x, mean, sd)</code> — CDF: <span class="math inline">\(P(X \leq x)\)</span></li>
+<li><code>qnorm(p, mean, sd)</code> — Quantile: find <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X \leq x) = p\)</span></li>
+</ul>
+<p><strong>Empirical Rule (68-95-99.7):</strong></p>
+<ul>
+<li>68% within <span class="math inline">\(\mu \pm \sigma\)</span></li>
+<li>95% within <span class="math inline">\(\mu \pm 2\sigma\)</span></li>
+<li>99.7% within <span class="math inline">\(\mu \pm 3\sigma\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-14" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-14">What We’re Doing: Lesson 14</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Recognize the memoryless property</li>
+<li>Understand the rate-mean relationship</li>
+<li>Compute exponential probabilities and quantiles</li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Section 4.4</p>
+<hr>
+</section>
+</section>
+<section id="wpr-i-reminder" class="level2">
+<h2 class="anchored" data-anchor-id="wpr-i-reminder">WPR I Reminder</h2>
+<p>WPR I is <strong>Lesson 16</strong> and covers all concepts from <strong>Lessons 6–14</strong> (including today!).</p>
+<section id="study-materials-also-available-on-canvas" class="level3">
+<h3 class="anchored" data-anchor-id="study-materials-also-available-on-canvas">Study Materials (also available on Canvas)</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/11418/files/3857664/download?download_frd=1" target="_blank">Block I Review Worksheet</a></li>
+<li><a href="https://westpoint.instructure.com/courses/11418/files/3857663/download?download_frd=1" target="_blank">Block I Review Worksheet Solutions</a></li>
+<li><a href="https://westpoint.instructure.com/courses/11418/files/3857662/download?download_frd=1" target="_blank">WPR I Review Card</a></li>
+</ul>
+</section>
+<section id="no-r-on-wpr-i" class="level3">
+<h3 class="anchored" data-anchor-id="no-r-on-wpr-i">No R on WPR I</h3>
+<p>There will be <strong>no R / no technology</strong> on WPR I. This means you need to know how to set up problems <strong>up to the point where you’d need technology</strong> to finish.</p>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="reese" class="level3">
+<h3 class="anchored" data-anchor-id="reese">Reese</h3>
+<!-- TODO: Add Reese videos/photos -->
+<!-- Example format:
+<video width="100%" controls>
+  <source src="assets/img/VIDEO_FILE.mp4" type="video/mp4">
+</video>
+
+![](assets/img/IMAGE_FILE.jpg){fig-align="center" width="50%"}
+-->
+</section>
+<section id="cal" class="level3">
+<h3 class="anchored" data-anchor-id="cal">Cal</h3>
+<!-- TODO: Add Cal photos -->
+<!-- Example format:
+![](assets/img/DSC_XXXX.jpeg){fig-align="center" width="50%"}
+-->
+<hr>
+<!-- ### DMath Volleyball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 11-1"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/volleyball.png){fig-align="center" width="50%"} -->
+<!-- ### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 8-4"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"} -->
+<hr>
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts: Exponential Distribution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts: Exponential Distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The Exponential Distribution:</strong> If <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>:</p>
+<ul>
+<li>Models the <strong>time between events</strong> in a Poisson process</li>
+<li><span class="math inline">\(\lambda\)</span> = <strong>rate</strong> (events per unit time), <span class="math inline">\(\mu = \frac{1}{\lambda}\)</span> = <strong>mean</strong> (average time between events)</li>
+<li>PDF: <span class="math inline">\(f(x) = \lambda e^{-\lambda x}, \quad x \geq 0\)</span></li>
+<li>CDF: <span class="math inline">\(F(x) = 1 - e^{-\lambda x}\)</span></li>
+</ul>
+<p><strong>Key Formulas:</strong></p>
+<ul>
+<li>Mean: <span class="math inline">\(E(X) = \frac{1}{\lambda}\)</span></li>
+<li>Variance: <span class="math inline">\(Var(X) = \frac{1}{\lambda^2}\)</span></li>
+<li>SD: <span class="math inline">\(SD(X) = \frac{1}{\lambda}\)</span></li>
+</ul>
+<p><strong>Memoryless Property:</strong> <span class="math display">\[P(X &gt; s + t \mid X &gt; s) = P(X &gt; t)\]</span></p>
+<p><em>The probability of waiting at least <span class="math inline">\(t\)</span> more units doesn’t depend on how long you’ve already waited.</em></p>
+<p><strong>R Functions:</strong></p>
+<ul>
+<li><code>pexp(x, rate)</code> — CDF: <span class="math inline">\(P(X \leq x)\)</span></li>
+<li><code>qexp(p, rate)</code> — Quantile: find <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X \leq x) = p\)</span></li>
+<li><code>dexp(x, rate)</code> — PDF: <span class="math inline">\(f(x)\)</span> (density, not probability)</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="quick-normal-review-from-lesson-13" class="level2">
+<h2 class="anchored" data-anchor-id="quick-normal-review-from-lesson-13">Quick Normal Review (from Lesson 13)</h2>
+<p>The normal distribution is the most important continuous distribution you’ll encounter. Let’s review the essentials that are <strong>testable on WPR I</strong>.</p>
+<section id="the-normal-pdf" class="level3">
+<h3 class="anchored" data-anchor-id="the-normal-pdf">The Normal PDF</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Normal Distribution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Normal Distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A continuous random variable <span class="math inline">\(X\)</span> has a <strong>normal distribution</strong> with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> (where <span class="math inline">\(\sigma &gt; 0\)</span>) if the PDF is:</p>
+<p><span class="math display">\[f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad -\infty &lt; x &lt; \infty\]</span></p>
+<p>We write <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> = mean (center of the bell curve)</li>
+<li><span class="math inline">\(\sigma\)</span> = standard deviation (controls the spread)</li>
+<li><span class="math inline">\(\sigma^2\)</span> = variance</li>
+</ul>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Changing <span class="math inline">\(\mu\)</span> <strong>shifts</strong> the curve left or right</li>
+<li>Changing <span class="math inline">\(\sigma\)</span> <strong>stretches or compresses</strong> the curve</li>
+<li>Always symmetric about <span class="math inline">\(\mu\)</span>, total area = 1</li>
+</ul>
+<hr>
+</section>
+<section id="expected-value-and-variance" class="level3">
+<h3 class="anchored" data-anchor-id="expected-value-and-variance">Expected Value and Variance</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Mean, Variance, and SD of the Normal">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Mean, Variance, and SD of the Normal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>:</p>
+<p><span class="math display">\[E(X) = \mu \qquad Var(X) = \sigma^2 \qquad SD(X) = \sigma\]</span></p>
+<p>The parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> directly <strong>are</strong> the mean and standard deviation — that’s why we name them that way!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Derivation: E(X) = μ *(just FYI — not required)*">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation: E(X) = μ <em>(just FYI — not required)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Starting from the definition of expected value for a continuous RV:</p>
+<p><span class="math display">\[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\,dx\]</span></p>
+<p>Substitute <span class="math inline">\(u = \frac{x - \mu}{\sigma}\)</span>, so <span class="math inline">\(x = \mu + \sigma u\)</span> and <span class="math inline">\(dx = \sigma\,du\)</span>:</p>
+<p><span class="math display">\[E(X) = \int_{-\infty}^{\infty} (\mu + \sigma u) \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-u^2/2} \cdot \sigma\,du\]</span></p>
+<p><span class="math display">\[= \int_{-\infty}^{\infty} (\mu + \sigma u) \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du\]</span></p>
+<p>Split into two integrals:</p>
+<p><span class="math display">\[= \mu \underbrace{\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du}_{= 1 \text{ (total area under std normal)}} + \sigma \underbrace{\int_{-\infty}^{\infty} u \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du}_{= 0 \text{ (odd function, symmetric limits)}}\]</span></p>
+<p><span class="math display">\[\boxed{E(X) = \mu}\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Derivation: Var(X) = σ² *(just FYI — not required)*">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation: Var(X) = σ² <em>(just FYI — not required)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Using <span class="math inline">\(Var(X) = E(X^2) - [E(X)]^2\)</span>, we need <span class="math inline">\(E(X^2)\)</span>.</p>
+<p>With the same substitution <span class="math inline">\(u = \frac{x - \mu}{\sigma}\)</span>:</p>
+<p><span class="math display">\[E(X^2) = \int_{-\infty}^{\infty} (\mu + \sigma u)^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du\]</span></p>
+<p><span class="math display">\[= \int_{-\infty}^{\infty} (\mu^2 + 2\mu\sigma u + \sigma^2 u^2) \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du\]</span></p>
+<p>Split into three integrals:</p>
+<p><span class="math display">\[= \mu^2 \underbrace{\int \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du}_{=1} + 2\mu\sigma \underbrace{\int u \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du}_{=0} + \sigma^2 \underbrace{\int u^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du}_{=1 \text{ (integration by parts)}}\]</span></p>
+<p>The last integral equals 1 (this is <span class="math inline">\(E(Z^2)\)</span> where <span class="math inline">\(Z \sim N(0,1)\)</span>, and since <span class="math inline">\(E(Z) = 0\)</span>, we have <span class="math inline">\(E(Z^2) = Var(Z) + [E(Z)]^2 = 1 + 0 = 1\)</span>).</p>
+<p><span class="math display">\[E(X^2) = \mu^2 + \sigma^2\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[Var(X) = E(X^2) - [E(X)]^2 = (\mu^2 + \sigma^2) - \mu^2\]</span></p>
+<p><span class="math display">\[\boxed{Var(X) = \sigma^2}\]</span></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="computing-normal-probabilities" class="level3">
+<h3 class="anchored" data-anchor-id="computing-normal-probabilities">Computing Normal Probabilities</h3>
+<p>Since the normal CDF has <strong>no closed form</strong>, we use <code>pnorm()</code> in R (or the Z table on WPR I). Here’s the pattern for every type of probability question:</p>
+<p>Suppose <span class="math inline">\(X \sim N(340, 40^2)\)</span> (cadet deadlift weights from Lesson 13).</p>
+<hr>
+<p><strong><span class="math inline">\(P(X &lt; a)\)</span> — Less Than:</strong></p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> with <span class="math inline">\(\mu = 340, \sigma = 40\)</span></p>
+<p><span class="math display">\[P(X &lt; 300) = \int_{-\infty}^{300} f(x)\,dx = 0.1587\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">340</span>, <span class="at">sd =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1586553</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p><strong><span class="math inline">\(P(X &gt; a)\)</span> — Greater Than</strong> (subtract from 1):</p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> with <span class="math inline">\(\mu = 340, \sigma = 40\)</span></p>
+<p><span class="math display">\[P(X &gt; 400) = \int_{400}^{\infty} f(x)\,dx = 1 - F(400) = 0.0668\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">400</span>, <span class="at">mean =</span> <span class="dv">340</span>, <span class="at">sd =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0668072</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p><strong><span class="math inline">\(P(a &lt; X &lt; b)\)</span> — Between</strong> (subtract two CDFs):</p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> with <span class="math inline">\(\mu = 340, \sigma = 40\)</span></p>
+<p><span class="math display">\[P(300 &lt; X &lt; 380) = \int_{300}^{380} f(x)\,dx = F(380) - F(300) = 0.6827\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">380</span>, <span class="at">mean =</span> <span class="dv">340</span>, <span class="at">sd =</span> <span class="dv">40</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">340</span>, <span class="at">sd =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6826895</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p><strong><span class="math inline">\(P(X = a)\)</span> — Equal To</strong> (always zero for continuous RVs):</p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> with <span class="math inline">\(\mu = 340, \sigma = 40\)</span></p>
+<p><span class="math display">\[P(X = 350) = \int_{350}^{350} f(x)\,dx = 0\]</span></p>
+<p>For continuous distributions, the probability at any single point is always zero — probability comes from <strong>area</strong>, and a single point has no width.</p>
+<hr>
+</section>
+</section>
+<section id="the-exponential-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-exponential-distribution">The Exponential Distribution</h2>
+<section id="connection-to-poisson" class="level3">
+<h3 class="anchored" data-anchor-id="connection-to-poisson">Connection to Poisson</h3>
+<p>Remember the <strong>Poisson distribution</strong> from Lesson 11? It counts the <strong>number of events</strong> in a fixed interval. The <strong>exponential distribution</strong> is the other side of the same coin — it models the <strong>time between events</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Poisson ↔ Exponential Connection">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Poisson ↔︎ Exponential Connection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If events occur at a constant average rate <span class="math inline">\(\lambda\)</span> per unit time (Poisson process), then:</p>
+<ul>
+<li>The <strong>number of events</strong> in a time interval of length <span class="math inline">\(t\)</span> follows <span class="math inline">\(\text{Poisson}(\lambda)\)</span></li>
+<li>The <strong>time between consecutive events</strong> follows <span class="math inline">\(\text{Exp}(\lambda)\)</span></li>
+</ul>
+<p>Same <span class="math inline">\(\lambda\)</span>, two perspectives!</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-pdf-and-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="the-pdf-and-cdf">The PDF and CDF</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Exponential Distribution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Exponential Distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A continuous random variable <span class="math inline">\(X\)</span> has an <strong>exponential distribution</strong> with rate parameter <span class="math inline">\(\lambda &gt; 0\)</span> if the PDF is:</p>
+<p><span class="math display">\[f(x) = \lambda e^{-\lambda x}, \quad x \geq 0\]</span></p>
+<p>The CDF is the integral of the PDF:</p>
+<p><span class="math display">\[F(x) = P(X \leq x) = \int_0^x \lambda e^{-\lambda t}\,dt\]</span></p>
+<p><span class="math display">\[= 1 - e^{-\lambda x}, \quad x \geq 0\]</span></p>
+<p>We write <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>.</p>
+<p>Unlike the normal, this CDF has a <strong>closed form</strong> — we can compute exponential probabilities by hand!</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key observations:</strong></p>
+<ul>
+<li>The exponential PDF is always <strong>right-skewed</strong> — most values are small, with a long right tail</li>
+<li>Larger <span class="math inline">\(\lambda\)</span> = faster rate = shorter wait times = steeper decay</li>
+<li>Smaller <span class="math inline">\(\lambda\)</span> = slower rate = longer wait times = gentler decay</li>
+<li>Unlike the normal, the exponential is <strong>not symmetric</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="mean-variance-and-standard-deviation" class="level2">
+<h2 class="anchored" data-anchor-id="mean-variance-and-standard-deviation">Mean, Variance, and Standard Deviation</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Mean, Variance, and SD of the Exponential">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Mean, Variance, and SD of the Exponential
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>:</p>
+<p><span class="math display">\[E(X) = \mu = \frac{1}{\lambda}\]</span></p>
+<p><span class="math display">\[Var(X) = \sigma^2 = \frac{1}{\lambda^2}\]</span></p>
+<p><span class="math display">\[SD(X) = \sigma = \frac{1}{\lambda}\]</span></p>
+<p>Notice: the <strong>mean equals the standard deviation</strong> (<span class="math inline">\(\mu = \sigma\)</span>) for the exponential distribution! This is a unique property.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Derivation: E(X) = 1/λ *(just FYI — not required)*">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation: E(X) = 1/λ <em>(just FYI — not required)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[E(X) = \int_0^{\infty} x \cdot \lambda e^{-\lambda x}\,dx\]</span></p>
+<p>Using integration by parts with <span class="math inline">\(u = x\)</span> and <span class="math inline">\(dv = \lambda e^{-\lambda x}\,dx\)</span>:</p>
+<p><span class="math display">\[= \left[-x e^{-\lambda x}\right]_0^{\infty} + \int_0^{\infty} e^{-\lambda x}\,dx\]</span></p>
+<p>The first term is 0 (at both limits). The remaining integral:</p>
+<p><span class="math display">\[= \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_0^{\infty} = 0 - \left(-\frac{1}{\lambda}\right)\]</span></p>
+<p><span class="math display">\[\boxed{E(X) = \frac{1}{\lambda}}\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Derivation: Var(X) = 1/λ² *(just FYI — not required)*">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation: Var(X) = 1/λ² <em>(just FYI — not required)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Using <span class="math inline">\(Var(X) = E(X^2) - [E(X)]^2\)</span>, we need <span class="math inline">\(E(X^2)\)</span>:</p>
+<p><span class="math display">\[E(X^2) = \int_0^{\infty} x^2 \cdot \lambda e^{-\lambda x}\,dx\]</span></p>
+<p>Using integration by parts twice (or the gamma function identity <span class="math inline">\(\int_0^{\infty} x^n \lambda e^{-\lambda x}\,dx = \frac{n!}{\lambda^n}\)</span>):</p>
+<p><span class="math display">\[E(X^2) = \frac{2}{\lambda^2}\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[Var(X) = E(X^2) - [E(X)]^2 = \frac{2}{\lambda^2} - \left(\frac{1}{\lambda}\right)^2 = \frac{2}{\lambda^2} - \frac{1}{\lambda^2}\]</span></p>
+<p><span class="math display">\[\boxed{Var(X) = \frac{1}{\lambda^2}}\]</span></p>
+</div>
+</div>
+</div>
+<section id="the-rate-mean-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="the-rate-mean-relationship">The Rate-Mean Relationship</h3>
+<p>The relationship between <span class="math inline">\(\lambda\)</span> and the mean is an <strong>inverse</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Rate <span class="math inline">\(\lambda\)</span></th>
+<th style="text-align: center;">Mean <span class="math inline">\(1/\lambda\)</span></th>
+<th style="text-align: left;">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2 per hour</td>
+<td style="text-align: center;">0.5 hours</td>
+<td style="text-align: left;">Events happen frequently → short waits</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1 per hour</td>
+<td style="text-align: center;">1 hour</td>
+<td style="text-align: left;">Events happen once per hour on average</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.5 per hour</td>
+<td style="text-align: center;">2 hours</td>
+<td style="text-align: left;">Events happen rarely → long waits</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quick Conversion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quick Conversion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Rate to Mean:</strong> divide 1 by the rate → <span class="math inline">\(\mu = 1/\lambda\)</span></li>
+<li><strong>Mean to Rate:</strong> divide 1 by the mean → <span class="math inline">\(\lambda = 1/\mu\)</span></li>
+</ul>
+<p>If a convoy passes every 20 minutes on average, the rate is <span class="math inline">\(\lambda = 1/20 = 0.05\)</span> per minute (or equivalently <span class="math inline">\(\lambda = 3\)</span> per hour).</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="computing-exponential-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="computing-exponential-probabilities">Computing Exponential Probabilities</h2>
+<section id="the-cdf-advantage" class="level3">
+<h3 class="anchored" data-anchor-id="the-cdf-advantage">The CDF Advantage</h3>
+<p>Unlike the normal distribution (where we needed <code>pnorm</code> or Z tables), the exponential CDF has a <strong>closed-form formula</strong> we can compute by hand:</p>
+<p><span class="math display">\[P(X \leq x) = 1 - e^{-\lambda x}\]</span></p>
+<p><span class="math display">\[P(X &gt; x) = e^{-\lambda x}\]</span></p>
+<p>This means we can solve exponential probability problems both with R <strong>and</strong> by hand!</p>
+<hr>
+</section>
+<section id="r-functions-for-the-exponential-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="r-functions-for-the-exponential-distribution">R Functions for the Exponential Distribution</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="R Functions">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>R Functions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>pexp(x, rate)</code> — CDF: <span class="math inline">\(P(X \leq x) = 1 - e^{-\lambda x}\)</span></li>
+<li><code>qexp(p, rate)</code> — Quantile: find <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X \leq x) = p\)</span></li>
+<li><del><code>dexp(x, rate)</code> — PDF: <span class="math inline">\(f(x)\)</span></del> — gives <strong>density</strong>, not probability</li>
+</ul>
+</div>
+</div>
+<hr>
+<p>Suppose the time between enemy contact reports at a forward operating base follows an exponential distribution with a rate of <span class="math inline">\(\lambda = 0.5\)</span> reports per hour (i.e., on average, one report every 2 hours).</p>
+<hr>
+</section>
+<section id="px-leq-a-less-than" class="level3">
+<h3 class="anchored" data-anchor-id="px-leq-a-less-than"><span class="math inline">\(P(X \leq a)\)</span> — Less Than</h3>
+<p><strong>What is the probability the next report arrives within 1 hour?</strong></p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \lambda e^{-\lambda x}\)</span> and CDF: <span class="math inline">\(F(x) = 1 - e^{-\lambda x}\)</span> with <span class="math inline">\(\lambda = 0.5\)</span></p>
+<p><span class="math display">\[P(X \leq 1) = \int_0^{1} f(x)\,dx = F(1) = 1 - e^{-\lambda \cdot 1} = 1 - e^{-0.5} = 0.3935\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># By hand</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3934693</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With pexp</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3934693</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>About <strong>39.3%</strong> chance the next report arrives within 1 hour.</p>
+<hr>
+</section>
+<section id="px-a-greater-than" class="level3">
+<h3 class="anchored" data-anchor-id="px-a-greater-than"><span class="math inline">\(P(X &gt; a)\)</span> — Greater Than</h3>
+<p><strong>What is the probability we wait more than 4 hours for the next report?</strong></p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \lambda e^{-\lambda x}\)</span> and CDF: <span class="math inline">\(F(x) = 1 - e^{-\lambda x}\)</span> with <span class="math inline">\(\lambda = 0.5\)</span></p>
+<p><span class="math display">\[P(X &gt; 4) = \int_4^{\infty} f(x)\,dx = 1 - F(4) = e^{-\lambda \cdot 4} = e^{-2} = 0.1353\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># By hand</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1353353</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With pexp</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pexp</span>(<span class="dv">4</span>, <span class="at">rate =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1353353</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>About <strong>13.5%</strong> chance we wait more than 4 hours.</p>
+<hr>
+</section>
+<section id="pa-x-b-between-two-values" class="level3">
+<h3 class="anchored" data-anchor-id="pa-x-b-between-two-values"><span class="math inline">\(P(a &lt; X &lt; b)\)</span> — Between Two Values</h3>
+<p><strong>What is the probability the next report arrives between 1 and 3 hours?</strong></p>
+<p>Recall the PDF: <span class="math inline">\(f(x) = \lambda e^{-\lambda x}\)</span> and CDF: <span class="math inline">\(F(x) = 1 - e^{-\lambda x}\)</span> with <span class="math inline">\(\lambda = 0.5\)</span></p>
+<p><span class="math display">\[P(1 &lt; X &lt; 3) = \int_1^{3} f(x)\,dx = F(3) - F(1) = (1 - e^{-1.5}) - (1 - e^{-0.5}) = e^{-0.5} - e^{-1.5} = 0.3834\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># By hand</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span>) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3834005</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With pexp</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">3</span>, <span class="at">rate =</span> <span class="fl">0.5</span>) <span class="sc">-</span> <span class="fu">pexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3834005</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>About <strong>38.3%</strong> chance the next report arrives between 1 and 3 hours.</p>
+<hr>
+</section>
+</section>
+<section id="the-memoryless-property" class="level2">
+<h2 class="anchored" data-anchor-id="the-memoryless-property">The Memoryless Property</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The Memoryless Property">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The Memoryless Property
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>, then for any <span class="math inline">\(s, t &gt; 0\)</span>:</p>
+<p><span class="math display">\[P(X &gt; s + t \mid X &gt; s) = P(X &gt; t)\]</span></p>
+<p><strong>In words:</strong> It doesn’t matter how long you’ve already waited — the probability of waiting at least <span class="math inline">\(t\)</span> more units is always the same.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Proof *(just FYI — not required)*">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof <em>(just FYI — not required)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[P(X &gt; s + t \mid X &gt; s) = \frac{P(X &gt; s + t)}{P(X &gt; s)} = \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} = e^{-\lambda t} = P(X &gt; t) \quad \checkmark\]</span></p>
+</div>
+</div>
+</div>
+<p><strong>Example:</strong> You’re waiting for a supply convoy that arrives at rate <span class="math inline">\(\lambda = 0.5\)</span> per hour. You’ve already been waiting 3 hours. What’s the probability you wait at least 1 more hour?</p>
+<p><span class="math display">\[P(X &gt; 4 \mid X &gt; 3) = P(X &gt; 1) = e^{-0.5} = 0.607\]</span></p>
+<p>That’s the same as if you’d just started waiting. Your 3 hours of waiting give you no advantage.</p>
+<hr>
+</section>
+<section id="exponential-vs.-normal-side-by-side" class="level2">
+<h2 class="anchored" data-anchor-id="exponential-vs.-normal-side-by-side">Exponential vs.&nbsp;Normal: Side by Side</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-14_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Exponential</th>
+<th style="text-align: left;">Normal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Shape</strong></td>
+<td style="text-align: left;">Right-skewed, starts at max</td>
+<td style="text-align: left;">Symmetric bell curve</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Support</strong></td>
+<td style="text-align: left;"><span class="math inline">\(x \geq 0\)</span> only</td>
+<td style="text-align: left;">All real numbers <span class="math inline">\((-\infty, \infty)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Parameters</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda\)</span> (rate)</td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span> (mean), <span class="math inline">\(\sigma\)</span> (SD)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mean</strong></td>
+<td style="text-align: left;"><span class="math inline">\(1/\lambda\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>SD</strong></td>
+<td style="text-align: left;"><span class="math inline">\(1/\lambda\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mean = SD?</strong></td>
+<td style="text-align: left;">Always!</td>
+<td style="text-align: left;">Only if <span class="math inline">\(\mu = \sigma\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Closed-form CDF?</strong></td>
+<td style="text-align: left;">Yes: <span class="math inline">\(1 - e^{-\lambda x}\)</span></td>
+<td style="text-align: left;">No (need <code>pnorm</code> or Z table)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Memoryless?</strong></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="all-distributions-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="all-distributions-so-far">All Distributions So Far</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Complete Distribution Reference">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complete Distribution Reference
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>Binomial</strong></th>
+<th style="text-align: center;"><strong>Poisson</strong></th>
+<th style="text-align: center;"><strong>Normal</strong></th>
+<th style="text-align: center;"><strong>Exponential</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Type</strong></td>
+<td style="text-align: center;">Discrete</td>
+<td style="text-align: center;">Discrete</td>
+<td style="text-align: center;">Continuous</td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="even">
+<td><strong>Notation</strong></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Bin}(n, p)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Pois}(\lambda)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Parameters</strong></td>
+<td style="text-align: center;"><span class="math inline">\(n, p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu, \sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Models</strong></td>
+<td style="text-align: center;"># successes in <span class="math inline">\(n\)</span> trials</td>
+<td style="text-align: center;"># events in fixed interval</td>
+<td style="text-align: center;">Symmetric measurements</td>
+<td style="text-align: center;">Time between events</td>
+</tr>
+<tr class="odd">
+<td><strong>Mean</strong></td>
+<td style="text-align: center;"><span class="math inline">\(np\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Variance</strong></td>
+<td style="text-align: center;"><span class="math inline">\(np(1-p)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda^2\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>SD</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{np(1-p)}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{\lambda}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>R PMF/PDF</strong></td>
+<td style="text-align: center;"><code>dbinom</code></td>
+<td style="text-align: center;"><code>dpois</code></td>
+<td style="text-align: center;"><code>dnorm</code></td>
+<td style="text-align: center;"><code>dexp</code></td>
+</tr>
+<tr class="odd">
+<td><strong>R CDF</strong></td>
+<td style="text-align: center;"><code>pbinom</code></td>
+<td style="text-align: center;"><code>ppois</code></td>
+<td style="text-align: center;"><code>pnorm</code></td>
+<td style="text-align: center;"><code>pexp</code></td>
+</tr>
+<tr class="even">
+<td><strong>R Quantile</strong></td>
+<td style="text-align: center;"><code>qbinom</code></td>
+<td style="text-align: center;"><code>qpois</code></td>
+<td style="text-align: center;"><code>qnorm</code></td>
+<td style="text-align: center;"><code>qexp</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Connection</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Binomial approx.</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Poisson (time side)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-supply-convoy-arrivals" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-supply-convoy-arrivals">Problem 1: Supply Convoy Arrivals</h3>
+<p>Supply convoys arrive at a forward operating base at a rate of <span class="math inline">\(\lambda = 3\)</span> per day (i.e., one every 8 hours on average).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>What is the mean time between convoys? What is the standard deviation?</p></li>
+<li><p>What is the probability the next convoy arrives within 4 hours?</p></li>
+<li><p>What is the probability you wait more than 12 hours for the next convoy?</p></li>
+<li><p>You’ve already been waiting 6 hours. What is the probability you wait at least 4 more hours? Compare this to part (b).</p></li>
+<li><p>How long must you wait to be 95% sure a convoy has arrived?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Rate is <span class="math inline">\(\lambda = 3\)</span> per day <span class="math inline">\(= 3/24 = 0.125\)</span> per hour.</li>
+</ol>
+<p>Mean <span class="math inline">\(= 1/\lambda = 1/0.125 = 8\)</span> hours. SD <span class="math inline">\(= 1/\lambda = 8\)</span> hours.</p>
+<p>(Or equivalently: <span class="math inline">\(\lambda = 3\)</span> per day, so mean <span class="math inline">\(= 1/3\)</span> day <span class="math inline">\(= 8\)</span> hours.)</p>
+<ol start="2" type="a">
+<li>Using <span class="math inline">\(\lambda = 0.125\)</span> per hour:</li>
+</ol>
+<p><span class="math inline">\(P(X \leq 4) = 1 - e^{-0.125 \cdot 4} = 1 - e^{-0.5}\)</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3934693</code></pre>
+</div>
+</div>
+<p>About <strong>39.3%</strong> chance the next convoy arrives within 4 hours.</p>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(X &gt; 12) = e^{-0.125 \cdot 12} = e^{-1.5}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2231302</code></pre>
+</div>
+</div>
+<p>About <strong>22.3%</strong> chance of waiting more than 12 hours.</p>
+<ol start="4" type="a">
+<li>By the <strong>memoryless property</strong>:</li>
+</ol>
+<p><span class="math inline">\(P(X &gt; 10 \mid X &gt; 6) = P(X &gt; 4) = e^{-0.125 \cdot 4} = e^{-0.5}\)</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6065307</code></pre>
+</div>
+</div>
+<p>About <strong>60.7%</strong> — the same as <span class="math inline">\(P(X &gt; 4)\)</span> from scratch. Your 6 hours of waiting doesn’t help!</p>
+<ol start="5" type="a">
+<li>Find <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X \leq x) = 0.95\)</span>:</li>
+</ol>
+<p><span class="math inline">\(x = -\frac{\ln(0.05)}{0.125} = \frac{2.996}{0.125} = 23.97\)</span> hours</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.96586</code></pre>
+</div>
+</div>
+<p>You need to wait about <strong>24 hours</strong> to be 95% sure a convoy has arrived.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-radio-equipment-failures" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-radio-equipment-failures">Problem 2: Radio Equipment Failures</h3>
+<p>A tactical radio has a mean time between failures of 500 hours. Assume failure times follow an exponential distribution.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>What is the rate parameter <span class="math inline">\(\lambda\)</span>?</p></li>
+<li><p>What is the probability the radio lasts more than 600 hours?</p></li>
+<li><p>What is the probability the radio fails within the first 100 hours?</p></li>
+<li><p>The radio has been running for 400 hours without failure. What is the probability it lasts at least 200 more hours?</p></li>
+<li><p>At what time has 50% of all radios failed? (Find the median.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(\lambda = 1/\mu = 1/500 = 0.002\)</span> failures per hour.</p></li>
+<li><p><span class="math inline">\(P(X &gt; 600) = e^{-0.002 \cdot 600} = e^{-1.2}\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3011942</code></pre>
+</div>
+</div>
+<p>About <strong>30.1%</strong> probability the radio lasts more than 600 hours.</p>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(X \leq 100) = 1 - e^{-0.002 \cdot 100} = 1 - e^{-0.2}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1812692</code></pre>
+</div>
+</div>
+<p>About <strong>18.1%</strong> of radios fail within the first 100 hours.</p>
+<ol start="4" type="a">
+<li><strong>Memoryless property:</strong> <span class="math inline">\(P(X &gt; 600 \mid X &gt; 400) = P(X &gt; 200) = e^{-0.002 \cdot 200} = e^{-0.4}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.67032</code></pre>
+</div>
+</div>
+<p>About <strong>67.0%</strong> — same as the probability of lasting 200 hours from brand new. The 400 hours of operation don’t matter!</p>
+<p>(Note: In reality, electronics do degrade, so the exponential model is an approximation. The memoryless property works best for random failures, not wear-out failures.)</p>
+<ol start="5" type="a">
+<li>Median: <span class="math inline">\(x = -\frac{\ln(0.5)}{0.002} = \frac{0.693}{0.002} = 346.6\)</span> hours</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 346.5736</code></pre>
+</div>
+</div>
+<p><strong>50% of radios</strong> have failed by about <strong>347 hours</strong> — less than the mean of 500 hours, due to the right skew.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-time-between-ied-discoveries" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-time-between-ied-discoveries">Problem 3: Time Between IED Discoveries</h3>
+<p>On a heavily traveled route, IEDs are discovered at a rate of 2 per week. Assume discovery times follow an exponential distribution.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>What is the mean time between discoveries (in days)?</p></li>
+<li><p>What is the probability of going more than 5 days without a discovery?</p></li>
+<li><p>What is the probability of a discovery within the first day?</p></li>
+<li><p>An engineer team hasn’t found anything in 4 days. What is the probability they go at least 2 more days without a discovery?</p></li>
+<li><p>What time interval contains the middle 80% of wait times? (Find the 10th and 90th percentiles.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Rate: <span class="math inline">\(\lambda = 2\)</span> per week <span class="math inline">\(= 2/7\)</span> per day <span class="math inline">\(\approx 0.286\)</span> per day.</li>
+</ol>
+<p>Mean <span class="math inline">\(= 1/\lambda = 7/2 = 3.5\)</span> days.</p>
+<ol start="2" type="a">
+<li><span class="math inline">\(P(X &gt; 5) = e^{-(2/7) \cdot 5} = e^{-10/7}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.239651</code></pre>
+</div>
+</div>
+<p>About <strong>24.0%</strong> chance of going more than 5 days without a discovery.</p>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(X \leq 1) = 1 - e^{-(2/7) \cdot 1} = 1 - e^{-2/7}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2485227</code></pre>
+</div>
+</div>
+<p>About <strong>24.9%</strong> chance of a discovery within the first day.</p>
+<ol start="4" type="a">
+<li><strong>Memoryless:</strong> <span class="math inline">\(P(X &gt; 6 \mid X &gt; 4) = P(X &gt; 2) = e^{-(2/7) \cdot 2}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5647181</code></pre>
+</div>
+</div>
+<p>About <strong>56.5%</strong> — the 4 days of searching doesn’t change the probability.</p>
+<ol start="5" type="a">
+<li>10th and 90th percentiles:</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3687618</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.059048</code></pre>
+</div>
+</div>
+<p>The middle 80% of wait times is between about <strong>0.37 days (9 hours)</strong> and <strong>8.05 days</strong>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-mess-hall-service-times" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-mess-hall-service-times">Problem 4: Mess Hall Service Times</h3>
+<p>At the West Point mess hall during lunch, the time a cadet spends being served follows an exponential distribution with a mean of 45 seconds.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>What is the rate parameter <span class="math inline">\(\lambda\)</span> (in per second)?</p></li>
+<li><p>What is the probability a cadet is served in under 30 seconds?</p></li>
+<li><p>What is the probability service takes more than 1 minute?</p></li>
+<li><p>What is the probability service takes between 30 and 90 seconds?</p></li>
+<li><p><strong>Set up by hand (no R needed):</strong> Write out the expression for <span class="math inline">\(P(X &gt; 60)\)</span> using the exponential CDF formula. Simplify as far as you can without a calculator.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(\lambda = 1/45 \approx 0.0222\)</span> per second.</p></li>
+<li><p><span class="math inline">\(P(X \leq 30) = 1 - e^{-(1/45) \cdot 30} = 1 - e^{-2/3}\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4865829</code></pre>
+</div>
+</div>
+<p>About <strong>48.7%</strong> of cadets are served in under 30 seconds.</p>
+<ol start="3" type="a">
+<li><span class="math inline">\(P(X &gt; 60) = e^{-(1/45) \cdot 60} = e^{-4/3}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2635971</code></pre>
+</div>
+</div>
+<p>About <strong>26.4%</strong> of cadets wait more than 1 minute.</p>
+<ol start="4" type="a">
+<li><span class="math inline">\(P(30 &lt; X &lt; 90) = F(90) - F(30) = (1 - e^{-90/45}) - (1 - e^{-30/45}) = e^{-2/3} - e^{-2}\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3780818</code></pre>
+</div>
+</div>
+<p>About <strong>37.8%</strong> of service times are between 30 and 90 seconds.</p>
+<ol start="5" type="a">
+<li><span class="math inline">\(P(X &gt; 60) = e^{-\lambda \cdot 60} = e^{-(1/45)(60)} = e^{-60/45} = e^{-4/3}\)</span></li>
+</ol>
+<p>This is the kind of setup you’d need on WPR I — write the formula, plug in, simplify the exponent. On the WPR, you’d leave it as <span class="math inline">\(e^{-4/3}\)</span> or write <code>1 - pexp(60, rate = 1/45)</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li>The <strong>exponential distribution</strong> <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span> models the time between events in a Poisson process</li>
+<li><strong>Rate-Mean relationship:</strong> <span class="math inline">\(\lambda\)</span> is the rate, <span class="math inline">\(1/\lambda\)</span> is the mean (and the SD!)</li>
+<li><strong>CDF has a closed form:</strong> <span class="math inline">\(P(X \leq x) = 1 - e^{-\lambda x}\)</span> — you can compute by hand</li>
+<li>The <strong>memoryless property</strong>: <span class="math inline">\(P(X &gt; s + t \mid X &gt; s) = P(X &gt; t)\)</span> — past waiting doesn’t help</li>
+<li>Use <code>pexp()</code> for probabilities, <code>qexp()</code> for quantiles</li>
+<li>For WPR I: know how to <strong>set up</strong> exponential problems by hand (write the CDF formula)</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-15.html">Lesson 15: Review (Lessons 6–14)</a></p>
+<ul>
+<li>Comprehensive review of all Block I material</li>
+<li>Practice problems covering probability, random variables, and named distributions</li>
+<li>Preparation for WPR I</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 4.4</strong> - Due before Lesson 15</li>
+<li><strong>Lesson 15</strong> - Review (Lessons 6–14)</li>
+<li><strong>WPR I</strong> - Lesson 16</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-13.html" class="pagination-link" aria-label="Lesson 13">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 13</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
