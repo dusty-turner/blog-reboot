@@ -1952,7 +1952,6 @@ Var(X) &amp;= E(X^2) - [E(X)]^2 \\[6pt]
 (function() {
   var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
 
-  // Get or create a persistent visitor ID via cookie
   function getVisitorId() {
     var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
     if (match) return match[1];
@@ -1961,31 +1960,44 @@ Var(X) &amp;= E(X^2) - [E(X)]^2 \\[6pt]
     return id;
   }
 
-  try {
-    var data = {
-      page: window.location.pathname,
-      url: window.location.href,
-      referrer: document.referrer || null,
-      title: document.title || null,
-      screen_width: screen.width,
-      screen_height: screen.height,
-      user_agent: navigator.userAgent,
-      language: navigator.language,
-      timestamp: new Date().toISOString(),
-      visitor_id: getVisitorId()
-    };
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
 
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(API_URL, JSON.stringify(data));
-    } else {
-      fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        keepalive: true
-      }).catch(function() {});
-    }
-  } catch(e) {}
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Fetch public IP, then send hit (with 2s timeout so we don't delay)
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 2000);
+  fetch("https://api.ipify.org?format=json")
+    .then(function(r) { return r.json(); })
+    .then(function(d) { if (!sent) { sent = true; clearTimeout(timer); sendHit(d.ip); } })
+    .catch(function() { if (!sent) { sent = true; clearTimeout(timer); sendHit(null); } });
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
