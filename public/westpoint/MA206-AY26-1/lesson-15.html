@@ -1059,6 +1059,37 @@ So what do we do? We <strong>invert</strong> the inequality to find the set of <
 </section>
 
 </main> <!-- /main -->
+<script>
+(function() {
+  // Change this to your Raspberry Pi's Tailscale address
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  try {
+    var data = {
+      page: window.location.pathname,
+      url: window.location.href,
+      referrer: document.referrer || null,
+      title: document.title || null,
+      screen_width: screen.width,
+      screen_height: screen.height,
+      user_agent: navigator.userAgent,
+      language: navigator.language,
+      timestamp: new Date().toISOString()
+    };
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(API_URL, JSON.stringify(data));
+    } else {
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        keepalive: true
+      }).catch(function() {});
+    }
+  } catch(e) {}
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

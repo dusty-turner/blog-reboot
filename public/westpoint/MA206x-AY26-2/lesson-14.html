@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-15.html" rel="next">
 <link href="../MA206x-AY26-2/lesson-13.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -288,6 +289,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
   </div>
 </li>
     </ul>
@@ -1881,6 +1888,37 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<script>
+(function() {
+  // Change this to your Raspberry Pi's Tailscale address
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  try {
+    var data = {
+      page: window.location.pathname,
+      url: window.location.href,
+      referrer: document.referrer || null,
+      title: document.title || null,
+      screen_width: screen.width,
+      screen_height: screen.height,
+      user_agent: navigator.userAgent,
+      language: navigator.language,
+      timestamp: new Date().toISOString()
+    };
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(API_URL, JSON.stringify(data));
+    } else {
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        keepalive: true
+      }).catch(function() {});
+    }
+  } catch(e) {}
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2288,6 +2326,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../MA206x-AY26-2/lesson-15.html" class="pagination-link" aria-label="Lesson 15">
+        <span class="nav-page-text">Lesson 15</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
