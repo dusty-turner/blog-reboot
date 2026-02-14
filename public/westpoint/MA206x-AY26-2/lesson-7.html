@@ -1184,8 +1184,16 @@ window.Quarto = {
 </main> <!-- /main -->
 <script>
 (function() {
-  // Change this to your Raspberry Pi's Tailscale address
   var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  // Get or create a persistent visitor ID via cookie
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
 
   try {
     var data = {
@@ -1197,7 +1205,8 @@ window.Quarto = {
       screen_height: screen.height,
       user_agent: navigator.userAgent,
       language: navigator.language,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      visitor_id: getVisitorId()
     };
 
     if (navigator.sendBeacon) {
