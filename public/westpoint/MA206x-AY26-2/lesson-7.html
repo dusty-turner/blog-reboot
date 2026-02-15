@@ -1225,13 +1225,38 @@ window.Quarto = {
     } catch(e) {}
   }
 
-  // Fetch public IP, then send hit (with 2s timeout so we don't delay)
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
   var sent = false;
-  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 2000);
-  fetch("https://api.ipify.org?format=json")
-    .then(function(r) { return r.json(); })
-    .then(function(d) { if (!sent) { sent = true; clearTimeout(timer); sendHit(d.ip); } })
-    .catch(function() { if (!sent) { sent = true; clearTimeout(timer); sendHit(null); } });
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
