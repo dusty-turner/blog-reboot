@@ -1,20 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>dplyr on Dusty Turner</title>
-    <link>https://www.dustysturner.com/tags/dplyr/</link>
-    <description>Recent content in dplyr on Dusty Turner</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 17 May 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.dustysturner.com/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Tracking My Cadet&#39;s Summer Plans</title>
-      <link>https://www.dustysturner.com/post/tracking-my-cadets-summer-plans/</link>
-      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.dustysturner.com/post/tracking-my-cadets-summer-plans/</guid>
-      <description>&#xD;Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!&#xD;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dplyr on Dusty Turner</title><link>https://www.dustysturner.com/tags/dplyr/</link><description>Recent content in Dplyr on Dusty Turner</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Dusty Turner</copyright><lastBuildDate>Thu, 17 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dustysturner.com/tags/dplyr/index.xml" rel="self" type="application/rss+xml"/><item><title>Tracking My Cadet's Summer Plans</title><link>https://www.dustysturner.com/post/tracking-my-cadets-summer-plans/</link><pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate><guid>https://www.dustysturner.com/post/tracking-my-cadets-summer-plans/</guid><description>&lt;!-- runtime: shiny --&gt;
+&lt;center&gt;
+Tracking my cadet’s summer plans with &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;ggplot&lt;/code&gt;. The interactive ShinyApp is below!
+&lt;iframe src="https://dustyturner.shinyapps.io/CadetSummerInteractive/?showcase=0" width="672" height="1200px"&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;!-- ```{r setup, include=FALSE} --&gt;
+&lt;!-- knitr::opts_chunk$set(echo = TRUE) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE} --&gt;
+&lt;!-- library(lubridate) --&gt;
+&lt;!-- library(tidyverse) --&gt;
+&lt;!-- library(skimr) --&gt;
+&lt;!-- library(stringr) --&gt;
+&lt;!-- library(shiny) --&gt;
+&lt;!-- travel = read_csv("CadetTravel.csv") --&gt;
+&lt;!-- # travel = read_csv(file.choose()) --&gt;
+&lt;!-- ctravel = travel %&gt;% --&gt;
+&lt;!-- mutate(Name = word(Name, 1)) %&gt;% --&gt;
+&lt;!-- mutate(Begin = as.Date(strptime(travel$Begin, format = "%d-%b"))) %&gt;% --&gt;
+&lt;!-- mutate(End = as.Date(strptime(travel$End, format = "%d-%b"))) %&gt;% --&gt;
+&lt;!-- mutate(Labeller = Begin - ((Begin-End)/2)) %&gt;% --&gt;
+&lt;!-- mutate(length = nchar(Name)) %&gt;% --&gt;
+&lt;!-- filter(Event!="Leave", Event!="Work") %&gt;% --&gt;
+&lt;!-- group_by(Name) %&gt;% --&gt;
+&lt;!-- mutate(Early = min(Begin)) %&gt;% --&gt;
+&lt;!-- arrange(Early) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ```{r, echo=FALSE} --&gt;
+&lt;!-- ui = fluidPage( --&gt;
+&lt;!-- sliderInput("Date", label = "Date:", --&gt;
+&lt;!-- min = as.Date("2018-05-07"), max = as.Date("2018-08-15"), value = today(), step = 1), --&gt;
+&lt;!-- plotOutput("newplot") --&gt;
+&lt;!-- ) --&gt;
+&lt;!-- server = function(input,output) { --&gt;
+&lt;!-- plot = reactive({ --&gt;
+&lt;!-- # renderPlot(height = 1000,{ --&gt;
+&lt;!-- trav = ctravel %&gt;% --&gt;
+&lt;!-- ggplot(aes(x=Begin, y = fct_reorder(farewell$Presenter, farewell$TimeStart))) + --&gt;
+&lt;!-- ggplot(aes(x=Begin, y = fct_reorder(ctravel$Name,ctravel$Early, desc = TRUE))) + --&gt;
+&lt;!-- geom_segment(aes(x=Begin, xend=End, yend=Name, color = Event),size=12) + --&gt;
+&lt;!-- geom_text(aes(label = Event, x=Labeller), size = 2.5) + --&gt;
+&lt;!-- geom_vline(xintercept=input$Date) + --&gt;
+&lt;!-- theme(legend.position = "none") + --&gt;
+&lt;!-- xlab("Date") + --&gt;
+&lt;!-- ylab("Cadet") + --&gt;
+&lt;!-- ggtitle("Where Are Our Cadets?!") + --&gt;
+&lt;!-- # theme_light() + --&gt;
+&lt;!-- theme(legend.position="none") + --&gt;
+&lt;!-- theme(axis.text=element_text(size=20), --&gt;
+&lt;!-- axis.title=element_text(size=14,face="bold")) --&gt;
+&lt;!-- return(trav) --&gt;
+&lt;!-- }) --&gt;
+&lt;!-- output$newplot = renderPlot(plot) --&gt;
+&lt;!-- } --&gt;
+&lt;!-- shinyApp(ui = ui, server = server) --&gt;
+&lt;!-- ``` --&gt;</description></item></channel></rss>

@@ -1,9 +1,6 @@
 ---
 title: "Presentations"
 date: "2021-06-24"
-layout: "about"
-menu: "main"
-weight: 40
 ---
 
 More to follow as I rebuild my blog

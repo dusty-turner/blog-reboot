@@ -1,9 +1,6 @@
 ---
 title: "Community"
 date: "2014-04-09"
-layout: "about"
-menu: "main"
-weight: 60
 ---
 
 What follows is a growing collection of examples of why I am grateful to be a part of this community.
