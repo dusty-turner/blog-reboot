@@ -396,7 +396,7 @@ window.Quarto = {
 <hr>
 <!-- ### DMath Volleyball!!
 
-**Math vs TBD**
+**Math vs AWPAD**
 
 :::{.callout-note collapse="true" title="Previously 11-1"}
 <div style="text-align: center; font-size: 5em;">
@@ -408,7 +408,7 @@ window.Quarto = {
 </section>
 <section id="dmath-basketball" class="level3">
 <h3 class="anchored" data-anchor-id="dmath-basketball">DMath Basketball!!</h3>
-<p><strong>Math vs TBD</strong></p>
+<p><strong>Math vs AWPAD</strong></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Previously 8-4">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -507,6 +507,100 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p><strong>Note</strong></p>
+<p>What does it mean to fully specify a distribution?</p>
+<p>To <strong>fully specify</strong> a distribution means to state the distribution family <strong>and</strong> the numerical value(s) of its parameter(s). For example:</p>
+<ul>
+<li>Binomial: <span class="math inline">\(X \sim Bin(n, p)\)</span> — e.g., <span class="math inline">\(X \sim Bin(12, 0.75)\)</span></li>
+<li>Poisson: <span class="math inline">\(X \sim Pois(\lambda)\)</span> — e.g., <span class="math inline">\(X \sim Pois(3)\)</span></li>
+<li>Normal: <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — e.g., <span class="math inline">\(X \sim N(40, 5^2)\)</span></li>
+<li>Exponential: <span class="math inline">\(T \sim Exp(\lambda)\)</span> — e.g., <span class="math inline">\(T \sim Exp(2)\)</span></li>
+</ul>
+<p>Simply saying “binomial” or “normal” is <strong>not</strong> fully specified — you must include the parameter values.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Complete Distribution Reference">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complete Distribution Reference
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>Binomial</strong></th>
+<th style="text-align: center;"><strong>Poisson</strong></th>
+<th style="text-align: center;"><strong>Normal</strong></th>
+<th style="text-align: center;"><strong>Exponential</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Type</strong></td>
+<td style="text-align: center;">Discrete</td>
+<td style="text-align: center;">Discrete</td>
+<td style="text-align: center;">Continuous</td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="even">
+<td><strong>Notation</strong></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Bin}(n, p)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Pois}(\lambda)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Parameters</strong></td>
+<td style="text-align: center;"><span class="math inline">\(n, p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu, \sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Models</strong></td>
+<td style="text-align: center;"># successes in <span class="math inline">\(n\)</span> trials</td>
+<td style="text-align: center;"># events in fixed interval</td>
+<td style="text-align: center;">Symmetric measurements</td>
+<td style="text-align: center;">Time between events</td>
+</tr>
+<tr class="odd">
+<td><strong>Mean</strong></td>
+<td style="text-align: center;"><span class="math inline">\(np\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Variance</strong></td>
+<td style="text-align: center;"><span class="math inline">\(np(1-p)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda^2\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>SD</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{np(1-p)}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{\lambda}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/\lambda\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="block-i-concept-outline-lessons-614" class="level2">
@@ -527,7 +621,7 @@ window.Quarto = {
 <li><p>What is the probability of a perimeter alarm but NOT a drone detection?</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -536,7 +630,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(P(P^c) = 1 - P(P) = 1 - 0.6 = 0.4\)</span></p></li>
@@ -564,7 +658,7 @@ window.Quarto = {
 <li><p>Are the events “infantry” and “completes the course” independent? Justify mathematically.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -573,7 +667,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(P(C) = P(C|I)P(I) + P(C|I^c)P(I^c)\)</span> by Law of Total Probability</li>
@@ -610,9 +704,11 @@ window.Quarto = {
 <ol start="3" type="a">
 <li><p>What is <span class="math inline">\(P(S_1 \cap S_2)\)</span>?</p></li>
 <li><p>What is the probability the network fails to detect (neither sensor detects)?</p></li>
+<li><p>If <span class="math inline">\(S_1\)</span> does <strong>not</strong> detect, what is the probability that <span class="math inline">\(S_2\)</span> also does not detect?</p></li>
+<li><p>Given that at least one sensor detects, what is the probability <span class="math inline">\(S_1\)</span> detects?</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -621,7 +717,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(\binom{10}{4} = \frac{10!}{4!\,6!} = 210\)</span></p></li>
@@ -631,7 +727,15 @@ window.Quarto = {
 <ol start="3" type="a">
 <li><p>Since <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are independent: <span class="math inline">\(P(S_1 \cap S_2) = P(S_1) \cdot P(S_2) = 0.8 \cdot 0.65 = 0.520\)</span></p></li>
 <li><p>Neither detects: <span class="math inline">\(P(S_1^c \cap S_2^c) = P(S_1^c) \cdot P(S_2^c) = (1 - 0.8)(1 - 0.65) = 0.2 \cdot 0.35 = 0.0700\)</span></p></li>
+<li><p>Since <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are independent, <span class="math inline">\(S_1^c\)</span> and <span class="math inline">\(S_2^c\)</span> are also independent, so:</p></li>
 </ol>
+<p><span class="math inline">\(P(S_2^c | S_1^c) = P(S_2^c) = 1 - 0.65 = 0.35\)</span></p>
+<ol start="6" type="a">
+<li>Note that <span class="math inline">\(S_1 \cap (S_1 \cup S_2) = S_1\)</span>, so:</li>
+</ol>
+<p><span class="math inline">\(P(S_1 | S_1 \cup S_2) = \frac{P(S_1)}{P(S_1 \cup S_2)}\)</span></p>
+<p><span class="math inline">\(P(S_1 \cup S_2) = 1 - P(S_1^c \cap S_2^c) = 1 - 0.0700 = 0.930\)</span></p>
+<p><span class="math inline">\(P(S_1 | S_1 \cup S_2) = \frac{0.8}{0.930} = 0.860\)</span></p>
 </div>
 </div>
 </div>
@@ -677,7 +781,7 @@ window.Quarto = {
 <li><p>Compute <span class="math inline">\(Var(X)\)</span>.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -686,7 +790,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(\sum P(X=x) = 1 \implies 0.10 + 0.25 + k + 0.20 + 0.10 = 1 \implies k = 0.35\)</span></p></li>
@@ -755,7 +859,7 @@ window.Quarto = {
 <li><p>What is the probability that exactly 10 out of 12 qualify expert?</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -764,7 +868,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(X \sim Bin(12, 0.75)\)</span></p></li>
@@ -800,7 +904,7 @@ window.Quarto = {
 <li><p>If a battalion experiences 500 independent radio transmissions per hour, each with a 0.005 probability of interference, approximate the distribution of interference events using the Poisson distribution.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -809,7 +913,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Rate for 30 minutes: <span class="math inline">\(\lambda = 6 \cdot 0.5 = 3\)</span>. So <span class="math inline">\(X \sim Pois(3)\)</span>.</p></li>
@@ -840,10 +944,11 @@ window.Quarto = {
 <li><p>Find the value of <span class="math inline">\(c\)</span> that makes this a valid PDF.</p></li>
 <li><p>Derive and fully define the CDF <span class="math inline">\(F_X(x)\)</span> as a piecewise function.</p></li>
 <li><p>Compute <span class="math inline">\(P(1 \leq X \leq 3)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(P(1 \leq X \leq 5)\)</span>.</p></li>
 <li><p>Compute <span class="math inline">\(E[X]\)</span>.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -852,7 +957,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(\int_0^4 cx\,dx = c\left[\frac{x^2}{2}\right]_0^4 = c \cdot 8 = 1 \implies c = \frac{1}{8}\)</span></p></li>
@@ -862,7 +967,11 @@ window.Quarto = {
 <p><span class="math display">\[F_X(x) = \begin{cases} 0 &amp; x &lt; 0 \\ \frac{x^2}{16} &amp; 0 \leq x \leq 4 \\ 1 &amp; x &gt; 4 \end{cases}\]</span></p>
 <ol start="3" type="a">
 <li><p><span class="math inline">\(P(1 \leq X \leq 3) = F(3) - F(1) = \frac{9}{16} - \frac{1}{16} = \frac{8}{16} = \frac{1}{2} = 0.500\)</span></p></li>
-<li><p><span class="math inline">\(E[X] = \int_0^4 x \cdot \frac{1}{8}x\,dx = \frac{1}{8}\int_0^4 x^2\,dx = \frac{1}{8}\left[\frac{x^3}{3}\right]_0^4 = \frac{1}{8} \cdot \frac{64}{3} = \frac{64}{24} = \frac{8}{3} \approx 2.67\)</span></p></li>
+<li><p>Since <span class="math inline">\(5 &gt; 4\)</span>, we use the piecewise CDF: <span class="math inline">\(F(5) = 1\)</span>.</p></li>
+</ol>
+<p><span class="math inline">\(P(1 \leq X \leq 5) = F(5) - F(1) = 1 - \frac{1}{16} = \frac{15}{16} = 0.938\)</span></p>
+<ol start="5" type="a">
+<li><span class="math inline">\(E[X] = \int_0^4 x \cdot \frac{1}{8}x\,dx = \frac{1}{8}\int_0^4 x^2\,dx = \frac{1}{8}\left[\frac{x^3}{3}\right]_0^4 = \frac{1}{8} \cdot \frac{64}{3} = \frac{64}{24} = \frac{8}{3} \approx 2.67\)</span></li>
 </ol>
 </div>
 </div>
@@ -884,7 +993,7 @@ window.Quarto = {
 <li><p>Find the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X &gt; x) = 0.10\)</span>. That is, what weight is exceeded by only 10% of crates?</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -893,7 +1002,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(X \sim N(40, 5^2)\)</span></p></li>
@@ -925,7 +1034,7 @@ window.Quarto = {
 <li><p>Given the convoy has already traveled 100 miles without failure, what is the probability it travels at least 50 more miles without failure?</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -934,7 +1043,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(T \sim Exp(\lambda = 2)\)</span></p></li>
