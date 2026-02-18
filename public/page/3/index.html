@@ -224,7 +224,8 @@
   
     <img class="post-cover" src="https://www.dustysturner.com/media/book_logo.jpg" alt="Goal: Read 1000 (Children&#39;s) Books in 2018" lazyload="on">
   
-  <p class="post-summary">IntroductionOver Christmas 2017, my wife, Jill, resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
+  <p class="post-summary">Introduction
+Over Christmas 2017, my wife, Jill, resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
 A goal like this takes dedication, love, and of course, a Data Science-y approach.
 Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
 Also, special thanks to drob and juliasilge who privde the tidytext package and the entire R open-source community I rely on to do this analysis.</p>
@@ -238,12 +239,14 @@ Also, special thanks to drob and juliasilge who privde the tidytext package and 
     <p class="post-meta">@Dusty Turner · Jun 20, 2018 · 3 min read</p>
   </header>
   
-  <p class="post-summary">A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
+  <p class="post-summary">A Little About Dates in R
+Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
 There are 3 date/time classes are built in to R
 - Date
 - POSIXct
 - POSIXlt
-Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</p>
+Base R
+First, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/dates-in-r/">Read More →</a>
   </footer>
@@ -254,7 +257,22 @@ Base RFirst, base R can read a string of text and convert it to a date class. T
     <p class="post-meta">@Dusty Turner · May 17, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!% --% --% --% --% --% --% --% --% --% --</p>
+  <p class="post-summary">
+
+Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!
+
+
+% --
+% --
+% --
+% --
+% --
+% --
+% --
+% --
+% --
+% --
+</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/tracking-my-cadets-summer-plans/">Read More →</a>
   </footer>
@@ -282,8 +300,10 @@ Oh, and I got to go for a little run before the conference!</p>
   
   <p class="post-summary">As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
 Creating this blog serves several purposes.
-It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
-It helps me share what I’ve learned with the community that has been so helpful to me.</p>
+It archives some projects I’ve created.
+It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+
+It helps me share what I’ve learned with the community that has been so helpful to me.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/blog-introduction/">Read More →</a>
   </footer>
@@ -346,6 +366,83 @@ if (!doNotTrack) {
 
 
  
-  </body>
+  <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+</body>
 </html>
 

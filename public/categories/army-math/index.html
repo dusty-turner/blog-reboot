@@ -230,7 +230,8 @@
   
     <img class="post-cover" src="https://www.dustysturner.com/media/boot.jpg" alt="Parallel Processing and Bootstrapping" lazyload="on">
   
-  <p class="post-summary">IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
+  <p class="post-summary">Introduction
+Often times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
 Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/parallel-processing-and-bootstrapping-for-diamonds/">Read More →</a>
@@ -244,7 +245,8 @@ Complaining about this let me to Googling, which, as usual, let me to a solution
     <p class="post-meta">@Dusty Turner · Dec 29, 2018 · 8 min read</p>
   </header>
   
-  <p class="post-summary">IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+  <p class="post-summary">Introduction
+In my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
 The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/mathlete-fantasy-football-analysis2018/">Read More →</a>
@@ -276,7 +278,8 @@ Oh, and I got to go for a little run before the conference!</p>
   
   <p class="post-summary">As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
 Creating this blog serves several purposes.
-It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+It archives some projects I’ve created.
+It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
 It helps me share what I’ve learned with the community that has been so helpful to me.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/blog-introduction/">Read More →</a>
@@ -334,6 +337,83 @@ if (!doNotTrack) {
 
 
 
-  </body>
+  <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+</body>
 </html>
 

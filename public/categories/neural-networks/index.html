@@ -230,9 +230,16 @@
   
     <img class="post-cover" src="https://www.dustysturner.com/media/aws_icon.PNG" alt="Getting Started with GPU-Accelerated Machine Learning on AWS EC2 using R and TensorFlow" lazyload="on">
   
-  <p class="post-summary">IntroductionI’ve been looking for an all-in-one place to explain how to start from nothing to having a GPU-accelerated machine learning platform that runs RStudio Server with TensorFlow through reticulate.
+  <p class="post-summary">Introduction
+I’ve been looking for an all-in-one place to explain how to start from nothing to having a GPU-accelerated machine learning platform that runs RStudio Server with TensorFlow through reticulate.
 In this post, I will explain how to…
-Set up an EC2 instance in AWS with GPU capabilitiesInstall RStudio Server with the latest versions of RInstall the correct versions of Python with RecitulateInstall TensorFlow and Keras to run deep learning modelsSet up an EC2 instanceLog in to AWSFor a new account, select “Root User”.</p>
+Set up an EC2 instance in AWS with GPU capabilities
+Install RStudio Server with the latest versions of R
+Install the correct versions of Python with Recitulate
+Install TensorFlow and Keras to run deep learning models
+Set up an EC2 instance
+Log in to AWS
+For a new account, select “Root User”.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/2024-01-29-getting-started-with-gpu-accelerated-machine-learning-on-aws-ec2-using-r-and-tensorflow/">Read More →</a>
   </footer>
@@ -247,7 +254,8 @@ Set up an EC2 instance in AWS with GPU capabilitiesInstall RStudio Server with 
   
     <img class="post-cover" src="https://www.dustysturner.com/media/tfk.png" alt="Quick Start Guide to Neural Networks in R with Keras and Tensorflow" lazyload="on">
   
-  <p class="post-summary">Quick Start Guide to Neural Networks in R with Keras and TensorflowI’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.</p>
+  <p class="post-summary">Quick Start Guide to Neural Networks in R with Keras and Tensorflow
+I’ve been working with neural networks lately and have struggled to find any quick start resources for getting up and running in R. To help others in a similar situation, I’m providing this quick start guide. It’s designed to help you get your first model up and going, enabling you to iterate quickly with your own data.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/2024-01-13-quick-start-guide-to-neural-networks-in-r-with-keras-and-tensorflow/">Read More →</a>
   </footer>
@@ -304,6 +312,83 @@ if (!doNotTrack) {
 
 
 
-  </body>
+  <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+</body>
 </html>
 

@@ -230,10 +230,13 @@
   
     <img class="post-cover" src="https://www.dustysturner.com/media/Fitbit_app_icon_square.png" alt="Fitbit and R Part 1: Accessing Data with the Fitbit API" lazyload="on">
   
-  <p class="post-summary">IntroductionIn part 1 of this series, I will demonstrate how to interact with the Fitbit API in R.
+  <p class="post-summary">Introduction
+In part 1 of this series, I will demonstrate how to interact with the Fitbit API in R.
 Huge credit to Matt Kaye for creating the fitbitr package that provides an interface between R and the Fitbit API. If you are familiar with R and you have a Fitbit, you should have success following what I have laid out below.
-Install the fitbitr packageFrom CRAN:
-install.packages(&#34;fitbitr&#34;)Or the development version from github:</p>
+Install the fitbitr package
+From CRAN:
+install.packages(&#34;fitbitr&#34;)
+Or the development version from github:</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/2022-06-17-fitbit-api-1/">Read More →</a>
   </footer>
@@ -248,9 +251,11 @@ install.packages(&#34;fitbitr&#34;)Or the development version from github:</p>
   
     <img class="post-cover" src="https://www.dustysturner.com/media/bikecover.jpg" alt="The Peloton API Part 2: A Peloton Data Tribute to my Wife" lazyload="on">
   
-  <p class="post-summary">Peloton RIn part 1 of my Peloton API post, I explored the pelotonR created by Ben Weiher’s. It’s a great package for accessing your Peloton data and I recommend it.
+  <p class="post-summary">Peloton R
+In part 1 of my Peloton API post, I explored the pelotonR created by Ben Weiher’s. It’s a great package for accessing your Peloton data and I recommend it.
 In part 2, I’ll explore a different pelotonR package from Laura Ellis. She provides a great tutorial to display the functionality. I recommend this one too!
-ObjectivesThe objectives for this post are to…
+Objectives
+The objectives for this post are to…
 Show how awesome my wife is.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/the-peloton-api-part-2/">Read More →</a>
@@ -266,9 +271,12 @@ Show how awesome my wife is.</p>
   
     <img class="post-cover" src="https://www.dustysturner.com/media/football.jpg" alt="ESPN Fantasy Football 2020 Part 1: Accessing the API" lazyload="on">
   
-  <p class="post-summary">Its that time of year!Its that time of year again. The time when we dust off the old ESPN fantasy football API R code and fix everything that broke in the last year.
+  <p class="post-summary">Its that time of year!
+Its that time of year again. The time when we dust off the old ESPN fantasy football API R code and fix everything that broke in the last year.
 Here’s what I hope to show over the next few posts.
-How to access your ESPN public fantasy football league’s data.How to organize that data and create a few interesting displays.How to create a dashboard to supplement your league’s fun.</p>
+How to access your ESPN public fantasy football league’s data.
+How to organize that data and create a few interesting displays.
+How to create a dashboard to supplement your league’s fun.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/espn-fantasy-football-api-2020/">Read More →</a>
   </footer>
@@ -284,7 +292,8 @@ How to access your ESPN public fantasy football league’s data.How to organize
     <img class="post-cover" src="https://www.dustysturner.com/media/bikecover.jpg" alt="The Peloton API Part 1: Accessing and Exploring" lazyload="on">
   
   <p class="post-summary">In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
-Jill Smiling After Her 600th Ride (and new record)!Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.</p>
+Jill Smiling After Her 600th Ride (and new record)!
+Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.</p>
   <footer class="post-footer">
     <a class="read-more" href="https://www.dustysturner.com/post/the-peloton-api-part-1/">Read More →</a>
   </footer>
@@ -341,6 +350,83 @@ if (!doNotTrack) {
 
 
 
-  </body>
+  <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+</body>
 </html>
 
