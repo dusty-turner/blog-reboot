@@ -3,7 +3,7 @@
   publish = "public"
 
 [build.processing]
-  skip_processing = true
+  skip_processing = false
 
 [build.processing.css]
   bundle = false
@@ -21,3 +21,16 @@
 
 [context.production.environment]
   HUGO_ENV = "production"
+
+# Redirect pkgdown directories to trailing slash so relative paths resolve correctly
+[[redirects]]
+  from = "/ggfunction"
+  to = "/ggfunction/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ggvfields"
+  to = "/ggvfields/"
+  status = 301
+  force = true
