@@ -201,6 +201,7 @@
 <span><span class="co">#&gt; ------------------------------------</span></span>
 <span><span class="co">#&gt; Groups: 10</span></span>
 <span><span class="co">#&gt; Chi-sq: 0.6781  df: 8  p-value: 0.9996</span></span>
+<span><span class="co">#&gt; =&gt; No evidence of poor fit; model appears adequately calibrated</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  group n observed_1   expected_1 observed_0   expected_0</span></span>
 <span><span class="co">#&gt;      1 4          0 0.0001560190          4 3.999844e+00</span></span>
@@ -227,7 +228,8 @@
 <span><span class="co">#&gt; Family: poisson</span></span>
 <span><span class="co">#&gt; Dispersion estimate: 1.2933</span></span>
 <span><span class="co">#&gt; Pearson Chi-sq: 5.1732  df: 4  p-value: 0.2700</span></span>
-<span><span class="co">#&gt; =&gt; Evidence of overdispersion (dispersion &gt; 1)</span></span></code></pre></div>
+<span><span class="co">#&gt; =&gt; Evidence of overdispersion (dispersion &gt; 1)</span></span>
+<span><span class="co">#&gt;    Consider: quasipoisson, negative binomial, or robust standard errors</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="rootogram-count-models">Rootogram (Count Models)<a class="anchor" aria-label="anchor" href="#rootogram-count-models"></a>
@@ -251,6 +253,26 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_vif.html">plot_vif</a></span><span class="op">(</span><span class="va">model_binom</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/readme-vif-1.png" width="60%"></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="turning-off-guidance-for-publication">Turning Off Guidance for Publication<a class="anchor" aria-label="anchor" href="#turning-off-guidance-for-publication"></a>
+</h2>
+<p>Every plot and test in glmassume includes interpretive subtitles and guidance by default (<code>guide = TRUE</code>). Set <code>guide = FALSE</code> for publication-ready output.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">model_binom</span>, guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/readme-guide-off-plot-1.png" width="60%"></p>
+<p>The same toggle works for printed test output:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="reference/overdispersion_test.html">overdispersion_test</a></span><span class="op">(</span><span class="va">model_pois</span><span class="op">)</span>, guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Overdispersion Test (Pearson Chi-Squared)</span></span>
+<span><span class="co">#&gt; ------------------------------------------</span></span>
+<span><span class="co">#&gt; Family: poisson</span></span>
+<span><span class="co">#&gt; Dispersion estimate: 1.2933</span></span>
+<span><span class="co">#&gt; Pearson Chi-sq: 5.1732  df: 4  p-value: 0.2700</span></span>
+<span><span class="co">#&gt; =&gt; Evidence of overdispersion (dispersion &gt; 1)</span></span></code></pre></div>
+<p>To turn off guidance globally for an entire session:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>glmassume.guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="related-packages">Related Packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>

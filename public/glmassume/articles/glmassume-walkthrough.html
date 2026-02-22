@@ -65,9 +65,12 @@
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
 <p>The <code>glmassume</code> package provides visual and statistical
-diagnostics for generalized linear models (GLMs). It supports all common
-GLM families: binomial, Poisson, negative binomial, Gamma, inverse
-Gaussian, and Gaussian.</p>
+diagnostics for generalized linear models (GLMs). It is
+<strong>teaching-focused</strong>: every plot includes an interpretive
+subtitle explaining what to look for, and every statistical test prints
+guidance on what to do next. This guidance is on by default
+(<code>guide = TRUE</code>) and can be turned off for publication-ready
+output.</p>
 <p>This vignette demonstrates diagnostics for three families:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -368,6 +371,56 @@ hypothesis test is performed.</p>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="glmassume-walkthrough_files/figure-html/unnamed-chunk-19-1.png" width="960"></p>
 <hr>
+</div>
+<div class="section level3">
+<h3 id="guide-toggle">Guide Toggle<a class="anchor" aria-label="anchor" href="#guide-toggle"></a>
+</h3>
+<p>By default, every plot and test includes interpretive guidance aimed
+at students and instructors. For publication-ready output, set
+<code>guide = FALSE</code>.</p>
+<div class="section level4">
+<h4 id="plots">Plots<a class="anchor" aria-label="anchor" href="#plots"></a>
+</h4>
+<p>With guidance (default):</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">model_binom</span><span class="op">)</span></span></code></pre></div>
+<p><img src="glmassume-walkthrough_files/figure-html/guide-on-plot-1.png" width="672"></p>
+<p>Without guidance:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">model_binom</span>, guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="glmassume-walkthrough_files/figure-html/guide-off-plot-1.png" width="672"></p>
+</div>
+<div class="section level4">
+<h4 id="test-output">Test Output<a class="anchor" aria-label="anchor" href="#test-output"></a>
+</h4>
+<p>With guidance (default):</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/overdispersion_test.html">overdispersion_test</a></span><span class="op">(</span><span class="va">model_pois</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Overdispersion Test (Pearson Chi-Squared)</span></span>
+<span><span class="co">#&gt; ------------------------------------------</span></span>
+<span><span class="co">#&gt; Family: poisson</span></span>
+<span><span class="co">#&gt; Dispersion estimate: 1.2933</span></span>
+<span><span class="co">#&gt; Pearson Chi-sq: 5.1732  df: 4  p-value: 0.2700</span></span>
+<span><span class="co">#&gt; =&gt; Evidence of overdispersion (dispersion &gt; 1)</span></span>
+<span><span class="co">#&gt;    Consider: quasipoisson, negative binomial, or robust standard errors</span></span></code></pre></div>
+<p>Without guidance:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/overdispersion_test.html">overdispersion_test</a></span><span class="op">(</span><span class="va">model_pois</span><span class="op">)</span>, guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Overdispersion Test (Pearson Chi-Squared)</span></span>
+<span><span class="co">#&gt; ------------------------------------------</span></span>
+<span><span class="co">#&gt; Family: poisson</span></span>
+<span><span class="co">#&gt; Dispersion estimate: 1.2933</span></span>
+<span><span class="co">#&gt; Pearson Chi-sq: 5.1732  df: 4  p-value: 0.2700</span></span>
+<span><span class="co">#&gt; =&gt; Evidence of overdispersion (dispersion &gt; 1)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="global-toggle">Global Toggle<a class="anchor" aria-label="anchor" href="#global-toggle"></a>
+</h4>
+<p>To turn off guidance for an entire session:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>glmassume.guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
 </div>
 <div class="section level3">
 <h3 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
