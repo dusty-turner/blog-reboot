@@ -54,7 +54,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-<p><strong>glmassume</strong> provides visual and statistical diagnostics for checking the assumptions of generalized linear models fitted with <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>. Supports binomial, Poisson, negative binomial, Gamma, inverse Gaussian, and Gaussian families. Supply a fitted model and get publication-ready diagnostic plots built on <a href="https://ggplot2.tidyverse.org/" class="external-link"><strong>ggplot2</strong></a>.</p>
+<p><strong>glmassume</strong> is a teaching-focused toolkit for checking the assumptions of generalized linear models fitted with <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>. Designed for students, instructors, and analysts learning GLMs, every plot includes an interpretive subtitle explaining what to look for, and every statistical test suggests what to do next. Supports binomial, Poisson, negative binomial, Gamma, inverse Gaussian, and Gaussian families with diagnostic plots built on <a href="https://ggplot2.tidyverse.org/" class="external-link"><strong>ggplot2</strong></a>.</p>
+<p>Need publication-ready output? Turn off the guidance globally with <code>options(glmassume.guide = FALSE)</code> or per-call with <code>guide = FALSE</code>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -63,7 +64,7 @@
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"dusty-turner/glmassume"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="what-each-diagnostic-checks">What each diagnostic checks<a class="anchor" aria-label="anchor" href="#what-each-diagnostic-checks"></a>
 </h2>
 <table class="table">
 <colgroup>
@@ -250,6 +251,20 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_vif.html">plot_vif</a></span><span class="op">(</span><span class="va">model_binom</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/readme-vif-1.png" width="60%"></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="related-packages">Related Packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
+</h2>
+<p><strong>glmassume</strong> is a first-stop teaching companion that pairs well with these excellent tools:</p>
+<ul>
+<li>
+<a href="https://cran.r-project.org/package=DHARMa" class="external-link"><strong>DHARMa</strong></a> – simulation-based residuals, essential for mixed models and non-standard GLM extensions.</li>
+<li>
+<a href="https://easystats.github.io/performance/" class="external-link"><strong>performance</strong></a> (easystats) – comprehensive model checking across many model types, with a broad suite of indices and tests.</li>
+<li>
+<a href="https://cran.r-project.org/package=car" class="external-link"><strong>car</strong></a> – the textbook classic for regression diagnostics and hypothesis testing.</li>
+</ul>
+<p>Each package has different strengths; use them together for the most thorough analysis.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
