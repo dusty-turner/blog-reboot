@@ -49,7 +49,8 @@ values or observation index. Works with any GLM family.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_residuals</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"deviance"</span>, <span class="st">"pearson"</span>, <span class="st">"response"</span><span class="op">)</span>,</span>
-<span>  vs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fitted"</span>, <span class="st">"index"</span><span class="op">)</span></span>
+<span>  vs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fitted"</span>, <span class="st">"index"</span><span class="op">)</span>,</span>
+<span>  guide <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"glmassume.guide"</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -69,6 +70,11 @@ values or observation index. Works with any GLM family.</p>
 <dt id="arg-vs">vs<a class="anchor" aria-label="anchor" href="#arg-vs"></a></dt>
 <dd><p>Character. What to plot residuals against: <code>"fitted"</code> (default)
 or <code>"index"</code>.</p></dd>
+
+
+<dt id="arg-guide">guide<a class="anchor" aria-label="anchor" href="#arg-guide"></a></dt>
+<dd><p>Logical. Show interpretive subtitle? Defaults to
+<code>getOption("glmassume.guide", TRUE)</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

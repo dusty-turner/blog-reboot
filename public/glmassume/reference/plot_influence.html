@@ -49,7 +49,8 @@ delta-beta (DFBETAS) plots. Works with any GLM family.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_influence</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cooks"</span>, <span class="st">"leverage"</span>, <span class="st">"dfbetas"</span><span class="op">)</span>,</span>
-<span>  threshold_multiplier <span class="op">=</span> <span class="fl">1</span></span>
+<span>  threshold_multiplier <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  guide <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"glmassume.guide"</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -71,6 +72,11 @@ delta-beta (DFBETAS) plots. Works with any GLM family.</p>
 cutoff line. For Cook's distance, the cutoff is
 <code>threshold_multiplier * 4/n</code>. For leverage, it is
 <code>threshold_multiplier * 2*p/n</code>.</p></dd>
+
+
+<dt id="arg-guide">guide<a class="anchor" aria-label="anchor" href="#arg-guide"></a></dt>
+<dd><p>Logical. Show interpretive subtitle? Defaults to
+<code>getOption("glmassume.guide", TRUE)</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
