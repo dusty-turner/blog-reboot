@@ -65,6 +65,13 @@
 <p>The <code>glmassume</code> package provides visual and statistical
 diagnostics for logistic regression models. This vignette walks through
 a complete workflow using built-in data.</p>
+<p>The diagnostics implemented here follow the framework presented
+in:</p>
+<blockquote>
+<p>Hosmer, D.W., Lemeshow, S., and Sturdivant, R.X. (2013). <em>Applied
+Logistic Regression</em>, 3rd Edition. John Wiley &amp; Sons. Chapters
+4–5.</p>
+</blockquote>
 <p>We will:</p>
 <ol style="list-style-type: decimal">
 <li>Fit a logistic regression model</li>
@@ -134,10 +141,16 @@ horsepower (<code>hp</code>).</p>
 </h2>
 <p>A key assumption of logistic regression is that each continuous
 predictor has a linear relationship with the log-odds (logit) of the
-outcome. The <code><a href="../reference/plot_linearity_logit.html">plot_linearity_logit()</a></code> function overlays a
-loess smoother (blue) and a linear fit (red dashed) on each predictor
-vs. the predicted logit. If the loess curve deviates substantially from
-the linear fit, the linearity assumption may be violated.</p>
+outcome (Hosmer, Lemeshow, &amp; Sturdivant, 2013, Section 4.2). The
+<code><a href="../reference/plot_linearity_logit.html">plot_linearity_logit()</a></code> function overlays a loess smoother
+(blue) and a linear fit (red dashed) on each predictor vs. the predicted
+logit. If the loess curve deviates substantially from the linear fit,
+the linearity assumption may be violated.</p>
+<p>One common approach for assessing this assumption is the Box-Tidwell
+test (Box &amp; Tidwell, 1962), which adds interaction terms between
+each predictor and its natural log to the model. A significant
+interaction suggests nonlinearity. The visual approach used here
+provides a complementary, intuitive check.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">linearity_plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_linearity_logit.html">plot_linearity_logit</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="va">linearity_plots</span><span class="op">[[</span><span class="st">"mpg"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
@@ -157,9 +170,15 @@ for that predictor.</p>
 <h2 id="residual-diagnostics">2. Residual Diagnostics<a class="anchor" aria-label="anchor" href="#residual-diagnostics"></a>
 </h2>
 <p>Residual plots help identify systematic patterns that indicate model
-misspecification. <code><a href="../reference/plot_residuals.html">plot_residuals()</a></code> supports deviance,
-Pearson, and response residuals plotted against fitted values or
-observation index.</p>
+misspecification. For logistic regression, deviance and Pearson
+residuals are the two most commonly used types (Hosmer, Lemeshow, &amp;
+Sturdivant, 2013, Section 5.2). <code><a href="../reference/plot_residuals.html">plot_residuals()</a></code> supports
+deviance, Pearson, and response residuals plotted against fitted values
+or observation index.</p>
+<p>Deviance residuals are the signed square roots of the individual
+contributions to the model deviance (McCullagh &amp; Nelder, 1989,
+Section 2.4). Pearson residuals standardize the difference between
+observed and fitted values by the estimated variance.</p>
 <div class="section level3">
 <h3 id="deviance-residuals-vs--fitted-probabilities">Deviance residuals vs. fitted probabilities<a class="anchor" aria-label="anchor" href="#deviance-residuals-vs--fitted-probabilities"></a>
 </h3>
@@ -183,12 +202,15 @@ systematically over- or under-predicting in certain ranges.</p>
 </h2>
 <p>Influential observations can disproportionately affect model
 estimates. The <code><a href="../reference/plot_influence.html">plot_influence()</a></code> function provides three
-diagnostic views.</p>
+diagnostic views based on standard regression influence measures (Cook,
+1977; Belsley, Kuh, &amp; Welsch, 1980; Hosmer, Lemeshow, &amp;
+Sturdivant, 2013, Section 5.3).</p>
 <div class="section level3">
 <h3 id="cooks-distance">Cook’s Distance<a class="anchor" aria-label="anchor" href="#cooks-distance"></a>
 </h3>
-<p>Identifies observations with an outsized effect on the fitted model.
-Points above the dashed threshold line
+<p>Cook’s distance (Cook, 1977) measures the overall influence of each
+observation on the fitted model. It combines leverage and residual
+magnitude into a single summary. Points above the dashed threshold line
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">4/n</annotation></semantics></math>)
 warrant investigation.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -198,7 +220,8 @@ warrant investigation.</p>
 <div class="section level3">
 <h3 id="leverage-hat-values">Leverage (Hat Values)<a class="anchor" aria-label="anchor" href="#leverage-hat-values"></a>
 </h3>
-<p>High-leverage points have unusual predictor values. The threshold
+<p>High-leverage points have unusual predictor values. The hat matrix
+diagonal (Hoaglin &amp; Welsch, 1978) quantifies this. The threshold
 line is at
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>p</mi><mi>/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">2p/n</annotation></semantics></math>
 where
@@ -211,8 +234,8 @@ is the number of parameters.</p>
 <div class="section level3">
 <h3 id="dfbetas">DFBETAS<a class="anchor" aria-label="anchor" href="#dfbetas"></a>
 </h3>
-<p>Shows how each observation affects individual coefficient estimates.
-Points beyond
+<p>DFBETAS (Belsley, Kuh, &amp; Welsch, 1980) show how each observation
+affects individual coefficient estimates. Points beyond
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>2</mn><mi>/</mi><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\pm 2/\sqrt{n}</annotation></semantics></math>
 are flagged.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -221,15 +244,21 @@ are flagged.</p>
 <p><strong>What to look for:</strong> Observations that appear above the
 threshold in multiple plots are strong candidates for further
 examination. Consider whether they are data errors, outliers, or
-legitimately extreme cases.</p>
+legitimately extreme cases. Pregibon (1981) provides the foundational
+treatment of logistic regression diagnostics.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="hosmer-lemeshow-goodness-of-fit-test">4. Hosmer-Lemeshow Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#hosmer-lemeshow-goodness-of-fit-test"></a>
 </h2>
-<p>The Hosmer-Lemeshow test (Hosmer, Lemeshow, &amp; Sturdivant, 2013)
-assesses whether the model’s predicted probabilities match observed
-event rates across groups of observations.</p>
+<p>The Hosmer-Lemeshow test (Hosmer &amp; Lemeshow, 1980; Hosmer,
+Lemeshow, &amp; Sturdivant, 2013, Section 5.2) assesses whether the
+model’s predicted probabilities match observed event rates across groups
+of observations. Observations are sorted by predicted probability,
+divided into
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+groups (typically 10), and a chi-squared statistic compares observed and
+expected event counts within each group.</p>
 <div class="section level3">
 <h3 id="the-test">The test<a class="anchor" aria-label="anchor" href="#the-test"></a>
 </h3>
@@ -256,6 +285,14 @@ event rates across groups of observations.</p>
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&gt;</mo><mn>0.05</mn></mrow><annotation encoding="application/x-tex">p &gt; 0.05</annotation></semantics></math>)
 suggests the model fits adequately. A significant result indicates the
 predicted probabilities do not align well with the observed data.</p>
+<p><strong>Note:</strong> The Hosmer-Lemeshow test has known
+limitations. It can be oversensitive in large samples (Hosmer, Lemeshow,
+&amp; Sturdivant, 2013, p. 157) and results can vary with the choice of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>.
+Paul, Pennell, &amp; Lemeshow (2013) discuss alternative approaches.
+Sturdivant’s dissertation work extended the test to hierarchical
+logistic models using kernel-smoothed residuals (Hosmer &amp;
+Sturdivant, 2007).</p>
 </div>
 <div class="section level3">
 <h3 id="calibration-plot">Calibration plot<a class="anchor" aria-label="anchor" href="#calibration-plot"></a>
@@ -275,7 +312,11 @@ the model is poorly calibrated.</p>
 <h2 id="multicollinearity-vif">5. Multicollinearity (VIF)<a class="anchor" aria-label="anchor" href="#multicollinearity-vif"></a>
 </h2>
 <p>Multicollinearity occurs when predictors are highly correlated,
-inflating standard errors and making coefficients unstable.</p>
+inflating standard errors and making coefficients unstable. The variance
+inflation factor (Marquardt, 1970) quantifies how much the variance of
+each coefficient is inflated relative to an orthogonal design. For
+logistic regression diagnostics under multicollinearity, see also
+Ozkale, Lemeshow, &amp; Sturdivant (2018).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_vif.html">plot_vif</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <p><img src="glmassume-walkthrough_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
@@ -344,8 +385,39 @@ package.</p>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Hosmer, D.W., Lemeshow, S., and Sturdivant, R.X. (2013). <em>Applied
-Logistic Regression</em>, 3rd Edition. John Wiley &amp; Sons.</p>
+<ul>
+<li>Belsley, D.A., Kuh, E., and Welsch, R.E. (1980). <em>Regression
+Diagnostics: Identifying Influential Data and Sources of
+Collinearity</em>. John Wiley &amp; Sons.</li>
+<li>Box, G.E.P. and Tidwell, P.W. (1962). Transformation of the
+independent variables. <em>Technometrics</em>, 4(4), 531–550.</li>
+<li>Cook, R.D. (1977). Detection of influential observation in linear
+regression. <em>Technometrics</em>, 19(1), 15–18.</li>
+<li>Hoaglin, D.C. and Welsch, R.E. (1978). The hat matrix in regression
+and ANOVA. <em>The American Statistician</em>, 32(1), 17–22.</li>
+<li>Hosmer, D.W. and Lemeshow, S. (1980). Goodness of fit tests for the
+multiple logistic regression model. <em>Communications in Statistics –
+Theory and Methods</em>, 9(10), 1043–1069.</li>
+<li>Hosmer, D.W. and Sturdivant, R.X. (2007). A smoothed residual based
+goodness-of-fit statistic for logistic hierarchical regression models.
+<em>Computational Statistics &amp; Data Analysis</em>, 51(8),
+3898–3912.</li>
+<li>Hosmer, D.W., Lemeshow, S., and Sturdivant, R.X. (2013). <em>Applied
+Logistic Regression</em>, 3rd Edition. John Wiley &amp; Sons.</li>
+<li>Marquardt, D.W. (1970). Generalized inverses, ridge regression,
+biased linear estimation, and nonlinear estimation.
+<em>Technometrics</em>, 12(3), 591–612.</li>
+<li>McCullagh, P. and Nelder, J.A. (1989). <em>Generalized Linear
+Models</em>, 2nd Edition. Chapman &amp; Hall.</li>
+<li>Ozkale, M.R., Lemeshow, S., and Sturdivant, R. (2018). Logistic
+regression diagnostics in ridge regression. <em>Computational
+Statistics</em>, 33, 563–593.</li>
+<li>Paul, P., Pennell, M.L., and Lemeshow, S. (2013). Standardizing the
+power of the Hosmer-Lemeshow goodness of fit test in large data sets.
+<em>Statistics in Medicine</em>, 32(1), 67–80.</li>
+<li>Pregibon, D. (1981). Logistic regression diagnostics. <em>The Annals
+of Statistics</em>, 9(4), 705–724.</li>
+</ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
