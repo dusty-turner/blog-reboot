@@ -1,0 +1,1775 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>Lucky $even Strategy on The Price Is Right &middot; Dusty Turner</title>
+    <meta name="title" content="Lucky $even Strategy on The Price Is Right &middot; Dusty Turner">
+  
+
+  
+  
+  
+    <meta name="keywords" content="R,Price Is Right,Strategy,Web Scraping,Simulation,Games,">
+  
+  
+  
+  <link rel="canonical" href="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/">
+  
+
+  
+  
+    <meta name="author" content="Dusty Turner">
+  
+  
+    
+      
+        
+      
+    
+      
+        
+          <link href="https://github.com/dusty-turner" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://www.linkedin.com/in/dustysturner/" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://twitter.com/dtdusty" rel="me">
+        
+      
+    
+  
+
+  
+  <meta property="og:url" content="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/">
+  <meta property="og:site_name" content="Dusty Turner">
+  <meta property="og:title" content="Lucky $even Strategy on The Price Is Right">
+  <meta property="og:description" content="This post serves two purposes: it’s both an analysis of the Lucky $even game on The Price Is Right and a tutorial on data analysis in R – covering web scraping, data wrangling, visualization, and simulation. All code is folded by default; click “Show code” to expand any block and follow along.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-03-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-01T00:00:00+00:00">
+    <meta property="article:tag" content="R">
+    <meta property="article:tag" content="Price Is Right">
+    <meta property="article:tag" content="Strategy">
+    <meta property="article:tag" content="Web Scraping">
+    <meta property="article:tag" content="Simulation">
+    <meta property="article:tag" content="Games">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lucky $even Strategy on The Price Is Right">
+  <meta name="twitter:description" content="This post serves two purposes: it’s both an analysis of the Lucky $even game on The Price Is Right and a tutorial on data analysis in R – covering web scraping, data wrangling, visualization, and simulation. All code is folded by default; click “Show code” to expand any block and follow along.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.75bee00c14046eb82c9a8059bb74ee9617e3c3dcff692c3ae8cb156a82b1491ba44072754fa0af891fe299961cd9baefd9fe565a890c3fdab69df291b1ff3f46.css">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"></script>
+  
+  
+  
+  
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.b4b722fcb5d42f34f52b30a92f3521b69f403ca9d96d0d6179eb537cb870f5d83fdf1fe836688d95d5c99fefbda4170487711006e56051fa67ea00da10521721.js"></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.816a30c4f1786a2c6010b3bb5024df2fd465b09879712a203b1c1df0ae0d5295213ad944fd7d5ecfb360e8af3cb1cd147e5b135df8a608b9aab05cd47f617b2b.js"
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/lib/katex/katex.min.63e2d7d6ca14bc8e95f250f8cc8dd87c1a5a39ee1fd8dcafbb33c02fa8774140dbf665f3513393332d56bd5ede0527b55aa6fb82c5091dc63883d8f870dfe4d7.css"
+    integrity="sha512-Y&#43;LX1soUvI6V8lD4zI3YfBpaOe4f2NyvuzPAL6h3QUDb9mXzUTOTMy1WvV7eBSe1Wqb7gsUJHcY4g9j4cN/k1w==">
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/katex.bundle.be2373409b7a64f041b7eb28ad641e31c67e6761bacac7cc4d75baf9ba55611e373f28a8d91bb3719d2d3543a1312acefdb54a3e24858a157fd1569c942cc76c.js"
+    integrity="sha512-viNzQJt6ZPBBt&#43;sorWQeMcZ&#43;Z2G6ysfMTXW6&#43;bpVYR43Pyio2RuzcZ0tNUOhMSrO/bVKPiSFihV/0VaclCzHbA=="
+    id="katex-render"></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Lucky $even Strategy on The Price Is Right",
+    "headline": "Lucky $even Strategy on The Price Is Right",
+    
+    "inLanguage": "en",
+    "url" : "https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/",
+    "author" : {
+      "@type": "Person",
+      "name": "Dusty Turner"
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-03-01T00:00:00\u002b00:00",
+    "datePublished": "2026-03-01T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-03-01T00:00:00\u002b00:00",
+    
+    "keywords": ["R","Price Is Right","Strategy","Web Scraping","Simulation","Games"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2331"
+  }]
+  </script>
+
+
+
+  
+  
+    
+
+  <script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>
+
+
+
+
+
+  
+
+  
+  
+    <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+  
+  
+    <a href="/" class="text-base font-medium truncate min-w-0 shrink">
+      Dusty Turner
+    </a>
+  
+  <div class="flex items-center ms-auto">
+    <div class="hidden md:flex">
+      <nav class="flex items-center gap-x-5 h-12">
+  
+    
+      
+  
+    <a
+      href="/post/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Blog"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Blog
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/tags/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Tags"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Tags
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/cv.pdf"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="CV"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          CV
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/search/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Search"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Search
+        </span>
+      
+    </a>
+  
+
+    
+  
+
+  
+
+  
+
+  
+    <button
+      id="search-button"
+      aria-label="Search"
+      class="text-base bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <div class="flex items-center">
+      <button
+        id="appearance-switcher"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base bf-icon-color-hover">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    </div>
+  
+</nav>
+
+
+
+    </div>
+    <div class="flex md:hidden">
+      <div class="flex items-center h-14 gap-4">
+  
+    <button
+      id="search-button-mobile"
+      aria-label="Search"
+      class="flex items-center justify-center bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <button
+      id="appearance-switcher-mobile"
+      type="button"
+      aria-label="Dark mode switcher"
+      class="flex items-center justify-center text-neutral-900 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400">
+      <div class="dark:hidden">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+      </div>
+      <div class="hidden dark:block">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+      </div>
+    </button>
+  
+
+  
+    <input type="checkbox" id="mobile-menu-toggle" autocomplete="off" class="hidden peer">
+    <label for="mobile-menu-toggle" class="flex items-center justify-center cursor-pointer bf-icon-color-hover">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+    </label>
+
+    <div
+      role="dialog"
+      aria-modal="true"
+      style="scrollbar-gutter: stable;"
+      class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+      bf-scrollbar">
+      <label
+        for="mobile-menu-toggle"
+        class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </label>
+      <nav class="mx-auto max-w-md space-y-6">
+        
+  
+    
+    <div class="px-2">
+      <a
+        href="/post/"
+        aria-label="Blog"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Blog
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/tags/"
+        aria-label="Tags"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Tags
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/cv.pdf"
+        aria-label="CV"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          CV
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/search/"
+        aria-label="Search"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Search
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+
+        
+  
+
+        
+  
+
+      </nav>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Lucky $even Strategy on The Price Is Right
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-03-01T00:00:00&#43;00:00">1 March 2026</time><span class="px-2 text-primary-500">&middot;</span><span>2331 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">11 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+          
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/r/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    R
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/price-is-right/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Price Is Right
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/strategy/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Strategy
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/web-scraping/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Web Scraping
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/simulation/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Simulation
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/games/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Games
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+    </div>
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Dusty Turner"
+        src="/media/family_bug_hu_be0ab33ed9099068.png"
+        data-zoom-src="/media/family_bug_hu_a93e788437f81b8f.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Author
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Dusty Turner
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">Army Officer • Operations Research Systems Analyst • Statistician</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:dusty.s.turner@gmail.com"
+          target="_blank"
+          aria-label="Email"
+          title="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/dusty-turner"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.linkedin.com/in/dustysturner/"
+          target="_blank"
+          aria-label="Linkedin"
+          title="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://twitter.com/dtdusty"
+          target="_blank"
+          aria-label="Twitter"
+          title="Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          <script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll("pre code.language-r").forEach(function(code) {
+    var pre = code.parentNode;
+    var wrapper = document.createElement("details");
+    var summary = document.createElement("summary");
+    summary.textContent = "Show code";
+    summary.style.cursor = "pointer";
+    summary.style.color = "#888";
+    summary.style.fontStyle = "italic";
+    summary.style.marginBottom = "0.5em";
+    wrapper.appendChild(summary);
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+  });
+});
+</script>
+
+
+<p>This post serves two purposes: it&rsquo;s both an <strong>analysis of the Lucky $even game</strong> on The Price Is Right and a <strong>tutorial on data analysis in R</strong> &ndash; covering web scraping, data wrangling, visualization, and simulation.  All code is folded by default; click &ldquo;Show code&rdquo; to expand any block and follow along.</p>
+<p>In previous posts, I&rsquo;ve looked at <a href="https://www.dustysturner.com/post/wheel-spin-strategy-on-the-price-is-right"  target="_blank" rel="noreferrer">spinning the big wheel</a> and <a href="https://www.dustysturner.com/post/winning-pay-the-rent-on-the-price-is-right"  target="_blank" rel="noreferrer">winning Pay the Rent</a> on The Price Is Right.  This time, let&rsquo;s tackle <strong>Lucky $even</strong> &ndash; a deceptively simple game where a little number sense goes a long way.</p>
+
+<h1 class="relative group">How Lucky $even Works
+    <div id="how-lucky-even-works" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-lucky-even-works" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>The contestant plays for a car with a 5-digit price (e.g., $25,475).  The first digit is revealed for free.  The contestant starts with <strong>$7</strong> and must guess the remaining four digits one at a time.</p>
+<p>After each guess, the contestant loses money equal to how far off they were:</p>
+<p>$$\text{cost} = |\text{guess} - \text{actual}|$$</p>
+<p>If they guess exactly right, they lose nothing.  After all four guesses, the contestant wins if:</p>
+<p>$$M_{\text{remaining}} = 7 - \sum_{i=1}^{4} |\text{guess}_i - \text{actual}_i| \geq 1$$</p>
+<p>The question is: <strong>what should you guess for each digit to maximize your chance of winning?</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1-CA0IfuMxM" frameborder="0" allowfullscreen></iframe>
+
+<h1 class="relative group">What We&rsquo;ll Do
+    <div id="what-well-do" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-well-do" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<ul>
+<li>Scrape game-by-game results from the <a href="https://priceisright.fandom.com/wiki/Lucky_$even"  target="_blank" rel="noreferrer">Price Is Right Wiki</a></li>
+<li>Reconstruct actual car price digits from the money trail</li>
+<li>Examine digit distributions by position (thousands, hundreds, tens, ones)</li>
+<li>Find the optimal guess for each position</li>
+<li>Simulate win rates under different strategies</li>
+</ul>
+
+<h1 class="relative group">Scrape &amp; Clean the Data
+    <div id="scrape--clean-the-data" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#scrape--clean-the-data" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>The <a href="https://priceisright.fandom.com/wiki/Lucky_%24even"  target="_blank" rel="noreferrer">Price Is Right Wiki</a> has gallery pages documenting every playing of Lucky $even.  Each image caption describes a digit guess: <em>&ldquo;says 5 and is exactly right&rdquo;</em>, <em>&ldquo;says 4 and has $3 left&rdquo;</em>, or <em>&ldquo;says 6 and has lost all of her money.&rdquo;</em>  We scrape the 2010s and 2020s pages (~168 games), parse the captions with regex, and track money through each game.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(lubridate)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(rvest)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(scales)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>scrape_page <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(url) {
+</span></span><span style="display:flex;"><span>  page <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_html</span>(url)
+</span></span><span style="display:flex;"><span>  content <span style="color:#f92672">&lt;-</span> page <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">html_element</span>(<span style="color:#e6db74">&#34;.mw-parser-output&#34;</span>)
+</span></span><span style="display:flex;"><span>  nodes <span style="color:#f92672">&lt;-</span> content <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">html_elements</span>(<span style="color:#e6db74">&#34;.mw-headline, .lightbox-caption&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tibble</span>(
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> nodes <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">html_text2</span>(),
+</span></span><span style="display:flex;"><span>    type <span style="color:#f92672">=</span> <span style="color:#a6e22e">if_else</span>(<span style="color:#a6e22e">str_detect</span>(nodes <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">html_attr</span>(<span style="color:#e6db74">&#34;class&#34;</span>), <span style="color:#e6db74">&#34;mw-headline&#34;</span>), <span style="color:#e6db74">&#34;heading&#34;</span>, <span style="color:#e6db74">&#34;caption&#34;</span>)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>raw_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">map_dfr</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;https://priceisright.fandom.com/wiki/Lucky_%24even/Gallery/2010s&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://priceisright.fandom.com/wiki/Lucky_%24even/Gallery/2020s&#34;</span>),
+</span></span><span style="display:flex;"><span>  scrape_page, .id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;page&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Group captions under their game heading, parse guess details</span>
+</span></span><span style="display:flex;"><span>games_raw <span style="color:#f92672">&lt;-</span> raw_data <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(game_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumsum</span>(type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;heading&#34;</span>)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(game_id <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>captions <span style="color:#f92672">&lt;-</span> games_raw <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;caption&#34;</span>, <span style="color:#a6e22e">str_detect</span>(text, <span style="color:#e6db74">&#34;says \\d&#34;</span>)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    guess <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.integer</span>(<span style="color:#a6e22e">str_extract</span>(text, <span style="color:#e6db74">&#34;says (\\d)&#34;</span>, group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)),
+</span></span><span style="display:flex;"><span>    exactly_right <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_detect</span>(text, <span style="color:#e6db74">&#34;exactly right&#34;</span>),
+</span></span><span style="display:flex;"><span>    money_left <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.integer</span>(<span style="color:#a6e22e">str_extract</span>(text, <span style="color:#e6db74">&#34;\\$(\\d+) left&#34;</span>, group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)),
+</span></span><span style="display:flex;"><span>    lost_all <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_detect</span>(text, <span style="color:#e6db74">&#34;lost all|lost .* only dollar&#34;</span>)
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div></div>
+<p>With the captions parsed, we track money through each game.  The contestant starts with $7 (with rare $8 or $10 exceptions we&rsquo;ll exclude).  For each digit (i), the money updates as:</p>
+<p>$$M_i = M_{i-1} - |\text{guess}_i - \text{actual}_i|$$</p>
+<p>where (M_0 = 7).  The contestant wins if (M_4 \geq 1).</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Detect non-standard starting money and exclude those games</span>
+</span></span><span style="display:flex;"><span>starting_money_overrides <span style="color:#f92672">&lt;-</span> games_raw <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;caption&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    is_lucky_eight <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_detect</span>(text, <span style="color:#a6e22e">regex</span>(<span style="color:#e6db74">&#34;Lucky Eight|\\$8 instead&#34;</span>, ignore_case <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)),
+</span></span><span style="display:flex;"><span>    is_lucky_ten <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_detect</span>(text, <span style="color:#a6e22e">regex</span>(<span style="color:#e6db74">&#34;Lucky Ten|\\$10 instead&#34;</span>, ignore_case <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>))
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(game_id) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(starting_money <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">any</span>(is_lucky_ten) <span style="color:#f92672">~</span> <span style="color:#ae81ff">10L</span>, <span style="color:#a6e22e">any</span>(is_lucky_eight) <span style="color:#f92672">~</span> <span style="color:#ae81ff">8L</span>, <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">7L</span>
+</span></span><span style="display:flex;"><span>  ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>compute_money_trail <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(df, start_money) {
+</span></span><span style="display:flex;"><span>  n <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nrow</span>(df)
+</span></span><span style="display:flex;"><span>  mb <span style="color:#f92672">&lt;-</span> ma <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">integer</span>(n)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (i <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_len</span>(n)) {
+</span></span><span style="display:flex;"><span>    mb[i] <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) start_money <span style="color:#66d9ef">else</span> ma[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    ma[i] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">case_when</span>(
+</span></span><span style="display:flex;"><span>      df<span style="color:#f92672">$</span>exactly_right[i] <span style="color:#f92672">~</span> mb[i], df<span style="color:#f92672">$</span>lost_all[i] <span style="color:#f92672">~</span> <span style="color:#ae81ff">0L</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">!</span><span style="color:#a6e22e">is.na</span>(df<span style="color:#f92672">$</span>money_left[i]) <span style="color:#f92672">~</span> df<span style="color:#f92672">$</span>money_left[i], <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_integer_</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  df <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">mutate</span>(money_before <span style="color:#f92672">=</span> mb, money_after <span style="color:#f92672">=</span> ma)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>game_data <span style="color:#f92672">&lt;-</span> captions <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(game_id) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">mutate</span>(digit_position <span style="color:#f92672">=</span> <span style="color:#a6e22e">row_number</span>()) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">ungroup</span>() <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">left_join</span>(starting_money_overrides, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;game_id&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(game_id) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_modify</span>(<span style="color:#f92672">~</span> <span style="color:#a6e22e">compute_money_trail</span>(.x, .x<span style="color:#f92672">$</span>starting_money[1])) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ungroup</span>() <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(cost <span style="color:#f92672">=</span> money_before <span style="color:#f92672">-</span> money_after)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reconstruct actual digits: actual = guess ± cost (pick whichever falls in 0-9)</span>
+</span></span><span style="display:flex;"><span>game_data <span style="color:#f92672">&lt;-</span> game_data <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    option_high <span style="color:#f92672">=</span> guess <span style="color:#f92672">+</span> cost, option_low <span style="color:#f92672">=</span> guess <span style="color:#f92672">-</span> cost,
+</span></span><span style="display:flex;"><span>    actual <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(
+</span></span><span style="display:flex;"><span>      cost <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">~</span> guess,
+</span></span><span style="display:flex;"><span>      option_high <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">&amp;</span> option_low <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">~</span> option_low,
+</span></span><span style="display:flex;"><span>      option_low <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;</span> option_high <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">~</span> option_high,
+</span></span><span style="display:flex;"><span>      option_high <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">&amp;</span> option_low <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_integer_</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_integer_</span>
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    ambiguous <span style="color:#f92672">=</span> cost <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;</span> option_high <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">&amp;</span> option_low <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Keep standard $7 games with all 4 guesses</span>
+</span></span><span style="display:flex;"><span>standard_games <span style="color:#f92672">&lt;-</span> game_data <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(starting_money <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(game_id) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">max</span>(digit_position) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">ungroup</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>game_outcomes <span style="color:#f92672">&lt;-</span> standard_games <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(game_id) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(final_money <span style="color:#f92672">=</span> <span style="color:#a6e22e">last</span>(money_after), won <span style="color:#f92672">=</span> final_money <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>, .groups <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;drop&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Games:&#34;</span>, <span style="color:#a6e22e">nrow</span>(game_outcomes), <span style="color:#e6db74">&#34;| Wins:&#34;</span>, <span style="color:#a6e22e">sum</span>(game_outcomes<span style="color:#f92672">$</span>won, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;(&#34;</span>, <span style="color:#a6e22e">percent</span>(<span style="color:#a6e22e">mean</span>(game_outcomes<span style="color:#f92672">$</span>won, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)), <span style="color:#e6db74">&#34;) |&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Unambiguous digits:&#34;</span>, <span style="color:#a6e22e">sum</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is.na</span>(standard_games<span style="color:#f92672">$</span>actual)), <span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#a6e22e">nrow</span>(standard_games), <span style="color:#e6db74">&#34;\n&#34;</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Games: 109 | Wins: 57 ( 53% ) | Unambiguous digits: 149 / 436</span></span></code></pre></div></div>
+
+<h1 class="relative group">Digit Distributions by Position
+    <div id="digit-distributions-by-position" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#digit-distributions-by-position" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>One wrinkle: the wiki captions tell us the <strong>cost</strong> of each guess (how much money the contestant lost), but not always the <strong>actual digit</strong>.  Since (\text{cost} = |\text{guess} - \text{actual}|), there are sometimes two solutions:</p>
+<p>$$\text{actual} = \text{guess} + \text{cost} \quad \text{or} \quad \text{actual} = \text{guess} - \text{cost}$$</p>
+<p>For example, if a contestant guesses <strong>5</strong> and loses <strong>$2</strong>, the actual digit was either (5 - 2 = 3) or (5 + 2 = 7) &ndash; we can&rsquo;t tell which.  That&rsquo;s an <strong>ambiguous</strong> case.  But if a contestant guesses <strong>8</strong> and loses <strong>$3</strong>, the actual could be (8 - 3 = 5) or (8 + 3 = 11).  Since 11 isn&rsquo;t a valid digit (must be 0-9), the actual must be <strong>5</strong> &ndash; that&rsquo;s <strong>unambiguous</strong>.</p>
+<p>The four digits correspond to the <strong>thousands</strong>, <strong>hundreds</strong>, <strong>tens</strong>, and <strong>ones</strong> place of the car price.  Let&rsquo;s start by looking at the distribution of actual digits for each position, using only the unambiguous cases.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>position_labels <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Thousands&#34;</span>, <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hundreds&#34;</span>, <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tens&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ones&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>digit_dist <span style="color:#f92672">&lt;-</span> standard_games <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is.na</span>(actual)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(position_label <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(position_labels<span style="color:#a6e22e">[as.character</span>(digit_position)],
+</span></span><span style="display:flex;"><span>                                  levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Thousands&#34;</span>, <span style="color:#e6db74">&#34;Hundreds&#34;</span>, <span style="color:#e6db74">&#34;Tens&#34;</span>, <span style="color:#e6db74">&#34;Ones&#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(digit_dist, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(actual))) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_bar</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;steelblue&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> position_label, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free_y&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(
+</span></span><span style="display:flex;"><span>    title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Actual Digits in Lucky $even&#34;</span>,
+</span></span><span style="display:flex;"><span>    subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Based on unambiguous cases from ~168 games (2010s-2020s)&#34;</span>,
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Digit Value&#34;</span>,
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Count&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>(base_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>)</span></span></code></pre></div></div>
+<img src="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/index_files/figure-html/unnamed-chunk-3-1.png" width="960" />
+<p>For the ambiguous cases, we can include both possibilities weighted at 0.5 each to get a fuller picture:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Build weighted digit distribution including ambiguous cases</span>
+</span></span><span style="display:flex;"><span>weighted_dist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bind_rows</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Unambiguous cases: weight = 1</span>
+</span></span><span style="display:flex;"><span>  standard_games <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filter</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is.na</span>(actual)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">transmute</span>(digit_position, actual, weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Ambiguous cases: both options weighted at 0.5</span>
+</span></span><span style="display:flex;"><span>  standard_games <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filter</span>(ambiguous) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">transmute</span>(digit_position, actual <span style="color:#f92672">=</span> option_high, weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
+</span></span><span style="display:flex;"><span>  standard_games <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filter</span>(ambiguous) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">transmute</span>(digit_position, actual <span style="color:#f92672">=</span> option_low, weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(position_label <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(position_labels<span style="color:#a6e22e">[as.character</span>(digit_position)],
+</span></span><span style="display:flex;"><span>                                  levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Thousands&#34;</span>, <span style="color:#e6db74">&#34;Hundreds&#34;</span>, <span style="color:#e6db74">&#34;Tens&#34;</span>, <span style="color:#e6db74">&#34;Ones&#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(weighted_dist, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(actual), weight <span style="color:#f92672">=</span> weight)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_bar</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;darkgreen&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> position_label, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free_y&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(
+</span></span><span style="display:flex;"><span>    title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Weighted Digit Distribution (Including Ambiguous Cases)&#34;</span>,
+</span></span><span style="display:flex;"><span>    subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ambiguous cases contribute 0.5 to each possible digit&#34;</span>,
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Digit Value&#34;</span>,
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Weighted Count&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>(base_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>)</span></span></code></pre></div></div>
+<img src="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/index_files/figure-html/unnamed-chunk-4-1.png" width="960" />
+
+<h1 class="relative group">Optimal Strategy
+    <div id="optimal-strategy" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#optimal-strategy" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>For each digit position, we want to choose the guess (g) that minimizes the <strong>expected cost</strong>:</p>
+<p>$$g^* = \arg\min_{g \in {0,\ldots,9}} ; \mathbb{E}\left[|g - D|\right] = \arg\min_{g} \sum_{d=0}^{9} |g - d| \cdot P(D = d)$$</p>
+<p>where (D) is the random variable for the actual digit at that position.  This is minimized by choosing the <strong>weighted median</strong> of the digit distribution.</p>
+<p>Let&rsquo;s compute the expected cost of every possible guess (0-9) at each position:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Compute expected cost for each guess at each position</span>
+</span></span><span style="display:flex;"><span>expected_costs <span style="color:#f92672">&lt;-</span> weighted_dist <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position, actual) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(prob_weight <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(weight), .groups <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;drop&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(prob <span style="color:#f92672">=</span> prob_weight <span style="color:#f92672">/</span> <span style="color:#a6e22e">sum</span>(prob_weight)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ungroup</span>() <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">crossing</span>(guess_candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(cost <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(guess_candidate <span style="color:#f92672">-</span> actual) <span style="color:#f92672">*</span> prob) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position, guess_candidate) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(expected_cost <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(cost), .groups <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;drop&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(position_label <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(position_labels<span style="color:#a6e22e">[as.character</span>(digit_position)],
+</span></span><span style="display:flex;"><span>                                  levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Thousands&#34;</span>, <span style="color:#e6db74">&#34;Hundreds&#34;</span>, <span style="color:#e6db74">&#34;Tens&#34;</span>, <span style="color:#e6db74">&#34;Ones&#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find optimal guess per position</span>
+</span></span><span style="display:flex;"><span>optimal <span style="color:#f92672">&lt;-</span> expected_costs <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position, position_label) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slice_min</span>(expected_cost, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, with_ties <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ungroup</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(expected_costs, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> guess_candidate, y <span style="color:#f92672">=</span> expected_cost)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_line</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;steelblue&#34;</span>, linewidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_point</span>(data <span style="color:#f92672">=</span> optimal, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> guess_candidate, y <span style="color:#f92672">=</span> expected_cost),
+</span></span><span style="display:flex;"><span>             color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_text</span>(data <span style="color:#f92672">=</span> optimal, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> guess_candidate, y <span style="color:#f92672">=</span> expected_cost,
+</span></span><span style="display:flex;"><span>                                 label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Guess &#34;</span>, guess_candidate)),
+</span></span><span style="display:flex;"><span>            vjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1.2</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, fontface <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> position_label) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(
+</span></span><span style="display:flex;"><span>    title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Expected Cost by Guess Value at Each Position&#34;</span>,
+</span></span><span style="display:flex;"><span>    subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Red dot = optimal guess (minimizes expected dollar loss)&#34;</span>,
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Guess&#34;</span>,
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Expected Cost ($)&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>(base_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>)</span></span></code></pre></div></div>
+<img src="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/index_files/figure-html/unnamed-chunk-5-1.png" width="960" />
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Summary table</span>
+</span></span><span style="display:flex;"><span>optimal <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(Position <span style="color:#f92672">=</span> position_label, `Optimal Guess` <span style="color:#f92672">=</span> guess_candidate,
+</span></span><span style="display:flex;"><span>         `Expected Cost` <span style="color:#f92672">=</span> expected_cost) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(`Expected Cost` <span style="color:#f92672">=</span> <span style="color:#a6e22e">round</span>(`Expected Cost`, <span style="color:#ae81ff">2</span>)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">kable</span>()</span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Position</th>
+          <th style="text-align: right">Optimal Guess</th>
+          <th style="text-align: right">Expected Cost</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Thousands</td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: right">2.17</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Hundreds</td>
+          <td style="text-align: right">6</td>
+          <td style="text-align: right">1.79</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Tens</td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: right">2.02</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Ones</td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: right">1.99</td>
+      </tr>
+  </tbody>
+</table>
+<p>The total expected cost across all four guesses using the optimal strategy is the sum across positions:</p>
+<p>$$\text{Total Expected Cost} = \sum_{i=1}^{4} \mathbb{E}\left[|g^*_i - D_i|\right]$$</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>total_optimal_cost <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sum</span>(optimal<span style="color:#f92672">$</span>expected_cost)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Total expected cost: $&#34;</span>, <span style="color:#a6e22e">round</span>(total_optimal_cost, <span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#34;\n&#34;</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Total expected cost: $ 7.96</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Expected money remaining: $&#34;</span>, <span style="color:#a6e22e">round</span>(<span style="color:#ae81ff">7</span> <span style="color:#f92672">-</span> total_optimal_cost, <span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#34;\n&#34;</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Expected money remaining: $ -0.96</span></span></code></pre></div></div>
+
+<h1 class="relative group">Simulation: Comparing Strategies
+    <div id="simulation-comparing-strategies" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#simulation-comparing-strategies" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>Let&rsquo;s put this to the test.  We&rsquo;ll simulate 100,000 games under four strategies and compare win rates.  In each simulated game, we draw digits from the empirical distributions and check whether the contestant wins:</p>
+<p>$$P(\text{win} \mid \text{strategy}) = P\left(7 - \sum_{i=1}^{4} |g_i - D_i| \geq 1\right)$$</p>
+<p>The four strategies:</p>
+<ol>
+<li><strong>Optimal</strong> &ndash; guess the cost-minimizing digit (g^*_i) at each position</li>
+<li><strong>Always 5</strong> &ndash; guess (g_i = 5) for every digit (the &ldquo;middle of the road&rdquo; approach)</li>
+<li><strong>Always Mode</strong> &ndash; guess the most common digit at each position</li>
+<li><strong>Random</strong> &ndash; guess a random digit each time</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Build digit probability distributions per position</span>
+</span></span><span style="display:flex;"><span>digit_probs <span style="color:#f92672">&lt;-</span> weighted_dist <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position, actual) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(w <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(weight), .groups <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;drop&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(prob <span style="color:#f92672">=</span> w <span style="color:#f92672">/</span> <span style="color:#a6e22e">sum</span>(w)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ungroup</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ensure all digits 0-9 represented for each position</span>
+</span></span><span style="display:flex;"><span>full_probs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">crossing</span>(digit_position <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, actual <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">left_join</span>(digit_probs <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">select</span>(digit_position, actual, prob),
+</span></span><span style="display:flex;"><span>            by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;digit_position&#34;</span>, <span style="color:#e6db74">&#34;actual&#34;</span>)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">replace_na</span>(<span style="color:#a6e22e">list</span>(prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(prob <span style="color:#f92672">=</span> prob <span style="color:#f92672">/</span> <span style="color:#a6e22e">sum</span>(prob)) <span style="color:#f92672">|&gt;</span>  <span style="color:#75715e"># renormalize</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ungroup</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prob_matrix <span style="color:#f92672">&lt;-</span> full_probs <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pivot_wider</span>(names_from <span style="color:#f92672">=</span> actual, values_from <span style="color:#f92672">=</span> prob, names_prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;d&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>digit_position) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">as.matrix</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mode per position</span>
+</span></span><span style="display:flex;"><span>mode_guesses <span style="color:#f92672">&lt;-</span> full_probs <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(digit_position) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slice_max</span>(prob, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, with_ties <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pull</span>(actual)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>optimal_guesses <span style="color:#f92672">&lt;-</span> optimal<span style="color:#f92672">$</span>guess_candidate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Simulation function</span>
+</span></span><span style="display:flex;"><span>simulate_strategy <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(strategy_fn, n_games <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>) {
+</span></span><span style="display:flex;"><span>  results <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">replicate</span>(n_games, {
+</span></span><span style="display:flex;"><span>    money <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (pos <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>      actual_digit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>, prob <span style="color:#f92672">=</span> prob_matrix[pos, ])
+</span></span><span style="display:flex;"><span>      guess <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">strategy_fn</span>(pos)
+</span></span><span style="display:flex;"><span>      money <span style="color:#f92672">&lt;-</span> money <span style="color:#f92672">-</span> <span style="color:#a6e22e">abs</span>(guess <span style="color:#f92672">-</span> actual_digit)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (money <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    money
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  results
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble</span>(
+</span></span><span style="display:flex;"><span>  strategy <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Optimal&#34;</span>, <span style="color:#e6db74">&#34;Always 5&#34;</span>, <span style="color:#e6db74">&#34;Always Mode&#34;</span>, <span style="color:#e6db74">&#34;Random&#34;</span>),
+</span></span><span style="display:flex;"><span>  money <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">simulate_strategy</span>(<span style="color:#66d9ef">function</span>(pos) optimal_guesses[pos]),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">simulate_strategy</span>(<span style="color:#66d9ef">function</span>(pos) <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">simulate_strategy</span>(<span style="color:#66d9ef">function</span>(pos) mode_guesses[pos]),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">simulate_strategy</span>(<span style="color:#66d9ef">function</span>(pos) <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">unnest</span>(money) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(won <span style="color:#f92672">=</span> money <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Win rate comparison</span>
+</span></span><span style="display:flex;"><span>win_rates <span style="color:#f92672">&lt;-</span> results <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(strategy) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarize</span>(
+</span></span><span style="display:flex;"><span>    win_rate <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(won),
+</span></span><span style="display:flex;"><span>    avg_money <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(money),
+</span></span><span style="display:flex;"><span>    .groups <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;drop&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(strategy <span style="color:#f92672">=</span> <span style="color:#a6e22e">fct_reorder</span>(strategy, win_rate))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(win_rates, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> strategy, y <span style="color:#f92672">=</span> win_rate, fill <span style="color:#f92672">=</span> strategy)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_col</span>(alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, show.legend <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(label <span style="color:#f92672">=</span> <span style="color:#a6e22e">percent</span>(win_rate, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>)), vjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.5</span>, fontface <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scale_y_continuous</span>(labels <span style="color:#f92672">=</span> percent, limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scale_fill_brewer</span>(palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Set2&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(
+</span></span><span style="display:flex;"><span>    title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Win Rate by Strategy (100,000 Simulated Games)&#34;</span>,
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Strategy&#34;</span>,
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Win Rate&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>(base_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>)</span></span></code></pre></div></div>
+<img src="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/index_files/figure-html/unnamed-chunk-9-1.png" width="960" />
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Distribution of remaining money</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(results <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">filter</span>(strategy <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Optimal&#34;</span>, <span style="color:#e6db74">&#34;Always 5&#34;</span>)),
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> money, fill <span style="color:#f92672">=</span> strategy)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_histogram</span>(binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dodge&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.7</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;rect&#34;</span>, xmin <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, xmax <span style="color:#f92672">=</span> <span style="color:#66d9ef">Inf</span>, ymin <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#66d9ef">Inf</span>, ymax <span style="color:#f92672">=</span> <span style="color:#66d9ef">Inf</span>,
+</span></span><span style="display:flex;"><span>           fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;green&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.08</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>, x <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, y <span style="color:#f92672">=</span> <span style="color:#66d9ef">Inf</span>, label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Win (\u2265 $1)&#34;</span>,
+</span></span><span style="display:flex;"><span>           vjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;darkgreen&#34;</span>, fontface <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(
+</span></span><span style="display:flex;"><span>    title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Remaining Money&#34;</span>,
+</span></span><span style="display:flex;"><span>    subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Optimal vs. Always-5 Strategy&#34;</span>,
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Money Remaining ($)&#34;</span>,
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Count&#34;</span>,
+</span></span><span style="display:flex;"><span>    fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Strategy&#34;</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> scales<span style="color:#f92672">::</span><span style="color:#a6e22e">breaks_width</span>(<span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>(base_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>)</span></span></code></pre></div></div>
+<img src="https://www.dustysturner.com/post/lucky-seven-strategy-on-the-price-is-right/index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>win_rates <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    win_rate <span style="color:#f92672">=</span> <span style="color:#a6e22e">percent</span>(win_rate, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>),
+</span></span><span style="display:flex;"><span>    avg_money <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;$&#34;</span>, <span style="color:#a6e22e">round</span>(avg_money, <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(win_rate)) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rename</span>(Strategy <span style="color:#f92672">=</span> strategy, `Win Rate` <span style="color:#f92672">=</span> win_rate, `Avg Money Remaining` <span style="color:#f92672">=</span> avg_money) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">kable</span>()</span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Strategy</th>
+          <th style="text-align: left">Win Rate</th>
+          <th style="text-align: left">Avg Money Remaining</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Random</td>
+          <td style="text-align: left">8.7%</td>
+          <td style="text-align: left">$-1.41</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Optimal</td>
+          <td style="text-align: left">30.2%</td>
+          <td style="text-align: left">$0.01</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Always 5</td>
+          <td style="text-align: left">29.6%</td>
+          <td style="text-align: left">$-0.01</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Always Mode</td>
+          <td style="text-align: left">20.6%</td>
+          <td style="text-align: left">$-0.24</td>
+      </tr>
+  </tbody>
+</table>
+
+<h1 class="relative group">How Does This Compare to Reality?
+    <div id="how-does-this-compare-to-reality" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-does-this-compare-to-reality" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>actual_win_rate <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(game_outcomes<span style="color:#f92672">$</span>won, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Actual win rate from wiki data:&#34;</span>, <span style="color:#a6e22e">percent</span>(actual_win_rate, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>), <span style="color:#e6db74">&#34;\n&#34;</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Actual win rate from wiki data: 52.8%</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Optimal strategy win rate:&#34;</span>, <span style="color:#a6e22e">percent</span>(win_rates<span style="color:#f92672">$</span>win_rate[win_rates<span style="color:#f92672">$</span>strategy <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Optimal&#34;</span>]), <span style="color:#e6db74">&#34;\n&#34;</span>)</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Optimal strategy win rate: 30%</span></span></code></pre></div></div>
+<p>Contestants on the show don&rsquo;t play optimally &ndash; they&rsquo;re guessing under pressure without data.  But the actual win rate gives us a nice benchmark.  The gap between reality and optimal represents how much better contestants <em>could</em> do with a data-driven approach.</p>
+
+<h1 class="relative group">Conclusion
+    <div id="conclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#conclusion" aria-label="Anchor">#</a>
+    </span>
+    
+</h1>
+<p>Lucky $even rewards contestants who have good intuition about car prices.  But even without knowing the exact price, a data-driven strategy can meaningfully improve your odds:</p>
+<ul>
+<li><strong>Car price digits are not uniformly distributed.</strong>  Certain digits appear far more often at each position, driven by how manufacturers price their cars.</li>
+<li><strong>The &ldquo;optimal&rdquo; strategy is essentially just guessing 5 every time.</strong>  The data-driven median produces mostly 5s with one position suggesting a 6 &ndash; but with only ~168 games of data, that difference is likely noise.  The takeaway isn&rsquo;t a magic sequence of digits; it&rsquo;s that <strong>5 is a remarkably good default guess</strong> because car price digits tend to cluster in the middle of the 0-9 range.</li>
+<li><strong>Guessing 5 every time already does quite well</strong> compared to random guessing or other naive strategies.  You don&rsquo;t need to memorize anything fancy &ndash; just guess 5 and hope for the best.</li>
+</ul>
+<p>So the next time Drew Carey calls you down and you find yourself playing Lucky $even, the strategy is simple: <strong>guess 5 for every digit</strong>.  It won&rsquo;t guarantee a win, but the data says it gives you the best shot.  Just don&rsquo;t forget to bring that last dollar.</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+
+        
+
+      </div>
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/post/2025-04-17-mathematical-genealogy/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;Mathematical Genealogy
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2025-04-17T00:00:00&#43;00:00">17 April 2025</time>
+              </span>
+            
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+            <div class="pt-3">
+              <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            </div>
+          </div>
+        
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2026
+          Dusty Turner
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="https://www.dustysturner.com/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>
