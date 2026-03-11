@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-4 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206-AY26-1/lesson-5.html" rel="next">
+<link href="../MA206-AY26-1/lesson-3.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206-AY26-1/index.html" aria-current="page"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY26-1/lesson-4.html">Lesson 4</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY26-1/lesson-30.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-4-conditional-probability" id="toc-lesson-4-conditional-probability" class="nav-link active" data-scroll-target="#lesson-4-conditional-probability">Lesson 4: Conditional Probability</a>
+  <ul class="collapse">
+  <li><a href="#welcome" id="toc-welcome" class="nav-link" data-scroll-target="#welcome">Welcome!</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#whats-coming" id="toc-whats-coming" class="nav-link" data-scroll-target="#whats-coming">What’s Coming</a></li>
+  <li><a href="#updates" id="toc-updates" class="nav-link" data-scroll-target="#updates">Updates</a></li>
+  </ul></li>
+  <li><a href="#branch-week" id="toc-branch-week" class="nav-link" data-scroll-target="#branch-week">Branch Week</a></li>
+  <li><a href="#probability-review" id="toc-probability-review" class="nav-link" data-scroll-target="#probability-review">Probability Review</a>
+  <ul class="collapse">
+  <li><a href="#working-example" id="toc-working-example" class="nav-link" data-scroll-target="#working-example">Working Example</a></li>
+  <li><a href="#compliments" id="toc-compliments" class="nav-link" data-scroll-target="#compliments">Compliments</a></li>
+  <li><a href="#addition-rule" id="toc-addition-rule" class="nav-link" data-scroll-target="#addition-rule">Addition Rule</a></li>
+  <li><a href="#mutually-exclusive" id="toc-mutually-exclusive" class="nav-link" data-scroll-target="#mutually-exclusive">Mutually Exclusive</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
+  </ul></li>
+  <li><a href="#new-probability-material" id="toc-new-probability-material" class="nav-link" data-scroll-target="#new-probability-material">New Probability Material</a>
+  <ul class="collapse">
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a></li>
+  <li><a href="#multiplication-rule" id="toc-multiplication-rule" class="nav-link" data-scroll-target="#multiplication-rule">Multiplication Rule</a></li>
+  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability">Law of Total Probability</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ Theorem</a></li>
+  <li><a href="#tree-diagram-representation" id="toc-tree-diagram-representation" class="nav-link" data-scroll-target="#tree-diagram-representation">Tree Diagram Representation</a></li>
+  </ul></li>
+  <li><a href="#example-medical-test-and-probability-rules" id="toc-example-medical-test-and-probability-rules" class="nav-link" data-scroll-target="#example-medical-test-and-probability-rules">Example: Medical Test and Probability Rules</a>
+  <ul class="collapse">
+  <li><a href="#conditional-probability-1" id="toc-conditional-probability-1" class="nav-link" data-scroll-target="#conditional-probability-1">1. Conditional Probability</a></li>
+  <li><a href="#multiplication-rule-1" id="toc-multiplication-rule-1" class="nav-link" data-scroll-target="#multiplication-rule-1">2. Multiplication Rule</a></li>
+  <li><a href="#tree-diagram" id="toc-tree-diagram" class="nav-link" data-scroll-target="#tree-diagram">3. Tree Diagram</a></li>
+  <li><a href="#law-of-total-probability-1" id="toc-law-of-total-probability-1" class="nav-link" data-scroll-target="#law-of-total-probability-1">4. Law of Total Probability</a></li>
+  <li><a href="#bayes-theorem-1" id="toc-bayes-theorem-1" class="nav-link" data-scroll-target="#bayes-theorem-1">5. Bayes’ Theorem</a></li>
+  </ul></li>
+  <li><a href="#take-home-problem-spam-filter" id="toc-take-home-problem-spam-filter" class="nav-link" data-scroll-target="#take-home-problem-spam-filter">Take Home Problem: Spam Filter</a>
+  <ul class="collapse">
+  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before you leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today:</a></li>
+  <li><a href="#to-get-ahead" id="toc-to-get-ahead" class="nav-link" data-scroll-target="#to-get-ahead">To Get Ahead</a></li>
+  <li><a href="#lesson-5-tidyverse-tutorial" id="toc-lesson-5-tidyverse-tutorial" class="nav-link" data-scroll-target="#lesson-5-tidyverse-tutorial">Lesson 5 Tidyverse Tutorial</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-4-conditional-probability" class="level1">
+<h1>Lesson 4: Conditional Probability</h1>
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome!</h2>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/xkcd/conditional_risk.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<section id="calendar" class="level3">
+<h3 class="anchored" data-anchor-id="calendar">Calendar</h3>
+<section id="day-1" class="level4">
+<h4 class="anchored" data-anchor-id="day-1">Day 1</h4>
+<p><img src="assets/img/lesson/lesson4day1.png" class="img-fluid"></p>
+</section>
+<section id="day-2" class="level4">
+<h4 class="anchored" data-anchor-id="day-2">Day 2</h4>
+<p><img src="assets/img/lesson/lesson4day2.png" class="img-fluid"></p>
+<p><img src="assets/img/lesson/lesson-4.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="whats-coming" class="level3">
+<h3 class="anchored" data-anchor-id="whats-coming">What’s Coming</h3>
+<ul>
+<li>Project Milestone 2
+<ul>
+<li>Tidyverse Tutorial applied to your team’s data</li>
+<li>Annex B (for addressing feedback)</li>
+</ul></li>
+<li>Exploration 11.3B</li>
+</ul>
+</section>
+<section id="updates" class="level3">
+<h3 class="anchored" data-anchor-id="updates">Updates</h3>
+<section id="kid-update" class="level4">
+<h4 class="anchored" data-anchor-id="kid-update">Kid Update</h4>
+<p>Not Cal, but….</p>
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/lincoln1.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/lincoln2.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</section>
+<section id="dmath-frisbee-update" class="level4">
+<h4 class="anchored" data-anchor-id="dmath-frisbee-update">DMath Frisbee Update</h4>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 0-0">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previously 0-0
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>1-0</p>
+</div>
+</div>
+</div>
+</div>
+<p><img src="assets/img/frisbee.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="branch-week" class="level2">
+<h2 class="anchored" data-anchor-id="branch-week">Branch Week</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/engcastle.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li>Why I become an Engineer</li>
+<li>What I think you should do</li>
+<li>What do I do as an Engineer</li>
+<li>What is my branch now?</li>
+</ul>
+</section>
+<section id="probability-review" class="level2">
+<h2 class="anchored" data-anchor-id="probability-review">Probability Review</h2>
+<section id="working-example" class="level3">
+<h3 class="anchored" data-anchor-id="working-example">Working Example</h3>
+<p>Remember this?</p>
+<p>Out of 100 students:<br>
+- 40 like pizza<br>
+- 30 like burgers<br>
+- 10 of those included above like both pizza and burgers</p>
+<p>Experiment: I select one student at random</p>
+<p>Let:<br>
+- <span class="math inline">\(A =\)</span> “student likes pizza”<br>
+- <span class="math inline">\(B =\)</span> “student likes burgers”</p>
+</section>
+<section id="compliments" class="level3">
+<h3 class="anchored" data-anchor-id="compliments">Compliments</h3>
+<p>For any event <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+P(A^c) = 1 - P(A)
+\]</span></p>
+<p>What is the probability that a randomly selected student doesn’t like pizza (<span class="math inline">\(P(A^c)\)</span>)?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We know <span class="math inline">\(P(A) = 40/100 = 0.40\)</span>.</p>
+<p>By the complement rule:</p>
+<p><span class="math display">\[
+P(A^c) = 1 - P(A) = 1 - 0.40 = 0.60
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="addition-rule" class="level3">
+<h3 class="anchored" data-anchor-id="addition-rule">Addition Rule</h3>
+<p><span class="math display">\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B).
+\]</span></p>
+<div style="text-align:center;">
+<svg viewbox="0 0 420 220" style="width: min(100%, 900px); height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Venn diagram with sets A and b" preserveaspectratio="xMidYMid meet">
+<rect x="0" y="0" width="420" height="220" fill="white" stroke="black"></rect> <circle cx="150" cy="110" r="80" fill="none" stroke="#1f78b4"></circle> <circle cx="270" cy="110" r="80" fill="none" stroke="#33a02c"></circle> <text x="120" y="28" font-size="14" fill="#1f78b4">A</text> <text x="260" y="28" font-size="14" fill="#33a02c">B</text>
+</svg>
+</div>
+<p>What is the probability a randomly selected cadet likes pizza or burgers? <span class="math inline">\(P(A \cup B)\)</span>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By the addition rule:</p>
+<p><span class="math display">\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B).
+\]</span></p>
+<p>Substitute values:</p>
+<p><span class="math display">\[
+P(A \cup B) = 0.40 + 0.30 - 0.10 = 0.60
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="mutually-exclusive" class="level3">
+<h3 class="anchored" data-anchor-id="mutually-exclusive">Mutually Exclusive</h3>
+<p>Two events are mutually exclusive when it is impossible for both to happen at the same time.</p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+P(A \cup B) = P(A) + P(B)
+\]</span></p>
+<div style="text-align:center;">
+<svg viewbox="0 0 500 220" style="width: min(100%, 900px); height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Disjoint circles labeled A and B" preserveaspectratio="xMidYMid meet">
+<rect x="0" y="0" width="500" height="220" fill="white" stroke="black"></rect> <circle cx="120" cy="110" r="80" fill="none" stroke="#1f78b4"></circle> <circle cx="380" cy="110" r="80" fill="none" stroke="#33a02c"></circle> <text x="120" y="28" font-size="14" fill="#1f78b4">A</text> <text x="380" y="28" font-size="14" fill="#33a02c">B</text>
+</svg>
+</div>
+<p>Are events A and B mutually exclusive?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No because:</p>
+<p><span class="math display">\[
+P(A \cup B) \neq P(A) + P(B)
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="independence" class="level3">
+<h3 class="anchored" data-anchor-id="independence">Independence</h3>
+<p>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if knowing that one occurs does not change the probability of the other.</p>
+<p><span class="math display">\[
+P(A \cap B) = P(A)P(B)
+\]</span></p>
+<p>Equivalently (if <span class="math inline">\(P(B) &gt; 0\)</span>):</p>
+<p><span class="math display">\[
+P(A \mid B) = P(A)
+\]</span></p>
+<p><strong>Intuition</strong>: The outcome of one event gives no information about the other.</p>
+<p>Does Mutually Exclusive imply independence or no or undetermined?</p>
+<p>Are <span class="math inline">\(A =\)</span> “likes pizza” and <span class="math inline">\(B =\)</span> “likes burgers” independent?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We check using the multiplication rule for independence:</p>
+<p><span class="math display">\[
+P(A)P(B) = (0.40)(0.30) = 0.12
+\]</span></p>
+<p>But from the data:</p>
+<p><span class="math display">\[
+P(A \cap B) = 0.10
+\]</span></p>
+<p>Since <span class="math inline">\(0.10 \neq 0.12\)</span>, the events are <strong>not independent</strong>.</p>
+<p>Also, they are not mutually exclusive either, because</p>
+<p><span class="math display">\[
+P(A \cap B) = 0.10 &gt; 0.
+\]</span></p>
+<p>So in this example, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>neither independent nor mutually exclusive</strong>.</p>
+<p><strong>General Note:</strong><br>
+If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <em>mutually exclusive</em> with nonzero probabilities, they cannot be independent.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="new-probability-material" class="level2">
+<h2 class="anchored" data-anchor-id="new-probability-material">New Probability Material</h2>
+<p>We’ll use a single <strong>Factory Machines</strong> scenario for all concepts in this section.</p>
+<p><strong>Factory Setup (used for all examples)</strong><br>
+A factory produces <strong>1,000 items</strong> per day using two machines:</p>
+<ul>
+<li><strong>Machine <span class="math inline">\(M_A\)</span></strong> produces <strong>400 items</strong>, of which <strong>40 are defective</strong>.<br>
+</li>
+<li><strong>Machine <span class="math inline">\(M_B\)</span></strong> produces <strong>600 items</strong>, of which <strong>24 are defective</strong>.</li>
+</ul>
+<p>Define events:<br>
+- <span class="math inline">\(M_A =\)</span> “item came from Machine A”<br>
+- <span class="math inline">\(M_B =\)</span> “item came from Machine B”<br>
+- <span class="math inline">\(D =\)</span> “item is defective”<br>
+- <span class="math inline">\(D^c =\)</span> “item is not defective”</p>
+<p>From the counts:<br>
+- <span class="math inline">\(P(M_A) = 400/1000 = 0.40\)</span><br>
+- <span class="math inline">\(P(M_B) = 600/1000 = 0.60\)</span><br>
+- <span class="math inline">\(P(D \cap M_A) = 40/1000 = 0.04\)</span><br>
+- <span class="math inline">\(P(D \cap M_B) = 24/1000 = 0.024\)</span><br>
+- <span class="math inline">\(P(D) = (40+24)/1000 = 0.064\)</span></p>
+<section id="conditional-probability" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-probability">Conditional Probability</h3>
+<p>The probability that event <span class="math inline">\(A\)</span> occurs given that event <span class="math inline">\(B\)</span> occurs:</p>
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) &gt; 0
+\]</span></p>
+<p><strong>Intuition</strong>: Restrict the sample space to <span class="math inline">\(B\)</span>; ask what fraction of those outcomes also fall in <span class="math inline">\(A\)</span>.</p>
+<div style="text-align:center;">
+<svg viewbox="0 0 420 220" style="width: min(100%, 900px); height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Event A outlined, Event B shaded" preserveaspectratio="xMidYMid meet">
+<rect x="0" y="0" width="420" height="220" fill="white" stroke="black"></rect> <!-- B shaded --> <circle cx="270" cy="110" r="80" fill="#b2df8a" fill-opacity="0.55" stroke="#33a0a0"></circle> <!-- A outline only --> <circle cx="150" cy="110" r="80" fill="white" fill-opacity="0.55" stroke="#1f78b4"></circle> <!-- labels --> <text x="120" y="28" font-size="14" fill="#1f78b4">A</text> <text x="260" y="28" font-size="14" fill="#33a0a0">B</text>
+</svg>
+</div>
+<p><strong>Example (Factory Machines)</strong></p>
+<p>What is <span class="math inline">\(P(D \mid M_A)\)</span>, the probability an item is defective given it was made by Machine <span class="math inline">\(A\)</span>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By definition:</p>
+<p><span class="math display">\[
+P(D \mid M_A) = \frac{P(D \cap M_A)}{P(M_A)}.
+\]</span></p>
+<p>From the setup:<br>
+- <span class="math inline">\(P(D \cap M_A) = 40/1000 = 0.04\)</span><br>
+- <span class="math inline">\(P(M_A) = 400/1000 = 0.40\)</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+P(D \mid M_A) = \frac{0.04}{0.40} = 0.10.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplication-rule" class="level3">
+<h3 class="anchored" data-anchor-id="multiplication-rule">Multiplication Rule</h3>
+<p>Relates intersections to conditional probabilities.</p>
+<p><span class="math display">\[\begin{align}
+P(A \mid B) &amp;= \frac{P(A \cap B)}{P(B)}, \quad P(B) &gt; 0
+&amp;&amp; \text{definition of conditional probability} \\[24pt]
+
+P(A \mid B)\,P(B) &amp;= \frac{P(A \cap B)}{P(B)} \cdot P(B)
+&amp;&amp; \text{multiply both sides by $P(B)$} \\[24pt]
+
+P(A \mid B)\,P(B) &amp;= P(A \cap B)
+&amp;&amp; \text{simplify} \\[24pt]
+
+P(B \mid A)\,P(A) &amp;= P(A \cap B)
+&amp;&amp; \text{swap $A$ and $B$} \\[24pt]
+
+P(A \cap B) &amp;= P(A \mid B)P(B) = P(B \mid A)P(A)
+&amp;&amp; \text{final multiplication rule}
+\end{align}\]</span></p>
+<p><strong>Intuition</strong>: To find the chance that both happen, compute the chance that one happens, then multiply by the chance the other happens given that.</p>
+<p><strong>Example (Factory Machines)</strong></p>
+<p>Using the rule, compute <span class="math inline">\(P(D \cap M_B)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By the multiplication rule:</p>
+<p><span class="math display">\[
+P(D \cap M_B) = P(D \mid M_B)\,P(M_B).
+\]</span></p>
+<p>From counts:<br>
+- <span class="math inline">\(P(D \mid M_B) = 24/600 = 0.04\)</span><br>
+- <span class="math inline">\(P(M_B) = 600/1000 = 0.60\)</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+P(D \cap M_B) = (0.04)(0.60) = 0.024.
+\]</span></p>
+<p>This matches the direct count calculation <span class="math inline">\(24/1000=0.024\)</span>.</p>
+</div>
+</div>
+</div>
+<section id="from-multiplication-rule-to-the-law-of-total-probability" class="level4">
+<h4 class="anchored" data-anchor-id="from-multiplication-rule-to-the-law-of-total-probability">From Multiplication Rule to the Law of Total Probability</h4>
+<p>The <strong>multiplication rule</strong> shows us how to express the probability of two events happening together in terms of a conditional probability:</p>
+<p><span class="math display">\[
+P(A \cap B) = P(A \mid B)\, P(B).
+\]</span></p>
+<p>Now imagine that the whole sample space can be split into two <strong>non-overlapping cases (aka mutually exclusive)</strong> <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> (for example: “athlete” vs.&nbsp;“not an athlete”).<br>
+Since <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> cover all possibilities, any time <span class="math inline">\(A\)</span> happens, it must happen <strong>either with <span class="math inline">\(B_1\)</span> or with <span class="math inline">\(B_2\)</span></strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/lotpven.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>To find <span class="math inline">\(P(A)\)</span>, we know that it is the union of where A intersects B in all ways that B can happen. so:</p>
+<p><span class="math display">\[
+P(A) = P((A \cap B_1) \cup (A \cap B_2))
+\]</span></p>
+<p>Because <span class="math inline">\((A \cap B_1)\)</span> and <span class="math inline">\((A \cap B_2)\)</span> are mutually exclusive, we can use the mutually exclusive version of the addition rule <span class="math inline">\(P(E_1 \cup E_2) = P(E_1) + P(E_2)\)</span> to get:</p>
+<p><span class="math display">\[
+P((A \cap B_1) \cup (A \cap B_2)) = P(A \cap B_1) + P(A \cap B_2).
+\]</span></p>
+<p>And if we apply the multiplication rule (<span class="math inline">\(P(E_1 \cap E_2) = P(E_1 \mid E_2)\, P(E_2)\)</span>) to each intersection, we get exactly the <strong>Law of Total Probability</strong>.</p>
+<p><span class="math display">\[
+P(A) = P(A | B_1)P(B_1) + P(A | B_2)P(B_2).
+\]</span></p>
+</section>
+</section>
+<section id="law-of-total-probability" class="level3">
+<h3 class="anchored" data-anchor-id="law-of-total-probability">Law of Total Probability</h3>
+<p>What we just derived for two outcomes extends to any partition of the sample space.<br>
+If <span class="math inline">\(B_1, B_2, \ldots, B_k\)</span> are <strong>mutually exclusive and exhaustive</strong> events, then for any event <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+P(A) = \sum_{i=1}^{k} P(A \mid B_i)\, P(B_i).
+\]</span></p>
+<p>For two outcomes:</p>
+<p><span class="math display">\[
+P(A) = P(A \mid B_1)\,P(B_1) \;+\; P(A \mid B_2)\,P(B_2).
+\]</span></p>
+<p><strong>Intuition:</strong><br>
+Instead of calculating <span class="math inline">\(P(A)\)</span> directly, we “partition” the sample space into simpler pieces <span class="math inline">\(B_1, B_2, \ldots, B_k\)</span>. We compute <span class="math inline">\(P(A)\)</span> by adding up the contributions from each path.</p>
+<p><strong>Example (Factory Machines)</strong></p>
+<p>What is the overall probability that a randomly chosen item is defective (<span class="math inline">\(P(D)\)</span>)?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Partition by which machine made the item:</p>
+<p><span class="math display">\[
+P(D) = P(D \mid M_A)P(M_A) + P(D \mid M_B)P(M_B).
+\]</span></p>
+<p>From counts:<br>
+- <span class="math inline">\(P(D \mid M_A)=40/400=0.10\)</span>, <span class="math inline">\(P(M_A)=0.40\)</span><br>
+- <span class="math inline">\(P(D \mid M_B)=24/600=0.04\)</span>, <span class="math inline">\(P(M_B)=0.60\)</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+P(D) = (0.10)(0.40) + (0.04)(0.60) = 0.04 + 0.024 = 0.064.
+\]</span></p>
+<p>So <strong>6.4%</strong> of all items are defective.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="bayes-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="bayes-theorem">Bayes’ Theorem</h3>
+<p>Bayes’ Theorem lets us “flip” conditional probabilities. It tells us how to update beliefs about a cause (<span class="math inline">\(B\)</span>) when we observe some evidence (<span class="math inline">\(A\)</span>).</p>
+<p>For events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> with <span class="math inline">\(P(B) &gt; 0\)</span>:</p>
+<p><span class="math display">\[
+P(B \mid A) = \frac{P(A \mid B)\, P(B)}{P(A)}.
+\]</span></p>
+<p>Using the Law of Total Probability for <span class="math inline">\(P(A)\)</span>:</p>
+<p><span class="math display">\[
+P(B_j \mid A) = \frac{P(A \mid B_j)\, P(B_j)}{\sum_{i=1}^{k} P(A \mid B_i)\, P(B_i)}.
+\]</span></p>
+<p><span class="math display">\[
+P(B_2 \mid A) = \frac{P(A \mid B_2)\, P(B_2)}{P(A \mid B_1)P(B_1) + P(A \mid B_2)P(B_2)}.
+\]</span></p>
+<p><strong>Intuition:</strong><br>
+Think of Bayes’ theorem as a way to reverse the condition. If we know how likely <span class="math inline">\(A\)</span> is when <span class="math inline">\(B\)</span> happens, Bayes tells us how likely <span class="math inline">\(B\)</span> is given that we saw <span class="math inline">\(A\)</span>.</p>
+<p><strong>Example (Factory Machines)</strong></p>
+<p>If an item is defective, what is the probability it came from <strong>Machine A</strong>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We want <span class="math inline">\(P(M_A \mid D)\)</span>.</p>
+<p>By Bayes’ theorem:</p>
+<p><span class="math display">\[
+P(M_A \mid D) = \frac{P(D \mid M_A)\, P(M_A)}{P(D)}.
+\]</span></p>
+<p>The denominator <span class="math inline">\(P(D)\)</span> comes from the <strong>Law of Total Probability</strong>:</p>
+<p><span class="math display">\[
+P(D) = P(D \mid M_A)P(M_A) + P(D \mid M_B)P(M_B).
+\]</span></p>
+<p>From counts:<br>
+- <span class="math inline">\(P(D \mid M_A)=40/400=0.10\)</span>, <span class="math inline">\(P(M_A)=400/1000=0.40\)</span><br>
+- <span class="math inline">\(P(D \mid M_B)=24/600=0.04\)</span>, <span class="math inline">\(P(M_B)=600/1000=0.60\)</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+P(D) = (0.10)(0.40) + (0.04)(0.60) = 0.064
+\]</span></p>
+<p>Now substitute into Bayes’ theorem:</p>
+<p><span class="math display">\[
+P(M_A \mid D) = \frac{0.10 \cdot 0.40}{0.064} = \frac{0.04}{0.064} = 0.625.
+\]</span></p>
+<p>Thus, if an item is defective, there is a <strong>62.5% chance</strong> it was made by Machine A.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="tree-diagram-representation" class="level3">
+<h3 class="anchored" data-anchor-id="tree-diagram-representation">Tree Diagram Representation</h3>
+<p>Another way to picture the Law of Total Probability is to start with the <strong>partition</strong> (<span class="math inline">\(M_A\)</span> vs <span class="math inline">\(M_B\)</span>), then branch into whether <span class="math inline">\(D\)</span> happens or not under each case.</p>
+<pre><code>Start
+├── M_A (0.40)
+│   ├── D (40/400 = 0.10)   ⇒ 0.40 · 0.10 = 0.04
+│   └── D^c (360/400 = 0.90) ⇒ 0.40 · 0.90 = 0.36
+└── M_B (0.60)
+    ├── D (24/600 = 0.04)   ⇒ 0.60 · 0.04 = 0.024
+    └── D^c (576/600 = 0.96) ⇒ 0.60 · 0.96 = 0.576</code></pre>
+<p>Adding the two disjoint paths where <span class="math inline">\(D\)</span> occurs:</p>
+<p><span class="math display">\[
+P(D) = 0.04 + 0.024 = 0.064.
+\]</span></p>
+<p>This confirms the Law of Total Probability result and sets up Bayes’ theorem</p>
+</section>
+</section>
+<section id="example-medical-test-and-probability-rules" class="level2">
+<h2 class="anchored" data-anchor-id="example-medical-test-and-probability-rules">Example: Medical Test and Probability Rules</h2>
+<p>A certain disease affects <strong>1%</strong> of a population.<br>
+A test is used to detect the disease:</p>
+<ul>
+<li>If a person has the disease, the test is positive <strong>92%</strong> of the time.<br>
+</li>
+<li>If a person does not have the disease, the test is positive <strong>7%</strong> of the time.</li>
+</ul>
+<p>Let’s define events:</p>
+<ul>
+<li><span class="math inline">\(D =\)</span> person has the disease.<br>
+</li>
+<li><span class="math inline">\(D^c =\)</span> person does not have the disease.<br>
+</li>
+<li><span class="math inline">\(+\)</span> = test is positive.<br>
+</li>
+<li><span class="math inline">\(-\)</span> = test is negative.</li>
+</ul>
+<section id="conditional-probability-1" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-probability-1">1. Conditional Probability</h3>
+<p>What is <span class="math inline">\(P(+ \mid D)\)</span>, the probability that a person tests positive given they have the disease?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>From the problem statement:</p>
+<p><span class="math display">\[
+P(+ \mid D) = 0.92
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplication-rule-1" class="level3">
+<h3 class="anchored" data-anchor-id="multiplication-rule-1">2. Multiplication Rule</h3>
+<p>What is <span class="math inline">\(P(D \cap +)\)</span>, the probability that a randomly chosen person both has the disease and tests positive?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By the multiplication rule:</p>
+<p><span class="math display">\[
+P(D \cap +) = P(+ \mid D)\, P(D).
+\]</span></p>
+<p>Substitute the known values:</p>
+<p><span class="math display">\[
+P(D \cap +) = (0.92)(0.01).
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+P(D \cap +) = 0.0092
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="tree-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="tree-diagram">3. Tree Diagram</h3>
+<p>Draw a <strong>tree diagram</strong> for this situation.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Branch probabilities</strong></p>
+<ul>
+<li><span class="math inline">\(P(D)=0.01,\quad P(D^c)=0.99\)</span></li>
+<li><span class="math inline">\(P(+\mid D)=0.92,\quad P(-\mid D)=1-0.92=0.08\)</span></li>
+<li><span class="math inline">\(P(+\mid D^c)=0.07,\quad P(-\mid D^c)=1-0.07=0.93\)</span></li>
+</ul>
+<p><strong>Tree with path (leaf) probabilities</strong></p>
+<pre><code>Start
+├── D (0.01)
+│   ├── + (0.92)  ⇒ P(D ∩ +)  = 0.01 · 0.92  = 0.0092
+│   └── − (0.08)  ⇒ P(D ∩ −)  = 0.01 · 0.08  = 0.0008
+└── D^c (0.99)
+    ├── + (0.07)  ⇒ P(D^c ∩ +) = 0.99 · 0.07  = 0.0693
+    └── − (0.93)  ⇒ P(D^c ∩ −) = 0.99 · 0.93  = 0.9207</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="law-of-total-probability-1" class="level3">
+<h3 class="anchored" data-anchor-id="law-of-total-probability-1">4. Law of Total Probability</h3>
+<p>What is <span class="math inline">\(P(+)\)</span>, the probability that a randomly chosen person tests positive?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Partition into whether the person has the disease (<span class="math inline">\(D\)</span>) or not (<span class="math inline">\(D^c\)</span>):</p>
+<p><span class="math display">\[
+P(+) = P(+ \mid D)\,P(D) + P(+ \mid D^c)\,P(D^c).
+\]</span></p>
+<p>Substitute values:</p>
+<p><span class="math display">\[
+P(+) = (0.92)(0.01) + (0.07)(0.99).
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+P(+) = 0.0092 + 0.0693 = 0.0785
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="bayes-theorem-1" class="level3">
+<h3 class="anchored" data-anchor-id="bayes-theorem-1">5. Bayes’ Theorem</h3>
+<p>What is <span class="math inline">\(P(D \mid +)\)</span>, the probability that a person actually has the disease given that their test is positive?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By Bayes’ theorem:</p>
+<p><span class="math display">\[
+P(D \mid +) = \frac{P(+ \mid D)\, P(D)}{P(+)}.
+\]</span></p>
+<p>Substitute values:</p>
+<p><span class="math display">\[
+P(D \mid +) = \frac{0.92 \cdot 0.01}{0.0785}.
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+P(D \mid +) \approx 0.117
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="take-home-problem-spam-filter" class="level2">
+<h2 class="anchored" data-anchor-id="take-home-problem-spam-filter">Take Home Problem: Spam Filter</h2>
+<p>Your campus email system uses an automated spam filter. From long-run monitoring. About 16% of incoming messages are spam. When a message is spam, the filter flags it about 90% of the time. When a message is not spam the filter still flags it (a false positive) about 8% of the time.</p>
+<p>Answer the questions below.</p>
+<section id="problems" class="level3">
+<h3 class="anchored" data-anchor-id="problems">Problems</h3>
+<ol type="1">
+<li><p>Define, in words, the four basic events used in this problem:<br>
+• the message is spam,<br>
+• the message is not spam,<br>
+• the message is flagged by the filter,<br>
+• the message is not flagged.<br>
+(Choose symbols for each and state your choices.)</p></li>
+<li><p>From the story, write down the numerical values for all probabilities needed to solve the problem set, including:<br>
+• the probability a message is spam,<br>
+• the probability a message is not spam,<br>
+• the probability a message is flagged given it is spam,<br>
+• the probability a message is not flagged given it is spam,<br>
+• the probability a message is flagged given it is not spam,<br>
+• the probability a message is not flagged given it is not spam.<br>
+(Express each using the symbols you chose in part 1.)</p></li>
+<li><p>Draw a tree diagram that first branches on whether the message is spam vs.&nbsp;not spam, and then on flagged vs.&nbsp;not flagged under each branch. Label every branch with the appropriate probability.</p></li>
+<li><p>What is the probability that a message is flagged?</p></li>
+<li><p>What is the probability that a message is both spam and flagged?</p></li>
+<li><p>Given that a message is flagged, what is the probability that it is spam?</p></li>
+<li><p>Find the probability that a message is not flagged, and the conditional probabilities of not flagged given spam and given not spam.</p></li>
+<li><p>Compute the probabilities of each joint outcome:<br>
+• spam and not flagged,<br>
+• not spam and flagged,<br>
+• not spam and not flagged.</p></li>
+<li><p>Are the events “spam” and “flagged” independent? Justify with a numerical check using your probabilities.</p></li>
+<li><p>What is the probability that a message is either spam or flagged (or both)?</p></li>
+<li><p>Build the 2×2 probability table with rows “spam / not spam” and columns “flagged / not flagged.” Fill in each cell with the corresponding probability, and verify that row and column totals match your earlier results and that the four cells sum to 1.</p></li>
+</ol>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled" title="Worked solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Worked solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>1) Definitions (words)</strong><br>
+<span class="math inline">\(S\)</span>: “message is spam.”<br>
+<span class="math inline">\(S^c\)</span>: “message is not spam.”<br>
+<span class="math inline">\(+\)</span>: “message is flagged by the filter.”<br>
+<span class="math inline">\(-\)</span>: “message is not flagged.”</p>
+<p><strong>2) Defined probabilities (from the story and complements)</strong><br>
+<span class="math display">\[
+P(S)=0.16 \qquad P(S^c)=1-P(S)=0.84
+\]</span> <span class="math display">\[
+P(+\mid S)=0.90 \qquad P(-\mid S)=1-P(+\mid S)=0.10
+\]</span> <span class="math display">\[
+P(+\mid S^c)=0.08 \qquad P(-\mid S^c)=1-P(+\mid S^c)=0.92
+\]</span></p>
+<p><strong>3) Tree diagram (branches &amp; path probabilities)</strong></p>
+<pre><code>Start
+├── S (0.16)
+│   ├── + (0.90)  ⇒ P(S ∩ +)  = 0.16 · 0.90 = 0.144
+│   └── − (0.10)  ⇒ P(S ∩ −)  = 0.16 · 0.10 = 0.016
+└── S^c (0.84)
+    ├── + (0.08)  ⇒ P(S^c ∩ +) = 0.84 · 0.08 = 0.0672
+    └── − (0.92)  ⇒ P(S^c ∩ −) = 0.84 · 0.92 = 0.7728</code></pre>
+<p><strong>4) <span class="math inline">\(P(+)\)</span></strong></p>
+<p>Uses Law of Total Probability</p>
+<p><span class="math display">\[
+P(+)=P(+\mid S)P(S)+P(+\mid S^c)P(S^c)
+=0.90(0.16)+0.08(0.84)
+=0.144+0.0672
+=0.2112
+\]</span></p>
+<p><strong>5) <span class="math inline">\(P(S\cap +)\)</span></strong></p>
+<p><span class="math display">\[
+P(S\cap +)=P(+\mid S)P(S)=0.90\cdot 0.16=0.144
+\]</span></p>
+<p><strong>6) <span class="math inline">\(P(S\mid +)\)</span></strong></p>
+<p><em>Using earlier parts:</em><br>
+From <strong>part 5</strong>, <span class="math inline">\(P(S\cap +)=0.144\)</span>.<br>
+From <strong>part 4</strong>, <span class="math inline">\(P(+)=0.2112\)</span>.</p>
+<p><span class="math display">\[
+P(S\mid +)=\frac{P(S\cap +)}{P(+)}=\frac{0.144}{0.2112}
+=\frac{15}{22}\approx 0.6818
+\]</span></p>
+<p><strong>Bayes’ Theorem (full form)</strong></p>
+<p><span class="math display">\[
+P(S\mid +)=\frac{P(+\mid S)\,P(S)}{P(+\mid S)\,P(S)\;+\;P(+\mid S^c)\,P(S^c)}
+\]</span></p>
+<p>Substitute the values (from the story / <strong>part 2</strong>): <span class="math inline">\(P(+\mid S)=0.90\)</span>, <span class="math inline">\(P(S)=0.16\)</span>, <span class="math inline">\(P(+\mid S^c)=0.08\)</span>, <span class="math inline">\(P(S^c)=0.84\)</span>.</p>
+<p><span class="math display">\[
+P(S\mid +)=\frac{0.90\cdot 0.16}{0.90\cdot 0.16+0.08\cdot 0.84}
+=\frac{0.144}{0.144+0.0672}
+=\frac{0.144}{0.2112}
+=\frac{15}{22}\approx 0.6818
+\]</span></p>
+<p><strong>7) <span class="math inline">\(P(-)\)</span>, <span class="math inline">\(P(-\mid S)\)</span>, <span class="math inline">\(P(-\mid S^c)\)</span></strong><br>
+<span class="math display">\[
+P(-)=1-P(+)=1-0.2112=0.7888.
+\]</span></p>
+<p>From <strong>part 2</strong>, <span class="math inline">\(P(+\mid S)=0.90\)</span> and <span class="math inline">\(P(+\mid S^c)=0.08\)</span>. Therefore <span class="math display">\[
+P(-\mid S)=1-P(+\mid S)=1-0.90=0.10,\qquad
+P(-\mid S^c)=1-P(+\mid S^c)=1-0.08=0.92.
+\]</span></p>
+<p><em>Optional cross-check via paths (from parts 3 &amp; 5):</em> <span class="math display">\[
+P(-\mid S)=\frac{P(S\cap -)}{P(S)}=\frac{0.016}{0.16}=0.10,\qquad
+P(-\mid S^c)=\frac{P(S^c\cap -)}{P(S^c)}=\frac{0.7728}{0.84}=0.92.
+\]</span></p>
+<p><strong>8) <span class="math inline">\(P(S\cap -)\)</span>, <span class="math inline">\(P(S^c\cap +)\)</span>, <span class="math inline">\(P(S^c\cap -)\)</span></strong><br>
+Using the multiplication rule and earlier parts:</p>
+<ul>
+<li><p>From <strong>part 7</strong> and <strong>part 2</strong>: <span class="math display">\[
+P(S\cap -)=P(-\mid S)\,P(S)=(0.10)(0.16)=0.016.
+\]</span> <em>(Cross-check from <strong>part 5</strong> and <strong>part 2</strong>: (P(S-)=P(S)-P(S+)=0.16-0.144=0.016).)</em></p></li>
+<li><p>From <strong>part 2</strong>: <span class="math display">\[
+P(S^c\cap +)=P(+\mid S^c)\,P(S^c)=(0.08)(0.84)=0.0672.
+\]</span></p></li>
+<li><p>From <strong>part 7</strong> and <strong>part 2</strong>: <span class="math display">\[
+P(S^c\cap -)=P(-\mid S^c)\,P(S^c)=(0.92)(0.84)=0.7728.
+\]</span></p></li>
+</ul>
+<p><strong>Check (with (P(S+)) from part 5):</strong> <span class="math display">\[
+0.144+0.016+0.0672+0.7728=1.
+\]</span></p>
+<p><strong>9) Independence check (<span class="math inline">\(S\)</span> vs <span class="math inline">\(+\)</span>)</strong><br>
+Independent would require <span class="math inline">\(P(S\cap +)=P(S)\,P(+)\)</span>.<br>
+<span class="math display">\[
+P(S)\,P(+)=0.16\cdot 0.2112=0.033792\neq 0.144
+\]</span> So <span class="math inline">\(S\)</span> and <span class="math inline">\(+\)</span> are <strong>not independent</strong>.</p>
+<p><strong>10) <span class="math inline">\(P(S\cup +)\)</span></strong><br>
+<span class="math display">\[
+P(S\cup +)=P(S)+P(+)-P(S\cap +)
+=0.16+0.2112-0.144
+=0.2272
+\]</span></p>
+<p><strong>11) <span class="math inline">\(2\times 2\)</span> probability table</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><span class="math inline">\(+\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(-\)</span></th>
+<th style="text-align: left;">Row total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(S\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.144\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.016\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.160\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(S^c\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.0672\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.7728\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(0.840\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Col total</strong></td>
+<td style="text-align: left;"><strong>0.2112</strong></td>
+<td style="text-align: left;"><strong>0.7888</strong></td>
+<td style="text-align: left;"><strong>1.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Row/column totals match; the four cells sum to <span class="math inline">\(1\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today:</h3>
+<ul>
+<li>Any questions for me?</li>
+</ul>
+</section>
+<section id="to-get-ahead" class="level3">
+<h3 class="anchored" data-anchor-id="to-get-ahead">To Get Ahead</h3>
+<p><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-2-instructions">Project Milestone 2</a><br>
+<a href="https://westpoint.instructure.com/courses/10295/files/3019176?wrap=1">Annex B</a></p>
+</section>
+<section id="lesson-5-tidyverse-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-5-tidyverse-tutorial">Lesson 5 Tidyverse Tutorial</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/lesson-5-tidyverse-tutorial">Lesson 5</a></li>
+</ul>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/10295">Tidyverse Tutorial</a>: In Class Lesson 5</li>
+<li><a href="https://westpoint.instructure.com/courses/10295/pages/milestone-2-instructions">Project Milestone 2</a>: Due Canvas Lesson 7 <!-- - [GenAI Certification](https://westpoint.instructure.com/courses/10295/assignments/225944): Due 25 August (Monday) All Sections --></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY26-1/lesson-3.html" class="pagination-link" aria-label="Lesson 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 3</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA206-AY26-1/lesson-5.html" class="pagination-link" aria-label="Lesson 5">
+        <span class="nav-page-text">Lesson 5</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

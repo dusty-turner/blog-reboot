@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-20 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-21.html" rel="next">
+<link href="../MA206x-AY26-2/lesson-19.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-20.html">Lesson 20</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-20-intro-to-hypothesis-testing" id="toc-lesson-20-intro-to-hypothesis-testing" class="nav-link active" data-scroll-target="#lesson-20-intro-to-hypothesis-testing">Lesson 20: Intro to Hypothesis Testing</a>
+  <ul class="collapse">
+  <li><a href="#what-we-did-lessons-1719" id="toc-what-we-did-lessons-1719" class="nav-link" data-scroll-target="#what-we-did-lessons-1719">What We Did: Lessons 17–19</a></li>
+  <li><a href="#what-were-doing-lesson-20" id="toc-what-were-doing-lesson-20" class="nav-link" data-scroll-target="#what-were-doing-lesson-20">What We’re Doing: Lesson 20</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#dmath-volleyball" id="toc-dmath-volleyball" class="nav-link" data-scroll-target="#dmath-volleyball">DMath Volleyball!!</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#remember-this-problem" id="toc-remember-this-problem" class="nav-link" data-scroll-target="#remember-this-problem">Remember This Problem?</a>
+  <ul class="collapse">
+  <li><a href="#is-70-inches-a-possible-value-for-mu" id="toc-is-70-inches-a-possible-value-for-mu" class="nav-link" data-scroll-target="#is-70-inches-a-possible-value-for-mu">Is 70 inches a possible value for <span class="math inline">\(\mu\)</span>?</a></li>
+  <li><a href="#is-71-inches-a-possible-value-for-mu" id="toc-is-71-inches-a-possible-value-for-mu" class="nav-link" data-scroll-target="#is-71-inches-a-possible-value-for-mu">Is 71 inches a possible value for <span class="math inline">\(\mu\)</span>?</a></li>
+  <li><a href="#but-how-likely-is-it" id="toc-but-how-likely-is-it" class="nav-link" data-scroll-target="#but-how-likely-is-it">But <em>How Likely</em> Is It?</a></li>
+  <li><a href="#now-what-if-someone-claims-mu-71" id="toc-now-what-if-someone-claims-mu-71" class="nav-link" data-scroll-target="#now-what-if-someone-claims-mu-71">Now What If Someone Claims <span class="math inline">\(\mu = 71\)</span>?</a></li>
+  <li><a href="#now-lets-standardize" id="toc-now-lets-standardize" class="nav-link" data-scroll-target="#now-lets-standardize">Now Let’s Standardize</a></li>
+  <li><a href="#the-big-idea" id="toc-the-big-idea" class="nav-link" data-scroll-target="#the-big-idea">The Big Idea</a></li>
+  </ul></li>
+  <li><a href="#lets-formalize-this-the-hypothesis-test" id="toc-lets-formalize-this-the-hypothesis-test" class="nav-link" data-scroll-target="#lets-formalize-this-the-hypothesis-test">Let’s Formalize This: The Hypothesis Test</a>
+  <ul class="collapse">
+  <li><a href="#the-setup" id="toc-the-setup" class="nav-link" data-scroll-target="#the-setup">The Setup</a></li>
+  <li><a href="#whats-unlikely-enough" id="toc-whats-unlikely-enough" class="nav-link" data-scroll-target="#whats-unlikely-enough">What’s “Unlikely Enough”?</a></li>
+  <li><a href="#the-hypotheses" id="toc-the-hypotheses" class="nav-link" data-scroll-target="#the-hypotheses">The Hypotheses</a></li>
+  <li><a href="#three-types-of-tests" id="toc-three-types-of-tests" class="nav-link" data-scroll-target="#three-types-of-tests">Three Types of Tests</a></li>
+  <li><a href="#the-four-steps" id="toc-the-four-steps" class="nav-link" data-scroll-target="#the-four-steps">The Four Steps</a></li>
+  <li><a href="#example-1-left-tailed-test-cadet-heights" id="toc-example-1-left-tailed-test-cadet-heights" class="nav-link" data-scroll-target="#example-1-left-tailed-test-cadet-heights">Example 1: Left-Tailed Test (Cadet Heights)</a></li>
+  <li><a href="#example-2-right-tailed-test-rifle-qualification" id="toc-example-2-right-tailed-test-rifle-qualification" class="nav-link" data-scroll-target="#example-2-right-tailed-test-rifle-qualification">Example 2: Right-Tailed Test (Rifle Qualification)</a></li>
+  <li><a href="#example-3-two-tailed-test-equipment-readiness" id="toc-example-3-two-tailed-test-equipment-readiness" class="nav-link" data-scroll-target="#example-3-two-tailed-test-equipment-readiness">Example 3: Two-Tailed Test (Equipment Readiness)</a></li>
+  <li><a href="#example-4-all-the-wrenches" id="toc-example-4-all-the-wrenches" class="nav-link" data-scroll-target="#example-4-all-the-wrenches">Example 4: All the Wrenches</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-pt-improvement-right-tailed-large-sample" id="toc-problem-1-pt-improvement-right-tailed-large-sample" class="nav-link" data-scroll-target="#problem-1-pt-improvement-right-tailed-large-sample">Problem 1: PT Improvement (Right-tailed, large sample)</a></li>
+  <li><a href="#problem-2-convoy-speed-right-tailed-small-sample" id="toc-problem-2-convoy-speed-right-tailed-small-sample" class="nav-link" data-scroll-target="#problem-2-convoy-speed-right-tailed-small-sample">Problem 2: Convoy Speed (Right-tailed, small sample)</a></li>
+  <li><a href="#problem-3-sleep-duration-left-tailed-large-sample" id="toc-problem-3-sleep-duration-left-tailed-large-sample" class="nav-link" data-scroll-target="#problem-3-sleep-duration-left-tailed-large-sample">Problem 3: Sleep Duration (Left-tailed, large sample)</a></li>
+  <li><a href="#problem-4-weapon-cleaning-time-left-tailed-small-sample" id="toc-problem-4-weapon-cleaning-time-left-tailed-small-sample" class="nav-link" data-scroll-target="#problem-4-weapon-cleaning-time-left-tailed-small-sample">Problem 4: Weapon Cleaning Time (Left-tailed, small sample)</a></li>
+  <li><a href="#problem-5-equipment-readiness-two-tailed-large-sample" id="toc-problem-5-equipment-readiness-two-tailed-large-sample" class="nav-link" data-scroll-target="#problem-5-equipment-readiness-two-tailed-large-sample">Problem 5: Equipment Readiness (Two-tailed, large sample)</a></li>
+  <li><a href="#problem-6-ruck-march-weight-two-tailed-small-sample" id="toc-problem-6-ruck-march-weight-two-tailed-small-sample" class="nav-link" data-scroll-target="#problem-6-ruck-march-weight-two-tailed-small-sample">Problem 6: Ruck March Weight (Two-tailed, small sample)</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-20-intro-to-hypothesis-testing" class="level1">
+<h1>Lesson 20: Intro to Hypothesis Testing</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="what-we-did-lessons-1719" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-1719">What We Did: Lessons 17–19</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 17: Central Limit Theorem">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 17: Central Limit Theorem
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>The Central Limit Theorem (CLT):</strong> If <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> are iid with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then for large <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
+<p><strong>Standard Error of the Mean:</strong> <span class="math inline">\(\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}\)</span></p>
+<p><strong>Rule of thumb:</strong> <span class="math inline">\(n \geq 30\)</span> unless the population is already normal.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 18: Confidence Intervals I">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 18: Confidence Intervals I
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Confidence Interval for a Mean:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Formula</th>
+<th style="text-align: left;">When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Large sample</strong> (<span class="math inline">\(n \geq 30\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(\bar{X} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">Random sample, independence, <span class="math inline">\(s \approx \sigma\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Small sample</strong> (<span class="math inline">\(n &lt; 30\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(\bar{X} \pm t_{\alpha/2, n-1} \cdot \dfrac{s}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">Random sample, independence, population ~ Normal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key ideas:</strong> Higher confidence → wider interval. Larger <span class="math inline">\(n\)</span> → narrower interval.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 19: Confidence Intervals II">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 19: Confidence Intervals II
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Confidence Interval for a Proportion:</strong></p>
+<p><span class="math display">\[\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\]</span></p>
+<p><strong>Conditions:</strong> <span class="math inline">\(n\hat{p} \geq 10\)</span> and <span class="math inline">\(n(1-\hat{p}) \geq 10\)</span></p>
+<p><strong>Interpretation:</strong> “We are C% confident that [interval] captures the true [parameter in context].” The confidence level describes the <strong>method’s long-run success rate</strong>, not the probability any single interval is correct.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-20" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-20">What We’re Doing: Lesson 20</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> for practical questions</li>
+<li>Compute test statistics and <span class="math inline">\(p\)</span>-values</li>
+<li>Link significance and <span class="math inline">\(\alpha\)</span></li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Sections 8.1, 8.2</p>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<!-- ### Reese -->
+<!-- TODO: Add Reese videos/photos -->
+<!-- Example format:
+<video width="100%" controls>
+  <source src="assets/img/VIDEO_FILE.mp4" type="video/mp4">
+</video>
+
+![](assets/img/IMAGE_FILE.jpg){fig-align="center" width="50%"}
+-->
+<!-- ### Cal -->
+<!-- TODO: Add Cal photos -->
+<!-- Example format:
+![](assets/img/DSC_XXXX.jpeg){fig-align="center" width="50%"}
+-->
+<hr>
+<section id="dmath-volleyball" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-volleyball">DMath Volleyball!!</h3>
+<p><strong>Math vs DPE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 11-1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previously 11-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>12-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs DPE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 12-1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previously 12-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>13-1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs DPE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 13-1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previously 13-1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>13-2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs DPE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previously 13-2">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previously 13-2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>13-3</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<!-- ### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 11-5"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"}
+
+--- -->
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Hypothesis Testing Framework">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Hypothesis Testing Framework
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Every hypothesis test follows the same four steps:</strong></p>
+<ol type="1">
+<li><strong>State hypotheses:</strong> <span class="math inline">\(H_0\)</span> (null — status quo) vs.&nbsp;<span class="math inline">\(H_a\)</span> (alternative — what we want to show)</li>
+<li><strong>Compute a test statistic:</strong> How far is our sample result from what <span class="math inline">\(H_0\)</span> predicts?</li>
+<li><strong>Find the <span class="math inline">\(p\)</span>-value:</strong> If <span class="math inline">\(H_0\)</span> were true, how likely is a result this extreme or more?</li>
+<li><strong>Make a decision:</strong> If <span class="math inline">\(p \leq \alpha\)</span>, reject <span class="math inline">\(H_0\)</span>. If <span class="math inline">\(p &gt; \alpha\)</span>, fail to reject <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+<p><strong>Key formula (test statistic for a mean):</strong></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \qquad \text{or} \qquad t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}\]</span></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="remember-this-problem" class="level2">
+<h2 class="anchored" data-anchor-id="remember-this-problem">Remember This Problem?</h2>
+<p>In Lesson 18, we built a confidence interval for cadet heights:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Cadet Heights (Lesson 18)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cadet Heights (Lesson 18)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We took a random sample of <span class="math inline">\(n = 35\)</span> cadets and measured their heights. We found <span class="math inline">\(\bar{x} = 69.35\)</span> inches with <span class="math inline">\(\sigma = 3.62\)</span> inches.</p>
+</div>
+</div>
+<p>Let’s reconstruct the <strong>95% confidence interval</strong> for the true mean height:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">69.35</span>; sigma <span class="ot">&lt;-</span> <span class="fl">3.62</span>; n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>margin <span class="ot">&lt;-</span> z_star <span class="sc">*</span> se</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">lower =</span> xbar <span class="sc">-</span> margin, <span class="at">upper =</span> xbar <span class="sc">+</span> margin)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   lower    upper 
+68.15071 70.54929 </code></pre>
+</div>
+</div>
+<p>Remember, a confidence interval is really about the <strong>z-distribution</strong>. We’re finding the middle 95% of the standard normal and mapping it back to our scale:</p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} = 69.35 \pm 1.96 \cdot \frac{3.62}{\sqrt{35}} = 69.35 \pm 1.20 = \left(68.15, \; 70.55\right)\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Any value of <span class="math inline">\(\mu\)</span> that maps <strong>inside</strong> this shaded region is plausible. Any value that maps <strong>outside</strong> is not.</p>
+<section id="is-70-inches-a-possible-value-for-mu" class="level3">
+<h3 class="anchored" data-anchor-id="is-70-inches-a-possible-value-for-mu">Is 70 inches a possible value for <span class="math inline">\(\mu\)</span>?</h3>
+<p>Someone claims the true average cadet height is <strong>70 inches</strong>. Is that plausible given our data?</p>
+<p>Well, 70 falls inside our 95% CI of <span class="math inline">\((68.15, 70.55)\)</span>. So yes — <strong>70 is a plausible value</strong> for <span class="math inline">\(\mu\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="is-71-inches-a-possible-value-for-mu" class="level3">
+<h3 class="anchored" data-anchor-id="is-71-inches-a-possible-value-for-mu">Is 71 inches a possible value for <span class="math inline">\(\mu\)</span>?</h3>
+<p>What about 71? Does it fall inside our CI?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>71 is <strong>outside</strong> the CI. Based on the CI alone, 71 is <strong>not</strong> a plausible value for <span class="math inline">\(\mu\)</span>. But let’s dig deeper — <em>how</em> unlikely is it?</p>
+<hr>
+</section>
+<section id="but-how-likely-is-it" class="level3">
+<h3 class="anchored" data-anchor-id="but-how-likely-is-it">But <em>How Likely</em> Is It?</h3>
+<p>The CI tells us 70 is plausible, but it doesn’t tell us how likely our data is if 70 really is the true mean. To answer that, we need to <strong>flip our perspective</strong>.</p>
+<p>For the CI, we built the distribution around <span class="math inline">\(\bar{x}\)</span> and asked “where could <span class="math inline">\(\mu\)</span> be?”</p>
+<p>Now let’s do the opposite: under the assumption <strong><span class="math inline">\(\mu = 70\)</span>, how likely are we to get the sample we actually saw?</strong>”</p>
+<p>If <span class="math inline">\(\mu = 70\)</span>, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is centered at 70:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(70, \; \frac{3.62^2}{35}\right)\]</span></p>
+<p>Let’s draw that distribution and drop our observed <span class="math inline">\(\bar{x} = 69.35\)</span> on it:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>How much of the distribution is in that shaded region? Let’s find out:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If mu = 70, what's the probability of observing xbar &lt;= 69.35?</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">69.35</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1440544</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>About 14.4% of the time, we’d see a sample mean this low or lower if <span class="math inline">\(\mu\)</span> really were 70. That’s not unusual at all — our data are perfectly consistent with <span class="math inline">\(\mu = 70\)</span>.</p>
+<hr>
+</section>
+<section id="now-what-if-someone-claims-mu-71" class="level3">
+<h3 class="anchored" data-anchor-id="now-what-if-someone-claims-mu-71">Now What If Someone Claims <span class="math inline">\(\mu = 71\)</span>?</h3>
+<p>We already saw that 71 falls <strong>outside</strong> our CI — so it’s not a plausible value. But let’s ask the same question: <strong>if <span class="math inline">\(\mu = 71\)</span>, how likely is our data?</strong></p>
+<p>If <span class="math inline">\(\mu = 71\)</span>, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is centered at 71:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(71, \; \frac{3.62^2}{35}\right)\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>How much area is in that shaded region?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If mu = 71, what's the probability of observing xbar &lt;= 69.35?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">69.35</span>, <span class="at">mean =</span> <span class="dv">71</span>, <span class="at">sd =</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.003503034</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Only about 0.35% chance. If the true mean were really 71, we would almost never see a sample mean as low as 69.35. Our data is way out in the left tail of this distribution. We have strong evidence that the true mean is <strong>less than</strong> 71 inches.</p>
+<hr>
+</section>
+<section id="now-lets-standardize" class="level3">
+<h3 class="anchored" data-anchor-id="now-lets-standardize">Now Let’s Standardize</h3>
+<p>The plots above work great — but every time the claimed value or the units change, we’d need a brand new distribution. What if we could always use the <strong>same</strong> distribution?</p>
+<p>We can. Just standardize:</p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}\]</span></p>
+<p>This converts our question from “how far is <span class="math inline">\(\bar{x}\)</span> from <span class="math inline">\(\mu_0\)</span> in inches?” to “how far is <span class="math inline">\(\bar{x}\)</span> from <span class="math inline">\(\mu_0\)</span> in <strong>standard errors</strong>?” The result always lives on the <span class="math inline">\(N(0,1)\)</span> curve — no matter what the units are.</p>
+<p>Let’s redo both examples on the z-scale:</p>
+<p><strong>For <span class="math inline">\(\mu_0 = 70\)</span>:</strong></p>
+<p><span class="math display">\[z = \frac{69.35 - 70}{3.62 / \sqrt{35}} = \frac{-0.65}{0.612} = -1.06\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">69.35</span>; sigma <span class="ot">&lt;-</span> <span class="fl">3.62</span>; n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>z_70 <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> <span class="dv">70</span>) <span class="sc">/</span> se</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>z_70</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.06228</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same answer as before!</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(z_70)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1440544</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Same answer: 0.144. The z-score of <span class="math inline">\(-1.06\)</span> is not unusual on the standard normal — consistent with the claim.</p>
+<p><strong>For <span class="math inline">\(\mu_0 = 71\)</span>:</strong></p>
+<p><span class="math display">\[z = \frac{69.35 - 71}{3.62 / \sqrt{35}} = \frac{-1.65}{0.612} = -2.70\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>z_71 <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> <span class="dv">71</span>) <span class="sc">/</span> se</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>z_71</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.696556</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same answer as before!</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(z_71)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.003503034</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Same answer: 0.0035. Deep in the left tail — strong evidence against the claim.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Why Standardize?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Why Standardize?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>pnorm(69.35, mean = 71, sd = 0.612)</code> and <code>pnorm(-2.70)</code> give the <strong>exact same answer</strong>. So why bother?</p>
+<ol type="1">
+<li><strong>One universal scale:</strong> Every hypothesis test maps onto the same <span class="math inline">\(N(0,1)\)</span> curve — whether we’re measuring inches, hours, or test scores</li>
+<li><strong>Instant intuition:</strong> <span class="math inline">\(z = -2.70\)</span> immediately tells you “2.7 standard errors below the claim” without knowing anything else about the problem</li>
+<li><strong>Easy comparison:</strong> <span class="math inline">\(z = -1.06\)</span> vs.&nbsp;<span class="math inline">\(z = -2.70\)</span> — you can instantly see which claim is more implausible</li>
+</ol>
+<p>The z-score is the <strong>test statistic</strong> — it’s the standardized distance between your data and the claim.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-big-idea" class="level3">
+<h3 class="anchored" data-anchor-id="the-big-idea">The Big Idea</h3>
+<p>Notice what we did:</p>
+<ol type="1">
+<li><strong>CI perspective:</strong> We built the distribution around <span class="math inline">\(\bar{x}\)</span> and asked “is <span class="math inline">\(\mu_0\)</span> plausible?”</li>
+<li><strong>Hypothesis testing perspective:</strong> We built the distribution around <span class="math inline">\(\mu_0\)</span> and asked “is our data likely?”</li>
+<li><strong>Standardized:</strong> We converted to the z-scale so every problem uses the same <span class="math inline">\(N(0,1)\)</span> curve</li>
+</ol>
+<ul>
+<li>For <span class="math inline">\(\mu_0 = 70\)</span>: <span class="math inline">\(z = -1.06\)</span>, <span class="math inline">\(p = 0.144\)</span> → not unusual → consistent with the claim</li>
+<li>For <span class="math inline">\(\mu_0 = 71\)</span>: <span class="math inline">\(z = -2.70\)</span>, <span class="math inline">\(p = 0.0035\)</span> → extremely unlikely → evidence <strong>against</strong> the claim</li>
+</ul>
+<p>That probability — the chance of seeing a z-score this extreme or more, assuming the claimed value is true — is called the <strong><span class="math inline">\(p\)</span>-value</strong>. And hypothesis testing is just a formal framework for doing exactly what we just did.</p>
+<p>Let’s formalize it. Suppose the Army claims <span class="math inline">\(\mu = 71\)</span>. We suspect <span class="math inline">\(\mu &lt; 71\)</span>. In hypothesis testing notation:</p>
+<p><span class="math display">\[H_0: \mu = 71 \qquad \text{vs.} \qquad H_a: \mu &lt; 71\]</span></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{69.35 - 71}{3.62 / \sqrt{35}} = -2.70\]</span></p>
+<p><span class="math display">\[p\text{-value} = P(Z \leq -2.70) = 0.0035\]</span></p>
+<p>Since <span class="math inline">\(0.0035 &lt; 0.05\)</span>, we <strong>reject the Army’s claim</strong> — there is sufficient evidence that the true mean cadet height is less than 71 inches.</p>
+<hr>
+</section>
+</section>
+<section id="lets-formalize-this-the-hypothesis-test" class="level2">
+<h2 class="anchored" data-anchor-id="lets-formalize-this-the-hypothesis-test">Let’s Formalize This: The Hypothesis Test</h2>
+<p>We’ve been doing hypothesis testing without naming it. Let’s put a framework around it.</p>
+<hr>
+<section id="the-setup" class="level3">
+<h3 class="anchored" data-anchor-id="the-setup">The Setup</h3>
+<ul>
+<li><strong>Start with a claim</strong> — the <strong>null hypothesis</strong> (<span class="math inline">\(H_0\)</span>)</li>
+<li><strong>Gather data</strong> — compute how likely the data is <em>if the claim were true</em></li>
+<li><strong>Decide</strong> — if the data is unlikely enough, reject the claim</li>
+</ul>
+<hr>
+</section>
+<section id="whats-unlikely-enough" class="level3">
+<h3 class="anchored" data-anchor-id="whats-unlikely-enough">What’s “Unlikely Enough”?</h3>
+<p>We need a <strong>threshold</strong> — called <span class="math inline">\(\alpha\)</span> (alpha), the <strong>significance level</strong>.</p>
+<ul>
+<li>Pick <span class="math inline">\(\alpha\)</span> <strong>before</strong> looking at the data (typically <span class="math inline">\(\alpha = 0.05\)</span>)</li>
+<li>If the probability of our data under <span class="math inline">\(H_0\)</span> is less than <span class="math inline">\(\alpha\)</span> → <strong>reject</strong></li>
+<li>If not → <strong>fail to reject</strong></li>
+</ul>
+<hr>
+</section>
+<section id="the-hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="the-hypotheses">The Hypotheses</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Null and Alternative Hypotheses">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Null and Alternative Hypotheses
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><span class="math inline">\(H_0\)</span> (null):</strong> The claim we’re testing. Always uses <span class="math inline">\(=\)</span>.</li>
+<li><strong><span class="math inline">\(H_a\)</span> (alternative):</strong> What we’re looking for evidence of. Strict inequality (<span class="math inline">\(\neq\)</span>, <span class="math inline">\(&lt;\)</span>, or <span class="math inline">\(&gt;\)</span>).</li>
+</ul>
+<p><strong>Analogy:</strong> <span class="math inline">\(H_0\)</span> = “innocent until proven guilty.” The burden of proof is on <span class="math inline">\(H_a\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="three-types-of-tests" class="level3">
+<h3 class="anchored" data-anchor-id="three-types-of-tests">Three Types of Tests</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: center;"><span class="math inline">\(H_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(H_a\)</span></th>
+<th style="text-align: left;">When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Left-tailed</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\mu \geq \mu_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td style="text-align: left;">Evidence the parameter is <strong>smaller</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Right-tailed</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\mu \leq \mu_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td style="text-align: left;">Evidence the parameter is <strong>larger</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Two-tailed</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\mu = \mu_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu \neq \mu_0\)</span></td>
+<td style="text-align: left;">Evidence of <strong>any difference</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="the-four-steps" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-steps">The Four Steps</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 1: State Hypotheses">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 1: State Hypotheses
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> based on the context of the problem.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 2: Compute the Test Statistic">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 2: Compute the Test Statistic
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How far is our data from the claim, in standard errors?</p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \qquad \text{or} \qquad t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 3: Find the p-value">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 3: Find the p-value
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(H_0\)</span> were true, how likely is a result this extreme?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Test Type</th>
+<th style="text-align: left;"><span class="math inline">\(p\)</span>-value</th>
+<th style="text-align: left;">R code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Left-tailed</strong></td>
+<td style="text-align: left;"><span class="math inline">\(P(Z \leq z)\)</span></td>
+<td style="text-align: left;"><code>pnorm(z)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Right-tailed</strong></td>
+<td style="text-align: left;"><span class="math inline">\(P(Z \geq z)\)</span></td>
+<td style="text-align: left;"><code>1 - pnorm(z)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Two-tailed</strong></td>
+<td style="text-align: left;"><span class="math inline">\(2 \times P(Z \geq |z|)\)</span></td>
+<td style="text-align: left;"><code>2 * (1 - pnorm(abs(z)))</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 4: Decide and Conclude in Context">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 4: Decide and Conclude in Context
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(p \leq \alpha\)</span> → <strong>Reject <span class="math inline">\(H_0\)</span></strong></li>
+<li><span class="math inline">\(p &gt; \alpha\)</span> → <strong>Fail to reject <span class="math inline">\(H_0\)</span></strong></li>
+</ul>
+<p>We <strong>never</strong> “accept” <span class="math inline">\(H_0\)</span>. “Fail to reject” = jury says “not guilty” (not the same as “innocent”).</p>
+</div>
+</div>
+<hr>
+<p>Let’s work through all three types.</p>
+<hr>
+</section>
+<section id="example-1-left-tailed-test-cadet-heights" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-left-tailed-test-cadet-heights">Example 1: Left-Tailed Test (Cadet Heights)</h3>
+<p>The Army claims that the average height of cadets is at least 71 inches. A researcher suspects it’s actually <strong>less than</strong> 71. She samples <span class="math inline">\(n = 35\)</span> cadets and finds <span class="math inline">\(\bar{x} = 69.35\)</span> inches with <span class="math inline">\(\sigma = 3.62\)</span> inches.</p>
+<p><strong>Step 1: State the Hypotheses</strong></p>
+<p>The researcher suspects the mean is <strong>less than</strong> 71 — this is a <strong>left-tailed</strong> test:</p>
+<p><span class="math display">\[H_0: \mu = 71 \qquad \text{vs.} \qquad H_a: \mu &lt; 71\]</span></p>
+<p><strong>Step 2: Compute the Test Statistic</strong></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{69.35 - 71}{3.62 / \sqrt{35}} = \frac{-1.65}{0.612} = -2.70\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">69.35</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">71</span>; sigma <span class="ot">&lt;-</span> <span class="fl">3.62</span>; n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.696556</code></pre>
+</div>
+</div>
+<p>Our sample mean is <strong>2.70 standard errors below</strong> what <span class="math inline">\(H_0\)</span> claims.</p>
+<p><strong>Step 3: Find the <span class="math inline">\(p\)</span>-Value</strong></p>
+<p>This is left-tailed, so we want <span class="math inline">\(P(Z \leq z)\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.003503034</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[p\text{-value} = P(Z \leq -2.7) = 0.0035\]</span></p>
+<p><strong>Step 4: Decide and Conclude</strong></p>
+<p>At <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<p><span class="math display">\[p\text{-value} = 0.0035 &lt; 0.05 = \alpha\]</span></p>
+<p><strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence to conclude that the true average cadet height is less than 71 inches.</p>
+<hr>
+</section>
+<section id="example-2-right-tailed-test-rifle-qualification" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-right-tailed-test-rifle-qualification">Example 2: Right-Tailed Test (Rifle Qualification)</h3>
+<p>The standard M4 qualification score is 23 out of 40 to achieve “marksman.” A platoon leader believes her platoon scores <strong>higher</strong> than 23 on average. She tests <span class="math inline">\(n = 40\)</span> Soldiers and finds <span class="math inline">\(\bar{x} = 25.1\)</span> with <span class="math inline">\(s = 4.8\)</span>.</p>
+<p><strong>Step 1: State the Hypotheses</strong></p>
+<p>The platoon leader suspects scores are <strong>greater than</strong> 23 — this is a <strong>right-tailed</strong> test:</p>
+<p><span class="math display">\[H_0: \mu = 23 \qquad \text{vs.} \qquad H_a: \mu &gt; 23\]</span></p>
+<p><strong>Step 2: Compute the Test Statistic</strong></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{25.1 - 23}{4.8 / \sqrt{40}} = \frac{2.1}{0.759} = 2.77\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">25.1</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">23</span>; s <span class="ot">&lt;-</span> <span class="fl">4.8</span>; n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.766993</code></pre>
+</div>
+</div>
+<p>Our sample mean is <strong>2.77 standard errors above</strong> what <span class="math inline">\(H_0\)</span> claims.</p>
+<p><strong>Step 3: Find the <span class="math inline">\(p\)</span>-Value</strong></p>
+<p>This is right-tailed, so we want <span class="math inline">\(P(Z \geq z)\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.002828799</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[p\text{-value} = P(Z \geq 2.77) = 1 - P(Z &lt; 2.77) = 0.0028\]</span></p>
+<p><strong>Step 4: Decide and Conclude</strong></p>
+<p>At <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<p><span class="math display">\[p\text{-value} = 0.0028 &lt; 0.05 = \alpha\]</span></p>
+<p><strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence that this platoon’s average qualification score exceeds 23.</p>
+<hr>
+</section>
+<section id="example-3-two-tailed-test-equipment-readiness" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-two-tailed-test-equipment-readiness">Example 3: Two-Tailed Test (Equipment Readiness)</h3>
+<p>A brigade standard requires that vehicle maintenance be completed in <span class="math inline">\(\mu = 4.0\)</span> hours on average. The maintenance officer suspects the actual time <strong>differs</strong> from 4.0 hours (it could be higher or lower). A random sample of <span class="math inline">\(n = 50\)</span> maintenance jobs gives <span class="math inline">\(\bar{x} = 4.35\)</span> hours with <span class="math inline">\(s = 1.1\)</span> hours.</p>
+<p><strong>Step 1: State the Hypotheses</strong></p>
+<p>The officer suspects the time <strong>differs</strong> — could be higher or lower — this is a <strong>two-tailed</strong> test:</p>
+<p><span class="math display">\[H_0: \mu = 4.0 \qquad \text{vs.} \qquad H_a: \mu \neq 4.0\]</span></p>
+<p><strong>Step 2: Compute the Test Statistic</strong></p>
+<p><span class="math display">\[z = \frac{4.35 - 4.0}{1.1 / \sqrt{50}} = \frac{0.35}{0.1556} = 2.249\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">4.35</span>; mu0 <span class="ot">&lt;-</span> <span class="fl">4.0</span>; s <span class="ot">&lt;-</span> <span class="fl">1.1</span>; n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.249885</code></pre>
+</div>
+</div>
+<p>Our sample mean is <strong>2.25 standard errors above</strong> what <span class="math inline">\(H_0\)</span> claims.</p>
+<p><strong>Step 3: Find the <span class="math inline">\(p\)</span>-Value</strong></p>
+<p>This is <strong>two-tailed</strong> — evidence against <span class="math inline">\(H_0\)</span> could come from <strong>either</strong> direction. So we need the area in <strong>both</strong> tails:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-tailed p-value: both tails</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z)))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02445623</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[p\text{-value} = 2 \times P(Z \geq |2.25|) = 0.0245\]</span></p>
+<p><strong>Step 4: Decide and Conclude</strong></p>
+<p>At <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<p><span class="math display">\[p\text{-value} = 0.0245 &lt; 0.05 = \alpha\]</span></p>
+<p><strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence that the average maintenance time differs from 4.0 hours.</p>
+<hr>
+</section>
+<section id="example-4-all-the-wrenches" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-all-the-wrenches">Example 4: All the Wrenches</h3>
+<p>The standard rucksack weight for a 12-mile ruck march is 35 lbs. A company commander suspects her Soldiers’ rucks <strong>differ</strong> from the standard (could be over- or under-packed). She weighs a random sample of <span class="math inline">\(n = 15\)</span> rucks and finds <span class="math inline">\(\bar{x} = 36.2\)</span> lbs with <span class="math inline">\(s = 3.8\)</span> lbs.</p>
+<p><strong>Step 1: State the Hypotheses</strong></p>
+<p>The commander suspects the weight <strong>differs</strong> from 35 — this is a <strong>two-tailed</strong> test:</p>
+<p><span class="math display">\[H_0: \mu = 35 \qquad \text{vs.} \qquad H_a: \mu \neq 35\]</span></p>
+<p><strong>Step 2: Compute the Test Statistic</strong></p>
+<p>Since <span class="math inline">\(\sigma\)</span> is unknown and <span class="math inline">\(n = 15\)</span> is small, we use the <span class="math inline">\(t\)</span>-statistic with <span class="math inline">\(n - 1 = 14\)</span> degrees of freedom:</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{36.2 - 35}{3.8 / \sqrt{15}} = \frac{1.2}{0.981} = 1.22\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">36.2</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">35</span>; s <span class="ot">&lt;-</span> <span class="fl">3.8</span>; n <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>t_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.223047</code></pre>
+</div>
+</div>
+<p>Our sample mean is <strong>1.22 standard errors above</strong> what <span class="math inline">\(H_0\)</span> claims. That’s not very far.</p>
+<p><strong>Step 3: Find the <span class="math inline">\(p\)</span>-Value</strong></p>
+<p>This is <strong>two-tailed</strong> with a <span class="math inline">\(t\)</span>-distribution, so we use <code>pt()</code> instead of <code>pnorm()</code>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-tailed p-value using the t-distribution</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_stat), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2415008</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-20_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[p\text{-value} = 2 \times P(t_{14} \geq |1.22|) = 0.2415\]</span></p>
+<p>That’s a large p-value — there’s a 24.2% chance of seeing a result this far from 35 (in either direction) if the true mean really is 35.</p>
+<p><strong>Step 4: Decide and Conclude</strong></p>
+<p>At <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<p><span class="math display">\[p\text{-value} = 0.2415 &gt; 0.05 = \alpha\]</span></p>
+<p><strong>We fail to reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is not sufficient evidence that the average rucksack weight differs from 35 lbs. The 1.2 lb difference we observed could easily be due to random chance.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="'Fail to Reject' ≠ 'The Standard is Met'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>‘Fail to Reject’ ≠ ‘The Standard is Met’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This does <strong>not</strong> mean the average is exactly 35 lbs. It means we don’t have enough evidence to say it’s different. With only 15 rucks and this much variability, we might just not have enough data to detect a real difference.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Left-tailed</th>
+<th style="text-align: left;">Right-tailed</th>
+<th style="text-align: left;">Two-tailed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(H_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu = \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu = \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu = \mu_0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(H_a\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu \neq \mu_0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test stat (large <span class="math inline">\(n\)</span> or <span class="math inline">\(\sigma\)</span> known)</td>
+<td style="text-align: left;"><span class="math inline">\(z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}\)</span></td>
+<td style="text-align: left;">same</td>
+<td style="text-align: left;">same</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test stat (small <span class="math inline">\(n\)</span>, <span class="math inline">\(\sigma\)</span> unknown)</td>
+<td style="text-align: left;"><span class="math inline">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}\)</span></td>
+<td style="text-align: left;">same</td>
+<td style="text-align: left;">same</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p\)</span>-value (z)</td>
+<td style="text-align: left;"><code>pnorm(z)</code></td>
+<td style="text-align: left;"><code>1 - pnorm(z)</code></td>
+<td style="text-align: left;"><code>2*(1 - pnorm(abs(z)))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(p\)</span>-value (t)</td>
+<td style="text-align: left;"><code>pt(t, df=n-1)</code></td>
+<td style="text-align: left;"><code>1 - pt(t, df=n-1)</code></td>
+<td style="text-align: left;"><code>2*(1 - pt(abs(t), df=n-1))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">If <span class="math inline">\(p \leq \alpha\)</span></td>
+<td style="text-align: left;">Reject <span class="math inline">\(H_0\)</span>: “…sufficient evidence that [claim in <span class="math inline">\(H_a\)</span>]”</td>
+<td style="text-align: left;">same</td>
+<td style="text-align: left;">same</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">If <span class="math inline">\(p &gt; \alpha\)</span></td>
+<td style="text-align: left;">Fail to reject <span class="math inline">\(H_0\)</span>: “…not sufficient evidence that [claim in <span class="math inline">\(H_a\)</span>]”</td>
+<td style="text-align: left;">same</td>
+<td style="text-align: left;">same</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-pt-improvement-right-tailed-large-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-pt-improvement-right-tailed-large-sample">Problem 1: PT Improvement (Right-tailed, large sample)</h3>
+<p>After a new fitness program, cadets take a diagnostic ACFT. The program claims it improves the average total score above the baseline of <span class="math inline">\(\mu_0 = 440\)</span> points. A sample of <span class="math inline">\(n = 40\)</span> cadets gives <span class="math inline">\(\bar{x} = 448\)</span> with <span class="math inline">\(s = 32\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The program claims improvement (scores above 440) — right-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 440 \qquad H_a: \mu &gt; 440\]</span></p>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="dv">448</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">440</span>; s <span class="ot">&lt;-</span> <span class="dv">32</span>; n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.581139</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05692315</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(p = 0.0569 &gt; 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is not sufficient evidence that the new fitness program increases average ACFT scores above 440 points.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-convoy-speed-right-tailed-small-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-convoy-speed-right-tailed-small-sample">Problem 2: Convoy Speed (Right-tailed, small sample)</h3>
+<p>A convoy commander claims his vehicles average more than 25 mph on supply routes. A sample of <span class="math inline">\(n = 12\)</span> convoys gives <span class="math inline">\(\bar{x} = 27.3\)</span> mph with <span class="math inline">\(s = 4.1\)</span> mph.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The commander claims speeds are above 25 — right-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 25 \qquad H_a: \mu &gt; 25\]</span></p>
+<ol start="2" type="a">
+<li>Since <span class="math inline">\(n = 12\)</span> and <span class="math inline">\(\sigma\)</span> unknown, use <span class="math inline">\(t\)</span> with <span class="math inline">\(df = 11\)</span>:</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">27.3</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">25</span>; s <span class="ot">&lt;-</span> <span class="fl">4.1</span>; n <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>t_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.943277</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t_stat, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03900271</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(p = 0.039 &lt; 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that the average convoy speed exceeds 25 mph.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-sleep-duration-left-tailed-large-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-sleep-duration-left-tailed-large-sample">Problem 3: Sleep Duration (Left-tailed, large sample)</h3>
+<p>The Army recommends cadets get at least 7 hours of sleep per night. A researcher suspects cadets sleep less than 7 hours. A survey of <span class="math inline">\(n = 50\)</span> cadets gives <span class="math inline">\(\bar{x} = 6.6\)</span> hours with <span class="math inline">\(s = 1.4\)</span> hours.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The researcher suspects sleep is less than 7 — left-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 7 \qquad H_a: \mu &lt; 7\]</span></p>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">6.6</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">7</span>; s <span class="ot">&lt;-</span> <span class="fl">1.4</span>; n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.020305</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02167588</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(p = 0.0217 &lt; 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that cadets average less than 7 hours of sleep per night.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-weapon-cleaning-time-left-tailed-small-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-weapon-cleaning-time-left-tailed-small-sample">Problem 4: Weapon Cleaning Time (Left-tailed, small sample)</h3>
+<p>A platoon sergeant believes his Soldiers can clean their M4s in under 15 minutes on average. He times <span class="math inline">\(n = 10\)</span> Soldiers and finds <span class="math inline">\(\bar{x} = 13.8\)</span> minutes with <span class="math inline">\(s = 3.2\)</span> minutes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The sergeant claims the time is less than 15 — left-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 15 \qquad H_a: \mu &lt; 15\]</span></p>
+<ol start="2" type="a">
+<li>Since <span class="math inline">\(n = 10\)</span> and <span class="math inline">\(\sigma\)</span> unknown, use <span class="math inline">\(t\)</span> with <span class="math inline">\(df = 9\)</span>:</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">13.8</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">15</span>; s <span class="ot">&lt;-</span> <span class="fl">3.2</span>; n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>t_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.185854</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_stat, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1330213</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><span class="math inline">\(p = 0.133 &gt; 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is not sufficient evidence that the average cleaning time is less than 15 minutes.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-5-equipment-readiness-two-tailed-large-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5-equipment-readiness-two-tailed-large-sample">Problem 5: Equipment Readiness (Two-tailed, large sample)</h3>
+<p>A brigade standard requires vehicle maintenance to be completed in <span class="math inline">\(\mu = 4.0\)</span> hours on average. The maintenance officer suspects the actual time differs from 4.0 hours. A random sample of <span class="math inline">\(n = 50\)</span> jobs gives <span class="math inline">\(\bar{x} = 4.35\)</span> hours with <span class="math inline">\(s = 1.1\)</span> hours.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+<li><p>Construct a 95% CI. Is it consistent with your test result?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The officer suspects the time differs — two-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 4.0 \qquad H_a: \mu \neq 4.0\]</span></p>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">4.35</span>; mu0 <span class="ot">&lt;-</span> <span class="fl">4.0</span>; s <span class="ot">&lt;-</span> <span class="fl">1.1</span>; n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.249885</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z)))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02445623</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><p><span class="math inline">\(p = 0.0245 &lt; 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that the average maintenance time differs from 4.0 hours.</p></li>
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">lower =</span> xbar <span class="sc">-</span> z_star <span class="sc">*</span> se, <span class="at">upper =</span> xbar <span class="sc">+</span> z_star <span class="sc">*</span> se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   lower    upper 
+4.045101 4.654899 </code></pre>
+</div>
+</div>
+<p>The 95% CI is <span class="math inline">\((4.045, 4.655)\)</span>. Since <span class="math inline">\(\mu_0 = 4.0\)</span> is outside this interval, we reject <span class="math inline">\(H_0\)</span> — consistent with the test.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-6-ruck-march-weight-two-tailed-small-sample" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6-ruck-march-weight-two-tailed-small-sample">Problem 6: Ruck March Weight (Two-tailed, small sample)</h3>
+<p>The standard rucksack weight is 35 lbs. A squad leader suspects his squad’s rucks differ from the standard. He weighs <span class="math inline">\(n = 18\)</span> rucks and finds <span class="math inline">\(\bar{x} = 36.5\)</span> lbs with <span class="math inline">\(s = 4.2\)</span> lbs.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+<li><p>Construct a 95% CI. Is it consistent with your test result?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>The squad leader suspects the weight differs — two-tailed:</li>
+</ol>
+<p><span class="math display">\[H_0: \mu = 35 \qquad H_a: \mu \neq 35\]</span></p>
+<ol start="2" type="a">
+<li>Since <span class="math inline">\(n = 18\)</span> and <span class="math inline">\(\sigma\)</span> unknown, use <span class="math inline">\(t\)</span> with <span class="math inline">\(df = 17\)</span>:</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">36.5</span>; mu0 <span class="ot">&lt;-</span> <span class="dv">35</span>; s <span class="ot">&lt;-</span> <span class="fl">4.2</span>; n <span class="ot">&lt;-</span> <span class="dv">18</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>t_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.515229</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_stat), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1480867</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li><p><span class="math inline">\(p = 0.1481 &gt; 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is not sufficient evidence that the average rucksack weight differs from 35 lbs.</p></li>
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>t_star <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">lower =</span> xbar <span class="sc">-</span> t_star <span class="sc">*</span> se, <span class="at">upper =</span> xbar <span class="sc">+</span> t_star <span class="sc">*</span> se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   lower    upper 
+34.41139 38.58861 </code></pre>
+</div>
+</div>
+<p>The 95% CI is <span class="math inline">\((34.41, 38.59)\)</span>. Since <span class="math inline">\(\mu_0 = 35\)</span> is inside this interval, we fail to reject <span class="math inline">\(H_0\)</span> — consistent with the test.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li><strong>Hypotheses:</strong> <span class="math inline">\(H_0\)</span> (null, always <span class="math inline">\(=\)</span>) vs.&nbsp;<span class="math inline">\(H_a\)</span> (alternative, strict inequality)</li>
+<li><strong>Test statistic:</strong> Measures how far the sample is from <span class="math inline">\(H_0\)</span> in SE units</li>
+<li><strong><span class="math inline">\(p\)</span>-value:</strong> Probability of seeing data this extreme if <span class="math inline">\(H_0\)</span> is true</li>
+<li><strong>Decision:</strong> Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \leq \alpha\)</span>; fail to reject if <span class="math inline">\(p &gt; \alpha\)</span> Any questions?</li>
+</ul>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-21.html">Lesson 21: One Sample t-Test</a></p>
+<ul>
+<li>Check conditions for the one-sample <span class="math inline">\(t\)</span>-test</li>
+<li>Carry out and interpret a one-sample <span class="math inline">\(t\)</span>-test</li>
+<li>Compare <span class="math inline">\(p\)</span>-value and CI conclusions</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 8.1, 8.2</strong> - Due before Lesson 21</li>
+<li><strong>WPR II</strong> - Lesson 27</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-19.html" class="pagination-link" aria-label="Lesson 19">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 19</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA206x-AY26-2/lesson-21.html" class="pagination-link" aria-label="Lesson 21">
+        <span class="nav-page-text">Lesson 21</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

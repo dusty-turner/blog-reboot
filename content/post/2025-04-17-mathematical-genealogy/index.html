@@ -1,0 +1,410 @@
+---
+title: Mathematical Genealogy
+author: Dusty Turner
+date: '2025-04-17'
+slug: []
+categories:
+  - R
+  - Web Scraping
+  - ChatGPT
+tags:
+  - R
+  - Web Scraping
+  - ChatGPT
+cover: /media/genealogy_bug.png
+---
+
+
+
+<p>As I near the end of my PhD, my advisor <a href="https://www.kahle.io/">Dr David Kahle</a> submitted my information to the <a href="https://www.genealogy.math.ndsu.nodak.edu/index.php">Mathematics Genealogy Project</a>. The MGP tracks academic lineages through dissertation advisors — like a doctoral family tree.</p>
+<img src="images/genealogy_skeleton.png" />
+<center>
+<sub>Academic lineage via the <a href="https://www.genealogy.math.ndsu.nodak.edu/index.php" target="_blank">Mathematics Genealogy Project</a>.</sub>
+</center>
+<p>It was surprisingly cool to explore the academic lineage I come from. With some help from ChatGPT, I put together a script to scrape and visualize my genealogy. Most of the code came together through a series of back-and-forths with ChatGPT, so I won’t walk through every line here — but you can expand the code block below if you’re curious. In short…</p>
+<div id="code-click-to-expand" class="section level3">
+<h3>Code (click to expand)</h3>
+<details>
+<summary>
+View Code
+</summary>
+<pre class="r"><code>library(tidyverse)  
+library(rvest)
+library(xml2)
+library(stringr)
+library(igraph)
+library(ggraph)
+library(memoise)
+
+# ---------------------------
+# 1) Single-Pass Page Parser
+# ---------------------------
+# Memoized so each page is fetched only once
+raw_parse_mgp_page &lt;- function(url) {
+  Sys.sleep(0.5)
+  message(&quot;Fetching page: &quot;, url)
+  
+  page_html &lt;- tryCatch(read_html(url), error=function(e) NULL)
+  if (is.null(page_html)) {
+    return(list(name=NA_character_, year=NA_character_, advisors=character(0)))
+  }
+  
+  # Name
+  h2_node &lt;- html_node(page_html, &quot;h2&quot;)
+  nm &lt;- NA_character_
+  if (!is.null(h2_node) &amp;&amp; !is.na(h2_node)) {
+    nm &lt;- str_squish(html_text(h2_node, trim=TRUE))
+  }
+  
+  # Year
+  div_node &lt;- html_node(page_html, xpath=&quot;//div[contains(., &#39;Ph.D. &#39;)]&quot;)
+  yr &lt;- NA_character_
+  if (!is.null(div_node) &amp;&amp; !is.na(div_node)) {
+    txt &lt;- html_text(div_node, trim=TRUE)
+    found &lt;- str_extract(txt, &quot;\\b\\d{4}\\b&quot;)
+    if (!is.na(found)) {
+      yr &lt;- found
+    }
+  }
+  
+  # Advisors
+  adv_pars  &lt;- html_nodes(page_html, xpath=&quot;//p[contains(., &#39;Advisor&#39;)]&quot;)
+  adv_links &lt;- html_nodes(adv_pars, &quot;a&quot;)
+  advs &lt;- character(0)
+  if (length(adv_links) &gt; 0) {
+    hrefs     &lt;- na.omit(html_attr(adv_links, &quot;href&quot;))
+    abs_links &lt;- vapply(hrefs, function(x) url_absolute(x, url), character(1))
+    pat       &lt;- &quot;id\\.php\\?id=[0-9]+$&quot;
+    advs      &lt;- abs_links[grepl(pat, abs_links)]
+  }
+  
+  list(name=nm, year=yr, advisors=advs)
+}
+parse_mgp_page &lt;- memoise(raw_parse_mgp_page)
+
+# ---------------------------
+# 2) One-level parse for secondary advisors
+# ---------------------------
+collect_secondary_one_level &lt;- function(sec_url, visited, name_map, year_map) {
+  if (sec_url %in% visited) {
+    return(list(
+      visited=visited,
+      name_map=name_map,
+      year_map=year_map,
+      edges=data.frame(child=character(0), advisor=character(0))
+    ))
+  }
+  visited &lt;- c(visited, sec_url)
+  
+  info_sec &lt;- parse_mgp_page(sec_url)
+  name_map[[sec_url]] &lt;- info_sec$name
+  year_map[[sec_url]] &lt;- info_sec$year
+  
+  edges_here &lt;- data.frame(child=character(0), advisor=character(0))
+  if (length(info_sec$advisors)&gt;0) {
+    firstA &lt;- info_sec$advisors[1]
+    edges_here &lt;- data.frame(child=sec_url, advisor=firstA, stringsAsFactors=FALSE)
+    
+    if (!(firstA %in% visited)) {
+      visited &lt;- c(visited, firstA)
+      infoA &lt;- parse_mgp_page(firstA)
+      name_map[[firstA]] &lt;- infoA$name
+      year_map[[firstA]] &lt;- infoA$year
+    }
+  }
+  
+  list(visited=visited, name_map=name_map, year_map=year_map, edges=edges_here)
+}
+
+# ---------------------------
+# 3) collect_ancestors()
+#    - Full recursion on first advisor
+#    - partial or full recursion for secondaries
+# ---------------------------
+collect_ancestors &lt;- function(start_url,
+                              visited=NULL,
+                              name_map=NULL,
+                              year_map=NULL,
+                              partial_secondary=TRUE) {
+  if (is.null(visited))  visited  &lt;- character(0)
+  if (is.null(name_map)) name_map &lt;- list()
+  if (is.null(year_map)) year_map &lt;- list()
+  
+  if (start_url %in% visited) {
+    return(list(
+      visited=visited,
+      name_map=name_map,
+      year_map=year_map,
+      edges=data.frame(child=character(0), advisor=character(0))
+    ))
+  }
+  visited &lt;- c(visited, start_url)
+  
+  info &lt;- parse_mgp_page(start_url)
+  name_map[[start_url]] &lt;- info$name
+  year_map[[start_url]] &lt;- info$year
+  
+  if (length(info$advisors)&gt;0) {
+    edges_here &lt;- data.frame(
+      child   = rep(start_url, length(info$advisors)),
+      advisor = info$advisors,
+      stringsAsFactors=FALSE
+    )
+  } else {
+    edges_here &lt;- data.frame(child=character(0), advisor=character(0))
+  }
+  all_edges &lt;- edges_here
+  
+  if (length(info$advisors) &gt; 0) {
+    # fully recurse on first advisor
+    firstA &lt;- info$advisors[1]
+    r_first &lt;- collect_ancestors(
+      firstA, visited, name_map, year_map,
+      partial_secondary=partial_secondary
+    )
+    visited   &lt;- r_first$visited
+    name_map  &lt;- r_first$name_map
+    year_map  &lt;- r_first$year_map
+    all_edges &lt;- rbind(all_edges, r_first$edges)
+    
+    # secondary advisors
+    if (length(info$advisors) &gt; 1) {
+      for (sec in info$advisors[-1]) {
+        if (partial_secondary) {
+          # parse them once
+          r_sec &lt;- collect_secondary_one_level(sec, visited, name_map, year_map)
+        } else {
+          # same recursion
+          r_sec &lt;- collect_ancestors(sec, visited, name_map, year_map,
+                                     partial_secondary=FALSE)
+        }
+        visited   &lt;- r_sec$visited
+        name_map  &lt;- r_sec$name_map
+        year_map  &lt;- r_sec$year_map
+        all_edges &lt;- rbind(all_edges, r_sec$edges)
+      }
+    }
+  }
+  
+  list(
+    visited=visited,
+    name_map=name_map,
+    year_map=year_map,
+    edges=all_edges
+  )
+}
+
+# ---------------------------
+# 4) Build a single genealogical &quot;tree&quot; for childUrl
+#    =&gt; color = child&#39;s last name
+# ---------------------------
+get_last_name &lt;- function(full_name) {
+  if (is.na(full_name) || !nzchar(full_name)) return(&quot;Unknown&quot;)
+  parts &lt;- str_split(full_name, &quot;\\s+&quot;)[[1]]
+  tail(parts,1)
+}
+
+build_one_tree &lt;- function(child_url, partial_secondary=TRUE) {
+  # parse child&#39;s page once to get child&#39;s last name
+  child_info   &lt;- parse_mgp_page(child_url)
+  child_name   &lt;- child_info$name
+  child_last   &lt;- get_last_name(child_name)
+  if (!nzchar(child_last)) child_last &lt;- &quot;Unknown&quot;
+  
+  # gather
+  res &lt;- collect_ancestors(child_url, partial_secondary=partial_secondary)
+  
+  visited_urls &lt;- res$visited
+  edges_df     &lt;- res$edges
+  
+  node_df &lt;- data.frame(
+    url   = visited_urls,
+    name  = sapply(visited_urls, function(u) res$name_map[[u]]),
+    year  = sapply(visited_urls, function(u) res$year_map[[u]]),
+    color = child_last,   # entire set =&gt; child&#39;s last name
+    stringsAsFactors=FALSE
+  )
+  edges_igraph &lt;- edges_df %&gt;% rename(from=advisor, to=child)
+  
+  list(nodes=node_df, edges=edges_igraph)
+}
+
+# ---------------------------
+# 5) Merge genealogies =&gt; single igraph with color mixture
+# ---------------------------
+merge_two_trees &lt;- function(treeA, treeB) {
+  merged_nodes &lt;- full_join(treeA$nodes, treeB$nodes, by=&quot;url&quot;, suffix=c(&quot;.A&quot;,&quot;.B&quot;))
+  merged_nodes &lt;- merged_nodes %&gt;%
+    mutate(
+      final_name = coalesce(name.A, name.B),
+      final_year = coalesce(year.A, year.B),
+      color_combined = case_when(
+        !is.na(color.A) &amp; !is.na(color.B) ~ &quot;shared&quot;,
+        !is.na(color.A)                   ~ color.A,
+        !is.na(color.B)                   ~ color.B,
+        TRUE                              ~ &quot;unknown&quot;
+      )
+    ) %&gt;%
+    select(
+      url,
+      name  = final_name,
+      year  = final_year,
+      color = color_combined
+    )
+  
+  merged_edges &lt;- bind_rows(treeA$edges, treeB$edges) %&gt;% distinct()
+  merged_edges &lt;- merged_edges %&gt;%
+    filter(from %in% merged_nodes$url, to %in% merged_nodes$url)
+  
+  g &lt;- graph_from_data_frame(merged_edges, directed=TRUE, vertices=merged_nodes)
+  return(g)
+}
+
+# ---------------------------
+# 6) A single function that either:
+#    - Plots a single genealogical tree, or
+#    - Merges two genealogies &amp; plots them
+# ---------------------------
+plotGenealogy &lt;- function(childA_url,
+                          childB_url=NULL,
+                          partialA=TRUE,
+                          partialB=TRUE) {
+  # If only one genealogical set =&gt; no legend needed
+  single_mode &lt;- is.null(childB_url)
+
+  # Build graph
+  if (single_mode) {
+    treeA &lt;- build_one_tree(childA_url, partial_secondary=partialA)
+    g &lt;- graph_from_data_frame(treeA$edges, directed=TRUE, vertices=treeA$nodes)
+  } else {
+    # two genealogies =&gt; merge
+    treeA &lt;- build_one_tree(childA_url, partial_secondary=partialA)
+    treeB &lt;- build_one_tree(childB_url, partial_secondary=partialB)
+    g     &lt;- merge_two_trees(treeA, treeB)
+  }
+
+  # if &quot;label&quot; is missing =&gt; name+year
+  if (! &quot;label&quot; %in% vertex_attr_names(g)) {
+    V(g)$label &lt;- paste0(
+      ifelse(is.na(V(g)$name), &quot;&quot;, V(g)$name),
+      ifelse(is.na(V(g)$year), &quot;&quot;, paste0(&quot; (&quot;, V(g)$year, &quot;)&quot;))
+    )
+  }
+
+  # layered approach =&gt; &#39;sugiyama&#39;
+  layout_sugiyama &lt;- create_layout(g, layout=&quot;tree&quot;)
+
+  p &lt;- ggraph(layout_sugiyama) +
+    geom_edge_link(
+      arrow=arrow(length=unit(2,&quot;mm&quot;)),
+      end_cap=circle(2,&quot;mm&quot;),
+      alpha=0.6,
+      check_overlap=TRUE
+    ) +
+    geom_node_point(aes(color=color), size=4) +
+    geom_node_text(aes(label=label), hjust=0, nudge_x=0.1, check_overlap=TRUE, size = 3.5) +
+    # geom_node_text(aes(label = label), hjust = 0, nudge_x = 0.1, size = 3.5) +
+
+    theme_void()
+
+  # Gather the color categories
+  node_cols &lt;- unique(V(g)$color)
+  # special =&gt; &quot;shared&quot;,&quot;unknown&quot;
+  special_cols &lt;- c(&quot;shared&quot;,&quot;unknown&quot;)
+  last_names &lt;- setdiff(node_cols, special_cols)
+
+  # Build color map
+  color_map &lt;- c()
+  i &lt;- 1
+  # quick palette
+  color_for_name &lt;- function(nm, i) {
+    if (i==1) return(&quot;red&quot;)
+    if (i==2) return(&quot;blue&quot;)
+    # fallback =&gt; others
+    palette &lt;- c(&quot;green&quot;,&quot;orange&quot;,&quot;cyan&quot;,&quot;brown&quot;,&quot;hotpink&quot;,&quot;black&quot;)
+    if ((i-2) &lt;= length(palette)) {
+      return(palette[i-2])
+    }
+    return(&quot;black&quot;)
+  }
+  for (ln in last_names) {
+    color_map[ln] &lt;- color_for_name(ln, i)
+    i &lt;- i+1
+  }
+  color_map[&quot;shared&quot;]  &lt;- &quot;purple&quot;
+  color_map[&quot;unknown&quot;] &lt;- &quot;grey&quot;
+
+  # label map
+  label_map &lt;- c()
+  for (ln in last_names) {
+    label_map[ln] &lt;- ln
+  }
+  label_map[&quot;shared&quot;]  &lt;- &quot;shared&quot;
+  label_map[&quot;unknown&quot;] &lt;- &quot;unknown&quot;
+
+  # add scale
+  p &lt;- p + scale_color_manual(
+    name   = &quot;Genealogy&quot;,
+    values = color_map,
+    breaks = names(label_map),
+    labels = label_map
+  )
+
+  # If single genealogical set =&gt; hide the legend
+  if (single_mode) {
+    p &lt;- p + theme(legend.position=&quot;none&quot;)
+  }
+  xvals &lt;- layout_sugiyama$x
+  yvals &lt;- layout_sugiyama$y
+  
+  # compute expanded range
+  xmid &lt;- mean(range(xvals))
+  ymid &lt;- mean(range(yvals))
+  xhalf &lt;- (max(xvals)-min(xvals))/2 * 1.5
+  yhalf &lt;- (max(yvals)-min(yvals))/2 * 1.5
+  
+  xlim &lt;- c(min(xvals), xmid + xhalf)
+  ylim &lt;- c(min(yvals), max(yvals))
+  
+  p &lt;- p + coord_cartesian(xlim=xlim, ylim=ylim, expand=TRUE, clip=&quot;off&quot;)
+  
+  print(p)
+  invisible(p)
+
+}</code></pre>
+</details>
+<p>The script uses <code>rvest</code> and <code>xml2</code> to scrape advisor and graduation data from individual profiles on the MGP site. It builds a directed graph where each edge represents an advisor-advisee relationship. The graph construction is recursive: it follows the first listed advisor all the way up the tree, while secondary advisors are optionally included just one level deep to avoid visual clutter.</p>
+<p>To manage multiple fetches efficiently, the scraper is memoized with <code>memoise</code>, and lineage data is tracked using URL-based mappings for names and years. The graph is visualized with <code>igraph</code> and <code>ggraph</code>, and each node is colored by genealogical origin — for example, red for one person’s tree, blue for another, and purple for shared nodes. The plotting layout uses a tree for clean hierarchy and merge points.</p>
+</div>
+<div id="dr-david-kahles-lineage" class="section level3">
+<h3>Dr David Kahle’s Lineage</h3>
+<p>Here’s a look at my advisor’s academic lineage. I followed the first advisor all the way up the tree, but limited second advisors to just one level to keep the graph from getting too cluttered.</p>
+<pre class="r"><code>Kahle &lt;- &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=159440&quot;
+plotGenealogy(Kahle) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/kahle-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dr-rodney-sturdivants-lineage" class="section level3">
+<h3>Dr Rodney Sturdivant’s Lineage</h3>
+<p>And here’s a look at my co-advisor <a href="https://www.genealogy.math.ndsu.nodak.edu/id.php?id=145799">Dr. Sturdivant</a>, who also has an interesting but separate academic tree.</p>
+<pre class="r"><code>Sturdivant &lt;- &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=34072&quot;
+plotGenealogy(Sturdivant)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/sturdivant-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can see some big names in both trees.</p>
+</div>
+<div id="comparing-genealogies" class="section level3">
+<h3>Comparing Genealogies</h3>
+<p>These genealogies don’t overlap…</p>
+<pre class="r"><code>plotGenealogy(childA_url = Kahle, childB_url = Sturdivant)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/kahle-sturdivant-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>…but it’s fascinating when they do — especially across countries, centuries, and disciplines. Here’s a look at Dr Kahle with <a href="https://hadley.nz/">Dr Hadley Wickham</a> - coauthors of the <a href="https://github.com/dkahle/ggmap">ggmap</a> package.</p>
+<pre class="r"><code>Wickham &lt;- &quot;https://www.genealogy.math.ndsu.nodak.edu/id.php?id=145799&quot;
+plotGenealogy(childA_url = Kahle, childB_url = Wickham)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/kahle-wickham-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>For good measure, though messy, I show Dr Kahle’s full tree by fully recursing through all advisors by setting <code>partialA = FALSE</code>.</p>
+<pre class="r"><code>plotGenealogy(Kahle, partialA = FALSE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/kahle-full-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="final-thoughts" class="section level3">
+<h3>Final Thoughts</h3>
+<p>This turned out to be a fun little side project — part historical research, part data wrangling. The Mathematics Genealogy Project is a neat way to explore where your academic lineage comes from. If you’re curious, it’s worth poking around — you might find some unexpected connections.</p>
+</div>

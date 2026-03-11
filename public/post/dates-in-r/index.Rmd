@@ -1,0 +1,106 @@
+---
+title: Working with Dates in R
+author: Dusty Turner
+date: '2018-06-20'
+slug: dates-in-r
+categories:
+  - beatnavy
+  - lubridate
+  - tidyverse
+tags:
+  - beatnavy
+  - lubridate
+  - tidyverse
+# output: 
+  # blogdown::html_page:
+    # toc: TRUE
+    # toc_depth: 1
+    # dev: "svg"
+    # theme: lumen
+    # highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+### A Little About Dates in R
+
+
+Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
+
+There are 3 date/time classes are built in to R  
+- Date   
+- POSIXct   
+- POSIXlt   
+
+#### Base R
+
+First, base R can read a string of text and convert it to a date class.  To help it read the date, you must tell R what date format your character string should expect.  Below are several examples.  You can look at all the possible format and codes by running `?strptime` in your R console.  
+
+```{r}
+strptime("October 16, 1984", format = "%B %e, %Y")
+strptime("16 October, 1984", format = "%e %B, %Y")
+strptime("16-- October, 1984", format = "%e-- %B, %Y")
+class(strptime("16-- October, 1984", format = "%e-- %B, %Y"))
+birthday = strptime("16-- October, 1984", format = "%e-- %B, %Y")
+```
+
+As you can see, the `strptime` command recognizes your string as a `POSIXlt POSIXt` class.
+
+### lubridate
+
+A second and easier way to have R recognize dates is to use the `lubridate` package in R.  Thanks again [Hadley](http://hadley.nz/)
+
+```{r}
+library(lubridate)
+```
+
+Using `lubridate` also allows R to read character strings as dates.  However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string.  You simply provide it the order of your month, day, and year in `ymd` format or any combination thereof.  
+
+```{r}
+mdy("June 14, 2018")
+dmy("14 June, 2018")
+dmy("14-- June, 2018")
+class(dmy("14-- June, 2018"))
+```
+
+You'll notice that lubridate creates a `date` class.  To change it into `POSIXlt POSIXt` format, wrap your text with the following code.
+
+```{r}
+class(as.POSIXlt(mdy("June 14, 2018")))
+```
+
+We also need to ensure our date is the correct timezone.  This would be more important if our date had a time included. 
+
+```{r}
+date = as.POSIXlt(dmy("14 June, 2018")) 
+date
+date = force_tz(date, tzone = "America/New_York")
+date
+```
+
+When a date vector is of class `as.POSIXlt`, all the information is stored as a list.  You can also extract specific information from the list as well.
+
+```{r}
+date
+unlist(date)
+date$mon
+month(date)
+date$year
+year(date)
+```
+
+You can manipulate these date vectors as well.
+
+```{r}
+date - birthday
+birthday + hours(4)
+birthday + days(4)
+date + years(4) + months(9)
+```

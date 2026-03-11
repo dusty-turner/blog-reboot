@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-1 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-2.html" rel="next">
+<link href="../MA206x-AY26-2/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-1.html">Lesson 1</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-1-intro-and-preliminaries" id="toc-lesson-1-intro-and-preliminaries" class="nav-link active" data-scroll-target="#lesson-1-intro-and-preliminaries">Lesson 1: Intro and Preliminaries</a>
+  <ul class="collapse">
+  <li><a href="#welcome" id="toc-welcome" class="nav-link" data-scroll-target="#welcome">Welcome!</a>
+  <ul class="collapse">
+  <li><a href="#lets-pick-a-section-marcher" id="toc-lets-pick-a-section-marcher" class="nav-link" data-scroll-target="#lets-pick-a-section-marcher">Let’s Pick A Section Marcher</a></li>
+  </ul></li>
+  <li><a href="#whats-different-about-ma206x" id="toc-whats-different-about-ma206x" class="nav-link" data-scroll-target="#whats-different-about-ma206x">What’s Different About MA206x?</a></li>
+  <li><a href="#introductions" id="toc-introductions" class="nav-link" data-scroll-target="#introductions">Introductions</a>
+  <ul class="collapse">
+  <li><a href="#cadet-introductions" id="toc-cadet-introductions" class="nav-link" data-scroll-target="#cadet-introductions">Cadet Introductions</a></li>
+  <li><a href="#cdt-dusty-turner-center-point-texas" id="toc-cdt-dusty-turner-center-point-texas" class="nav-link" data-scroll-target="#cdt-dusty-turner-center-point-texas">CDT Dusty Turner: Center Point, Texas</a></li>
+  <li><a href="#ltc-dusty-turner-phd-waco-texas" id="toc-ltc-dusty-turner-phd-waco-texas" class="nav-link" data-scroll-target="#ltc-dusty-turner-phd-waco-texas">LTC Dusty Turner, PhD: Waco, Texas</a></li>
+  <li><a href="#jill-saline-michigan" id="toc-jill-saline-michigan" class="nav-link" data-scroll-target="#jill-saline-michigan">Jill: Saline, Michigan</a></li>
+  <li><a href="#cal-las-cruces-new-mexico" id="toc-cal-las-cruces-new-mexico" class="nav-link" data-scroll-target="#cal-las-cruces-new-mexico">Cal: Las Cruces, New Mexico</a></li>
+  <li><a href="#reese-columbus-ohio" id="toc-reese-columbus-ohio" class="nav-link" data-scroll-target="#reese-columbus-ohio">Reese: Columbus, Ohio</a></li>
+  </ul></li>
+  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a>
+  <ul class="collapse">
+  <li><a href="#what-are-your-expectations-of-ma206x" id="toc-what-are-your-expectations-of-ma206x" class="nav-link" data-scroll-target="#what-are-your-expectations-of-ma206x">What Are Your Expectations of MA206x?</a></li>
+  <li><a href="#what-do-you-expect-of-me" id="toc-what-do-you-expect-of-me" class="nav-link" data-scroll-target="#what-do-you-expect-of-me">What Do You Expect of Me?</a></li>
+  <li><a href="#what-you-can-expect-from-me" id="toc-what-you-can-expect-from-me" class="nav-link" data-scroll-target="#what-you-can-expect-from-me">What You Can Expect from Me</a></li>
+  <li><a href="#expectations-i-have-for-you" id="toc-expectations-i-have-for-you" class="nav-link" data-scroll-target="#expectations-i-have-for-you">Expectations I Have for You</a></li>
+  <li><a href="#class-rules" id="toc-class-rules" class="nav-link" data-scroll-target="#class-rules">Class Rules</a></li>
+  </ul></li>
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a>
+  <ul class="collapse">
+  <li><a href="#ma206x-story" id="toc-ma206x-story" class="nav-link" data-scroll-target="#ma206x-story">MA206x Story</a></li>
+  <li><a href="#course-support" id="toc-course-support" class="nav-link" data-scroll-target="#course-support">Course Support</a></li>
+  <li><a href="#a-note-on-ai" id="toc-a-note-on-ai" class="nav-link" data-scroll-target="#a-note-on-ai">A Note on AI</a></li>
+  <li><a href="#graded-assignments" id="toc-graded-assignments" class="nav-link" data-scroll-target="#graded-assignments">Graded Assignments</a></li>
+  </ul></li>
+  <li><a href="#todays-lesson" id="toc-todays-lesson" class="nav-link" data-scroll-target="#todays-lesson">Today’s Lesson</a>
+  <ul class="collapse">
+  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The Big Picture</a></li>
+  <li><a href="#parameters-vs-statistics" id="toc-parameters-vs-statistics" class="nav-link" data-scroll-target="#parameters-vs-statistics">Parameters vs Statistics</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables">Types of Variables</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-1-intro-and-preliminaries" class="level1">
+<h1>Lesson 1: Intro and Preliminaries</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome!</h2>
+<div style="text-align: center;">
+<p><img src="../MA206-AY26-1/assets/img/mathlete-nation.jpg" class="img-fluid" style="width:80.0%"></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<section id="lets-pick-a-section-marcher" class="level3">
+<h3 class="anchored" data-anchor-id="lets-pick-a-section-marcher">Let’s Pick A Section Marcher</h3>
+<div style="text-align: center;">
+<p><img src="../MA206-AY26-1/assets/img/diceandcoins.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+<p><strong>Section Marcher Duties:</strong></p>
+<ul>
+<li>Take roll and report attendance</li>
+<li>Designate a different inspector each day (find a system - rotate alphabetically?)</li>
+<li>Everyone will do this multiple times</li>
+</ul>
+<p><strong>Inspections:</strong></p>
+<ul>
+<li>Polite check of uniforms - the idea is to help each other look right</li>
+<li>No one is getting in trouble. We’re just helping each other avoid mistakes.</li>
+<li>You can do the inspection before class starts</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="whats-different-about-ma206x" class="level2">
+<h2 class="anchored" data-anchor-id="whats-different-about-ma206x">What’s Different About MA206x?</h2>
+<p>This is <strong>MA206x</strong>, not MA206. Some trepidation? Sure. Fear? None needed.</p>
+<ul>
+<li><strong>Tintle → Devore</strong>: Simulation-first approach → classical probability foundation</li>
+<li><strong>Fewer out-of-class graded events</strong>: AI is changing how we assess learning</li>
+<li><strong>R in Vantage</strong>: Same language, new platform</li>
+</ul>
+<p>More details later.</p>
+<hr>
+</section>
+<section id="introductions" class="level2">
+<h2 class="anchored" data-anchor-id="introductions">Introductions</h2>
+<section id="cadet-introductions" class="level3">
+<h3 class="anchored" data-anchor-id="cadet-introductions">Cadet Introductions</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Please Share">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Please Share
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Name</li>
+<li>Hometown</li>
+<li>Company</li>
+<li>Birthday</li>
+<li>Academic Major</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Did you come directly from high school?</li>
+<li>What you do in the Corps (Sport, Club, etc)</li>
+<li>Favorite sports team</li>
+<li>Possible Branch</li>
+<li>Why you picked your seat today</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="cdt-dusty-turner-center-point-texas" class="level3">
+<h3 class="anchored" data-anchor-id="cdt-dusty-turner-center-point-texas">CDT Dusty Turner: Center Point, Texas</h3>
+<div class="compact">
+<ul>
+<li>Sprint Football</li>
+<li>Sandhurst</li>
+<li>OCF</li>
+<li>F4</li>
+<li>Dallas Cowboys, San Antonio Spurs, Texas Rangers</li>
+</ul>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">5</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="../MA206-AY26-1/assets/img/cadet/Picture3.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="../MA206-AY26-1/assets/img/cadet/Picture5.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><img src="../MA206-AY26-1/assets/img/cadet/Picture2.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p><img src="../MA206-AY26-1/assets/img/cadet/Picture4.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p><img src="../MA206-AY26-1/assets/img/cadet/Picture1.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ltc-dusty-turner-phd-waco-texas" class="level3">
+<h3 class="anchored" data-anchor-id="ltc-dusty-turner-phd-waco-texas">LTC Dusty Turner, PhD: Waco, Texas</h3>
+<div style="text-align: center;">
+<p><img src="../MA206-AY26-1/assets/img/armylogos.png" class="img-fluid" style="width:70.0%"></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Career Timeline">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Career Timeline
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>2003-2007 <strong>BS, Operations Research</strong>: <span style="color:#E1B500;">United States Military Academy (USMA)</span></li>
+<li>2007-2008 <strong>Engineer Basic Officer Course</strong>: Fort Leonard Wood, Missouri</li>
+<li>2008-2011 <strong>Platoon Leader / XO / AS3</strong>: Schofield Barracks, HI / Iraq</li>
+<li>2011-2012 <strong>Engineer Captain’s Career Course</strong>: Missouri S&amp;T</li>
+<li>2012 <strong>MS, Engineering Management</strong>: <span style="color:#115740;">Missouri S&amp;T</span></li>
+<li>2012-2014 <strong>Company Commander</strong>: White Sands Missile Range, NM / Afghanistan</li>
+<li>2014-2016 <strong>MS, Integrated Systems Engineering</strong>: <span style="color:#BB0000;">The Ohio State University</span></li>
+<li>2016-2019 <strong>Assistant Professor</strong>: United States Military Academy, West Point</li>
+<li>2019-2022 <strong>ORSA / Data Scientist</strong>: Center for Army Analysis, Ft. Belvoir</li>
+<li>2022-2025 <strong>PhD, Statistical Science</strong>: <span style="color:#154734;">Baylor University (Waco, TX)</span></li>
+<li>2025-? <strong>Academy Professor</strong>: United States Military Academy, West Point</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align: center; margin: 20px 0;">
+<p><img src="../MA206-AY26-1/assets/img/schoollogos.png" class="img-fluid" style="width:80.0%"></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f9d6cb0ad1e1e193d829" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f9d6cb0ad1e1e193d829">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[41.391,21.483,37.954,32.389,39.999,31.549,38.711],[-73.959,-158.063,-91.774,-106.491,-83.018,-97.114,-77.14700000000001],6,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.85},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[41.391,21.483,37.954,32.389,39.999,31.549,38.711],[-73.959,-158.063,-91.774,-106.491,-83.018,-97.114,-77.14700000000001],{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":true,"direction":"top","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":true,"style":{"color":"black","font-size":"12px","font-weight":"bold"},"className":"","sticky":true},null]}],"limits":{"lat":[21.483,41.391],"lng":[-158.063,-73.959]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr>
+</section>
+<section id="jill-saline-michigan" class="level3">
+<h3 class="anchored" data-anchor-id="jill-saline-michigan">Jill: Saline, Michigan</h3>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 20px 0;">
+<p><img src="../MA206-AY26-1/assets/img/jill1.jpg" width="300" style="border-radius: 8px;"> <img src="../MA206-AY26-1/assets/img/jill2.jpg" width="300" style="border-radius: 8px;"></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Career Timeline">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Career Timeline
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>2000–2004 <strong>BS, Economics</strong>: <span style="color:#18453B;">Michigan State University</span></li>
+<li>2004–2010 <strong>Project Manager</strong>: Epic Systems</li>
+<li>2011–2020 <strong>Consultant / Build Analyst (Epic Radiant &amp; Cadence)</strong>
+<ul>
+<li>2011–2013 <strong>Epic Radiant Build Consultant</strong>: Intellistar Consulting</li>
+<li>2014 <strong>Epic Radiant Build Analyst</strong>: Vonlay</li>
+<li>2016–2017 <strong>Epic Radiant Build Analyst</strong>: Huron</li>
+<li>2018–2020 <strong>Epic Cadence Build Analyst</strong>: Bluetree Network</li>
+</ul></li>
+<li>2020–Present <strong>Solutions &amp; Application Architect / Principal Analyst</strong>: Mayo Clinic</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin: 20px 0;">
+<p><img src="../MA206-AY26-1/assets/img/epic.svg" width="150"> <img src="../MA206-AY26-1/assets/img/mayo.png" width="150"></p>
+</div>
+<hr>
+</section>
+<section id="cal-las-cruces-new-mexico" class="level3">
+<h3 class="anchored" data-anchor-id="cal-las-cruces-new-mexico">Cal: Las Cruces, New Mexico</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false" href="">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false" href="">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false" href="">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false" href="">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false" href="">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false" href="">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false" href="">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false" href="">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-13" role="tab" aria-controls="tabset-2-13" aria-selected="false" href="">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-14" role="tab" aria-controls="tabset-2-14" aria-selected="false" href="">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-15" role="tab" aria-controls="tabset-2-15" aria-selected="false" href="">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-16" role="tab" aria-controls="tabset-2-16" aria-selected="false" href="">16</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calturnerdrive.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/littlecalkick.JPG" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/caltigerspitch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calcatch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calwarriors.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calrangers.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calaspitching.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calbarehand.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-9-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calasrunning.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-10-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calasbat.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-11-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calassectionchamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/caltxstatechampian.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-13-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/caltv.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-14-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/cal-marad-4.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-15-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calviolin.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-2-16" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-16-tab">
+<p><img src="../MA206-AY26-1/assets/img/cal/calchess.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="reese-columbus-ohio" class="level3">
+<h3 class="anchored" data-anchor-id="reese-columbus-ohio">Reese: Columbus, Ohio</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false" href="">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-7" role="tab" aria-controls="tabset-3-7" aria-selected="false" href="">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-8" role="tab" aria-controls="tabset-3-8" aria-selected="false" href="">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-9" role="tab" aria-controls="tabset-3-9" aria-selected="false" href="">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-10" role="tab" aria-controls="tabset-3-10" aria-selected="false" href="">10</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-11" role="tab" aria-controls="tabset-3-11" aria-selected="false" href="">11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-12" role="tab" aria-controls="tabset-3-12" aria-selected="false" href="">12</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-13" role="tab" aria-controls="tabset-3-13" aria-selected="false" href="">13</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-14-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-14" role="tab" aria-controls="tabset-3-14" aria-selected="false" href="">14</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-15-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-15" role="tab" aria-controls="tabset-3-15" aria-selected="false" href="">15</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-16-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-16" role="tab" aria-controls="tabset-3-16" aria-selected="false" href="">16</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-17-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-17" role="tab" aria-controls="tabset-3-17" aria-selected="false" href="">17</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-18-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-18" role="tab" aria-controls="tabset-3-18" aria-selected="false" href="">18</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-19-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-19" role="tab" aria-controls="tabset-3-19" aria-selected="false" href="">19</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-20-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-20" role="tab" aria-controls="tabset-3-20" aria-selected="false" href="">20</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-21-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-21" role="tab" aria-controls="tabset-3-21" aria-selected="false" href="">21</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-22-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-22" role="tab" aria-controls="tabset-3-22" aria-selected="false" href="">22</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesecenter.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesedance.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesebasketball.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesepitch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reeesewarriorscatch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesebackhand.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-7-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesecoach.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-8-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesewin.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-9-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesellhit.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-10-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reeseashit.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-11-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesesectionchamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-12-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesehitas.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-13-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesedistrict.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-14" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-14-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesejump.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-15" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-15-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesejumpcj.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-16" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-16-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-1.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-17" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-17-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-1.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-18" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-18-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-2.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-19" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-19-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-oct-4.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-20" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-20-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-4/rv5.PNG" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-21" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-21-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesestatechamp.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-3-22" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-22-tab">
+<p><img src="../MA206-AY26-1/assets/img/reese/reesebackflip.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="expectations" class="level2">
+<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<section id="what-are-your-expectations-of-ma206x" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-your-expectations-of-ma206x">What Are Your Expectations of MA206x?</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Course Goals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Course Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Develop a Base of Knowledge</li>
+<li>Leverage Technology and Army Platforms</li>
+<li>Communicate Concepts and Results</li>
+<li>Problem Solving Techniques</li>
+<li>Develop Habits of Mind</li>
+<li>Develop an Interdisciplinary Perspective</li>
+<li>Responsible use of AI</li>
+</ul>
+</div>
+</div>
+<div style="text-align: center; margin: 30px 0;">
+<p><img src="../MA206-AY26-1/assets/img/nofun.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+<hr>
+</section>
+<section id="what-do-you-expect-of-me" class="level3">
+<h3 class="anchored" data-anchor-id="what-do-you-expect-of-me">What Do You Expect of Me?</h3>
+<p><em>(Open discussion)</em></p>
+<hr>
+</section>
+<section id="what-you-can-expect-from-me" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-can-expect-from-me">What You Can Expect from Me</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="My Commitments">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>My Commitments
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Arrive prepared for each lesson</li>
+<li>Encourage independent thinking</li>
+<li>Maintain professionalism and respect at all times</li>
+<li>Uphold the values of the Corps and our institution</li>
+<li>Clear guidance and expectations for assignments</li>
+<li>Be a professional mentor</li>
+<li>Make Mistakes</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="expectations-i-have-for-you" class="level3">
+<h3 class="anchored" data-anchor-id="expectations-i-have-for-you">Expectations I Have for You</h3>
+<div style="text-align: center; margin: 20px 0;">
+<p><img src="../MA206-AY26-1/assets/img/teamwork.jpg" class="img-fluid" style="width:60.0%"></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Your Responsibilities">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Responsibilities
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Be responsible for your learning</li>
+<li>Arrive prepared for each lesson</li>
+<li>Engage actively in discussions and exercises</li>
+<li>Maintain professionalism and respect at all times</li>
+<li>Uphold the values of the Corps and our institution - you are junior members of this profession <!-- - Communicate early if challenges arise --></li>
+<li>Make mistakes</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="class-rules" class="level3">
+<h3 class="anchored" data-anchor-id="class-rules">Class Rules</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Classroom Policies">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Classroom Policies
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Policy</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Computers</strong></td>
+<td>Course materials only</td>
+</tr>
+<tr class="even">
+<td><strong>Food &amp; Gum</strong></td>
+<td>Not allowed in classroom</td>
+</tr>
+<tr class="odd">
+<td><strong>Drinks</strong></td>
+<td>Spill-proof containers only</td>
+</tr>
+<tr class="even">
+<td><strong>Bags &amp; Gear</strong></td>
+<td>Leave in the hallway</td>
+</tr>
+<tr class="odd">
+<td><strong>Staying Alert</strong></td>
+<td>Stand up if you’re tired</td>
+</tr>
+<tr class="even">
+<td><strong>Punctuality</strong></td>
+<td>Arrive on time; don’t pack up early</td>
+</tr>
+<tr class="odd">
+<td><strong>Leadership</strong></td>
+<td>Support the section marcher</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- | **Respect** | Be respectful when others speak | -->
+<hr>
+</section>
+</section>
+<section id="course-overview" class="level2">
+<h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
+<section id="ma206x-story" class="level3">
+<h3 class="anchored" data-anchor-id="ma206x-story">MA206x Story</h3>
+<p><strong>Block 1: Foundations</strong> (WPR I)</p>
+<ul>
+<li>Descriptive Statistics - Types of data, sampling, measures of location &amp; variability, EDA</li>
+<li>Probability - Basics, conditional probability, counting &amp; independence</li>
+<li>Distributions - Discrete (binomial, Poisson) and continuous (normal, exponential)</li>
+</ul>
+<p><strong>Block 2: Inference</strong> (WPR II)</p>
+<ul>
+<li>Inference Foundations - Central limit theorem, confidence intervals</li>
+<li>Hypothesis Testing - One-sample t-test, one-proportion z-test, two-sample t-test, paired data, two-proportion z-test</li>
+</ul>
+<p><strong>Block 3: Modeling</strong> (Project &amp; TEE)</p>
+<ul>
+<li>Regression - Simple linear regression, multiple linear regression, causality &amp; confounding</li>
+<li>ANOVA</li>
+</ul>
+<hr>
+</section>
+<section id="course-support" class="level3">
+<h3 class="anchored" data-anchor-id="course-support">Course Support</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Resources">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Resources
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Canvas</strong></td>
+<td><a href="https://westpoint.instructure.com/courses/11418">MA206x Canvas</a></td>
+</tr>
+<tr class="even">
+<td><strong>Cengage WebAssign</strong></td>
+<td><a href="https://westpoint.instructure.com/courses/11418/modules/items/676828">Cengage WebAssign</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Army Vantage</strong></td>
+<td><a href="http://vantage.army.mil/">Army Vantage</a></td>
+</tr>
+<tr class="even">
+<td><strong>Calendar</strong></td>
+<td><a href="assets/files/Calendar_26_2.pdf">Course Calendar</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Textbook</strong></td>
+<td><a href="https://www.cengage.com/c/probability-and-statistics-for-engineering-and-the-sciences-9e-devore/">Devore: <em>Probability and Statistics for Engineering and the Sciences</em></a></td>
+</tr>
+<tr class="even">
+<td><strong>Syllabus</strong></td>
+<td><a href="assets/files/Syllabus_26_2.pdf">Course Syllabus</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Documentation Brief</strong></td>
+<td><a href="assets/files/Documentation-Brief-AY26-2.pptx">Doc of Sources, Ack of Assistance, Cover Page</a></td>
+</tr>
+<tr class="even">
+<td><strong>Academic Security Brief</strong></td>
+<td><a href="assets/files/Academic-Security-AY26-2.pptx">Academic Security AY26-2</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="a-note-on-ai" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-ai">A Note on AI</h3>
+<ul>
+<li>AI is welcome and encouraged on WebAssign. Screenshot the question… maybe.</li>
+<li>But when WPR time comes - no AI. So use it as a tool for learning, not a crutch.</li>
+<li>WebAssign is 15% of the course. You should get most/all those points.</li>
+<li>Don’t get those points at the peril of your WPR grades - that’s 60% of the course.</li>
+<li>WebAssign is forgiving: 5 tries per sub-question.</li>
+<li>Don’t forget documentation. Just tell me what you did.</li>
+</ul>
+<hr>
+</section>
+<section id="graded-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="graded-assignments">Graded Assignments</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assignment</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WebAssign Homework</td>
+<td>150</td>
+</tr>
+<tr class="even">
+<td>WPR I</td>
+<td>175</td>
+</tr>
+<tr class="odd">
+<td>WPR II</td>
+<td>175</td>
+</tr>
+<tr class="even">
+<td>Exploratory Data Analysis</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>Tech Report</td>
+<td>125</td>
+</tr>
+<tr class="even">
+<td>Project Presentation</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>TEE</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td><strong>1000</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="todays-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lesson">Today’s Lesson</h2>
+<section id="the-big-picture" class="level3">
+<h3 class="anchored" data-anchor-id="the-big-picture">The Big Picture</h3>
+<p>Why do we collect data? Because we want to learn about something bigger than what we can directly observe.</p>
+<ul>
+<li><strong>Population</strong>: The entire group we want to learn about</li>
+<li><strong>Sample</strong>: The subset we actually observe</li>
+<li><strong>Process</strong>: An ongoing mechanism that generates data over time</li>
+</ul>
+<p>The whole course builds on this: we use <strong>samples</strong> to make claims about <strong>populations</strong>. That’s inference.</p>
+<hr>
+</section>
+<section id="parameters-vs-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-vs-statistics">Parameters vs Statistics</h3>
+<style>
+#params-table td:first-child { white-space: nowrap; }
+</style>
+<div id="params-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 31%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Population</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What we have</strong></td>
+<td>Usually unknown</td>
+<td>Observable data</td>
+</tr>
+<tr class="even">
+<td><strong>Notation</strong></td>
+<td>Greek letters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(p\)</span>)</td>
+<td>Latin letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\hat{p}\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A <strong>statistic</strong> estimates a <strong>parameter</strong>. This is the foundation of Blocks 2 and 3.</p>
+<hr>
+</section>
+<section id="types-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-variables">Types of Variables</h3>
+<ul>
+<li><strong>Categorical</strong>: Labels or categories (e.g., branch, major, yes/no)</li>
+<li><strong>Quantitative</strong>: Numbers with meaningful arithmetic (e.g., height, GPA, time)</li>
+</ul>
+<p>Why does this matter? The type of variable determines:</p>
+<ul>
+<li>How you summarize it (proportions vs means)</li>
+<li>How you visualize it (bar charts vs histograms)</li>
+<li>Which inference method you use (z-test for proportions vs t-test for means)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li>Population vs Sample vs Process</li>
+<li>Parameters vs Statistics</li>
+<li>Categorical vs Quantitative variables</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-2.html">Lesson 2: Sampling &amp; Study Design</a></p>
+<ul>
+<li>Observational studies vs designed experiments</li>
+<li>Common sampling methods and biases</li>
+<li>Why randomization matters</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 1.2</strong> - Due before Lesson 2</li>
+<li><strong>Exploratory Data Analysis</strong> - Due Lesson 9</li>
+<li><strong>WPR I</strong> - Lesson 16</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/index.html" class="pagination-link" aria-label="Course Information">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course Information</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA206x-AY26-2/lesson-2.html" class="pagination-link" aria-label="Lesson 2">
+        <span class="nav-page-text">Lesson 2</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

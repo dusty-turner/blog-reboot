@@ -1,0 +1,130 @@
+---
+title: 'Losing UNO to a 5 Year Old: An Exercise In Probability'
+author: Dusty Turner
+date: '2019-01-04'
+slug: losing-uno-to-a-5-year-old-an-exercise-in-probability
+categories:
+  - children
+  - shiny
+  - games
+tags:
+  - children
+  - shiny
+  - games
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(shiny)
+```
+
+
+# Background
+
+One of my son's favorite games he received for Christmas this year is UNO Attack.  If you are not familiar with the rules, you can get up to speed [here](https://en.wikipedia.org/wiki/Uno_Attack).  In short, the rules are no different than usual UNO except when you cannot play, instead of taking a card, you press a button on an UNO card shooting contraption.  Most of the time you get no cards, but some of the time it will "attack" with 1 or more cards.  Tons of fun.
+
+# The Problem
+
+While all four of us in my family love to play this game (ages 3, 5, 34, and *redacted*), my 5 year old son does not like to lose (who does really?).
+
+I asked him, out of four games, how many he should expect to win.  His answer of "1" showed his intuitive understanding of expected value.  When I asked him if it anyone should be surprised if they didn't win 1 out of 4.  His answer of "no" shows that he even has an intuitive understanding of variance.  Proud Dad.
+
+# The Solution
+
+So we did an exercise in probability.  What is the probability that he would lose "x" amount of games given each player had a 25% chance of winning.
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
+data.frame(Game=c(1:10)) %>%
+  mutate(Prob=round(c(1-.25)^Game,3)) %>% mutate(Game = as.character(Game)) %>%
+  t() %>% 
+  kableExtra::kable() %>% 
+  kableExtra::row_spec(1, bold = T) %>%
+  kableExtra::column_spec(1, bold = T) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped","bordered"), full_width = F, position = "center")
+
+```
+
+No so unlikely that he (or any of us) would lose 4 in a row...  It did little to console him.  Especially when his 3 year old sister won 1 of those games.  It didn't seem to bother him that mom won the other 3....
+
+# The Fun
+
+In my efforts to make this more real to him, I created this shiny app.  If nothing else, he like watching the colors move.
+
+<center>
+```{r, echo=FALSE} 
+knitr::include_app("https://dustyturner.shinyapps.io/CalUno/", height = "650px")
+```
+</center>
+
+
+
+
+<!-- ```{r, echo=FALSE} -->
+<!-- unovec = data.frame(winner = as.factor(floor(runif(10000,0,4))+1)) -->
+
+<!-- ui <- fluidPage( -->
+<!--   fluidRow( -->
+<!--     column(12, align="center", -->
+
+<!--          sliderInput("bins", -->
+<!--                      label = h3("UNO Games Played"), -->
+<!--                      min = 2, max = 100, value = 2, -->
+<!--                      animate = TRUE), -->
+<!--         # numericInput("bins", -->
+<!--         #   h3("Games Played"), -->
+<!--         #   value = 1), -->
+<!--          plotOutput("distPlot"), -->
+<!--          tableOutput("mytable") -->
+<!--    ) -->
+<!-- ) -->
+<!-- ) -->
+<!-- server <- function(input, output) { -->
+<!--   data = reactive({ -->
+<!--     val = unovec %>% filter(row_number()<=input$bins) -->
+<!--     return(val) -->
+<!--   }) -->
+
+<!--   data2 = reactive({ -->
+<!--     val = data() %>% group_by(winner) %>% summarise(n = n()) -->
+<!--     return(val) -->
+<!--   }) -->
+
+<!--    output$distPlot <- renderPlot({ -->
+<!--         data() %>%  -->
+<!--           ggplot(aes(x=winner, fill = winner)) + -->
+<!--        geom_dotplot(stat = "count", dotsize = .5) + -->
+<!--        # geom_histogram(stat = "count") + -->
+<!--        theme(legend.position="none") + -->
+<!--        annotate("text", x = 1, y = -.1, label = paste(data2()[1,2], "Wins")) + -->
+<!--        annotate("text", x = 2, y = -.1, label = paste(data2()[2,2], "Wins")) + -->
+<!--        annotate("text", x = 3, y = -.1, label = paste(data2()[3,2], "Wins")) + -->
+<!--        annotate("text", x = 4, y = -.1, label = paste(data2()[4,2], "Wins")) + -->
+<!--        theme(axis.text.x = element_text(size=20), plot.title = element_text(size = 20)) + -->
+<!--        labs(title="Number of Games Won by Each Player", x = "Player Number", y = "Wins", caption = "One Dot Equals One Win") -->
+<!--      }) -->
+
+<!--   output$mytable = renderTable({ -->
+
+<!--     this = data2() %>% t() -->
+<!--     colnames(this) = this[1,] -->
+<!--     this = this[-1,] %>% t() %>% as.data.frame() %>% mutate_all(as.character) -->
+
+
+<!--     colmat = matrix(c(1,2,3,4,"Cal","Reese","Mom","Dad"), byrow = TRUE, nrow = 2) -->
+<!--     colnames(colmat) = colmat[1,] -->
+<!--     colmat = colmat[-1,] -->
+<!--     colmat = colmat %>% t() %>% as.data.frame() %>% mutate_all(as.character) -->
+
+<!--     thenext = this %>% bind_rows(colmat) -->
+<!--     colnames(thenext) = thenext[2,] -->
+<!--     thenext = thenext[-2,] -->
+
+<!--     thenext[is.na(thenext)] <- 0 -->
+
+<!--     return(thenext) -->
+<!--   }) -->
+<!-- } -->
+<!-- shinyApp(ui = ui, server = server, options = list(height = 800)) -->
+<!-- ``` -->
+
+

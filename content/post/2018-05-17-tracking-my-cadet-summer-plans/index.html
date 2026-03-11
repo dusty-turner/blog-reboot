@@ -1,0 +1,74 @@
+---
+title: Tracking My Cadet's Summer Plans
+author: Dusty Turner
+date: '2018-05-17'
+slug: tracking-my-cadets-summer-plans
+categories:
+  - beatnavy
+  - ggplot2
+  - dplyr
+tags:
+  - beatnavy
+  - ggplot2
+  - dplyr
+
+---
+
+
+
+<!-- runtime: shiny -->
+<center>
+Tracking my cadet’s summer plans with <code>dplyr</code> and <code>ggplot</code>. The interactive ShinyApp is below!
+<iframe src="https://dustyturner.shinyapps.io/CadetSummerInteractive/?showcase=0" width="672" height="1200px"></iframe>
+</center>
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- ``` -->
+<!-- ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE} -->
+<!-- library(lubridate) -->
+<!-- library(tidyverse) -->
+<!-- library(skimr) -->
+<!-- library(stringr) -->
+<!-- library(shiny) -->
+<!-- travel = read_csv("CadetTravel.csv") -->
+<!-- # travel = read_csv(file.choose()) -->
+<!-- ctravel = travel %>% -->
+<!--   mutate(Name = word(Name, 1)) %>% -->
+<!--   mutate(Begin = as.Date(strptime(travel$Begin, format = "%d-%b"))) %>% -->
+<!--   mutate(End = as.Date(strptime(travel$End, format = "%d-%b"))) %>% -->
+<!--   mutate(Labeller = Begin - ((Begin-End)/2)) %>% -->
+<!--   mutate(length = nchar(Name)) %>% -->
+<!--   filter(Event!="Leave", Event!="Work") %>% -->
+<!--   group_by(Name) %>% -->
+<!--   mutate(Early = min(Begin)) %>% -->
+<!--   arrange(Early) -->
+<!-- ``` -->
+<!-- ```{r, echo=FALSE} -->
+<!-- ui = fluidPage( -->
+<!--   sliderInput("Date", label = "Date:", -->
+<!--               min = as.Date("2018-05-07"), max = as.Date("2018-08-15"), value = today(), step = 1), -->
+<!--   plotOutput("newplot") -->
+<!-- ) -->
+<!-- server = function(input,output) { -->
+<!--   plot = reactive({ -->
+<!-- # renderPlot(height = 1000,{ -->
+<!--   trav =  ctravel %>% -->
+<!--   ggplot(aes(x=Begin, y = fct_reorder(farewell$Presenter, farewell$TimeStart))) + -->
+<!--   ggplot(aes(x=Begin, y = fct_reorder(ctravel$Name,ctravel$Early, desc = TRUE))) + -->
+<!--   geom_segment(aes(x=Begin, xend=End, yend=Name, color = Event),size=12) + -->
+<!--   geom_text(aes(label = Event, x=Labeller), size = 2.5) + -->
+<!--   geom_vline(xintercept=input$Date) + -->
+<!--   theme(legend.position = "none") + -->
+<!--   xlab("Date") + -->
+<!--   ylab("Cadet") + -->
+<!--   ggtitle("Where Are Our Cadets?!") + -->
+<!--   # theme_light() + -->
+<!--   theme(legend.position="none") + -->
+<!--     theme(axis.text=element_text(size=20), -->
+<!--         axis.title=element_text(size=14,face="bold")) -->
+<!--   return(trav) -->
+<!--   }) -->
+<!--   output$newplot = renderPlot(plot) -->
+<!--   } -->
+<!-- shinyApp(ui = ui, server = server) -->
+<!-- ``` -->

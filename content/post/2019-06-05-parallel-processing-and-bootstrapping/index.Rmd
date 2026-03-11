@@ -1,0 +1,257 @@
+---
+title: Parallel Processing and Bootstrapping
+author: Dusty Turner
+date: '2019-06-05'
+slug: parallel-processing-and-bootstrapping-for-diamonds
+categories:
+  - army math
+  - beatnavy
+  - foreach
+  - bootstrap
+tags:
+  - army math
+  - beatnavy
+  - foreach
+  - bootstrap
+cover: /media/boot.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(shiny)
+```
+
+## Introduction
+ 
+Often times, I run simulations on my computer to help educate my students about different statistical topics.  In doing this, I often end up running fairly "long" simulations that take up more time than what I'd like to use in the classrooms.  
+
+Complaining about this let me to Googling, which, as usual, let me to a solution.  Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.
+
+## Gratitude
+
+Much of what I learned I figured out from this nice [blog post](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html) by Matt Jones.
+
+## Problem to Solve
+
+To motivate this problem, I decided I wanted to bootstrap from the **diamonds** data-set to create a range of coefficients which could be the slope and intercept for the linear relationship between the price and cut/carat.  Because this could feasibly take a while, I wanted to use parallel processing to split up the bootstrapping portion on several cores.  
+
+## My Old Way
+
+This is how the old me would have done it.  I ran a 'for' loop to create 100 bootstraped linear regression of a sample from the data.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+data("diamonds")
+
+diamonds = diamonds %>%
+  select(price,carat,cut)
+
+coefdf = NULL
+allsamples = NULL
+system.time({
+  for (i in 1:100) {
+    subsample = diamonds %>%
+      sample_frac(.001) %>%
+      mutate(iteration = i)
+    result = lm(price~cut+carat,data = subsample)
+    coef = coefficients(result)
+    coefdf = coefdf %>%
+      bind_rows(coef)
+    allsamples = allsamples %>%
+      bind_rows(subsample)
+  }
+})
+```
+
+I tracked the time and it doesn't take all that long... but then again its only 100 loops.
+
+After executing this loop, I can do my future analysis with the following data:
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+coefdf = NULL
+allsamples = NULL
+  for (i in 1:1000) {
+    subsample = diamonds %>%
+      sample_frac(.001) %>%
+      mutate(iteration = i)
+    result = lm(price~cut+carat,data = subsample)
+    coef = coefficients(result)
+    coefdf = coefdf %>%
+      bind_rows(coef)
+    allsamples = allsamples %>%
+      bind_rows(subsample)
+  }
+```
+
+
+```{r}
+head(coefdf)
+head(allsamples)
+```
+
+But you can see how this can quickly balloon into taking too much time.  We can solve that problem with parallel processing. 
+
+## Parallel Processing
+
+This code requires the following libraries:
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(foreach)
+library(doParallel)
+```
+
+Typically, all of our work is done is series.  Sometimes, if jobs can be done in parallel, we can do this by sending them to different cores in our computer.  The amount of time that this saves depends on the speed of your computer, the number of cores in which you can put to work doing jobs, and, of course, the amount of work you need done.  Also, there is a 'start up cost' to firing up a core - but if you have a lot of repetitive processes that can be spread out and little that must be done for each core, you can save a lot of time.  
+
+First thing, we determine how many cores we have available on our computer to do the work.
+
+```{r}
+numCores <- detectCores()
+numCores
+registerDoParallel(numCores)
+```
+
+
+Now I can execute the same code as above with `foreach` and `%dopar%`.
+
+```{r}
+data("diamonds")
+
+diamonds = diamonds %>%
+  select(price,carat,cut)
+
+allsamples = NULL
+trials <- 10000
+system.time({
+  r <- foreach(i=icount(trials), .combine=rbind, .packages = "tidyverse") %dopar% {
+    subsample = diamonds %>%
+      sample_frac(.01) 
+    result = lm(price~cut+carat+0,data = subsample)
+    coefs = data.frame(t(coefficients(result)))
+    list(subsample,coefs)
+  }
+})
+```
+
+Now we can retrieve the data from our 'loop' in the following way:
+
+```{r}
+coefs = 
+bind_rows(r[,2],.id = "iteration") %>% as_tibble()
+head(coefs)
+
+sampledata = 
+bind_rows(r[,1],.id = "iteration") %>% as_tibble()
+head(sampledata)
+```
+
+Now the point is to find a 95% confidence interval of what the true $\beta_0$ and $\beta_is$ are. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(gt)
+coefs %>% 
+  pivot_longer(cols = -iteration, names_to = "Factor") %>% 
+  group_by(Factor) %>% 
+  arrange(Factor,value) %>% 
+  slice(c(50,950)) %>% 
+  select(Factor,value)  %>%
+  mutate(side = c("low", "high")) %>% 
+  pivot_wider(names_from = side, values_from = value) %>%
+  ungroup() %>% 
+  gt() %>% 
+  tab_header(title = "95% Confidence Interval")
+
+
+```
+
+Looks like none of the confidence intervals contain `0`.  Therefore carat does have a relationship with price for each level of cut. 
+
+## Displaying the Results
+
+The ShinyApp I use to display the results is below.  
+
+If you'd rather view the app outside the blog, here is the [link](https://westpointmath.shinyapps.io/parallelbootstrapdiamonds/)
+
+<center>
+
+<iframe src="https://westpointmath.shinyapps.io/parallelbootstrapdiamonds/" width=1000 height=500"></iframe>
+
+</center>
+
+I also include the code for the ShinyApp below the embedded application.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, eval=FALSE}
+allsamples = NULL
+trials <- 10000
+  r <-
+    foreach(i = icount(trials),.combine = rbind,.packages = "tidyverse") %dopar% {
+              subsample = diamonds %>%
+                sample_frac(.001)
+              result = lm(price ~ cut + carat + 0, data = subsample)
+              coefs = data.frame(t(coefficients(result)))
+              list(subsample, coefs)
+            }
+
+sampledata =
+  bind_rows(r[, 1], .id = "iteration")
+coefs =
+  bind_rows(r[, 2], .id = "iteration")
+
+help =
+  sampledata %>% as_tibble() %>% janitor::clean_names()
+
+coefdata =
+  coefs %>% as_tibble() %>%
+  gather(cuttype, intercept, -carat, -iteration)
+
+shinyApp(
+  ui = fluidPage(
+    sliderInput(
+      "number",
+      "Which Iteration to Display",
+      min = 1,
+      max = trials,
+      value = floor(runif(1, 1, trials))
+    ),
+    plotOutput("diamond")
+  ),
+  
+  server = function(input, output) {
+    subhelp = reactive({
+      help %>%
+        mutate(iteration = as.numeric(str_remove(iteration, "result."))) %>%
+        filter(iteration == input$number)
+    })
+    
+    subcoefdata = reactive({
+      coefdata %>%
+        mutate(iteration = as.numeric(str_remove(iteration, "result."))) %>%
+        filter(iteration == input$number)
+    })
+    
+    output$diamond = renderPlot({
+      diamonds %>%
+        ggplot(aes(x = carat, y = price)) +
+        geom_point(alpha = .1) +
+        geom_point(data = subhelp(),
+                   aes(x = carat, y = price),
+                   color = "blue") +
+        geom_abline(data = subcoefdata(),
+                    aes(intercept = intercept, slope = carat),
+                    color = "red") +
+        facet_wrap( ~ cuttype, drop = TRUE, nrow = 1) +
+        labs(
+          x = "Carat",
+          y = "Price",
+          title = "Price of Diamond as Carat Increases",
+          subtitle = "By Cut",
+          caption = paste("Currently Showing Bootstrap Sample ", input$number)
+        )
+    })
+  },
+  
+  options = list(height = 1000)
+)
+```
+

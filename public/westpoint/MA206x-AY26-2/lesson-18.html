@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-18 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-19.html" rel="next">
+<link href="../MA206x-AY26-2/lesson-17.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-18.html">Lesson 18</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-18-confidence-intervals-i" id="toc-lesson-18-confidence-intervals-i" class="nav-link active" data-scroll-target="#lesson-18-confidence-intervals-i">Lesson 18: Confidence Intervals I</a>
+  <ul class="collapse">
+  <li><a href="#tee-schedule" id="toc-tee-schedule" class="nav-link" data-scroll-target="#tee-schedule">TEE Schedule</a></li>
+  <li><a href="#what-were-doing-lesson-18" id="toc-what-were-doing-lesson-18" class="nav-link" data-scroll-target="#what-were-doing-lesson-18">What We’re Doing: Lesson 18</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#cal" id="toc-cal" class="nav-link" data-scroll-target="#cal">Cal</a></li>
+  <li><a href="#reese" id="toc-reese" class="nav-link" data-scroll-target="#reese">Reese</a></li>
+  </ul></li>
+  <li><a href="#last-lessons-takeaway-the-central-limit-theorem" id="toc-last-lessons-takeaway-the-central-limit-theorem" class="nav-link" data-scroll-target="#last-lessons-takeaway-the-central-limit-theorem">Last Lesson’s Takeaway: The Central Limit Theorem</a>
+  <ul class="collapse">
+  <li><a href="#remember-this" id="toc-remember-this" class="nav-link" data-scroll-target="#remember-this">Remember this?</a></li>
+  <li><a href="#what-about-a-skewed-distribution" id="toc-what-about-a-skewed-distribution" class="nav-link" data-scroll-target="#what-about-a-skewed-distribution">What about a skewed distribution?</a></li>
+  </ul></li>
+  <li><a href="#from-the-clt-to-confidence-intervals" id="toc-from-the-clt-to-confidence-intervals" class="nav-link" data-scroll-target="#from-the-clt-to-confidence-intervals">From the CLT to Confidence Intervals</a>
+  <ul class="collapse">
+  <li><a href="#motivating-example-cadet-heights" id="toc-motivating-example-cadet-heights" class="nav-link" data-scroll-target="#motivating-example-cadet-heights">Motivating Example: Cadet Heights</a></li>
+  <li><a href="#remember-the-clt" id="toc-remember-the-clt" class="nav-link" data-scroll-target="#remember-the-clt">Remember the CLT</a></li>
+  <li><a href="#whats-a-reasonable-range-for-μ" id="toc-whats-a-reasonable-range-for-μ" class="nav-link" data-scroll-target="#whats-a-reasonable-range-for-μ">What’s a “Reasonable Range” for μ?</a></li>
+  </ul></li>
+  <li><a href="#deriving-the-confidence-interval-formula" id="toc-deriving-the-confidence-interval-formula" class="nav-link" data-scroll-target="#deriving-the-confidence-interval-formula">Deriving the Confidence Interval Formula</a>
+  <ul class="collapse">
+  <li><a href="#applying-the-formula" id="toc-applying-the-formula" class="nav-link" data-scroll-target="#applying-the-formula">Applying the Formula</a></li>
+  </ul></li>
+  <li><a href="#small-samples-and-the-t-distribution" id="toc-small-samples-and-the-t-distribution" class="nav-link" data-scroll-target="#small-samples-and-the-t-distribution">Small Samples and the <span class="math inline">\(t\)</span>-Distribution</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-with-small-samples" id="toc-the-problem-with-small-samples" class="nav-link" data-scroll-target="#the-problem-with-small-samples">The Problem with Small Samples</a></li>
+  <li><a href="#the-t-distribution" id="toc-the-t-distribution" class="nav-link" data-scroll-target="#the-t-distribution">The <span class="math inline">\(t\)</span>-Distribution</a></li>
+  <li><a href="#confidence-interval-for-μ-small-samples" id="toc-confidence-interval-for-μ-small-samples" class="nav-link" data-scroll-target="#confidence-interval-for-μ-small-samples">Confidence Interval for μ (Small Samples)</a></li>
+  <li><a href="#example-aft-sprint-drag-carry" id="toc-example-aft-sprint-drag-carry" class="nav-link" data-scroll-target="#example-aft-sprint-drag-carry">Example: AFT Sprint-Drag-Carry</a></li>
+  </ul></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-patrol-readiness" id="toc-problem-1-patrol-readiness" class="nav-link" data-scroll-target="#problem-1-patrol-readiness">Problem 1: Patrol Readiness</a></li>
+  <li><a href="#problem-2-ammunition-expenditure" id="toc-problem-2-ammunition-expenditure" class="nav-link" data-scroll-target="#problem-2-ammunition-expenditure">Problem 2: Ammunition Expenditure</a></li>
+  <li><a href="#problem-3-vehicle-maintenance" id="toc-problem-3-vehicle-maintenance" class="nav-link" data-scroll-target="#problem-3-vehicle-maintenance">Problem 3: Vehicle Maintenance</a></li>
+  <li><a href="#problem-4-cadet-sleep" id="toc-problem-4-cadet-sleep" class="nav-link" data-scroll-target="#problem-4-cadet-sleep">Problem 4: Cadet Sleep</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-18-confidence-intervals-i" class="level1">
+<h1>Lesson 18: Confidence Intervals I</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="tee-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="tee-schedule">TEE Schedule</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Section</th>
+<th style="text-align: center;">12 May<br>0730–1100</th>
+<th style="text-align: center;">13 May<br>0730–1100</th>
+<th style="text-align: center;">15 May<br>1300–1630</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">12</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="what-were-doing-lesson-18" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-18">What We’re Doing: Lesson 18</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Define confidence level and margin of error</li>
+<li>Construct one-sample confidence intervals for means</li>
+<li>Justify <span class="math inline">\(z\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> procedures and state conditions</li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Sections 7.1, 7.2</p>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="cal" class="level3">
+<h3 class="anchored" data-anchor-id="cal">Cal</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cal-state-champs.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="reese" class="level3">
+<h3 class="anchored" data-anchor-id="reese">Reese</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/reese-state-champs.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<hr>
+<!-- ### DMath Volleyball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 11-1"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/volleyball.png){fig-align="center" width="50%"} -->
+<!-- ### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 11-5"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"}
+
+--- -->
+</section>
+</section>
+<section id="last-lessons-takeaway-the-central-limit-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="last-lessons-takeaway-the-central-limit-theorem">Last Lesson’s Takeaway: The Central Limit Theorem</h2>
+<p>Remember, Beyonce is the Central Limit Theorem of Pop</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 17: Central Limit Theorem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 17: Central Limit Theorem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The Central Limit Theorem (CLT):</strong> If <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> are iid with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then for large <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
+<p><strong>Standard Error of the Mean:</strong> <span class="math inline">\(\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}\)</span></p>
+<p><strong>Key ideas:</strong></p>
+<ul>
+<li>Works regardless of population shape (for large enough <span class="math inline">\(n\)</span>)</li>
+<li><span class="math inline">\(n \geq 30\)</span> is the common rule of thumb (any <span class="math inline">\(n\)</span> if population is normal)</li>
+<li>Larger <span class="math inline">\(n\)</span> → smaller SE → more precise estimates</li>
+<li>Standardization: <span class="math inline">\(Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0, 1)\)</span></li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="remember-this" class="level3">
+<h3 class="anchored" data-anchor-id="remember-this">Remember this?</h3>
+<p>Last lesson, we rolled dice as a class and simulated thousands of experiments. As we increased the number of simulations, the distribution of <span class="math inline">\(\bar{X}\)</span> converged to a <strong>normal distribution</strong> — and the mean and SD converged to their theoretical values.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The theoretical mean of a fair die is <span class="math inline">\(\mu = 3.5\)</span> and the theoretical standard deviation is <span class="math inline">\(\sigma = 1.708\)</span>.</p>
+<p>While <span class="math inline">\(X \sim \text{Uniform}(1, 6)\)</span>, by the CLT:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right) = N\left(3.5, \frac{1.708^2}{30}\right)\]</span></p>
+<p>with standard error <span class="math inline">\(\frac{\sigma}{\sqrt{n}} = \frac{1.708}{\sqrt{30}} = 0.312\)</span>.</p>
+<p>Let’s verify by simulation:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="The SD on these plots is σ/√n — the Standard Error">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The SD on these plots is σ/√n — the Standard Error
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The SD shown (<span class="math inline">\(s \approx 0.312\)</span>) is <strong>not</strong> the SD of a single die roll (<span class="math inline">\(\sigma = 1.708\)</span>). It’s the SD of the <strong>sample means</strong> — i.e., <span class="math inline">\(\frac{\sigma}{\sqrt{n}} = \frac{1.708}{\sqrt{30}} = 0.312\)</span>.</p>
+<p>This is the <strong>standard error</strong> — and it’s the building block for confidence intervals.</p>
+</div>
+</div>
+</section>
+<section id="what-about-a-skewed-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="what-about-a-skewed-distribution">What about a skewed distribution?</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is <strong>one experiment</strong> — one sample of <span class="math inline">\(n = 30\)</span> draws from <span class="math inline">\(\text{Exp}(1)\)</span>. Clearly <strong>not normal</strong> — it’s heavily right-skewed. The theoretical mean is <span class="math inline">\(\mu = 1\)</span> and the theoretical standard deviation is <span class="math inline">\(\sigma = 1\)</span>.</p>
+<p>While <span class="math inline">\(X \sim \text{Exp}(1)\)</span>, by the CLT:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right) = N\left(1, \frac{1^2}{30}\right)\]</span></p>
+<p>with standard error <span class="math inline">\(\frac{\sigma}{\sqrt{n}} = \frac{1}{\sqrt{30}} = 0.183\)</span>.</p>
+<p>Does the CLT still work when the population looks like this? Let’s see:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="The CLT works even for skewed populations!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The CLT works even for skewed populations!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The exponential distribution is <strong>heavily right-skewed</strong> — it looks nothing like a bell curve. But the distribution of <span class="math inline">\(\bar{X}\)</span> still converges to normal, with mean <span class="math inline">\(\mu = 1\)</span> and <span class="math inline">\(SE = \frac{\sigma}{\sqrt{n}} = \frac{1}{\sqrt{30}} = 0.183\)</span>.</p>
+<p><strong>The CLT doesn’t care about the shape of the population</strong> — only that <span class="math inline">\(n\)</span> is large enough.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="from-the-clt-to-confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="from-the-clt-to-confidence-intervals">From the CLT to Confidence Intervals</h2>
+<section id="motivating-example-cadet-heights" class="level3">
+<h3 class="anchored" data-anchor-id="motivating-example-cadet-heights">Motivating Example: Cadet Heights</h3>
+<p>Suppose we want to know the <strong>true average height</strong> of all cadets at West Point. We can’t measure every cadet, so we take a random sample of <span class="math inline">\(n = 35\)</span> cadets and measure their heights (in inches).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From our sample we compute:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 69.35\)</span> inches</li>
+<li><span class="math inline">\(s = 3.62\)</span> inches</li>
+<li><span class="math inline">\(\frac{s}{\sqrt{n}} = \frac{3.62}{\sqrt{35}} = 0.61\)</span> inches</li>
+</ul>
+<p>We have a <strong>point estimate</strong> of the true mean: <span class="math inline">\(\bar{x} = 69.35\)</span> inches. But how good is that estimate?</p>
+<p><strong>The question:</strong> What are <strong>reasonable values</strong> the true mean <span class="math inline">\(\mu\)</span> could be?</p>
+<ul>
+<li>Could <span class="math inline">\(\mu\)</span> be 69 inches? Maybe — that’s close to <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Could <span class="math inline">\(\mu\)</span> be 72 inches? Seems unlikely — that’s pretty far from <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Could <span class="math inline">\(\mu\)</span> be 60 inches? Almost certainly not.</li>
+</ul>
+<p>We need a way to formalize “close” and “far.” That’s what a <strong>confidence interval</strong> does.</p>
+<hr>
+</section>
+<section id="remember-the-clt" class="level3">
+<h3 class="anchored" data-anchor-id="remember-the-clt">Remember the CLT</h3>
+<p>Last lesson we learned that if we take samples of size <span class="math inline">\(n\)</span>, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
+<p>We don’t know <span class="math inline">\(\mu\)</span> — that’s what we’re trying to figure out! But we <em>do</em> have our sample data. Let’s use what we have:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 69.35\)</span></li>
+<li><span class="math inline">\(\frac{s}{\sqrt{n}} = \frac{3.62}{\sqrt{35}} = 0.61\)</span></li>
+</ul>
+<p>So we can sketch the sampling distribution of <span class="math inline">\(\bar{X}\)</span>, centered at our best guess <span class="math inline">\(\bar{x}\)</span>, with spread <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the distribution of where <span class="math inline">\(\bar{X}\)</span> <em>could</em> land if we repeated the experiment. And by the same logic — it tells us where the <strong>true mean</strong> <span class="math inline">\(\mu\)</span> could plausibly be.</p>
+<p><strong>The problem:</strong> We don’t <em>know</em> <span class="math inline">\(\mu\)</span>. That’s the whole point — we’re trying to estimate it!</p>
+<p><strong>The idea:</strong> If <span class="math inline">\(\bar{X}\)</span> is close to <span class="math inline">\(\mu\)</span>, then <span class="math inline">\(\mu\)</span> is close to <span class="math inline">\(\bar{X}\)</span>. We can build an interval <em>around</em> <span class="math inline">\(\bar{X}\)</span> that we’re confident contains <span class="math inline">\(\mu\)</span>.</p>
+</section>
+<section id="whats-a-reasonable-range-for-μ" class="level3">
+<h3 class="anchored" data-anchor-id="whats-a-reasonable-range-for-μ">What’s a “Reasonable Range” for μ?</h3>
+<p>Looking at our sampling distribution, we can see that most of the area is within about 2 SEs of <span class="math inline">\(\bar{x}\)</span>. What if we wanted to find the range that captures the <strong>middle 95%</strong> of plausible values?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can calculate this directly. We want the values <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that 95% of the distribution falls between them:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 69.35\)</span></li>
+<li><span class="math inline">\(\frac{s}{\sqrt{n}} = 0.61\)</span></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the middle 95% range</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span> <span class="fl">69.35</span>, <span class="at">sd =</span> <span class="fl">0.61</span>)  <span class="co"># lower bound (2.5th percentile)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.15442</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="fl">69.35</span>, <span class="at">sd =</span> <span class="fl">0.61</span>)  <span class="co"># upper bound (97.5th percentile)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 70.54558</code></pre>
+</div>
+</div>
+<p>So we are <strong>95% confident</strong> that the true mean cadet height is between 68.15 and 70.55 inches.</p>
+</section>
+</section>
+<section id="deriving-the-confidence-interval-formula" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-the-confidence-interval-formula">Deriving the Confidence Interval Formula</h2>
+<p>What we just computed was <span class="math inline">\(P(a \leq \mu \leq b) = 1 - \alpha\)</span>. Let’s formalize this by standardizing <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>Recall the standardized statistic:</p>
+<p><span class="math display">\[Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}\]</span></p>
+<p>We want to find the middle <span class="math inline">\(1 - \alpha\)</span> of this distribution:</p>
+<p><span class="math display">\[P\left(-z_{\alpha/2} \leq \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \leq z_{\alpha/2}\right) = 1 - \alpha\]</span></p>
+<p>Now <strong>solve for <span class="math inline">\(\mu\)</span></strong>. Multiply all three parts by <span class="math inline">\(\sigma/\sqrt{n}\)</span>:</p>
+<p><span class="math display">\[P\left(-z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} \leq \bar{X} - \mu \leq z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha\]</span></p>
+<p>Subtract <span class="math inline">\(\bar{X}\)</span> from all three parts:</p>
+<p><span class="math display">\[P\left(-\bar{X} - z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} \leq -\mu \leq -\bar{X} + z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha\]</span></p>
+<p>Multiply by <span class="math inline">\(-1\)</span> (which <strong>flips the inequalities</strong>):</p>
+<p><span class="math display">\[P\left(\bar{X} + z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} \geq \mu \geq \bar{X} - z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha\]</span></p>
+<p>Rewrite in the natural order:</p>
+<p><span class="math display">\[\boxed{\bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}}\]</span></p>
+<hr>
+<section id="applying-the-formula" class="level3">
+<h3 class="anchored" data-anchor-id="applying-the-formula">Applying the Formula</h3>
+<p>Let’s apply this to the cadet height example from above. Recall:</p>
+<ul>
+<li><span class="math inline">\(n = 35\)</span>, <span class="math inline">\(\bar{x} = 69.35\)</span>, <span class="math inline">\(\sigma = 3.62\)</span></li>
+</ul>
+<p><strong>Construct a 95% confidence interval for <span class="math inline">\(\mu\)</span>.</strong></p>
+<p>Plugging into the formula:</p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>becomes:</p>
+<p><span class="math display">\[69.35 \pm z_{.05/2} \cdot \frac{3.62}{\sqrt{35}}\]</span></p>
+<p>Now we need to find <span class="math inline">\(z_{\alpha/2}\)</span>. For 95% confidence, <span class="math inline">\(\alpha = 0.05\)</span>, so <span class="math inline">\(\alpha/2 = 0.025\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)  <span class="co"># -z_{α/2}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.959964</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)  <span class="co">#  z_{α/2}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Z Table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Z Table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<caption>Standard Normal (Z) Table: Φ(z) = P(Z ≤ z)</caption>
+<colgroup>
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">0.00</th>
+<th style="text-align: center;">0.01</th>
+<th style="text-align: center;">0.02</th>
+<th style="text-align: center;">0.03</th>
+<th style="text-align: center;">0.04</th>
+<th style="text-align: center;">0.05</th>
+<th style="text-align: center;">0.06</th>
+<th style="text-align: center;">0.07</th>
+<th style="text-align: center;">0.08</th>
+<th style="text-align: center;">0.09</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-2.0</td>
+<td style="text-align: center;">0.0228</td>
+<td style="text-align: center;">0.0233</td>
+<td style="text-align: center;">0.0239</td>
+<td style="text-align: center;">0.0244</td>
+<td style="text-align: center;">0.0250</td>
+<td style="text-align: center;">0.0256</td>
+<td style="text-align: center;">0.0262</td>
+<td style="text-align: center;">0.0268</td>
+<td style="text-align: center;">0.0274</td>
+<td style="text-align: center;">0.0281</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.9</td>
+<td style="text-align: center;">0.0287</td>
+<td style="text-align: center;">0.0294</td>
+<td style="text-align: center;">0.0301</td>
+<td style="text-align: center;">0.0307</td>
+<td style="text-align: center;">0.0314</td>
+<td style="text-align: center;">0.0322</td>
+<td style="text-align: center;">0.0329</td>
+<td style="text-align: center;">0.0336</td>
+<td style="text-align: center;">0.0344</td>
+<td style="text-align: center;">0.0351</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.8</td>
+<td style="text-align: center;">0.0359</td>
+<td style="text-align: center;">0.0367</td>
+<td style="text-align: center;">0.0375</td>
+<td style="text-align: center;">0.0384</td>
+<td style="text-align: center;">0.0392</td>
+<td style="text-align: center;">0.0401</td>
+<td style="text-align: center;">0.0409</td>
+<td style="text-align: center;">0.0418</td>
+<td style="text-align: center;">0.0427</td>
+<td style="text-align: center;">0.0436</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.7</td>
+<td style="text-align: center;">0.0446</td>
+<td style="text-align: center;">0.0455</td>
+<td style="text-align: center;">0.0465</td>
+<td style="text-align: center;">0.0475</td>
+<td style="text-align: center;">0.0485</td>
+<td style="text-align: center;">0.0495</td>
+<td style="text-align: center;">0.0505</td>
+<td style="text-align: center;">0.0516</td>
+<td style="text-align: center;">0.0526</td>
+<td style="text-align: center;">0.0537</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.6</td>
+<td style="text-align: center;">0.0548</td>
+<td style="text-align: center;">0.0559</td>
+<td style="text-align: center;">0.0571</td>
+<td style="text-align: center;">0.0582</td>
+<td style="text-align: center;">0.0594</td>
+<td style="text-align: center;">0.0606</td>
+<td style="text-align: center;">0.0618</td>
+<td style="text-align: center;">0.0630</td>
+<td style="text-align: center;">0.0643</td>
+<td style="text-align: center;">0.0655</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.5</td>
+<td style="text-align: center;">0.0668</td>
+<td style="text-align: center;">0.0681</td>
+<td style="text-align: center;">0.0694</td>
+<td style="text-align: center;">0.0708</td>
+<td style="text-align: center;">0.0721</td>
+<td style="text-align: center;">0.0735</td>
+<td style="text-align: center;">0.0749</td>
+<td style="text-align: center;">0.0764</td>
+<td style="text-align: center;">0.0778</td>
+<td style="text-align: center;">0.0793</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.4</td>
+<td style="text-align: center;">0.0808</td>
+<td style="text-align: center;">0.0823</td>
+<td style="text-align: center;">0.0838</td>
+<td style="text-align: center;">0.0853</td>
+<td style="text-align: center;">0.0869</td>
+<td style="text-align: center;">0.0885</td>
+<td style="text-align: center;">0.0901</td>
+<td style="text-align: center;">0.0918</td>
+<td style="text-align: center;">0.0934</td>
+<td style="text-align: center;">0.0951</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.3</td>
+<td style="text-align: center;">0.0968</td>
+<td style="text-align: center;">0.0985</td>
+<td style="text-align: center;">0.1003</td>
+<td style="text-align: center;">0.1020</td>
+<td style="text-align: center;">0.1038</td>
+<td style="text-align: center;">0.1056</td>
+<td style="text-align: center;">0.1075</td>
+<td style="text-align: center;">0.1093</td>
+<td style="text-align: center;">0.1112</td>
+<td style="text-align: center;">0.1131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.2</td>
+<td style="text-align: center;">0.1151</td>
+<td style="text-align: center;">0.1170</td>
+<td style="text-align: center;">0.1190</td>
+<td style="text-align: center;">0.1210</td>
+<td style="text-align: center;">0.1230</td>
+<td style="text-align: center;">0.1251</td>
+<td style="text-align: center;">0.1271</td>
+<td style="text-align: center;">0.1292</td>
+<td style="text-align: center;">0.1314</td>
+<td style="text-align: center;">0.1335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.1</td>
+<td style="text-align: center;">0.1357</td>
+<td style="text-align: center;">0.1379</td>
+<td style="text-align: center;">0.1401</td>
+<td style="text-align: center;">0.1423</td>
+<td style="text-align: center;">0.1446</td>
+<td style="text-align: center;">0.1469</td>
+<td style="text-align: center;">0.1492</td>
+<td style="text-align: center;">0.1515</td>
+<td style="text-align: center;">0.1539</td>
+<td style="text-align: center;">0.1562</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.0</td>
+<td style="text-align: center;">0.1587</td>
+<td style="text-align: center;">0.1611</td>
+<td style="text-align: center;">0.1635</td>
+<td style="text-align: center;">0.1660</td>
+<td style="text-align: center;">0.1685</td>
+<td style="text-align: center;">0.1711</td>
+<td style="text-align: center;">0.1736</td>
+<td style="text-align: center;">0.1762</td>
+<td style="text-align: center;">0.1788</td>
+<td style="text-align: center;">0.1814</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.9</td>
+<td style="text-align: center;">0.1841</td>
+<td style="text-align: center;">0.1867</td>
+<td style="text-align: center;">0.1894</td>
+<td style="text-align: center;">0.1922</td>
+<td style="text-align: center;">0.1949</td>
+<td style="text-align: center;">0.1977</td>
+<td style="text-align: center;">0.2005</td>
+<td style="text-align: center;">0.2033</td>
+<td style="text-align: center;">0.2061</td>
+<td style="text-align: center;">0.2090</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.8</td>
+<td style="text-align: center;">0.2119</td>
+<td style="text-align: center;">0.2148</td>
+<td style="text-align: center;">0.2177</td>
+<td style="text-align: center;">0.2206</td>
+<td style="text-align: center;">0.2236</td>
+<td style="text-align: center;">0.2266</td>
+<td style="text-align: center;">0.2296</td>
+<td style="text-align: center;">0.2327</td>
+<td style="text-align: center;">0.2358</td>
+<td style="text-align: center;">0.2389</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.7</td>
+<td style="text-align: center;">0.2420</td>
+<td style="text-align: center;">0.2451</td>
+<td style="text-align: center;">0.2483</td>
+<td style="text-align: center;">0.2514</td>
+<td style="text-align: center;">0.2546</td>
+<td style="text-align: center;">0.2578</td>
+<td style="text-align: center;">0.2611</td>
+<td style="text-align: center;">0.2643</td>
+<td style="text-align: center;">0.2676</td>
+<td style="text-align: center;">0.2709</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.6</td>
+<td style="text-align: center;">0.2743</td>
+<td style="text-align: center;">0.2776</td>
+<td style="text-align: center;">0.2810</td>
+<td style="text-align: center;">0.2843</td>
+<td style="text-align: center;">0.2877</td>
+<td style="text-align: center;">0.2912</td>
+<td style="text-align: center;">0.2946</td>
+<td style="text-align: center;">0.2981</td>
+<td style="text-align: center;">0.3015</td>
+<td style="text-align: center;">0.3050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.5</td>
+<td style="text-align: center;">0.3085</td>
+<td style="text-align: center;">0.3121</td>
+<td style="text-align: center;">0.3156</td>
+<td style="text-align: center;">0.3192</td>
+<td style="text-align: center;">0.3228</td>
+<td style="text-align: center;">0.3264</td>
+<td style="text-align: center;">0.3300</td>
+<td style="text-align: center;">0.3336</td>
+<td style="text-align: center;">0.3372</td>
+<td style="text-align: center;">0.3409</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.4</td>
+<td style="text-align: center;">0.3446</td>
+<td style="text-align: center;">0.3483</td>
+<td style="text-align: center;">0.3520</td>
+<td style="text-align: center;">0.3557</td>
+<td style="text-align: center;">0.3594</td>
+<td style="text-align: center;">0.3632</td>
+<td style="text-align: center;">0.3669</td>
+<td style="text-align: center;">0.3707</td>
+<td style="text-align: center;">0.3745</td>
+<td style="text-align: center;">0.3783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.3</td>
+<td style="text-align: center;">0.3821</td>
+<td style="text-align: center;">0.3859</td>
+<td style="text-align: center;">0.3897</td>
+<td style="text-align: center;">0.3936</td>
+<td style="text-align: center;">0.3974</td>
+<td style="text-align: center;">0.4013</td>
+<td style="text-align: center;">0.4052</td>
+<td style="text-align: center;">0.4090</td>
+<td style="text-align: center;">0.4129</td>
+<td style="text-align: center;">0.4168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.2</td>
+<td style="text-align: center;">0.4207</td>
+<td style="text-align: center;">0.4247</td>
+<td style="text-align: center;">0.4286</td>
+<td style="text-align: center;">0.4325</td>
+<td style="text-align: center;">0.4364</td>
+<td style="text-align: center;">0.4404</td>
+<td style="text-align: center;">0.4443</td>
+<td style="text-align: center;">0.4483</td>
+<td style="text-align: center;">0.4522</td>
+<td style="text-align: center;">0.4562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.1</td>
+<td style="text-align: center;">0.4602</td>
+<td style="text-align: center;">0.4641</td>
+<td style="text-align: center;">0.4681</td>
+<td style="text-align: center;">0.4721</td>
+<td style="text-align: center;">0.4761</td>
+<td style="text-align: center;">0.4801</td>
+<td style="text-align: center;">0.4840</td>
+<td style="text-align: center;">0.4880</td>
+<td style="text-align: center;">0.4920</td>
+<td style="text-align: center;">0.4960</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.0</td>
+<td style="text-align: center;">0.5000</td>
+<td style="text-align: center;">0.5040</td>
+<td style="text-align: center;">0.5080</td>
+<td style="text-align: center;">0.5120</td>
+<td style="text-align: center;">0.5160</td>
+<td style="text-align: center;">0.5199</td>
+<td style="text-align: center;">0.5239</td>
+<td style="text-align: center;">0.5279</td>
+<td style="text-align: center;">0.5319</td>
+<td style="text-align: center;">0.5359</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: center;">0.5398</td>
+<td style="text-align: center;">0.5438</td>
+<td style="text-align: center;">0.5478</td>
+<td style="text-align: center;">0.5517</td>
+<td style="text-align: center;">0.5557</td>
+<td style="text-align: center;">0.5596</td>
+<td style="text-align: center;">0.5636</td>
+<td style="text-align: center;">0.5675</td>
+<td style="text-align: center;">0.5714</td>
+<td style="text-align: center;">0.5753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.2</td>
+<td style="text-align: center;">0.5793</td>
+<td style="text-align: center;">0.5832</td>
+<td style="text-align: center;">0.5871</td>
+<td style="text-align: center;">0.5910</td>
+<td style="text-align: center;">0.5948</td>
+<td style="text-align: center;">0.5987</td>
+<td style="text-align: center;">0.6026</td>
+<td style="text-align: center;">0.6064</td>
+<td style="text-align: center;">0.6103</td>
+<td style="text-align: center;">0.6141</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.3</td>
+<td style="text-align: center;">0.6179</td>
+<td style="text-align: center;">0.6217</td>
+<td style="text-align: center;">0.6255</td>
+<td style="text-align: center;">0.6293</td>
+<td style="text-align: center;">0.6331</td>
+<td style="text-align: center;">0.6368</td>
+<td style="text-align: center;">0.6406</td>
+<td style="text-align: center;">0.6443</td>
+<td style="text-align: center;">0.6480</td>
+<td style="text-align: center;">0.6517</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4</td>
+<td style="text-align: center;">0.6554</td>
+<td style="text-align: center;">0.6591</td>
+<td style="text-align: center;">0.6628</td>
+<td style="text-align: center;">0.6664</td>
+<td style="text-align: center;">0.6700</td>
+<td style="text-align: center;">0.6736</td>
+<td style="text-align: center;">0.6772</td>
+<td style="text-align: center;">0.6808</td>
+<td style="text-align: center;">0.6844</td>
+<td style="text-align: center;">0.6879</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.5</td>
+<td style="text-align: center;">0.6915</td>
+<td style="text-align: center;">0.6950</td>
+<td style="text-align: center;">0.6985</td>
+<td style="text-align: center;">0.7019</td>
+<td style="text-align: center;">0.7054</td>
+<td style="text-align: center;">0.7088</td>
+<td style="text-align: center;">0.7123</td>
+<td style="text-align: center;">0.7157</td>
+<td style="text-align: center;">0.7190</td>
+<td style="text-align: center;">0.7224</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.6</td>
+<td style="text-align: center;">0.7257</td>
+<td style="text-align: center;">0.7291</td>
+<td style="text-align: center;">0.7324</td>
+<td style="text-align: center;">0.7357</td>
+<td style="text-align: center;">0.7389</td>
+<td style="text-align: center;">0.7422</td>
+<td style="text-align: center;">0.7454</td>
+<td style="text-align: center;">0.7486</td>
+<td style="text-align: center;">0.7517</td>
+<td style="text-align: center;">0.7549</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.7</td>
+<td style="text-align: center;">0.7580</td>
+<td style="text-align: center;">0.7611</td>
+<td style="text-align: center;">0.7642</td>
+<td style="text-align: center;">0.7673</td>
+<td style="text-align: center;">0.7704</td>
+<td style="text-align: center;">0.7734</td>
+<td style="text-align: center;">0.7764</td>
+<td style="text-align: center;">0.7794</td>
+<td style="text-align: center;">0.7823</td>
+<td style="text-align: center;">0.7852</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.8</td>
+<td style="text-align: center;">0.7881</td>
+<td style="text-align: center;">0.7910</td>
+<td style="text-align: center;">0.7939</td>
+<td style="text-align: center;">0.7967</td>
+<td style="text-align: center;">0.7995</td>
+<td style="text-align: center;">0.8023</td>
+<td style="text-align: center;">0.8051</td>
+<td style="text-align: center;">0.8078</td>
+<td style="text-align: center;">0.8106</td>
+<td style="text-align: center;">0.8133</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.9</td>
+<td style="text-align: center;">0.8159</td>
+<td style="text-align: center;">0.8186</td>
+<td style="text-align: center;">0.8212</td>
+<td style="text-align: center;">0.8238</td>
+<td style="text-align: center;">0.8264</td>
+<td style="text-align: center;">0.8289</td>
+<td style="text-align: center;">0.8315</td>
+<td style="text-align: center;">0.8340</td>
+<td style="text-align: center;">0.8365</td>
+<td style="text-align: center;">0.8389</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.0</td>
+<td style="text-align: center;">0.8413</td>
+<td style="text-align: center;">0.8438</td>
+<td style="text-align: center;">0.8461</td>
+<td style="text-align: center;">0.8485</td>
+<td style="text-align: center;">0.8508</td>
+<td style="text-align: center;">0.8531</td>
+<td style="text-align: center;">0.8554</td>
+<td style="text-align: center;">0.8577</td>
+<td style="text-align: center;">0.8599</td>
+<td style="text-align: center;">0.8621</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.1</td>
+<td style="text-align: center;">0.8643</td>
+<td style="text-align: center;">0.8665</td>
+<td style="text-align: center;">0.8686</td>
+<td style="text-align: center;">0.8708</td>
+<td style="text-align: center;">0.8729</td>
+<td style="text-align: center;">0.8749</td>
+<td style="text-align: center;">0.8770</td>
+<td style="text-align: center;">0.8790</td>
+<td style="text-align: center;">0.8810</td>
+<td style="text-align: center;">0.8830</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.2</td>
+<td style="text-align: center;">0.8849</td>
+<td style="text-align: center;">0.8869</td>
+<td style="text-align: center;">0.8888</td>
+<td style="text-align: center;">0.8907</td>
+<td style="text-align: center;">0.8925</td>
+<td style="text-align: center;">0.8944</td>
+<td style="text-align: center;">0.8962</td>
+<td style="text-align: center;">0.8980</td>
+<td style="text-align: center;">0.8997</td>
+<td style="text-align: center;">0.9015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.3</td>
+<td style="text-align: center;">0.9032</td>
+<td style="text-align: center;">0.9049</td>
+<td style="text-align: center;">0.9066</td>
+<td style="text-align: center;">0.9082</td>
+<td style="text-align: center;">0.9099</td>
+<td style="text-align: center;">0.9115</td>
+<td style="text-align: center;">0.9131</td>
+<td style="text-align: center;">0.9147</td>
+<td style="text-align: center;">0.9162</td>
+<td style="text-align: center;">0.9177</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.4</td>
+<td style="text-align: center;">0.9192</td>
+<td style="text-align: center;">0.9207</td>
+<td style="text-align: center;">0.9222</td>
+<td style="text-align: center;">0.9236</td>
+<td style="text-align: center;">0.9251</td>
+<td style="text-align: center;">0.9265</td>
+<td style="text-align: center;">0.9279</td>
+<td style="text-align: center;">0.9292</td>
+<td style="text-align: center;">0.9306</td>
+<td style="text-align: center;">0.9319</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.5</td>
+<td style="text-align: center;">0.9332</td>
+<td style="text-align: center;">0.9345</td>
+<td style="text-align: center;">0.9357</td>
+<td style="text-align: center;">0.9370</td>
+<td style="text-align: center;">0.9382</td>
+<td style="text-align: center;">0.9394</td>
+<td style="text-align: center;">0.9406</td>
+<td style="text-align: center;">0.9418</td>
+<td style="text-align: center;">0.9429</td>
+<td style="text-align: center;">0.9441</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.6</td>
+<td style="text-align: center;">0.9452</td>
+<td style="text-align: center;">0.9463</td>
+<td style="text-align: center;">0.9474</td>
+<td style="text-align: center;">0.9484</td>
+<td style="text-align: center;">0.9495</td>
+<td style="text-align: center;">0.9505</td>
+<td style="text-align: center;">0.9515</td>
+<td style="text-align: center;">0.9525</td>
+<td style="text-align: center;">0.9535</td>
+<td style="text-align: center;">0.9545</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.7</td>
+<td style="text-align: center;">0.9554</td>
+<td style="text-align: center;">0.9564</td>
+<td style="text-align: center;">0.9573</td>
+<td style="text-align: center;">0.9582</td>
+<td style="text-align: center;">0.9591</td>
+<td style="text-align: center;">0.9599</td>
+<td style="text-align: center;">0.9608</td>
+<td style="text-align: center;">0.9616</td>
+<td style="text-align: center;">0.9625</td>
+<td style="text-align: center;">0.9633</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.8</td>
+<td style="text-align: center;">0.9641</td>
+<td style="text-align: center;">0.9649</td>
+<td style="text-align: center;">0.9656</td>
+<td style="text-align: center;">0.9664</td>
+<td style="text-align: center;">0.9671</td>
+<td style="text-align: center;">0.9678</td>
+<td style="text-align: center;">0.9686</td>
+<td style="text-align: center;">0.9693</td>
+<td style="text-align: center;">0.9699</td>
+<td style="text-align: center;">0.9706</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.9</td>
+<td style="text-align: center;">0.9713</td>
+<td style="text-align: center;">0.9719</td>
+<td style="text-align: center;">0.9726</td>
+<td style="text-align: center;">0.9732</td>
+<td style="text-align: center;">0.9738</td>
+<td style="text-align: center;">0.9744</td>
+<td style="text-align: center;">0.9750</td>
+<td style="text-align: center;">0.9756</td>
+<td style="text-align: center;">0.9761</td>
+<td style="text-align: center;">0.9767</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2.0</td>
+<td style="text-align: center;">0.9772</td>
+<td style="text-align: center;">0.9778</td>
+<td style="text-align: center;">0.9783</td>
+<td style="text-align: center;">0.9788</td>
+<td style="text-align: center;">0.9793</td>
+<td style="text-align: center;">0.9798</td>
+<td style="text-align: center;">0.9803</td>
+<td style="text-align: center;">0.9808</td>
+<td style="text-align: center;">0.9812</td>
+<td style="text-align: center;">0.9817</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>So:</p>
+<p><span class="math display">\[69.35 \pm 1.96 \cdot \frac{3.62}{\sqrt{35}}\]</span></p>
+<p><span class="math display">\[69.35 \pm 1.20\]</span></p>
+<p><span class="math display">\[\left( 68.15, \; 70.54 \right)\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">69.35</span>; sigma <span class="ot">&lt;-</span> <span class="fl">3.62</span>; n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>margin <span class="ot">&lt;-</span> z_star <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(xbar <span class="sc">-</span> margin, xbar <span class="sc">+</span> margin)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.15071 70.54929</code></pre>
+</div>
+</div>
+<p>We are 95% confident that the true mean cadet height is between 68.15 and 70.55 inches.</p>
+<p><strong>Now what if we wanted a 90% confidence interval instead?</strong></p>
+<p>For 90% confidence, <span class="math inline">\(\alpha = 0.10\)</span>, so <span class="math inline">\(\alpha/2 = 0.05\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>)   <span class="co"># -z_{α/2}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.644854</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>)   <span class="co">#  z_{α/2}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.644854</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Z Table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Z Table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<caption>Standard Normal (Z) Table: Φ(z) = P(Z ≤ z)</caption>
+<colgroup>
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">0.00</th>
+<th style="text-align: center;">0.01</th>
+<th style="text-align: center;">0.02</th>
+<th style="text-align: center;">0.03</th>
+<th style="text-align: center;">0.04</th>
+<th style="text-align: center;">0.05</th>
+<th style="text-align: center;">0.06</th>
+<th style="text-align: center;">0.07</th>
+<th style="text-align: center;">0.08</th>
+<th style="text-align: center;">0.09</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-2.0</td>
+<td style="text-align: center;">0.0228</td>
+<td style="text-align: center;">0.0233</td>
+<td style="text-align: center;">0.0239</td>
+<td style="text-align: center;">0.0244</td>
+<td style="text-align: center;">0.0250</td>
+<td style="text-align: center;">0.0256</td>
+<td style="text-align: center;">0.0262</td>
+<td style="text-align: center;">0.0268</td>
+<td style="text-align: center;">0.0274</td>
+<td style="text-align: center;">0.0281</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.9</td>
+<td style="text-align: center;">0.0287</td>
+<td style="text-align: center;">0.0294</td>
+<td style="text-align: center;">0.0301</td>
+<td style="text-align: center;">0.0307</td>
+<td style="text-align: center;">0.0314</td>
+<td style="text-align: center;">0.0322</td>
+<td style="text-align: center;">0.0329</td>
+<td style="text-align: center;">0.0336</td>
+<td style="text-align: center;">0.0344</td>
+<td style="text-align: center;">0.0351</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.8</td>
+<td style="text-align: center;">0.0359</td>
+<td style="text-align: center;">0.0367</td>
+<td style="text-align: center;">0.0375</td>
+<td style="text-align: center;">0.0384</td>
+<td style="text-align: center;">0.0392</td>
+<td style="text-align: center;">0.0401</td>
+<td style="text-align: center;">0.0409</td>
+<td style="text-align: center;">0.0418</td>
+<td style="text-align: center;">0.0427</td>
+<td style="text-align: center;">0.0436</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.7</td>
+<td style="text-align: center;">0.0446</td>
+<td style="text-align: center;">0.0455</td>
+<td style="text-align: center;">0.0465</td>
+<td style="text-align: center;">0.0475</td>
+<td style="text-align: center;">0.0485</td>
+<td style="text-align: center;">0.0495</td>
+<td style="text-align: center;">0.0505</td>
+<td style="text-align: center;">0.0516</td>
+<td style="text-align: center;">0.0526</td>
+<td style="text-align: center;">0.0537</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.6</td>
+<td style="text-align: center;">0.0548</td>
+<td style="text-align: center;">0.0559</td>
+<td style="text-align: center;">0.0571</td>
+<td style="text-align: center;">0.0582</td>
+<td style="text-align: center;">0.0594</td>
+<td style="text-align: center;">0.0606</td>
+<td style="text-align: center;">0.0618</td>
+<td style="text-align: center;">0.0630</td>
+<td style="text-align: center;">0.0643</td>
+<td style="text-align: center;">0.0655</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.5</td>
+<td style="text-align: center;">0.0668</td>
+<td style="text-align: center;">0.0681</td>
+<td style="text-align: center;">0.0694</td>
+<td style="text-align: center;">0.0708</td>
+<td style="text-align: center;">0.0721</td>
+<td style="text-align: center;">0.0735</td>
+<td style="text-align: center;">0.0749</td>
+<td style="text-align: center;">0.0764</td>
+<td style="text-align: center;">0.0778</td>
+<td style="text-align: center;">0.0793</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.4</td>
+<td style="text-align: center;">0.0808</td>
+<td style="text-align: center;">0.0823</td>
+<td style="text-align: center;">0.0838</td>
+<td style="text-align: center;">0.0853</td>
+<td style="text-align: center;">0.0869</td>
+<td style="text-align: center;">0.0885</td>
+<td style="text-align: center;">0.0901</td>
+<td style="text-align: center;">0.0918</td>
+<td style="text-align: center;">0.0934</td>
+<td style="text-align: center;">0.0951</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.3</td>
+<td style="text-align: center;">0.0968</td>
+<td style="text-align: center;">0.0985</td>
+<td style="text-align: center;">0.1003</td>
+<td style="text-align: center;">0.1020</td>
+<td style="text-align: center;">0.1038</td>
+<td style="text-align: center;">0.1056</td>
+<td style="text-align: center;">0.1075</td>
+<td style="text-align: center;">0.1093</td>
+<td style="text-align: center;">0.1112</td>
+<td style="text-align: center;">0.1131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.2</td>
+<td style="text-align: center;">0.1151</td>
+<td style="text-align: center;">0.1170</td>
+<td style="text-align: center;">0.1190</td>
+<td style="text-align: center;">0.1210</td>
+<td style="text-align: center;">0.1230</td>
+<td style="text-align: center;">0.1251</td>
+<td style="text-align: center;">0.1271</td>
+<td style="text-align: center;">0.1292</td>
+<td style="text-align: center;">0.1314</td>
+<td style="text-align: center;">0.1335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-1.1</td>
+<td style="text-align: center;">0.1357</td>
+<td style="text-align: center;">0.1379</td>
+<td style="text-align: center;">0.1401</td>
+<td style="text-align: center;">0.1423</td>
+<td style="text-align: center;">0.1446</td>
+<td style="text-align: center;">0.1469</td>
+<td style="text-align: center;">0.1492</td>
+<td style="text-align: center;">0.1515</td>
+<td style="text-align: center;">0.1539</td>
+<td style="text-align: center;">0.1562</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-1.0</td>
+<td style="text-align: center;">0.1587</td>
+<td style="text-align: center;">0.1611</td>
+<td style="text-align: center;">0.1635</td>
+<td style="text-align: center;">0.1660</td>
+<td style="text-align: center;">0.1685</td>
+<td style="text-align: center;">0.1711</td>
+<td style="text-align: center;">0.1736</td>
+<td style="text-align: center;">0.1762</td>
+<td style="text-align: center;">0.1788</td>
+<td style="text-align: center;">0.1814</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.9</td>
+<td style="text-align: center;">0.1841</td>
+<td style="text-align: center;">0.1867</td>
+<td style="text-align: center;">0.1894</td>
+<td style="text-align: center;">0.1922</td>
+<td style="text-align: center;">0.1949</td>
+<td style="text-align: center;">0.1977</td>
+<td style="text-align: center;">0.2005</td>
+<td style="text-align: center;">0.2033</td>
+<td style="text-align: center;">0.2061</td>
+<td style="text-align: center;">0.2090</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.8</td>
+<td style="text-align: center;">0.2119</td>
+<td style="text-align: center;">0.2148</td>
+<td style="text-align: center;">0.2177</td>
+<td style="text-align: center;">0.2206</td>
+<td style="text-align: center;">0.2236</td>
+<td style="text-align: center;">0.2266</td>
+<td style="text-align: center;">0.2296</td>
+<td style="text-align: center;">0.2327</td>
+<td style="text-align: center;">0.2358</td>
+<td style="text-align: center;">0.2389</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.7</td>
+<td style="text-align: center;">0.2420</td>
+<td style="text-align: center;">0.2451</td>
+<td style="text-align: center;">0.2483</td>
+<td style="text-align: center;">0.2514</td>
+<td style="text-align: center;">0.2546</td>
+<td style="text-align: center;">0.2578</td>
+<td style="text-align: center;">0.2611</td>
+<td style="text-align: center;">0.2643</td>
+<td style="text-align: center;">0.2676</td>
+<td style="text-align: center;">0.2709</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.6</td>
+<td style="text-align: center;">0.2743</td>
+<td style="text-align: center;">0.2776</td>
+<td style="text-align: center;">0.2810</td>
+<td style="text-align: center;">0.2843</td>
+<td style="text-align: center;">0.2877</td>
+<td style="text-align: center;">0.2912</td>
+<td style="text-align: center;">0.2946</td>
+<td style="text-align: center;">0.2981</td>
+<td style="text-align: center;">0.3015</td>
+<td style="text-align: center;">0.3050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.5</td>
+<td style="text-align: center;">0.3085</td>
+<td style="text-align: center;">0.3121</td>
+<td style="text-align: center;">0.3156</td>
+<td style="text-align: center;">0.3192</td>
+<td style="text-align: center;">0.3228</td>
+<td style="text-align: center;">0.3264</td>
+<td style="text-align: center;">0.3300</td>
+<td style="text-align: center;">0.3336</td>
+<td style="text-align: center;">0.3372</td>
+<td style="text-align: center;">0.3409</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.4</td>
+<td style="text-align: center;">0.3446</td>
+<td style="text-align: center;">0.3483</td>
+<td style="text-align: center;">0.3520</td>
+<td style="text-align: center;">0.3557</td>
+<td style="text-align: center;">0.3594</td>
+<td style="text-align: center;">0.3632</td>
+<td style="text-align: center;">0.3669</td>
+<td style="text-align: center;">0.3707</td>
+<td style="text-align: center;">0.3745</td>
+<td style="text-align: center;">0.3783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.3</td>
+<td style="text-align: center;">0.3821</td>
+<td style="text-align: center;">0.3859</td>
+<td style="text-align: center;">0.3897</td>
+<td style="text-align: center;">0.3936</td>
+<td style="text-align: center;">0.3974</td>
+<td style="text-align: center;">0.4013</td>
+<td style="text-align: center;">0.4052</td>
+<td style="text-align: center;">0.4090</td>
+<td style="text-align: center;">0.4129</td>
+<td style="text-align: center;">0.4168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-0.2</td>
+<td style="text-align: center;">0.4207</td>
+<td style="text-align: center;">0.4247</td>
+<td style="text-align: center;">0.4286</td>
+<td style="text-align: center;">0.4325</td>
+<td style="text-align: center;">0.4364</td>
+<td style="text-align: center;">0.4404</td>
+<td style="text-align: center;">0.4443</td>
+<td style="text-align: center;">0.4483</td>
+<td style="text-align: center;">0.4522</td>
+<td style="text-align: center;">0.4562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-0.1</td>
+<td style="text-align: center;">0.4602</td>
+<td style="text-align: center;">0.4641</td>
+<td style="text-align: center;">0.4681</td>
+<td style="text-align: center;">0.4721</td>
+<td style="text-align: center;">0.4761</td>
+<td style="text-align: center;">0.4801</td>
+<td style="text-align: center;">0.4840</td>
+<td style="text-align: center;">0.4880</td>
+<td style="text-align: center;">0.4920</td>
+<td style="text-align: center;">0.4960</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.0</td>
+<td style="text-align: center;">0.5000</td>
+<td style="text-align: center;">0.5040</td>
+<td style="text-align: center;">0.5080</td>
+<td style="text-align: center;">0.5120</td>
+<td style="text-align: center;">0.5160</td>
+<td style="text-align: center;">0.5199</td>
+<td style="text-align: center;">0.5239</td>
+<td style="text-align: center;">0.5279</td>
+<td style="text-align: center;">0.5319</td>
+<td style="text-align: center;">0.5359</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: center;">0.5398</td>
+<td style="text-align: center;">0.5438</td>
+<td style="text-align: center;">0.5478</td>
+<td style="text-align: center;">0.5517</td>
+<td style="text-align: center;">0.5557</td>
+<td style="text-align: center;">0.5596</td>
+<td style="text-align: center;">0.5636</td>
+<td style="text-align: center;">0.5675</td>
+<td style="text-align: center;">0.5714</td>
+<td style="text-align: center;">0.5753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.2</td>
+<td style="text-align: center;">0.5793</td>
+<td style="text-align: center;">0.5832</td>
+<td style="text-align: center;">0.5871</td>
+<td style="text-align: center;">0.5910</td>
+<td style="text-align: center;">0.5948</td>
+<td style="text-align: center;">0.5987</td>
+<td style="text-align: center;">0.6026</td>
+<td style="text-align: center;">0.6064</td>
+<td style="text-align: center;">0.6103</td>
+<td style="text-align: center;">0.6141</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.3</td>
+<td style="text-align: center;">0.6179</td>
+<td style="text-align: center;">0.6217</td>
+<td style="text-align: center;">0.6255</td>
+<td style="text-align: center;">0.6293</td>
+<td style="text-align: center;">0.6331</td>
+<td style="text-align: center;">0.6368</td>
+<td style="text-align: center;">0.6406</td>
+<td style="text-align: center;">0.6443</td>
+<td style="text-align: center;">0.6480</td>
+<td style="text-align: center;">0.6517</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4</td>
+<td style="text-align: center;">0.6554</td>
+<td style="text-align: center;">0.6591</td>
+<td style="text-align: center;">0.6628</td>
+<td style="text-align: center;">0.6664</td>
+<td style="text-align: center;">0.6700</td>
+<td style="text-align: center;">0.6736</td>
+<td style="text-align: center;">0.6772</td>
+<td style="text-align: center;">0.6808</td>
+<td style="text-align: center;">0.6844</td>
+<td style="text-align: center;">0.6879</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.5</td>
+<td style="text-align: center;">0.6915</td>
+<td style="text-align: center;">0.6950</td>
+<td style="text-align: center;">0.6985</td>
+<td style="text-align: center;">0.7019</td>
+<td style="text-align: center;">0.7054</td>
+<td style="text-align: center;">0.7088</td>
+<td style="text-align: center;">0.7123</td>
+<td style="text-align: center;">0.7157</td>
+<td style="text-align: center;">0.7190</td>
+<td style="text-align: center;">0.7224</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.6</td>
+<td style="text-align: center;">0.7257</td>
+<td style="text-align: center;">0.7291</td>
+<td style="text-align: center;">0.7324</td>
+<td style="text-align: center;">0.7357</td>
+<td style="text-align: center;">0.7389</td>
+<td style="text-align: center;">0.7422</td>
+<td style="text-align: center;">0.7454</td>
+<td style="text-align: center;">0.7486</td>
+<td style="text-align: center;">0.7517</td>
+<td style="text-align: center;">0.7549</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.7</td>
+<td style="text-align: center;">0.7580</td>
+<td style="text-align: center;">0.7611</td>
+<td style="text-align: center;">0.7642</td>
+<td style="text-align: center;">0.7673</td>
+<td style="text-align: center;">0.7704</td>
+<td style="text-align: center;">0.7734</td>
+<td style="text-align: center;">0.7764</td>
+<td style="text-align: center;">0.7794</td>
+<td style="text-align: center;">0.7823</td>
+<td style="text-align: center;">0.7852</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.8</td>
+<td style="text-align: center;">0.7881</td>
+<td style="text-align: center;">0.7910</td>
+<td style="text-align: center;">0.7939</td>
+<td style="text-align: center;">0.7967</td>
+<td style="text-align: center;">0.7995</td>
+<td style="text-align: center;">0.8023</td>
+<td style="text-align: center;">0.8051</td>
+<td style="text-align: center;">0.8078</td>
+<td style="text-align: center;">0.8106</td>
+<td style="text-align: center;">0.8133</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.9</td>
+<td style="text-align: center;">0.8159</td>
+<td style="text-align: center;">0.8186</td>
+<td style="text-align: center;">0.8212</td>
+<td style="text-align: center;">0.8238</td>
+<td style="text-align: center;">0.8264</td>
+<td style="text-align: center;">0.8289</td>
+<td style="text-align: center;">0.8315</td>
+<td style="text-align: center;">0.8340</td>
+<td style="text-align: center;">0.8365</td>
+<td style="text-align: center;">0.8389</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.0</td>
+<td style="text-align: center;">0.8413</td>
+<td style="text-align: center;">0.8438</td>
+<td style="text-align: center;">0.8461</td>
+<td style="text-align: center;">0.8485</td>
+<td style="text-align: center;">0.8508</td>
+<td style="text-align: center;">0.8531</td>
+<td style="text-align: center;">0.8554</td>
+<td style="text-align: center;">0.8577</td>
+<td style="text-align: center;">0.8599</td>
+<td style="text-align: center;">0.8621</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.1</td>
+<td style="text-align: center;">0.8643</td>
+<td style="text-align: center;">0.8665</td>
+<td style="text-align: center;">0.8686</td>
+<td style="text-align: center;">0.8708</td>
+<td style="text-align: center;">0.8729</td>
+<td style="text-align: center;">0.8749</td>
+<td style="text-align: center;">0.8770</td>
+<td style="text-align: center;">0.8790</td>
+<td style="text-align: center;">0.8810</td>
+<td style="text-align: center;">0.8830</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.2</td>
+<td style="text-align: center;">0.8849</td>
+<td style="text-align: center;">0.8869</td>
+<td style="text-align: center;">0.8888</td>
+<td style="text-align: center;">0.8907</td>
+<td style="text-align: center;">0.8925</td>
+<td style="text-align: center;">0.8944</td>
+<td style="text-align: center;">0.8962</td>
+<td style="text-align: center;">0.8980</td>
+<td style="text-align: center;">0.8997</td>
+<td style="text-align: center;">0.9015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.3</td>
+<td style="text-align: center;">0.9032</td>
+<td style="text-align: center;">0.9049</td>
+<td style="text-align: center;">0.9066</td>
+<td style="text-align: center;">0.9082</td>
+<td style="text-align: center;">0.9099</td>
+<td style="text-align: center;">0.9115</td>
+<td style="text-align: center;">0.9131</td>
+<td style="text-align: center;">0.9147</td>
+<td style="text-align: center;">0.9162</td>
+<td style="text-align: center;">0.9177</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.4</td>
+<td style="text-align: center;">0.9192</td>
+<td style="text-align: center;">0.9207</td>
+<td style="text-align: center;">0.9222</td>
+<td style="text-align: center;">0.9236</td>
+<td style="text-align: center;">0.9251</td>
+<td style="text-align: center;">0.9265</td>
+<td style="text-align: center;">0.9279</td>
+<td style="text-align: center;">0.9292</td>
+<td style="text-align: center;">0.9306</td>
+<td style="text-align: center;">0.9319</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.5</td>
+<td style="text-align: center;">0.9332</td>
+<td style="text-align: center;">0.9345</td>
+<td style="text-align: center;">0.9357</td>
+<td style="text-align: center;">0.9370</td>
+<td style="text-align: center;">0.9382</td>
+<td style="text-align: center;">0.9394</td>
+<td style="text-align: center;">0.9406</td>
+<td style="text-align: center;">0.9418</td>
+<td style="text-align: center;">0.9429</td>
+<td style="text-align: center;">0.9441</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.6</td>
+<td style="text-align: center;">0.9452</td>
+<td style="text-align: center;">0.9463</td>
+<td style="text-align: center;">0.9474</td>
+<td style="text-align: center;">0.9484</td>
+<td style="text-align: center;">0.9495</td>
+<td style="text-align: center;">0.9505</td>
+<td style="text-align: center;">0.9515</td>
+<td style="text-align: center;">0.9525</td>
+<td style="text-align: center;">0.9535</td>
+<td style="text-align: center;">0.9545</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.7</td>
+<td style="text-align: center;">0.9554</td>
+<td style="text-align: center;">0.9564</td>
+<td style="text-align: center;">0.9573</td>
+<td style="text-align: center;">0.9582</td>
+<td style="text-align: center;">0.9591</td>
+<td style="text-align: center;">0.9599</td>
+<td style="text-align: center;">0.9608</td>
+<td style="text-align: center;">0.9616</td>
+<td style="text-align: center;">0.9625</td>
+<td style="text-align: center;">0.9633</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.8</td>
+<td style="text-align: center;">0.9641</td>
+<td style="text-align: center;">0.9649</td>
+<td style="text-align: center;">0.9656</td>
+<td style="text-align: center;">0.9664</td>
+<td style="text-align: center;">0.9671</td>
+<td style="text-align: center;">0.9678</td>
+<td style="text-align: center;">0.9686</td>
+<td style="text-align: center;">0.9693</td>
+<td style="text-align: center;">0.9699</td>
+<td style="text-align: center;">0.9706</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.9</td>
+<td style="text-align: center;">0.9713</td>
+<td style="text-align: center;">0.9719</td>
+<td style="text-align: center;">0.9726</td>
+<td style="text-align: center;">0.9732</td>
+<td style="text-align: center;">0.9738</td>
+<td style="text-align: center;">0.9744</td>
+<td style="text-align: center;">0.9750</td>
+<td style="text-align: center;">0.9756</td>
+<td style="text-align: center;">0.9761</td>
+<td style="text-align: center;">0.9767</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2.0</td>
+<td style="text-align: center;">0.9772</td>
+<td style="text-align: center;">0.9778</td>
+<td style="text-align: center;">0.9783</td>
+<td style="text-align: center;">0.9788</td>
+<td style="text-align: center;">0.9793</td>
+<td style="text-align: center;">0.9798</td>
+<td style="text-align: center;">0.9803</td>
+<td style="text-align: center;">0.9808</td>
+<td style="text-align: center;">0.9812</td>
+<td style="text-align: center;">0.9817</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[69.35 \pm 1.645 \cdot \frac{3.62}{\sqrt{35}}\]</span></p>
+<p><span class="math display">\[69.35 \pm 1.01\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>z_star_90 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.95</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>margin_90 <span class="ot">&lt;-</span> z_star_90 <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(xbar <span class="sc">-</span> margin_90, xbar <span class="sc">+</span> margin_90)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.34353 70.35647</code></pre>
+</div>
+</div>
+<p>The 90% CI is <strong>narrower</strong> than the 95% CI. Less confidence → smaller multiplier → tighter interval.</p>
+<hr>
+</section>
+</section>
+<section id="small-samples-and-the-t-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="small-samples-and-the-t-distribution">Small Samples and the <span class="math inline">\(t\)</span>-Distribution</h2>
+<section id="the-problem-with-small-samples" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-with-small-samples">The Problem with Small Samples</h3>
+<p>When <span class="math inline">\(n\)</span> is large (<span class="math inline">\(n \geq 30\)</span>), we can use <span class="math inline">\(s\)</span> to estimate <span class="math inline">\(\sigma\)</span> and the <span class="math inline">\(z\)</span>-interval works well — the CLT guarantees the sampling distribution is approximately normal, and <span class="math inline">\(s\)</span> is a reliable estimate of <span class="math inline">\(\sigma\)</span>.</p>
+<p>But when <span class="math inline">\(n\)</span> is small (<span class="math inline">\(n &lt; 30\)</span>), <span class="math inline">\(s\)</span> is a less reliable estimate of <span class="math inline">\(\sigma\)</span>. This introduces <strong>extra uncertainty</strong> that the <span class="math inline">\(z\)</span>-interval doesn’t account for.</p>
+<p><strong>The solution:</strong> Use the <strong><span class="math inline">\(t\)</span>-distribution</strong>, which has heavier tails to account for this extra uncertainty.</p>
+<hr>
+</section>
+<section id="the-t-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="the-t-distribution">The <span class="math inline">\(t\)</span>-Distribution</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="The t-Distribution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The t-Distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When the sample size is small, we use the <span class="math inline">\(t\)</span>-distribution instead of the normal. The standardized statistic:</p>
+<p><span class="math display">\[T = \frac{\bar{X} - \mu}{s / \sqrt{n}}\]</span></p>
+<p>follows a <strong><span class="math inline">\(t\)</span>-distribution</strong> with <span class="math inline">\(\nu = n - 1\)</span> <strong>degrees of freedom</strong> (df).</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-18_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key properties of the <span class="math inline">\(t\)</span>-distribution:</strong></p>
+<ul>
+<li>Symmetric and bell-shaped, centered at 0</li>
+<li><strong>Heavier tails</strong> than the normal → wider intervals (accounts for extra uncertainty in small samples)</li>
+<li>As <span class="math inline">\(df \to \infty\)</span>, <span class="math inline">\(t \to N(0, 1)\)</span> — which is why <span class="math inline">\(z\)</span> works fine for large <span class="math inline">\(n\)</span></li>
+<li>Degrees of freedom: <span class="math inline">\(\nu = n - 1\)</span></li>
+</ul>
+<hr>
+</section>
+<section id="confidence-interval-for-μ-small-samples" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-interval-for-μ-small-samples">Confidence Interval for μ (Small Samples)</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="One-Sample t-Interval">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>One-Sample t-Interval
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\bar{X} \pm t_{\alpha/2, \, n-1} \cdot \frac{s}{\sqrt{n}}\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> = sample mean</li>
+<li><span class="math inline">\(s\)</span> = sample standard deviation</li>
+<li><span class="math inline">\(n\)</span> = sample size</li>
+<li><span class="math inline">\(t_{\alpha/2, \, n-1}\)</span> = critical value from the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> df</li>
+</ul>
+<p><strong>Conditions:</strong></p>
+<ol type="1">
+<li><strong>Random sample</strong> (or representative of the population)</li>
+<li><strong>Independence</strong> (observations are independent)</li>
+<li><strong>Normality</strong>: Population should be approximately normal (since <span class="math inline">\(n &lt; 30\)</span>, we can’t rely on the CLT)</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding t critical values in R</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">48</span>)   <span class="co"># t* for 95% CI, n = 49</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.010635</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">10</span>)   <span class="co"># t* for 95% CI, n = 11</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.228139</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">4</span>)    <span class="co"># t* for 95% CI, n = 5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.776445</code></pre>
+</div>
+</div>
+<p>Notice: smaller <span class="math inline">\(n\)</span> → fewer df → larger <span class="math inline">\(t^*\)</span> → wider interval.</p>
+<hr>
+</section>
+<section id="example-aft-sprint-drag-carry" class="level3">
+<h3 class="anchored" data-anchor-id="example-aft-sprint-drag-carry">Example: AFT Sprint-Drag-Carry</h3>
+<p>A random sample of <span class="math inline">\(n = 25\)</span> cadets has a mean Sprint-Drag-Carry time of <span class="math inline">\(\bar{x} = 108\)</span> seconds with <span class="math inline">\(s = 15\)</span> seconds. Construct a 95% confidence interval for <span class="math inline">\(\mu\)</span>.</p>
+<p>Since <span class="math inline">\(n = 25 &lt; 30\)</span>, we use the <span class="math inline">\(t\)</span>-interval with <span class="math inline">\(df = n - 1 = 24\)</span>:</p>
+<p><span class="math display">\[\bar{x} \pm t_{\alpha/2, \, n-1} \cdot \frac{s}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[108 \pm t_{.025, \, 24} \cdot \frac{15}{\sqrt{25}}\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="dv">24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.063899</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.063899</code></pre>
+</div>
+</div>
+<p><span class="math display">\[108 \pm 2.064 \cdot \frac{15}{\sqrt{25}} = 108 \pm 6.19\]</span></p>
+<p><span class="math display">\[\left(101.81, \; 114.19\right)\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="dv">108</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>t_star <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>margin <span class="ot">&lt;-</span> t_star <span class="sc">*</span> se</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(xbar <span class="sc">-</span> margin, xbar <span class="sc">+</span> margin)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 101.8083 114.1917</code></pre>
+</div>
+</div>
+<p>We are 95% confident that the true mean Sprint-Drag-Carry time for cadets is between 101.8 and 114.2 seconds.</p>
+<hr>
+</section>
+</section>
+<section id="the-takeaway-for-today" class="level2">
+<h2 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Confidence Interval Formulas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Confidence Interval Formulas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Formula</th>
+<th style="text-align: left;">Conditions</th>
+<th style="text-align: center;">Critical Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Large sample</strong> (<span class="math inline">\(n \geq 30\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(\bar{X} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">Random sample, independence, <span class="math inline">\(s \approx \sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z_{\alpha/2}\)</span> from <code>qnorm()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Small sample</strong> (<span class="math inline">\(n &lt; 30\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(\bar{X} \pm t_{\alpha/2, n-1} \cdot \dfrac{s}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">Random sample, independence, <strong>population ~ Normal</strong></td>
+<td style="text-align: center;"><span class="math inline">\(t_{\alpha/2, n-1}\)</span> from <code>qt()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the difference?</strong> For large <span class="math inline">\(n\)</span>, <span class="math inline">\(s\)</span> is a reliable estimate of <span class="math inline">\(\sigma\)</span> and the <span class="math inline">\(t\)</span>-distribution is nearly identical to the normal. For small <span class="math inline">\(n\)</span>, the extra uncertainty matters and the <span class="math inline">\(t\)</span>-distribution’s heavier tails account for it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Interpreting Confidence Intervals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Interpreting Confidence Intervals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Wrong:</strong> “There is a 95% probability that <span class="math inline">\(\mu\)</span> is in this interval.”</p>
+<p><strong>Also wrong:</strong> “There is a 95% chance the true mean is between LB and UB.”</p>
+<p><strong>Right:</strong> “Using this method, we are 95% confident that the interval from LB to UB captures the true mean.”</p>
+<p><strong>Also right:</strong> “If we repeated this sampling process many times, about 95% of the resulting intervals would contain <span class="math inline">\(\mu\)</span>.”</p>
+<p>The parameter <span class="math inline">\(\mu\)</span> is <strong>fixed</strong> — it’s not random. The interval is random (because <span class="math inline">\(\bar{X}\)</span> is random). Once we compute the interval, <span class="math inline">\(\mu\)</span> either is or isn’t in it — we just don’t know which. The word “confident” refers to the <strong>method’s</strong> long-run success rate, not a probability about any single interval.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/ci-simulation.gif" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Each horizontal line is a 95% CI from a new random sample of n = 45. Black intervals contain the true mean; red intervals miss it. About 95% of intervals capture μ.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="What affects the width of a confidence interval?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What affects the width of a confidence interval?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Confidence level (<span class="math inline">\(C\)</span>):</strong> Higher confidence → wider interval. Lower confidence → narrower interval.</p>
+<ul>
+<li>99% CI is wider than 95% CI is wider than 90% CI</li>
+<li>More confidence requires casting a wider net</li>
+</ul>
+<p><strong>Sample size (<span class="math inline">\(n\)</span>):</strong> Larger <span class="math inline">\(n\)</span> → narrower interval. Smaller <span class="math inline">\(n\)</span> → wider interval.</p>
+<ul>
+<li>More data → more precise estimate → tighter interval</li>
+<li>The standard error <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> shrinks as <span class="math inline">\(n\)</span> grows</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-patrol-readiness" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-patrol-readiness">Problem 1: Patrol Readiness</h3>
+<p>A battalion commander wants to estimate the average time (in minutes) for platoons to reach full readiness after an alert. A random sample of <span class="math inline">\(n = 36\)</span> alerts gives <span class="math inline">\(\bar{x} = 12.4\)</span> minutes with <span class="math inline">\(s = 3.6\)</span> minutes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Construct a 95% confidence interval for the true mean readiness time.</p></li>
+<li><p>The standard requires readiness in under 15 minutes on average. Based on your interval, is the battalion meeting the standard?</p></li>
+<li><p>Construct a 99% confidence interval. How does it compare to the 95% interval?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Since <span class="math inline">\(n = 36 \geq 30\)</span>, we use the <span class="math inline">\(z\)</span>-interval. <span class="math inline">\(z^* = 1.96\)</span></li>
+</ol>
+<p><span class="math display">\[12.4 \pm 1.96 \cdot \frac{3.6}{\sqrt{36}} = 12.4 \pm 1.18 = (11.22, \; 13.58)\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.22402 13.57598</code></pre>
+</div>
+</div>
+<p>We are 95% confident the true mean readiness time is between 11.22 and 13.58 minutes.</p>
+<ol start="2" type="a">
+<li><p><strong>Yes</strong> — the entire interval is below 15 minutes, so we’re confident the battalion meets the standard.</p></li>
+<li><p><span class="math inline">\(z^* = 2.576\)</span> for 99% CI:</p></li>
+</ol>
+<p><span class="math display">\[12.4 \pm 2.576 \cdot 0.6 = 12.4 \pm 1.55 = (10.85, \; 13.95)\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.8545 13.9455</code></pre>
+</div>
+</div>
+<p>The 99% interval is <strong>wider</strong> — more confidence requires a wider net.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-ammunition-expenditure" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-ammunition-expenditure">Problem 2: Ammunition Expenditure</h3>
+<p>During training exercises, a random sample of <span class="math inline">\(n = 16\)</span> squads expended an average of <span class="math inline">\(\bar{x} = 840\)</span> rounds with <span class="math inline">\(s = 120\)</span> rounds. Assume ammunition expenditure is approximately normally distributed.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Why is the normality assumption important here?</p></li>
+<li><p>Construct a 90% confidence interval for the true mean rounds expended per squad.</p></li>
+<li><p>How many squads should be sampled to estimate the mean within 25 rounds with 95% confidence?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Because <span class="math inline">\(n = 16 &lt; 30\)</span>, the CLT alone doesn’t guarantee <span class="math inline">\(\bar{X}\)</span> is approximately normal. We need the <strong>population</strong> to be approximately normal for the <span class="math inline">\(t\)</span>-interval to be valid with a small sample.</p></li>
+<li><p><span class="math inline">\(df = 15\)</span>, <span class="math inline">\(t^* = 1.753\)</span> (for 90% CI):</p></li>
+</ol>
+<p><span class="math display">\[840 \pm 1.753 \cdot \frac{120}{\sqrt{16}} = 840 \pm 1.753 \cdot 30 = 840 \pm 52.6 = (787.4, \; 892.6)\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 787.4085 892.5915</code></pre>
+</div>
+</div>
+<p>We are 90% confident the true mean is between 787.4 and 892.6 rounds.</p>
+<ol start="3" type="a">
+<li>Using <span class="math inline">\(\sigma \approx s = 120\)</span> and <span class="math inline">\(z^* = 1.96\)</span>:</li>
+</ol>
+<p><span class="math display">\[n = \left(\frac{1.96 \times 120}{25}\right)^2 = \left(9.408\right)^2 = 88.5 \implies n = 89\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 89</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-vehicle-maintenance" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-vehicle-maintenance">Problem 3: Vehicle Maintenance</h3>
+<p>The motor pool tracks the time (in hours) to complete routine maintenance on tactical vehicles. Historical data suggests <span class="math inline">\(\sigma = 2.5\)</span> hours. A random sample of <span class="math inline">\(n = 40\)</span> maintenance jobs gives <span class="math inline">\(\bar{x} = 8.3\)</span> hours.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Construct a 95% confidence interval for the true mean maintenance time.</p></li>
+<li><p>What is the margin of error?</p></li>
+<li><p>The motor pool sergeant claims the true average is 9.0 hours. Is this consistent with the data?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(SE = \frac{2.5}{\sqrt{40}} = 0.395\)</span></li>
+</ol>
+<p><span class="math display">\[8.3 \pm 1.96 \times 0.395 = 8.3 \pm 0.775 = (7.525, \; 9.075)\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.525256 9.074744</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li><p><span class="math inline">\(E = 1.96 \times 0.395 = 0.775\)</span> hours (about 46.5 minutes).</p></li>
+<li><p><strong>Yes</strong> — 9.0 falls within the 95% CI (7.525, 9.075), so the sergeant’s claim is plausible given the data.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-cadet-sleep" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-cadet-sleep">Problem 4: Cadet Sleep</h3>
+<p>A random sample of <span class="math inline">\(n = 50\)</span> cadets reports an average of <span class="math inline">\(\bar{x} = 5.8\)</span> hours of sleep per night with <span class="math inline">\(s = 1.2\)</span> hours.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Construct a 95% confidence interval for the mean hours of sleep for all cadets.</p></li>
+<li><p>The Army recommends at least 7 hours of sleep. Based on your interval, is the Corps of Cadets meeting this recommendation on average?</p></li>
+<li><p>If we wanted to estimate the mean within 15 minutes (0.25 hours), how many cadets should we survey?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Since <span class="math inline">\(n = 50 \geq 30\)</span>, we use the <span class="math inline">\(z\)</span>-interval. <span class="math inline">\(z^* = 1.96\)</span></li>
+</ol>
+<p><span class="math display">\[5.8 \pm 1.96 \cdot \frac{1.2}{\sqrt{50}} = 5.8 \pm 0.332 = (5.468, \; 6.132)\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.467383 6.132617</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li><p><strong>No</strong> — the entire interval is below 7 hours. We are 95% confident the average cadet gets between 5.47 and 6.13 hours of sleep, well below the 7-hour recommendation.</p></li>
+<li><p>Using <span class="math inline">\(\sigma \approx s = 1.2\)</span>:</p></li>
+</ol>
+<p><span class="math display">\[n = \left(\frac{1.96 \times 1.2}{0.25}\right)^2 = \left(9.408\right)^2 = 88.5 \implies n = 89\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 89</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-19.html">Lesson 19: Confidence Intervals II</a></p>
+<ul>
+<li>Confidence intervals for proportions</li>
+<li>Choosing sample size for desired precision</li>
+<li>Interpreting CIs in context</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WebAssign 7.1, 7.2</strong> - Due before Lesson 19</li>
+<li><strong>WPR II</strong> - Lesson 27</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-17.html" class="pagination-link" aria-label="Lesson 17">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 17</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA206x-AY26-2/lesson-19.html" class="pagination-link" aria-label="Lesson 19">
+        <span class="nav-page-text">Lesson 19</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

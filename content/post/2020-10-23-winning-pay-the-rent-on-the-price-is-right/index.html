@@ -1,0 +1,342 @@
+---
+title: Winning "Pay The Rent" on The Price Is Right
+author: Dusty Turner
+date: '2020-10-23'
+slug: winning-pay-the-rent-on-the-price-is-right
+categories:
+  - R
+  - Kids
+  - Price Is Right
+  - Linear Programing
+  - Web Scraping
+  - Games
+tags:
+  - R
+  - Kids
+  - Price Is Right
+  - Linear Programing
+  - Web Scraping
+  - Games
+cover: /media/tpir_logo.png
+---
+
+<script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index_files/jquery/jquery.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/datatables-binding/datatables.js"></script>
+<link href="{{< blogdown/postref >}}index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="{{< blogdown/postref >}}index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/crosstalk/js/crosstalk.min.js"></script>
+
+
+<p>As I mentioned in a <a href="https://www.dustysturner.com/post/wheel-spin-strategy-on-the-price-is-right">previous blog post</a>, my family and I have found different activities to do as all our other activities are on hold due to the COVID-19 lockdown.</p>
+<p>In that post, I looked at first player’s strategy when spinning the big wheel prior to the showcase showdown.</p>
+<p>In this post, I’ll explore the rarely won game, Pay the Rent</p>
+<center>
+<img src="images/pay_the_rent.jpg" />
+<figcaption>
+<a href="https://priceisright.fandom.com/wiki/Pay_the_Rent?file=PTR552020_2.jpg">Pay The Rent</a>
+</figcaption>
+</center>
+<div id="pay-the-rent" class="section level1">
+<h1>Pay The Rent</h1>
+<p>Pay The Rent is a challenging game. Essentially, given 6 products, you must estimate the prices of all the products, and place them in 4 tiers. The four tiers are the mailbox (1 product), first floor (2 products), second floor (2 products), and the attic (1 product). The total price of all the products on each floor must cost more than the products on the floor below it.</p>
+<p>After arranging the items, the player must opt in to look at the prices for each floor. The mailbox is a given 1000 because its the first selection. For each additional floor the player opts in, they win a successive 5000, 10,000, and potentially 100,000. However, if the player opts in and loses, they lose everything. More specific and thorough rules can be found at <a href="https://priceisright.fandom.com/wiki/Pay_the_Rent#Trivia">The Price Is Right Fandom</a>.</p>
+<p>The typical strategy for a player is to choose the cheapest product for the bottom floor, but this strategy is rarely successful because that player needs this cheaper product to offset the cost of a more expensive product on a higher level. One can quickly see the challenge of picking which price to put on the bottom level to maximize the chance of winning $100,000.</p>
+<p>Because of this challenge, the game has only been won 5 times out of the 85 times its been played. The Price Is Right has changed up the spread of the prices of the items on several occasions to make the game more likely to win (thus having more than 1 correct solution). Details about these games are <a href="https://priceisright.fandom.com/wiki/Pay_the_Rent/Solutions">here</a>.</p>
+<p>To gain a better understanding of how to play, here is one of the few winning contestants playing the game.</p>
+<p>{{% youtube "QXh8szLAG00" %}}</p>
+</div>
+<div id="what-well-do" class="section level1">
+<h1>What We’ll Do</h1>
+<p>To Analyze this game, we’ll…</p>
+<ul>
+<li>Scrape all the prices from historical games</li>
+<li>Specify an integer program to solve one of these games</li>
+<li>Find the optimal solution using R</li>
+<li>Functionalize this process and solve all games</li>
+</ul>
+</div>
+<div id="scrape-the-data" class="section level1">
+<h1>Scrape the data</h1>
+<p>Since the point of this post is not to talk through web scraping, I’ll summarize how I do this.</p>
+<p>First, download the raw data. More specifics on how to scrap data can be found <a href="https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/">here</a> using <code>rvest</code>.</p>
+<pre class="r"><code>library(tidyverse)
+library(rvest)
+library(strex)
+tpir &lt;- read_html(&quot;https://priceisright.fandom.com/wiki/Pay_the_Rent/Solutions#September_20.2C_2010_.28.235231K.29&quot;)
+
+tpir_text &lt;- tpir %&gt;% 
+  html_nodes(&quot;td&quot;) %&gt;%
+  html_text() 
+tpir_text %&gt;%  head</code></pre>
+<pre><code>## [1] &quot;1\n&quot;                                                                     
+## [2] &quot;Pantene shampoo ($5.99)\n&quot;                                               
+## [3] &quot;Red Baron pizza slices ($3.49) &amp; McCormick cinnamon ($2.98) = $6.47\n&quot;   
+## [4] &quot;Whink cook top cleaner ($5.49) &amp; Del Monte canned corn ($1.49) = $6.98\n&quot;
+## [5] &quot;9 Lives cat food ($7.30)\n&quot;                                              
+## [6] &quot;1\n&quot;</code></pre>
+<p>Second, identify which prizes to go which games, delete duplicate rows, and extract dollar values from the text string.</p>
+<pre class="r"><code>cleaning &lt;- 
+tpir_text %&gt;% 
+  as_tibble() %&gt;% 
+  mutate(value = str_replace(string = value,pattern = &quot;\\(2-pack\\)&quot;,replacement = &quot;2-pack&quot;))   %&gt;% 
+  mutate(game = row_number()) %&gt;% 
+  mutate(group = if_else(str_length(value)&lt;6 &amp; !str_detect(string = value,pattern = &quot;Same&quot;),&quot;New&quot;,&quot;&quot;)) %&gt;% 
+  mutate(group_id = if_else(group == &quot;New&quot;, str_c(group, &quot;_&quot;, game), NULL)) %&gt;% 
+  fill(group_id) %&gt;% 
+  group_by(group_id) %&gt;% 
+  filter(n()==5) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(group_number = lag(floor(1:nrow(.)/5),1)) %&gt;% 
+  mutate(really_new = if_else(group==&quot;New&quot;, str_sub(string = value,start = 1,1),NULL)) %&gt;% 
+  fill(really_new) %&gt;% 
+  filter(really_new == 1) %&gt;% 
+  mutate(group_number = replace_na(group_number,0))  %&gt;% 
+  mutate(dollars = as_tibble(str_extract_all(string = value,pattern = &quot;\\([^()]+\\)&quot;,simplify = TRUE))) %&gt;% 
+  mutate(dollars1 = dollars$V1, dollars2 = dollars$V2) %&gt;% 
+  select(-c(dollars,game,group,really_new,-group_id)) %&gt;%
+  rename(text = value) %&gt;% 
+  pivot_longer(cols = contains(&quot;dollars&quot;)) %&gt;% 
+  mutate(string_num = row_number()) 
+
+cleaning</code></pre>
+<pre><code>## # A tibble: 1,010 x 6
+##    text                           group_id group_number name   value  string_num
+##    &lt;chr&gt;                          &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt;
+##  1 &quot;1\n&quot;                          New_1               0 dolla~ &quot;&quot;              1
+##  2 &quot;1\n&quot;                          New_1               0 dolla~ &quot;&quot;              2
+##  3 &quot;Pantene shampoo ($5.99)\n&quot;    New_1               0 dolla~ &quot;($5.~          3
+##  4 &quot;Pantene shampoo ($5.99)\n&quot;    New_1               0 dolla~ &quot;&quot;              4
+##  5 &quot;Red Baron pizza slices ($3.4~ New_1               0 dolla~ &quot;($3.~          5
+##  6 &quot;Red Baron pizza slices ($3.4~ New_1               0 dolla~ &quot;($2.~          6
+##  7 &quot;Whink cook top cleaner ($5.4~ New_1               0 dolla~ &quot;($5.~          7
+##  8 &quot;Whink cook top cleaner ($5.4~ New_1               0 dolla~ &quot;($1.~          8
+##  9 &quot;9 Lives cat food ($7.30)\n&quot;   New_1               0 dolla~ &quot;($7.~          9
+## 10 &quot;9 Lives cat food ($7.30)\n&quot;   New_1               0 dolla~ &quot;&quot;             10
+## # ... with 1,000 more rows</code></pre>
+<p>Finally, to complete the dollar value extraction, we use <code>str_extract_currencies</code> and join it back into the data frame. Lastly, we convert it into ‘wide’ format.</p>
+<p>Admittedly, this is a little ‘hacky’ so I’d be happy for any feedback to improve this process.</p>
+<pre class="r"><code>final_data &lt;-
+  cleaning %&gt;%
+  left_join(str_extract_currencies(cleaning$value)) %&gt;%
+  mutate(amount = if_else(curr_sym == &quot;(&quot;, amount / 100, amount)) %&gt;%
+  filter(!is.na(amount)) %&gt;%
+  group_by(group_number) %&gt;%
+  filter(n() == 6) %&gt;%
+  mutate(product_order = row_number()) %&gt;%
+  select(group_number, product_order, amount) %&gt;%
+  mutate(product_order = str_c(&quot;product_&quot;, product_order)) %&gt;%
+  pivot_wider(names_from = product_order, values_from = amount) %&gt;%
+  janitor::clean_names() %&gt;%
+  ungroup()
+
+final_data</code></pre>
+<pre><code>## # A tibble: 99 x 7
+##    group_number product_1 product_2 product_3 product_4 product_5 product_6
+##           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1            0      5.99     3.49       2.98      5.49     1.49       7.3 
+##  2            1      2.89     1.69       1.49      3.29     0.290      4.19
+##  3            2      5.49     2.99       3.19      2.09     4.99       7.49
+##  4            3      4.99     1.79       3.46      2.99     2.59       6.29
+##  5            4      3.99     4.99       0.79      3.39     2.99       6.79
+##  6            5      4.99     3.39       3.49      7        0.79       7.99
+##  7            6      5.29     4.49       1.49      2.79     3.49       6.69
+##  8            7      6.99     3.69       3.49      1.89     5.7        7.99
+##  9            8      4.49     0.290      4.99      2.99     3.49       6.99
+## 10            9      2.49     0.99       3.69      0.69     4.09       4.99
+## # ... with 89 more rows</code></pre>
+</div>
+<div id="specify-the-integer-program" class="section level1">
+<h1>Specify the Integer Program</h1>
+<p>Since the point of this blog is to talk about the solution, I’ll go into more details here.</p>
+<div id="integer-program" class="section level2">
+<h2>Integer Program</h2>
+<p>To solve this program, we’ll need to set up a linear program.</p>
+<p>We’ll define the objective equation as such:</p>
+<p>Max</p>
+<p><span class="math inline">\(price_1 x_{1m} + price_2 x_{2m} + price_3 x_{3m} + price_4 x_{4m} + price_5 x_{5m} + price_6 x_{6m} + price_1 x_{1f} + ... + price_4 x_{4a}\)</span></p>
+<p>Where</p>
+<p><span class="math inline">\(price_n\)</span> is the price of prize ‘<span class="math inline">\(n\)</span>’</p>
+<p><span class="math inline">\(x_{ny}\)</span> is 1 if prize <span class="math inline">\(n\)</span> is selected on row <span class="math inline">\(y\)</span> or 0 otherwise.</p>
+<p><span class="math inline">\(y \in \{m = mailbox, f = first floor, s = second floor, a = attic \}\)</span></p>
+<p>Subject to;</p>
+<p>Floor capacity constraints:</p>
+<p><span class="math inline">\(x_{1a} + x_{2a} + x_{3a} + x_{4a} + x_{5a} + x_{6a} = 1\)</span></p>
+<p><span class="math inline">\(x_{1s} + x_{2s} + x_{3s} + x_{4s} + x_{5s} + x_{6s} = 2\)</span></p>
+<p><span class="math inline">\(x_{1f} + x_{2f} + x_{3f} + x_{4f} + x_{5f} + x_{6f} = 2\)</span></p>
+<p><span class="math inline">\(x_{1m} + x_{2m} + x_{3m} + x_{4m} + x_{5m} + x_{6m} = 1\)</span></p>
+<p>A price can only be selected once:</p>
+<p><span class="math inline">\(x_{1m} + x_{1f} + x_{1s} + x_{1a} = 1\)</span></p>
+<p><span class="math inline">\(x_{2m} + x_{2f} + x_{2s} + x_{2a} = 1\)</span></p>
+<p><span class="math inline">\(x_{3m} + x_{3f} + x_{3s} + x_{3a} = 1\)</span></p>
+<p><span class="math inline">\(x_{4m} + x_{4f} + x_{4s} + x_{4a} = 1\)</span></p>
+<p><span class="math inline">\(x_{5m} + x_{5f} + x_{5s} + x_{5a} = 1\)</span></p>
+<p><span class="math inline">\(x_{6m} + x_{6f} + x_{6s} + x_{6a} = 1\)</span></p>
+<p>The sum of the prices on each floor must cost more than the floor under it:</p>
+<p><span class="math inline">\(\sum_{n = 1}^6 price_n x_{na} - \sum_{n = 1}^6 price_n x_{ns} &gt; 0\)</span></p>
+<p><span class="math inline">\(\sum_{n = 1}^6 price_n x_{ns} - \sum_{n = 1}^6 price_n x_{nf} &gt; 0\)</span></p>
+<p><span class="math inline">\(\sum_{n = 1}^6 price_n x_{nf} - \sum_{n = 1}^6 price_n x_{nm} &gt; 0\)</span></p>
+</div>
+</div>
+<div id="coding-the-solution" class="section level1">
+<h1>Coding the Solution</h1>
+<p>This solution relies on the <code>lpSolve</code> library.</p>
+<pre class="r"><code>library(lpSolve)</code></pre>
+<p>We’ll begin by defining our objective equation.</p>
+<p>To create the objective equation, we’ll use the prices from the first time this game was played.</p>
+<p>It is a vector of all the prices.</p>
+<pre class="r"><code>prices &lt;- as.numeric(final_data[1,2:7])
+f_obj &lt;- rep(prices,4)
+f_obj</code></pre>
+<pre><code>##  [1] 5.99 3.49 2.98 5.49 1.49 7.30 5.99 3.49 2.98 5.49 1.49 7.30 5.99 3.49 2.98
+## [16] 5.49 1.49 7.30 5.99 3.49 2.98 5.49 1.49 7.30</code></pre>
+<p>We input the constraints via matrix form where the rows correspond to individual constraints and the columns correspond to elements of the objective function.</p>
+<p><code>lpSolve</code> assumes non-negativity constraints</p>
+<pre class="r"><code>f_con &lt;- matrix(c(1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ## attic gets 1 
+                  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ## 2nd floor gets 2
+                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, ## 1st floor gets 2
+                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, ## basement gets 1
+                  1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ## a selected once
+                  0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, ## b selected once
+                  0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, ## c selected once
+                  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, ## d selected once
+                  0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, ## e selected once
+                  0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, ## f selected once
+                  prices,-prices, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ## attic more than 2nd floor
+                  0, 0, 0, 0, 0, 0, prices,-prices, 0, 0, 0, 0, 0, 0, ## 2nd floor more than 1st floor
+                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, prices,-prices ## 1st floor more than mailbox
+), nrow = 13, byrow = TRUE)</code></pre>
+<p>Next, we code the equality signs for each constraint.</p>
+<pre class="r"><code>f_dir &lt;- c(&quot;=&quot;, ## attic gets 1
+           &quot;=&quot;, ## 2nd floor gets 2
+           &quot;=&quot;, ## 1st floor gets 2
+           &quot;=&quot;, ## basement gets 1
+           &quot;=&quot;, ## a selected once
+           &quot;=&quot;, ## b selected once
+           &quot;=&quot;, ## c selected once
+           &quot;=&quot;, ## d selected once
+           &quot;=&quot;, ## e selected once
+           &quot;=&quot;, ## f selected once
+           &quot;&gt;&quot;, ## attic more than 2nd floor
+           &quot;&gt;&quot;, ## 2nd floor more than 1st
+           &quot;&gt;&quot;)  ## 1st floor more than mailbox
+ 
+f_dir</code></pre>
+<pre><code>##  [1] &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;=&quot; &quot;&gt;&quot; &quot;&gt;&quot; &quot;&gt;&quot;</code></pre>
+<p>Next, we set values for the right hand side of the constraint matrix.</p>
+<pre class="r"><code>f_rhs &lt;- c(1, ## attic gets 1
+           2, ## 2nd floor gets 2
+           2, ## 1st floor gets 1
+           1, ## attic gets 1
+           1, ## a selected 1
+           1, ## b selected 1
+           1, ## c selected 1
+           1, ## d selected 1
+           1, ## e selected 1
+           1, ## f selected 1
+           0, ## attic - 2nd floor &gt; 0
+           0, ## 2nd floor - 1st floor &gt; 0
+           0  ## 1st floor - mailbox &gt; 0
+)</code></pre>
+<p>Now, we can solve the problem.</p>
+<pre class="r"><code>lp(
+  direction = &quot;max&quot;,
+  objective.in =  f_obj,
+  const.mat =  f_con,
+  const.dir =  f_dir,
+  const.rhs =  f_rhs, 
+  all.bin = TRUE
+  )</code></pre>
+<pre><code>## Success: the objective function is 26.74</code></pre>
+<p>You can see this only provides the solution to the objective equation. This isn’t interesting, because it should be the sum of all the prizes since our constrains limit us to selecting each prize once.</p>
+<p>What we need is the location of each prize</p>
+<pre class="r"><code>lp(
+  direction = &quot;max&quot;,
+  objective.in = f_obj,
+  const.mat = f_con,
+  const.dir = f_dir,
+  const.rhs = f_rhs,
+  all.bin = TRUE
+)$solution</code></pre>
+<pre><code>##  [1] 0 0 0 0 0 1 0 0 0 1 1 0 0 1 1 0 0 0 1 0 0 0 0 0</code></pre>
+<p>This provides the solution vector with 1s for the location of each prize in the objective equation. With a little massaging, we can understand this better</p>
+<pre class="r"><code>tibble(prize = rep(c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;),4),
+       row = sort(rep(c(&quot;1.attic&quot;,&quot;2.second&quot;,&quot;3.first&quot;,&quot;4.mailbox&quot;),6)),
+       selected = lp(&quot;max&quot;, f_obj, f_con, f_dir, f_rhs, all.bin = TRUE)$solution,
+       prices = rep(f_obj,1)
+       ) %&gt;%
+  filter(selected == 1) %&gt;% 
+  group_by(row) %&gt;% 
+  mutate(floor_sum = sum(prices))</code></pre>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   row [4]
+##   prize row       selected prices floor_sum
+##   &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f     1.attic          1   7.3       7.3 
+## 2 d     2.second         1   5.49      6.98
+## 3 e     2.second         1   1.49      6.98
+## 4 b     3.first          1   3.49      6.47
+## 5 c     3.first          1   2.98      6.47
+## 6 a     4.mailbox        1   5.99      5.99</code></pre>
+<p>We can see that this solution meets our constraints for the game. Nice!</p>
+<center>
+<!-- <img src="/images/tpir2/tpir_celebration.gif" alt="celebration" width="500"> -->
+<img src="images/tpir_celebration.gif" />
+<figcaption>
+<a href="https://giphy.com/gifs/cbs-dance-excited-the-price-is-right-kEEoiaBM3jCr6Sb95E">Celebration!</a>
+</center>
+<div id="functionalize-and-solve-all-games" class="section level2">
+<h2>Functionalize and solve all games</h2>
+<p>Lastly, lets set up a function to solve all the games.</p>
+<p>This function will take a price data frame, and from the optimal solution, output the location of each products that satisfies the constraints.</p>
+<pre class="r"><code>solution_getter &lt;- function(floor = 25, data){
+  
+  prices &lt;- as.numeric(data[floor,2:7])
+  f.obj &lt;- rep(prices,4)
+
+solution &lt;-
+tibble(prize = rep(c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;),4),
+       floor = sort(rep(c(&quot;1.attic&quot;,&quot;2.second&quot;,&quot;3.first&quot;,&quot;4.mailbox&quot;),6)),
+       selected = lp(&quot;max&quot;, f_obj, f_con, f_dir, f_rhs, all.bin = TRUE)$solution,
+       prices = rep(f.obj,1)) %&gt;% 
+  filter(selected == 1) %&gt;% 
+  group_by(floor) %&gt;% mutate(floor_sum = sum(prices)) %&gt;%  ungroup() %&gt;% 
+  select(-selected)
+return(solution)
+}</code></pre>
+<p>Given this function, we can find the solution for any game.</p>
+<p>Solution to game 1:</p>
+<pre class="r"><code>solution_getter(floor = 1, data = final_data)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   prize floor     prices floor_sum
+##   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f     1.attic     7.3       7.3 
+## 2 d     2.second    5.49      6.98
+## 3 e     2.second    1.49      6.98
+## 4 b     3.first     3.49      6.47
+## 5 c     3.first     2.98      6.47
+## 6 a     4.mailbox   5.99      5.99</code></pre>
+<p>Solution to game 50:</p>
+<pre class="r"><code>solution_getter(floor = 50,data = final_data)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   prize floor     prices floor_sum
+##   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f     1.attic     6.99      6.99
+## 2 d     2.second    5.49      6.48
+## 3 e     2.second    0.99      6.48
+## 4 b     3.first     3.99      5.98
+## 5 c     3.first     1.99      5.98
+## 6 a     4.mailbox   3.29      3.29</code></pre>
+</div>
+<div id="solve-all-games" class="section level2">
+<h2>Solve all games</h2>
+<p>With the help of the magical <code>purrr</code> family of functions, we can map this function over all the data.</p>
+<pre class="r"><code>purrr::map_dfr(1:(nrow(final_data)), ~solution_getter(floor = .x, data = final_data),.id = &quot;Game_ID&quot;) %&gt;% 
+  DT::datatable(options = list(pageLength = 6))</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550","551","552","553","554","555","556","557","558","559","560","561","562","563","564","565","566","567","568","569","570","571","572","573","574","575","576","577","578","579","580","581","582","583","584","585","586","587","588","589","590","591","592","593","594"],["1","1","1","1","1","1","2","2","2","2","2","2","3","3","3","3","3","3","4","4","4","4","4","4","5","5","5","5","5","5","6","6","6","6","6","6","7","7","7","7","7","7","8","8","8","8","8","8","9","9","9","9","9","9","10","10","10","10","10","10","11","11","11","11","11","11","12","12","12","12","12","12","13","13","13","13","13","13","14","14","14","14","14","14","15","15","15","15","15","15","16","16","16","16","16","16","17","17","17","17","17","17","18","18","18","18","18","18","19","19","19","19","19","19","20","20","20","20","20","20","21","21","21","21","21","21","22","22","22","22","22","22","23","23","23","23","23","23","24","24","24","24","24","24","25","25","25","25","25","25","26","26","26","26","26","26","27","27","27","27","27","27","28","28","28","28","28","28","29","29","29","29","29","29","30","30","30","30","30","30","31","31","31","31","31","31","32","32","32","32","32","32","33","33","33","33","33","33","34","34","34","34","34","34","35","35","35","35","35","35","36","36","36","36","36","36","37","37","37","37","37","37","38","38","38","38","38","38","39","39","39","39","39","39","40","40","40","40","40","40","41","41","41","41","41","41","42","42","42","42","42","42","43","43","43","43","43","43","44","44","44","44","44","44","45","45","45","45","45","45","46","46","46","46","46","46","47","47","47","47","47","47","48","48","48","48","48","48","49","49","49","49","49","49","50","50","50","50","50","50","51","51","51","51","51","51","52","52","52","52","52","52","53","53","53","53","53","53","54","54","54","54","54","54","55","55","55","55","55","55","56","56","56","56","56","56","57","57","57","57","57","57","58","58","58","58","58","58","59","59","59","59","59","59","60","60","60","60","60","60","61","61","61","61","61","61","62","62","62","62","62","62","63","63","63","63","63","63","64","64","64","64","64","64","65","65","65","65","65","65","66","66","66","66","66","66","67","67","67","67","67","67","68","68","68","68","68","68","69","69","69","69","69","69","70","70","70","70","70","70","71","71","71","71","71","71","72","72","72","72","72","72","73","73","73","73","73","73","74","74","74","74","74","74","75","75","75","75","75","75","76","76","76","76","76","76","77","77","77","77","77","77","78","78","78","78","78","78","79","79","79","79","79","79","80","80","80","80","80","80","81","81","81","81","81","81","82","82","82","82","82","82","83","83","83","83","83","83","84","84","84","84","84","84","85","85","85","85","85","85","86","86","86","86","86","86","87","87","87","87","87","87","88","88","88","88","88","88","89","89","89","89","89","89","90","90","90","90","90","90","91","91","91","91","91","91","92","92","92","92","92","92","93","93","93","93","93","93","94","94","94","94","94","94","95","95","95","95","95","95","96","96","96","96","96","96","97","97","97","97","97","97","98","98","98","98","98","98","99","99","99","99","99","99"],["f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a","f","d","e","b","c","a"],["1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox","1.attic","2.second","2.second","3.first","3.first","4.mailbox"],[7.3,5.49,1.49,3.49,2.98,5.99,4.19,3.29,0.29,1.69,1.49,2.89,7.49,2.09,4.99,2.99,3.19,5.49,6.29,2.99,2.59,1.79,3.46,4.99,6.79,3.39,2.99,4.99,0.79,3.99,7.99,7,0.79,3.39,3.49,4.99,6.69,2.79,3.49,4.49,1.49,5.29,7.99,1.89,5.7,3.69,3.49,6.99,6.99,2.99,3.49,0.29,4.99,4.49,4.99,0.69,4.09,0.99,3.69,2.49,8.27,6.79,0.99,3.39,2.99,5.99,16.29,1.49,13.99,2.99,12,8.5,6.49,2.99,2.89,0.35,4.99,4.49,10.99,0.99,9.21,4.29,4.59,6.99,3.99,1.69,1.99,2.99,0.29,2.49,5.29,3.49,1.39,1.99,2.29,3.99,4.99,3.79,1.09,1.89,2.49,4,5.19,3.99,0.89,2.09,1.79,3.49,4.99,3.99,0.69,1.79,1.99,3.29,2.99,2.29,0.45,1.09,1.19,1.99,4.22,1.99,2.09,1.49,2.29,2.99,13.99,6.82,6.99,4.29,7.69,9.99,8,3.49,3.99,4.6,2.29,5.99,3.99,0.89,2.79,1.49,1.69,2.69,8.49,1.19,7.18,6.47,0.99,0.59,9.99,5.79,2.29,1.09,3.39,0.59,16.99,7.18,7.49,1.99,3.99,1.49,12.99,4.99,5.79,2.49,2.79,1.59,12.99,1.59,5.79,2.49,2.79,4.99,8.49,5.99,2.29,6.42,1.49,3.49,5.49,3.49,1.59,2.29,2.59,3.99,6.49,4.39,1.79,4.99,0.89,2.29,8.99,5.29,2.39,1.89,3.99,0.79,7.49,0.99,5.99,2.99,3.49,4.29,7.99,0.69,6.49,2.99,3.29,5.29,8.99,6.79,1.49,5.49,2.59,3.79,7.99,6.49,0.59,4.19,2.49,5.19,11.99,1.99,6.98,3.99,1.59,5.43,14.99,3.69,4.99,4.09,2.19,1.99,14.99,3.69,4.99,1.99,2.19,4.09,14.99,2.19,4.99,1.99,3.69,4.09,14.99,1.99,4.99,2.19,3.69,4.09,14.99,2.19,3.69,1.99,3.69,4.99,14.99,1.99,4.09,2.19,3.69,4.99,13.99,8.8,4.49,9.99,2.99,5.99,8.49,1.29,6.99,2.99,4.49,4.99,9.49,4.29,3.49,6.49,0.99,4.99,8.99,4.29,3.49,6.49,0.99,4.99,9.99,4.99,3.79,6.49,0.99,4.29,6.99,5.49,0.99,3.99,1.99,3.29,8.99,6.99,1.29,4.49,2.99,4.99,9.99,6.99,0.59,4.19,3.19,4.99,9.99,3.99,5.49,4.99,2.99,0.79,7.49,0.99,5.99,2.99,3.49,5.29,10.99,3.99,6.59,2.19,7.99,1.29,6.99,2.69,3.99,0.99,5.19,1.99,9.49,4.19,4.99,1.29,6.99,3.49,9.99,0.99,7.99,3.49,4.69,2.99,9.9,4.49,4.99,1.29,7.99,3.29,8.99,1.29,6.99,2.99,4.99,4.49,12.99,1.29,9.99,4.49,6.49,3.99,9.99,0.99,7.99,2.99,3.19,2.59,6.99,2.79,3.99,0.99,5.49,1.99,10.99,3.99,5.49,1.19,7.99,3.99,9.49,3.79,4.79,1.29,6.99,2.99,18.99,4.99,12.99,6.99,8.99,0.7,9.99,0.99,8.99,2.99,4.19,2.49,10.99,3.99,6.49,2.19,7.99,1.29,8.49,3.99,4.19,0.79,6.99,1.79,10.99,3.99,5.99,1.29,7.99,3.49,12.36,1.29,9.99,3.49,4.99,2.99,14.99,4.99,6.99,3.19,3.99,1.59,14.99,3.19,6.99,1.59,3.99,4.99,14.99,1.59,6.99,3.19,3.99,4.99,9.99,4.69,4.99,1.49,7.99,2.5,9.86,0.99,7.95,3.69,4.99,2.49,11.99,3.49,7.99,2.99,6.99,5.99,10.99,0.35,8.99,3.49,4.99,2.29,9.99,3.29,6.25,0.35,7.99,4.19,9.97,3.49,5.99,1,7.99,2.39,8.99,3.49,4.99,0.94,6.79,2.99,8.49,2.99,4.49,0.62,6.25,2.69,10.99,2.39,7.99,4.29,4.99,3.99,9.99,3.79,5.99,1.49,7.79,2.99,9.99,1.99,7.66,1.49,6.49,3.99,8.99,1.39,6.99,3.49,4.29,2.49,9.59,1.99,6.99,3.29,5.49,4.49,9.49,2.99,5.99,0.59,7.99,4.29,8.99,3.49,4.99,1.29,6.99,2.99,9.99,1.5,7.99,3.49,5.49,2.99,8.49,3.99,4.19,0.59,6.99,1.79,10.99,1.99,7.99,4.99,4.49,3.99,10.99,1.59,7.99,4.29,4.99,3.99,17.99,4.49,6.99,2.29,3.79,0.99,10,3.99,4.99,1.49,6.99,3.29,13.99,4.49,8.47,1.29,9.99,6.49,10.99,3.99,6.49,2.29,7.44,1.99,9.99,1.99,7.49,1.49,6.49,3.99,11.99,6.49,4.99,1.29,8.99,3.29],[7.3,6.98,6.98,6.47,6.47,5.99,4.19,3.58,3.58,3.18,3.18,2.89,7.49,7.08,7.08,6.18,6.18,5.49,6.29,5.58,5.58,5.25,5.25,4.99,6.79,6.38,6.38,5.78,5.78,3.99,7.99,7.79,7.79,6.88,6.88,4.99,6.69,6.28,6.28,5.98,5.98,5.29,7.99,7.59,7.59,7.18,7.18,6.99,6.99,6.48,6.48,5.28,5.28,4.49,4.99,4.78,4.78,4.68,4.68,2.49,8.27,7.78,7.78,6.38,6.38,5.99,16.29,15.48,15.48,14.99,14.99,8.5,6.49,5.88,5.88,5.34,5.34,4.49,10.99,10.2,10.2,8.88,8.88,6.99,3.99,3.68,3.68,3.28,3.28,2.49,5.29,4.88,4.88,4.28,4.28,3.99,4.99,4.88,4.88,4.38,4.38,4,5.19,4.88,4.88,3.88,3.88,3.49,4.99,4.68,4.68,3.78,3.78,3.29,2.99,2.74,2.74,2.28,2.28,1.99,4.22,4.08,4.08,3.78,3.78,2.99,13.99,13.81,13.81,11.98,11.98,9.99,8,7.48,7.48,6.89,6.89,5.99,3.99,3.68,3.68,3.18,3.18,2.69,8.49,8.37,8.37,7.46,7.46,0.59,9.99,8.08,8.08,4.48,4.48,0.59,16.99,14.67,14.67,5.98,5.98,1.49,12.99,10.78,10.78,5.28,5.28,1.59,12.99,7.38,7.38,5.28,5.28,4.99,8.49,8.28,8.28,7.91,7.91,3.49,5.49,5.08,5.08,4.88,4.88,3.99,6.49,6.18,6.18,5.88,5.88,2.29,8.99,7.68,7.68,5.88,5.88,0.79,7.49,6.98,6.98,6.48,6.48,4.29,7.99,7.18,7.18,6.28,6.28,5.29,8.99,8.28,8.28,8.08,8.08,3.79,7.99,7.08,7.08,6.68,6.68,5.19,11.99,8.97,8.97,5.58,5.58,5.43,14.99,8.68,8.68,6.28,6.28,1.99,14.99,8.68,8.68,4.18,4.18,4.09,14.99,7.18,7.18,5.68,5.68,4.09,14.99,6.98,6.98,5.88,5.88,4.09,14.99,5.88,5.88,5.68,5.68,4.99,14.99,6.08,6.08,5.88,5.88,4.99,13.99,13.29,13.29,12.98,12.98,5.99,8.49,8.28,8.28,7.48,7.48,4.99,9.49,7.78,7.78,7.48,7.48,4.99,8.99,7.78,7.78,7.48,7.48,4.99,9.99,8.78,8.78,7.48,7.48,4.29,6.99,6.48,6.48,5.98,5.98,3.29,8.99,8.28,8.28,7.48,7.48,4.99,9.99,7.58,7.58,7.38,7.38,4.99,9.99,9.48,9.48,7.98,7.98,0.79,7.49,6.98,6.98,6.48,6.48,5.29,10.99,10.58,10.58,10.18,10.18,1.29,6.99,6.68,6.68,6.18,6.18,1.99,9.49,9.18,9.18,8.28,8.28,3.49,9.99,8.98,8.98,8.18,8.18,2.99,9.9,9.48,9.48,9.28,9.28,3.29,8.99,8.28,8.28,7.98,7.98,4.49,12.99,11.28,11.28,10.98,10.98,3.99,9.99,8.98,8.98,6.18,6.18,2.59,6.99,6.78,6.78,6.48,6.48,1.99,10.99,9.48,9.48,9.18,9.18,3.99,9.49,8.58,8.58,8.28,8.28,2.99,18.99,17.98,17.98,15.98,15.98,0.7,9.99,9.98,9.98,7.18,7.18,2.49,10.99,10.48,10.48,10.18,10.18,1.29,8.49,8.18,8.18,7.78,7.78,1.79,10.99,9.98,9.98,9.28,9.28,3.49,12.36,11.28,11.28,8.48,8.48,2.99,14.99,11.98,11.98,7.18,7.18,1.59,14.99,10.18,10.18,5.58,5.58,4.99,14.99,8.58,8.58,7.18,7.18,4.99,9.99,9.68,9.68,9.48,9.48,2.5,9.86,8.94,8.94,8.68,8.68,2.49,11.99,11.48,11.48,9.98,9.98,5.99,10.99,9.34,9.34,8.48,8.48,2.29,9.99,9.54,9.54,8.34,8.34,4.19,9.97,9.48,9.48,8.99,8.99,2.39,8.99,8.48,8.48,7.73,7.73,2.99,8.49,7.48,7.48,6.87,6.87,2.69,10.99,10.38,10.38,9.28,9.28,3.99,9.99,9.78,9.78,9.28,9.28,2.99,9.99,9.65,9.65,7.98,7.98,3.99,8.99,8.38,8.38,7.78,7.78,2.49,9.59,8.98,8.98,8.78,8.78,4.49,9.49,8.98,8.98,8.58,8.58,4.29,8.99,8.48,8.48,8.28,8.28,2.99,9.99,9.49,9.49,8.98,8.98,2.99,8.49,8.18,8.18,7.58,7.58,1.79,10.99,9.98,9.98,9.48,9.48,3.99,10.99,9.58,9.58,9.28,9.28,3.99,17.99,11.48,11.48,6.08,6.08,0.99,10,8.98,8.98,8.48,8.48,3.29,13.99,12.96,12.96,11.28,11.28,6.49,10.99,10.48,10.48,9.73,9.73,1.99,9.99,9.48,9.48,7.98,7.98,3.99,11.99,11.48,11.48,10.28,10.28,3.29]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Game_ID<\/th>\n      <th>prize<\/th>\n      <th>floor<\/th>\n      <th>prices<\/th>\n      <th>floor_sum<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"className":"dt-right","targets":[4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>

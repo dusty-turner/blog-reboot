@@ -1,0 +1,453 @@
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll("pre code.language-r").forEach(function(code) {
+    var pre = code.parentNode;
+    var wrapper = document.createElement("details");
+    var summary = document.createElement("summary");
+    summary.textContent = "Show code";
+    summary.style.cursor = "pointer";
+    summary.style.color = "#888";
+    summary.style.fontStyle = "italic";
+    summary.style.marginBottom = "0.5em";
+    wrapper.appendChild(summary);
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+  });
+});
+</script>
+<p>{{&lt; katex &gt;}}</p>
+<p>This post serves two purposes: it’s both an <strong>analysis of the Lucky $even game</strong> on The Price Is Right and a <strong>tutorial on data analysis in R</strong> – covering web scraping, data wrangling, visualization, and simulation. All code is folded by default; click “Show code” to expand any block and follow along.</p>
+<p>In previous posts, I’ve looked at <a href="https://www.dustysturner.com/post/wheel-spin-strategy-on-the-price-is-right">spinning the big wheel</a> and <a href="https://www.dustysturner.com/post/winning-pay-the-rent-on-the-price-is-right">winning Pay the Rent</a> on The Price Is Right. This time, let’s tackle <strong>Lucky $even</strong> – a deceptively simple game where a little number sense goes a long way.</p>
+<div id="how-lucky-even-works" class="section level1">
+<h1>How Lucky $even Works</h1>
+<p>The contestant plays for a car with a 5-digit price (e.g., $25,475). The first digit is revealed for free. The contestant starts with <strong>$7</strong> and must guess the remaining four digits one at a time.</p>
+<p>After each guess, the contestant loses money equal to how far off they were:</p>
+<p><span class="math display">\[\text{cost} = |\text{guess} - \text{actual}|\]</span></p>
+<p>If they guess exactly right, they lose nothing. After all four guesses, the contestant wins if:</p>
+<p><span class="math display">\[M_{\text{remaining}} = 7 - \sum_{i=1}^{4} |\text{guess}_i - \text{actual}_i| \geq 1\]</span></p>
+<p>The question is: <strong>what should you guess for each digit to maximize your chance of winning?</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1-CA0IfuMxM" frameborder="0" allowfullscreen>
+</iframe>
+</div>
+<div id="what-well-do" class="section level1">
+<h1>What We’ll Do</h1>
+<ul>
+<li>Scrape game-by-game results from the <a href="https://priceisright.fandom.com/wiki/Lucky_$even">Price Is Right Wiki</a></li>
+<li>Reconstruct actual car price digits from the money trail</li>
+<li>Examine digit distributions by position (thousands, hundreds, tens, ones)</li>
+<li>Find the optimal guess for each position</li>
+<li>Simulate win rates under different strategies</li>
+</ul>
+</div>
+<div id="scrape-clean-the-data" class="section level1">
+<h1>Scrape &amp; Clean the Data</h1>
+<p>The <a href="https://priceisright.fandom.com/wiki/Lucky_%24even">Price Is Right Wiki</a> has gallery pages documenting every playing of Lucky $even. Each image caption describes a digit guess: <em>“says 5 and is exactly right”</em>, <em>“says 4 and has $3 left”</em>, or <em>“says 6 and has lost all of her money.”</em> We scrape the 2010s and 2020s pages (~168 games), parse the captions with regex, and track money through each game.</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(rvest)
+library(scales)</code></pre>
+<pre class="r"><code>scrape_page &lt;- function(url) {
+  page &lt;- read_html(url)
+  content &lt;- page |&gt; html_element(&quot;.mw-parser-output&quot;)
+  nodes &lt;- content |&gt; html_elements(&quot;.mw-headline, .lightbox-caption&quot;)
+  tibble(
+    text = nodes |&gt; html_text2(),
+    type = if_else(str_detect(nodes |&gt; html_attr(&quot;class&quot;), &quot;mw-headline&quot;), &quot;heading&quot;, &quot;caption&quot;)
+  )
+}
+
+raw_data &lt;- map_dfr(
+  c(&quot;https://priceisright.fandom.com/wiki/Lucky_%24even/Gallery/2010s&quot;,
+    &quot;https://priceisright.fandom.com/wiki/Lucky_%24even/Gallery/2020s&quot;),
+  scrape_page, .id = &quot;page&quot;
+)
+
+# Group captions under their game heading, parse guess details
+games_raw &lt;- raw_data |&gt;
+  mutate(game_id = cumsum(type == &quot;heading&quot;)) |&gt;
+  filter(game_id &gt; 0)
+
+captions &lt;- games_raw |&gt;
+  filter(type == &quot;caption&quot;, str_detect(text, &quot;says \\d&quot;)) |&gt;
+  mutate(
+    guess = as.integer(str_extract(text, &quot;says (\\d)&quot;, group = 1)),
+    exactly_right = str_detect(text, &quot;exactly right&quot;),
+    money_left = as.integer(str_extract(text, &quot;\\$(\\d+) left&quot;, group = 1)),
+    lost_all = str_detect(text, &quot;lost all|lost .* only dollar&quot;)
+  )</code></pre>
+<p>With the captions parsed, we track money through each game. The contestant starts with $7 (with rare $8 or $10 exceptions we’ll exclude). For each digit <span class="math inline">\(i\)</span>, the money updates as:</p>
+<p><span class="math display">\[M_i = M_{i-1} - |\text{guess}_i - \text{actual}_i|\]</span></p>
+<p>where <span class="math inline">\(M_0 = 7\)</span>. The contestant wins if <span class="math inline">\(M_4 \geq 1\)</span>.</p>
+<pre class="r"><code># Detect non-standard starting money and exclude those games
+starting_money_overrides &lt;- games_raw |&gt;
+  filter(type == &quot;caption&quot;) |&gt;
+  mutate(
+    is_lucky_eight = str_detect(text, regex(&quot;Lucky Eight|\\$8 instead&quot;, ignore_case = TRUE)),
+    is_lucky_ten = str_detect(text, regex(&quot;Lucky Ten|\\$10 instead&quot;, ignore_case = TRUE))
+  ) |&gt;
+  group_by(game_id) |&gt;
+  summarize(starting_money = case_when(
+    any(is_lucky_ten) ~ 10L, any(is_lucky_eight) ~ 8L, TRUE ~ 7L
+  ))
+
+compute_money_trail &lt;- function(df, start_money) {
+  n &lt;- nrow(df)
+  mb &lt;- ma &lt;- integer(n)
+  for (i in seq_len(n)) {
+    mb[i] &lt;- if (i == 1) start_money else ma[i - 1]
+    ma[i] &lt;- case_when(
+      df$exactly_right[i] ~ mb[i], df$lost_all[i] ~ 0L,
+      !is.na(df$money_left[i]) ~ df$money_left[i], TRUE ~ NA_integer_
+    )
+  }
+  df |&gt; mutate(money_before = mb, money_after = ma)
+}
+
+game_data &lt;- captions |&gt;
+  group_by(game_id) |&gt; mutate(digit_position = row_number()) |&gt; ungroup() |&gt;
+  left_join(starting_money_overrides, by = &quot;game_id&quot;) |&gt;
+  group_by(game_id) |&gt;
+  group_modify(~ compute_money_trail(.x, .x$starting_money[1])) |&gt;
+  ungroup() |&gt;
+  mutate(cost = money_before - money_after)
+
+# Reconstruct actual digits: actual = guess ± cost (pick whichever falls in 0-9)
+game_data &lt;- game_data |&gt;
+  mutate(
+    option_high = guess + cost, option_low = guess - cost,
+    actual = case_when(
+      cost == 0 ~ guess,
+      option_high &gt; 9 &amp; option_low &gt;= 0 ~ option_low,
+      option_low &lt; 0 &amp; option_high &lt;= 9 ~ option_high,
+      option_high &lt;= 9 &amp; option_low &gt;= 0 ~ NA_integer_,
+      TRUE ~ NA_integer_
+    ),
+    ambiguous = cost &gt; 0 &amp; option_high &lt;= 9 &amp; option_low &gt;= 0
+  )
+
+# Keep standard $7 games with all 4 guesses
+standard_games &lt;- game_data |&gt;
+  filter(starting_money == 7) |&gt;
+  group_by(game_id) |&gt; filter(max(digit_position) == 4) |&gt; ungroup()
+
+game_outcomes &lt;- standard_games |&gt;
+  group_by(game_id) |&gt;
+  summarize(final_money = last(money_after), won = final_money &gt;= 1, .groups = &quot;drop&quot;)
+
+cat(&quot;Games:&quot;, nrow(game_outcomes), &quot;| Wins:&quot;, sum(game_outcomes$won, na.rm = TRUE),
+    &quot;(&quot;, percent(mean(game_outcomes$won, na.rm = TRUE)), &quot;) |&quot;,
+    &quot;Unambiguous digits:&quot;, sum(!is.na(standard_games$actual)), &quot;/&quot;, nrow(standard_games), &quot;\n&quot;)</code></pre>
+<pre><code>## Games: 109 | Wins: 57 ( 53% ) | Unambiguous digits: 149 / 436</code></pre>
+</div>
+<div id="digit-distributions-by-position" class="section level1">
+<h1>Digit Distributions by Position</h1>
+<p>One wrinkle: the wiki captions tell us the <strong>cost</strong> of each guess (how much money the contestant lost), but not always the <strong>actual digit</strong>. Since <span class="math inline">\(\text{cost} = |\text{guess} - \text{actual}|\)</span>, there are sometimes two solutions:</p>
+<p><span class="math display">\[\text{actual} = \text{guess} + \text{cost} \quad \text{or} \quad \text{actual} = \text{guess} - \text{cost}\]</span></p>
+<p>For example, if a contestant guesses <strong>5</strong> and loses <strong>$2</strong>, the actual digit was either <span class="math inline">\(5 - 2 = 3\)</span> or <span class="math inline">\(5 + 2 = 7\)</span> – we can’t tell which. That’s an <strong>ambiguous</strong> case. But if a contestant guesses <strong>8</strong> and loses <strong>$3</strong>, the actual could be <span class="math inline">\(8 - 3 = 5\)</span> or <span class="math inline">\(8 + 3 = 11\)</span>. Since 11 isn’t a valid digit (must be 0-9), the actual must be <strong>5</strong> – that’s <strong>unambiguous</strong>.</p>
+<p>The four digits correspond to the <strong>thousands</strong>, <strong>hundreds</strong>, <strong>tens</strong>, and <strong>ones</strong> place of the car price. Let’s start by looking at the distribution of actual digits for each position, using only the unambiguous cases.</p>
+<pre class="r"><code>position_labels &lt;- c(&quot;1&quot; = &quot;Thousands&quot;, &quot;2&quot; = &quot;Hundreds&quot;, &quot;3&quot; = &quot;Tens&quot;, &quot;4&quot; = &quot;Ones&quot;)
+
+digit_dist &lt;- standard_games |&gt;
+  filter(!is.na(actual)) |&gt;
+  mutate(position_label = factor(position_labels[as.character(digit_position)],
+                                  levels = c(&quot;Thousands&quot;, &quot;Hundreds&quot;, &quot;Tens&quot;, &quot;Ones&quot;)))
+
+ggplot(digit_dist, aes(x = factor(actual))) +
+  geom_bar(fill = &quot;steelblue&quot;, alpha = 0.8) +
+  facet_wrap(~ position_label, scales = &quot;free_y&quot;) +
+  labs(
+    title = &quot;Distribution of Actual Digits in Lucky $even&quot;,
+    subtitle = &quot;Based on unambiguous cases from ~168 games (2010s-2020s)&quot;,
+    x = &quot;Digit Value&quot;,
+    y = &quot;Count&quot;
+  ) +
+  theme_minimal(base_size = 14)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
+<p>For the ambiguous cases, we can include both possibilities weighted at 0.5 each to get a fuller picture:</p>
+<pre class="r"><code># Build weighted digit distribution including ambiguous cases
+weighted_dist &lt;- bind_rows(
+  # Unambiguous cases: weight = 1
+  standard_games |&gt;
+    filter(!is.na(actual)) |&gt;
+    transmute(digit_position, actual, weight = 1),
+  # Ambiguous cases: both options weighted at 0.5
+  standard_games |&gt;
+    filter(ambiguous) |&gt;
+    transmute(digit_position, actual = option_high, weight = 0.5),
+  standard_games |&gt;
+    filter(ambiguous) |&gt;
+    transmute(digit_position, actual = option_low, weight = 0.5)
+) |&gt;
+  mutate(position_label = factor(position_labels[as.character(digit_position)],
+                                  levels = c(&quot;Thousands&quot;, &quot;Hundreds&quot;, &quot;Tens&quot;, &quot;Ones&quot;)))
+
+ggplot(weighted_dist, aes(x = factor(actual), weight = weight)) +
+  geom_bar(fill = &quot;darkgreen&quot;, alpha = 0.8) +
+  facet_wrap(~ position_label, scales = &quot;free_y&quot;) +
+  labs(
+    title = &quot;Weighted Digit Distribution (Including Ambiguous Cases)&quot;,
+    subtitle = &quot;Ambiguous cases contribute 0.5 to each possible digit&quot;,
+    x = &quot;Digit Value&quot;,
+    y = &quot;Weighted Count&quot;
+  ) +
+  theme_minimal(base_size = 14)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="960" /></p>
+</div>
+<div id="optimal-strategy" class="section level1">
+<h1>Optimal Strategy</h1>
+<p>For each digit position, we want to choose the guess <span class="math inline">\(g\)</span> that minimizes the <strong>expected cost</strong>:</p>
+<p><span class="math display">\[g^* = \arg\min_{g \in \{0,\ldots,9\}} \; \mathbb{E}\left[|g - D|\right] = \arg\min_{g} \sum_{d=0}^{9} |g - d| \cdot P(D = d)\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is the random variable for the actual digit at that position. This is minimized by choosing the <strong>weighted median</strong> of the digit distribution.</p>
+<p>Let’s compute the expected cost of every possible guess (0-9) at each position:</p>
+<pre class="r"><code># Compute expected cost for each guess at each position
+expected_costs &lt;- weighted_dist |&gt;
+  group_by(digit_position, actual) |&gt;
+  summarize(prob_weight = sum(weight), .groups = &quot;drop&quot;) |&gt;
+  group_by(digit_position) |&gt;
+  mutate(prob = prob_weight / sum(prob_weight)) |&gt;
+  ungroup() |&gt;
+  crossing(guess_candidate = 0:9) |&gt;
+  mutate(cost = abs(guess_candidate - actual) * prob) |&gt;
+  group_by(digit_position, guess_candidate) |&gt;
+  summarize(expected_cost = sum(cost), .groups = &quot;drop&quot;) |&gt;
+  mutate(position_label = factor(position_labels[as.character(digit_position)],
+                                  levels = c(&quot;Thousands&quot;, &quot;Hundreds&quot;, &quot;Tens&quot;, &quot;Ones&quot;)))
+
+# Find optimal guess per position
+optimal &lt;- expected_costs |&gt;
+  group_by(digit_position, position_label) |&gt;
+  slice_min(expected_cost, n = 1, with_ties = FALSE) |&gt;
+  ungroup()
+
+ggplot(expected_costs, aes(x = guess_candidate, y = expected_cost)) +
+  geom_line(color = &quot;steelblue&quot;, linewidth = 1) +
+  geom_point(data = optimal, aes(x = guess_candidate, y = expected_cost),
+             color = &quot;red&quot;, size = 4) +
+  geom_text(data = optimal, aes(x = guess_candidate, y = expected_cost,
+                                 label = paste0(&quot;Guess &quot;, guess_candidate)),
+            vjust = -1.2, color = &quot;red&quot;, fontface = &quot;bold&quot;) +
+  facet_wrap(~ position_label) +
+  scale_x_continuous(breaks = 0:9) +
+  labs(
+    title = &quot;Expected Cost by Guess Value at Each Position&quot;,
+    subtitle = &quot;Red dot = optimal guess (minimizes expected dollar loss)&quot;,
+    x = &quot;Guess&quot;,
+    y = &quot;Expected Cost ($)&quot;
+  ) +
+  theme_minimal(base_size = 14)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
+<pre class="r"><code># Summary table
+optimal |&gt;
+  select(Position = position_label, `Optimal Guess` = guess_candidate,
+         `Expected Cost` = expected_cost) |&gt;
+  mutate(`Expected Cost` = round(`Expected Cost`, 2)) |&gt;
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Position</th>
+<th align="right">Optimal Guess</th>
+<th align="right">Expected Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Thousands</td>
+<td align="right">5</td>
+<td align="right">2.17</td>
+</tr>
+<tr class="even">
+<td align="left">Hundreds</td>
+<td align="right">6</td>
+<td align="right">1.79</td>
+</tr>
+<tr class="odd">
+<td align="left">Tens</td>
+<td align="right">5</td>
+<td align="right">2.02</td>
+</tr>
+<tr class="even">
+<td align="left">Ones</td>
+<td align="right">5</td>
+<td align="right">1.99</td>
+</tr>
+</tbody>
+</table>
+<p>The total expected cost across all four guesses using the optimal strategy is the sum across positions:</p>
+<p><span class="math display">\[\text{Total Expected Cost} = \sum_{i=1}^{4} \mathbb{E}\left[|g^*_i - D_i|\right]\]</span></p>
+<pre class="r"><code>total_optimal_cost &lt;- sum(optimal$expected_cost)
+cat(&quot;Total expected cost: $&quot;, round(total_optimal_cost, 2), &quot;\n&quot;)</code></pre>
+<pre><code>## Total expected cost: $ 7.96</code></pre>
+<pre class="r"><code>cat(&quot;Expected money remaining: $&quot;, round(7 - total_optimal_cost, 2), &quot;\n&quot;)</code></pre>
+<pre><code>## Expected money remaining: $ -0.96</code></pre>
+</div>
+<div id="simulation-comparing-strategies" class="section level1">
+<h1>Simulation: Comparing Strategies</h1>
+<p>Let’s put this to the test. We’ll simulate 100,000 games under four strategies and compare win rates. In each simulated game, we draw digits from the empirical distributions and check whether the contestant wins:</p>
+<p><span class="math display">\[P(\text{win} \mid \text{strategy}) = P\left(7 - \sum_{i=1}^{4} |g_i - D_i| \geq 1\right)\]</span></p>
+<p>The four strategies:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Optimal</strong> – guess the cost-minimizing digit <span class="math inline">\(g^*_i\)</span> at each position</li>
+<li><strong>Always 5</strong> – guess <span class="math inline">\(g_i = 5\)</span> for every digit (the “middle of the road” approach)</li>
+<li><strong>Always Mode</strong> – guess the most common digit at each position</li>
+<li><strong>Random</strong> – guess a random digit each time</li>
+</ol>
+<pre class="r"><code># Build digit probability distributions per position
+digit_probs &lt;- weighted_dist |&gt;
+  group_by(digit_position, actual) |&gt;
+  summarize(w = sum(weight), .groups = &quot;drop&quot;) |&gt;
+  group_by(digit_position) |&gt;
+  mutate(prob = w / sum(w)) |&gt;
+  ungroup()
+
+# Ensure all digits 0-9 represented for each position
+full_probs &lt;- crossing(digit_position = 1:4, actual = 0:9) |&gt;
+  left_join(digit_probs |&gt; select(digit_position, actual, prob),
+            by = c(&quot;digit_position&quot;, &quot;actual&quot;)) |&gt;
+  replace_na(list(prob = 0)) |&gt;
+  group_by(digit_position) |&gt;
+  mutate(prob = prob / sum(prob)) |&gt;  # renormalize
+  ungroup()
+
+prob_matrix &lt;- full_probs |&gt;
+  pivot_wider(names_from = actual, values_from = prob, names_prefix = &quot;d&quot;) |&gt;
+  select(-digit_position) |&gt;
+  as.matrix()
+
+# Mode per position
+mode_guesses &lt;- full_probs |&gt;
+  group_by(digit_position) |&gt;
+  slice_max(prob, n = 1, with_ties = FALSE) |&gt;
+  pull(actual)
+
+optimal_guesses &lt;- optimal$guess_candidate
+
+# Simulation function
+simulate_strategy &lt;- function(strategy_fn, n_games = 100000) {
+  results &lt;- replicate(n_games, {
+    money &lt;- 7
+    for (pos in 1:4) {
+      actual_digit &lt;- sample(0:9, 1, prob = prob_matrix[pos, ])
+      guess &lt;- strategy_fn(pos)
+      money &lt;- money - abs(guess - actual_digit)
+      if (money &lt;= 0) break
+    }
+    money
+  })
+  results
+}
+
+set.seed(42)
+results &lt;- tibble(
+  strategy = c(&quot;Optimal&quot;, &quot;Always 5&quot;, &quot;Always Mode&quot;, &quot;Random&quot;),
+  money = list(
+    simulate_strategy(function(pos) optimal_guesses[pos]),
+    simulate_strategy(function(pos) 5),
+    simulate_strategy(function(pos) mode_guesses[pos]),
+    simulate_strategy(function(pos) sample(0:9, 1))
+  )
+) |&gt;
+  unnest(money) |&gt;
+  mutate(won = money &gt;= 1)</code></pre>
+<pre class="r"><code># Win rate comparison
+win_rates &lt;- results |&gt;
+  group_by(strategy) |&gt;
+  summarize(
+    win_rate = mean(won),
+    avg_money = mean(money),
+    .groups = &quot;drop&quot;
+  ) |&gt;
+  mutate(strategy = fct_reorder(strategy, win_rate))
+
+ggplot(win_rates, aes(x = strategy, y = win_rate, fill = strategy)) +
+  geom_col(alpha = 0.8, show.legend = FALSE) +
+  geom_text(aes(label = percent(win_rate, accuracy = 0.1)), vjust = -0.5, fontface = &quot;bold&quot;) +
+  scale_y_continuous(labels = percent, limits = c(0, 1)) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +
+  labs(
+    title = &quot;Win Rate by Strategy (100,000 Simulated Games)&quot;,
+    x = &quot;Strategy&quot;,
+    y = &quot;Win Rate&quot;
+  ) +
+  theme_minimal(base_size = 14)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<pre class="r"><code># Distribution of remaining money
+ggplot(results |&gt; filter(strategy %in% c(&quot;Optimal&quot;, &quot;Always 5&quot;)),
+       aes(x = money, fill = strategy)) +
+  geom_histogram(binwidth = 1, position = &quot;dodge&quot;, alpha = 0.7) +
+  annotate(&quot;rect&quot;, xmin = 1, xmax = Inf, ymin = -Inf, ymax = Inf,
+           fill = &quot;green&quot;, alpha = 0.08) +
+  annotate(&quot;text&quot;, x = 4, y = Inf, label = &quot;Win (\u2265 $1)&quot;,
+           vjust = 2, color = &quot;darkgreen&quot;, fontface = &quot;bold&quot;, size = 5) +
+  labs(
+    title = &quot;Distribution of Remaining Money&quot;,
+    subtitle = &quot;Optimal vs. Always-5 Strategy&quot;,
+    x = &quot;Money Remaining ($)&quot;,
+    y = &quot;Count&quot;,
+    fill = &quot;Strategy&quot;
+  ) +
+  scale_x_continuous(breaks = scales::breaks_width(1)) +
+  theme_minimal(base_size = 14)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>win_rates |&gt;
+  mutate(
+    win_rate = percent(win_rate, accuracy = 0.1),
+    avg_money = paste0(&quot;$&quot;, round(avg_money, 2))
+  ) |&gt;
+  arrange(desc(win_rate)) |&gt;
+  rename(Strategy = strategy, `Win Rate` = win_rate, `Avg Money Remaining` = avg_money) |&gt;
+  knitr::kable()</code></pre>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="21%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Strategy</th>
+<th align="left">Win Rate</th>
+<th align="left">Avg Money Remaining</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Random</td>
+<td align="left">8.7%</td>
+<td align="left">$-1.41</td>
+</tr>
+<tr class="even">
+<td align="left">Optimal</td>
+<td align="left">30.2%</td>
+<td align="left"><span class="math inline">\(0.01               |
+|Always 5    |29.6%    |\)</span>-0.01</td>
+</tr>
+<tr class="odd">
+<td align="left">Always Mode</td>
+<td align="left">20.6%</td>
+<td align="left">$-0.24</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="how-does-this-compare-to-reality" class="section level1">
+<h1>How Does This Compare to Reality?</h1>
+<pre class="r"><code>actual_win_rate &lt;- mean(game_outcomes$won, na.rm = TRUE)
+cat(&quot;Actual win rate from wiki data:&quot;, percent(actual_win_rate, accuracy = 0.1), &quot;\n&quot;)</code></pre>
+<pre><code>## Actual win rate from wiki data: 52.8%</code></pre>
+<pre class="r"><code>cat(&quot;Optimal strategy win rate:&quot;, percent(win_rates$win_rate[win_rates$strategy == &quot;Optimal&quot;]), &quot;\n&quot;)</code></pre>
+<pre><code>## Optimal strategy win rate: 30%</code></pre>
+<p>Contestants on the show don’t play optimally – they’re guessing under pressure without data. But the actual win rate gives us a nice benchmark. The gap between reality and optimal represents how much better contestants <em>could</em> do with a data-driven approach.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Lucky $even rewards contestants who have good intuition about car prices. But even without knowing the exact price, a data-driven strategy can meaningfully improve your odds:</p>
+<ul>
+<li><strong>Car price digits are not uniformly distributed.</strong> Certain digits appear far more often at each position, driven by how manufacturers price their cars.</li>
+<li><strong>The “optimal” strategy is essentially just guessing 5 every time.</strong> The data-driven median produces mostly 5s with one position suggesting a 6 – but with only ~168 games of data, that difference is likely noise. The takeaway isn’t a magic sequence of digits; it’s that <strong>5 is a remarkably good default guess</strong> because car price digits tend to cluster in the middle of the 0-9 range.</li>
+<li><strong>Guessing 5 every time already does quite well</strong> compared to random guessing or other naive strategies. You don’t need to memorize anything fancy – just guess 5 and hope for the best.</li>
+</ul>
+<p>So the next time Drew Carey calls you down and you find yourself playing Lucky $even, the strategy is simple: <strong>guess 5 for every digit</strong>. It won’t guarantee a win, but the data says it gives you the best shot. Just don’t forget to bring that last dollar.</p>
+</div>

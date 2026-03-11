@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Data Manipulation | Intermediate R</title>
+  <meta name="description" content="2 Data Manipulation | Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Data Manipulation | Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Data Manipulation | Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner and Robert Ward" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="3-data-visualization.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#distance-learning-challenges"><i class="fa fa-check"></i><b>1.2</b> Distance Learning Challenges</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#class-structure"><i class="fa fa-check"></i><b>1.3</b> Class Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#learning-recommendations"><i class="fa fa-check"></i><b>1.4</b> Learning Recommendations</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.5</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instructors-introduction"><i class="fa fa-check"></i><b>1.6</b> Instructors Introduction</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.7</b> Course Intent</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.8</b> Tidy Ecosystem</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.9</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#prerequisite-packages"><i class="fa fa-check"></i><b>1.10</b> Prerequisite Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>3.2</b> Scatter Plot</a></li>
+<li class="chapter" data-level="3.3" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.3</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-functional-programming.html"><a href="4-functional-programming.html"><i class="fa fa-check"></i><b>4</b> Functional Programming</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-functional-programming.html"><a href="4-functional-programming.html#an-interesting-question"><i class="fa fa-check"></i><b>4.1</b> An Interesting Question</a></li>
+<li class="chapter" data-level="4.2" data-path="4-functional-programming.html"><a href="4-functional-programming.html#a-more-general-question"><i class="fa fa-check"></i><b>4.2</b> A More General Question</a></li>
+<li class="chapter" data-level="4.3" data-path="4-functional-programming.html"><a href="4-functional-programming.html#even-more-generally-writing-a-function"><i class="fa fa-check"></i><b>4.3</b> Even More Generally: Writing a Function</a></li>
+<li class="chapter" data-level="4.4" data-path="4-functional-programming.html"><a href="4-functional-programming.html#iteration-with-functions-purrr"><i class="fa fa-check"></i><b>4.4</b> Iteration with functions: <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-data-modeling.html"><a href="5-data-modeling.html"><i class="fa fa-check"></i><b>5</b> Data Modeling</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-data-for-analysis"><i class="fa fa-check"></i><b>5.1</b> Prepare Data For Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-data-modeling.html"><a href="5-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>5.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="5.3" data-path="5-data-modeling.html"><a href="5-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>5.3</b> Split Data test/train</a></li>
+<li class="chapter" data-level="5.4" data-path="5-data-modeling.html"><a href="5-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>5.4</b> Preprocess Data</a></li>
+<li class="chapter" data-level="5.5" data-path="5-data-modeling.html"><a href="5-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>5.5</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="5.6" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>5.6</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="5.7" data-path="5-data-modeling.html"><a href="5-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>5.7</b> Specify Models</a></li>
+<li class="chapter" data-level="5.8" data-path="5-data-modeling.html"><a href="5-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>5.8</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="5.9" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>5.9</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="5.10" data-path="5-data-modeling.html"><a href="5-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>5.10</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="5.11" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-models-with-best-parameters"><i class="fa fa-check"></i><b>5.11</b> Execute Models With Best Parameters</a></li>
+<li class="chapter" data-level="5.12" data-path="5-data-modeling.html"><a href="5-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>5.12</b> Compare Models</a></li>
+<li class="chapter" data-level="5.13" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>5.13</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="5.14" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>5.14</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="5.15" data-path="5-data-modeling.html"><a href="5-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>5.15</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-text-analysis.html"><a href="6-text-analysis.html"><i class="fa fa-check"></i><b>6</b> Text Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-text-analysis.html"><a href="6-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>6.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="6.2" data-path="6-text-analysis.html"><a href="6-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>6.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="6.3" data-path="6-text-analysis.html"><a href="6-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>6.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="6.4" data-path="6-text-analysis.html"><a href="6-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>6.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="6.5" data-path="6-text-analysis.html"><a href="6-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>6.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="6.6" data-path="6-text-analysis.html"><a href="6-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>6.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="6.7" data-path="6-text-analysis.html"><a href="6-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>6.7</b> Visualizations</a></li>
+<li class="chapter" data-level="6.8" data-path="6-text-analysis.html"><a href="6-text-analysis.html#n-gram-analysis"><i class="fa fa-check"></i><b>6.8</b> N-Gram Analysis</a></li>
+<li class="chapter" data-level="6.9" data-path="6-text-analysis.html"><a href="6-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>6.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="6.10" data-path="6-text-analysis.html"><a href="6-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>6.10</b> Topic Modeling</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation" class="section level1">
+<h1><span class="header-section-number">2</span> Data Manipulation</h1>
+<p>In this section, you will learn:</p>
+<ol style="list-style-type: decimal">
+<li>Some nuances of reading in data.</li>
+<li>The basics of <code>dplyr</code> to manipulate data.</li>
+</ol>
+<ul>
+<li><code>select</code></li>
+<li><code>mutate</code></li>
+<li><code>filter</code></li>
+<li><code>group_by</code></li>
+<li><code>summarize</code></li>
+<li><code>arrange</code></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>A few more advanced <code>dplyr</code> concepts.</li>
+<li>How to do ‘joins’.</li>
+</ol>
+<p>In this section, we will use the following libraries:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(janitor)</a></code></pre></div>
+<div id="read-in-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Read in Data</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   playerID = col_character(),
+##   teamID = col_character(),
+##   lgID = col_character(),
+##   SF = col_logical(),
+##   GIDP = col_logical()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre><code>## Warning: 45441 parsing failures.
+##   row  col           expected actual                       file
+## 25015 GIDP 1/0/T/F/TRUE/FALSE     2  &#39;data_sources/Batting.csv&#39;
+## 25016 GIDP 1/0/T/F/TRUE/FALSE     10 &#39;data_sources/Batting.csv&#39;
+## 25018 GIDP 1/0/T/F/TRUE/FALSE     4  &#39;data_sources/Batting.csv&#39;
+## 25028 GIDP 1/0/T/F/TRUE/FALSE     8  &#39;data_sources/Batting.csv&#39;
+## 25030 GIDP 1/0/T/F/TRUE/FALSE     3  &#39;data_sources/Batting.csv&#39;
+## ..... .... .................. ...... ..........................
+## See problems(...) for more details.</code></pre>
+<pre><code>## # A tibble: 102,816 x 22
+##    playerID  yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB    SO   IBB   HBP    SH SF    GIDP 
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt; &lt;lgl&gt;
+##  1 abercda01   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0     0    NA    NA    NA NA    NA   
+##  2 addybo01    1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4     0    NA    NA    NA NA    NA   
+##  3 allisar01   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2     5    NA    NA    NA NA    NA   
+##  4 allisdo01   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0     2    NA    NA    NA NA    NA   
+##  5 ansonca01   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2     1    NA    NA    NA NA    NA   
+##  6 armstbo01   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0     1    NA    NA    NA NA    NA   
+##  7 barkeal01   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1     0    NA    NA    NA NA    NA   
+##  8 barnero01   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13     1    NA    NA    NA NA    NA   
+##  9 barrebi01   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0     0    NA    NA    NA NA    NA   
+## 10 barrofr01   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0     0    NA    NA    NA NA    NA   
+## # ... with 102,806 more rows</code></pre>
+<div id="fix-read-in-errors" class="section level3 unnumbered">
+<h3>Fix Read In Errors</h3>
+<p><code>read_csv</code> Looks at the first 1000 rows of data to guess column types, so it often makes mistakes if those 1000 rows are empty for a specific column. We can specify the types of certain columns, or tell it to look at more rows before guessing data types.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>()))</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 22
+##    playerID  yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB    SO   IBB   HBP    SH    SF  GIDP
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0     0    NA    NA    NA    NA    NA
+##  2 addybo01    1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4     0    NA    NA    NA    NA    NA
+##  3 allisar01   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2     5    NA    NA    NA    NA    NA
+##  4 allisdo01   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0     2    NA    NA    NA    NA    NA
+##  5 ansonca01   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2     1    NA    NA    NA    NA    NA
+##  6 armstbo01   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0     1    NA    NA    NA    NA    NA
+##  7 barkeal01   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1     0    NA    NA    NA    NA    NA
+##  8 barnero01   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13     1    NA    NA    NA    NA    NA
+##  9 barrebi01   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0     0    NA    NA    NA    NA    NA
+## 10 barrofr01   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0     0    NA    NA    NA    NA    NA
+## # ... with 102,806 more rows</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   playerID = col_character(),
+##   teamID = col_character(),
+##   lgID = col_character()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre><code>## # A tibble: 102,816 x 22
+##    playerID  yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB    SO   IBB   HBP    SH    SF  GIDP
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0     0    NA    NA    NA    NA    NA
+##  2 addybo01    1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4     0    NA    NA    NA    NA    NA
+##  3 allisar01   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2     5    NA    NA    NA    NA    NA
+##  4 allisdo01   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0     2    NA    NA    NA    NA    NA
+##  5 ansonca01   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2     1    NA    NA    NA    NA    NA
+##  6 armstbo01   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0     1    NA    NA    NA    NA    NA
+##  7 barkeal01   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1     0    NA    NA    NA    NA    NA
+##  8 barnero01   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13     1    NA    NA    NA    NA    NA
+##  9 barrebi01   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0     0    NA    NA    NA    NA    NA
+## 10 barrofr01   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0     0    NA    NA    NA    NA    NA
+## # ... with 102,806 more rows</code></pre>
+</div>
+<div id="clean-column-names" class="section level3 unnumbered">
+<h3>Clean Column Names</h3>
+<p><code>clean_names</code> provides some helpful processing, such as making column names lowercase and replacing spaces and periods with underscores.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 22
+##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb   hbp    sh    sf  gidp
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0     0    NA    NA    NA    NA    NA
+##  2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4     0    NA    NA    NA    NA    NA
+##  3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2     5    NA    NA    NA    NA    NA
+##  4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0     2    NA    NA    NA    NA    NA
+##  5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2     1    NA    NA    NA    NA    NA
+##  6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0     1    NA    NA    NA    NA    NA
+##  7 barkeal01    1871     1 RC1     &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1     0    NA    NA    NA    NA    NA
+##  8 barnero01    1871     1 BS1     &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13     1    NA    NA    NA    NA    NA
+##  9 barrebi01    1871     1 FW1     &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0     0    NA    NA    NA    NA    NA
+## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0     0    NA    NA    NA    NA    NA
+## # ... with 102,806 more rows</code></pre>
+</div>
+</div>
+<div id="analysis-with-dplyr" class="section level2">
+<h2><span class="header-section-number">2.2</span> Analysis with <code>dplyr</code></h2>
+<p>Who has the highest career slugging percentage? Let’s save the data we figured out how to correctly read in as an R object and start analyzing it.</p>
+<div id="select" class="section level3 unnumbered">
+<h3>Select</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<p><code>select</code> allows you to keep only certain columns. While this isn’t always necessary, it can be helpful to make it easier to glance at the data and see what you’re interested in.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g)</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 8
+##    player_id year_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01    1871     0     0     0     0     4     1
+##  2 addybo01     1871    32     6     0     0   118    25
+##  3 allisar01    1871    40     4     5     0   137    29
+##  4 allisdo01    1871    44    10     2     2   133    27
+##  5 ansonca01    1871    39    11     3     0   120    25
+##  6 armstbo01    1871    11     2     1     0    49    12
+##  7 barkeal01    1871     1     0     0     0     4     1
+##  8 barnero01    1871    63    10     9     0   157    31
+##  9 barrebi01    1871     1     1     0     0     5     1
+## 10 barrofr01    1871    13     2     1     0    86    18
+## # ... with 102,806 more rows</code></pre>
+<p>There are a number of helper functions that can be used in <code>select</code> to make it easier to “search” for columns to pick.</p>
+<p>In addition, a minus sign can be used to deselect columns.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;id&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 5
+##    player_id year_id team_id lg_id  gidp
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+##  1 abercda01    1871 TRO     &lt;NA&gt;     NA
+##  2 addybo01     1871 RC1     &lt;NA&gt;     NA
+##  3 allisar01    1871 CL1     &lt;NA&gt;     NA
+##  4 allisdo01    1871 WS3     &lt;NA&gt;     NA
+##  5 ansonca01    1871 RC1     &lt;NA&gt;     NA
+##  6 armstbo01    1871 FW1     &lt;NA&gt;     NA
+##  7 barkeal01    1871 RC1     &lt;NA&gt;     NA
+##  8 barnero01    1871 BS1     &lt;NA&gt;     NA
+##  9 barrebi01    1871 FW1     &lt;NA&gt;     NA
+## 10 barrofr01    1871 BS1     &lt;NA&gt;     NA
+## # ... with 102,806 more rows</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;_id&quot;</span>), <span class="op">-</span>lg_id)</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 3
+##    player_id year_id team_id
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  
+##  1 abercda01    1871 TRO    
+##  2 addybo01     1871 RC1    
+##  3 allisar01    1871 CL1    
+##  4 allisdo01    1871 WS3    
+##  5 ansonca01    1871 RC1    
+##  6 armstbo01    1871 FW1    
+##  7 barkeal01    1871 RC1    
+##  8 barnero01    1871 BS1    
+##  9 barrebi01    1871 FW1    
+## 10 barrofr01    1871 BS1    
+## # ... with 102,806 more rows</code></pre>
+</div>
+<div id="group_by" class="section level3 unnumbered">
+<h3>Group_by</h3>
+<p>One immediate challenge we can see in the data is that we have statistics for each year of each player’s career. To get career stats, we’ll need to add up all rows of data for each player.</p>
+<p>We can do this with the combination of <code>group_by</code> and <code>summarize</code>. The first step, <code>group_by</code>, doesn’t actually do anything to change the data - it essentially sets a flag on the dataframe that lets future <code>dplyr</code> functions know that they should operate on the data by group, instead of operating on the entire dataframe at once.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id)</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 8
+## # Groups:   player_id [18,915]
+##    player_id year_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01    1871     0     0     0     0     4     1
+##  2 addybo01     1871    32     6     0     0   118    25
+##  3 allisar01    1871    40     4     5     0   137    29
+##  4 allisdo01    1871    44    10     2     2   133    27
+##  5 ansonca01    1871    39    11     3     0   120    25
+##  6 armstbo01    1871    11     2     1     0    49    12
+##  7 barkeal01    1871     1     0     0     0     4     1
+##  8 barnero01    1871    63    10     9     0   157    31
+##  9 barrebi01    1871     1     1     0     0     5     1
+## 10 barrofr01    1871    13     2     1     0    86    18
+## # ... with 102,806 more rows</code></pre>
+</div>
+<div id="summarize" class="section level3 unnumbered">
+<h3>Summarize</h3>
+<p>Summarize runs the requested functions on the dataframe, by group, and returns a dataframe with one row per group and one column per specified summary. Here, we want to get each player’s career hits, doubles, triples, home runs, at-bats, and games, so that we can calculate slugging percentage, so we group by player_id and sum each of those columns.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h),</a>
+<a class="sourceLine" id="cb25-5" title="5">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb25-6" title="6">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb25-7" title="7">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb25-8" title="8">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb25-9" title="9">            <span class="dt">g =</span> <span class="kw">sum</span>(g))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 18,915 x 7
+##    player_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aardsda01     0     0     0     0     4   331
+##  2 aaronha01  3771   624    98   755 12364  3298
+##  3 aaronto01   216    42     6    13   944   437
+##  4 aasedo01      0     0     0     0     5   448
+##  5 abadan01      2     0     0     0    21    15
+##  6 abadfe01      1     0     0     0     9   315
+##  7 abadijo01    11     0     0     0    49    12
+##  8 abbated01   772    99    43    11  3044   855
+##  9 abbeybe01    38     3     3     0   225    79
+## 10 abbeych01   492    67    46    19  1751   451
+## # ... with 18,905 more rows</code></pre>
+</div>
+<div id="filter" class="section level3 unnumbered">
+<h3>Filter</h3>
+<p>We might only care about players with longer careers; players with very short but successful careers might bias our statistics.</p>
+<p>Filter allows us to only keep rows of our dataframe that return TRUE for a given logical statement. Here, we only keep rows (players) with more than 1000 career games. We filter <em>after</em> summarizing, so this refers to each player’s career stats; filtering before summarizing, here, would remove all of our data, unless a player somehow figured out how to play 1000 games in a single season!</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </a>
+<a class="sourceLine" id="cb28-5" title="5">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb28-6" title="6">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb28-7" title="7">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb28-8" title="8">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb28-9" title="9">            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-10" title="10"><span class="st">  </span><span class="kw">filter</span>(g <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) </a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 1,564 x 7
+##    player_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aaronha01  3771   624    98   755 12364  3298
+##  2 abreubo01  2470   574    59   288  8480  2425
+##  3 adairje01  1022   163    19    57  4019  1165
+##  4 adamsbo03  1082   188    49    37  4019  1281
+##  5 adamssp01  1588   249    48     9  5557  1424
+##  6 adcocjo01  1832   295    35   336  6606  1959
+##  7 ageeto01    999   170    27   130  3912  1129
+##  8 ainsmed01   707   108    54    22  3048  1078
+##  9 alfoned01  1532   282    18   146  5385  1506
+## 10 alicelu01  1031   189    53    47  3971  1341
+## # ... with 1,554 more rows</code></pre>
+</div>
+<div id="mutate" class="section level3 unnumbered">
+<h3>Mutate</h3>
+<p>Mutate allows us to create or modify columns of our dataframe. Here, we use it to calculate slugging percentage for each row (player). We can refer to other columns with bare column names and use them in our calculations.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </a>
+<a class="sourceLine" id="cb31-5" title="5">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb31-6" title="6">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb31-7" title="7">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb31-8" title="8">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb31-9" title="9">            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-10" title="10"><span class="st">  </span><span class="kw">filter</span>(g <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-11" title="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>hr) <span class="op">/</span><span class="st"> </span>ab)</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 1,564 x 8
+##    player_id     h   x2b   x3b    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aaronha01  3771   624    98   755 12364  3298 0.555
+##  2 abreubo01  2470   574    59   288  8480  2425 0.475
+##  3 adairje01  1022   163    19    57  4019  1165 0.347
+##  4 adamsbo03  1082   188    49    37  4019  1281 0.368
+##  5 adamssp01  1588   249    48     9  5557  1424 0.353
+##  6 adcocjo01  1832   295    35   336  6606  1959 0.485
+##  7 ageeto01    999   170    27   130  3912  1129 0.412
+##  8 ainsmed01   707   108    54    22  3048  1078 0.324
+##  9 alfoned01  1532   282    18   146  5385  1506 0.425
+## 10 alicelu01  1031   189    53    47  3971  1341 0.369
+## # ... with 1,554 more rows</code></pre>
+<p>To modify an existing column, just set the column name for the output of <code>mutate</code> to an existing column name. For instance, to round our new <code>slg</code> column to the conventional three digits:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </a>
+<a class="sourceLine" id="cb34-5" title="5">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb34-6" title="6">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb34-7" title="7">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb34-8" title="8">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb34-9" title="9">            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span><span class="kw">filter</span>(g <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-11" title="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>hr) <span class="op">/</span><span class="st"> </span>ab) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> <span class="kw">round</span>(slg, <span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 1,564 x 8
+##    player_id     h   x2b   x3b    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aaronha01  3771   624    98   755 12364  3298 0.555
+##  2 abreubo01  2470   574    59   288  8480  2425 0.475
+##  3 adairje01  1022   163    19    57  4019  1165 0.347
+##  4 adamsbo03  1082   188    49    37  4019  1281 0.368
+##  5 adamssp01  1588   249    48     9  5557  1424 0.353
+##  6 adcocjo01  1832   295    35   336  6606  1959 0.485
+##  7 ageeto01    999   170    27   130  3912  1129 0.412
+##  8 ainsmed01   707   108    54    22  3048  1078 0.324
+##  9 alfoned01  1532   282    18   146  5385  1506 0.425
+## 10 alicelu01  1031   189    53    47  3971  1341 0.369
+## # ... with 1,554 more rows</code></pre>
+</div>
+<div id="arrange" class="section level3 unnumbered">
+<h3>Arrange</h3>
+<p><code>arrange</code> sorts dataframes by one or more columns. It sorts in ascending order by default; to sort descending, wrap a column name in <code>desc()</code>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">slgdata &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, h ,x2b, x3b, hr, ab, g) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </a>
+<a class="sourceLine" id="cb37-5" title="5">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb37-6" title="6">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb37-7" title="7">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb37-8" title="8">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb37-9" title="9">            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-10" title="10"><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-11" title="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>hr)<span class="op">/</span>ab) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> <span class="kw">round</span>(slg, <span class="dv">3</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-13" title="13"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(slg))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">slgdata</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 8
+##    player_id     h   x2b   x3b    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ruthba01   2873   506   136   714  8398  2503 0.69 
+##  2 willite01  2654   525    71   521  7706  2292 0.634
+##  3 gehrilo01  2721   534   163   493  8001  2164 0.632
+##  4 foxxji01   2646   458   125   534  8134  2317 0.609
+##  5 bondsba01  2935   601    77   762  9847  2986 0.607
+##  6 greenha01  1628   379    71   331  5193  1394 0.605
+##  7 mcgwima01  1626   252     6   583  6187  1874 0.588
+##  8 ramirma02  2574   547    20   555  8244  2302 0.585
+##  9 dimagjo01  2214   389   131   361  6821  1736 0.579
+## 10 hornsro01  2930   541   169   301  8173  2259 0.577
+## # ... with 1,554 more rows</code></pre>
+</div>
+</div>
+<div id="joins" class="section level2">
+<h2><span class="header-section-number">2.3</span> Joins</h2>
+<p>In many projects, you will not have all of the data you need contained in a single table. You can use <code>dplyr</code>’s SQL-style join functions to combine tables. This isn’t always intuitive at first, especially with large amounts of data joining on multiple columns, but it’s dramatically easier and quicker than tools like VLOOKUP once you’re used to it.</p>
+<div id="player-id-data" class="section level3 unnumbered">
+<h3>Player ID Data</h3>
+<p>Our existing player data only has player ids with partial names. However, we have a dataset with lots of additional player information.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">player_info &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Master.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   birthYear = col_double(),
+##   birthMonth = col_double(),
+##   birthDay = col_double(),
+##   deathYear = col_double(),
+##   deathMonth = col_double(),
+##   deathDay = col_double(),
+##   weight = col_double(),
+##   height = col_double(),
+##   debut = col_date(format = &quot;&quot;),
+##   finalGame = col_date(format = &quot;&quot;)
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">player_info</a></code></pre></div>
+<pre><code>## # A tibble: 19,105 x 24
+##    playerID birthYear birthMonth birthDay birthCountry birthState birthCity deathYear deathMonth deathDay deathCountry deathState deathCity nameFirst nameLast nameGiven weight
+##    &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;
+##  1 aardsda~      1981         12       27 USA          CO         Denver           NA         NA       NA &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;      David     Aardsma  David Al~    215
+##  2 aaronha~      1934          2        5 USA          AL         Mobile           NA         NA       NA &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;      Hank      Aaron    Henry Lo~    180
+##  3 aaronto~      1939          8        5 USA          AL         Mobile         1984          8       16 USA          GA         Atlanta   Tommie    Aaron    Tommie L~    190
+##  4 aasedo01      1954          9        8 USA          CA         Orange           NA         NA       NA &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;      Don       Aase     Donald W~    190
+##  5 abadan01      1972          8       25 USA          FL         Palm Bea~        NA         NA       NA &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;      Andy      Abad     Fausto A~    184
+##  6 abadfe01      1985         12       17 D.R.         La Romana  La Romana        NA         NA       NA &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;      Fernando  Abad     Fernando~    220
+##  7 abadijo~      1850         11        4 USA          PA         Philadel~      1905          5       17 USA          NJ         Pemberton John      Abadie   John W.      192
+##  8 abbated~      1877          4       15 USA          PA         Latrobe        1957          1        6 USA          FL         Fort Lau~ Ed        Abbatic~ Edward J~    170
+##  9 abbeybe~      1869         11       11 USA          VT         Essex          1962          6       11 USA          VT         Colchest~ Bert      Abbey    Bert Wood    175
+## 10 abbeych~      1866         10       14 USA          NE         Falls Ci~      1926          4       27 USA          CA         San Fran~ Charlie   Abbey    Charles ~    169
+## # ... with 19,095 more rows, and 7 more variables: height &lt;dbl&gt;, bats &lt;chr&gt;, throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;, bbrefID &lt;chr&gt;</code></pre>
+<p>Let’s create a single <code>player</code> column from the first and last name columns, and drop everything else besides our player id and name columns.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">player_names &lt;-<span class="st"> </span>player_info <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">str_c</span>(nameFirst, <span class="st">&quot; &quot;</span>, nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;name&quot;</span>))</a>
+<a class="sourceLine" id="cb46-5" title="5"></a>
+<a class="sourceLine" id="cb46-6" title="6">player_names</a></code></pre></div>
+<pre><code>## # A tibble: 19,105 x 2
+##    playerID  player        
+##    &lt;chr&gt;     &lt;chr&gt;         
+##  1 aardsda01 David Aardsma 
+##  2 aaronha01 Hank Aaron    
+##  3 aaronto01 Tommie Aaron  
+##  4 aasedo01  Don Aase      
+##  5 abadan01  Andy Abad     
+##  6 abadfe01  Fernando Abad 
+##  7 abadijo01 John Abadie   
+##  8 abbated01 Ed Abbaticchio
+##  9 abbeybe01 Bert Abbey    
+## 10 abbeych01 Charlie Abbey 
+## # ... with 19,095 more rows</code></pre>
+</div>
+<div id="join-the-data" class="section level3 unnumbered">
+<h3>Join the Data</h3>
+<p>A “left join” on dataframes A and B keeps all of table A and adds columns from table B, matching up rows based on one or more specified joining columns. Here, we want to add the player names from B, matching by player id. However, the player id columns in the two dataframes are not spelled exactly the same way, so we have to tell <code>left_join</code> precisely which two columns to match up between dataframes.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">slgdata <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(player_names, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id     h   x2b   x3b    hr    ab     g   slg player        
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         
+##  1 ruthba01   2873   506   136   714  8398  2503 0.69  Babe Ruth     
+##  2 willite01  2654   525    71   521  7706  2292 0.634 Ted Williams  
+##  3 gehrilo01  2721   534   163   493  8001  2164 0.632 Lou Gehrig    
+##  4 foxxji01   2646   458   125   534  8134  2317 0.609 Jimmie Foxx   
+##  5 bondsba01  2935   601    77   762  9847  2986 0.607 Barry Bonds   
+##  6 greenha01  1628   379    71   331  5193  1394 0.605 Hank Greenberg
+##  7 mcgwima01  1626   252     6   583  6187  1874 0.588 Mark McGwire  
+##  8 ramirma02  2574   547    20   555  8244  2302 0.585 Manny Ramirez 
+##  9 dimagjo01  2214   389   131   361  6821  1736 0.579 Joe DiMaggio  
+## 10 hornsro01  2930   541   169   301  8173  2259 0.577 Rogers Hornsby
+## # ... with 1,554 more rows</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">slgname &lt;-<span class="st"> </span>slgdata <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(player_names, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</a></code></pre></div>
+</div>
+<div id="rename-columns" class="section level3 unnumbered">
+<h3>Rename Columns</h3>
+<p><code>rename</code> makes it easy to rename columns without changing anything else in a dataframe. It uses the format <code>newname = oldname</code>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id     h doubles triples    hr    ab     g   slg player        
+##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         
+##  1 ruthba01   2873     506     136   714  8398  2503 0.69  Babe Ruth     
+##  2 willite01  2654     525      71   521  7706  2292 0.634 Ted Williams  
+##  3 gehrilo01  2721     534     163   493  8001  2164 0.632 Lou Gehrig    
+##  4 foxxji01   2646     458     125   534  8134  2317 0.609 Jimmie Foxx   
+##  5 bondsba01  2935     601      77   762  9847  2986 0.607 Barry Bonds   
+##  6 greenha01  1628     379      71   331  5193  1394 0.605 Hank Greenberg
+##  7 mcgwima01  1626     252       6   583  6187  1874 0.588 Mark McGwire  
+##  8 ramirma02  2574     547      20   555  8244  2302 0.585 Manny Ramirez 
+##  9 dimagjo01  2214     389     131   361  6821  1736 0.579 Joe DiMaggio  
+## 10 hornsro01  2930     541     169   301  8173  2259 0.577 Rogers Hornsby
+## # ... with 1,554 more rows</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">slgname &lt;-<span class="st"> </span>slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</a></code></pre></div>
+</div>
+<div id="reorder-columns" class="section level3 unnumbered">
+<h3>Reorder Columns</h3>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id player             h doubles triples    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ruthba01  Babe Ruth       2873     506     136   714  8398  2503 0.69 
+##  2 willite01 Ted Williams    2654     525      71   521  7706  2292 0.634
+##  3 gehrilo01 Lou Gehrig      2721     534     163   493  8001  2164 0.632
+##  4 foxxji01  Jimmie Foxx     2646     458     125   534  8134  2317 0.609
+##  5 bondsba01 Barry Bonds     2935     601      77   762  9847  2986 0.607
+##  6 greenha01 Hank Greenberg  1628     379      71   331  5193  1394 0.605
+##  7 mcgwima01 Mark McGwire    1626     252       6   583  6187  1874 0.588
+##  8 ramirma02 Manny Ramirez   2574     547      20   555  8244  2302 0.585
+##  9 dimagjo01 Joe DiMaggio    2214     389     131   361  6821  1736 0.579
+## 10 hornsro01 Rogers Hornsby  2930     541     169   301  8173  2259 0.577
+## # ... with 1,554 more rows</code></pre>
+<p>As of dplyr 1.0.0, there is a new <code>relocate</code> function that moves the specified columns to the front by default.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">relocate</span>(<span class="kw">contains</span>(<span class="st">&quot;player&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id player             h doubles triples    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ruthba01  Babe Ruth       2873     506     136   714  8398  2503 0.69 
+##  2 willite01 Ted Williams    2654     525      71   521  7706  2292 0.634
+##  3 gehrilo01 Lou Gehrig      2721     534     163   493  8001  2164 0.632
+##  4 foxxji01  Jimmie Foxx     2646     458     125   534  8134  2317 0.609
+##  5 bondsba01 Barry Bonds     2935     601      77   762  9847  2986 0.607
+##  6 greenha01 Hank Greenberg  1628     379      71   331  5193  1394 0.605
+##  7 mcgwima01 Mark McGwire    1626     252       6   583  6187  1874 0.588
+##  8 ramirma02 Manny Ramirez   2574     547      20   555  8244  2302 0.585
+##  9 dimagjo01 Joe DiMaggio    2214     389     131   361  6821  1736 0.579
+## 10 hornsro01 Rogers Hornsby  2930     541     169   301  8173  2259 0.577
+## # ... with 1,554 more rows</code></pre>
+<p>We could also then move the <code>slg</code> column so that it’s right after the player columns.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">relocate</span>(<span class="kw">contains</span>(<span class="st">&quot;player&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">relocate</span>(slg, <span class="dt">.after =</span> player)</a></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id player           slg     h doubles triples    hr    ab     g
+##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ruthba01  Babe Ruth      0.69   2873     506     136   714  8398  2503
+##  2 willite01 Ted Williams   0.634  2654     525      71   521  7706  2292
+##  3 gehrilo01 Lou Gehrig     0.632  2721     534     163   493  8001  2164
+##  4 foxxji01  Jimmie Foxx    0.609  2646     458     125   534  8134  2317
+##  5 bondsba01 Barry Bonds    0.607  2935     601      77   762  9847  2986
+##  6 greenha01 Hank Greenberg 0.605  1628     379      71   331  5193  1394
+##  7 mcgwima01 Mark McGwire   0.588  1626     252       6   583  6187  1874
+##  8 ramirma02 Manny Ramirez  0.585  2574     547      20   555  8244  2302
+##  9 dimagjo01 Joe DiMaggio   0.579  2214     389     131   361  6821  1736
+## 10 hornsro01 Rogers Hornsby 0.577  2930     541     169   301  8173  2259
+## # ... with 1,554 more rows</code></pre>
+</div>
+</div>
+<div id="other-dplyr-tricks" class="section level2">
+<h2><span class="header-section-number">2.4</span> Other dplyr Tricks</h2>
+<div id="count" class="section level3 unnumbered">
+<h3>Count</h3>
+<p><code>count</code> creates tidy-format frequency tables for a given combination of columns. It’s a shortcut for <code>group_by(cols) %&gt;% summarize(n = n())</code>.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">count</span>(player_id)</a></code></pre></div>
+<pre><code>## # A tibble: 18,915 x 2
+##    player_id     n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 aardsda01     9
+##  2 aaronha01    23
+##  3 aaronto01     7
+##  4 aasedo01     13
+##  5 abadan01      3
+##  6 abadfe01      8
+##  7 abadijo01     2
+##  8 abbated01    10
+##  9 abbeybe01     6
+## 10 abbeych01     5
+## # ... with 18,905 more rows</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="st">  </span><span class="kw">count</span>(player_id, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 18,915 x 2
+##    player_id     n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 mcguide01    31
+##  2 henderi01    29
+##  3 newsobo01    29
+##  4 johnto01     28
+##  5 kaatji01     28
+##  6 ansonca01    27
+##  7 baineha01    27
+##  8 carltst01    27
+##  9 moyerja01    27
+## 10 ryanno01     27
+## # ... with 18,905 more rows</code></pre>
+</div>
+<div id="grouped-mutate" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Grouped Mutate</h3>
+<p><code>group_by</code> doesn’t just allow you to summarize - it also allows you to do <code>mutate</code> calculations within each group. For example, to calculate the proportion of their career home runs that each player hit during each year of their career, we could do the following. The key here is that the <code>sum</code> inside the <code>mutate</code> only sums up home runs within each group.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">prop_hr &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, hr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop_career_hr =</span> hr<span class="op">/</span><span class="kw">sum</span>(hr))</a>
+<a class="sourceLine" id="cb64-5" title="5"></a>
+<a class="sourceLine" id="cb64-6" title="6">prop_hr <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-7" title="7"><span class="st">  </span><span class="kw">filter</span>(player_id <span class="op">==</span><span class="st"> &quot;ruthba01&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 22 x 4
+## # Groups:   player_id [1]
+##    player_id year_id    hr prop_career_hr
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;
+##  1 ruthba01     1914     0        0      
+##  2 ruthba01     1915     4        0.00560
+##  3 ruthba01     1916     3        0.00420
+##  4 ruthba01     1917     2        0.00280
+##  5 ruthba01     1918    11        0.0154 
+##  6 ruthba01     1919    29        0.0406 
+##  7 ruthba01     1920    54        0.0756 
+##  8 ruthba01     1921    59        0.0826 
+##  9 ruthba01     1922    35        0.0490 
+## 10 ruthba01     1923    41        0.0574 
+## # ... with 12 more rows</code></pre>
+</div>
+<div id="conditional-verb-variants" class="section level3 unnumbered">
+<h3>Conditional verb variants</h3>
+<p><code>dplyr</code> provides conditional variants of many of the main verbs, ending in <code>_at</code>, <code>_if</code>, and <code>_all</code>. These are most often used with <code>summarize</code>, <code>mutate</code>, or <code>rename</code> to operate on multiple columns at once.</p>
+<p>The rather wordy <code>summarize</code> that we used earlier can be replaced with a <code>summarize_at</code> that specifies the columns to be summarized and one or more functions to apply to each columns. Anything that would work in <code>select()</code> can be wrapped in <code>vars()</code> to select columns, and function names can be bare, base-R-style anonymous functions, or <code>purrr</code>-style formula notation, which will be covered in section 4.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">slg_summary &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </a>
+<a class="sourceLine" id="cb66-4" title="4">            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</a>
+<a class="sourceLine" id="cb66-5" title="5">            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</a>
+<a class="sourceLine" id="cb66-6" title="6">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</a>
+<a class="sourceLine" id="cb66-7" title="7">            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</a>
+<a class="sourceLine" id="cb66-8" title="8">            <span class="dt">g =</span> <span class="kw">sum</span>(g)) </a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">head</span>(slg_summary)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   player_id     h   x2b   x3b    hr    ab     g
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 aardsda01     0     0     0     0     4   331
+## 2 aaronha01  3771   624    98   755 12364  3298
+## 3 aaronto01   216    42     6    13   944   437
+## 4 aasedo01      0     0     0     0     5   448
+## 5 abadan01      2     0     0     0    21    15
+## 6 abadfe01      1     0     0     0     9   315</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># single function with no additional arguments: bare function name</span></a>
+<a class="sourceLine" id="cb70-2" title="2">concise_slg_summary &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-4" title="4"><span class="st">  </span><span class="kw">summarize_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(h, x2b, x3b, hr, ab, g), <span class="dt">.funs =</span> sum)</a>
+<a class="sourceLine" id="cb70-5" title="5"></a>
+<a class="sourceLine" id="cb70-6" title="6">concise_slg_summary</a></code></pre></div>
+<pre><code>## # A tibble: 18,915 x 7
+##    player_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aardsda01     0     0     0     0     4   331
+##  2 aaronha01  3771   624    98   755 12364  3298
+##  3 aaronto01   216    42     6    13   944   437
+##  4 aasedo01      0     0     0     0     5   448
+##  5 abadan01      2     0     0     0    21    15
+##  6 abadfe01      1     0     0     0     9   315
+##  7 abadijo01    11     0     0     0    49    12
+##  8 abbated01   772    99    43    11  3044   855
+##  9 abbeybe01    38     3     3     0   225    79
+## 10 abbeych01   492    67    46    19  1751   451
+## # ... with 18,905 more rows</code></pre>
+<p>Passing a named list of functions as the <code>.funs</code> argument allows you to run multiple summary functions on each selected column and name the resulting summary columns.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">multi_summary &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb72-3" title="3"><span class="st">  </span><span class="kw">summarize_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(h, x2b, x3b, hr, ab, g), <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="st">&quot;sum&quot;</span> =<span class="st"> </span>sum, <span class="st">&quot;sd&quot;</span> =<span class="st"> </span>sd))</a>
+<a class="sourceLine" id="cb72-4" title="4"></a>
+<a class="sourceLine" id="cb72-5" title="5">multi_summary</a></code></pre></div>
+<pre><code>## # A tibble: 18,915 x 13
+##    player_id h_sum x2b_sum x3b_sum hr_sum ab_sum g_sum   h_sd x2b_sd x3b_sd hr_sd   ab_sd  g_sd
+##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 aardsda01     0       0       0      0      4   331  0      0      0      0      0.726 22.0 
+##  2 aaronha01  3771     624      98    755  12364  3298 40.6   10.1    3.84  11.2   98.4   18.5 
+##  3 aaronto01   216      42       6     13    944   437 29.7    7.02   1.21   2.79 125.    45.5 
+##  4 aasedo01      0       0       0      0      5   448  0      0      0      0      1.39  16.2 
+##  5 abadan01      2       0       0      0     21    15  1.15   0      0      0      8.72   4   
+##  6 abadfe01      1       0       0      0      9   315  0.354  0      0      0      2.42  18.0 
+##  7 abadijo01    11       0       0      0     49    12  6.36   0      0      0     29.0    7.07
+##  8 abbated01   772      99      43     11   3044   855 65.7    9.29   4.55   1.20 250.    66.7 
+##  9 abbeybe01    38       3       3      0    225    79  3.78   0.548  0.837  0     27.3   10.5 
+## 10 abbeych01   492      67      46     19   1751   451 53.8    8.88   5.40   3.56 170.    41.8 
+## # ... with 18,905 more rows</code></pre>
+<p>The <code>_if</code> variant allows the user to run a <code>dplyr</code> operation on all columns for which some function returns <code>TRUE</code>. For instance, to add the string "_numeric" to the names of all numeric columns, we could use <code>rename_if</code>. We’ll run this on a subset of columns to simplify the display.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">numeric_rename &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="st">  </span><span class="kw">select</span>(player_id, year_id, lg_id, g, ab) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb74-3" title="3"><span class="st">  </span><span class="kw">rename_if</span>(is.numeric, <span class="op">~</span><span class="kw">str_c</span>(.x, <span class="st">&quot;_numeric&quot;</span>))</a>
+<a class="sourceLine" id="cb74-4" title="4"></a>
+<a class="sourceLine" id="cb74-5" title="5">numeric_rename</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 5
+##    player_id year_id_numeric lg_id g_numeric ab_numeric
+##    &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 abercda01            1871 &lt;NA&gt;          1          4
+##  2 addybo01             1871 &lt;NA&gt;         25        118
+##  3 allisar01            1871 &lt;NA&gt;         29        137
+##  4 allisdo01            1871 &lt;NA&gt;         27        133
+##  5 ansonca01            1871 &lt;NA&gt;         25        120
+##  6 armstbo01            1871 &lt;NA&gt;         12         49
+##  7 barkeal01            1871 &lt;NA&gt;          1          4
+##  8 barnero01            1871 &lt;NA&gt;         31        157
+##  9 barrebi01            1871 &lt;NA&gt;          1          5
+## 10 barrofr01            1871 &lt;NA&gt;         18         86
+## # ... with 102,806 more rows</code></pre>
+<p>The <code>_all</code> variant simply runs the same operation on all columns. We’ll select down to a set of numeric columns, and then multiply all of them by two.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="st">  </span><span class="kw">select</span>(hr, ab, g) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-3" title="3"><span class="st">  </span><span class="kw">mutate_all</span>(<span class="op">~</span><span class="st"> </span>.x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 3
+##       hr    ab     g
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     0     8     2
+##  2     0   236    50
+##  3     0   274    58
+##  4     4   266    54
+##  5     0   240    50
+##  6     0    98    24
+##  7     0     8     2
+##  8     0   314    62
+##  9     0    10     2
+## 10     0   172    36
+## # ... with 102,806 more rows</code></pre>
+</div>
+<div id="across" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> <code>across()</code></h3>
+<p>The newest version of <code>dplyr</code> (1.0.0) introduced a new, arguably simpler way to achieve the same goals as these conditional function variants: the <code>across</code> function. <code>across</code> can be used with many of the dplyr verbs to operate on a specific subset of columns, specified with the same language as <code>select</code>. For example, <code>across</code> could be used in similar ways as the conditional variants above:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">multi_summary_across &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb78-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">across</span>(<span class="kw">c</span>(h, x2b, x3b, hr, ab, g), <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="st">&quot;sum&quot;</span> =<span class="st"> </span>sum, <span class="st">&quot;sd&quot;</span> =<span class="st"> </span>sd)))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">multi_summary_across</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 7
+## # Groups:   player_id [18,915]
+##    player_id     h   x2b   x3b    hr    ab     g
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aardsda01     0     0     0     0     0    11
+##  2 aardsda01     0     0     0     0     2    45
+##  3 aardsda01     0     0     0     0     0    25
+##  4 aardsda01     0     0     0     0     1    47
+##  5 aardsda01     0     0     0     0     0    73
+##  6 aardsda01     0     0     0     0     0    53
+##  7 aardsda01     0     0     0     0     0     1
+##  8 aardsda01     0     0     0     0     0    43
+##  9 aardsda01     0     0     0     0     1    33
+## 10 aaronha01   131    27     6    13   468   122
+## # ... with 102,806 more rows</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co"># multiply all selected numeric columns by 2</span></a>
+<a class="sourceLine" id="cb82-2" title="2">mutate_numeric_across &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-3" title="3"><span class="st">  </span><span class="kw">select</span>(player_id, hr, ab, g) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="kw">where</span>(is.numeric), <span class="op">~</span><span class="st"> </span>.x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb82-5" title="5"></a>
+<a class="sourceLine" id="cb82-6" title="6">mutate_numeric_across</a></code></pre></div>
+<pre><code>## # A tibble: 102,816 x 4
+##    player_id    hr    ab     g
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01     0     8     2
+##  2 addybo01      0   236    50
+##  3 allisar01     0   274    58
+##  4 allisdo01     4   266    54
+##  5 ansonca01     0   240    50
+##  6 armstbo01     0    98    24
+##  7 barkeal01     0     8     2
+##  8 barnero01     0   314    62
+##  9 barrebi01     0    10     2
+## 10 barrofr01     0   172    36
+## # ... with 102,806 more rows</code></pre>
+<p>However, <code>across</code> is very new and occasionally has serious performance issues, so it is not used above. More information can be found (here)[<a href="https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/" class="uri">https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/</a>];</p>
+</div>
+<div id="write-data" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Write Data</h3>
+<p>We will write this file to a folder so we can access it in later lessons / chapters.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1">slgname <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb84-2" title="2"><span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;data_sources/saved_data/slgname.csv&quot;</span>)</a></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

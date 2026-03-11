@@ -1,0 +1,178 @@
+---
+title: 'ESPN Fantasy Football V3 API for Private Leagues: An R Solution (Finally!)'
+author: Dusty Turner
+date: '2019-09-12'
+slug: espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally
+categories:
+  - ESPN API
+  - fantasy football
+  - tidyverse
+tags:
+  - ESPN API
+  - fantasy football
+  - tidyverse
+cover: /media/football.jpg
+---
+
+### Accessing ESPN's New V3 API for Private Leagues: How We Got Here
+
+This marks post 3 of n of my 2019 ESPN Fantasy Football blog posts.  In the last few months, ESPN upgraded their API from V2 to V3, breaking all of our previous work [accessing](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/) and [analysing](https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/) the data from the API.
+
+In my last two posts, I explored how to access data from ESPN's V3 API for [public](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/) leagues.  My best efforts to access data for private leagues in R fell short.  Using the work from my friend [Steve](https://twitter.com/thestevemo) on his [blog](https://stmorse.github.io/journal/espn-fantasy-v3.html), I was able to execute Python code inside R chunks with the library `reticulate`.  I wrote about that process in [post 2](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/). 
+
+My best efforts to access ESPN's new API in R fell short, that is, until I asked my friend [Nick](https://twitter.com/nickryanpaul).  Nick crushed this and I'm extremely grateful that he figured it out.  I'll detail below what he did.
+
+### A Recap
+
+For public league, you can simply request the data.
+
+We'll start with our URL.  Of course, replace the `league ID` with your `league ID`.  Though I explain the `tail` of the URL in detail on my previous [post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/), different derivatives of this will return different data.  
+
+```{r echo=TRUE}
+base = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/"
+year = "2019"
+mid = "/segments/0/leagues/"
+leagueID = "12345678"
+tail = "?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore"
+url = paste0(base,year,mid,leagueID,tail)
+url
+```
+
+### Request Private League Data
+
+#### Unsuccessful Attempts
+
+When requesting the data as the code below shows, we pass the URL to the `GET` command.  
+
+```{r}
+url = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/89417258?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore&scoringPeriodId=1"
+ESPNGet <- httr::GET(url = url)
+ESPNGet$status_code
+```
+
+The `status_code` returns `401`.  This is good and bad news.  Bad news because the API doesn't return any data.  In fact, we are not authorized to view this league
+
+```{r}
+ESPNRaw <- rawToChar(ESPNGet$content)
+ESPNFromJSON <- jsonlite::fromJSON(ESPNRaw)
+ESPNFromJSON$message
+```
+
+But a `status_code` of `401` is good news because it means the page exists (IE, we have our URL correct), but that its blocked.  
+
+### Request Private League Data
+
+#### Successful Attempts
+
+##### Finding Cookies
+
+To access private league data, you must pass your cookies in your API request to prove you belong to the league.  
+
+The ESPN fantasy football API requires two cookies; swid and espn_s2.
+
+You can find both of these cookies in Chrome in the following path:
+
+Settings >> Privacy and Security >> Site Settings >> Cookies >> See All Cookies and Site Data
+
+They’ll be listed among the ‘ESPN’ cookies. You can find these two cookies similarly in other browsers.
+
+```{r, evel = FALSE, include = TRUE}
+swid = "{cookie-with-curly-brackets-included}"
+espn_s2 =  "very%long%cookie%296%ish%characters%long%with%no%brackets%"
+```
+
+##### Passing Cookies
+
+My previous attempts to access the API by passing cookies are detailed in my previous [post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/).  No need to detail unsuccessful attempts here.  Lets get to the solution.  Thanks again [Nick](https://twitter.com/nickryanpaul)!
+
+We have previously built our URL.  
+
+```{r}
+url
+```
+
+Next, we save our cookies:
+
+```{r eval=FALSE, include=TRUE}
+cookies <- c(`swid` = "{cookie-with-curly-brackets-included}",
+             `espn_s2` =  "very%long%cookie%296%ish%characters%long%with%no%brackets%"
+)
+```
+
+```{r include=FALSE}
+cookies <- c(`swid` = "{78538BF1-DE01-4269-A101-AC98E7620E27}",
+             `espn_s2` =  "AEAysPn25UkePQCS33o3NmdRItXI0fZ7BhQFCcY020p8yCq0CDJGrlvuqAxjP42wn%2F8YZymuQOcG94GHEtkIIHnU7BWfQr6cpEKQXkcev7zKxEWiRf57PlIPEsWqIIm72dSmnL4dxW8TYufPzrIbiNZvtU0cYnLBV3nw1CAmc%2BGwghKIqRy7qPMCsSN13WibU5BHxVfxjkRttkE5Yd27cP8vAbndYor2P2FZrR%2BPVbRGThNIL8XuEJBw2rLmhqmc6tQA%2BGeNNh9dXrySFJHm72TY"
+)
+```
+
+Then we pass the cookies with the `GET` command.
+
+```{r}
+cookie <- paste(names(cookies), cookies, sep = "=", collapse = ";")
+ESPNGet <- httr::GET(url = url, 
+                     config = httr::config(cookie = cookie)
+                     )
+```
+
+We can verify that the handshake was successful by checking the `status_code`.
+
+```{r}
+ESPNGet$status_code
+```
+
+`200`! Success!!
+
+We can now access the data.
+
+```{r}
+ESPNRaw <- rawToChar(ESPNGet$content)
+ESPNFromJSON <- jsonlite::fromJSON(ESPNRaw)
+```
+
+### Exploring the JSON
+
+Now that we have our data, we need to explore the JSON to see what is available.  The code below will help you explore what data is available through the API.
+
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+listviewer::jsonedit(ESPNFromJSON)
+```
+
+In the meantime, here is an example of the data you can pull from the JSON.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+
+tibble(
+  AwayID = ESPNFromJSON$schedule$away$teamId,
+  AwayPoints = ESPNFromJSON$schedule$away$totalPoints,
+  HomeID =ESPNFromJSON$schedule$home$teamId,
+  HomePoints = ESPNFromJSON$schedule$home$totalPoints,
+  Winner =ESPNFromJSON$schedule$winner
+  ) %>%
+  left_join(
+    tibble(
+      id = ESPNFromJSON$teams$id,
+      AwayTeam = paste(ESPNFromJSON$teams$location,ESPNFromJSON$teams$nickname)
+    ), by = c("AwayID"="id")
+    ) %>%
+  left_join(
+    tibble(
+      id = ESPNFromJSON$teams$id,
+      HomeTeam = paste(ESPNFromJSON$teams$location,ESPNFromJSON$teams$nickname)
+    ), by = c("HomeID"="id")
+    ) 
+```
+
+### Future Posts
+
+In future posts, I plan on doing the following:
+
+- Evaluate measures of luck.  Which teams win more than they should?  Which teams out perform their projections?
+- Evaluate ESPN's projections.  How accurate are the projections? Are some positions easier to project than others?
+- Evaluate who is the best coach.  Which managers are picking their optimal lineup?
+
+### Feedback
+
+As always, I do this blog to learn new things, hopefully teach others from my experience, and hopefully receive (respectful and helpful) feedback.  
+
+Please leave your thoughts below!!

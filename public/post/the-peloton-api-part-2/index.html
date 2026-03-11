@@ -1,0 +1,1658 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>The Peloton API Part 2: A Peloton Data Tribute to my Wife &middot; Dusty Turner</title>
+    <meta name="title" content="The Peloton API Part 2: A Peloton Data Tribute to my Wife &middot; Dusty Turner">
+  
+
+  
+  
+  
+    <meta name="keywords" content="API,peloton,tidyverse,fitness,">
+  
+  
+  
+  <link rel="canonical" href="https://www.dustysturner.com/post/the-peloton-api-part-2/">
+  
+
+  
+  
+    <meta name="author" content="Dusty Turner">
+  
+  
+    
+      
+        
+      
+    
+      
+        
+          <link href="https://github.com/dusty-turner" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://www.linkedin.com/in/dustysturner/" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://twitter.com/dtdusty" rel="me">
+        
+      
+    
+  
+
+  
+  <meta property="og:url" content="https://www.dustysturner.com/post/the-peloton-api-part-2/">
+  <meta property="og:site_name" content="Dusty Turner">
+  <meta property="og:title" content="The Peloton API Part 2: A Peloton Data Tribute to my Wife">
+  <meta property="og:description" content="Peloton RIn part 1 of my Peloton API post, I explored the pelotonR created by Ben Weiher’s. It’s a great package for accessing your Peloton data and I recommend it.
+In part 2, I’ll explore a different pelotonR package from Laura Ellis. She provides a great tutorial to display the functionality. I recommend this one too!
+ObjectivesThe objectives for this post are to…
+Show how awesome my wife is.Highlight the functionality of Laura’s pelotonR package.Create visualizations from my wife and my Peloton data to show how awesome she is.Speaking of visualizations, here’s another picture of my wife crushing a Peloton ride">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2021-02-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-02-14T00:00:00+00:00">
+    <meta property="article:tag" content="API">
+    <meta property="article:tag" content="Peloton">
+    <meta property="article:tag" content="Tidyverse">
+    <meta property="article:tag" content="Fitness">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Peloton API Part 2: A Peloton Data Tribute to my Wife">
+  <meta name="twitter:description" content="Peloton RIn part 1 of my Peloton API post, I explored the pelotonR created by Ben Weiher’s. It’s a great package for accessing your Peloton data and I recommend it.
+In part 2, I’ll explore a different pelotonR package from Laura Ellis. She provides a great tutorial to display the functionality. I recommend this one too!
+ObjectivesThe objectives for this post are to…
+Show how awesome my wife is.Highlight the functionality of Laura’s pelotonR package.Create visualizations from my wife and my Peloton data to show how awesome she is.Speaking of visualizations, here’s another picture of my wife crushing a Peloton ride">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.75bee00c14046eb82c9a8059bb74ee9617e3c3dcff692c3ae8cb156a82b1491ba44072754fa0af891fe299961cd9baefd9fe565a890c3fdab69df291b1ff3f46.css">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"></script>
+  
+  
+  
+  
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.b4b722fcb5d42f34f52b30a92f3521b69f403ca9d96d0d6179eb537cb870f5d83fdf1fe836688d95d5c99fefbda4170487711006e56051fa67ea00da10521721.js"></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.816a30c4f1786a2c6010b3bb5024df2fd465b09879712a203b1c1df0ae0d5295213ad944fd7d5ecfb360e8af3cb1cd147e5b135df8a608b9aab05cd47f617b2b.js"
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "The Peloton API Part 2: A Peloton Data Tribute to my Wife",
+    "headline": "The Peloton API Part 2: A Peloton Data Tribute to my Wife",
+    
+    "inLanguage": "en",
+    "url" : "https://www.dustysturner.com/post/the-peloton-api-part-2/",
+    "author" : {
+      "@type": "Person",
+      "name": "Dusty Turner"
+    },
+    "copyrightYear": "2021",
+    "dateCreated": "2021-02-14T00:00:00\u002b00:00",
+    "datePublished": "2021-02-14T00:00:00\u002b00:00",
+    
+    "dateModified": "2021-02-14T00:00:00\u002b00:00",
+    
+    "keywords": ["API","peloton","tidyverse","fitness"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3541"
+  }]
+  </script>
+
+
+
+  
+  
+    
+
+  <script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-PVH8CWDYYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVH8CWDYYN');
+</script>
+
+
+
+
+
+  
+
+  
+  
+    <script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+  
+  
+    <a href="/" class="text-base font-medium truncate min-w-0 shrink">
+      Dusty Turner
+    </a>
+  
+  <div class="flex items-center ms-auto">
+    <div class="hidden md:flex">
+      <nav class="flex items-center gap-x-5 h-12">
+  
+    
+      
+  
+    <a
+      href="/post/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Blog"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Blog
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/tags/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Tags"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Tags
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/cv.pdf"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="CV"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          CV
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/search/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Search"
+      title="">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Search
+        </span>
+      
+    </a>
+  
+
+    
+  
+
+  
+
+  
+
+  
+    <button
+      id="search-button"
+      aria-label="Search"
+      class="text-base bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <div class="flex items-center">
+      <button
+        id="appearance-switcher"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base bf-icon-color-hover">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    </div>
+  
+</nav>
+
+
+
+    </div>
+    <div class="flex md:hidden">
+      <div class="flex items-center h-14 gap-4">
+  
+    <button
+      id="search-button-mobile"
+      aria-label="Search"
+      class="flex items-center justify-center bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <button
+      id="appearance-switcher-mobile"
+      type="button"
+      aria-label="Dark mode switcher"
+      class="flex items-center justify-center text-neutral-900 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400">
+      <div class="dark:hidden">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+      </div>
+      <div class="hidden dark:block">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+      </div>
+    </button>
+  
+
+  
+    <input type="checkbox" id="mobile-menu-toggle" autocomplete="off" class="hidden peer">
+    <label for="mobile-menu-toggle" class="flex items-center justify-center cursor-pointer bf-icon-color-hover">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+    </label>
+
+    <div
+      role="dialog"
+      aria-modal="true"
+      style="scrollbar-gutter: stable;"
+      class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+      bf-scrollbar">
+      <label
+        for="mobile-menu-toggle"
+        class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </label>
+      <nav class="mx-auto max-w-md space-y-6">
+        
+  
+    
+    <div class="px-2">
+      <a
+        href="/post/"
+        aria-label="Blog"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Blog
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/tags/"
+        aria-label="Tags"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Tags
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/cv.pdf"
+        aria-label="CV"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          CV
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/search/"
+        aria-label="Search"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Search
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+
+        
+  
+
+        
+  
+
+      </nav>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        The Peloton API Part 2: A Peloton Data Tribute to my Wife
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2021-02-14T00:00:00&#43;00:00">14 February 2021</time><span class="px-2 text-primary-500">&middot;</span><span>3541 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+          
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/api/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    API
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/peloton/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Peloton
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/tidyverse/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Tidyverse
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/tags/fitness/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Fitness
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+    </div>
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Dusty Turner"
+        src="/media/family_bug_hu_be0ab33ed9099068.png"
+        data-zoom-src="/media/family_bug_hu_a93e788437f81b8f.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Author
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Dusty Turner
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">Army Officer • Operations Research Systems Analyst • Statistician</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:dusty.s.turner@gmail.com"
+          target="_blank"
+          aria-label="Email"
+          title="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/dusty-turner"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.linkedin.com/in/dustysturner/"
+          target="_blank"
+          aria-label="Linkedin"
+          title="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://twitter.com/dtdusty"
+          target="_blank"
+          aria-label="Twitter"
+          title="Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+
+<div id="peloton-r" class="section level1">
+<h1>Peloton R</h1>
+<p>In <a href="https://www.dustysturner.com/post/the-peloton-api-part-1/">part 1</a> of my Peloton API post, I explored the <a href="https://github.com/bweiher/pelotonR"><code>pelotonR</code></a> created by <a href="https://github.com/bweiher/">Ben Weiher’s</a>. It’s a great package for accessing your Peloton data and I recommend it.</p>
+<p>In part 2, I’ll explore a different <code>pelotonR</code> package from <a href="https://twitter.com/littlemissdata">Laura Ellis</a>. She provides a great <a href="https://lgellis.github.io/pelotonR/">tutorial</a> to display the functionality. I recommend this one too!</p>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<p>The objectives for this post are to…</p>
+<ol style="list-style-type: decimal">
+<li>Show how awesome my wife is.</li>
+<li>Highlight the functionality of Laura’s pelotonR package.</li>
+<li>Create visualizations from my wife and my Peloton data to show how awesome she is.</li>
+</ol>
+<p>Speaking of visualizations, here’s another picture of my wife crushing a Peloton ride</p>
+<center>
+<img src="images/riding_peloton.JPG" style="width:30.0%" alt="jill working hard on the peloton as always!" />
+[Jill Working Hard As Always!]
+</center>
+<p>In order to use this post as a teaching tool, I’ll also include my code. This also allows me to receive feedback from the community to improve my techniques.</p>
+</div>
+<div id="inspiration" class="section level2">
+<h2>Inspiration</h2>
+<p>I developed many of these plots because I was curious about the data, but I also used <a href="https://www.instagram.com/pelotondataviz/?hl=en">this page</a> and <a href="https://www.qlik.com/blog/peloton-and-qlik-the-analytics-of-it-all">this page</a> as inspiration.</p>
+<p>Enough! On with the analysis!</p>
+</div>
+</div>
+<div id="get-the-data" class="section level1">
+<h1>Get the data</h1>
+<p>Lets start with how to access your peloton data.</p>
+<p>If you haven’t already, install the <code>pelotonR</code> library from github.</p>
+<pre class="r"><code>devtools::install_github(&quot;lgellis/pelotonR&quot;, force = T)</code></pre>
+<div id="authenticate" class="section level2">
+<h2>Authenticate</h2>
+<p>Since I’m going to be pulling data for both my wife and I, I’ll authenticate both our accounts. Our passwords are saved in our <code>.RProfile</code> in a function I have saved there. If you’d like to do the same, this <a href="https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile">stack overflow post</a> is very helpful.</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(pelotonR)
+
+me_auth_response &lt;- pelotonR::authenticate(username = &quot;dusty.s.turner@gmail.com&quot;, password = Sys.getenv(&quot;my_passowrd&quot;))
+wife_auth_response &lt;- pelotonR::authenticate(username = Sys.getenv(&quot;wife_username&quot;), password = Sys.getenv(&quot;wife_passowrd&quot;))</code></pre>
+<p>To access our personal data, I need to extract our user IDs from our authentication.</p>
+<pre class="r"><code>me_user_id &lt;- me_auth_response %&gt;% jsonlite::parse_json() %&gt;% .$user_id
+
+wife_user_id &lt;- wife_auth_response %&gt;% jsonlite::parse_json() %&gt;% .$user_id</code></pre>
+<p>Use the user id to request your data from the API.</p>
+<pre class="r"><code>my_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = me_user_id) %&gt;% as_tibble()
+wife_workout_df &lt;- pelotonR::get_workouts_and_instructors_df(user_id = wife_user_id) %&gt;% as_tibble()</code></pre>
+</div>
+<div id="collect-and-organize-data" class="section level2">
+<h2>Collect and organize data</h2>
+<p>The package helps retrieve a TON of data about your workouts. The first number is the workout count, but the second number is the number of columns returned about your data.</p>
+<pre class="r"><code>my_workout_df %&gt;% dim()</code></pre>
+<pre><code>## [1] 398 128</code></pre>
+<p>As we join and organize our data, I’m only going to select the columns that I end up using later on in the analysis. If you dig through the data frame, you might find more interesting information to use.</p>
+<pre class="r"><code>interesting &lt;-
+  list(Dusty = my_workout_df,
+       Jill = wife_workout_df) %&gt;%
+  bind_rows(.id = &quot;Person&quot;) %&gt;%
+  rename_with(.fn = ~ str_remove(., pattern = &quot;workout.&quot;)) %&gt;%
+  mutate(Length = peloton.ride.duration/60, KJ = total_work/1000) %&gt;%  
+  mutate(start_time = lubridate::as_datetime(start_time, tz = &quot;EST&quot;)) %&gt;% 
+  mutate(peloton.ride.scheduled_start_time = lubridate::as_datetime(peloton.ride.scheduled_start_time, tz = &quot;EST&quot;)) %&gt;% 
+  select(Person, start_date, Length, KJ, fitness_discipline, is_total_work_personal_record, start_time, workout_type, 
+         peloton.ride.difficulty_rating_avg, peloton.ride.is_explicit, peloton.ride.overall_estimate, peloton.ride.rating, 
+         peloton.ride.total_workouts, peloton.ride.difficulty_estimate, peloton.ride.scheduled_start_time,instructor.name) </code></pre>
+<p>You’ll notice that I did several pre-processing steps.</p>
+<ol style="list-style-type: decimal">
+<li><p>I removed the word <code>workout</code> from all column names.</p></li>
+<li><p>I converted the ride duration from seconds to minutes. Minutes are a more familiar workout length than seconds for Peloton riders.</p></li>
+<li><p>I converted the <code>total_work</code> from Joules to Kilojoules. A Kilojoule, or 1000 Joules, is the familiar measurement of work that Peloton riders know. As a quick aside, riders produce wattage with their bike. If you sustain 1000 watts for 1 second you do 1 KJ of work. Okay, enough physics for today….</p></li>
+</ol>
+</div>
+</div>
+<div id="dig-into-the-data" class="section level1">
+<h1>Dig into the data!</h1>
+<p>As you can see, riding the peloton is not the only thing we do on the bike.</p>
+<pre class="r"><code>interesting %&gt;% 
+  count(Person, fitness_discipline) %&gt;% 
+  pivot_wider(names_from = Person, values_from = n, values_fill = 0)</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##   fitness_discipline Dusty  Jill
+##   &lt;chr&gt;              &lt;int&gt; &lt;int&gt;
+## 1 cycling              272  1017
+## 2 meditation             3     2
+## 3 strength               1   154
+## 4 stretching           101    90
+## 5 yoga                  21     6
+## 6 bike_bootcamp          0     6
+## 7 cardio                 0     3
+## 8 running                0    15</code></pre>
+<p>I’d like to limit most of the future exploration to only cycling classes. I’d like to also have the option of only looking at rides lasting 20 minutes or longer. To support this filter that I’ll need to do over and over, I’ll set up a function that does the following:</p>
+<ol style="list-style-type: decimal">
+<li>Selects only cycling classes</li>
+<li>Renames <code>NA</code> instructors as <code>unknown</code></li>
+<li>Creates a ride number column ID</li>
+<li>Has an option to keep classes &lt; 20 minutes</li>
+<li>Has an option to remove unknown instructors</li>
+</ol>
+<pre class="r"><code>standard_filter &lt;- function(data, only_long_classes = FALSE, remove_unknown_instructors = FALSE){
+  out &lt;-
+    data %&gt;% 
+    filter(fitness_discipline == &quot;cycling&quot;) %&gt;% 
+    filter(workout_type == &quot;class&quot;) %&gt;% 
+    mutate(instructor.name = if_else(is.na(instructor.name), &quot;Unknown&quot;, instructor.name)) %&gt;% 
+    select(-c(fitness_discipline, workout_type)) %&gt;%
+    arrange(start_time) %&gt;% 
+    group_by(Person) %&gt;% 
+    mutate(ride_number = row_number()) %&gt;% 
+    ungroup() 
+  
+  if(remove_unknown_instructors){
+    out &lt;-
+      out %&gt;% 
+      filter(instructor.name != &quot;Unknown&quot;)
+  }
+  
+  if(only_long_classes){
+    out &lt;-
+      out %&gt;% 
+      filter(Length &gt;= 20)
+  }
+  
+  return(out)
+}</code></pre>
+<p>I also learned that there were several early classes of ‘bootcamp’ that my wife did which Peloton labeled ‘cycling’. Bootcamps have a much lower KJ output since cycling isn’t the main focus in these rides. This function filters those out when we look at specific charts.</p>
+<pre class="r"><code>remove_bootcamps &lt;- function(data){
+  remove_these &lt;-
+     tibble(Person = &quot;Jill&quot;, start_date = ymd(20201006), instructor.name = &quot;Jess Sims&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200918), instructor.name =  &quot;Robin Arzón&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200306), instructor.name =  &quot;Cody Rigsby&quot;, Length = 30) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20201001), instructor.name =  &quot;Cody Rigsby&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20201008), instructor.name =  &quot;Cody Rigsby&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200922), instructor.name =  &quot;Jess Sims&quot;, Length = 45) %&gt;% 
+    add_row(Person = &quot;Jill&quot;, start_date = ymd(20200929), instructor.name =  &quot;Jess Sims&quot;, Length = 45) 
+  
+  # interesting %&gt;% standard_filter() %&gt;% 
+    # filter(Person == &quot;Jill&quot;, Length == 45) %&gt;% 
+    # arrange(KJ) %&gt;% select(start_date, instructor.name, KJ, Length)
+  
+  out &lt;-
+  data %&gt;% 
+    anti_join(remove_these)  
+  return(out)
+}</code></pre>
+<p>Lets take a few different looks at our data. The first question I’d like to dig into is, “Who are out favorite instructors?”</p>
+<div id="instructor-analysis" class="section level2">
+<h2>Instructor analysis</h2>
+<div id="favorite-instructors" class="section level3">
+<h3>Favorite instructors</h3>
+<pre class="r"><code>interesting %&gt;%
+  standard_filter(remove_unknown_instructors = T) %&gt;% 
+  count(Person, instructor.name) %&gt;% 
+  mutate(n = ifelse(Person == &quot;Dusty&quot;, n * -1, n)) %&gt;% 
+  group_by(instructor.name) %&gt;% 
+  mutate(order_by = max(ifelse(Person==&quot;Jill&quot;, n, 0))) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(instructor.name = fct_reorder(instructor.name, order_by)) %&gt;% 
+  ggplot(aes(x= instructor.name, y = n, fill = Person)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(breaks = c(-100,-50,0,50,100,150,200), labels = c(&quot;100&quot;, &quot;50&quot;, &quot;0&quot;, &quot;50&quot;, &quot;100&quot;, &quot;150&quot;, &quot;200&quot;)) +
+  scale_fill_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  labs(y = &quot;Number of Rides&quot;, x = &quot;&quot;) </code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>First things is first. Jill rides WAY more than me. But also, we can see a difference in rider preferences. She prefers Ally Love, Emma Lovewell, and Hannah Corbin, while I prefer Jess King, Kendall Toole, and Alex Toussaint.</p>
+</div>
+<div id="how-our-favorite-instructors-change-over-time" class="section level3">
+<h3>How our favorite instructors change over time</h3>
+<p>What I’d like to do is determine which instructor is our favorite by month. I’ll find out the instructor (or instructors in the event of a tie) that we proportionally have the most rides with each month - then see how that changes over time.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  mutate(month = month(start_time), year = year(start_time)) %&gt;% 
+  group_by(Person,month,year) %&gt;% 
+  filter(n()&gt;=5) %&gt;% 
+  ungroup() %&gt;% 
+  count(Person, instructor.name,month, year) %&gt;% 
+  mutate(date = lubridate::ym(str_c(year,&quot; &quot;,month))) %&gt;% 
+  group_by(Person,date) %&gt;% arrange(Person, date) %&gt;% 
+  mutate(instructor.name = if_else(n == max(n), instructor.name, &quot;Other&quot;)) %&gt;% 
+  group_by(Person, instructor.name,date) %&gt;% 
+  summarise(n = sum(n)) %&gt;% 
+  arrange(Person, date) %&gt;% 
+  group_by(Person,date) %&gt;% 
+  mutate(percent = n / sum(n)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(x = date, y = percent, fill = instructor.name)) +
+  geom_col() +
+  facet_wrap(~Person, scales = &quot;free&quot;) +
+  coord_flip() +
+  labs(title = &quot;Most popular instructor each month&quot;, subtitle = &quot;How instructor preference changes over time&quot;,
+       x = &quot;Percent of Monthly Rides&quot;, y = &quot;&quot;, fill = &quot;Instructor&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>For Jill, she started as an Ally Love fan but has spread that love to other such as Emma Lovewell, Matt Wilpers, and Cody Rigsby.</p>
+<p>Me, on the the other hand, started as a Jess King fan, but recently I’m riding more with Kendall Toole.</p>
+<p>You can tell, from this, however, that my wife spreads around her rides more than I do. She has a lot larger purple ‘other’ bar than I do each month.</p>
+</div>
+<div id="do-we-prefer-different-instructors-for-different-class-lengths" class="section level3">
+<h3>Do we prefer different instructors for different class lengths?</h3>
+<p>This makes me wonder – might we prefer to ride with different instructors if our ride will be longer (or shorter)?</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = T) %&gt;% 
+  count(Person,instructor.name,Length) %&gt;% 
+  complete(Person,instructor.name,Length) %&gt;% 
+  mutate(Length = as.factor(Length)) %&gt;% 
+  group_by(instructor.name) %&gt;% mutate(order_by = sum(n,na.rm = T)) %&gt;%
+  group_by(Person, Length) %&gt;% mutate(max_time_slot = rank(n,na.last = F)) %&gt;% 
+  mutate(most = if_else(max(max_time_slot)== max_time_slot, &quot;MAX&quot;, &quot;Not MAX&quot;)) %&gt;% 
+  mutate(most = if_else(is.na(n), &quot;NA&quot;, most)) %&gt;% 
+  ggplot(aes(x = Length, y = fct_reorder(instructor.name,order_by))) +
+  geom_tile(aes(fill = most),show.legend = F) +
+  geom_text(aes(label = n), show.legend = F) +
+  scale_fill_manual(values = c(&quot;#AE0D7A&quot;,&quot;#F7EDD4&quot;, &quot;#448D76&quot;)) +
+  facet_wrap(~Person) +
+  labs(y = &quot;Instructor&quot;, title = &quot;Preferred Instructors for each ride length&quot;) </code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The answer is, well… kind of.</p>
+<p>I tend to ride more with Jess King at any distance and the same is true for my wife with Ally Love.</p>
+<p>Some of the less frequented durations, like 5, 10, and 60 minutes show some unique results.</p>
+</div>
+<div id="who-are-the-more-difficult-instructors" class="section level3">
+<h3>Who are the more difficult instructors?</h3>
+<p>Based off the rides we have selected, which instructor’s rides are rated most difficult by the community.</p>
+<p>We’ll consider instructors we’ve selected for at least 10 rides of 20 minutes or more.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  mutate(instructor.name = fct_lump_min(instructor.name, min = 10)) %&gt;%
+  group_by(instructor.name) %&gt;% 
+  mutate(max_difficulty = max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(min_difficulty = min(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  group_by(instructor.name) %&gt;% 
+  mutate(median_diff = median(peloton.ride.difficulty_estimate)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(instructor.name = fct_reorder(instructor.name, median_diff)) %&gt;%
+  ggplot(aes(x = peloton.ride.difficulty_estimate, y = instructor.name)) +
+  geom_segment(aes(x = min_difficulty, xend = max_difficulty, yend = instructor.name), color = &quot;grey&quot;) +
+  geom_point(color = &quot;black&quot;) +
+  geom_point(aes(x = median_diff), color = &quot;#B32134&quot;, size = 4) +
+  geom_point(aes(x = max_difficulty), color = &quot;green&quot;, size = 4) +
+  geom_point(aes(x = min_difficulty), color = &quot;green&quot;, size = 4) +
+  scale_x_continuous(breaks = 3:10, limits = c(3,10)) +
+  labs(x = &quot;Ride Difficulty Rating&quot;, y = &quot;Instructor&quot;, title = &quot;Difficulty Ratings of our most population instructors&quot;,
+       subtitle = &quot;Sorted by median ride difficulty \nIncludes instructors with at least 10 rides \nRides 20 minutes or longer&quot;, 
+       caption = &quot;Green dots represent maximum and minimum difficulty of rides between my wife and I&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Three of my favorite instructors (Jess King, Kendall Tool, and Alex Toussaint) are in the top 4. Either this means I pick difficult rides or those of us who selected these rides are week and think they are hard :).</p>
+</div>
+<div id="instructor-race" class="section level3">
+<h3>Instructor Race</h3>
+<p>I’d really like to know the distance I’ve gone with each instructor over time. Kind of like an instructor race. However, I can’t find any distance data from this package so I’ll use KJ as a proxy.</p>
+<p><strong>Note</strong> This is a perfect opportunity to use the <code>gghighlight</code> package. I doesn’t quite work yet with faceted plots, so I am rendering two plots. To do that, I’ll write a function with a <code>name</code> argument.</p>
+<pre class="r"><code>library(gghighlight)
+
+instructor_race &lt;- function(name = &quot;Jill&quot;){
+  if(name == &quot;Dusty&quot;) {
+    limit &lt;-  5000
+    color_scale &lt;- c(&quot;#FDAC53&quot;, &quot;#9BB7D4&quot;, &quot;#A0DAA9&quot;, &quot;#E9897E&quot;, &quot;#0072B5&quot;)
+  } else{
+    limit &lt;- 10000
+    color_scale &lt;-  c(&quot;#FDAC53&quot;,&quot;#9BB7D4&quot;,&quot;#A0DAA9&quot;,&quot;#E9897E&quot;,&quot;#0072B5&quot;, &quot;#0702B5&quot;) 
+  }
+
+interesting %&gt;% 
+standard_filter() %&gt;% 
+  group_by(Person, instructor.name) %&gt;% 
+  arrange(start_time) %&gt;% 
+  mutate(Total_KJ = cumsum(KJ)) %&gt;% 
+  ungroup() %&gt;% 
+  filter(Person == name) %&gt;%
+  ggplot(aes(x = start_time, y = Total_KJ, color = instructor.name)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::comma) +
+  gghighlight(max(Total_KJ) &gt; limit, unhighlighted_params = list(color = &quot;grey&quot;)) +
+  scale_color_manual(values = color_scale) +
+  labs(x = &quot;&quot;, y = &quot;Total KJ&quot;, subtitle = str_c(name,&quot;&#39;s Instructor Race&quot;), title = &quot;KJ output by instructor over time&quot;)
+}</code></pre>
+<pre class="r"><code>instructor_race(name = &quot;Dusty&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>As expected, Jess King is off to a great start, but Kendall Tool is catching up ground!</p>
+<pre class="r"><code>instructor_race(name = &quot;Jill&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>For Jill, All Love and Emma Lovewell (lots of love going on here) are setting the pace!</p>
+</div>
+</div>
+<div id="when-do-we-like-to-ride" class="section level2">
+<h2>When do we like to ride?</h2>
+<p>I already know this answer. Pretty much every morning, when I wake up, my wife is crushing it in the basement on the Peloton. But a picture is worth 1000 KJ so lets explore this visually.</p>
+<pre class="r"><code>weekday &lt;- tibble(weekday_name = weekdays(x=as.Date(seq(7), origin=&quot;1950-01-01&quot;)),
+       weekday = c(2:7,1))
+
+interesting %&gt;% 
+  standard_filter() %&gt;%
+  select(Person, start_time) %&gt;% 
+  mutate(hour = as.factor(hour(start_time))) %&gt;% 
+  mutate(weekday = wday(start_time)) %&gt;% 
+  left_join(weekday) %&gt;%
+  mutate(weekday_name = fct_reorder(weekday_name, weekday)) %&gt;% 
+  count(Person, hour, weekday_name) %&gt;% 
+  complete(Person,hour,weekday_name) %&gt;% 
+  ggplot(aes(x = weekday_name, y = hour, fill = n))+
+  geom_tile(show.legend = F) +
+  facet_wrap(~Person) +
+  scale_x_discrete(labels = c(&quot;1&quot; = &quot;Sunday&quot;)) +
+  scale_fill_gradient2(na.value = &quot;white&quot;, low = &quot;white&quot;, high = &quot;#5932a8&quot;, mid = &quot;grey&quot;, midpoint = 10) +
+  geom_text(aes(label = n)) +
+  labs(x = &quot;Weekday&quot;, y = &quot;Hour&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>It is clear that my wife is a motivated morning rider while I’m more likely to ride in the evening. On weekends our workouts are more spread out as we are getting a workout in when we can find space.</p>
+<div id="what-weekday-do-we-like-and-how-well-do-we-perform" class="section level3">
+<h3>What weekday do we like and how well do we perform?</h3>
+<p>I’d like to know which weekday we bike the most in and if there is a specific day that we perform better?</p>
+<p>This plot may get a little confusing, but here’s what I’m doing…</p>
+<ol style="list-style-type: decimal">
+<li>Plot the proportion of rides by day.<br />
+</li>
+<li>Color the bars by minutes biked.<br />
+</li>
+<li>Label the bars by average KJ expended per minute for each day.</li>
+</ol>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter() %&gt;% 
+  mutate(weekday = lubridate::wday(start_time)) %&gt;% 
+  left_join(weekday)  %&gt;% 
+  group_by(Person,weekday_name, weekday) %&gt;% 
+  summarise(num_rides = n(), Tot_KJ = sum(KJ), Tot_mins = sum(Length)) %&gt;% 
+  mutate(ave_KJ_per_min = round(Tot_KJ / Tot_mins, 1)) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(prop_rides = num_rides/sum(num_rides)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(weekday_name = fct_reorder(weekday_name,weekday, .desc = T)) %&gt;% 
+  mutate(max_dusty = max(ifelse(Person == &quot;Dusty&quot;, Tot_mins,0))) %&gt;% 
+  ggplot(aes(y = weekday_name, x = prop_rides, fill = Tot_mins)) +
+  geom_col() +
+  geom_text(aes(label = ave_KJ_per_min)) +
+  scale_fill_gradientn(breaks = c(0,1100,2500,5000), colors = c(&quot;grey&quot;,&quot;green&quot;,&quot;red&quot;)) +
+  facet_wrap(~Person) +
+  labs(x = &quot;Proportion of Total Rides&quot;,  y = &quot;&quot;, fill = &quot;Total Minutes&quot;,
+       title = &quot;Proportion of Rides on Each Day \nColored by Total Minutes Spent Riding&quot;,
+       subtitle = &quot;Label is Average KJ / Min on that day&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Wednesdays seem to be the days we conduct most of our rides, but I seem to perform better on Tuesdays. Our performance seems to dip on the weekends. Maybe we take it easy then to recover from our hard weeks.</p>
+</div>
+</div>
+<div id="improvement-over-time" class="section level2">
+<h2>Improvement over time</h2>
+<p>One of the marks of fitness is improvement. Lets look at a few metrics of improvement.</p>
+<div id="kjs-per-ride" class="section level3">
+<h3>KJs per ride</h3>
+<p>Lets see how many KJs per ride we reach for different ride durations.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = F) %&gt;%
+  remove_bootcamps() %&gt;% 
+  ggplot(aes(x = start_time, y = KJ)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = F) +
+  scale_x_datetime(date_breaks = &quot;14 months&quot;, date_labels = &quot;%b %y&quot;) +
+  facet_grid(Person~Length) +
+  labs(x = &quot;Date&quot;, y = &quot;JK&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>It looks like we generally have improved our KJ ride over time. The shorter rides do not show much improvement but that’s largely because its hard to improve on a short ride, and we also use them as warm up rides.</p>
+</div>
+</div>
+<div id="personal-records-over-time" class="section level2">
+<h2>Personal Records Over Time</h2>
+<p>Another metric of improvement is how much you can increase your max output over time.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  remove_bootcamps() %&gt;% 
+  group_by(Person, Length) %&gt;% 
+  mutate(ride_number = row_number()) %&gt;% mutate(is_max = cummax(KJ)) %&gt;%   
+  mutate(max = ifelse(is_max == lag(is_max), &quot;NO&quot;, &quot;YES&quot;)) %&gt;% 
+  mutate(max = replace_na(max, &quot;NO&quot;)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(date = date(start_time)) %&gt;% 
+  mutate(date_label = ifelse(max,as.character(date),&quot;&quot;)) %&gt;% 
+  group_by(Person, Length) %&gt;% 
+  mutate(max = if_else(KJ == max(KJ), &quot;SUPER MAX&quot;, max)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(x = ride_number, y = KJ)) +
+  geom_line() +
+  geom_smooth(method = &quot;lm&quot;) +
+  geom_point(aes(size = max, color = max), show.legend = F) +
+  scale_color_manual(values = c(&quot;black&quot;, &quot;orange&quot;, &quot;blue&quot;)) +
+  scale_size_manual(values = c(.1,5,2)) +
+  facet_grid(Length~Person, scales = &quot;free&quot;) +
+  labs(x = &quot;Ride Number&quot;, y = &quot;Output: KJ&quot;, 
+       title = &quot;Personal Record Improvement Over Time&quot;, subtitle = &quot;Of the most common ride durations&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>The blue dots above show personal records we set and the orange dots show the current max output for that duration.</p>
+<p>It looks like we’ve improved over time. And it looks like I need to do more 60 minute rides.</p>
+<div id="kj-burned-per-minute-rolling-average" class="section level3">
+<h3>KJ burned per minute rolling average</h3>
+<p>One might assume that trends and max rides might not be the best metric of improvement because we often do recovery rides and such. This might throw off the results. Lets look at a rolling average of KJ ride.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  remove_bootcamps() %&gt;% 
+  mutate(KJ_per_min = KJ/Length) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(roll_avg = zoo::rollmean(x = KJ_per_min,k = 5, fill = 0, align = &quot;right&quot;)) %&gt;% 
+  arrange(start_time) %&gt;% 
+  mutate(ride_number = row_number()) %&gt;% 
+  ungroup() %&gt;%
+  filter(roll_avg != 0) %&gt;% 
+  ggplot(aes(x = start_time, y = roll_avg)) +
+  geom_line() +
+  geom_point(aes(y = KJ_per_min, color = as.factor(Length)), alpha = .3, show.legend = T) +
+  scale_y_continuous(breaks = seq(5,14,1), minor_breaks = seq(5,14,.5)) +
+  facet_wrap(~Person, scales = &quot;free_x&quot;) +
+  # facet_grid(Length~Person)
+  labs(y = &quot;KJ per Minute&quot;, y = &quot;Ride Date&quot;, color = &quot;Ride Length&quot;,
+       title = &quot;5 Ride Rolling KJ per Minute Average&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>It looks like I’ve improved over time while Jill has held steady.</p>
+</div>
+</div>
+<div id="chasing-my-wifes-greatness" class="section level2">
+<h2>Chasing My Wife’s Greatness</h2>
+<p>I’m interested in comparing my wife and I’s progression of number of rides, total KJs, and total minutes biked. She started using the Peloton before I did, so will I ever catch her in these metrics?</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(remove_unknown_instructors = F) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(`Total KJ` = cumsum(KJ), `Total Minutes Biked` = cumsum(Length)) %&gt;% 
+  rename(`Ride Number` = ride_number) %&gt;% 
+  pivot_longer(c(`Total KJ`,`Total Minutes Biked`, `Ride Number`)) %&gt;% 
+  ggplot(aes(x=start_date, y = value, color = Person)) +
+  geom_line() +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(breaks = &quot;9 months&quot;, date_labels = &quot;%b %y&quot;) +
+  facet_wrap(~name, scales = &quot;free_y&quot;) +
+  labs(y = &quot;&quot;, x = &quot;&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>For a little while, I was catching up with my wife in all aspects - or at least keeping pace. But over the summer I spent more time working out outside (and less time on the bike). Then my wife started riding the bike double time - and left me in the dust!</p>
+<div id="net-difference-in-metrics" class="section level3">
+<h3>Net difference in metrics</h3>
+<p>Similar to the last look, I am interested in seeing how this looks in ‘net’ metrics. So, if you find the differences between our performance every day - how do we compare?</p>
+<pre class="r"><code>totals &lt;-
+interesting %&gt;% 
+  standard_filter() %&gt;% 
+  group_by(Person) %&gt;% 
+  arrange(Person,start_time) %&gt;% 
+  mutate(day = lubridate::date(start_time)) %&gt;%
+  mutate(ride_number = 1)  %&gt;% 
+  mutate(across(.cols = c(Length, KJ, ride_number), .fns = ~cumsum(.))) %&gt;% 
+  select(Person, ride_number, KJ, minutes = Length) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(minutes = minutes / 60)
+
+
+full_join(
+  totals %&gt;% filter(Person == &quot;Dusty&quot;),
+  totals %&gt;% filter(Person == &quot;Jill&quot;),
+  by = &quot;ride_number&quot;, suffix = c(&quot;_Dusty&quot;, &quot;_Jill&quot;)
+  )  %&gt;% 
+  arrange(ride_number) %&gt;% 
+  mutate(dusty_max_ride_number = max(KJ_Dusty, na.rm = T)) %&gt;% 
+  mutate(dusty_max_ride_number = max(if_else(dusty_max_ride_number == KJ_Dusty, ride_number, 0),na.rm = T)) %&gt;% 
+  fill(everything()) %&gt;%
+  mutate(`Difference in KJ` = KJ_Jill - KJ_Dusty,
+         `Difference in Minutes` = minutes_Jill - minutes_Dusty) %&gt;% 
+  pivot_longer(cols = contains(&quot;difference&quot;))  %&gt;% 
+  mutate(dusty_plus = value &lt; 0)  %&gt;% 
+  ggplot(aes(x = ride_number, y = value,color = dusty_plus)) +
+  geom_path(aes(group = 1),show.legend = F) +
+  geom_vline(aes(xintercept = dusty_max_ride_number)) +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  facet_wrap(~name, scales = &quot;free&quot;) +
+  labs(y = &quot;&quot;, x = &quot;Ride Number&quot;) </code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>I drew a black horizontal line at my most recent ride. It looks like I am continuously extending my lead in KJs, but my wife is kicking my tail in minutes exercised.</p>
+<pre class="r"><code>library(ggforce)
+
+full_join(
+  totals %&gt;% filter(Person == &quot;Dusty&quot;),
+  totals %&gt;% filter(Person == &quot;Jill&quot;),
+  by = &quot;ride_number&quot;, suffix = c(&quot;_Dusty&quot;, &quot;_Jill&quot;)
+  )  %&gt;% 
+  arrange(ride_number) %&gt;% 
+  mutate(dusty_max_ride_number = max(KJ_Dusty, na.rm = T)) %&gt;% 
+  mutate(dusty_max_ride_number = max(if_else(dusty_max_ride_number == KJ_Dusty, ride_number, 0),na.rm = T)) %&gt;% 
+  fill(everything())   %&gt;%
+  mutate(`Difference in KJ` = KJ_Jill - KJ_Dusty,
+         `Difference in Minutes` = minutes_Jill - minutes_Dusty) %&gt;% 
+  mutate(dusty_plus = `Difference in KJ` &lt; 0)  %&gt;% 
+  ggplot(aes(x = ride_number, y = `Difference in KJ`,color = dusty_plus)) +
+  geom_path(aes(group = 1),show.legend = F) +
+  geom_vline(aes(xintercept = dusty_max_ride_number)) +
+  scale_color_manual(values = c(&quot;#FF7105&quot;,&quot;#236AB9&quot;)) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(y = &quot;&quot;, x = &quot;Ride Number&quot;) +
+  facet_zoom(ylim = c(-17000,0000), xlim = c(0,350))</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Zooming in on the net KJs, you can see I jumped out to a big lead through about 100 rides, then there is a lot of back and forth. I look forward to the day where I do enough rides to get the net KJs to 0.</p>
+</div>
+</div>
+<div id="ride-difficulty" class="section level2">
+<h2>Ride difficulty</h2>
+<p>Lastly, I’d like to take a look at the difficulty of the rides we choose.</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  group_by(Person) %&gt;% 
+  mutate(max_difficulty = max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(min_difficulty = min(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  mutate(median_difficulty = median(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  ggplot(aes(x = peloton.ride.difficulty_estimate, y = Person)) +
+  geom_segment(aes(x = min_difficulty, xend = max_difficulty, yend = Person)) +
+  geom_point() +
+  geom_point(aes(x = median_difficulty), color = &quot;#B32134&quot;, size = 4) +
+  geom_point(aes(x = max_difficulty), color = &quot;green&quot;, size = 4) +
+  geom_point(aes(x = min_difficulty), color = &quot;green&quot;, size = 4) +
+  scale_x_continuous(breaks = c(4:10)) +
+  labs(x = &quot;Ride Difficulty Rating&quot;, y = &quot;&quot;, title = &quot;Difficulty ratings for each rider&quot;,
+       subtitle = &quot;Green: max and min difficulty \nRed: median difficulty&quot;)</code></pre>
+<p><img src="https://www.dustysturner.com/post/the-peloton-api-part-2/index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>It appears my wife has a completed a couple of easy low rides, but also owns a few of the most difficult rides. I’ll boast that I have the higher median ride - but I need to figure out what ride Jill took for such a hard ride. :)</p>
+<pre class="r"><code>interesting %&gt;% 
+  standard_filter(only_long_classes = T) %&gt;% 
+  group_by(Person) %&gt;% 
+  filter(peloton.ride.difficulty_estimate == max(peloton.ride.difficulty_estimate, na.rm = T)) %&gt;% 
+  ungroup() %&gt;% 
+  select(Person, peloton.ride.difficulty_estimate, instructor.name, start_date, peloton.ride.scheduled_start_time)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   Person peloton.ride.difficu~ instructor.name start_date peloton.ride.schedule~
+##   &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;           &lt;date&gt;     &lt;dttm&gt;                
+## 1 Jill                    9.60 Robin Arzón     2020-06-01 2020-05-30 11:10:00   
+## 2 Dusty                   9.43 Olivia Amato    2021-01-16 2020-01-18 14:00:00</code></pre>
+<p>I’m going to have to find this ride - I can’t be left behind!</p>
+</div>
+</div>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+
+        
+
+      </div>
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/post/winning-pay-the-rent-on-the-price-is-right/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;Winning "Pay The Rent" on The Price Is Right
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2020-10-23T00:00:00&#43;00:00">23 October 2020</time>
+              </span>
+            
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/post/2021-06-24-blog-reboot/">
+              <span class="leading-6">
+                Blog Reboot&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2021-06-24T00:00:00&#43;00:00">24 June 2021</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+            <div class="pt-3">
+              <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            </div>
+          </div>
+        
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2026
+          Dusty Turner
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="https://www.dustysturner.com/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

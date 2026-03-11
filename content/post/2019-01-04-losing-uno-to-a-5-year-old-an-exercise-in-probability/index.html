@@ -1,0 +1,171 @@
+---
+title: 'Losing UNO to a 5 Year Old: An Exercise In Probability'
+author: Dusty Turner
+date: '2019-01-04'
+slug: losing-uno-to-a-5-year-old-an-exercise-in-probability
+categories:
+  - children
+  - shiny
+  - games
+tags:
+  - children
+  - shiny
+  - games
+---
+
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>One of my son’s favorite games he received for Christmas this year is UNO Attack. If you are not familiar with the rules, you can get up to speed <a href="https://en.wikipedia.org/wiki/Uno_Attack">here</a>. In short, the rules are no different than usual UNO except when you cannot play, instead of taking a card, you press a button on an UNO card shooting contraption. Most of the time you get no cards, but some of the time it will “attack” with 1 or more cards. Tons of fun.</p>
+</div>
+<div id="the-problem" class="section level1">
+<h1>The Problem</h1>
+<p>While all four of us in my family love to play this game (ages 3, 5, 34, and <em>redacted</em>), my 5 year old son does not like to lose (who does really?).</p>
+<p>I asked him, out of four games, how many he should expect to win. His answer of “1” showed his intuitive understanding of expected value. When I asked him if it anyone should be surprised if they didn’t win 1 out of 4. His answer of “no” shows that he even has an intuitive understanding of variance. Proud Dad.</p>
+</div>
+<div id="the-solution" class="section level1">
+<h1>The Solution</h1>
+<p>So we did an exercise in probability. What is the probability that he would lose “x” amount of games given each player had a 25% chance of winning.</p>
+<table class="table table-striped table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;font-weight: bold;">
+Game
+</td>
+<td style="text-align:left;font-weight: bold;">
+1
+</td>
+<td style="text-align:left;font-weight: bold;">
+2
+</td>
+<td style="text-align:left;font-weight: bold;">
+3
+</td>
+<td style="text-align:left;font-weight: bold;">
+4
+</td>
+<td style="text-align:left;font-weight: bold;">
+5
+</td>
+<td style="text-align:left;font-weight: bold;">
+6
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+8
+</td>
+<td style="text-align:left;font-weight: bold;">
+9
+</td>
+<td style="text-align:left;font-weight: bold;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Prob
+</td>
+<td style="text-align:left;">
+0.750
+</td>
+<td style="text-align:left;">
+0.562
+</td>
+<td style="text-align:left;">
+0.422
+</td>
+<td style="text-align:left;">
+0.316
+</td>
+<td style="text-align:left;">
+0.237
+</td>
+<td style="text-align:left;">
+0.178
+</td>
+<td style="text-align:left;">
+0.133
+</td>
+<td style="text-align:left;">
+0.100
+</td>
+<td style="text-align:left;">
+0.075
+</td>
+<td style="text-align:left;">
+0.056
+</td>
+</tr>
+</tbody>
+</table>
+<p>No so unlikely that he (or any of us) would lose 4 in a row… It did little to console him. Especially when his 3 year old sister won 1 of those games. It didn’t seem to bother him that mom won the other 3….</p>
+</div>
+<div id="the-fun" class="section level1">
+<h1>The Fun</h1>
+<p>In my efforts to make this more real to him, I created this shiny app. If nothing else, he like watching the colors move.</p>
+<center>
+<iframe src="https://dustyturner.shinyapps.io/CalUno/?showcase=0" width="672" height="650px">
+</iframe>
+</center>
+<!-- ```{r, echo=FALSE} -->
+<!-- unovec = data.frame(winner = as.factor(floor(runif(10000,0,4))+1)) -->
+<!-- ui <- fluidPage( -->
+<!--   fluidRow( -->
+<!--     column(12, align="center", -->
+<!--          sliderInput("bins", -->
+<!--                      label = h3("UNO Games Played"), -->
+<!--                      min = 2, max = 100, value = 2, -->
+<!--                      animate = TRUE), -->
+<!--         # numericInput("bins", -->
+<!--         #   h3("Games Played"), -->
+<!--         #   value = 1), -->
+<!--          plotOutput("distPlot"), -->
+<!--          tableOutput("mytable") -->
+<!--    ) -->
+<!-- ) -->
+<!-- ) -->
+<!-- server <- function(input, output) { -->
+<!--   data = reactive({ -->
+<!--     val = unovec %>% filter(row_number()<=input$bins) -->
+<!--     return(val) -->
+<!--   }) -->
+<!--   data2 = reactive({ -->
+<!--     val = data() %>% group_by(winner) %>% summarise(n = n()) -->
+<!--     return(val) -->
+<!--   }) -->
+<!--    output$distPlot <- renderPlot({ -->
+<!--         data() %>%  -->
+<!--           ggplot(aes(x=winner, fill = winner)) + -->
+<!--        geom_dotplot(stat = "count", dotsize = .5) + -->
+<!--        # geom_histogram(stat = "count") + -->
+<!--        theme(legend.position="none") + -->
+<!--        annotate("text", x = 1, y = -.1, label = paste(data2()[1,2], "Wins")) + -->
+<!--        annotate("text", x = 2, y = -.1, label = paste(data2()[2,2], "Wins")) + -->
+<!--        annotate("text", x = 3, y = -.1, label = paste(data2()[3,2], "Wins")) + -->
+<!--        annotate("text", x = 4, y = -.1, label = paste(data2()[4,2], "Wins")) + -->
+<!--        theme(axis.text.x = element_text(size=20), plot.title = element_text(size = 20)) + -->
+<!--        labs(title="Number of Games Won by Each Player", x = "Player Number", y = "Wins", caption = "One Dot Equals One Win") -->
+<!--      }) -->
+<!--   output$mytable = renderTable({ -->
+<!--     this = data2() %>% t() -->
+<!--     colnames(this) = this[1,] -->
+<!--     this = this[-1,] %>% t() %>% as.data.frame() %>% mutate_all(as.character) -->
+<!--     colmat = matrix(c(1,2,3,4,"Cal","Reese","Mom","Dad"), byrow = TRUE, nrow = 2) -->
+<!--     colnames(colmat) = colmat[1,] -->
+<!--     colmat = colmat[-1,] -->
+<!--     colmat = colmat %>% t() %>% as.data.frame() %>% mutate_all(as.character) -->
+<!--     thenext = this %>% bind_rows(colmat) -->
+<!--     colnames(thenext) = thenext[2,] -->
+<!--     thenext = thenext[-2,] -->
+<!--     thenext[is.na(thenext)] <- 0 -->
+<!--     return(thenext) -->
+<!--   }) -->
+<!-- } -->
+<!-- shinyApp(ui = ui, server = server, options = list(height = 800)) -->
+<!-- ``` -->
+</div>

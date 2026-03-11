@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Functional Programming | Intermediate R</title>
+  <meta name="description" content="4 Functional Programming | Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Functional Programming | Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Functional Programming | Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner and Robert Ward" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-data-visualization.html"/>
+<link rel="next" href="5-data-modeling.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#distance-learning-challenges"><i class="fa fa-check"></i><b>1.2</b> Distance Learning Challenges</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#class-structure"><i class="fa fa-check"></i><b>1.3</b> Class Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#learning-recommendations"><i class="fa fa-check"></i><b>1.4</b> Learning Recommendations</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.5</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instructors-introduction"><i class="fa fa-check"></i><b>1.6</b> Instructors Introduction</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.7</b> Course Intent</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.8</b> Tidy Ecosystem</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.9</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#prerequisite-packages"><i class="fa fa-check"></i><b>1.10</b> Prerequisite Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>3.2</b> Scatter Plot</a></li>
+<li class="chapter" data-level="3.3" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.3</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-functional-programming.html"><a href="4-functional-programming.html"><i class="fa fa-check"></i><b>4</b> Functional Programming</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-functional-programming.html"><a href="4-functional-programming.html#an-interesting-question"><i class="fa fa-check"></i><b>4.1</b> An Interesting Question</a></li>
+<li class="chapter" data-level="4.2" data-path="4-functional-programming.html"><a href="4-functional-programming.html#a-more-general-question"><i class="fa fa-check"></i><b>4.2</b> A More General Question</a></li>
+<li class="chapter" data-level="4.3" data-path="4-functional-programming.html"><a href="4-functional-programming.html#even-more-generally-writing-a-function"><i class="fa fa-check"></i><b>4.3</b> Even More Generally: Writing a Function</a></li>
+<li class="chapter" data-level="4.4" data-path="4-functional-programming.html"><a href="4-functional-programming.html#iteration-with-functions-purrr"><i class="fa fa-check"></i><b>4.4</b> Iteration with functions: <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-data-modeling.html"><a href="5-data-modeling.html"><i class="fa fa-check"></i><b>5</b> Data Modeling</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-data-for-analysis"><i class="fa fa-check"></i><b>5.1</b> Prepare Data For Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-data-modeling.html"><a href="5-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>5.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="5.3" data-path="5-data-modeling.html"><a href="5-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>5.3</b> Split Data test/train</a></li>
+<li class="chapter" data-level="5.4" data-path="5-data-modeling.html"><a href="5-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>5.4</b> Preprocess Data</a></li>
+<li class="chapter" data-level="5.5" data-path="5-data-modeling.html"><a href="5-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>5.5</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="5.6" data-path="5-data-modeling.html"><a href="5-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>5.6</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="5.7" data-path="5-data-modeling.html"><a href="5-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>5.7</b> Specify Models</a></li>
+<li class="chapter" data-level="5.8" data-path="5-data-modeling.html"><a href="5-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>5.8</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="5.9" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>5.9</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="5.10" data-path="5-data-modeling.html"><a href="5-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>5.10</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="5.11" data-path="5-data-modeling.html"><a href="5-data-modeling.html#execute-models-with-best-parameters"><i class="fa fa-check"></i><b>5.11</b> Execute Models With Best Parameters</a></li>
+<li class="chapter" data-level="5.12" data-path="5-data-modeling.html"><a href="5-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>5.12</b> Compare Models</a></li>
+<li class="chapter" data-level="5.13" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>5.13</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="5.14" data-path="5-data-modeling.html"><a href="5-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>5.14</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="5.15" data-path="5-data-modeling.html"><a href="5-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>5.15</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-text-analysis.html"><a href="6-text-analysis.html"><i class="fa fa-check"></i><b>6</b> Text Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-text-analysis.html"><a href="6-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>6.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="6.2" data-path="6-text-analysis.html"><a href="6-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>6.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="6.3" data-path="6-text-analysis.html"><a href="6-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>6.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="6.4" data-path="6-text-analysis.html"><a href="6-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>6.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="6.5" data-path="6-text-analysis.html"><a href="6-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>6.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="6.6" data-path="6-text-analysis.html"><a href="6-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>6.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="6.7" data-path="6-text-analysis.html"><a href="6-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>6.7</b> Visualizations</a></li>
+<li class="chapter" data-level="6.8" data-path="6-text-analysis.html"><a href="6-text-analysis.html#n-gram-analysis"><i class="fa fa-check"></i><b>6.8</b> N-Gram Analysis</a></li>
+<li class="chapter" data-level="6.9" data-path="6-text-analysis.html"><a href="6-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>6.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="6.10" data-path="6-text-analysis.html"><a href="6-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>6.10</b> Topic Modeling</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functional-programming" class="section level1">
+<h1><span class="header-section-number">4</span> Functional Programming</h1>
+<p>In this section, you will learn:</p>
+<ol style="list-style-type: decimal">
+<li>How to write a basic function.</li>
+<li>How to run this function for many inputs.</li>
+</ol>
+<p>In this section, we will use the following libraries and data:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb118-3" title="3"></a>
+<a class="sourceLine" id="cb118-4" title="4">hitters &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   playerID = col_character(),
+##   teamID = col_character(),
+##   lgID = col_character()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_sources/Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb121-2" title="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   playerID = col_character(),
+##   teamID = col_character(),
+##   lgID = col_character()
+## )
+## See spec(...) for full column specifications.</code></pre>
+<div id="an-interesting-question" class="section level2">
+<h2><span class="header-section-number">4.1</span> An Interesting Question</h2>
+<p>Who played the most games and hit the most home runs in the 90s in the state of Texas? This question is fairly easy to answer with the tools we learned in the Data Manipulation chapter.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year_id <span class="op">%in%</span><span class="st"> </span><span class="dv">1990</span><span class="op">:</span><span class="dv">1999</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-3" title="3"><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;HOU&quot;</span>,<span class="st">&quot;TEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(player_id, team_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-5" title="5"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">g =</span> <span class="kw">sum</span>(g),</a>
+<a class="sourceLine" id="cb123-6" title="6">            <span class="dt">hr =</span> <span class="kw">sum</span>(hr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb123-7" title="7"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(g, hr))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 411 x 4
+## # Groups:   player_id [398]
+##    player_id team_id     g    hr
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 biggicr01 HOU      1515   136
+##  2 bagweje01 HOU      1317   263
+##  3 gonzaju03 TEX      1224   339
+##  4 rodriiv01 TEX      1169   144
+##  5 greerru01 TEX       809   103
+##  6 palmera01 TEX       790   146
+##  7 caminke01 HOU       772    74
+##  8 palmede01 TEX       758   154
+##  9 gonzalu01 HOU       745    62
+## 10 bellde01  HOU       683    74
+## # ... with 401 more rows</code></pre>
+</div>
+<div id="a-more-general-question" class="section level2">
+<h2><span class="header-section-number">4.2</span> A More General Question</h2>
+<p>What if wanted to be able to easily answer this question for any range of years, teams, and statistics? We could pull out each of these variables, set them ahead of time, and then run a slightly modified version of the above code that uses our newly created variables.</p>
+<p>Note that this version of the code uses <code>across</code>, mentioned briefly in the Data Manipulation section; it could also be written with <code>summarize_at</code>, but using <code>across</code> makes our next step easier.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">years &lt;-<span class="st"> </span><span class="dv">1990</span><span class="op">:</span><span class="dv">1999</span></a>
+<a class="sourceLine" id="cb126-2" title="2">teams_chosen &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;HOU&quot;</span>, <span class="st">&quot;TEX&quot;</span>)</a>
+<a class="sourceLine" id="cb126-3" title="3">category &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;hr&quot;</span>)</a>
+<a class="sourceLine" id="cb126-4" title="4"></a>
+<a class="sourceLine" id="cb126-5" title="5">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-6" title="6"><span class="st">  </span><span class="kw">filter</span>(year_id <span class="op">%in%</span><span class="st"> </span>years) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-7" title="7"><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">%in%</span><span class="st"> </span>teams_chosen) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-8" title="8"><span class="st">  </span><span class="kw">group_by</span>(player_id, team_id) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-9" title="9"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">across</span>(category, sum)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># requires dplyr 1.0.0</span></a>
+<a class="sourceLine" id="cb126-10" title="10"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">across</span>(<span class="kw">all_of</span>(category)))) <span class="co"># requires dplyr 1.0.0</span></a></code></pre></div>
+<pre><code>## # A tibble: 411 x 4
+## # Groups:   player_id [398]
+##    player_id team_id     g    hr
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 biggicr01 HOU      1515   136
+##  2 bagweje01 HOU      1317   263
+##  3 gonzaju03 TEX      1224   339
+##  4 rodriiv01 TEX      1169   144
+##  5 greerru01 TEX       809   103
+##  6 palmera01 TEX       790   146
+##  7 caminke01 HOU       772    74
+##  8 palmede01 TEX       758   154
+##  9 gonzalu01 HOU       745    62
+## 10 bellde01  HOU       683    74
+## # ... with 401 more rows</code></pre>
+</div>
+<div id="even-more-generally-writing-a-function" class="section level2">
+<h2><span class="header-section-number">4.3</span> Even More Generally: Writing a Function</h2>
+<p>The format above works fine for occasional ad-hoc queries, but if we wanted to answer the question for multiple sets of parameters, we’d have to copy and paste all of this code - and then make sure, every time we edited it in the future, that those edits got made to every single instance in exactly the same way. One way to solve this problem would be to use a <code>for</code> loop, or nested <code>for</code> loops, with different sets of parameters, but even this quickly gets clunky. The most flexible solution is to turn our code into its own function.</p>
+<p>In the code below, we define a function. We:</p>
+<ul>
+<li>Give it a name (<code>subset_batting_stats</code>);</li>
+<li>Define the arguments - the inputs - that will be required;</li>
+<li>Write the code that will be run, using the input names we’ve defined;</li>
+<li>Define the value that the function returns;</li>
+<li>Run it with various parameters to test it out.</li>
+</ul>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">subset_batting_stats &lt;-<span class="st"> </span><span class="cf">function</span>(batting_data, years, teams_chosen, category){</a>
+<a class="sourceLine" id="cb128-2" title="2">  batting_data_subset_summary &lt;-<span class="st"> </span>batting_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-3" title="3"><span class="st">    </span><span class="kw">filter</span>(year_id <span class="op">%in%</span><span class="st"> </span>years) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-4" title="4"><span class="st">    </span><span class="kw">filter</span>(team_id <span class="op">%in%</span><span class="st"> </span>teams_chosen) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(player_id, team_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb128-6" title="6"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">across</span>(category, sum)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># requires dplyr 1.0.0</span></a>
+<a class="sourceLine" id="cb128-7" title="7"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">across</span>(<span class="kw">all_of</span>(category)))) <span class="co"># requires dplyr 1.0.0</span></a>
+<a class="sourceLine" id="cb128-8" title="8">    <span class="co"># summarize_at(vars(all_of(category)), sum) %&gt;% # older/fancier/more general method</span></a>
+<a class="sourceLine" id="cb128-9" title="9">    <span class="co"># arrange(desc(!!!rlang::syms(category))) # older/fancier/more general method</span></a>
+<a class="sourceLine" id="cb128-10" title="10">  </a>
+<a class="sourceLine" id="cb128-11" title="11">  <span class="kw">return</span>(batting_data_subset_summary)</a>
+<a class="sourceLine" id="cb128-12" title="12">}</a>
+<a class="sourceLine" id="cb128-13" title="13"></a>
+<a class="sourceLine" id="cb128-14" title="14"></a>
+<a class="sourceLine" id="cb128-15" title="15"><span class="co"># Texas in the 90s?</span></a>
+<a class="sourceLine" id="cb128-16" title="16"><span class="kw">subset_batting_stats</span>(<span class="dt">batting_data =</span> data, <span class="dt">years =</span> <span class="dv">1990</span><span class="op">:</span><span class="dv">1999</span>, <span class="dt">teams_chosen =</span> <span class="kw">c</span>(<span class="st">&quot;HOU&quot;</span>, <span class="st">&quot;TEX&quot;</span>), <span class="dt">category =</span> <span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;hr&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 411 x 4
+## # Groups:   player_id [398]
+##    player_id team_id     g    hr
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 biggicr01 HOU      1515   136
+##  2 bagweje01 HOU      1317   263
+##  3 gonzaju03 TEX      1224   339
+##  4 rodriiv01 TEX      1169   144
+##  5 greerru01 TEX       809   103
+##  6 palmera01 TEX       790   146
+##  7 caminke01 HOU       772    74
+##  8 palmede01 TEX       758   154
+##  9 gonzalu01 HOU       745    62
+## 10 bellde01  HOU       683    74
+## # ... with 401 more rows</code></pre>
+<p>This is nice and elegant, but it hasn’t accomplished anything different than what we did before. Below you can see the power of this function as we can easily change the parameters to answer a different question.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="co">#Los Angeles in the 2010s?</span></a>
+<a class="sourceLine" id="cb130-2" title="2"><span class="kw">subset_batting_stats</span>(<span class="dt">batting_data =</span> data, <span class="dt">years =</span> <span class="dv">2010</span><span class="op">:</span><span class="dv">2019</span>, <span class="dt">teams_chosen =</span> <span class="kw">c</span>(<span class="st">&quot;LAN&quot;</span>, <span class="st">&quot;LAA&quot;</span>), <span class="dt">category =</span> <span class="kw">c</span>(<span class="st">&quot;hr&quot;</span>, <span class="st">&quot;g&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 388 x 4
+## # Groups:   player_id [371]
+##    player_id team_id    hr     g
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 troutmi01 LAA       168   811
+##  2 pujolal01 LAA       146   721
+##  3 kempma01  LAN       121   652
+##  4 gonzaad01 LAN        98   664
+##  5 trumbma01 LAA        95   460
+##  6 ethiean01 LAN        85   853
+##  7 calhoko01 LAA        69   522
+##  8 hunteto01 LAA        62   448
+##  9 puigya01  LAN        57   435
+## 10 kendrho01 LAA        56   724
+## # ... with 378 more rows</code></pre>
+</div>
+<div id="iteration-with-functions-purrr" class="section level2">
+<h2><span class="header-section-number">4.4</span> Iteration with functions: <code>purrr</code></h2>
+<p>Now that we have our custom function, we can use functions from the package <code>purrr</code> to easily run it multiple times with different inputs. (You may have used various flavors of <code>apply</code> in the past - these also work well, and accomplish most of the same things, but <code>purrr</code> functions have a more convenient and consistent interface.)</p>
+<p>The most basic function that helps us do this is <code>map</code>. <code>map</code> allows us to run a function many times, varying <em>one</em> input between each of these runs. It takes two inputs: the list or vector of different values for your one varying input, and the function you want to run repeatedly, with values set for any other arguments.</p>
+<p>Functions from <code>purrr</code> allow us to use a special syntax for writing out the function we want to run, based on the R’s formula syntax. Simply put a tilde (<code>~</code>) in front of the function name, and then replace the value to be iterated over with <code>.x</code>. Here, we use this syntax with <code>map</code> to find the Orioles’ top home run hitters in each multiple decades. Our input is a list of numeric vectors, one for each decade, and our output is a list of dataframes.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">decades &lt;-<span class="st"> </span><span class="dv">1950</span><span class="op">:</span><span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">split</span>(<span class="kw">sort</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>, <span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb132-2" title="2"></a>
+<a class="sourceLine" id="cb132-3" title="3">bal_top_hr_decades &lt;-<span class="st"> </span><span class="kw">map</span>(decades, <span class="op">~</span><span class="kw">subset_batting_stats</span>(<span class="dt">batting_data =</span> data, <span class="dt">years =</span> .x, <span class="dt">teams_chosen =</span> <span class="st">&quot;BAL&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;hr&quot;</span>))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">class</span>(bal_top_hr_decades)</a></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">length</span>(bal_top_hr_decades)</a></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<p>This is still probably too much data to make use of: maybe it would be more helpful to just have the top home run hitter from each decade. We can take our list of output dataframes and map the function <code>head(1)</code> over each of them, to get the first row, since they’re already sorted by <code>hr</code>.</p>
+<p>At this point, we’ll have a list of ten one-row dataframes, and we might as well row-bind them. Unlike base R’s <code>rbind</code>, <code>dplyr::bind_rows</code> will accept a list of dataframes and bind them together. (Another option would have been to use <code>map_dfr</code>, which runs <code>bind_rows</code> on its list-formatted output.)</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">bal_top1_hr &lt;-<span class="st"> </span>bal_top_hr_decades <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-2" title="2"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="kw">head</span>(.x, <span class="dv">1</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-3" title="3"><span class="st">  </span><span class="kw">bind_rows</span>()</a>
+<a class="sourceLine" id="cb138-4" title="4"></a>
+<a class="sourceLine" id="cb138-5" title="5">bal_top1_hr</a></code></pre></div>
+<pre><code>## # A tibble: 7 x 3
+## # Groups:   player_id [7]
+##   player_id team_id    hr
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;
+## 1 triangu01 BAL       107
+## 2 powelbo01 BAL       202
+## 3 mayle01   BAL       116
+## 4 murraed02 BAL       254
+## 5 ripkeca01 BAL       198
+## 6 morame01  BAL       158
+## 7 davisch02 BAL       199</code></pre>
+<p>This is much more useful, but we do have a small problem: we’ve lost the information about which decade each one came from! One way to rectify this problem is to map a <code>mutate</code> after we run our custom function to add a column that shows which years each row came from. However, we’ll need <code>map2</code> for this, since we’re going to be iterating over both a list of dataframes and a list of decade vectors. <code>map2</code> works just like map, except it takes two lists/vectors as inputs, along with a function, and you can specify these inputs in your function as <code>.x</code> and <code>.y</code>.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">bal_top1_hr_yearcol &lt;-<span class="st"> </span>bal_top_hr_decades <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-2" title="2"><span class="st">  </span><span class="kw">map2</span>(decades, <span class="op">~</span><span class="kw">mutate</span>(.x, <span class="dt">years =</span> <span class="kw">str_c</span>(<span class="kw">first</span>(.y), <span class="st">&quot;-&quot;</span>, <span class="kw">last</span>(.y)))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-3" title="3"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="kw">head</span>(.x, <span class="dv">1</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-4" title="4"><span class="st">  </span><span class="kw">bind_rows</span>()</a>
+<a class="sourceLine" id="cb140-5" title="5"></a>
+<a class="sourceLine" id="cb140-6" title="6">bal_top1_hr_yearcol</a></code></pre></div>
+<pre><code>## # A tibble: 7 x 4
+## # Groups:   player_id [7]
+##   player_id team_id    hr years    
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    
+## 1 triangu01 BAL       107 1950-1959
+## 2 powelbo01 BAL       202 1960-1969
+## 3 mayle01   BAL       116 1970-1979
+## 4 murraed02 BAL       254 1980-1989
+## 5 ripkeca01 BAL       198 1990-1999
+## 6 morame01  BAL       158 2000-2009
+## 7 davisch02 BAL       199 2010-2019</code></pre>
+<p>What if we wanted to iterate over more than two arguments? We can use <code>pmap</code> for this; better yet, <code>pmap</code> will accept a list or dataframe of input combinations, which makes it easy to set up the right combinations of arguments to iterate over.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">input_combos &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">batting_data =</span> <span class="kw">list</span>(data), </a>
+<a class="sourceLine" id="cb142-2" title="2">                       <span class="dt">years =</span> decades[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>],</a>
+<a class="sourceLine" id="cb142-3" title="3">                       <span class="dt">teams_chosen =</span> <span class="kw">c</span>(<span class="st">&quot;BAL&quot;</span>, <span class="st">&quot;HOU&quot;</span>, <span class="st">&quot;TEX&quot;</span>, <span class="st">&quot;NYA&quot;</span>),</a>
+<a class="sourceLine" id="cb142-4" title="4">                       <span class="dt">category =</span> <span class="kw">c</span>(<span class="st">&quot;hr&quot;</span>, <span class="st">&quot;rbi&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;ab&quot;</span>))</a>
+<a class="sourceLine" id="cb142-5" title="5"></a>
+<a class="sourceLine" id="cb142-6" title="6">input_combos</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   batting_data            years        teams_chosen category
+##   &lt;list&gt;                  &lt;named list&gt; &lt;chr&gt;        &lt;chr&gt;   
+## 1 &lt;tibble [102,816 x 22]&gt; &lt;int [10]&gt;   BAL          hr      
+## 2 &lt;tibble [102,816 x 22]&gt; &lt;int [10]&gt;   HOU          rbi     
+## 3 &lt;tibble [102,816 x 22]&gt; &lt;int [10]&gt;   TEX          g       
+## 4 &lt;tibble [102,816 x 22]&gt; &lt;int [10]&gt;   NYA          ab</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">pmap_out_top3 &lt;-<span class="st"> </span><span class="kw">pmap</span>(input_combos, subset_batting_stats) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-2" title="2"><span class="st">  </span><span class="kw">map2</span>(input_combos<span class="op">$</span>years, <span class="op">~</span><span class="kw">mutate</span>(.x, <span class="dt">years =</span> <span class="kw">str_c</span>(<span class="kw">first</span>(.y), <span class="st">&quot;-&quot;</span>, <span class="kw">last</span>(.y)))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-3" title="3"><span class="st">  </span><span class="kw">map_dfr</span>(<span class="op">~</span><span class="kw">head</span>(.x, <span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)
+## `summarise()` regrouping output by &#39;player_id&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="co"># with decades added, as above, and top 3 taken from each dataframe</span></a>
+<a class="sourceLine" id="cb146-2" title="2">pmap_out_top3</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 7
+## # Groups:   player_id [12]
+##    player_id team_id    hr years       rbi     g    ab
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 triangu01 BAL       107 1950-1959    NA    NA    NA
+##  2 niemabo01 BAL        62 1950-1959    NA    NA    NA
+##  3 woodlge01 BAL        32 1950-1959    NA    NA    NA
+##  4 wynnji01  HOU        NA 1960-1969   441    NA    NA
+##  5 asprobo01 HOU        NA 1960-1969   385    NA    NA
+##  6 staubru01 HOU        NA 1960-1969   370    NA    NA
+##  7 harrato01 TEX        NA 1970-1979    NA   999    NA
+##  8 sundbji01 TEX        NA 1970-1979    NA   875    NA
+##  9 hargrmi01 TEX        NA 1970-1979    NA   726    NA
+## 10 winfida01 NYA        NA 1980-1989    NA    NA  4424
+## 11 randowi01 NYA        NA 1980-1989    NA    NA  4249
+## 12 mattido01 NYA        NA 1980-1989    NA    NA  4022</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="co">## tidy up...</span></a>
+<a class="sourceLine" id="cb148-2" title="2">pmap_out_top3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(team_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rank =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-5" title="5"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(rbi, g, ab, hr), <span class="dt">names_to =</span> <span class="st">&quot;stat_type&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-6" title="6"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(value))</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 6
+## # Groups:   team_id [4]
+##    player_id team_id years      rank stat_type value
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+##  1 triangu01 BAL     1950-1959     1 hr          107
+##  2 niemabo01 BAL     1950-1959     2 hr           62
+##  3 woodlge01 BAL     1950-1959     3 hr           32
+##  4 wynnji01  HOU     1960-1969     1 rbi         441
+##  5 asprobo01 HOU     1960-1969     2 rbi         385
+##  6 staubru01 HOU     1960-1969     3 rbi         370
+##  7 harrato01 TEX     1970-1979     1 g           999
+##  8 sundbji01 TEX     1970-1979     2 g           875
+##  9 hargrmi01 TEX     1970-1979     3 g           726
+## 10 winfida01 NYA     1980-1989     1 ab         4424
+## 11 randowi01 NYA     1980-1989     2 ab         4249
+## 12 mattido01 NYA     1980-1989     3 ab         4022</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-data-modeling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
