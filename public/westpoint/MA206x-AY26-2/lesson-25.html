@@ -959,13 +959,13 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(n\)</span></td>
-<td style="text-align: center;">120</td>
-<td style="text-align: center;">150</td>
+<td style="text-align: center;">200</td>
+<td style="text-align: center;">200</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Passed</td>
-<td style="text-align: center;">96</td>
-<td style="text-align: center;">105</td>
+<td style="text-align: center;">160</td>
+<td style="text-align: center;">140</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{p}\)</span></td>
@@ -975,13 +975,13 @@ window.Quarto = {
 </tbody>
 </table>
 <p><strong>Compute the pooled proportion:</strong></p>
-<p><span class="math display">\[\hat{p} = \frac{x_1 + x_2}{n_1 + n_2} = \frac{96 + 105}{120 + 150} = \frac{201}{270} = 0.744\]</span></p>
+<p><span class="math display">\[\hat{p} = \frac{x_1 + x_2}{n_1 + n_2} = \frac{160 + 140}{200 + 200} = \frac{300}{400} = 0.750\]</span></p>
 <p><strong>Check conditions:</strong></p>
 <ul>
-<li><span class="math inline">\(n_1 \hat{p} = 120(0.744) = 89.3 \geq 10\)</span> ✓</li>
-<li><span class="math inline">\(n_1(1-\hat{p}) = 120(0.256) = 30.7 \geq 10\)</span> ✓</li>
-<li><span class="math inline">\(n_2 \hat{p} = 150(0.744) = 111.7 \geq 10\)</span> ✓</li>
-<li><span class="math inline">\(n_2(1-\hat{p}) = 150(0.256) = 38.3 \geq 10\)</span> ✓</li>
+<li><span class="math inline">\(n_1 \hat{p} = 200(0.750) = 150.0 \geq 10\)</span> ✓</li>
+<li><span class="math inline">\(n_1(1-\hat{p}) = 200(0.250) = 50.0 \geq 10\)</span> ✓</li>
+<li><span class="math inline">\(n_2 \hat{p} = 200(0.750) = 150.0 \geq 10\)</span> ✓</li>
+<li><span class="math inline">\(n_2(1-\hat{p}) = 200(0.250) = 50.0 \geq 10\)</span> ✓</li>
 </ul>
 <p>All conditions met — the two-proportion <span class="math inline">\(z\)</span>-test is appropriate.</p>
 <p><strong>Step 1: State the Hypotheses</strong></p>
@@ -990,7 +990,7 @@ window.Quarto = {
 <p><strong>Step 2: Compute the Test Statistic</strong></p>
 <p><span class="math display">\[z = \frac{(\hat{p}_1 - \hat{p}_2) - \Delta_0}{\sqrt{\hat{p}(1-\hat{p})\left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}}\]</span></p>
 <p>where <span class="math inline">\(\Delta_0 = 0\)</span> comes from our null hypothesis <span class="math inline">\(H_0: p_1 - p_2 = 0\)</span>.</p>
-<p><span class="math display">\[z = \frac{(0.800 - 0.700) - 0}{\sqrt{0.744(0.256)\left(\dfrac{1}{120} + \dfrac{1}{150}\right)}} = \frac{0.100}{0.0534} = 1.872\]</span></p>
+<p><span class="math display">\[z = \frac{(0.800 - 0.700) - 0}{\sqrt{0.750(0.250)\left(\dfrac{1}{200} + \dfrac{1}{200}\right)}} = \frac{0.100}{0.0433} = 2.309\]</span></p>
 <p><strong>Step 3: Find the <span class="math inline">\(p\)</span>-Value</strong></p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1028,9 +1028,9 @@ window.Quarto = {
 <p><strong>Notice:</strong> The CI uses the <strong>unpooled</strong> SE — each group keeps its own <span class="math inline">\(\hat{p}\)</span>.</p>
 </div>
 </div>
-<p><span class="math display">\[(0.800 - 0.700) \pm 1.960 \cdot \sqrt{\frac{0.800(0.200)}{120} + \frac{0.700(0.300)}{150}} = 0.100 \pm 1.960(0.0523) = 0.100 \pm 0.103\]</span></p>
-<p><span class="math display">\[(-0.003,\; 0.203)\]</span></p>
-<p>We are 95% confident that the true difference in pass rates (New <span class="math inline">\(-\)</span> Old) is between <strong><span class="math inline">\(-0.003\)</span></strong> and <strong><span class="math inline">\(0.203\)</span></strong>.</p>
+<p><span class="math display">\[(0.800 - 0.700) \pm 1.960 \cdot \sqrt{\frac{0.800(0.200)}{200} + \frac{0.700(0.300)}{200}} = 0.100 \pm 1.960(0.0430) = 0.100 \pm 0.084\]</span></p>
+<p><span class="math display">\[(0.016,\; 0.184)\]</span></p>
+<p>We are 95% confident that the true difference in pass rates (New <span class="math inline">\(-\)</span> Old) is between <strong><span class="math inline">\(0.016\)</span></strong> and <strong><span class="math inline">\(0.184\)</span></strong>. The entire interval is above zero — consistent with rejecting <span class="math inline">\(H_0\)</span>.</p>
 <hr>
 </section>
 <section id="example-2-company-readiness-rates" class="level2">
