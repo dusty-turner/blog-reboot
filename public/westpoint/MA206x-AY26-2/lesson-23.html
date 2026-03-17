@@ -351,6 +351,12 @@ window.Quarto = {
  <span class="menu-text">Lesson 24</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -647,14 +653,14 @@ window.Quarto = {
 <td style="text-align: center;"><span class="math inline">\(\bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\bar{x} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s}{\sqrt{n}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((\bar{x}_1 - \bar{x}_2) \pm z_{\alpha/2} \cdot SE\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2} \cdot \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\bar{d} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s_d}{\sqrt{n}}\)</span></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Conditions</strong></td>
 <td style="text-align: center;"><span class="math inline">\(n \geq 30\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n \leq 30\)</span></td>
+<td style="text-align: center;">Normal pop or <span class="math inline">\(n \geq 30\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(n\hat{p} \geq 10\)</span> &amp; <span class="math inline">\(n(1-\hat{p}) \geq 10\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(n_1, n_2 \geq 30\)</span></td>
 <td style="text-align: center;">Diffs ~ Normal or <span class="math inline">\(n \geq 30\)</span></td>
@@ -733,8 +739,8 @@ window.Quarto = {
 <td style="text-align: center;"><span class="math inline">\(z = \dfrac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{x} - \mu_0}{s / \sqrt{n}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(z = \dfrac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(z = \dfrac{\bar{x}_1 - \bar{x}_2}{SE}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{x}_1 - \bar{x}_2}{SE}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z = \dfrac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{d} - \Delta_0}{s_d / \sqrt{n}}\)</span></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1426,29 +1432,23 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Test Stat</strong></td>
-<td style="text-align: center;"><span class="math inline">\(z = \dfrac{\bar{x}_1 - \bar{x}_2}{SE}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{x}_1 - \bar{x}_2}{SE}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z = \dfrac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(t = \dfrac{\bar{d} - \Delta_0}{s_d / \sqrt{n}}\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><span class="math inline">\(SE\)</span></strong></td>
-<td style="text-align: center;"><span class="math inline">\(\sqrt{s_1^2/n_1 + s_2^2/n_2}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\sqrt{s_1^2/n_1 + s_2^2/n_2}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(s_d / \sqrt{n}\)</span></td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"><strong>Distribution</strong></td>
 <td style="text-align: center;"><span class="math inline">\(N(0,1)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(t_{df}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(t_{n-1}\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><strong>Conditions</strong></td>
 <td style="text-align: center;"><span class="math inline">\(n_1, n_2 \geq 30\)</span></td>
 <td style="text-align: center;">Populations ~ Normal</td>
 <td style="text-align: center;">Differences ~ Normal (or <span class="math inline">\(n \geq 30\)</span>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><strong>Design</strong></td>
 <td style="text-align: center;">Independent groups</td>
 <td style="text-align: center;">Independent groups</td>
