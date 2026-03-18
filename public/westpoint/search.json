@@ -7233,5 +7233,1089 @@
     "crumbs": [
       "Home"
     ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html",
+    "href": "misc-lessons/lesson-2.html",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteDownloads\n\n\n\n\nExcel Workbook (all 3 lessons)\nACFT Data (CSV)\n\n\n\n\n\n\n\nExplain the purpose of simple linear regression as a predictive modeling tool.\nIdentify situations where simple linear regression is an appropriate model.\nCreate a simple linear regression model in Excel using a training set.\nInterpret the slope and intercept of a linear regression model in context. (moved from Lesson 9)\nInterpret \\(R^2\\) for a linear regression model built on training data. (moved from Lesson 9)\n\n\n\n\n\nIn Lesson 7, you used the mean as a baseline predictor. Here is real ACFT data from a company in the 20th Engineer Brigade — can we predict a soldier’s Weight from their Height?\n\n\n\n\n\n\n\n\n\nThe mean predicts \\(\\bar{y} = 183.08\\) lbs for every soldier — but the scatter shows a clear trend. Taller soldiers tend to weigh more. Can we do better?\n\n\n\n\nWe know the mean is too simple. But what model should we use? There are lots of curves we could draw through this data:\n\n\n\n\n\n\n\n\n\nThe data doesn’t curve back up or wiggle — it follows a roughly straight-line trend. Maybe a line is a better option:\n\n\n\n\n\n\n\n\n\nThis looks like it captures the trend well. But how do we find the best line? That is what simple linear regression does.\n\n\n\n\n\n\n\n\n\n\nNoteJustifying the Choice of a Linear Model\n\n\n\nBefore fitting a model, we must justify our choice. Reading 2.2 describes four assumptions for simple linear regression:\n\nLinearity: The relationship between \\(x\\) and \\(y\\) is approximately linear.\nIndependence: The observations are independent of each other.\nConstant variance: The spread of \\(y\\) values is roughly the same for all values of \\(x\\).\nNormality: The errors are approximately normally distributed.\n\nWe justify the linearity assumption by examining the scatter plot — does it show a reasonably straight-line pattern? For this data, the answer is yes.\nThe correlation between Height and Weight also supports this:\n\n\n\\[r = 0.7294\\]\n\n\n\n\n\n\nTipRecall from Reading 1.5\n\n\n\nA strong positive correlation (close to \\(+1\\)) supports the existence of a linear relationship, but correlation alone does not prove linearity — we must always check the scatter plot. Correlation supports but does not replace visual inspection.\n\n\n\n\n\n\nBut which line? We could draw many different lines through this data:\n\n\n\n\n\n\n\n\n\nEvery one of these lines follows the same formula:\n\\[\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\]\nwhere \\(\\hat{\\beta}_0\\) is the intercept (where the line crosses \\(y\\) when \\(x = 0\\)) and \\(\\hat{\\beta}_1\\) is the slope (how much \\(\\hat{y}\\) changes for each one-unit increase in \\(x\\)). Different choices of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) give different lines.\nBut none of these lines hit every data point exactly. Each point has an error — the vertical distance between the actual value and the line:\n\n\n\n\n\n\n\n\n\nSo the real model is:\n\\[y = \\hat{\\beta}_0 + \\hat{\\beta}_1 x + \\text{error}\\]\nThe question is: which values of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) make these errors as small as possible?\n\n\n\n\n\n\n\n\n\n\nImportantThe Least Squares Method\n\n\n\nThe “best” line is the one that minimizes the sum of squared errors (SSE):\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^{n} (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)^2\\]\nThe formulas for the least squares estimates are:\n\\[\\hat{\\beta}_1 = \\frac{\\displaystyle\\sum_{i=1}^{n}(x_i - \\bar{x})(y_i - \\bar{y})}{\\displaystyle\\sum_{i=1}^{n}(x_i - \\bar{x})^2} \\qquad \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\n\n\n\n\n\n\n\n\n\nThe dashed gray lines show the errors (residuals) — the vertical distance between each data point and the line. Least squares finds the line that makes the total squared error as small as possible.\n\n\n\n\n\n\nTipOur Model\n\n\n\nFrom the training data:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nwhere \\(x\\) = Height (in) and \\(\\hat{y}\\) = predicted Weight (lbs).\n\n\n\n\n\n\nLet’s build this live. The training data is in the workbook below:\n\n\n\n\n\n\n\nNoteExcel Instructions: Trendline Method\n\n\n\n\nEnter the training data in two columns: Height (\\(x\\)) and Weight (\\(y\\)).\nSelect cells B1:C38 (Height and Weight columns only) and go to Insert -&gt; Chart -&gt; XY (Scatter).\nAdjust the axis bounds so the data fills the chart: double-click each axis -&gt; Format Axis -&gt; set the Minimum Bound (e.g., ~60 for Height, ~120 for Weight).\nClick directly on one of the data points (blue dots) in the scatter plot — you should see selection handles appear on all the points.\nRight-click on the selected data points -&gt; Add Trendline. A Format Trendline pane will open on the right side of the screen.\nUnder Trendline Options, select Linear (it may already be selected by default).\nScroll down in the pane and check: Display Equation on chart.\nCheck: Display R-squared value on chart.\nClose the pane.\n\nThe equation on the chart is your regression model.\n\n\n\n\n\n\nThe trendline gives us our model:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nWhat do these numbers actually mean?\n\n\n\n\n\n\nImportantInterpreting the Slope and Intercept\n\n\n\nSlope (\\(\\hat{\\beta}_1 = 6\\)): For every one-inch increase in height, the model predicts weight increases by about 6 lbs. This is the rate of change — how much \\(\\hat{y}\\) changes per unit change in \\(x\\).\nIntercept (\\(\\hat{\\beta}_0 = -233.2\\)): If a soldier were 0 inches tall, the model would predict a weight of -233.2 lbs. This is clearly nonsensical — the intercept is needed to position the line correctly, but it does not have a meaningful interpretation outside the range of the data.\n\n\n\n\n\nThe trendline also displayed an \\(R^2\\) value on the chart. What does it mean?\n\\[R^2 = 0.532\\]\n\n\n\n\n\n\nImportantInterpreting R-squared\n\n\n\n\\(R^2\\) measures the proportion of variation in \\(y\\) that is explained by the model. It ranges from 0 to 1.\n\n\\(R^2 = 0.532\\) means that 53.2% of the variation in soldier weight is explained by the linear relationship with height.\nThe remaining 46.8% is due to other factors the model does not capture (fitness level, body composition, etc.).\n\n\n\n\n\n\n\n\n\n\n\n\nImportantKey Takeaways\n\n\n\n\nSimple linear regression models the relationship between two numerical variables: \\(\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\).\nThe least squares method finds the line that minimizes SSE \\(= \\sum(y_i - \\hat{y}_i)^2\\).\nIn Excel, build the model using Trendline and verify with SLOPE and INTERCEPT.\nSlope tells us the rate of change: how much \\(\\hat{y}\\) changes per one-unit increase in \\(x\\).\nIntercept positions the line but may not have a meaningful real-world interpretation.\n\\(R^2\\) tells us what proportion of variation in \\(y\\) is explained by the model.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#objectives",
+    "href": "misc-lessons/lesson-2.html#objectives",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "Explain the purpose of simple linear regression as a predictive modeling tool.\nIdentify situations where simple linear regression is an appropriate model.\nCreate a simple linear regression model in Excel using a training set.\nInterpret the slope and intercept of a linear regression model in context. (moved from Lesson 9)\nInterpret \\(R^2\\) for a linear regression model built on training data. (moved from Lesson 9)",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#review-where-weve-been",
+    "href": "misc-lessons/lesson-2.html#review-where-weve-been",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteFrom Descriptive to Predictive\n\n\n\nIn Lessons 1–7 you learned how to describe data:\n\nMeasures of center (mean, median) and spread (standard deviation, range)\nZ-scores to compare across variables\nScatter plots and correlation to explore relationships between two variables\n\nNow we shift from what happened? to what will happen? — this is predictive modeling.\nIn Lesson 7, you learned to:\n\nPartition data into training and test sets\nUse the mean as a simple baseline predictor\n\nToday we build a much better predictor: a line.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#motivation-why-a-line",
+    "href": "misc-lessons/lesson-2.html#motivation-why-a-line",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "The scatter plot shows a negative trend. Can we quantify this relationship with a line and use it to make predictions?",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#what-is-simple-linear-regression",
+    "href": "misc-lessons/lesson-2.html#what-is-simple-linear-regression",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteDefinition: Simple Linear Regression (SLR)\n\n\n\nSimple linear regression models the relationship between one independent variable \\(x\\) and one dependent variable \\(y\\) using a straight line:\n\\[\\hat{y} = b_0 + b_1 x\\]\nwhere:\n\n\\(\\hat{y}\\) is the predicted value of \\(y\\)\n\\(b_0\\) is the y-intercept (the predicted value when \\(x = 0\\))\n\\(b_1\\) is the slope (the change in \\(\\hat{y}\\) for a one-unit increase in \\(x\\))\n\n\n\nThe “best” line is the one that minimizes the sum of squared errors between the predicted values \\(\\hat{y}\\) and the actual values \\(y\\). This method is called least squares.\n\n\n\n\n\n\n\n\n\nThe dashed gray lines show the errors (residuals) — the vertical distance between each data point and the line. Least squares finds the line that makes these errors as small as possible overall.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#when-is-slr-appropriate",
+    "href": "misc-lessons/lesson-2.html#when-is-slr-appropriate",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "TipChecklist: When to Use Simple Linear Regression\n\n\n\nSimple linear regression is appropriate when:\n\nTwo numerical variables: You have one numerical independent variable (\\(x\\)) and one numerical dependent variable (\\(y\\)).\nLinear trend: The scatter plot shows a roughly straight-line relationship (not curved).\nPredictive question: You want to predict \\(y\\) from \\(x\\).\n\nSimple linear regression may not be appropriate when:\n\nThe relationship is clearly curved (use nonlinear trendlines instead — Lesson 11)\nThe variables are categorical (use other methods)\nThere is no discernible trend (the correlation is near zero)",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#connecting-to-the-modeling-process",
+    "href": "misc-lessons/lesson-2.html#connecting-to-the-modeling-process",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "ImportantApplying the Modeling Framework\n\n\n\nRecall the four steps from Lesson 1:\n1. Formulate:\n\nGiven: A dataset with two numerical variables\nFind: A predictive model for the dependent variable\nExplore: Examine the scatter plot for a linear trend; define \\(x\\) (independent) and \\(y\\) (dependent)\nAssumptions: The relationship is approximately linear; we use a training/test split\nModel: \\(\\hat{y} = b_0 + b_1 x\\) (simple linear regression)\n\n2. Solve: Use Excel to compute \\(b_0\\) and \\(b_1\\) from the training data.\n3. Interpret: Explain what the slope and intercept mean in context.\n4. Test: Use the test set to evaluate whether the model predicts well on new data.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#building-a-linear-regression-model-in-excel",
+    "href": "misc-lessons/lesson-2.html#building-a-linear-regression-model-in-excel",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteExcel Instructions: Partition Data\n\n\n\nYou should already have your data split into training and test sets from Lesson 7. As a reminder:\n\nSort your data or use a random method to split it (e.g., 70% training, 30% test).\nPlace training data on one sheet/section and test data on another.\nOnly use the training data to build the model. The test data is reserved for evaluation.\n\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Scatter Plot\n\n\n\n\nSelect your \\(x\\) and \\(y\\) columns in the training data.\nGo to Insert → Chart → XY (Scatter).\nChoose the option with data points only (no lines).\nAdd axis labels and a title.\nLook at the plot — does the relationship appear linear?\n\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Add a Linear Trendline\n\n\n\n\nClick on any data point in your scatter plot.\nRight-click → Add Trendline.\nSelect Linear.\nCheck the box: Display Equation on chart.\nCheck the box: Display R-squared value on chart.\nClick Close.\n\nThe equation displayed on the chart is your regression model: \\(\\hat{y} = b_0 + b_1 x\\).\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Using SLOPE and INTERCEPT Functions\n\n\n\nYou can also compute the regression coefficients directly using Excel formulas:\n\nSlope: =SLOPE(y_range, x_range)\nIntercept: =INTERCEPT(y_range, x_range)\n\nFor example, if your \\(y\\) values (Deadlift) are in cells B2:B21 and your \\(x\\) values (Age) are in cells A2:A21:\n\n=SLOPE(B2:B21, A2:A21) → gives \\(b_1\\)\n=INTERCEPT(B2:B21, A2:A21) → gives \\(b_0\\)",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#example-cadet-fitness-data",
+    "href": "misc-lessons/lesson-2.html#example-cadet-fitness-data",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "Let’s walk through a complete example using our training data.\n\n\n\nTraining Data (21 cadets)\n\n\nID\nAge\nDeadlift\n\n\n\n\nA025\n18\n352\n\n\nA004\n18\n345\n\n\nA022\n18\n339\n\n\nA030\n19\n318\n\n\nA009\n20\n383\n\n\nA019\n20\n363\n\n\nA001\n21\n416\n\n\nA023\n21\n364\n\n\nA011\n21\n366\n\n\nA010\n22\n347\n\n\nA018\n22\n369\n\n\nA020\n22\n408\n\n\nA013\n22\n371\n\n\nA005\n23\n449\n\n\nA015\n23\n404\n\n\nA007\n23\n400\n\n\nA029\n23\n376\n\n\nA014\n23\n396\n\n\nA003\n23\n353\n\n\nA017\n24\n446\n\n\nA027\n24\n401\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipOur Model\n\n\n\nFrom the training data, Excel would give us:\n\\[\\hat{y} = 126.1 + 11.82 \\cdot x\\]\nwhere \\(x\\) = Age (years) and \\(\\hat{y}\\) = predicted Deadlift (lbs).",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#making-a-prediction",
+    "href": "misc-lessons/lesson-2.html#making-a-prediction",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteExample Prediction\n\n\n\nA new cadet is 20 years old. What is our predicted deadlift?\n\\[\\hat{y} = 126.1 + 11.82(20) = 362.5 \\text{ lbs}\\]\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Making Predictions\n\n\n\nIn Excel, once you have \\(b_0\\) and \\(b_1\\) in cells, you can predict for any new \\(x\\) value:\n= intercept_cell + slope_cell * new_x_value\nOr equivalently, if your model is in cells D1 (intercept) and D2 (slope):\n= $D$1 + $D$2 * A2\nDrag this formula down to generate predictions for multiple observations.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#summary",
+    "href": "misc-lessons/lesson-2.html#summary",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "ImportantKey Takeaways\n\n\n\n\nSimple linear regression models the relationship between two numerical variables: \\(\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\).\nThe least squares method finds the line that minimizes SSE \\(= \\sum(y_i - \\hat{y}_i)^2\\).\nIn Excel, build the model using Trendline and verify with SLOPE and INTERCEPT.\nSlope tells us the rate of change: how much \\(\\hat{y}\\) changes per one-unit increase in \\(x\\).\nIntercept positions the line but may not have a meaningful real-world interpretation.\n\\(R^2\\) tells us what proportion of variation in \\(y\\) is explained by the model.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#before-you-leave",
+    "href": "misc-lessons/lesson-2.html#before-you-leave",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "In the next lesson we will:\n\nInterpret the slope and intercept in context (what does a positive slope mean for soldiers?)\nUnderstand what \\(R^2\\) tells us about model quality\nUse the model to make out-of-sample predictions on the test set\nValidate the model by comparing training and test performance using MAE",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html",
+    "href": "misc-lessons/lesson-3.html",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "NoteDownloads\n\n\n\n\nExcel Workbook (all 3 lessons)\nACFT Data (CSV)\n\n\n\n\n\n\n\nInterpret the slope and intercept of a linear regression model in context. (covered in Lesson 8)\nInterpret \\(R^2\\) for a linear regression model built on training data. (covered in Lesson 8)\nUse a linear regression model to generate and interpret out-of-sample predictions.\nValidate a linear regression model by comparing training and test data performance.\nUse out-of-sample prediction results to support or question a predictive modeling decision.\n\n\n\n\n\nIn Lesson 8, we built a linear regression model using all 37 soldiers:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nwith \\(R^2 = 0.532\\). The slope tells us each additional inch of height predicts about 6 more lbs.\nBut how do we know this model actually works? We fit it to all of our data — so of course it fits that data reasonably well. The real question is: can it predict well for soldiers it has never seen?\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen we use all the data to build the model and then check how well it fits that same data, we’re essentially grading our own test. The model has already “seen” every observation — so a good fit on this data doesn’t tell us much about how it will perform on new data.\nThis is why we need a training set and a test set.\n\n\n\n\n\n\nImportantTraining and Test Sets\n\n\n\n\nTraining set: The data we use to build the model (estimate \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)).\nTest set: Data we hold out and use only to evaluate the model’s predictions on observations it has never seen.\n\nIf the model predicts well on the test set, we have evidence it generalizes — it captures a real pattern, not just noise in the training data.\n\n\n\n\n\n\nLet’s take our 37 soldiers and split them: the first 26 soldiers for training, the remaining 11 for testing.\n\n\n\n\n\n\n\n\n\nNow we rebuild the model using only the training data:\n\\[\\hat{y} = -191.3 + 5.4 \\cdot x\\]\nNotice the coefficients are different from Lesson 8 (\\(\\hat{\\beta}_0 = -233.2\\), \\(\\hat{\\beta}_1 = 6\\)). That’s expected — we’re now using fewer observations to estimate the line.\n\n\n\n\nNow we can use our training model to predict weight for any soldier — including the 11 test soldiers the model has never seen. Just plug in the height:\n\n\n\n\n\n\nNoteExample Prediction\n\n\n\nTake the first soldier in the test set — S027, who is 68 inches tall. The model has never seen this soldier. What does it predict?\n\\[\\hat{y} = -191.3 + 5.4 \\times 68 = 176.7 \\text{ lbs}\\]\nS027 actually weighs 170 lbs, so our error is \\(170 - 176.7 = -6.7\\) lbs.\n\n\nWe can do this for every test soldier. For each one, we also compute the error — how far off our prediction was:\n\\[\\text{Error} = \\text{Actual Weight} - \\text{Predicted Weight}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual (lbs)\nPredicted (lbs)\nError\n|Error|\n\n\n\n\nS027\n68\n170\n176.7\n-6.7\n6.7\n\n\nS028\n71\n202\n192.9\n9.1\n9.1\n\n\nS029\n73\n206\n203.8\n2.2\n2.2\n\n\nS030\n61\n128\n138.8\n-10.8\n10.8\n\n\nS031\n61\n149\n138.8\n10.2\n10.2\n\n\nS032\n72\n235\n198.4\n36.6\n36.6\n\n\nS033\n74\n231\n209.2\n21.8\n21.8\n\n\nS034\n68\n182\n176.7\n5.3\n5.3\n\n\nS035\n72\n227\n198.4\n28.6\n28.6\n\n\nS036\n72\n182\n198.4\n-16.4\n16.4\n\n\nS037\n66\n154\n165.9\n-11.9\n11.9\n\n\n\n\n\n\nA positive error means we underpredicted (soldier weighs more than expected).\nA negative error means we overpredicted (soldier weighs less than expected).\n\n\n\n\n\nTo summarize overall prediction quality with a single number, we use the Mean Absolute Error (MAE):\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\nWe compute MAE separately for the training set and the test set, then compare:\n\n\n\n\n\n\nImportantModel Validation\n\n\n\n\n\n\nMetric\nTraining (26 soldiers)\nTest (11 soldiers)\n\n\n\n\nMAE\n17.6 lbs\n14.5 lbs\n\n\n\n\nIf test MAE is close to training MAE, the model generalizes well — it captures a real pattern that holds for new data.\nIf test MAE is much larger than training MAE, the model may be overfitting — it memorized the training data but doesn’t predict well for new observations.\n\n\n\n\n\n\n\n\n\n\n\n\nIf the errors look random and centered around zero, that’s a good sign. If there’s a pattern, we may need a different model. We’ll dig into this in Lesson 10 with residual analysis.\n\n\n\n\nNow we have all the pieces to make a judgment: is this model good enough to use?\n\n\n\n\n\n\nTipQuestions to Ask (Reading 2.2, Section 9)\n\n\n\n\nIs the MAE acceptable for the context? An average error of 14.5 lbs — is that useful for whatever decision we’re making?\nDoes the model generalize? Training MAE (17.6) vs. test MAE (14.5) — are they in the same ballpark?\nAre the predictions practically reasonable? Do the predicted weights make sense for real soldiers?\nWould you trust this model to inform a real decision? If a commander used this model to estimate equipment needs, would the errors be acceptable?\n\n\n\n\n\n\n\nOpen the L9 - Validate tab in the workbook:\n\nThe data is already split for you: Train (26 soldiers) and Test (11 soldiers), separated by a blank row.\n\n\n\n\n\n\nNoteStep 1: Build the Model on Training Data Only\n\n\n\nUse =SLOPE() and =INTERCEPT() on only the training rows to get your slope and intercept. The hint formulas in columns K–L show you how.\nYour coefficients should be different from Lesson 8 — that’s expected because you’re now using only 26 soldiers instead of all 37.\n\n\n\n\n\n\n\n\nNoteStep 2: Make Predictions for All Soldiers\n\n\n\nIn the Predicted (lbs) column, compute \\(\\hat{y}\\) for each soldier (both training and test):\n= intercept_cell + slope_cell * height_cell\nDrag this formula down for all rows.\n\n\n\n\n\n\n\n\nNoteStep 3: Compute Errors\n\n\n\n\nError column: = Actual - Predicted\n|Error| column: = ABS(Error)\n\n\n\n\n\n\n\n\n\nNoteStep 4: Compute MAE\n\n\n\nCompute MAE separately for the training rows and the test rows:\n= AVERAGE(|Error| range for training)\n= AVERAGE(|Error| range for test)\nCompare the two values. Are they in the same ballpark?\n\n\n\n\n\n\n\n\nNoteStep 5: Make a Judgment\n\n\n\nLook at your results and answer:\n\nIs the test MAE close to the training MAE?\nIs an average error of ~15 lbs acceptable for predicting soldier weight?\nWould you recommend this model to a commander? Why or why not?\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantKey Takeaways\n\n\n\n\nBuilding a model on all the data and checking fit on that same data is like grading your own test — it doesn’t tell you how the model performs on new data.\nSplit the data into training (to build) and test (to evaluate).\nUse the regression equation to make predictions by plugging in new \\(x\\) values.\nMAE summarizes prediction accuracy: the average absolute distance between actual and predicted values.\nCompare training and test MAE to check whether the model generalizes or overfits.\nUse prediction results to support or question your modeling decision — is the model good enough for the task at hand?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#objectives",
+    "href": "misc-lessons/lesson-3.html#objectives",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Interpret the slope and intercept of a linear regression model in context. (covered in Lesson 8)\nInterpret \\(R^2\\) for a linear regression model built on training data. (covered in Lesson 8)\nUse a linear regression model to generate and interpret out-of-sample predictions.\nValidate a linear regression model by comparing training and test data performance.\nUse out-of-sample prediction results to support or question a predictive modeling decision.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#review-our-model-from-lesson-8",
+    "href": "misc-lessons/lesson-3.html#review-our-model-from-lesson-8",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "In Lesson 8, we built a linear regression model using all 37 soldiers:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nwith \\(R^2 = 0.532\\). The slope tells us each additional inch of height predicts about 6 more lbs.\nBut how do we know this model actually works? We fit it to all of our data — so of course it fits that data reasonably well. The real question is: can it predict well for soldiers it has never seen?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#interpreting-the-slope",
+    "href": "misc-lessons/lesson-3.html#interpreting-the-slope",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantInterpreting the Slope (\\(\\hat{\\beta}_1 \\approx 6\\))\n\n\n\nThe slope \\(\\hat{\\beta}_1 \\approx 6\\) means:\n\nFor each additional inch of height, a soldier’s predicted weight increases by approximately 6 pounds.\n\nThe slope tells us the rate of change — how much \\(\\hat{y}\\) changes for a one-unit increase in \\(x\\).\nTemplate for interpretation:\n\n“For each one-unit increase in [independent variable], the model predicts a [increase/decrease] of \\(|\\hat{\\beta}_1|\\) [units of dependent variable].”\n\n\n\n\n\n\n\n\n\nWarningCommon Mistakes\n\n\n\n\nDo not say “causes” — regression shows association, not causation.\nAlways include context (units, variable names) — do not just say “the slope is 6.”\nRemember: this is a prediction from a model, not a guarantee.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#interpreting-the-intercept",
+    "href": "misc-lessons/lesson-3.html#interpreting-the-intercept",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantInterpreting the Intercept (\\(\\hat{\\beta}_0 \\approx -233.2\\))\n\n\n\nThe intercept \\(\\hat{\\beta}_0 \\approx -233.2\\) means:\n\nWhen height is 0 inches, the model predicts a weight of -233.2 pounds.\n\nDoes this make sense? A height of 0 inches is not realistic for any human! This is a common situation — the intercept often lacks a meaningful real-world interpretation, especially when \\(x = 0\\) is outside the range of the data.\nTemplate for interpretation:\n\n“When [independent variable] is zero, the model predicts [dependent variable] is \\(\\hat{\\beta}_0\\) [units]. [State whether this is meaningful in context.]”\n\n\n\n\n\n\n\n\n\nWarningExtrapolation Warning\n\n\n\nOur training data includes heights from 61 to 74 inches. Making predictions outside this range — like for a height of 0 or 80 inches — is called extrapolation and is generally unreliable. The model was only trained on data within a specific range.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#interpreting-r2",
+    "href": "misc-lessons/lesson-3.html#interpreting-r2",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantDefinition: Coefficient of Determination (\\(R^2\\))\n\n\n\n\\(R^2\\) measures the proportion of variability in \\(y\\) that is explained by the model:\n\\[R^2 = 1 - \\frac{\\displaystyle\\sum_{i=1}^{n}(y_i - \\hat{y}_i)^2}{\\displaystyle\\sum_{i=1}^{n}(y_i - \\bar{y})^2} = 1 - \\frac{\\text{SSE}}{\\text{SST}}\\]\n\n\\(R^2 = 1\\): The model explains all the variability (perfect fit).\n\\(R^2 = 0\\): The model explains none of the variability (no better than predicting \\(\\bar{y}\\)).\n\n\n\nFor our model:\n\\[R^2 = 0.532\\]\nInterpretation: Approximately 53.2% of the variability in weight is explained by the linear relationship with height.\nTemplate:\n\n“Approximately [\\(R^2 \\times 100\\)]% of the variability in [dependent variable] is explained by the linear relationship with [independent variable].”\n\n\n\n\n\n\n\nNoteExcel Instructions: Finding \\(R^2\\)\n\n\n\nTwo ways to get \\(R^2\\) in Excel:\n\nFrom the trendline: When you add a trendline, check “Display R-squared value on chart.”\nUsing a formula: =RSQ(Weight_range, Height_range)",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#what-r2-does-and-doesnt-tell-you",
+    "href": "misc-lessons/lesson-3.html#what-r2-does-and-doesnt-tell-you",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "TipR^2 DOES tell you…\n\n\n\n\nHow much of the variability in \\(y\\) is captured by the model\nA relative measure of fit (higher is generally better)\nWhether the linear model is doing better than just predicting the mean \\(\\bar{y}\\)\n\n\n\n\n\n\n\n\n\n\n\nWarningR^2 does NOT tell you…\n\n\n\n\nWhether the model is appropriate (a curved relationship can have a moderate \\(R^2\\) with a linear model)\nWhether the model predicts well on new data\nWhether the relationship is causal\nWhat a “good” \\(R^2\\) is — this depends entirely on context",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#out-of-sample-predictions",
+    "href": "misc-lessons/lesson-3.html#out-of-sample-predictions",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we use our model to predict deadlift for cadets in the test set — data the model has never seen.\n\n\n\nTest Set: Actual vs. Predicted Deadlift\n\n\nID\nAge\nActual Deadlift\nPredicted Deadlift\nError\n\n\n\n\nA008\n18\n323\n338.8\n-15.8\n\n\nA016\n19\n336\n350.6\n-14.6\n\n\nA026\n21\n381\n374.3\n6.7\n\n\nA006\n23\n368\n397.9\n-29.9\n\n\nA012\n23\n398\n397.9\n0.1\n\n\nA028\n23\n427\n397.9\n29.1\n\n\nA002\n24\n438\n409.7\n28.3\n\n\nA021\n24\n414\n409.7\n4.3\n\n\nA024\n24\n403\n409.7\n-6.7\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Generating Predictions for the Test Set\n\n\n\n\nIn a new column next to your test data, enter the prediction formula:\n= $D$1 + $D$2 * A2\nwhere $D$1 contains \\(b_0\\) and $D$2 contains \\(b_1\\), and A2 is the Age value.\nDrag down for all test observations.\nIn another column, compute the error (also called the residual):\n= Actual - Predicted"
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#validating-the-model",
+    "href": "misc-lessons/lesson-3.html#validating-the-model",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "To summarize overall prediction quality with a single number, we use the Mean Absolute Error (MAE):\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\nWe compute MAE separately for the training set and the test set, then compare:\n\n\n\n\n\n\nImportantModel Validation\n\n\n\n\n\n\nMetric\nTraining (26 soldiers)\nTest (11 soldiers)\n\n\n\n\nMAE\n17.6 lbs\n14.5 lbs\n\n\n\n\nIf test MAE is close to training MAE, the model generalizes well — it captures a real pattern that holds for new data.\nIf test MAE is much larger than training MAE, the model may be overfitting — it memorized the training data but doesn’t predict well for new observations.\n\n\n\n\n\n\n\n\n\n\n\n\nIf the errors look random and centered around zero, that’s a good sign. If there’s a pattern, we may need a different model. We’ll dig into this in Lesson 10 with residual analysis.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#interpreting-validation-results",
+    "href": "misc-lessons/lesson-3.html#interpreting-validation-results",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "The same regression line (built from training data) is plotted on both sets. If the test data falls reasonably close to the line, our model is validated.\n\n\n\n\n\n\nTipWhat to Look For\n\n\n\n\nSimilar MAE for training and test: The model generalizes well.\nTest MAE much larger than training MAE: The model may be overfitting — it memorized the training data rather than learning the true relationship.\nBoth MAEs are large: The model may not be a good fit at all — consider a different model.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#supporting-or-questioning-the-model",
+    "href": "misc-lessons/lesson-3.html#supporting-or-questioning-the-model",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we have all the pieces to make a judgment: is this model good enough to use?\n\n\n\n\n\n\nTipQuestions to Ask (Reading 2.2, Section 9)\n\n\n\n\nIs the MAE acceptable for the context? An average error of 14.5 lbs — is that useful for whatever decision we’re making?\nDoes the model generalize? Training MAE (17.6) vs. test MAE (14.5) — are they in the same ballpark?\nAre the predictions practically reasonable? Do the predicted weights make sense for real soldiers?\nWould you trust this model to inform a real decision? If a commander used this model to estimate equipment needs, would the errors be acceptable?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#summary",
+    "href": "misc-lessons/lesson-3.html#summary",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantKey Takeaways\n\n\n\n\nBuilding a model on all the data and checking fit on that same data is like grading your own test — it doesn’t tell you how the model performs on new data.\nSplit the data into training (to build) and test (to evaluate).\nUse the regression equation to make predictions by plugging in new \\(x\\) values.\nMAE summarizes prediction accuracy: the average absolute distance between actual and predicted values.\nCompare training and test MAE to check whether the model generalizes or overfits.\nUse prediction results to support or question your modeling decision — is the model good enough for the task at hand?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#before-you-leave",
+    "href": "misc-lessons/lesson-3.html#before-you-leave",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "In the next lesson we will:\n\nDefine and compute residuals (\\(e_i = y_i - \\hat{y}_i\\)) as prediction errors\nBuild residual plots to check whether linear regression assumptions hold\nAnalyze the distribution of residuals (mean = 0, standard deviation, normality)\nMake a final determination of whether a linear model is appropriate",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#review-from-descriptive-to-predictive",
+    "href": "misc-lessons/lesson-2.html#review-from-descriptive-to-predictive",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "In earlier lessons you learned how to describe data — measures of center, spread, z-scores, scatter plots, and correlation. In Lesson 7, you partitioned data into training and test sets, and used the mean as a baseline predictor.\nLet’s see where that leaves us. We have real ACFT (Army Combat Fitness Test) data from a company in the 20th Engineer Brigade. A commander wants to predict how fast a soldier completes the Sprint-Drag-Carry (SDC) based on their Deadlift max.\nHere is our training data (30 soldiers), with the mean as our baseline predictor:\n\n\n\n\n\n\n\n\n\nThe dashed orange line is our Lesson 7 baseline: predict \\(\\bar{y} = 1.92\\) min for every soldier, regardless of their deadlift. But the scatter plot shows a clear negative trend — soldiers who deadlift more tend to complete the SDC faster. The mean ignores this pattern entirely.\n\n\n\n\n\n\nImportantKey Question\n\n\n\nCan we do better than the mean? If a soldier tells us their Deadlift max, can we give a better prediction for their SDC time? Today we build a much better predictor: a line.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#the-modeling-decision-why-linear",
+    "href": "misc-lessons/lesson-2.html#the-modeling-decision-why-linear",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteJustifying the Choice of a Linear Model\n\n\n\nBefore fitting a model, we must justify our choice. Reading 2.2 describes four assumptions for simple linear regression:\n\nLinearity: The relationship between \\(x\\) and \\(y\\) is approximately linear.\nIndependence: The observations are independent of each other.\nConstant variance: The spread of \\(y\\) values is roughly the same for all values of \\(x\\).\nNormality: The errors are approximately normally distributed.\n\nWe justify the linearity assumption by examining the scatter plot — does it show a reasonably straight-line pattern? For this data, the answer is yes.\nThe correlation between Height and Weight also supports this:\n\n\n\\[r = 0.7294\\]\n\n\n\n\n\n\nTipRecall from Reading 1.5\n\n\n\nA strong positive correlation (close to \\(+1\\)) supports the existence of a linear relationship, but correlation alone does not prove linearity — we must always check the scatter plot. Correlation supports but does not replace visual inspection.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#the-simple-linear-regression-model",
+    "href": "misc-lessons/lesson-2.html#the-simple-linear-regression-model",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "But which line? We could draw many different lines through this data:\n\n\n\n\n\n\n\n\n\nEvery one of these lines follows the same formula:\n\\[\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\]\nwhere \\(\\hat{\\beta}_0\\) is the intercept (where the line crosses \\(y\\) when \\(x = 0\\)) and \\(\\hat{\\beta}_1\\) is the slope (how much \\(\\hat{y}\\) changes for each one-unit increase in \\(x\\)). Different choices of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) give different lines.\nBut none of these lines hit every data point exactly. Each point has an error — the vertical distance between the actual value and the line:\n\n\n\n\n\n\n\n\n\nSo the real model is:\n\\[y = \\hat{\\beta}_0 + \\hat{\\beta}_1 x + \\text{error}\\]\nThe question is: which values of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) make these errors as small as possible?",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#least-squares-finding-the-best-line",
+    "href": "misc-lessons/lesson-2.html#least-squares-finding-the-best-line",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "ImportantThe Least Squares Method\n\n\n\nThe “best” line is the one that minimizes the sum of squared errors (SSE):\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^{n} (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)^2\\]\nThe formulas for the least squares estimates are:\n\\[\\hat{\\beta}_1 = \\frac{\\displaystyle\\sum_{i=1}^{n}(x_i - \\bar{x})(y_i - \\bar{y})}{\\displaystyle\\sum_{i=1}^{n}(x_i - \\bar{x})^2} \\qquad \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\n\n\n\n\n\n\n\n\n\nThe dashed gray lines show the errors (residuals) — the vertical distance between each data point and the line. Least squares finds the line that makes the total squared error as small as possible.\n\n\n\n\n\n\nTipOur Model\n\n\n\nFrom the training data:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nwhere \\(x\\) = Height (in) and \\(\\hat{y}\\) = predicted Weight (lbs).",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#building-the-model-in-excel-method-1-trendline",
+    "href": "misc-lessons/lesson-2.html#building-the-model-in-excel-method-1-trendline",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "Let’s build this live. The training data is in the workbook below:\n\n\n\n\n\n\n\nNoteExcel Instructions: Trendline Method\n\n\n\n\nEnter the training data in two columns: Height (\\(x\\)) and Weight (\\(y\\)).\nSelect cells B1:C38 (Height and Weight columns only) and go to Insert -&gt; Chart -&gt; XY (Scatter).\nAdjust the axis bounds so the data fills the chart: double-click each axis -&gt; Format Axis -&gt; set the Minimum Bound (e.g., ~60 for Height, ~120 for Weight).\nClick directly on one of the data points (blue dots) in the scatter plot — you should see selection handles appear on all the points.\nRight-click on the selected data points -&gt; Add Trendline. A Format Trendline pane will open on the right side of the screen.\nUnder Trendline Options, select Linear (it may already be selected by default).\nScroll down in the pane and check: Display Equation on chart.\nCheck: Display R-squared value on chart.\nClose the pane.\n\nThe equation on the chart is your regression model.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#building-the-model-in-excel-method-2-solver-minimizing-sse",
+    "href": "misc-lessons/lesson-2.html#building-the-model-in-excel-method-2-solver-minimizing-sse",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteExcel Instructions: Solver Method\n\n\n\nThis method lets you see least squares in action — you set up SSE and let Solver minimize it.\n\nSet up a table with columns: Height (\\(x\\)), Weight (\\(y\\)), Predicted (\\(\\hat{y}\\)), Error (\\(y - \\hat{y}\\)), Squared Error (\\((y - \\hat{y})^2\\)).\nCreate cells for \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) — start with initial guesses (e.g., 0 and 0).\nPredicted column: = $B$1 + $B$2 * A5 (where B1 has the intercept guess and B2 has the slope guess).\nError column: = Actual - Predicted.\nSquared Error column: = Error^2.\nSSE cell: = SUM(squared error range).\nGo to Data -&gt; Solver:\n\nSet Objective: the SSE cell\nTo: Min\nBy Changing: the cells containing \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)\nClick Solve\n\n\nSolver will find the values of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) that minimize SSE — the same answer as the trendline method!",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#verifying-with-linest-and-slope-intercept",
+    "href": "misc-lessons/lesson-2.html#verifying-with-linest-and-slope-intercept",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteExcel Instructions: Verification Functions\n\n\n\nYou can verify your regression coefficients using built-in functions:\n\nSlope: =SLOPE(Weight_range, Height_range) gives \\(\\hat{\\beta}_1\\)\nIntercept: =INTERCEPT(Weight_range, Height_range) gives \\(\\hat{\\beta}_0\\)\nLINEST: =LINEST(Weight_range, Height_range, TRUE, TRUE) returns slope, intercept, and additional statistics in an array.\n\nAll three methods (Trendline, Solver, formulas) give the same answer.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#practice-making-a-prediction",
+    "href": "misc-lessons/lesson-2.html#practice-making-a-prediction",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "NoteExample Prediction\n\n\n\nA soldier is 70 inches tall. What is our predicted weight?\n\\[\\hat{y} = -233.2 + 6 \\times 70 = 190.1 \\text{ lbs}\\]\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Making Predictions\n\n\n\nOnce you have \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) in cells, predict for any new \\(x\\) value:\n= intercept_cell + slope_cell * new_x_value\nDrag this formula down to generate predictions for multiple observations.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#practice-problems-from-reading-2.2",
+    "href": "misc-lessons/lesson-2.html#practice-problems-from-reading-2.2",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "TipPractice Problem 2.2.1\n\n\n\nUsing the training data above, verify the least squares calculations by hand:\n\nCompute \\(\\bar{x}\\) and \\(\\bar{y}\\) for the training set.\nCompute \\(\\hat{\\beta}_1\\) using the formula.\nCompute \\(\\hat{\\beta}_0\\) using \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\).\nConfirm your answer matches the model from R/Excel.\n\n\n\n\n\n\n\n\n\nTipPractice Problem 2.2.2\n\n\n\nExplain why a linear model is a reasonable choice for this data. Reference the scatter plot, the correlation, and the linearity assumption.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html",
+    "href": "misc-lessons/lesson-4.html",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "NoteDownloads\n\n\n\n\nExcel Workbook (all 3 lessons)\nACFT Data (CSV)\n\n\n\n\n\n\n\nDefine and compute residuals for a linear regression model and interpret them as prediction errors in context.\nConstruct and interpret residual plots (residuals vs. fitted values) to assess whether linear regression assumptions are reasonable.\nAnalyze the distribution of residuals using summary statistics and plots to evaluate model fit and error behavior.\nEvaluate whether a linear regression model is appropriate for decision-making based on diagnostic evidence.\n\n\n\n\n\nIn Lessons 8–9, we built a regression model on 26 training soldiers, validated it on 11 test soldiers, and compared MAE. We have evidence the model generalizes.\nBut is a linear model actually the right choice? Maybe the relationship is curved and we just can’t see it from the scatter plot alone. This is what residual analysis tells us.\n\n\n\n\nRecall from Lesson 9: every time we make a prediction, there is an error — the difference between what actually happened and what the model predicted. That error is called a residual:\n\\[e_i = y_i - \\hat{y}_i\\]\n\nPositive residual (\\(e_i &gt; 0\\)): The model underpredicted — the actual value was higher.\nNegative residual (\\(e_i &lt; 0\\)): The model overpredicted — the actual value was lower.\n\nLooking at any single residual isn’t very informative. What matters is the pattern across all residuals. If the residuals behave like random noise — no patterns, no trends — our assumptions were reasonable. If we see structure, we have a problem (Reading 2.3, Section 1).\n\n\n\n\nA residual plot graphs the residuals (\\(e_i = y_i - \\hat{y}_i\\)) against the fitted values (\\(\\hat{y}_i\\)), with a reference line at \\(e = 0\\).\nIf our assumptions are met, the residual plot should show a horizontal band of points scattered randomly around zero — no pattern, no trends, roughly even spread (Reading 2.3, Section 4).\n\n\n\n\nThe reading describes three problems that show up in residual plots. Here is what each one looks like:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantReading a Residual Plot (Reading 2.3, Section 4)\n\n\n\n\n\n\n\n\n\n\n\nWhat You See\nWhat It Means\nWhich Assumption Is Violated\n\n\n\n\nRandom scatter around zero\nModel is appropriate\nNone — assumptions satisfied\n\n\nCurved pattern (U-shape or arch)\nRelationship is nonlinear\nLinearity\n\n\nFan shape (spread increases or decreases)\nErrors are systematically larger for some predictions\nConstant variance\n\n\nLarge isolated points far from zero\nPotential outliers — investigate before proceeding\nMay indicate model issues\n\n\n\n\n\n\n\n\n\nNow let’s look at the residual plot for our ACFT model. Does it pass the test?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipCritique: What Do You See?\n\n\n\n\nCurved pattern? No — the points don’t follow a U-shape or arch. Linearity assumption looks reasonable.\nFan shape? The spread looks roughly constant across the range of fitted values. Constant variance looks okay.\nOutliers? There are a couple of larger residuals, but nothing dramatically far from the rest.\nOverall: Random scatter around zero. The linear model appears appropriate for this data.\n\n\n\n\n\n\n\nBeyond the residual plot, we check whether the residuals are roughly symmetric around zero (Reading 2.3, Section 6). This relates to the normality assumption.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipCritique: What Do You See?\n\n\n\n\nCentered near zero? Yes — the distribution is roughly centered on the red dashed line.\nRoughly symmetric? Reasonably so — no severe skew in one direction.\nExtreme outliers? No residuals are dramatically far from the rest.\n\nThe normality assumption appears reasonable.\n\n\nThe standard deviation of residuals (\\(s_e\\)) tells us the typical size of a prediction error:\n\\[s_e = 24.09 \\text{ lbs}\\]\nThis means a typical prediction is off by about 24.09 lbs in either direction.\n\n\n\n\n\n\n\n\n\n\nImportantResidual Analysis Summary\n\n\n\n\n\n\n\n\n\n\n\nAssumption\nWhat We Checked\nVerdict\n\n\n\n\nLinearity\nResidual plot: no curved pattern\nReasonable\n\n\nIndependence\nStudy design — each soldier measured once\nReasonable\n\n\nConstant variance\nResidual plot: no fan shape\nReasonable\n\n\nNormality\nHistogram: roughly symmetric around zero\nReasonable\n\n\n\nAll four assumptions appear reasonable for our model. Combined with the validation results from Lesson 9 (similar training and test MAE), we have strong evidence that the linear model is appropriate for this data.\n\n\n\n\n\n\nWhat happens when we try to force a linear model on nonlinear data?\n\n\n\n\n\n\n\n\n\nThe scatter plot on the left might look “okay” at first glance. But the residual plot reveals a clear curved pattern — the model systematically overpredicts in the middle and underpredicts at the ends. The linearity assumption is violated. A nonlinear model would be more appropriate (Lesson 11).\nThis is why we never skip residual analysis — the residual plot catches problems the scatter plot might hide.\n\n\n\n\nOpen the L10 - Residuals tab in the workbook:\n\n\n\n\n\n\n\nNoteStep 1: Compute Fitted Values and Residuals\n\n\n\nUse your slope and intercept from L9 (training model):\n\nFitted column: = intercept_cell + slope_cell * height_cell\nResidual column: = actual_weight - fitted_value\n\nDrag both formulas down for all 26 training soldiers.\n\n\n\n\n\n\n\n\nNoteStep 2: Create a Residual Plot\n\n\n\n\nSelect the Fitted column and Residual column.\nGo to Insert -&gt; Chart -&gt; XY (Scatter).\nAdjust the axis bounds so the data fills the chart.\nAdd a horizontal reference line at \\(e = 0\\):\n\nAdd a new data series with two points: (min fitted, 0) and (max fitted, 0).\nFormat this series as a dashed line with no markers.\n\nLabel axes: “Fitted Values” on x-axis, “Residuals” on y-axis.\n\n\n\n\n\n\n\n\n\nNoteStep 3: Create a Histogram of Residuals\n\n\n\n\nSelect the Residual column.\nGo to Insert -&gt; Chart -&gt; Histogram.\nCheck: Is the distribution roughly symmetric around zero?\n\n\n\n\n\n\n\n\n\nNoteStep 4: Critique Your Plots\n\n\n\nLook at your residual plot and histogram and answer:\n\nDo you see a curved pattern? (linearity concern)\nDo you see a fan shape? (constant variance concern)\nAre there any outliers? (unusually large residuals)\nIs the histogram roughly symmetric around zero? (normality)\nBased on all evidence (Lessons 8–10), is this model appropriate for predicting soldier weight?\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantKey Takeaways\n\n\n\n\nResiduals (\\(e_i = y_i - \\hat{y}_i\\)) are prediction errors. They are evidence for whether our model assumptions hold.\nA residual plot (fitted values vs. residuals) is the primary diagnostic:\n\nRandom scatter = assumptions satisfied\nCurved pattern = linearity violated\nFan shape = constant variance violated\nOutliers = investigate\n\nA histogram of residuals checks the normality assumption: look for roughly symmetric distribution around zero.\n\\(s_e\\) measures the typical prediction error in the same units as \\(y\\).\nA model can have good \\(R^2\\) and MAE and still fail residual analysis. Always check before using a model for decisions.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#objectives",
+    "href": "misc-lessons/lesson-4.html#objectives",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Define and compute residuals for a linear regression model and interpret them as prediction errors in context.\nConstruct and interpret residual plots (residuals vs. fitted values) to assess whether linear regression assumptions are reasonable.\nAnalyze the distribution of residuals using summary statistics and plots to evaluate model fit and error behavior.\nEvaluate whether a linear regression model is appropriate for decision-making based on diagnostic evidence.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#review-our-model",
+    "href": "misc-lessons/lesson-4.html#review-our-model",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "From Lessons 8 and 9, we built and validated a simple linear regression model on the ACFT data:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nwith \\(R^2 = 0.532\\).\nWe compared training and test MAE and made an initial judgment about the model. But how do we know the linear model is actually appropriate? That is what residual analysis tells us.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#what-is-a-residual",
+    "href": "misc-lessons/lesson-4.html#what-is-a-residual",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Recall from Lesson 9: every time we make a prediction, there is an error — the difference between what actually happened and what the model predicted. That error is called a residual:\n\\[e_i = y_i - \\hat{y}_i\\]\n\nPositive residual (\\(e_i &gt; 0\\)): The model underpredicted — the actual value was higher.\nNegative residual (\\(e_i &lt; 0\\)): The model overpredicted — the actual value was lower.\n\nLooking at any single residual isn’t very informative. What matters is the pattern across all residuals. If the residuals behave like random noise — no patterns, no trends — our assumptions were reasonable. If we see structure, we have a problem (Reading 2.3, Section 1).",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#computing-residuals-in-excel",
+    "href": "misc-lessons/lesson-4.html#computing-residuals-in-excel",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "NoteExcel Instructions: Computing Residuals (from Reading 2.3)\n\n\n\n\nCompute fitted values (\\(\\hat{y}\\)) in a new column:\n= intercept_cell + slope_cell * Height_cell\nCompute residuals (\\(e\\)) in the next column:\n= Actual - Fitted\nThat is: = B2 - C2 (where B is Weight and C is Fitted).\nDrag both formulas down for all training observations.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#the-residual-plot",
+    "href": "misc-lessons/lesson-4.html#the-residual-plot",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantWhat is a Residual Plot?\n\n\n\nA residual plot graphs the residuals (\\(e_i\\)) on the vertical axis against the fitted values (\\(\\hat{y}_i\\)) on the horizontal axis, with a horizontal reference line at \\(e = 0\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Creating a Residual Plot (from Reading 2.3)\n\n\n\n\nSelect your Fitted values column (\\(\\hat{y}\\)) and Residual column (\\(e\\)).\nGo to Insert -&gt; Chart -&gt; XY (Scatter). Choose scatter with points only.\nAdd a horizontal line at \\(e = 0\\):\n\nAdd a new data series with two points: (min fitted, 0) and (max fitted, 0).\nFormat this series as a dashed line with no markers.\n\nAdd axis labels: “Fitted Values” on the x-axis, “Residuals” on the y-axis.\n\nNote: You can also use Excel’s Data Analysis ToolPak (go to Data -&gt; Data Analysis -&gt; Regression) which automatically generates residual output and plots.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#reading-a-residual-plot",
+    "href": "misc-lessons/lesson-4.html#reading-a-residual-plot",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantWhat to Look For (Reading 2.3)\n\n\n\nA good residual plot (model is appropriate) shows:\n\nRandom scatter around the zero line\nNo pattern (no curves, no fans, no clusters)\nRoughly even spread above and below zero\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRandom scatter — linear model is appropriate.\n\n\n\n\n\n\n\n\n\n\n\nCurved pattern — the relationship is nonlinear. A linear model is not appropriate.\n\n\n\n\n\n\n\n\n\n\n\nFan shape — the spread of errors increases with fitted values (heteroscedasticity). The assumption of constant variance is violated.\n\n\n\n\n\n\n\n\nWarningAlso Watch For: Outliers\n\n\n\nIndividual points far from the zero line are outliers — unusually large prediction errors. Outliers can distort the regression line and may indicate data entry errors, unusual observations, or that the model is missing something important.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#distribution-of-residuals",
+    "href": "misc-lessons/lesson-4.html#distribution-of-residuals",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Beyond the residual plot, we check whether the residuals are roughly symmetric around zero (Reading 2.3, Section 6). This relates to the normality assumption.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipCritique: What Do You See?\n\n\n\n\nCentered near zero? Yes — the distribution is roughly centered on the red dashed line.\nRoughly symmetric? Reasonably so — no severe skew in one direction.\nExtreme outliers? No residuals are dramatically far from the rest.\n\nThe normality assumption appears reasonable.\n\n\nThe standard deviation of residuals (\\(s_e\\)) tells us the typical size of a prediction error:\n\\[s_e = 24.09 \\text{ lbs}\\]\nThis means a typical prediction is off by about 24.09 lbs in either direction.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#connecting-residual-analysis-to-the-four-assumptions",
+    "href": "misc-lessons/lesson-4.html#connecting-residual-analysis-to-the-four-assumptions",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantWhat Residual Analysis Checks\n\n\n\nRecall the four assumptions from Lesson 8:\n\n\n\n\n\n\n\nAssumption\nHow Residual Analysis Checks It\n\n\n\n\nLinearity\nResidual plot: no curved pattern\n\n\nIndependence\nStudy design (not visible in residual plot for this course)\n\n\nConstant variance\nResidual plot: no fan shape\n\n\nNormality\nHistogram of residuals: roughly symmetric, no extreme outliers\n\n\n\nIf the residual plot shows random scatter and the histogram looks roughly symmetric, we have evidence that the assumptions are reasonable.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#residual-analysis-checklist",
+    "href": "misc-lessons/lesson-4.html#residual-analysis-checklist",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantChecklist from Reading 2.3\n\n\n\nUse this checklist to evaluate whether your linear regression model is appropriate:\n\nCompute fitted values (\\(\\hat{y}_i\\)) and residuals (\\(e_i\\)) for all training observations.\nVerify the mean of residuals \\(\\approx 0\\).\nCreate a residual plot (fitted values vs. residuals).\nCheck for patterns: Is the scatter random? No curves? No fan shapes?\nCheck for outliers: Any unusually large residuals?\nExamine the distribution: Create a histogram. Is it roughly symmetric?\nCompute \\(s_e\\) and interpret it in context.\n\nIf all checks pass, the linear model is appropriate for predictions and decision-making. If any check fails, investigate further or consider a different model.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#example-a-model-that-fails-residual-analysis",
+    "href": "misc-lessons/lesson-4.html#example-a-model-that-fails-residual-analysis",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Let’s see what happens when we try to fit a linear model to nonlinear data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningWhat Went Wrong?\n\n\n\nThe scatter plot might look “okay” at first glance, but the residual plot reveals a clear curved pattern. This tells us:\n\nThe linear model is systematically overpredicting in some regions and underpredicting in others.\nThe linearity assumption is violated.\nA nonlinear model would be more appropriate (Lesson 11).\n\nThis is why we never skip residual analysis — the residual plot catches problems the scatter plot might hide!",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#putting-it-all-together",
+    "href": "misc-lessons/lesson-4.html#putting-it-all-together",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantFull Model Evaluation Framework\n\n\n\nCombining the validation checklist from Lesson 9 and the residual checklist from today:\n\n\n\n\n\n\n\n\nCheck\nWhat to Do\nWhat You Want to See\n\n\n\n\n1. Scatter plot\nPlot \\(y\\) vs. \\(x\\)\nRoughly linear trend\n\n\n2. Training \\(R^2\\)\nCompute from training data\nReasonable for context\n\n\n3. Residual plot\nPlot residuals vs. fitted values\nRandom scatter, no pattern\n\n\n4. Residual distribution\nHistogram + summary stats\nCentered at 0, roughly symmetric\n\n\n5. \\(s_e\\)\nCompute std. dev. of residuals\nReasonably small in context\n\n\n6. Validation\nCompare training vs. test MAE\nSimilar values\n\n\n7. Predictions\nCheck sample predictions\nReasonable in context\n\n\n\nIf all checks pass: The linear model is appropriate — use it for predictions and decision-making.\nIf any check fails: Investigate further. Consider whether a different model (e.g., nonlinear trendline from Lesson 11) might be more appropriate.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#practice-problems-from-reading-2.3",
+    "href": "misc-lessons/lesson-4.html#practice-problems-from-reading-2.3",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "TipPractice Problem 2.3.1\n\n\n\nFor the training data residuals computed above, identify the largest positive and largest negative residual. Which soldiers do they belong to? What do these residuals tell you about the model’s performance for those soldiers?\n\n\n\n\n\n\n\n\nTipPractice Problem 2.3.2\n\n\n\nExamine the residual plot for our model. Do you see any patterns (curves, fans, outliers)? Based on this, is the linear model appropriate?\n\n\n\n\n\n\n\n\nTipPractice Problem 2.3.3\n\n\n\nCompute \\(s_e\\) for our model. Interpret this value in context: what does it tell a commander about the typical accuracy of our weight predictions?\n\n\n\n\n\n\n\n\nTipPractice Problem 2.3.4\n\n\n\nA fellow cadet argues: “The \\(R^2\\) is high, so the model must be good.” Do you agree? What additional evidence from residual analysis would you want to see before accepting the model?",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#summary",
+    "href": "misc-lessons/lesson-4.html#summary",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantKey Takeaways\n\n\n\n\nResiduals (\\(e_i = y_i - \\hat{y}_i\\)) are prediction errors. They are evidence for whether our model assumptions hold.\nA residual plot (fitted values vs. residuals) is the primary diagnostic:\n\nRandom scatter = assumptions satisfied\nCurved pattern = linearity violated\nFan shape = constant variance violated\nOutliers = investigate\n\nA histogram of residuals checks the normality assumption: look for roughly symmetric distribution around zero.\n\\(s_e\\) measures the typical prediction error in the same units as \\(y\\).\nA model can have good \\(R^2\\) and MAE and still fail residual analysis. Always check before using a model for decisions.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#before-you-leave",
+    "href": "misc-lessons/lesson-4.html#before-you-leave",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Lesson 11 (Nonlinear Trendlines): What do you do when the residual plot shows a curve? Fit nonlinear models!\nLesson 12 (Select, Assess, Use): Bring everything together — choose the best predictive model and justify your decision.\nLesson 13 (Tech Lab): Hands-on practice building, validating, and diagnosing regression models in Excel.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html",
+    "href": "misc-lessons/boardsheet-L9.html",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "",
+    "text": "Name: ________________________ Date: ________________",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#record-your-model-from-lesson-8",
+    "href": "misc-lessons/boardsheet-L9.html#record-your-model-from-lesson-8",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Record Your Model from Lesson 8",
+    "text": "Record Your Model from Lesson 8\n\\[\\hat{y} = \\underline{\\hspace{3cm}} + \\underline{\\hspace{3cm}} \\cdot x\\]\nwhere \\(x\\) = __________________ and \\(\\hat{y}\\) = __________________",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#interpreting-the-slope-hatbeta_1",
+    "href": "misc-lessons/boardsheet-L9.html#interpreting-the-slope-hatbeta_1",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Interpreting the Slope (\\(\\hat{\\beta}_1\\))",
+    "text": "Interpreting the Slope (\\(\\hat{\\beta}_1\\))\nTemplate (Reading 2.2): “For each one-unit increase in _____________, the model predicts a(n) [increase / decrease] of ______ ____________.”\nWrite your interpretation of \\(\\hat{\\beta}_1 \\approx -25.4\\) in context:\n_______________________________________________________________________\n\n\n\n\n\n\nWarning\n\n\n\nCaution: Regression shows _____________, not causation!",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#interpreting-the-intercept-hatbeta_0",
+    "href": "misc-lessons/boardsheet-L9.html#interpreting-the-intercept-hatbeta_0",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Interpreting the Intercept (\\(\\hat{\\beta}_0\\))",
+    "text": "Interpreting the Intercept (\\(\\hat{\\beta}_0\\))\nTemplate (Reading 2.2): “When _____________ is zero, the model predicts _____________ is ________ [units].”\nIs this interpretation meaningful in context? Why or why not?\n_________________________________________________________________\nWhat is extrapolation? ____________________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#interpreting-r2",
+    "href": "misc-lessons/boardsheet-L9.html#interpreting-r2",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Interpreting \\(R^2\\)",
+    "text": "Interpreting \\(R^2\\)\nRecord \\(R^2\\) from Excel: =RSQ(Deadlift_range, RunTime_range) → ____________\nTemplate (Reading 2.2): “Approximately ______% of the variability in _____________ is explained by the linear relationship with _____________.”\n\\(R^2\\) does NOT tell you (check all that apply):\n\nWhether the model is appropriate for the data\nWhether the model predicts well on new data\nWhether the relationship is causal",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#out-of-sample-predictions",
+    "href": "misc-lessons/boardsheet-L9.html#out-of-sample-predictions",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Out-of-Sample Predictions",
+    "text": "Out-of-Sample Predictions\nUsing the L9 - Validate tab, predict deadlift for each test cadet:\n\n\n\n\n\n\n\n\n\n\n\nID\nRun Time (min)\nActual Deadlift\nPredicted (\\(\\hat{y}\\))\nError (\\(y - \\hat{y}\\))\n\n\n\n\n\nA009\n14.0\n330\n\n\n\n\n\nA010\n13.2\n355\n\n\n\n\n\nA011\n15.8\n262\n\n\n\n\n\n\nExcel formula for predicted: = intercept_cell + slope_cell * RunTime_cell",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#mean-absolute-error-mae",
+    "href": "misc-lessons/boardsheet-L9.html#mean-absolute-error-mae",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Mean Absolute Error (MAE)",
+    "text": "Mean Absolute Error (MAE)\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\n\n\n\nMetric\nTraining\nTest\n\n\n\n\nMAE\n\n\n\n\n\\(n\\)\n8\n3\n\n\n\nExcel: =AVERAGE(abs_error_range)",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#model-validation-checklist-from-reading-2.2",
+    "href": "misc-lessons/boardsheet-L9.html#model-validation-checklist-from-reading-2.2",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Model Validation Checklist (from Reading 2.2)",
+    "text": "Model Validation Checklist (from Reading 2.2)\n\n\n\nCheck\nResult\nPass?\n\n\n\n\nScatter plot shows linear trend?\n\n[ ]\n\n\nTraining \\(R^2\\) reasonable?\n\\(R^2 =\\)\n[ ]\n\n\nTest MAE \\(\\approx\\) Training MAE?\nTrain: ___ Test: ___\n[ ]\n\n\nPredictions reasonable in context?\n\n[ ]",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#decision",
+    "href": "misc-lessons/boardsheet-L9.html#decision",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Decision",
+    "text": "Decision\nBased on the evidence, should we support or question this model?\n\nJustify your answer using the checklist above:",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L9.html#takeaways",
+    "href": "misc-lessons/boardsheet-L9.html#takeaways",
+    "title": "Board Sheet — Lesson 9: Linear Regression II",
+    "section": "Takeaways",
+    "text": "Takeaways\nWhat does the slope tell you in this problem?\n_________________________________________________________________\nWhy do we validate on test data instead of just using training \\(R^2\\)?\n_________________________________________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L9 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html",
+    "href": "misc-lessons/boardsheet-L10.html",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "",
+    "text": "Name: ________________________ Date: ________________",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#what-is-a-residual-reading-2.3",
+    "href": "misc-lessons/boardsheet-L10.html#what-is-a-residual-reading-2.3",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "What is a Residual? (Reading 2.3)",
+    "text": "What is a Residual? (Reading 2.3)\nDefinition: \\(e_i =\\) ____________ \\(-\\) ____________\n\n\n\n\n\n\n\nIf the residual is…\nThen the model…\n\n\n\n\nPositive (\\(e_i &gt; 0\\))\n______________________\n\n\nNegative (\\(e_i &lt; 0\\))\n______________________\n\n\nZero (\\(e_i = 0\\))\n______________________",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#computing-residuals-using-haty-625.3---25.4x",
+    "href": "misc-lessons/boardsheet-L10.html#computing-residuals-using-haty-625.3---25.4x",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Computing Residuals (using \\(\\hat{y} = 625.3 - 25.4x\\))",
+    "text": "Computing Residuals (using \\(\\hat{y} = 625.3 - 25.4x\\))\nUsing the L10 - Residuals tab, compute fitted values and residuals:\n\n\n\n\n\n\n\n\n\n\n\nID\nRun Time\nActual\nFitted (\\(\\hat{y}\\))\nResidual (\\(e\\))\nInterpretation\n\n\n\n\nA001\n14.8\n300\n\n\n\n\n\nA002\n13.5\n340\n\n\n\n\n\nA003\n15.2\n275\n\n\n\n\n\nA004\n13.9\n325\n\n\n\n\n\nA005\n14.1\n315\n\n\n\n\n\nA006\n16.0\n255\n\n\n\n\n\nA007\n12.8\n360\n\n\n\n\n\nA008\n15.6\n270\n\n\n\n\n\n\nExcel: Fitted = = 625.3 + (-25.4) * RunTime_cell; Residual = = Actual - Fitted",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#the-residual-plot",
+    "href": "misc-lessons/boardsheet-L10.html#the-residual-plot",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "The Residual Plot",
+    "text": "The Residual Plot\nCreate a scatter plot: Fitted Values (\\(\\hat{y}\\)) on x-axis, Residuals (\\(e\\)) on y-axis. Add a horizontal line at \\(e = 0\\).\n\nReading the Residual Plot (Reading 2.3)\nA good residual plot shows:\n\n________________________________\n________________________________\n________________________________\n\n\n\nThree Bad Patterns\n\n\nCurved Pattern\n\nSketch here\n\nMeans: __________________\nWhich assumption is violated? ____________\n\n\nFan Shape\n\nSketch here\n\nMeans: __________________\nThe textbook calls this: __________________\n\n\nOutliers\n\nSketch here\n\nWhat should you do? __________________",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#distribution-of-residuals",
+    "href": "misc-lessons/boardsheet-L10.html#distribution-of-residuals",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Distribution of Residuals",
+    "text": "Distribution of Residuals\nMean of residuals is always ______ (why?) ____________________________\n\nStandard Deviation of Residuals (\\(s_e\\))\n\\[s_e = \\sqrt{\\frac{\\sum_{i=1}^{n} e_i^2}{n - 2}}\\]\nWhy \\(n - 2\\) instead of \\(n - 1\\)? ________________________________________\nCompute \\(s_e\\) for our model (\\(n = 8\\)):\n\nShow your work:\n\n\\(s_e =\\) ________ lbs. Interpretation: _______________________________________\n\n\nInformal Normality Check\n\nAre most residuals small (close to zero)? ______\nIs the distribution roughly symmetric? ______\nAny extreme outliers? ______",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#residual-analysis-checklist-from-reading-2.3",
+    "href": "misc-lessons/boardsheet-L10.html#residual-analysis-checklist-from-reading-2.3",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Residual Analysis Checklist (from Reading 2.3)",
+    "text": "Residual Analysis Checklist (from Reading 2.3)\n\n\n\n\n\n\n\n\nStep\nCheck\nResult\n\n\n\n\n1\nCompute \\(\\hat{y}_i\\) and \\(e_i\\) for all training observations\nDone above\n\n\n2\nMean of residuals \\(\\approx 0\\)?\n\n\n\n3\nResidual plot: random scatter?\n[ ]\n\n\n4\nNo curved pattern?\n[ ]\n\n\n5\nNo fan shape?\n[ ]\n\n\n6\nNo extreme outliers?\n[ ]\n\n\n7\n\\(s_e\\) acceptable for the decision?\n\\(s_e =\\) ___ lbs",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#connecting-to-the-four-assumptions",
+    "href": "misc-lessons/boardsheet-L10.html#connecting-to-the-four-assumptions",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Connecting to the Four Assumptions",
+    "text": "Connecting to the Four Assumptions\n\n\n\n\n\n\n\nAssumption\nWhat Residual Analysis Shows\n\n\n\n\nLinearity\n______________________________\n\n\nIndependence\n______________________________\n\n\nConstant variance\n______________________________\n\n\nNormality\n______________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#final-evaluation",
+    "href": "misc-lessons/boardsheet-L10.html#final-evaluation",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Final Evaluation",
+    "text": "Final Evaluation\nBased on ALL diagnostic evidence (Lessons 8-10), is a linear regression model appropriate for predicting deadlift from run time?\n\nJustify your answer using the residual analysis checklist and validation checklist:",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L10.html#takeaways",
+    "href": "misc-lessons/boardsheet-L10.html#takeaways",
+    "title": "Board Sheet — Lesson 10: Analysis of Residuals",
+    "section": "Takeaways",
+    "text": "Takeaways\nWhy can’t we just use \\(R^2\\) to evaluate a model?\n_________________________________________________________________\nWhat is the single most important diagnostic for linear regression?\n_________________________________________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L10 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html",
+    "href": "misc-lessons/boardsheet-L8.html",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "",
+    "text": "Name: ________________________ Date: ________________",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#key-vocabulary-from-reading-2.2",
+    "href": "misc-lessons/boardsheet-L8.html#key-vocabulary-from-reading-2.2",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Key Vocabulary (from Reading 2.2)",
+    "text": "Key Vocabulary (from Reading 2.2)\nSimple linear regression: ________________________________________________\nIndependent variable (\\(x\\)): ____________________________________________\nDependent variable (\\(y\\)): ____________________________________________\nError term (\\(\\varepsilon\\)): ____________________________________________\nSum of Squared Errors (SSE): ____________________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#the-model",
+    "href": "misc-lessons/boardsheet-L8.html#the-model",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "The Model",
+    "text": "The Model\nThe population model is:\n\\[y = \\underline{\\hspace{1.5cm}} + \\underline{\\hspace{1.5cm}} \\cdot x + \\underline{\\hspace{1.5cm}}\\]\nThe estimated (fitted) model is:\n\\[\\hat{y} = \\underline{\\hspace{1.5cm}} + \\underline{\\hspace{1.5cm}} \\cdot x\\]\nWhere:\n\n\\(\\hat{y}\\) represents: ______________________\n\\(\\hat{\\beta}_0\\) represents: ______________________\n\\(\\hat{\\beta}_1\\) represents: ______________________",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#four-assumptions-of-slr-from-reading-2.2",
+    "href": "misc-lessons/boardsheet-L8.html#four-assumptions-of-slr-from-reading-2.2",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Four Assumptions of SLR (from Reading 2.2)",
+    "text": "Four Assumptions of SLR (from Reading 2.2)\nFill in each assumption:\n\nLinearity: ____________________________________________\nIndependence: ____________________________________________\nConstant variance: ____________________________________________\nNormality: ____________________________________________\n\nHow do we justify the linearity assumption? ______________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#training-data-from-reading-2.2",
+    "href": "misc-lessons/boardsheet-L8.html#training-data-from-reading-2.2",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Training Data (from Reading 2.2)",
+    "text": "Training Data (from Reading 2.2)\n\n\n\nID\nRun Time (min)\nDeadlift (lbs)\n\n\n\n\nA001\n14.8\n300\n\n\nA002\n13.5\n340\n\n\nA003\n15.2\n275\n\n\nA004\n13.9\n325\n\n\nA005\n14.1\n315\n\n\nA006\n16.0\n255\n\n\nA007\n12.8\n360\n\n\nA008\n15.6\n270",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#excel-practice",
+    "href": "misc-lessons/boardsheet-L8.html#excel-practice",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Excel Practice",
+    "text": "Excel Practice\n1. What is the independent variable (\\(x\\))? ________________\n2. What is the dependent variable (\\(y\\))? ________________\n3. Create a scatter plot in Excel. Does the relationship appear linear? ______\n4. Method 1 — Trendline: Add a linear trendline. Record the equation:\n\\[\\hat{y} = \\underline{\\hspace{3cm}} + \\underline{\\hspace{3cm}} \\cdot x\\]\n5. Method 2 — Solver: Set up a spreadsheet with columns for \\(x\\), \\(y\\), \\(\\hat{y}\\), error, and squared error. Use Solver to minimize SSE.\n\n\\(\\hat{\\beta}_0\\) from Solver: ____________\n\\(\\hat{\\beta}_1\\) from Solver: ____________\nSSE at solution: ____________\n\n6. Verify using Excel formulas:\n\n=SLOPE(...) → ____________\n=INTERCEPT(...) → ____________\n\n7. Do all three methods agree? ______",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#making-a-prediction",
+    "href": "misc-lessons/boardsheet-L8.html#making-a-prediction",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Making a Prediction",
+    "text": "Making a Prediction\nA new cadet has a run time of 14.0 minutes. Predict their deadlift:\n\nShow your work:",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/boardsheet-L8.html#takeaways",
+    "href": "misc-lessons/boardsheet-L8.html#takeaways",
+    "title": "Board Sheet — Lesson 8: Linear Regression I",
+    "section": "Takeaways",
+    "text": "Takeaways\nWhat does simple linear regression do?\n_________________________________________________________________\nWhy must we justify the choice of a linear model before fitting it?\n_________________________________________________________________",
+    "crumbs": [
+      "Board Sheets",
+      "L8 Board Sheet"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#out-of-sample-predictions-on-the-test-set",
+    "href": "misc-lessons/lesson-3.html#out-of-sample-predictions-on-the-test-set",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we use our model to predict weight for soldiers in the test set — data the model has never seen.\n\n\n\nTest Set: Actual vs. Predicted Weight\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual Weight (lbs)\nPredicted Weight (lbs)\nError\n|Error|\n\n\n\n\nS001\n66.0\n203\n165.92\n37.08\n37.08\n\n\nS016\n66.0\n189\n165.92\n23.08\n23.08\n\n\nS018\n66.0\n172\n165.92\n6.08\n6.08\n\n\nS031\n62.0\n157\n141.73\n15.27\n15.27\n\n\nS034\n68.5\n149\n181.04\n-32.04\n32.04\n\n\nS040\n66.0\n166\n165.92\n0.08\n0.08\n\n\nS042\n64.0\n147\n153.82\n-6.82\n6.82\n\n\nS044\n71.0\n184\n196.16\n-12.16\n12.16\n\n\nS046\n61.0\n127\n135.68\n-8.68\n8.68\n\n\nS047\n67.0\n172\n171.97\n0.03\n0.03\n\n\n\n\n\n\n\n\n\n\n\nNoteHow to Read This Table\n\n\n\n\nPredicted = \\(-233.2 + 6 \\times\\) Height\nError = Actual \\(-\\) Predicted (positive means the model underpredicted)\n|Error| = absolute value of the error\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Generating Predictions for the Test Set\n\n\n\n\nIn a new column next to your test data, enter the prediction formula:\n= intercept_cell + slope_cell * Height_cell\nDrag down for all test observations.\nIn another column, compute the error: = Actual - Predicted.\nIn another column, compute the absolute error: = ABS(error_cell).",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#mean-absolute-error-mae",
+    "href": "misc-lessons/lesson-3.html#mean-absolute-error-mae",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantDefinition: MAE\n\n\n\nThe Mean Absolute Error measures the average size of the prediction errors, ignoring direction:\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\n\n\n\n\n\nModel Performance: Training vs. Test\n\n\nMetric\nTraining\nTest\n\n\n\n\nMean Absolute Error (MAE)\n16.61 lbs\n14.13 lbs\n\n\nNumber of Observations\n37\n10\n\n\n\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Computing MAE\n\n\n\nCompute MAE by averaging the absolute errors:\n\nCreate a column of absolute errors: = ABS(Actual - Predicted).\nAverage them: = AVERAGE(abs_error_range).\n\nCompare the training MAE and test MAE. If they are similar, the model generalizes well.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#model-validation-checklist",
+    "href": "misc-lessons/lesson-3.html#model-validation-checklist",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantValidation Checklist (from Reading 2.2)\n\n\n\nUse this checklist to decide whether your linear model is ready for use:\n\n\n\n\n\n\n\n\nCheck\nQuestion\nWhat You Want\n\n\n\n\n1. Scatter plot\nDoes the scatter plot show a linear trend?\nYes — a reasonably straight-line pattern\n\n\n2. Training \\(R^2\\)\nIs \\(R^2\\) reasonable for the context?\nHigh enough to be useful (context-dependent)\n\n\n3. Test MAE\nIs the test MAE similar to the training MAE?\nApproximately the same magnitude\n\n\n4. Predictions reasonable?\nDo the predicted values make sense in context?\nNo absurd predictions (e.g., negative weight)",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#using-results-to-support-a-decision",
+    "href": "misc-lessons/lesson-3.html#using-results-to-support-a-decision",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "ImportantModeling Decision: Is This Model Good Enough?\n\n\n\nAfter validation, you make a modeling decision. Recall from Reading 2.2:\nSupport the model if:\n\nThe scatter plot shows a linear trend\nTraining \\(R^2\\) is reasonable for the context\nTraining and test MAE are similar and acceptably small\nPredictions make sense in context\n\nQuestion the model if:\n\nTest MAE is much larger than training MAE\nPredictions are unreasonable (e.g., negative weight)\nThe scatter plot suggests a curved relationship\nImportant variables are missing from the model\n\nRemember: there is no single “right” answer — you must justify your modeling decision using evidence.\n\n\n\n\n\n\n\n\nTipExample Decision Statement\n\n\n\n“Our model explains approximately 53.2% of the variability in weight based on height. The training MAE of 16.61 lbs and test MAE of 14.13 lbs are similar, suggesting the model generalizes well. We recommend using this model to predict weight from height for soldiers with heights between 61 and 74 inches.”",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#practice-problems-from-reading-2.2",
+    "href": "misc-lessons/lesson-3.html#practice-problems-from-reading-2.2",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "TipPractice Problem 2.2.3\n\n\n\nUse the model to predict the weight for a soldier who is 72 inches tall. Is this prediction an interpolation or an extrapolation? How confident are you in this prediction?\n\n\n\n\n\n\n\n\nTipPractice Problem 2.2.4\n\n\n\nA commander asks: “Can a soldier who is 60 inches tall weigh more than 180 pounds?” Use the model to answer. Then explain why your answer should come with a caveat.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#the-data",
+    "href": "misc-lessons/lesson-2.html#the-data",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "We have real ACFT (Army Combat Fitness Test) data from a company in the 20th Engineer Brigade. A commander wants to predict how fast a soldier completes the Sprint-Drag-Carry (SDC) based on their Deadlift max.\n\n\n\nTraining Set (30 soldiers)\n\n\nSoldier\nDeadlift (lbs)\nSDC Time (min)\n\n\n\n\nS001\n250\n2.02\n\n\nS002\n350\n1.62\n\n\nS003\n180\n2.65\n\n\nS004\n330\n1.90\n\n\nS005\n250\n1.88\n\n\nS006\n350\n1.55\n\n\nS007\n350\n1.45\n\n\nS008\n180\n2.35\n\n\nS009\n350\n1.42\n\n\nS011\n280\n1.82\n\n\nS012\n350\n2.13\n\n\nS013\n310\n1.87\n\n\nS014\n250\n2.13\n\n\nS015\n350\n1.60\n\n\nS016\n250\n2.00\n\n\nS017\n350\n1.82\n\n\nS018\n250\n1.77\n\n\nS019\n220\n1.82\n\n\nS020\n250\n1.93\n\n\nS021\n300\n1.68\n\n\nS023\n350\n1.50\n\n\nS024\n180\n3.03\n\n\nS025\n220\n2.32\n\n\nS026\n250\n2.10\n\n\nS027\n310\n1.65\n\n\nS029\n240\n2.08\n\n\nS030\n350\n2.18\n\n\nS035\n300\n1.82\n\n\nS037\n340\n1.75\n\n\nS039\n240\n1.90\n\n\n\n\n\nIn Lesson 7, your best predictor was the mean of the training data. Let’s see how that looks:\n\n\n\n\n\n\n\n\n\nThe dashed orange line is our baseline: predict \\(\\bar{y} = 1.92\\) min for every soldier, regardless of their deadlift. But look at the scatter — soldiers who deadlift more clearly tend to have faster SDC times. The mean ignores this pattern entirely.\n\n\n\n\n\n\nImportantKey Question\n\n\n\nCan we do better than the mean? If a soldier tells us their Deadlift max, can we give a better prediction for their SDC time?",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#review-where-we-left-off",
+    "href": "misc-lessons/lesson-2.html#review-where-we-left-off",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "In Lesson 7, you used the mean as a baseline predictor. Here is real ACFT data from a company in the 20th Engineer Brigade — can we predict a soldier’s Weight from their Height?\n\n\n\n\n\n\n\n\n\nThe mean predicts \\(\\bar{y} = 183.08\\) lbs for every soldier — but the scatter shows a clear trend. Taller soldiers tend to weigh more. Can we do better?",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#what-shape-should-our-model-be",
+    "href": "misc-lessons/lesson-2.html#what-shape-should-our-model-be",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "We know the mean is too simple. But what model should we use? There are lots of curves we could draw through this data:\n\n\n\n\n\n\n\n\n\nThe data doesn’t curve back up or wiggle — it follows a roughly straight-line trend. Maybe a line is a better option:\n\n\n\n\n\n\n\n\n\nThis looks like it captures the trend well. But how do we find the best line? That is what simple linear regression does.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#notes-for-course-development",
+    "href": "misc-lessons/lesson-2.html#notes-for-course-development",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "Reading 2.2 includes the least squares formulas (Equations 4 and 5) and the SSE formula (Equation 6). These calculation techniques are in the reading but are not lesson objectives — students need to understand the concept of minimizing errors to find the best line, but hand-computing \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) from the formulas is not the goal.\nThe reading’s Section 3.3 says “In practice, you will use Excel’s Solver tool to compute the values of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) from training data. The formulas above are what those tools are computing.” — the formulas are for understanding, Excel is for doing.\nLesson objective 3 (“Create a simple linear regression model in Excel using a training set”) is met by the Trendline and Solver methods. Consider whether students need to do both or if Trendline alone is sufficient for the time available.\nThe Solver walkthrough (setting up predicted/error/squared error columns, minimizing SSE) is valuable for connecting the concept of least squares to the computation, but it takes significant class time. If time is short, Trendline + SLOPE/INTERCEPT verification may be enough.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#interpreting-the-regression-line",
+    "href": "misc-lessons/lesson-2.html#interpreting-the-regression-line",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "The trendline gives us our model:\n\\[\\hat{y} = -233.2 + 6 \\cdot x\\]\nWhat do these numbers actually mean?\n\n\n\n\n\n\nImportantInterpreting the Slope and Intercept\n\n\n\nSlope (\\(\\hat{\\beta}_1 = 6\\)): For every one-inch increase in height, the model predicts weight increases by about 6 lbs. This is the rate of change — how much \\(\\hat{y}\\) changes per unit change in \\(x\\).\nIntercept (\\(\\hat{\\beta}_0 = -233.2\\)): If a soldier were 0 inches tall, the model would predict a weight of -233.2 lbs. This is clearly nonsensical — the intercept is needed to position the line correctly, but it does not have a meaningful interpretation outside the range of the data.",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-2.html#interpreting-r2",
+    "href": "misc-lessons/lesson-2.html#interpreting-r2",
+    "title": "Linear Regression I",
+    "section": "",
+    "text": "The trendline also displayed an \\(R^2\\) value on the chart. What does it mean?\n\\[R^2 = 0.532\\]\n\n\n\n\n\n\nImportantInterpreting R-squared\n\n\n\n\\(R^2\\) measures the proportion of variation in \\(y\\) that is explained by the model. It ranges from 0 to 1.\n\n\\(R^2 = 0.532\\) means that 53.2% of the variation in soldier weight is explained by the linear relationship with height.\nThe remaining 46.8% is due to other factors the model does not capture (fitness level, body composition, etc.).",
+    "crumbs": [
+      "MA153X L8: Linear Regression I"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#making-a-prediction",
+    "href": "misc-lessons/lesson-3.html#making-a-prediction",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Given our model, we can predict the weight of any soldier if we know their height. Just plug in the value of \\(x\\):\n\n\n\n\n\n\nNoteExample Prediction\n\n\n\nA soldier is 70 inches tall. What is our predicted weight?\n\\[\\hat{y} = -233.2 + 6 \\times 70 = 190.1 \\text{ lbs}\\]\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Making Predictions\n\n\n\nOnce you have \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) in cells, predict for any new \\(x\\) value:\n= intercept_cell + slope_cell * new_x_value\nDrag this formula down to generate predictions for multiple observations.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#out-of-sample-predictions-the-test-set",
+    "href": "misc-lessons/lesson-3.html#out-of-sample-predictions-the-test-set",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "We built the model on training data (37 soldiers). But we held back 10 soldiers as a test set — soldiers the model has never seen. This is the real test: can the model predict well for new data?\n\n\n\n\n\n\n\n\n\nThe red triangles are test soldiers. Some are close to the line, others are farther away. Let’s quantify how well the model does.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#computing-errors-on-the-test-set",
+    "href": "misc-lessons/lesson-3.html#computing-errors-on-the-test-set",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "For each test soldier, we compute:\n\\[\\text{Error} = \\text{Actual Weight} - \\text{Predicted Weight}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual (lbs)\nPredicted (lbs)\nError\n|Error|\n\n\n\n\nS001\n66.0\n203\n165.9\n37.1\n37.1\n\n\nS016\n66.0\n189\n165.9\n23.1\n23.1\n\n\nS018\n66.0\n172\n165.9\n6.1\n6.1\n\n\nS031\n62.0\n157\n141.7\n15.3\n15.3\n\n\nS034\n68.5\n149\n181.0\n-32.0\n32.0\n\n\nS040\n66.0\n166\n165.9\n0.1\n0.1\n\n\nS042\n64.0\n147\n153.8\n-6.8\n6.8\n\n\nS044\n71.0\n184\n196.2\n-12.2\n12.2\n\n\nS046\n61.0\n127\n135.7\n-8.7\n8.7\n\n\nS047\n67.0\n172\n172.0\n0.0\n0.0\n\n\n\n\n\n\nA positive error means we underpredicted (soldier weighs more than expected).\nA negative error means we overpredicted (soldier weighs less than expected).",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#comparing-training-and-test-performance",
+    "href": "misc-lessons/lesson-3.html#comparing-training-and-test-performance",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "We can also compute MAE on the training data to compare:\n\n\n\n\n\n\nImportantModel Validation\n\n\n\n\n\n\nMetric\nTraining (26 soldiers)\nTest (11 soldiers)\n\n\n\n\nMAE\n17 lbs\n19.7 lbs\n\n\n\n\nIf test MAE is close to training MAE, the model generalizes well — it captures a real pattern that holds for new data.\nIf test MAE is much larger than training MAE, the model may be overfitting — it memorized the training data but doesn’t predict well for new observations.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#the-problem-you-cant-grade-your-own-test",
+    "href": "misc-lessons/lesson-3.html#the-problem-you-cant-grade-your-own-test",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "When we use all the data to build the model and then check how well it fits that same data, we’re essentially grading our own test. The model has already “seen” every observation — so a good fit on this data doesn’t tell us much about how it will perform on new data.\nThis is why we need a training set and a test set.\n\n\n\n\n\n\nImportantTraining and Test Sets\n\n\n\n\nTraining set: The data we use to build the model (estimate \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)).\nTest set: Data we hold out and use only to evaluate the model’s predictions on observations it has never seen.\n\nIf the model predicts well on the test set, we have evidence it generalizes — it captures a real pattern, not just noise in the training data.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#splitting-the-data",
+    "href": "misc-lessons/lesson-3.html#splitting-the-data",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Let’s take our 37 soldiers and split them: the first 26 soldiers for training, the remaining 11 for testing.\n\n\n\n\n\n\n\n\n\nNow we rebuild the model using only the training data:\n\\[\\hat{y} = -191.3 + 5.4 \\cdot x\\]\nNotice the coefficients are different from Lesson 8 (\\(\\hat{\\beta}_0 = -233.2\\), \\(\\hat{\\beta}_1 = 6\\)). That’s expected — we’re now using fewer observations to estimate the line.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#making-predictions",
+    "href": "misc-lessons/lesson-3.html#making-predictions",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we can use our training model to predict weight for any soldier — including the 11 test soldiers the model has never seen. Just plug in the height:\n\n\n\n\n\n\nNoteExample Prediction\n\n\n\nTake the first soldier in the test set — S027, who is 68 inches tall. The model has never seen this soldier. What does it predict?\n\\[\\hat{y} = -191.3 + 5.4 \\times 68 = 176.7 \\text{ lbs}\\]\nS027 actually weighs 170 lbs, so our error is \\(170 - 176.7 = -6.7\\) lbs.\n\n\nWe can do this for every test soldier. For each one, we also compute the error — how far off our prediction was:\n\\[\\text{Error} = \\text{Actual Weight} - \\text{Predicted Weight}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual (lbs)\nPredicted (lbs)\nError\n|Error|\n\n\n\n\nS027\n68\n170\n176.7\n-6.7\n6.7\n\n\nS028\n71\n202\n192.9\n9.1\n9.1\n\n\nS029\n73\n206\n203.8\n2.2\n2.2\n\n\nS030\n61\n128\n138.8\n-10.8\n10.8\n\n\nS031\n61\n149\n138.8\n10.2\n10.2\n\n\nS032\n72\n235\n198.4\n36.6\n36.6\n\n\nS033\n74\n231\n209.2\n21.8\n21.8\n\n\nS034\n68\n182\n176.7\n5.3\n5.3\n\n\nS035\n72\n227\n198.4\n28.6\n28.6\n\n\nS036\n72\n182\n198.4\n-16.4\n16.4\n\n\nS037\n66\n154\n165.9\n-11.9\n11.9\n\n\n\n\n\n\nA positive error means we underpredicted (soldier weighs more than expected).\nA negative error means we overpredicted (soldier weighs less than expected).",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#computing-errors-and-mae",
+    "href": "misc-lessons/lesson-3.html#computing-errors-and-mae",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "For each soldier, we compute the error — how far off our prediction was:\n\\[\\text{Error} = \\text{Actual Weight} - \\text{Predicted Weight}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual (lbs)\nPredicted (lbs)\nError\n|Error|\n\n\n\n\nS027\n68\n170\n176.7\n-6.7\n6.7\n\n\nS028\n71\n202\n192.9\n9.1\n9.1\n\n\nS029\n73\n206\n203.8\n2.2\n2.2\n\n\nS030\n61\n128\n138.8\n-10.8\n10.8\n\n\nS031\n61\n149\n138.8\n10.2\n10.2\n\n\nS032\n72\n235\n198.4\n36.6\n36.6\n\n\nS033\n74\n231\n209.2\n21.8\n21.8\n\n\nS034\n68\n182\n176.7\n5.3\n5.3\n\n\nS035\n72\n227\n198.4\n28.6\n28.6\n\n\nS036\n72\n182\n198.4\n-16.4\n16.4\n\n\nS037\n66\n154\n165.9\n-11.9\n11.9\n\n\n\n\n\n\nA positive error means we underpredicted (soldier weighs more than expected).\nA negative error means we overpredicted (soldier weighs less than expected).\n\nTo summarize overall prediction quality with a single number, we use the Mean Absolute Error (MAE):\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\n\n\n\n\n\n\nImportantOur Model’s MAE\n\n\n\n\\[\\text{MAE}_{\\text{test}} = 19.7 \\text{ lbs}\\]\nOn average, our predictions are off by about 19.7 lbs for soldiers the model has never seen.\n\n\n\n\n\n\n\n\nNoteExcel Instructions: Computing MAE\n\n\n\n\nError column: = Actual - Predicted\n|Error| column: = ABS(Error)\nMAE cell: = AVERAGE(|Error| range)\n\nCompute MAE separately for the training rows and the test rows.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#objective-3-making-predictions",
+    "href": "misc-lessons/lesson-3.html#objective-3-making-predictions",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we can use our training model to predict weight for any soldier — including the 11 test soldiers the model has never seen. Just plug in the height:\n\n\n\n\n\n\nNoteExample Prediction\n\n\n\nTake the first soldier in the test set — S027, who is 68 inches tall. The model has never seen this soldier. What does it predict?\n\\[\\hat{y} = -191.3 + 5.4 \\times 68 = 176.7 \\text{ lbs}\\]\nS027 actually weighs 170 lbs, so our error is \\(170 - 176.7 = -6.7\\) lbs.\n\n\nWe can do this for every test soldier. For each one, we also compute the error — how far off our prediction was:\n\\[\\text{Error} = \\text{Actual Weight} - \\text{Predicted Weight}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoldier\nHeight (in)\nActual (lbs)\nPredicted (lbs)\nError\n|Error|\n\n\n\n\nS027\n68\n170\n176.7\n-6.7\n6.7\n\n\nS028\n71\n202\n192.9\n9.1\n9.1\n\n\nS029\n73\n206\n203.8\n2.2\n2.2\n\n\nS030\n61\n128\n138.8\n-10.8\n10.8\n\n\nS031\n61\n149\n138.8\n10.2\n10.2\n\n\nS032\n72\n235\n198.4\n36.6\n36.6\n\n\nS033\n74\n231\n209.2\n21.8\n21.8\n\n\nS034\n68\n182\n176.7\n5.3\n5.3\n\n\nS035\n72\n227\n198.4\n28.6\n28.6\n\n\nS036\n72\n182\n198.4\n-16.4\n16.4\n\n\nS037\n66\n154\n165.9\n-11.9\n11.9\n\n\n\n\n\n\nA positive error means we underpredicted (soldier weighs more than expected).\nA negative error means we overpredicted (soldier weighs less than expected).",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#objective-4-validating-the-model",
+    "href": "misc-lessons/lesson-3.html#objective-4-validating-the-model",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "To summarize overall prediction quality with a single number, we use the Mean Absolute Error (MAE):\n\\[\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\]\nWe compute MAE separately for the training set and the test set, then compare:\n\n\n\n\n\n\nImportantModel Validation\n\n\n\n\n\n\nMetric\nTraining (26 soldiers)\nTest (11 soldiers)\n\n\n\n\nMAE\n17.6 lbs\n14.5 lbs\n\n\n\n\nIf test MAE is close to training MAE, the model generalizes well — it captures a real pattern that holds for new data.\nIf test MAE is much larger than training MAE, the model may be overfitting — it memorized the training data but doesn’t predict well for new observations.\n\n\n\n\n\n\n\n\n\n\n\n\nIf the errors look random and centered around zero, that’s a good sign. If there’s a pattern, we may need a different model. We’ll dig into this in Lesson 10 with residual analysis.",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#objective-5-supporting-or-questioning-the-model",
+    "href": "misc-lessons/lesson-3.html#objective-5-supporting-or-questioning-the-model",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Now we have all the pieces to make a judgment: is this model good enough to use?\n\n\n\n\n\n\nTipQuestions to Ask (Reading 2.2, Section 9)\n\n\n\n\nIs the MAE acceptable for the context? An average error of 14.5 lbs — is that useful for whatever decision we’re making?\nDoes the model generalize? Training MAE (17.6) vs. test MAE (14.5) — are they in the same ballpark?\nAre the predictions practically reasonable? Do the predicted weights make sense for real soldiers?\nWould you trust this model to inform a real decision? If a commander used this model to estimate equipment needs, would the errors be acceptable?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-3.html#now-lets-do-it-in-excel",
+    "href": "misc-lessons/lesson-3.html#now-lets-do-it-in-excel",
+    "title": "Linear Regression II",
+    "section": "",
+    "text": "Open the L9 - Validate tab in the workbook:\n\nThe data is already split for you: Train (26 soldiers) and Test (11 soldiers), separated by a blank row.\n\n\n\n\n\n\nNoteStep 1: Build the Model on Training Data Only\n\n\n\nUse =SLOPE() and =INTERCEPT() on only the training rows to get your slope and intercept. The hint formulas in columns K–L show you how.\nYour coefficients should be different from Lesson 8 — that’s expected because you’re now using only 26 soldiers instead of all 37.\n\n\n\n\n\n\n\n\nNoteStep 2: Make Predictions for All Soldiers\n\n\n\nIn the Predicted (lbs) column, compute \\(\\hat{y}\\) for each soldier (both training and test):\n= intercept_cell + slope_cell * height_cell\nDrag this formula down for all rows.\n\n\n\n\n\n\n\n\nNoteStep 3: Compute Errors\n\n\n\n\nError column: = Actual - Predicted\n|Error| column: = ABS(Error)\n\n\n\n\n\n\n\n\n\nNoteStep 4: Compute MAE\n\n\n\nCompute MAE separately for the training rows and the test rows:\n= AVERAGE(|Error| range for training)\n= AVERAGE(|Error| range for test)\nCompare the two values. Are they in the same ballpark?\n\n\n\n\n\n\n\n\nNoteStep 5: Make a Judgment\n\n\n\nLook at your results and answer:\n\nIs the test MAE close to the training MAE?\nIs an average error of ~15 lbs acceptable for predicting soldier weight?\nWould you recommend this model to a commander? Why or why not?",
+    "crumbs": [
+      "MA153X L9: Linear Regression II"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#review-where-we-are",
+    "href": "misc-lessons/lesson-4.html#review-where-we-are",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "In Lessons 8–9, we built a regression model on 26 training soldiers, validated it on 11 test soldiers, and compared MAE. We have evidence the model generalizes.\nBut is a linear model actually the right choice? Maybe the relationship is curved and we just can’t see it from the scatter plot alone. This is what residual analysis tells us.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#what-does-a-good-residual-plot-look-like",
+    "href": "misc-lessons/lesson-4.html#what-does-a-good-residual-plot-look-like",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "A residual plot graphs the residuals (\\(e_i = y_i - \\hat{y}_i\\)) against the fitted values (\\(\\hat{y}_i\\)), with a reference line at \\(e = 0\\).\nIf our assumptions are met, the residual plot should show a horizontal band of points scattered randomly around zero — no pattern, no trends, roughly even spread (Reading 2.3, Section 4).",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#what-to-look-for-when-things-go-wrong",
+    "href": "misc-lessons/lesson-4.html#what-to-look-for-when-things-go-wrong",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "The reading describes three problems that show up in residual plots. Here is what each one looks like:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantReading a Residual Plot (Reading 2.3, Section 4)\n\n\n\n\n\n\n\n\n\n\n\nWhat You See\nWhat It Means\nWhich Assumption Is Violated\n\n\n\n\nRandom scatter around zero\nModel is appropriate\nNone — assumptions satisfied\n\n\nCurved pattern (U-shape or arch)\nRelationship is nonlinear\nLinearity\n\n\nFan shape (spread increases or decreases)\nErrors are systematically larger for some predictions\nConstant variance\n\n\nLarge isolated points far from zero\nPotential outliers — investigate before proceeding\nMay indicate model issues",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#our-models-residual-plot",
+    "href": "misc-lessons/lesson-4.html#our-models-residual-plot",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Now let’s look at the residual plot for our ACFT model. Does it pass the test?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipCritique: What Do You See?\n\n\n\n\nCurved pattern? No — the points don’t follow a U-shape or arch. Linearity assumption looks reasonable.\nFan shape? The spread looks roughly constant across the range of fitted values. Constant variance looks okay.\nOutliers? There are a couple of larger residuals, but nothing dramatically far from the rest.\nOverall: Random scatter around zero. The linear model appears appropriate for this data.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#connecting-it-all-to-the-four-assumptions",
+    "href": "misc-lessons/lesson-4.html#connecting-it-all-to-the-four-assumptions",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "ImportantResidual Analysis Summary\n\n\n\n\n\n\n\n\n\n\n\nAssumption\nWhat We Checked\nVerdict\n\n\n\n\nLinearity\nResidual plot: no curved pattern\nReasonable\n\n\nIndependence\nStudy design — each soldier measured once\nReasonable\n\n\nConstant variance\nResidual plot: no fan shape\nReasonable\n\n\nNormality\nHistogram: roughly symmetric around zero\nReasonable\n\n\n\nAll four assumptions appear reasonable for our model. Combined with the validation results from Lesson 9 (similar training and test MAE), we have strong evidence that the linear model is appropriate for this data.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#example-a-model-that-fails",
+    "href": "misc-lessons/lesson-4.html#example-a-model-that-fails",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "What happens when we try to force a linear model on nonlinear data?\n\n\n\n\n\n\n\n\n\nThe scatter plot on the left might look “okay” at first glance. But the residual plot reveals a clear curved pattern — the model systematically overpredicts in the middle and underpredicts at the ends. The linearity assumption is violated. A nonlinear model would be more appropriate (Lesson 11).\nThis is why we never skip residual analysis — the residual plot catches problems the scatter plot might hide.",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
+  },
+  {
+    "objectID": "misc-lessons/lesson-4.html#now-lets-do-it-in-excel",
+    "href": "misc-lessons/lesson-4.html#now-lets-do-it-in-excel",
+    "title": "Analysis of Residuals",
+    "section": "",
+    "text": "Open the L10 - Residuals tab in the workbook:\n\n\n\n\n\n\n\nNoteStep 1: Compute Fitted Values and Residuals\n\n\n\nUse your slope and intercept from L9 (training model):\n\nFitted column: = intercept_cell + slope_cell * height_cell\nResidual column: = actual_weight - fitted_value\n\nDrag both formulas down for all 26 training soldiers.\n\n\n\n\n\n\n\n\nNoteStep 2: Create a Residual Plot\n\n\n\n\nSelect the Fitted column and Residual column.\nGo to Insert -&gt; Chart -&gt; XY (Scatter).\nAdjust the axis bounds so the data fills the chart.\nAdd a horizontal reference line at \\(e = 0\\):\n\nAdd a new data series with two points: (min fitted, 0) and (max fitted, 0).\nFormat this series as a dashed line with no markers.\n\nLabel axes: “Fitted Values” on x-axis, “Residuals” on y-axis.\n\n\n\n\n\n\n\n\n\nNoteStep 3: Create a Histogram of Residuals\n\n\n\n\nSelect the Residual column.\nGo to Insert -&gt; Chart -&gt; Histogram.\nCheck: Is the distribution roughly symmetric around zero?\n\n\n\n\n\n\n\n\n\nNoteStep 4: Critique Your Plots\n\n\n\nLook at your residual plot and histogram and answer:\n\nDo you see a curved pattern? (linearity concern)\nDo you see a fan shape? (constant variance concern)\nAre there any outliers? (unusually large residuals)\nIs the histogram roughly symmetric around zero? (normality)\nBased on all evidence (Lessons 8–10), is this model appropriate for predicting soldier weight?",
+    "crumbs": [
+      "MA153X L10: Analysis of Residuals"
+    ]
   }
 ]

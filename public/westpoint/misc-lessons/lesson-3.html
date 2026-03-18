@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Linear Regression II – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../misc-lessons/lesson-4.html" rel="next">
+<link href="../misc-lessons/lesson-2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../misc-lessons/lesson-3.html">MA153X L9: Linear Regression II</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 L23: Multivariate Transformations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA153X L8: Linear Regression I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA153X L9: Linear Regression II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA153X L10: Analysis of Residuals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Board Sheets</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L8.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L8 Board Sheet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L9.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L9 Board Sheet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L10.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L10 Board Sheet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-9-linear-regression-ii" id="toc-lesson-9-linear-regression-ii" class="nav-link active" data-scroll-target="#lesson-9-linear-regression-ii">Lesson 9: Linear Regression II</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#review-our-model-from-lesson-8" id="toc-review-our-model-from-lesson-8" class="nav-link" data-scroll-target="#review-our-model-from-lesson-8">Review: Our Model from Lesson 8</a></li>
+  <li><a href="#the-problem-you-cant-grade-your-own-test" id="toc-the-problem-you-cant-grade-your-own-test" class="nav-link" data-scroll-target="#the-problem-you-cant-grade-your-own-test">The Problem: You Can’t Grade Your Own Test</a></li>
+  <li><a href="#splitting-the-data" id="toc-splitting-the-data" class="nav-link" data-scroll-target="#splitting-the-data">Splitting the Data</a></li>
+  <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions">Making Predictions</a></li>
+  <li><a href="#validating-the-model" id="toc-validating-the-model" class="nav-link" data-scroll-target="#validating-the-model">Validating the Model</a></li>
+  <li><a href="#supporting-or-questioning-the-model" id="toc-supporting-or-questioning-the-model" class="nav-link" data-scroll-target="#supporting-or-questioning-the-model">Supporting or Questioning the Model</a></li>
+  <li><a href="#now-lets-do-it-in-excel" id="toc-now-lets-do-it-in-excel" class="nav-link" data-scroll-target="#now-lets-do-it-in-excel">Now Let’s Do It in Excel</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Linear Regression II</h1>
+<p class="subtitle lead">MA153X Mathematical Modeling — Lesson 9</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lesson-9-linear-regression-ii" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 9: Linear Regression II</h1>
+<style>
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled" title="Downloads">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Downloads
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="assets/MA153X_Linear_Regression_Boardsheet.xlsx">Excel Workbook (all 3 lessons)</a></li>
+<li><a href="assets/acft_company_data.csv">ACFT Data (CSV)</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ol type="1">
+<li><strong>Interpret the slope and intercept of a linear regression model in context.</strong> <em>(covered in Lesson 8)</em></li>
+<li><strong>Interpret <span class="math inline">\(R^2\)</span> for a linear regression model built on training data.</strong> <em>(covered in Lesson 8)</em></li>
+<li>Use a linear regression model to generate and interpret out-of-sample predictions.</li>
+<li>Validate a linear regression model by comparing training and test data performance.</li>
+<li>Use out-of-sample prediction results to support or question a predictive modeling decision.</li>
+</ol>
+<hr>
+</section>
+<section id="review-our-model-from-lesson-8" class="level2">
+<h2 class="anchored" data-anchor-id="review-our-model-from-lesson-8">Review: Our Model from Lesson 8</h2>
+<p>In Lesson 8, we built a linear regression model using <strong>all 37 soldiers</strong>:</p>
+<p><span class="math display">\[\hat{y} = -233.2 + 6 \cdot x\]</span></p>
+<p>with <span class="math inline">\(R^2 = 0.532\)</span>. The slope tells us each additional inch of height predicts about 6 more lbs.</p>
+<p><strong>But how do we know this model actually works?</strong> We fit it to all of our data — so of course it fits that data reasonably well. The real question is: can it predict well for soldiers it has never seen?</p>
+<hr>
+</section>
+<section id="the-problem-you-cant-grade-your-own-test" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-you-cant-grade-your-own-test">The Problem: You Can’t Grade Your Own Test</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we use <strong>all</strong> the data to build the model and then check how well it fits <strong>that same data</strong>, we’re essentially grading our own test. The model has already “seen” every observation — so a good fit on this data doesn’t tell us much about how it will perform on <strong>new</strong> data.</p>
+<p>This is why we need a <strong>training set</strong> and a <strong>test set</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Training and Test Sets">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Training and Test Sets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Training set</strong>: The data we use to <strong>build</strong> the model (estimate <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>).</li>
+<li><strong>Test set</strong>: Data we <strong>hold out</strong> and use only to evaluate the model’s predictions on observations it has never seen.</li>
+</ul>
+<p>If the model predicts well on the test set, we have evidence it <strong>generalizes</strong> — it captures a real pattern, not just noise in the training data.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="splitting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-the-data">Splitting the Data</h2>
+<p>Let’s take our 37 soldiers and split them: the first 26 soldiers for <strong>training</strong>, the remaining 11 for <strong>testing</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we rebuild the model using <strong>only the training data</strong>:</p>
+<p><span class="math display">\[\hat{y} = -191.3 + 5.4 \cdot x\]</span></p>
+<p>Notice the coefficients are <strong>different</strong> from Lesson 8 (<span class="math inline">\(\hat{\beta}_0 = -233.2\)</span>, <span class="math inline">\(\hat{\beta}_1 = 6\)</span>). That’s expected — we’re now using fewer observations to estimate the line.</p>
+<hr>
+</section>
+<section id="making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="making-predictions">Making Predictions</h2>
+<p>Now we can use our training model to predict weight for <strong>any</strong> soldier — including the 11 test soldiers the model has never seen. Just plug in the height:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Example Prediction">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example Prediction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take the first soldier in the <strong>test set</strong> — <strong>S027</strong>, who is <strong>68 inches</strong> tall. The model has never seen this soldier. What does it predict?</p>
+<p><span class="math display">\[\hat{y} = -191.3 + 5.4 \times 68 = 176.7 \text{ lbs}\]</span></p>
+<p>S027 actually weighs <strong>170 lbs</strong>, so our error is <span class="math inline">\(170 - 176.7 = -6.7\)</span> lbs.</p>
+</div>
+</div>
+<p>We can do this for <strong>every</strong> test soldier. For each one, we also compute the <strong>error</strong> — how far off our prediction was:</p>
+<p><span class="math display">\[\text{Error} = \text{Actual Weight} - \text{Predicted Weight}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 8%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Soldier</th>
+<th style="text-align: center;">Height (in)</th>
+<th style="text-align: center;">Actual (lbs)</th>
+<th style="text-align: center;">Predicted (lbs)</th>
+<th style="text-align: center;">Error</th>
+<th style="text-align: center;">|Error|</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">S027</td>
+<td style="text-align: center;">68</td>
+<td style="text-align: center;">170</td>
+<td style="text-align: center;">176.7</td>
+<td style="text-align: center;">-6.7</td>
+<td style="text-align: center;">6.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">S028</td>
+<td style="text-align: center;">71</td>
+<td style="text-align: center;">202</td>
+<td style="text-align: center;">192.9</td>
+<td style="text-align: center;">9.1</td>
+<td style="text-align: center;">9.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">S029</td>
+<td style="text-align: center;">73</td>
+<td style="text-align: center;">206</td>
+<td style="text-align: center;">203.8</td>
+<td style="text-align: center;">2.2</td>
+<td style="text-align: center;">2.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">S030</td>
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">138.8</td>
+<td style="text-align: center;">-10.8</td>
+<td style="text-align: center;">10.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">S031</td>
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">149</td>
+<td style="text-align: center;">138.8</td>
+<td style="text-align: center;">10.2</td>
+<td style="text-align: center;">10.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">S032</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">235</td>
+<td style="text-align: center;">198.4</td>
+<td style="text-align: center;">36.6</td>
+<td style="text-align: center;">36.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">S033</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">231</td>
+<td style="text-align: center;">209.2</td>
+<td style="text-align: center;">21.8</td>
+<td style="text-align: center;">21.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">S034</td>
+<td style="text-align: center;">68</td>
+<td style="text-align: center;">182</td>
+<td style="text-align: center;">176.7</td>
+<td style="text-align: center;">5.3</td>
+<td style="text-align: center;">5.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">S035</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">227</td>
+<td style="text-align: center;">198.4</td>
+<td style="text-align: center;">28.6</td>
+<td style="text-align: center;">28.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">S036</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">182</td>
+<td style="text-align: center;">198.4</td>
+<td style="text-align: center;">-16.4</td>
+<td style="text-align: center;">16.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">S037</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">154</td>
+<td style="text-align: center;">165.9</td>
+<td style="text-align: center;">-11.9</td>
+<td style="text-align: center;">11.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>A <strong>positive error</strong> means we <strong>underpredicted</strong> (soldier weighs more than expected).</li>
+<li>A <strong>negative error</strong> means we <strong>overpredicted</strong> (soldier weighs less than expected).</li>
+</ul>
+<hr>
+</section>
+<section id="validating-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="validating-the-model">Validating the Model</h2>
+<p>To summarize overall prediction quality with a single number, we use the <strong>Mean Absolute Error (MAE)</strong>:</p>
+<p><span class="math display">\[\text{MAE} = \frac{1}{n}\sum_{i=1}^{n} |y_i - \hat{y}_i|\]</span></p>
+<p>We compute MAE <strong>separately</strong> for the training set and the test set, then compare:</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Model Validation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Model Validation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Training (26 soldiers)</th>
+<th>Test (11 soldiers)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MAE</td>
+<td>17.6 lbs</td>
+<td>14.5 lbs</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If test MAE is <strong>close to</strong> training MAE, the model <strong>generalizes well</strong> — it captures a real pattern that holds for new data.</li>
+<li>If test MAE is <strong>much larger</strong> than training MAE, the model may be <strong>overfitting</strong> — it memorized the training data but doesn’t predict well for new observations.</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If the errors look <strong>random and centered around zero</strong>, that’s a good sign. If there’s a pattern, we may need a different model. We’ll dig into this in Lesson 10 with <strong>residual analysis</strong>.</p>
+<hr>
+</section>
+<section id="supporting-or-questioning-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-or-questioning-the-model">Supporting or Questioning the Model</h2>
+<p>Now we have all the pieces to make a judgment: <strong>is this model good enough to use?</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Questions to Ask (Reading 2.2, Section 9)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Questions to Ask (Reading 2.2, Section 9)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Is the MAE acceptable for the context?</strong> An average error of 14.5 lbs — is that useful for whatever decision we’re making?</li>
+<li><strong>Does the model generalize?</strong> Training MAE (17.6) vs.&nbsp;test MAE (14.5) — are they in the same ballpark?</li>
+<li><strong>Are the predictions practically reasonable?</strong> Do the predicted weights make sense for real soldiers?</li>
+<li><strong>Would you trust this model to inform a real decision?</strong> If a commander used this model to estimate equipment needs, would the errors be acceptable?</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+<section id="now-lets-do-it-in-excel" class="level2">
+<h2 class="anchored" data-anchor-id="now-lets-do-it-in-excel">Now Let’s Do It in Excel</h2>
+<p>Open the <strong>L9 - Validate</strong> tab in the workbook:</p>
+<iframe width="100%" height="500" frameborder="0" scrolling="no" src="https://usarmywestpoint-my.sharepoint.com/personal/dusty_turner_westpoint_edu/_layouts/15/Doc.aspx?sourcedoc=%2Fpersonal%2Fdusty%5Fturner%5Fwestpoint%5Fedu%2FDocuments%2FTeaching%2Fcourses%2Fmisc%2Dlessons%2Fassets%2FMA153X%5FLinear%5FRegression%5FBoardsheet%2Exlsx&amp;action=embedview&amp;ActiveCell='L9 - Validate'!A1&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True"></iframe>
+<p>The data is already split for you: <strong>Train</strong> (26 soldiers) and <strong>Test</strong> (11 soldiers), separated by a blank row.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 1: Build the Model on Training Data Only">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 1: Build the Model on Training Data Only
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>=SLOPE()</code> and <code>=INTERCEPT()</code> on <strong>only the training rows</strong> to get your slope and intercept. The hint formulas in columns K–L show you how.</p>
+<p>Your coefficients should be different from Lesson 8 — that’s expected because you’re now using only 26 soldiers instead of all 37.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 2: Make Predictions for All Soldiers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 2: Make Predictions for All Soldiers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the <strong>Predicted (lbs)</strong> column, compute <span class="math inline">\(\hat{y}\)</span> for each soldier (both training and test):</p>
+<pre><code>= intercept_cell + slope_cell * height_cell</code></pre>
+<p>Drag this formula down for all rows.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 3: Compute Errors">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 3: Compute Errors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Error column:</strong> <code>= Actual - Predicted</code></li>
+<li><strong>|Error| column:</strong> <code>= ABS(Error)</code></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 4: Compute MAE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 4: Compute MAE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compute MAE <strong>separately</strong> for the training rows and the test rows:</p>
+<pre><code>= AVERAGE(|Error| range for training)
+= AVERAGE(|Error| range for test)</code></pre>
+<p>Compare the two values. Are they in the same ballpark?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 5: Make a Judgment">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 5: Make a Judgment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at your results and answer:</p>
+<ul>
+<li>Is the test MAE close to the training MAE?</li>
+<li>Is an average error of ~15 lbs acceptable for predicting soldier weight?</li>
+<li>Would you recommend this model to a commander? Why or why not?</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Key Takeaways">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Building a model on all the data and checking fit on that same data is like <strong>grading your own test</strong> — it doesn’t tell you how the model performs on new data.</li>
+<li><strong>Split the data</strong> into training (to build) and test (to evaluate).</li>
+<li>Use the regression equation to <strong>make predictions</strong> by plugging in new <span class="math inline">\(x\)</span> values.</li>
+<li><strong>MAE</strong> summarizes prediction accuracy: the average absolute distance between actual and predicted values.</li>
+<li>Compare training and test MAE to check whether the model <strong>generalizes</strong> or <strong>overfits</strong>.</li>
+<li>Use prediction results to <strong>support or question</strong> your modeling decision — is the model good enough for the task at hand?</li>
+</ol>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../misc-lessons/lesson-2.html" class="pagination-link" aria-label="MA153X L8: Linear Regression I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA153X L8: Linear Regression I</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../misc-lessons/lesson-4.html" class="pagination-link" aria-label="MA153X L10: Analysis of Residuals">
+        <span class="nav-page-text">MA153X L10: Analysis of Residuals</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

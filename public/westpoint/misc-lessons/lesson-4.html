@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Analysis of Residuals – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../misc-lessons/boardsheet-L8.pdf" rel="next">
+<link href="../misc-lessons/lesson-3.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../misc-lessons/lesson-4.html">MA153X L10: Analysis of Residuals</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 L23: Multivariate Transformations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA153X L8: Linear Regression I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA153X L9: Linear Regression II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA153X L10: Analysis of Residuals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Board Sheets</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L8.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L8 Board Sheet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L9.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L9 Board Sheet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/boardsheet-L10.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L10 Board Sheet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-10-analysis-of-residuals" id="toc-lesson-10-analysis-of-residuals" class="nav-link active" data-scroll-target="#lesson-10-analysis-of-residuals">Lesson 10: Analysis of Residuals</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#review-where-we-are" id="toc-review-where-we-are" class="nav-link" data-scroll-target="#review-where-we-are">Review: Where We Are</a></li>
+  <li><a href="#what-is-a-residual" id="toc-what-is-a-residual" class="nav-link" data-scroll-target="#what-is-a-residual">What is a Residual?</a></li>
+  <li><a href="#what-does-a-good-residual-plot-look-like" id="toc-what-does-a-good-residual-plot-look-like" class="nav-link" data-scroll-target="#what-does-a-good-residual-plot-look-like">What Does a Good Residual Plot Look Like?</a></li>
+  <li><a href="#what-to-look-for-when-things-go-wrong" id="toc-what-to-look-for-when-things-go-wrong" class="nav-link" data-scroll-target="#what-to-look-for-when-things-go-wrong">What to Look For When Things Go Wrong</a></li>
+  <li><a href="#our-models-residual-plot" id="toc-our-models-residual-plot" class="nav-link" data-scroll-target="#our-models-residual-plot">Our Model’s Residual Plot</a></li>
+  <li><a href="#distribution-of-residuals" id="toc-distribution-of-residuals" class="nav-link" data-scroll-target="#distribution-of-residuals">Distribution of Residuals</a></li>
+  <li><a href="#connecting-it-all-to-the-four-assumptions" id="toc-connecting-it-all-to-the-four-assumptions" class="nav-link" data-scroll-target="#connecting-it-all-to-the-four-assumptions">Connecting It All to the Four Assumptions</a></li>
+  <li><a href="#example-a-model-that-fails" id="toc-example-a-model-that-fails" class="nav-link" data-scroll-target="#example-a-model-that-fails">Example: A Model That Fails</a></li>
+  <li><a href="#now-lets-do-it-in-excel" id="toc-now-lets-do-it-in-excel" class="nav-link" data-scroll-target="#now-lets-do-it-in-excel">Now Let’s Do It in Excel</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analysis of Residuals</h1>
+<p class="subtitle lead">MA153X Mathematical Modeling — Lesson 10</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lesson-10-analysis-of-residuals" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 10: Analysis of Residuals</h1>
+<style>
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled" title="Downloads">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Downloads
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="assets/MA153X_Linear_Regression_Boardsheet.xlsx">Excel Workbook (all 3 lessons)</a></li>
+<li><a href="assets/acft_company_data.csv">ACFT Data (CSV)</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ol type="1">
+<li>Define and compute residuals for a linear regression model and interpret them as prediction errors in context.</li>
+<li>Construct and interpret residual plots (residuals vs.&nbsp;fitted values) to assess whether linear regression assumptions are reasonable.</li>
+<li>Analyze the distribution of residuals using summary statistics and plots to evaluate model fit and error behavior.</li>
+<li>Evaluate whether a linear regression model is appropriate for decision-making based on diagnostic evidence.</li>
+</ol>
+<hr>
+</section>
+<section id="review-where-we-are" class="level2">
+<h2 class="anchored" data-anchor-id="review-where-we-are">Review: Where We Are</h2>
+<p>In Lessons 8–9, we built a regression model on 26 training soldiers, validated it on 11 test soldiers, and compared MAE. We have evidence the model generalizes.</p>
+<p><strong>But is a linear model actually the right choice?</strong> Maybe the relationship is curved and we just can’t see it from the scatter plot alone. This is what <strong>residual analysis</strong> tells us.</p>
+<hr>
+</section>
+<section id="what-is-a-residual" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-residual">What is a Residual?</h2>
+<p>Recall from Lesson 9: every time we make a prediction, there is an <strong>error</strong> — the difference between what actually happened and what the model predicted. That error is called a <strong>residual</strong>:</p>
+<p><span class="math display">\[e_i = y_i - \hat{y}_i\]</span></p>
+<ul>
+<li><strong>Positive residual</strong> (<span class="math inline">\(e_i &gt; 0\)</span>): The model <strong>underpredicted</strong> — the actual value was higher.</li>
+<li><strong>Negative residual</strong> (<span class="math inline">\(e_i &lt; 0\)</span>): The model <strong>overpredicted</strong> — the actual value was lower.</li>
+</ul>
+<p>Looking at any single residual isn’t very informative. What matters is the <strong>pattern across all residuals</strong>. If the residuals behave like random noise — no patterns, no trends — our assumptions were reasonable. If we see structure, we have a problem (Reading 2.3, Section 1).</p>
+<hr>
+</section>
+<section id="what-does-a-good-residual-plot-look-like" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-a-good-residual-plot-look-like">What Does a Good Residual Plot Look Like?</h2>
+<p>A residual plot graphs the <strong>residuals</strong> (<span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>) against the <strong>fitted values</strong> (<span class="math inline">\(\hat{y}_i\)</span>), with a reference line at <span class="math inline">\(e = 0\)</span>.</p>
+<p>If our assumptions are met, the residual plot should show a <strong>horizontal band of points scattered randomly around zero</strong> — no pattern, no trends, roughly even spread (Reading 2.3, Section 4).</p>
+<hr>
+</section>
+<section id="what-to-look-for-when-things-go-wrong" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-look-for-when-things-go-wrong">What to Look For When Things Go Wrong</h2>
+<p>The reading describes three problems that show up in residual plots. Here is what each one looks like:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-4_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Reading a Residual Plot (Reading 2.3, Section 4)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Reading a Residual Plot (Reading 2.3, Section 4)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What You See</th>
+<th>What It Means</th>
+<th>Which Assumption Is Violated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Random scatter</strong> around zero</td>
+<td>Model is appropriate</td>
+<td>None — assumptions satisfied</td>
+</tr>
+<tr class="even">
+<td><strong>Curved pattern</strong> (U-shape or arch)</td>
+<td>Relationship is <strong>nonlinear</strong></td>
+<td>Linearity</td>
+</tr>
+<tr class="odd">
+<td><strong>Fan shape</strong> (spread increases or decreases)</td>
+<td>Errors are systematically larger for some predictions</td>
+<td>Constant variance</td>
+</tr>
+<tr class="even">
+<td><strong>Large isolated points</strong> far from zero</td>
+<td>Potential <strong>outliers</strong> — investigate before proceeding</td>
+<td>May indicate model issues</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="our-models-residual-plot" class="level2">
+<h2 class="anchored" data-anchor-id="our-models-residual-plot">Our Model’s Residual Plot</h2>
+<p>Now let’s look at the residual plot for <strong>our</strong> ACFT model. Does it pass the test?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-4_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Critique: What Do You See?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Critique: What Do You See?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Curved pattern?</strong> No — the points don’t follow a U-shape or arch. Linearity assumption looks reasonable.</li>
+<li><strong>Fan shape?</strong> The spread looks roughly constant across the range of fitted values. Constant variance looks okay.</li>
+<li><strong>Outliers?</strong> There are a couple of larger residuals, but nothing dramatically far from the rest.</li>
+<li><strong>Overall:</strong> Random scatter around zero. The linear model appears appropriate for this data.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="distribution-of-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-of-residuals">Distribution of Residuals</h2>
+<p>Beyond the residual plot, we check whether the residuals are <strong>roughly symmetric</strong> around zero (Reading 2.3, Section 6). This relates to the <strong>normality assumption</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-4_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Critique: What Do You See?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Critique: What Do You See?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Centered near zero?</strong> Yes — the distribution is roughly centered on the red dashed line.</li>
+<li><strong>Roughly symmetric?</strong> Reasonably so — no severe skew in one direction.</li>
+<li><strong>Extreme outliers?</strong> No residuals are dramatically far from the rest.</li>
+</ul>
+<p>The normality assumption appears reasonable.</p>
+</div>
+</div>
+<p>The <strong>standard deviation of residuals</strong> (<span class="math inline">\(s_e\)</span>) tells us the typical size of a prediction error:</p>
+<p><span class="math display">\[s_e = 24.09 \text{ lbs}\]</span></p>
+<p>This means a typical prediction is off by about <strong>24.09 lbs</strong> in either direction.</p>
+<hr>
+</section>
+<section id="connecting-it-all-to-the-four-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-it-all-to-the-four-assumptions">Connecting It All to the Four Assumptions</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Residual Analysis Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Residual Analysis Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 44%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assumption</th>
+<th>What We Checked</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Linearity</strong></td>
+<td>Residual plot: no curved pattern</td>
+<td>Reasonable</td>
+</tr>
+<tr class="even">
+<td><strong>Independence</strong></td>
+<td>Study design — each soldier measured once</td>
+<td>Reasonable</td>
+</tr>
+<tr class="odd">
+<td><strong>Constant variance</strong></td>
+<td>Residual plot: no fan shape</td>
+<td>Reasonable</td>
+</tr>
+<tr class="even">
+<td><strong>Normality</strong></td>
+<td>Histogram: roughly symmetric around zero</td>
+<td>Reasonable</td>
+</tr>
+</tbody>
+</table>
+<p>All four assumptions appear reasonable for our model. Combined with the validation results from Lesson 9 (similar training and test MAE), we have strong evidence that the linear model is appropriate for this data.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-a-model-that-fails" class="level2">
+<h2 class="anchored" data-anchor-id="example-a-model-that-fails">Example: A Model That Fails</h2>
+<p>What happens when we try to force a linear model on <strong>nonlinear</strong> data?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The scatter plot on the left might look “okay” at first glance. But the <strong>residual plot</strong> reveals a clear <strong>curved pattern</strong> — the model systematically overpredicts in the middle and underpredicts at the ends. The linearity assumption is violated. A <strong>nonlinear model</strong> would be more appropriate (Lesson 11).</p>
+<p><strong>This is why we never skip residual analysis</strong> — the residual plot catches problems the scatter plot might hide.</p>
+<hr>
+</section>
+<section id="now-lets-do-it-in-excel" class="level2">
+<h2 class="anchored" data-anchor-id="now-lets-do-it-in-excel">Now Let’s Do It in Excel</h2>
+<p>Open the <strong>L10 - Residuals</strong> tab in the workbook:</p>
+<iframe width="100%" height="500" frameborder="0" scrolling="no" src="https://usarmywestpoint-my.sharepoint.com/personal/dusty_turner_westpoint_edu/_layouts/15/Doc.aspx?sourcedoc=%2Fpersonal%2Fdusty%5Fturner%5Fwestpoint%5Fedu%2FDocuments%2FTeaching%2Fcourses%2Fmisc%2Dlessons%2Fassets%2FMA153X%5FLinear%5FRegression%5FBoardsheet%2Exlsx&amp;action=embedview&amp;ActiveCell='L10 - Residuals'!A1&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True"></iframe>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 1: Compute Fitted Values and Residuals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 1: Compute Fitted Values and Residuals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use your slope and intercept from L9 (training model):</p>
+<ul>
+<li><strong>Fitted column:</strong> <code>= intercept_cell + slope_cell * height_cell</code></li>
+<li><strong>Residual column:</strong> <code>= actual_weight - fitted_value</code></li>
+</ul>
+<p>Drag both formulas down for all 26 training soldiers.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 2: Create a Residual Plot">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 2: Create a Residual Plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Select the <strong>Fitted</strong> column and <strong>Residual</strong> column.</li>
+<li>Go to <strong>Insert -&gt; Chart -&gt; XY (Scatter)</strong>.</li>
+<li>Adjust the axis bounds so the data fills the chart.</li>
+<li>Add a horizontal reference line at <span class="math inline">\(e = 0\)</span>:
+<ul>
+<li>Add a new data series with two points: (min fitted, 0) and (max fitted, 0).</li>
+<li>Format this series as a dashed line with no markers.</li>
+</ul></li>
+<li>Label axes: “Fitted Values” on x-axis, “Residuals” on y-axis.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 3: Create a Histogram of Residuals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 3: Create a Histogram of Residuals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Select the <strong>Residual</strong> column.</li>
+<li>Go to <strong>Insert -&gt; Chart -&gt; Histogram</strong>.</li>
+<li>Check: Is the distribution roughly symmetric around zero?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Step 4: Critique Your Plots">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Step 4: Critique Your Plots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at your residual plot and histogram and answer:</p>
+<ol type="1">
+<li>Do you see a <strong>curved pattern</strong>? (linearity concern)</li>
+<li>Do you see a <strong>fan shape</strong>? (constant variance concern)</li>
+<li>Are there any <strong>outliers</strong>? (unusually large residuals)</li>
+<li>Is the histogram <strong>roughly symmetric</strong> around zero? (normality)</li>
+<li>Based on all evidence (Lessons 8–10), is this model appropriate for predicting soldier weight?</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Key Takeaways">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Residuals</strong> (<span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>) are prediction errors. They are <strong>evidence</strong> for whether our model assumptions hold.</li>
+<li>A <strong>residual plot</strong> (fitted values vs.&nbsp;residuals) is the primary diagnostic:
+<ul>
+<li><strong>Random scatter</strong> = assumptions satisfied</li>
+<li><strong>Curved pattern</strong> = linearity violated</li>
+<li><strong>Fan shape</strong> = constant variance violated</li>
+<li><strong>Outliers</strong> = investigate</li>
+</ul></li>
+<li>A <strong>histogram</strong> of residuals checks the normality assumption: look for roughly symmetric distribution around zero.</li>
+<li><span class="math inline">\(s_e\)</span> measures the typical prediction error in the same units as <span class="math inline">\(y\)</span>.</li>
+<li>A model can have good <span class="math inline">\(R^2\)</span> and MAE and <strong>still fail</strong> residual analysis. Always check before using a model for decisions.</li>
+</ol>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../misc-lessons/lesson-3.html" class="pagination-link" aria-label="MA153X L9: Linear Regression II">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA153X L9: Linear Regression II</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../misc-lessons/boardsheet-L8.pdf" class="pagination-link" aria-label="L8 Board Sheet">
+        <span class="nav-page-text">L8 Board Sheet</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
