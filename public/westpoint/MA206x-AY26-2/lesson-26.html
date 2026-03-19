@@ -909,52 +909,52 @@ window.Quarto = {
 </section>
 <section id="lets-do-one-together" class="level2">
 <h2 class="anchored" data-anchor-id="lets-do-one-together">Let’s Do One Together</h2>
-<p>A university wellness office claims that a new digital detox program reduces students’ average daily screen time. Before the program, the average was 4.2 hours per day.</p>
-<p>After the program, a random sample of <strong>1,500 students</strong> had:</p>
+<p>A university wellness office wants to know whether a new digital detox program affects students’ average daily screen time. Before the program, the average was 4.2 hours per day.</p>
+<p>After the program, a random sample of <strong>2,000 students</strong> had:</p>
 <ul>
 <li><span class="math inline">\(\bar{x} = 4.12\)</span> hours</li>
 <li><span class="math inline">\(s = 1.8\)</span> hours</li>
 </ul>
-<p>Test at <span class="math inline">\(\alpha = 0.05\)</span> whether the program reduced average daily screen time.</p>
+<p>Test at <span class="math inline">\(\alpha = 0.05\)</span> whether the program changed average daily screen time.</p>
 <hr>
 <p><strong>Step 0: Check Conditions</strong></p>
 <ul>
 <li>Random sample ✓ (stated)</li>
-<li><span class="math inline">\(n = 1{,}500 \geq 30\)</span> ✓ — CLT applies, so <span class="math inline">\(\bar{X}\)</span> is approximately normal</li>
+<li><span class="math inline">\(n = 2{,}000 \geq 30\)</span> ✓ — CLT applies, so <span class="math inline">\(\bar{X}\)</span> is approximately normal</li>
 </ul>
 <p>Conditions met — <span class="math inline">\(n \geq 30\)</span>, so we use a <strong>one-sample <span class="math inline">\(z\)</span>-test</strong>.</p>
 <hr>
 <p><strong>Step 1: Hypotheses</strong></p>
-<p>The wellness office wants to show screen time <strong>decreased</strong>:</p>
-<p><span class="math display">\[H_0: \mu = 4.2 \qquad \text{vs.} \qquad H_a: \mu &lt; 4.2\]</span></p>
+<p>The wellness office wants to know if screen time <strong>changed</strong>:</p>
+<p><span class="math display">\[H_0: \mu = 4.2 \qquad \text{vs.} \qquad H_a: \mu \neq 4.2\]</span></p>
 <hr>
 <p><strong>Step 2: Test Statistic</strong></p>
-<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{4.12 - 4.2}{1.8 / \sqrt{1500}} = \frac{-0.080}{0.0465} = -1.721\]</span></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{4.12 - 4.2}{1.8 / \sqrt{2000}} = \frac{-0.080}{0.0402} = -1.988\]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">4.12</span>; mu0 <span class="ot">&lt;-</span> <span class="fl">4.2</span>; s <span class="ot">&lt;-</span> <span class="fl">1.8</span>; n <span class="ot">&lt;-</span> <span class="dv">1500</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">4.12</span>; mu0 <span class="ot">&lt;-</span> <span class="fl">4.2</span>; s <span class="ot">&lt;-</span> <span class="fl">1.8</span>; n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> se</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>z_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.721326</code></pre>
+<pre><code>[1] -1.987616</code></pre>
 </div>
 </div>
 <hr>
 <p><strong>Step 3: p-value</strong></p>
-<p>Left-tailed test — use <code>pnorm()</code>:</p>
+<p>Two-tailed test — shade both sides:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_stat)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04259585</code></pre>
+<pre><code>[1] 0.04685418</code></pre>
 </div>
 </div>
 <hr>
 <p><strong>Step 4: Conclusion</strong></p>
-<p><span class="math inline">\(p = 0.0426 \leq 0.05\)</span>. <strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence that the digital detox program reduced average daily screen time.</p>
+<p><span class="math inline">\(p = 0.04685 \leq 0.05\)</span>. <strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence that the digital detox program changed average daily screen time.</p>
 <hr>
 <p><strong>Confidence Interval</strong></p>
-<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}} = 4.12 \pm 1.960 \cdot 0.0465 = 4.12 \pm 0.091\]</span></p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}} = 4.12 \pm 1.960 \cdot 0.0402 = 4.12 \pm 0.079\]</span></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>me <span class="ot">&lt;-</span> z_crit <span class="sc">*</span> se</span>
@@ -963,7 +963,7 @@ window.Quarto = {
 <pre><code>[1] 4.028909 4.211091</code></pre>
 </div>
 </div>
-<p>We are 95% confident that the true average daily screen time is between <strong>4.029</strong> and <strong>4.211</strong> hours. Since 4.2 is outside this interval, this is consistent with rejecting <span class="math inline">\(H_0\)</span>.</p>
+<p>We are 95% confident that the true average daily screen time is between <strong>4.029</strong> and <strong>4.211</strong> hours. Since 4.2 is inside this interval, this is consistent with failing to reject <span class="math inline">\(H_0\)</span>.</p>
 <hr>
 <section id="but-wait-look-at-the-actual-difference" class="level3">
 <h3 class="anchored" data-anchor-id="but-wait-look-at-the-actual-difference">But Wait — Look at the Actual Difference</h3>
