@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-26 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-25.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-26.html">Lesson 26</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-26.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-26-wpr-ii-review" id="toc-lesson-26-wpr-ii-review" class="nav-link active" data-scroll-target="#lesson-26-wpr-ii-review">Lesson 26: WPR II Review</a>
+  <ul class="collapse">
+  <li><a href="#break-march-madness-bracket-challenge" id="toc-break-march-madness-bracket-challenge" class="nav-link" data-scroll-target="#break-march-madness-bracket-challenge">Break — March Madness Bracket Challenge</a></li>
+  <li><a href="#wpr-ii-information" id="toc-wpr-ii-information" class="nav-link" data-scroll-target="#wpr-ii-information">WPR II Information</a>
+  <ul class="collapse">
+  <li><a href="#r-lite-setup" id="toc-r-lite-setup" class="nav-link" data-scroll-target="#r-lite-setup">R-Lite Setup</a></li>
+  <li><a href="#study-materials" id="toc-study-materials" class="nav-link" data-scroll-target="#study-materials">Study Materials</a></li>
+  </ul></li>
+  <li><a href="#the-hypothesis-test-step-by-step" id="toc-the-hypothesis-test-step-by-step" class="nav-link" data-scroll-target="#the-hypothesis-test-step-by-step">The Hypothesis Test — Step by Step</a>
+  <ul class="collapse">
+  <li><a href="#step-0-identify-the-test-check-conditions" id="toc-step-0-identify-the-test-check-conditions" class="nav-link" data-scroll-target="#step-0-identify-the-test-check-conditions">Step 0: Identify the Test &amp; Check Conditions</a></li>
+  <li><a href="#step-1-state-the-hypotheses" id="toc-step-1-state-the-hypotheses" class="nav-link" data-scroll-target="#step-1-state-the-hypotheses">Step 1: State the Hypotheses</a></li>
+  <li><a href="#step-2-compute-the-test-statistic" id="toc-step-2-compute-the-test-statistic" class="nav-link" data-scroll-target="#step-2-compute-the-test-statistic">Step 2: Compute the Test Statistic</a></li>
+  <li><a href="#step-3-find-the-p-value" id="toc-step-3-find-the-p-value" class="nav-link" data-scroll-target="#step-3-find-the-p-value">Step 3: Find the p-value</a></li>
+  <li><a href="#step-4-decide-and-conclude" id="toc-step-4-decide-and-conclude" class="nav-link" data-scroll-target="#step-4-decide-and-conclude">Step 4: Decide and Conclude</a></li>
+  </ul></li>
+  <li><a href="#lets-do-one-together" id="toc-lets-do-one-together" class="nav-link" data-scroll-target="#lets-do-one-together">Let’s Do One Together</a>
+  <ul class="collapse">
+  <li><a href="#but-wait-look-at-the-actual-difference" id="toc-but-wait-look-at-the-actual-difference" class="nav-link" data-scroll-target="#but-wait-look-at-the-actual-difference">But Wait — Look at the Actual Difference</a></li>
+  <li><a href="#statistical-vs.-practical-significance" id="toc-statistical-vs.-practical-significance" class="nav-link" data-scroll-target="#statistical-vs.-practical-significance">Statistical vs.&nbsp;Practical Significance</a></li>
+  </ul></li>
+  <li><a href="#sample-size-how-many-do-you-need" id="toc-sample-size-how-many-do-you-need" class="nav-link" data-scroll-target="#sample-size-how-many-do-you-need">Sample Size: How Many Do You Need?</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#key-review-concepts" id="toc-key-review-concepts" class="nav-link" data-scroll-target="#key-review-concepts">Key Review Concepts</a>
+  <ul class="collapse">
+  <li><a href="#writing-conclusions-and-interpreting-cis" id="toc-writing-conclusions-and-interpreting-cis" class="nav-link" data-scroll-target="#writing-conclusions-and-interpreting-cis">Writing Conclusions and Interpreting CIs</a></li>
+  <li><a href="#cihypothesis-test-duality" id="toc-cihypothesis-test-duality" class="nav-link" data-scroll-target="#cihypothesis-test-duality">CI–Hypothesis Test Duality</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-which-test" id="toc-problem-1-which-test" class="nav-link" data-scroll-target="#problem-1-which-test">Problem 1: Which Test?</a></li>
+  <li><a href="#problem-2-ci-interpretation-ciht-duality" id="toc-problem-2-ci-interpretation-ciht-duality" class="nav-link" data-scroll-target="#problem-2-ci-interpretation-ciht-duality">Problem 2: CI Interpretation &amp; CI–HT Duality</a></li>
+  <li><a href="#problem-3-one-sample-t-test" id="toc-problem-3-one-sample-t-test" class="nav-link" data-scroll-target="#problem-3-one-sample-t-test">Problem 3: One-Sample t-Test</a></li>
+  <li><a href="#problem-4-one-proportion-z-test" id="toc-problem-4-one-proportion-z-test" class="nav-link" data-scroll-target="#problem-4-one-proportion-z-test">Problem 4: One-Proportion z-Test</a></li>
+  <li><a href="#problem-5-two-sample-t-test" id="toc-problem-5-two-sample-t-test" class="nav-link" data-scroll-target="#problem-5-two-sample-t-test">Problem 5: Two-Sample t-Test</a></li>
+  <li><a href="#problem-6-paired-t-test" id="toc-problem-6-paired-t-test" class="nav-link" data-scroll-target="#problem-6-paired-t-test">Problem 6: Paired t-Test</a></li>
+  <li><a href="#problem-7-two-proportion-z-test" id="toc-problem-7-two-proportion-z-test" class="nav-link" data-scroll-target="#problem-7-two-proportion-z-test">Problem 7: Two-Proportion z-Test</a></li>
+  <li><a href="#problem-8-statistical-vs.-practical-significance" id="toc-problem-8-statistical-vs.-practical-significance" class="nav-link" data-scroll-target="#problem-8-statistical-vs.-practical-significance">Problem 8: Statistical vs.&nbsp;Practical Significance</a></li>
+  <li><a href="#problem-9-sample-size-for-a-hypothesis-test" id="toc-problem-9-sample-size-for-a-hypothesis-test" class="nav-link" data-scroll-target="#problem-9-sample-size-for-a-hypothesis-test">Problem 9: Sample Size for a Hypothesis Test</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-26-wpr-ii-review" class="level1">
+<h1>Lesson 26: WPR II Review</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-26_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- XKCD 2440: "Epistemic Uncertainty" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="break-march-madness-bracket-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="break-march-madness-bracket-challenge">Break — March Madness Bracket Challenge</h2>
+<p>Don’t forget to fill out your bracket! Earn up to <strong>bonus points</strong>.</p>
+<p>Go to the <a href="https://dustypi.tail280d22.ts.net/brackets/" target="_blank">bracket app</a> — pick <strong>cadets</strong> as your group.</p>
+<hr>
+</section>
+<section id="wpr-ii-information" class="level2">
+<h2 class="anchored" data-anchor-id="wpr-ii-information">WPR II Information</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="WPR II — Lesson 27">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>WPR II — Lesson 27
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Worth:</strong> 175 points</li>
+<li><strong>Covers:</strong> Concepts from Lessons 17–25</li>
+<li><strong>Time:</strong> 55 minutes</li>
+<li><strong>Authorized:</strong> Course Statistics Reference Card (SRC), one page (front and back) of personally handwritten notes, and the issued calculator</li>
+<li><strong>Technology</strong> — R-Lite (<code>pt</code>, <code>qt</code>, <code>pnorm</code>, <code>qnorm</code> only), no internet, no electronic devices</li>
+</ul>
+</div>
+</div>
+<section id="r-lite-setup" class="level3">
+<h3 class="anchored" data-anchor-id="r-lite-setup">R-Lite Setup</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Do This NOW">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Do This NOW
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You need R-Lite working on your computer <strong>before</strong> the WPR. It <strong>must</strong> be opened in <strong>Chrome or Firefox</strong> (it will not work in Edge or Safari).</p>
+<ol type="1">
+<li>Download <a href="assets/files/R-Lite.exe">R-Lite.exe</a> (or grab it from <a href="https://westpoint.instructure.com/courses/11418/files/folder/Instructor%20Folders/MAJ%20Day" target="_blank">Canvas</a>)</li>
+<li>Open R-Lite in <strong>Chrome</strong> or <strong>Firefox</strong></li>
+<li>Test it — type <code>pnorm(1.96)</code> and confirm you get <code>0.9750021</code></li>
+<li>Test <code>pt(2, df = 10)</code>, <code>qnorm(0.975)</code>, and <code>qt(0.975, df = 10)</code></li>
+</ol>
+<p>If it doesn’t work, troubleshoot now — not the day of the WPR. Practice the review problems below with R-Lite open.</p>
+</div>
+</div>
+</section>
+<section id="study-materials" class="level3">
+<h3 class="anchored" data-anchor-id="study-materials">Study Materials</h3>
+<ul>
+<li><a href="assets/files/WPRII_Review_Solutions.pdf" target="_blank">WPR II Review (with solutions)</a></li>
+<li><a href="assets/files/SRC_WPRII.pdf" target="_blank">Statistics Reference Card (SRC)</a></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-hypothesis-test-step-by-step" class="level2">
+<h2 class="anchored" data-anchor-id="the-hypothesis-test-step-by-step">The Hypothesis Test — Step by Step</h2>
+<p>Every hypothesis test you’ve seen in this block — one mean, one proportion, two means, paired, two proportions — follows the <strong>exact same steps</strong>. Let’s walk through them carefully, because this is what the WPR is testing.</p>
+<hr>
+<section id="step-0-identify-the-test-check-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="step-0-identify-the-test-check-conditions">Step 0: Identify the Test &amp; Check Conditions</h3>
+<p>Before you do any math, answer two questions: <strong>What test am I running?</strong> and <strong>Is it valid?</strong></p>
+<section id="pick-the-test" class="level4">
+<h4 class="anchored" data-anchor-id="pick-the-test">Pick the Test</h4>
+<div class="cell" data-fig-width="9" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["What type of data?"] --&gt; B["Quantitative&lt;br/&gt;(means)"]
+    A --&gt; C["Categorical&lt;br/&gt;(proportions)"]
+
+    B --&gt; D["How many samples?"]
+    C --&gt; H["How many samples?"]
+
+    D --&gt; E["One sample"]
+    D --&gt; F["Two samples"]
+
+    E --&gt; E1["n ≥ 30?"]
+    E1 --&gt;|Yes| E2["&lt;b&gt;One-sample z-test&lt;/b&gt;&lt;br/&gt;Parameter: μ&lt;br/&gt;&lt;i&gt;Lesson 21&lt;/i&gt;"]
+    E1 --&gt;|No| E3["&lt;b&gt;One-sample t-test&lt;/b&gt;&lt;br/&gt;Parameter: μ&lt;br/&gt;df = n − 1&lt;br/&gt;&lt;i&gt;Lesson 21&lt;/i&gt;"]
+
+    F --&gt; F1["Same subjects&lt;br/&gt;measured twice?"]
+    F1 --&gt;|Yes| F2["&lt;b&gt;Paired t-test&lt;/b&gt;&lt;br/&gt;Parameter: μ_d&lt;br/&gt;df = n − 1&lt;br/&gt;&lt;i&gt;Lesson 24&lt;/i&gt;"]
+    F1 --&gt;|No| F4["Both n ≥ 30?"]
+    F4 --&gt;|Yes| F5["&lt;b&gt;Two-sample z-test&lt;/b&gt;&lt;br/&gt;Parameter: μ₁ − μ₂&lt;br/&gt;&lt;i&gt;Lesson 23&lt;/i&gt;"]
+    F4 --&gt;|No| F6["&lt;b&gt;Two-sample t-test&lt;/b&gt;&lt;br/&gt;Parameter: μ₁ − μ₂&lt;br/&gt;df = min(n₁−1, n₂−1)&lt;br/&gt;&lt;i&gt;Lesson 23&lt;/i&gt;"]
+
+    H --&gt; I["One sample"]
+    H --&gt; J["Two samples"]
+
+    I --&gt; K["&lt;b&gt;One-proportion z-test&lt;/b&gt;&lt;br/&gt;Parameter: p&lt;br/&gt;&lt;i&gt;Lesson 22&lt;/i&gt;"]
+    J --&gt; L["&lt;b&gt;Two-proportion z-test&lt;/b&gt;&lt;br/&gt;Parameter: p₁ − p₂&lt;br/&gt;&lt;i&gt;Lesson 25&lt;/i&gt;"]
+
+    style E2 fill:#e8f4e8,stroke:#333
+    style E3 fill:#e8f4e8,stroke:#333
+    style F2 fill:#e8f4e8,stroke:#333
+    style F5 fill:#e8f4e8,stroke:#333
+    style F6 fill:#e8f4e8,stroke:#333
+    style K fill:#e8f4e8,stroke:#333
+    style L fill:#e8f4e8,stroke:#333
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Key questions:</strong> Means or proportions? One or two samples? Paired or independent? Large or small <span class="math inline">\(n\)</span>?</p>
+</section>
+<section id="check-conditions" class="level4">
+<h4 class="anchored" data-anchor-id="check-conditions">Check Conditions</h4>
+<p>Once you know the test, verify the conditions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Test</th>
+<th style="text-align: left;">Conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>One-sample <span class="math inline">\(t\)</span></strong></td>
+<td style="text-align: left;">Random sample. Population ~ Normal, or <span class="math inline">\(n \geq 30\)</span> (CLT).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>One-proportion <span class="math inline">\(z\)</span></strong></td>
+<td style="text-align: left;">Random sample. <span class="math inline">\(np_0 \geq 10\)</span> and <span class="math inline">\(n(1-p_0) \geq 10\)</span>. Use <span class="math inline">\(p_0\)</span>, not <span class="math inline">\(\hat{p}\)</span>!</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Two-sample <span class="math inline">\(t\)</span></strong></td>
+<td style="text-align: left;">Two independent random samples. Both populations ~ Normal, or both <span class="math inline">\(n \geq 30\)</span>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Paired <span class="math inline">\(t\)</span></strong></td>
+<td style="text-align: left;">Random sample of paired observations. Differences ~ Normal, or <span class="math inline">\(n \geq 30\)</span>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Two-proportion <span class="math inline">\(z\)</span></strong></td>
+<td style="text-align: left;">Two independent random samples. <span class="math inline">\(n_i\hat{p} \geq 10\)</span> and <span class="math inline">\(n_i(1-\hat{p}) \geq 10\)</span> for both groups.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled" title="Don't Skip This">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Don’t Skip This
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If conditions aren’t met, the test isn’t valid. Always show your work checking them.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-1-state-the-hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-state-the-hypotheses">Step 1: State the Hypotheses</h3>
+<p>Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> in terms of the <strong>population parameter</strong> (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(\mu_1 - \mu_2\)</span>, <span class="math inline">\(\mu_d\)</span>, <span class="math inline">\(p_1 - p_2\)</span>) — never in terms of <span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(\hat{p}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> is always “<span class="math inline">\(=\)</span>” (the status quo)</li>
+<li><span class="math inline">\(H_a\)</span> is what you’re trying to <strong>show</strong> (<span class="math inline">\(\neq\)</span>, <span class="math inline">\(&lt;\)</span>, or <span class="math inline">\(&gt;\)</span>)</li>
+</ul>
+<hr>
+</section>
+<section id="step-2-compute-the-test-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-compute-the-test-statistic">Step 2: Compute the Test Statistic</h3>
+<p>Every test statistic has the same structure:</p>
+<p><span class="math display">\[\text{test stat} = \frac{\text{estimate} - \text{null value}}{SE}\]</span></p>
+<hr>
+</section>
+<section id="step-3-find-the-p-value" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-find-the-p-value">Step 3: Find the p-value</h3>
+<p>The <span class="math inline">\(p\)</span>-value answers: <strong>If <span class="math inline">\(H_0\)</span> were true, how likely is a result this extreme?</strong></p>
+<p>Use R-Lite:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;"><span class="math inline">\(z\)</span>-test</th>
+<th style="text-align: left;"><span class="math inline">\(t\)</span>-test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Left-tailed (<span class="math inline">\(&lt;\)</span>)</td>
+<td style="text-align: left;"><code>pnorm(z)</code></td>
+<td style="text-align: left;"><code>pt(t, df)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Right-tailed (<span class="math inline">\(&gt;\)</span>)</td>
+<td style="text-align: left;"><code>1 - pnorm(z)</code></td>
+<td style="text-align: left;"><code>1 - pt(t, df)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two-tailed (<span class="math inline">\(\neq\)</span>)</td>
+<td style="text-align: left;"><code>2*(1 - pnorm(abs(z)))</code></td>
+<td style="text-align: left;"><code>2*(1 - pt(abs(t), df))</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="step-4-decide-and-conclude" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-decide-and-conclude">Step 4: Decide and Conclude</h3>
+<ul>
+<li><span class="math inline">\(p \leq \alpha\)</span> → <strong>Reject <span class="math inline">\(H_0\)</span>.</strong></li>
+<li><span class="math inline">\(p &gt; \alpha\)</span> → <strong>Fail to reject <span class="math inline">\(H_0\)</span>.</strong></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="How to Write the Conclusion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>How to Write the Conclusion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reject:</strong> “At the [α]% significance level, there is sufficient evidence that [restate <span class="math inline">\(H_a\)</span> in context].”</p>
+<p><strong>Fail to reject:</strong> “At the [α]% significance level, there is not sufficient evidence that [restate <span class="math inline">\(H_a\)</span> in context].”</p>
+<p>Never say “accept 🤮 <span class="math inline">\(H_0\)</span>.” Never say “the null is true.” Always write it <strong>in context</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lets-do-one-together" class="level2">
+<h2 class="anchored" data-anchor-id="lets-do-one-together">Let’s Do One Together</h2>
+<p>A university wellness office claims that a new digital detox program reduces students’ average daily screen time. Before the program, the average was 4.2 hours per day.</p>
+<p>After the program, a random sample of <strong>1,500 students</strong> had:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 4.12\)</span> hours</li>
+<li><span class="math inline">\(s = 1.8\)</span> hours</li>
+</ul>
+<p>Test at <span class="math inline">\(\alpha = 0.05\)</span> whether the program reduced average daily screen time.</p>
+<hr>
+<p><strong>Step 0: Check Conditions</strong></p>
+<ul>
+<li>Random sample ✓ (stated)</li>
+<li><span class="math inline">\(n = 1{,}500 \geq 30\)</span> ✓ — CLT applies, so <span class="math inline">\(\bar{X}\)</span> is approximately normal</li>
+</ul>
+<p>Conditions met — <span class="math inline">\(n \geq 30\)</span>, so we use a <strong>one-sample <span class="math inline">\(z\)</span>-test</strong>.</p>
+<hr>
+<p><strong>Step 1: Hypotheses</strong></p>
+<p>The wellness office wants to show screen time <strong>decreased</strong>:</p>
+<p><span class="math display">\[H_0: \mu = 4.2 \qquad \text{vs.} \qquad H_a: \mu &lt; 4.2\]</span></p>
+<hr>
+<p><strong>Step 2: Test Statistic</strong></p>
+<p><span class="math display">\[z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{4.12 - 4.2}{1.8 / \sqrt{1500}} = \frac{-0.080}{0.0465} = -1.721\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">4.12</span>; mu0 <span class="ot">&lt;-</span> <span class="fl">4.2</span>; s <span class="ot">&lt;-</span> <span class="fl">1.8</span>; n <span class="ot">&lt;-</span> <span class="dv">1500</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> se</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>z_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.721326</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Step 3: p-value</strong></p>
+<p>Left-tailed test — use <code>pnorm()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_stat)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04259585</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Step 4: Conclusion</strong></p>
+<p><span class="math inline">\(p = 0.0426 \leq 0.05\)</span>. <strong>We reject <span class="math inline">\(H_0\)</span>.</strong> At the 5% significance level, there is sufficient evidence that the digital detox program reduced average daily screen time.</p>
+<hr>
+<p><strong>Confidence Interval</strong></p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}} = 4.12 \pm 1.960 \cdot 0.0465 = 4.12 \pm 0.091\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>me <span class="ot">&lt;-</span> z_crit <span class="sc">*</span> se</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(xbar <span class="sc">-</span> me, xbar <span class="sc">+</span> me)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.028909 4.211091</code></pre>
+</div>
+</div>
+<p>We are 95% confident that the true average daily screen time is between <strong>4.029</strong> and <strong>4.211</strong> hours. Since 4.2 is outside this interval, this is consistent with rejecting <span class="math inline">\(H_0\)</span>.</p>
+<hr>
+<section id="but-wait-look-at-the-actual-difference" class="level3">
+<h3 class="anchored" data-anchor-id="but-wait-look-at-the-actual-difference">But Wait — Look at the Actual Difference</h3>
+<p>We rejected <span class="math inline">\(H_0\)</span>. The program “works.” But the difference is <strong>0.08 hours — that’s about 5 minutes per day</strong>.</p>
+<p><strong>Is that worth rolling out a campus-wide digital detox program?</strong> Probably not.</p>
+<hr>
+</section>
+<section id="statistical-vs.-practical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-vs.-practical-significance">Statistical vs.&nbsp;Practical Significance</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="A Small p-value Doesn't Mean a Big Effect">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A Small p-value Doesn’t Mean a Big Effect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Statistically significant</strong> means the data are unlikely under <span class="math inline">\(H_0\)</span> — the effect is probably <em>real</em>.</li>
+<li><strong>Practically significant</strong> means the effect is <em>big enough to matter</em>.</li>
+</ul>
+<p>With a huge sample, <span class="math inline">\(SE\)</span> gets tiny, so even a meaningless difference produces a small <span class="math inline">\(p\)</span>-value. The test has so much <strong>power</strong> that it detects effects too small to care about.</p>
+<p><strong>Always ask:</strong> “Is the difference large enough to change a decision?”</p>
+<ul>
+<li>6 minutes of heat downtime per Soldier? Probably not worth a protocol change.</li>
+<li>0.3 points on a 100-point exam? No instructor changes policy over that.</li>
+<li>12 seconds on a 2-hour ruck? A commander doesn’t care.</li>
+</ul>
+<p><strong>Look at the effect size</strong> (how big is the difference?), not just the <span class="math inline">\(p\)</span>-value (is it real?).</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sample-size-how-many-do-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="sample-size-how-many-do-you-need">Sample Size: How Many Do You Need?</h2>
+<p>The example above raises a natural question: <strong>How many Soldiers do you actually need</strong> to detect a difference?</p>
+<p>We can work backward from the test statistic. We need:</p>
+<p><span class="math display">\[\frac{|\bar{x} - \mu_0|}{s / \sqrt{n}} &gt; z_\alpha\]</span></p>
+<p>Solve for <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[n &gt; \left(\frac{z_\alpha \cdot s}{|\bar{x} - \mu_0|}\right)^2\]</span></p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Your commander wants to show the squad’s average 2-mile run time has improved from 16.0 minutes. You estimate the true mean is 15.2 minutes with <span class="math inline">\(s = 3.0\)</span>. How many Soldiers at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p><span class="math display">\[n &gt; \left(\frac{1.645 \times 3.0}{|15.2 - 16.0|}\right)^2 = \left(\frac{4.935}{0.800}\right)^2 = (6.169)^2 = 38.1 \qquad \Rightarrow \qquad n \geq 39\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z_alpha <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.95</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n_needed <span class="ot">&lt;-</span> (z_alpha <span class="sc">*</span> <span class="fl">3.0</span> <span class="sc">/</span> <span class="fl">0.8</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(n_needed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 39</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="key-review-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="key-review-concepts">Key Review Concepts</h2>
+<p>Before we get to practice, a few things that trip people up.</p>
+<hr>
+<section id="writing-conclusions-and-interpreting-cis" class="level3">
+<h3 class="anchored" data-anchor-id="writing-conclusions-and-interpreting-cis">Writing Conclusions and Interpreting CIs</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="CI Interpretation Template">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>CI Interpretation Template
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>“We are [C]% confident that the true [parameter in context] is between [lower] and [upper].”</p>
+</blockquote>
+<p><strong>Wrong:</strong> “There is a 95% probability that the true mean is in this interval.”</p>
+<p>The true mean is fixed — it’s either in there or it’s not. The 95% describes the <strong>method</strong>: if we repeated this many times, 95% of intervals would contain the truth.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="cihypothesis-test-duality" class="level3">
+<h3 class="anchored" data-anchor-id="cihypothesis-test-duality">CI–Hypothesis Test Duality</h3>
+<p>A CI and a HT at the same <span class="math inline">\(\alpha\)</span> always agree:</p>
+<ul>
+<li>Null value <strong>outside</strong> the CI → <strong>Reject <span class="math inline">\(H_0\)</span></strong></li>
+<li>Null value <strong>inside</strong> the CI → <strong>Fail to reject <span class="math inline">\(H_0\)</span></strong></li>
+</ul>
+<p><em>Example:</em> A 90% CI for <span class="math inline">\(\mu\)</span> is <span class="math inline">\((45, 55)\)</span>. Testing <span class="math inline">\(H_0: \mu = 60\)</span> at <span class="math inline">\(\alpha = 0.10\)</span>: since 60 is not in <span class="math inline">\((45, 55)\)</span>, we reject <span class="math inline">\(H_0\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="practice-problems" class="level2">
+<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
+<p>One problem per concept. Work these with R-Lite open.</p>
+<hr>
+<section id="problem-1-which-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-which-test">Problem 1: Which Test?</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>A commander claims at least 80% of Soldiers passed the AFT. You survey 150.</p></li>
+<li><p>A researcher measures reaction time for 25 cadets before and after drinking coffee.</p></li>
+<li><p>Two platoons (30 each) complete a ruck march. Compare average times.</p></li>
+<li><p>15 cadets have <span class="math inline">\(\bar{x} = 3.2\)</span> GPA. Test if the true mean differs from 3.0.</p></li>
+<li><p>Two companies report AFT pass rates. Is there a difference?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>One-proportion <span class="math inline">\(z\)</span>-test.</strong> One sample, testing a claimed proportion.</p></li>
+<li><p><strong>Paired <span class="math inline">\(t\)</span>-test.</strong> Same cadets measured before and after.</p></li>
+<li><p><strong>Two-sample <span class="math inline">\(t\)</span>-test.</strong> Different Soldiers, <span class="math inline">\(n_1, n_2 \geq 30\)</span>.</p></li>
+<li><p><strong>One-sample <span class="math inline">\(t\)</span>-test.</strong> One mean, <span class="math inline">\(\sigma\)</span> unknown.</p></li>
+<li><p><strong>Two-proportion <span class="math inline">\(z\)</span>-test.</strong> Comparing proportions from two independent groups.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-ci-interpretation-ciht-duality" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-ci-interpretation-ciht-duality">Problem 2: CI Interpretation &amp; CI–HT Duality</h3>
+<p>A 95% CI for the average recovery time after surgery is <span class="math inline">\((4.2, 6.8)\)</span> days.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Interpret this interval in context.</p></li>
+<li><p>A hospital administrator claims the mean is 7 days. At <span class="math inline">\(\alpha = 0.05\)</span>, what is your conclusion — without computing a test statistic?</p></li>
+<li><p>Which is correct?</p></li>
+</ol>
+<ul>
+<li><ol type="i">
+<li>There is a 95% probability that the true mean is between 4.2 and 6.8.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li>If we repeated this study many times, 95% of the resulting intervals would contain the true mean.</li>
+</ol></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>We are 95% confident that the true mean recovery time is between 4.2 and 6.8 days.</p></li>
+<li><p>Since <span class="math inline">\(7.0\)</span> is <strong>outside</strong> the CI, we <strong>reject <span class="math inline">\(H_0: \mu = 7\)</span></strong> at <span class="math inline">\(\alpha = 0.05\)</span>. There is sufficient evidence that the true mean recovery time is not 7 days.</p></li>
+<li><p><strong>(ii)</strong> is correct. The CI describes the method’s long-run success rate.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-one-sample-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-one-sample-t-test">Problem 3: One-Sample t-Test</h3>
+<p>A platoon leader believes her platoon’s average land navigation score has improved beyond the 70-point historical average. A sample of 12 Soldiers has <span class="math inline">\(\bar{x} = 74.5\)</span> and <span class="math inline">\(s = 8.2\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Check the conditions.</p></li>
+<li><p>Compute the test statistic and <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p>At <span class="math inline">\(\alpha = 0.05\)</span>, state your conclusion in context.</p></li>
+<li><p>Construct a 95% CI for the true mean.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(H_0: \mu = 70\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu &gt; 70\)</span></p></li>
+<li><p>Random sample (stated). <span class="math inline">\(n = 12 &lt; 30\)</span>, so we need the population to be approximately normal — land nav scores are plausibly normal. ✓</p></li>
+<li><p><span class="math inline">\(t = \dfrac{74.5 - 70}{8.2 / \sqrt{12}} = \dfrac{4.5}{2.367} = 1.901\)</span>, <span class="math inline">\(\quad df = 11\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (<span class="fl">74.5</span> <span class="sc">-</span> <span class="dv">70</span>) <span class="sc">/</span> (<span class="fl">8.2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t_stat, <span class="at">df =</span> <span class="dv">11</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(t_stat, p_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.90103137 0.04190201</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li><p><span class="math inline">\(p = 0.0419 \leq 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that the platoon’s average land nav score exceeds 70.</p></li>
+<li><p><span class="math inline">\(74.5 \pm 2.201 \cdot \dfrac{8.2}{\sqrt{12}} = 74.5 \pm 5.21 = (69.3, 79.7)\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">11</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>me <span class="ot">&lt;-</span> t_crit <span class="sc">*</span> <span class="fl">8.2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">12</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">74.5</span> <span class="sc">-</span> me, <span class="fl">74.5</span> <span class="sc">+</span> me)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 69.28997 79.71003</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-one-proportion-z-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-one-proportion-z-test">Problem 4: One-Proportion z-Test</h3>
+<p>A brigade commander claims that at least 75% of NCOs have completed required online modules. A random sample of 160 NCOs reveals that 108 have completed them.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>State the hypotheses.</p></li>
+<li><p>Verify the conditions.</p></li>
+<li><p>Compute the test statistic, <span class="math inline">\(p\)</span>-value, and state your conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Construct a 95% CI for the true proportion.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(H_0: p = 0.75\)</span> vs.&nbsp;<span class="math inline">\(H_a: p &lt; 0.75\)</span></p></li>
+<li><p><span class="math inline">\(np_0 = 160(0.75) = 120 \geq 10\)</span> ✓ and <span class="math inline">\(n(1-p_0) = 160(0.25) = 40 \geq 10\)</span> ✓</p></li>
+<li><p><span class="math inline">\(\hat{p} = 108/160 = 0.675\)</span></p></li>
+</ol>
+<p><span class="math display">\[z = \frac{0.675 - 0.75}{\sqrt{0.75(0.25)/160}} = \frac{-0.075}{0.0342} = -2.19\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> <span class="dv">108</span> <span class="sc">/</span> <span class="dv">160</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (p_hat <span class="sc">-</span> <span class="fl">0.75</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fl">0.75</span> <span class="sc">*</span> <span class="fl">0.25</span> <span class="sc">/</span> <span class="dv">160</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_stat)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(z_stat, p_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.19089023  0.01422987</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p = 0.0143 \leq 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that the true proportion of NCOs who completed the modules is less than 75%.</p>
+<ol start="4" type="a">
+<li><span class="math inline">\(0.675 \pm 1.960 \cdot \sqrt{0.675(0.325)/160} = 0.675 \pm 0.073 = (0.602, 0.748)\)</span></li>
+</ol>
+<p>We are 95% confident the true proportion is between 60.2% and 74.8%. Since 0.75 is outside this interval, it is consistent with rejecting <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-5-two-sample-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5-two-sample-t-test">Problem 5: Two-Sample t-Test</h3>
+<p>Two companies complete a field exercise. The S3 wants to know if there’s a difference in average completion times.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Alpha Co</strong></th>
+<th style="text-align: center;"><strong>Bravo Co</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span> (hours)</td>
+<td style="text-align: center;">6.8</td>
+<td style="text-align: center;">7.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: center;">1.9</td>
+<td style="text-align: center;">2.3</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Why is this a two-sample test and not a paired test?</p></li>
+<li><p>Check the conditions.</p></li>
+<li><p>Conduct a two-tailed test at <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Construct a 95% CI for <span class="math inline">\(\mu_1 - \mu_2\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Different Soldiers in each company — no natural one-to-one pairing.</p></li>
+<li><p>Two independent random samples. <span class="math inline">\(n_1 = 45 \geq 30\)</span> ✓ and <span class="math inline">\(n_2 = 50 \geq 30\)</span> ✓ — CLT applies to both.</p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu_1 - \mu_2 \neq 0\)</span></p></li>
+</ol>
+<p><span class="math display">\[z = \frac{(6.8 - 7.5) - 0}{\sqrt{1.9^2/45 + 2.3^2/50}} = \frac{-0.700}{0.431} = -1.62\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fl">1.9</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">45</span> <span class="sc">+</span> <span class="fl">2.3</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (<span class="fl">6.8</span> <span class="sc">-</span> <span class="fl">7.5</span>) <span class="sc">/</span> se</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(z_stat, p_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.6229892  0.1045917</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p = 0.105 &gt; 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is insufficient evidence of a difference in average completion times.</p>
+<ol start="4" type="a">
+<li><span class="math inline">\((6.8 - 7.5) \pm 1.960 \cdot 0.431 = -0.700 \pm 0.845 = (-1.55, 0.145)\)</span></li>
+</ol>
+<p>The interval contains zero, consistent with failing to reject.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-6-paired-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6-paired-t-test">Problem 6: Paired t-Test</h3>
+<p>A drill sergeant has 10 Soldiers complete an obstacle course, then puts them through a 3-week agility program and has them run it again. Summary: <span class="math inline">\(\bar{d} = -2.4\)</span> min (After <span class="math inline">\(-\)</span> Before), <span class="math inline">\(s_d = 3.1\)</span> min.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Why is this paired and not two-sample?</p></li>
+<li><p>State the hypotheses to show the program reduced times.</p></li>
+<li><p>Check conditions, compute the test statistic and <span class="math inline">\(p\)</span>-value, and conclude at <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>The <strong>same 10 Soldiers</strong> are measured before and after — each Soldier is their own control.</p></li>
+<li><p>Since <span class="math inline">\(d = \text{After} - \text{Before}\)</span>, a reduction means <span class="math inline">\(\mu_d &lt; 0\)</span>:</p></li>
+</ol>
+<p><span class="math inline">\(H_0: \mu_d = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu_d &lt; 0\)</span></p>
+<ol start="3" type="a">
+<li><span class="math inline">\(n = 10 &lt; 30\)</span>, so we need differences approximately normal — plausible for obstacle course times. ✓</li>
+</ol>
+<p><span class="math inline">\(t = \dfrac{-2.4}{3.1 / \sqrt{10}} = \dfrac{-2.4}{0.980} = -2.449\)</span>, <span class="math inline">\(\quad df = 9\)</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.4</span> <span class="sc">/</span> (<span class="fl">3.1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">10</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_stat, <span class="at">df =</span> <span class="dv">9</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(t_stat, p_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.44821496  0.01843225</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p = 0.0185 \leq 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is sufficient evidence that the agility program reduced obstacle course times.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-7-two-proportion-z-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-7-two-proportion-z-test">Problem 7: Two-Proportion z-Test</h3>
+<p>Two battalions compare AFT pass rates:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>1st Bn</strong></th>
+<th style="text-align: center;"><strong>2nd Bn</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">140</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Passed</td>
+<td style="text-align: center;">96</td>
+<td style="text-align: center;">98</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Check conditions and test whether the pass rates differ at <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Construct a 95% CI for <span class="math inline">\(p_1 - p_2\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(\hat{p}_1 = 96/120 = 0.800\)</span>, <span class="math inline">\(\hat{p}_2 = 98/140 = 0.700\)</span></li>
+</ol>
+<p><span class="math inline">\(\hat{p} = (96 + 98)/(120 + 140) = 194/260 = 0.746\)</span> (pooled)</p>
+<p>Conditions: <span class="math inline">\(n_1\hat{p} = 120(0.746) = 89.5 \geq 10\)</span> ✓, <span class="math inline">\(n_1(1-\hat{p}) = 30.5 \geq 10\)</span> ✓, <span class="math inline">\(n_2\hat{p} = 104.4 \geq 10\)</span> ✓, <span class="math inline">\(n_2(1-\hat{p}) = 35.6 \geq 10\)</span> ✓</p>
+<p><span class="math inline">\(H_0: p_1 - p_2 = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: p_1 - p_2 \neq 0\)</span></p>
+<p><span class="math display">\[z = \frac{0.800 - 0.700}{\sqrt{0.746(0.254)(1/120 + 1/140)}} = \frac{0.100}{0.0541} = 1.849\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="dv">96</span><span class="sc">/</span><span class="dv">120</span>; p2 <span class="ot">&lt;-</span> <span class="dv">98</span><span class="sc">/</span><span class="dv">140</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>p_pool <span class="ot">&lt;-</span> (<span class="dv">96</span> <span class="sc">+</span> <span class="dv">98</span>) <span class="sc">/</span> (<span class="dv">120</span> <span class="sc">+</span> <span class="dv">140</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_pool <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_pool) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">120</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">140</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (p1 <span class="sc">-</span> p2) <span class="sc">/</span> se</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(z_stat, p_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.84700675 0.06474616</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p = 0.0645 &gt; 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is insufficient evidence that the AFT pass rates differ.</p>
+<ol start="2" type="a">
+<li>CI uses <strong>unpooled</strong> SE:</li>
+</ol>
+<p><span class="math display">\[(0.800 - 0.700) \pm 1.960 \cdot \sqrt{\frac{0.800(0.200)}{120} + \frac{0.700(0.300)}{140}} = 0.100 \pm 0.105 = (-0.005, 0.205)\]</span></p>
+<p>The interval contains zero, consistent with failing to reject.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-8-statistical-vs.-practical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="problem-8-statistical-vs.-practical-significance">Problem 8: Statistical vs.&nbsp;Practical Significance</h3>
+<p>A study of 5,000 cadets finds that cadets who eat breakfast score an average of 85.1 on a math exam, compared to 84.8 for those who skip breakfast. The test yields <span class="math inline">\(p = 0.04\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Is the result statistically significant at <span class="math inline">\(\alpha = 0.05\)</span>?</p></li>
+<li><p>Is the result practically significant? Why or why not?</p></li>
+<li><p>Why might the <span class="math inline">\(p\)</span>-value be so small despite such a tiny difference?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Yes — <span class="math inline">\(p = 0.04 &lt; 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>No — a 0.3-point difference on an exam is negligible. No instructor would change policy over 0.3 points.</p></li>
+<li><p>With <span class="math inline">\(n = 5{,}000\)</span>, the standard error is tiny, so even a meaningless difference produces a large test statistic.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-9-sample-size-for-a-hypothesis-test" class="level3">
+<h3 class="anchored" data-anchor-id="problem-9-sample-size-for-a-hypothesis-test">Problem 9: Sample Size for a Hypothesis Test</h3>
+<p>A platoon leader wants to show her platoon’s average land nav score exceeds 70. She estimates the true mean is 74.5 with <span class="math inline">\(s = 8.2\)</span>. How many Soldiers does she need at <span class="math inline">\(\alpha = 0.01\)</span>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Question">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Question
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use <span class="math inline">\(n &gt; \left(\dfrac{z_\alpha \cdot s}{|\bar{x} - \mu_0|}\right)^2\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[n &gt; \left(\frac{2.326 \times 8.2}{|74.5 - 70|}\right)^2 = \left(\frac{19.07}{4.5}\right)^2 = (4.238)^2 = 17.96\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>z_alpha <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.99</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n_needed <span class="ot">&lt;-</span> (z_alpha <span class="sc">*</span> <span class="fl">8.2</span> <span class="sc">/</span> <span class="fl">4.5</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(n_needed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+</div>
+<p>She needs at least <strong>18 Soldiers</strong>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-27.html">Lesson 27: WPR II</a></p>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>WPR II</strong> — Lesson 27</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-25.html" class="pagination-link" aria-label="Lesson 25">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 25</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
