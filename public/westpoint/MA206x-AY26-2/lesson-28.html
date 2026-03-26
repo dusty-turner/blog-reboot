@@ -723,19 +723,19 @@ Call:
 lm(formula = aft_score ~ gym_hours, data = soldiers)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--5.894 -1.837 -0.481  1.948  5.993 
+    Min      1Q  Median      3Q     Max 
+-24.584  -6.049  -2.001   6.088  25.846 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  65.7263     2.1115  31.128  &lt; 2e-16 ***
-gym_hours     2.5707     0.2786   9.226 3.04e-08 ***
+(Intercept)  353.418      8.644   40.88  &lt; 2e-16 ***
+gym_hours     12.231      1.141   10.72 3.02e-09 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3.463 on 18 degrees of freedom
-Multiple R-squared:  0.8255,    Adjusted R-squared:  0.8158 
-F-statistic: 85.12 on 1 and 18 DF,  p-value: 3.039e-08</code></pre>
+Residual standard error: 14.18 on 18 degrees of freedom
+Multiple R-squared:  0.8646,    Adjusted R-squared:  0.8571 
+F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
 </div>
 </div>
 <hr>
@@ -743,7 +743,7 @@ F-statistic: 85.12 on 1 and 18 DF,  p-value: 3.039e-08</code></pre>
 <section id="interpreting-the-output" class="level2">
 <h2 class="anchored" data-anchor-id="interpreting-the-output">Interpreting the Output</h2>
 <p>The fitted equation is:</p>
-<p><span class="math display">\[\widehat{\text{AFT Score}} = 65.73 + 2.57 \cdot \text{Gym Hours}\]</span></p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 353.42 + 12.23 \cdot \text{Gym Hours}\]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Interpreting Slope and Intercept">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -754,8 +754,8 @@ F-statistic: 85.12 on 1 and 18 DF,  p-value: 3.039e-08</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Slope</strong> (<span class="math inline">\(b_1 = 2.57\)</span>): For each additional hour per week spent in the gym, a Soldier’s predicted AFT score increases by 2.57 points, on average.</p>
-<p><strong>Intercept</strong> (<span class="math inline">\(b_0 = 65.73\)</span>): A Soldier who spends zero hours per week in the gym has a predicted AFT score of 65.73 points.</p>
+<p><strong>Slope</strong> (<span class="math inline">\(b_1 = 12.23\)</span>): For each additional hour per week spent in the gym, a Soldier’s predicted AFT score increases by 12.23 points, on average.</p>
+<p><strong>Intercept</strong> (<span class="math inline">\(b_0 = 353.42\)</span>): A Soldier who spends zero hours per week in the gym has a predicted AFT score of 353.42 points.</p>
 </div>
 </div>
 <p>But do <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> have statistical significance? Notice there’s a p-value at the end of each row. Where there’s a p-value, there’s a hypothesis test. Let’s see what these tests are telling us.</p>
@@ -788,7 +788,7 @@ F-statistic: 85.12 on 1 and 18 DF,  p-value: 3.039e-08</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>The slope interpretation must include <strong>units</strong> and <strong>context</strong> — “the slope is 2.57” is not enough</li>
+<li>The slope interpretation must include <strong>units</strong> and <strong>context</strong> — “the slope is 12.23” is not enough</li>
 <li>If <span class="math inline">\(x = 0\)</span> is outside the range of the data, the intercept may not have a meaningful interpretation — say so!</li>
 </ul>
 </div>
@@ -813,13 +813,13 @@ F-statistic: 85.12 on 1 and 18 DF,  p-value: 3.039e-08</code></pre>
 <p>Once we have the equation, we can predict <span class="math inline">\(y\)</span> for a given <span class="math inline">\(x\)</span>:</p>
 <p><strong>Example:</strong> Predict the AFT score for a Soldier who spends 8 hours per week in the gym.</p>
 <p>Plug <span class="math inline">\(x = 8\)</span> into our equation:</p>
-<p><span class="math display">\[\widehat{\text{AFT Score}} = 65.73 + 2.57(8) = 65.73 + 20.6 = 86.3\]</span></p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 353.42 + 12.23(8) = 353.42 + 97.8 = 451.3\]</span></p>
 <p>We can also do this in R:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">gym_hours =</span> <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      1 
-86.2922 </code></pre>
+<pre><code>       1 
+451.2699 </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Interpolation vs. Extrapolation">
