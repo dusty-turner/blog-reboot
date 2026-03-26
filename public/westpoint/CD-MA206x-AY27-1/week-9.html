@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Forge 9 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#calendar" id="toc-calendar" class="nav-link active" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#coverage" id="toc-coverage" class="nav-link" data-scroll-target="#coverage">Coverage</a></li>
+  <li><a href="#canvas-grading-status" id="toc-canvas-grading-status" class="nav-link" data-scroll-target="#canvas-grading-status">Canvas Grading Status</a>
+  <ul class="collapse">
+  <li><a href="#graded-events" id="toc-graded-events" class="nav-link" data-scroll-target="#graded-events">Graded Events</a></li>
+  <li><a href="#webassign-homework" id="toc-webassign-homework" class="nav-link" data-scroll-target="#webassign-homework">WebAssign Homework</a></li>
+  </ul></li>
+  <li><a href="#admin-announcements" id="toc-admin-announcements" class="nav-link" data-scroll-target="#admin-announcements">Admin &amp; Announcements</a></li>
+  <li><a href="#lesson-deep-dive" id="toc-lesson-deep-dive" class="nav-link" data-scroll-target="#lesson-deep-dive">Lesson Deep Dive</a>
+  <ul class="collapse">
+  <li><a href="#lesson-32-multiple-linear-regression-ii" id="toc-lesson-32-multiple-linear-regression-ii" class="nav-link" data-scroll-target="#lesson-32-multiple-linear-regression-ii">Lesson 32 — Multiple Linear Regression II</a></li>
+  <li><a href="#lesson-33-multiple-linear-regression-iii" id="toc-lesson-33-multiple-linear-regression-iii" class="nav-link" data-scroll-target="#lesson-33-multiple-linear-regression-iii">Lesson 33 — Multiple Linear Regression III</a></li>
+  <li><a href="#lesson-34-peer-review" id="toc-lesson-34-peer-review" class="nav-link" data-scroll-target="#lesson-34-peer-review">Lesson 34 — Peer Review</a></li>
+  <li><a href="#lesson-35-course-lecture-drop" id="toc-lesson-35-course-lecture-drop" class="nav-link" data-scroll-target="#lesson-35-course-lecture-drop">Lesson 35 — Course Lecture Drop</a></li>
+  </ul></li>
+  <li><a href="#project-discussion" id="toc-project-discussion" class="nav-link" data-scroll-target="#project-discussion">Project Discussion</a></li>
+  <li><a href="#teaching-exercises" id="toc-teaching-exercises" class="nav-link" data-scroll-target="#teaching-exercises">Teaching Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Forge 9</h1>
+<p class="subtitle lead"><strong>Lesson 32</strong> — Multiple Linear Regression II<br><strong>Lesson 33</strong> — Multiple Linear Regression III<br><strong>Lesson 34</strong> — Peer Review<br><strong>Lesson 35</strong> — Course Lecture Drop</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<p><em>Calendar TBD — insert screenshot when semester dates are finalized.</em></p>
+</section>
+<section id="coverage" class="level2">
+<h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
+<p><em>No coverage notes.</em></p>
+</section>
+<section id="canvas-grading-status" class="level2">
+<h2 class="anchored" data-anchor-id="canvas-grading-status">Canvas Grading Status</h2>
+<section id="graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="graded-events">Graded Events</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>*Could not connect to Canvas.*</code></pre>
+</div>
+</div>
+</section>
+<section id="webassign-homework" class="level3">
+<h3 class="anchored" data-anchor-id="webassign-homework">WebAssign Homework</h3>
+</section>
+</section>
+<section id="admin-announcements" class="level2">
+<h2 class="anchored" data-anchor-id="admin-announcements">Admin &amp; Announcements</h2>
+<ul>
+<li>Peer review (Lesson 34) — ensure rubric/guidelines are distributed in advance</li>
+<li>Lesson 35 is a course lecture drop — use for project work time or office hours</li>
+<li>Projects should be in the analysis and writing phase by now</li>
+<li>Final presentations are two forges away — cadets should be preparing slides</li>
+<li>Discuss grading calibration for peer review — how much weight does it carry?</li>
+</ul>
+</section>
+<section id="lesson-deep-dive" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-deep-dive">Lesson Deep Dive</h2>
+<section id="lesson-32-multiple-linear-regression-ii" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-32-multiple-linear-regression-ii">Lesson 32 — Multiple Linear Regression II</h3>
+<p><strong>Objectives</strong> (SLOs 4, 5):</p>
+<ul>
+<li>Conduct hypothesis tests on individual coefficients</li>
+<li>Interpret software output for MLR</li>
+<li>Understand multicollinearity</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Key Concepts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Concepts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Individual coefficient test</strong>: <span class="math inline">\(t = \frac{b_j}{SE_{b_j}}\)</span> tests <span class="math inline">\(H_0: \beta_j = 0\)</span> (is this predictor useful after accounting for all others?)</li>
+<li><strong>Overall F-test</strong>: Tests <span class="math inline">\(H_0\)</span>: all slopes are zero (<span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_p = 0\)</span>)</li>
+<li><strong>Multicollinearity</strong>: When predictors are correlated with each other — inflates SEs, makes individual tests unreliable</li>
+<li><strong>Reading R output</strong>: <code>summary(lm(...))</code> gives coefficients, SEs, t-values, p-values, <span class="math inline">\(R^2\)</span>, adjusted <span class="math inline">\(R^2\)</span>, F-statistic</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Grading Focus">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Grading Focus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Software output reading</strong>: Cadets must be able to extract the right numbers from R output. Common errors: confusing the overall F-test p-value with individual coefficient p-values, reading the wrong row.</li>
+<li><strong>Individual vs overall significance</strong>: A predictor can be individually non-significant (<span class="math inline">\(p &gt; 0.05\)</span> for its t-test) but the model can be overall significant (F-test <span class="math inline">\(p &lt; 0.05\)</span>). This isn’t contradictory — it often indicates multicollinearity.</li>
+<li><strong>Multicollinearity recognition</strong>: If adding a predictor barely changes <span class="math inline">\(R^2\)</span> but dramatically changes other coefficients, multicollinearity is likely.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Deeper Material">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Deeper Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>VIF (Variance Inflation Factor)</strong>: <span class="math inline">\(\text{VIF}_j = \frac{1}{1 - R^2_j}\)</span> where <span class="math inline">\(R^2_j\)</span> is from regressing <span class="math inline">\(x_j\)</span> on all other predictors. VIF &gt; 5 is concerning; VIF &gt; 10 is serious. Remedies: remove one of the correlated predictors, combine them (PCA), or accept wider CIs.</p>
+<p><strong>Adjusted <span class="math inline">\(R^2\)</span> vs AIC/BIC</strong>: Adjusted <span class="math inline">\(R^2\)</span> penalizes for number of predictors but is only useful for comparing models fit to the same data with the same response. AIC and BIC provide more general model comparison metrics. AIC favors prediction accuracy; BIC favors parsimony (stronger penalty for additional predictors).</p>
+<p><strong>Interaction terms</strong>: <span class="math inline">\(y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2\)</span> — the effect of <span class="math inline">\(x_1\)</span> depends on the level of <span class="math inline">\(x_2\)</span>. Interpreting interactions is one of the hardest concepts in regression. Example: the effect of study hours on exam score might depend on whether the cadet attended review sessions.</p>
+</div>
+</div>
+</section>
+<section id="lesson-33-multiple-linear-regression-iii" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-33-multiple-linear-regression-iii">Lesson 33 — Multiple Linear Regression III</h3>
+<p><strong>Objectives</strong> (SLOs 1, 4, 6):</p>
+<ul>
+<li>Perform model selection</li>
+<li>Validate model assumptions with residual plots</li>
+<li>Communicate regression results</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Key Concepts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Concepts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Model selection strategies</strong>: Forward selection, backward elimination, best subsets</li>
+<li><strong>Parsimony principle</strong>: Prefer simpler models unless a more complex model provides substantial improvement</li>
+<li><strong>Residual diagnostics</strong>: Residuals vs fitted (linearity, constant variance), Q-Q plot (normality), residuals vs each predictor</li>
+<li><strong>Communicating results</strong>: Tables of coefficients, significance levels, <span class="math inline">\(R^2\)</span>; graphs of relationships; plain-language interpretation</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Grading Focus">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Grading Focus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Model comparison justification</strong>: Cadets must explain <em>why</em> they chose their final model. “It had the highest <span class="math inline">\(R^2\)</span>” is insufficient — they should consider adjusted <span class="math inline">\(R^2\)</span>, significance of predictors, parsimony, and residual diagnostics.</li>
+<li><strong>Residual plots in MLR</strong>: Check residuals vs fitted AND residuals vs each predictor. A good fit in one doesn’t guarantee good fit in another.</li>
+<li><strong>Written communication</strong>: Results should be understandable to a general audience (SLO 1). Avoid statistical jargon without explanation.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Deeper Material">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Deeper Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Stepwise selection problems</strong>: Automated stepwise procedures (forward, backward) are widely used but have known issues: (1) multiple testing inflation — checking many predictors increases false positives; (2) instability — small data changes can produce very different models; (3) overfitting — selected models tend to perform worse on new data. Modern alternatives include LASSO regularization and cross-validation.</p>
+<p><strong>Cross-validation</strong>: Split data into training and testing sets. Fit the model on training data, evaluate on test data. This gives an honest assessment of predictive performance. K-fold cross-validation repeats this <span class="math inline">\(k\)</span> times. Cadets won’t implement this, but faculty should understand why “the model that fits training data best” isn’t always the best model.</p>
+<p><strong>Transformations</strong>: When LINE conditions are violated, transformations can help. Common: <span class="math inline">\(\log(y)\)</span> for right-skewed responses or non-constant variance; <span class="math inline">\(\sqrt{y}\)</span> for count data; <span class="math inline">\(1/y\)</span> for rate data. The Box-Cox transformation finds the optimal power transformation automatically.</p>
+</div>
+</div>
+</section>
+<section id="lesson-34-peer-review" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-34-peer-review">Lesson 34 — Peer Review</h3>
+<p><strong>Objectives</strong> (SLOs 1, 6):</p>
+<ul>
+<li>Critically evaluate peer analyses</li>
+<li>Provide constructive statistical feedback</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Key Concepts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Concepts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Peer review focuses on the <em>statistical reasoning</em>, not just the writing</li>
+<li>Key questions: Is the research question clear? Is the analysis appropriate? Are conditions checked? Are conclusions supported by the analysis?</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Grading Focus">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Grading Focus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Quality of feedback</strong>: Cadets should provide specific, actionable feedback — not just “looks good” or “needs work”</li>
+<li><strong>Statistical critique</strong>: Can they identify when a peer’s analysis uses the wrong method, skips conditions, or overstates conclusions?</li>
+<li><strong>Tone</strong>: Constructive and professional — this is practice for real-world collaboration</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Deeper Material">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Deeper Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Peer review in practice</strong>: In academic publishing, peer review is the gatekeeping mechanism for research quality. Reviewers check methodology, statistical validity, and interpretation. Teaching cadets to do this develops SLO 6 (critical consumer) in a practical setting. It also improves their own work — seeing others’ mistakes helps them avoid the same ones.</p>
+</div>
+</div>
+</section>
+<section id="lesson-35-course-lecture-drop" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-35-course-lecture-drop">Lesson 35 — Course Lecture Drop</h3>
+<p><em>No lesson — administrative lecture drop. Use for project work time, office hours, or catch-up.</em></p>
+</section>
+</section>
+<section id="project-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="project-discussion">Project Discussion</h2>
+<div class="callout callout-style-default callout-caution callout-titled" title="Project Status Check">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Project Status Check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By Forge 9, cadets should have:</p>
+<ul>
+<li>Complete regression analysis (SLR and/or MLR)</li>
+<li>Residual diagnostics checked</li>
+<li>Draft of written report in progress</li>
+<li>Peer review feedback incorporated</li>
+</ul>
+<p><strong>Red flags to watch for</strong>:</p>
+<ul>
+<li>Cadets who haven’t started their analysis yet</li>
+<li>Projects with too few observations for MLR (rule of thumb: at least 10–15 observations per predictor)</li>
+<li>Reports that present results without checking conditions</li>
+<li>Conclusions that overstate causation from observational data</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="teaching-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="teaching-exercises">Teaching Exercises</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Suggested Classroom Demonstrations">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Suggested Classroom Demonstrations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Model Selection Live Demo</strong> (Lesson 33)</p>
+<p>Using a real dataset (mtcars, or a military-themed dataset), walk through model selection on the board:</p>
+<ol type="1">
+<li>Start with a full model (all predictors)</li>
+<li>Check which are significant; remove the least significant</li>
+<li>Refit and compare adjusted <span class="math inline">\(R^2\)</span></li>
+<li>Check residual plots at each step</li>
+<li>Discuss: “Is the simpler model ‘better’? By what criterion?”</li>
+</ol>
+<p><strong>Peer Review Calibration</strong> (Lesson 34)</p>
+<p>Before the peer review, have the whole class review the <em>same</em> sample project together. Discuss what constitutes strong vs weak feedback. This calibrates expectations and ensures consistent quality.</p>
+<p><strong>“Good Analysis, Bad Analysis” Comparison</strong> (Lesson 33)</p>
+<p>Show two analyses of the same data — one that follows best practices (EDA → model → diagnostics → interpretation) and one that skips steps (jump straight to MLR, no residual plots, overconfident conclusions). Have cadets identify the differences and explain why the shortcuts are problematic.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
