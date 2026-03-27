@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lesson 1: Unboxing — Raspberry Pi &amp; What Is a Computer – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA491-AY27-1/lesson-2.html" rel="next">
+<link href="../MA491-AY27-1/syllabus.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA491-AY27-1/lesson-1.html">Setup &amp; Foundations</a></li><li class="breadcrumb-item"><a href="../MA491-AY27-1/lesson-1.html">L1: Unboxing — Raspberry Pi</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Setup &amp; Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">L1: Unboxing — Raspberry Pi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L2: Linux, SSH, &amp; RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L3: Git &amp; GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L4: Databases &amp; APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L5: Data Exploration &amp; Dashboards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L6: Hosting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L7–10: Guided Project — NYC 311</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L11–14: Semi-Independent Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L15: Portfolio Website</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L16–19: Connect Four</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L20–24: Single-Player Game</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L25–30: Passion Project &amp; Demo Day</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#before-class" id="toc-before-class" class="nav-link" data-scroll-target="#before-class">Before Class</a></li>
+  <li><a href="#lesson-outline" id="toc-lesson-outline" class="nav-link" data-scroll-target="#lesson-outline">Lesson Outline</a>
+  <ul class="collapse">
+  <li><a href="#what-are-we-doing-this-semester-5-min" id="toc-what-are-we-doing-this-semester-5-min" class="nav-link" data-scroll-target="#what-are-we-doing-this-semester-5-min">1. What Are We Doing This Semester? (5 min)</a></li>
+  <li><a href="#unbox-the-kit-10-min" id="toc-unbox-the-kit-10-min" class="nav-link" data-scroll-target="#unbox-the-kit-10-min">2. Unbox the Kit (10 min)</a></li>
+  <li><a href="#what-is-a-computer-10-min" id="toc-what-is-a-computer-10-min" class="nav-link" data-scroll-target="#what-is-a-computer-10-min">3. What Is a Computer? (10 min)</a></li>
+  <li><a href="#assemble-the-pi-15-min" id="toc-assemble-the-pi-15-min" class="nav-link" data-scroll-target="#assemble-the-pi-15-min">4. Assemble the Pi (15 min)</a></li>
+  <li><a href="#first-boot-10-min" id="toc-first-boot-10-min" class="nav-link" data-scroll-target="#first-boot-10-min">5. First Boot (10 min)</a></li>
+  <li><a href="#explore-the-desktop-10-min" id="toc-explore-the-desktop-10-min" class="nav-link" data-scroll-target="#explore-the-desktop-10-min">6. Explore the Desktop (10 min)</a></li>
+  <li><a href="#connect-to-the-internet-10-min" id="toc-connect-to-the-internet-10-min" class="nav-link" data-scroll-target="#connect-to-the-internet-10-min">7. Connect to the Internet (10 min)</a></li>
+  <li><a href="#wrap-up-and-troubleshooting-5-min" id="toc-wrap-up-and-troubleshooting-5-min" class="nav-link" data-scroll-target="#wrap-up-and-troubleshooting-5-min">8. Wrap-Up and Troubleshooting (5 min)</a></li>
+  </ul></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div style="background-color: #28a745; color: white; text-align: center; padding: 6px 12px; font-size: 0.85em; font-weight: 600; letter-spacing: 0.5px; position: sticky; top: 0; z-index: 1000;">
+  DRAFT — This page is under development
+</div>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA491-AY27-1/lesson-1.html">Setup &amp; Foundations</a></li><li class="breadcrumb-item"><a href="../MA491-AY27-1/lesson-1.html">L1: Unboxing — Raspberry Pi</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Lesson 1: Unboxing — Raspberry Pi &amp; What Is a Computer</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="By the end of this lesson, you will be able to:">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>By the end of this lesson, you will be able to:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Identify the major components of a Raspberry Pi (CPU, RAM, storage, GPIO, USB, HDMI, power)</li>
+<li>Explain what makes something a computer and compare the Pi to a laptop or phone</li>
+<li>Assemble a Raspberry Pi from kit components</li>
+<li>Boot to Raspberry Pi OS and navigate the desktop</li>
+<li>Use the file manager, terminal, and system settings</li>
+<li>Connect the Pi to the internet</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="before-class" class="level2">
+<h2 class="anchored" data-anchor-id="before-class">Before Class</h2>
+<ul>
+<li>No prep required. Kits will be distributed in class.</li>
+<li>If you want to read ahead, skim the <a href="https://www.raspberrypi.com/products/raspberry-pi-5/">Raspberry Pi 5 specs page</a>.</li>
+</ul>
+<hr>
+</section>
+<section id="lesson-outline" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-outline">Lesson Outline</h2>
+<section id="what-are-we-doing-this-semester-5-min" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-we-doing-this-semester-5-min">1. What Are We Doing This Semester? (5 min)</h3>
+<p>This is a data science course built on real infrastructure. You are not getting a pre-configured laptop with everything installed. You are going to build your own computing environment from scratch on a Raspberry Pi, learn to manage it like a professional, and use AI as a collaborator throughout the process.</p>
+<p>By the end of the course you will have a working data science platform that you built, configured, and understand top to bottom.</p>
+</section>
+<section id="unbox-the-kit-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="unbox-the-kit-10-min">2. Unbox the Kit (10 min)</h3>
+<p>Open your kit and identify each component. Lay them out on your desk.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Raspberry Pi 5 board</strong></td>
+<td>The computer itself — about the size of a credit card</td>
+</tr>
+<tr class="even">
+<td><strong>MicroSD card</strong></td>
+<td>Your hard drive (persistent storage)</td>
+</tr>
+<tr class="odd">
+<td><strong>USB-C power supply</strong></td>
+<td>Provides power to the board</td>
+</tr>
+<tr class="even">
+<td><strong>Case</strong></td>
+<td>Protects the board (optional but recommended)</td>
+</tr>
+<tr class="odd">
+<td><strong>Keyboard, mouse, monitor</strong></td>
+<td>Temporary peripherals — we go headless in Lesson 2</td>
+</tr>
+<tr class="even">
+<td><strong>HDMI cable</strong></td>
+<td>Connects the Pi to a monitor</td>
+</tr>
+<tr class="odd">
+<td><strong>Ethernet cable</strong> (if provided)</td>
+<td>Wired network connection</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Not sure what a component is? Take a photo and ask your AI assistant to identify it and explain what it does. This is a great habit — use AI to fill gaps in real time.</p>
+</div>
+</div>
+</section>
+<section id="what-is-a-computer-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-computer-10-min">3. What Is a Computer? (10 min)</h3>
+<p>Discussion: what makes something a computer? Your phone, your laptop, a server in a data center, this Raspberry Pi — they all have the same four things:</p>
+<ol type="1">
+<li><strong>Processor (CPU)</strong> — executes instructions</li>
+<li><strong>Memory (RAM)</strong> — temporary workspace for running programs (lost on power off)</li>
+<li><strong>Storage (MicroSD / SSD / hard drive)</strong> — persistent data that survives a reboot</li>
+<li><strong>Input/Output</strong> — keyboard, monitor, network, USB, GPIO pins</li>
+</ol>
+<p>Your Pi has a quad-core ARM CPU, 4-8 GB of RAM, and a MicroSD card for storage. A DoD supercomputer has the same building blocks — just more of them.</p>
+<p><strong>How is the Pi different from your laptop?</strong></p>
+<ul>
+<li>No built-in screen, keyboard, or battery</li>
+<li>GPIO pins for connecting sensors and hardware (your laptop doesn’t have these)</li>
+<li>Runs Linux instead of Windows or macOS</li>
+<li>Costs $60 instead of $1,500</li>
+<li>Same fundamental architecture</li>
+</ul>
+</section>
+<section id="assemble-the-pi-15-min" class="level3">
+<h3 class="anchored" data-anchor-id="assemble-the-pi-15-min">4. Assemble the Pi (15 min)</h3>
+<p>Step by step:</p>
+<ol type="1">
+<li><strong>Insert the MicroSD card</strong> into the slot on the underside of the board (pre-flashed with Raspberry Pi OS)</li>
+<li><strong>Snap the board into the case</strong> if you have one</li>
+<li><strong>Connect the HDMI cable</strong> from the Pi to your monitor</li>
+<li><strong>Connect the keyboard and mouse</strong> via USB</li>
+<li><strong>Connect Ethernet</strong> if available (more reliable than Wi-Fi for setup)</li>
+<li><strong>Plug in the USB-C power supply</strong> — this is the ON switch. There is no power button on older models; the Pi 5 has a small power button.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled" title="MicroSD Orientation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>MicroSD Orientation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The MicroSD card goes in label-side up on the Pi 5. Don’t force it. If it’s not sliding in easily, flip it.</p>
+</div>
+</div>
+</section>
+<section id="first-boot-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="first-boot-10-min">5. First Boot (10 min)</h3>
+<p>Once you plug in power, the Pi boots automatically. First boot takes 2-3 minutes as the OS configures itself.</p>
+<p>You should see the Raspberry Pi OS desktop appear on your monitor. If you see a setup wizard, follow the prompts:</p>
+<ul>
+<li>Set your locale and timezone</li>
+<li>Connect to Wi-Fi (use the network credentials provided in class)</li>
+<li>Set your password — <strong>write it down</strong>. If you forget it, you re-flash the card and start over.</li>
+<li>Apply any system updates if prompted</li>
+</ul>
+</section>
+<section id="explore-the-desktop-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="explore-the-desktop-10-min">6. Explore the Desktop (10 min)</h3>
+<p>Now that you have a running system, poke around:</p>
+<ul>
+<li><strong>File Manager</strong> — click the folder icon in the taskbar. This is your home directory (<code>/home/pi/</code> or similar). Notice it looks like Windows Explorer or Finder, but the paths use forward slashes.</li>
+<li><strong>Terminal</strong> — click the black terminal icon in the taskbar (or right-click desktop and select “Open Terminal”). Type <code>pwd</code> and press Enter. This prints your current location in the file system. Type <code>ls</code> to list files.</li>
+<li><strong>Settings</strong> — click the Raspberry Pi menu (top-left) and look at Preferences. Check your screen resolution, Wi-Fi connection, and Bluetooth status.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try these in the terminal</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>          <span class="co"># Where am I?</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>           <span class="co"># What files are here?</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span>       <span class="co"># Detailed view (including hidden files)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hostname</span> <span class="at">-I</span>  <span class="co"># What is my IP address on the network?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a command gives you output you don’t understand, paste it into your AI assistant and ask for an explanation. That’s what it’s there for.</p>
+</div>
+</div>
+</section>
+<section id="connect-to-the-internet-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-the-internet-10-min">7. Connect to the Internet (10 min)</h3>
+<p>If you used Ethernet, you’re probably already connected. Verify:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ping</span> <span class="at">-c</span> 3 google.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you see responses, you’re online. If not, check Wi-Fi:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List available networks</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nmcli device wifi list</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to a network</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nmcli device wifi connect <span class="st">"NETWORK_NAME"</span> password <span class="st">"PASSWORD"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once connected, update your system:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This downloads and installs the latest software updates. It may take a few minutes.</p>
+</section>
+<section id="wrap-up-and-troubleshooting-5-min" class="level3">
+<h3 class="anchored" data-anchor-id="wrap-up-and-troubleshooting-5-min">8. Wrap-Up and Troubleshooting (5 min)</h3>
+<p>Quick check — raise your hand if any of these are NOT true:</p>
+<ul>
+<li>Your Pi is assembled and powered on</li>
+<li>You can see the desktop</li>
+<li>You opened a terminal and ran <code>pwd</code></li>
+<li>You are connected to the internet (<code>ping google.com</code> works)</li>
+</ul>
+<p>If something isn’t working, pair up with a neighbor or ask your AI assistant for troubleshooting steps. Common issues: MicroSD not fully inserted, wrong Wi-Fi password, monitor not on the right HDMI input.</p>
+<hr>
+</section>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Before you leave, confirm:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Pi is assembled with MicroSD card, case, and peripherals</label></li>
+<li><label><input type="checkbox">Pi boots to Raspberry Pi OS desktop</label></li>
+<li><label><input type="checkbox">You can open a terminal and run basic commands (<code>pwd</code>, <code>ls</code>, <code>hostname -I</code>)</label></li>
+<li><label><input type="checkbox">Pi is connected to the internet (verified with <code>ping</code>)</label></li>
+</ul>
+<hr>
+</section>
+<section id="next-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="next-lesson">Next Lesson</h2>
+<p><a href="lesson-2.html">Lesson 2: Linux Deep Dive, SSH, &amp; Installing RStudio</a></p>
+<ul>
+<li>SSH into your Pi from your laptop (no more monitor)</li>
+<li>File permissions and ownership</li>
+<li>Install R and RStudio Server on the Pi</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA491-AY27-1/syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Syllabus</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA491-AY27-1/lesson-2.html" class="pagination-link" aria-label="L2: Linux, SSH, &amp; RStudio">
+        <span class="nav-page-text">L2: Linux, SSH, &amp; RStudio</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

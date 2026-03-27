@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lessons 11–14: Semi-Independent Project – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA491-AY27-1/lesson-15.html" rel="next">
+<link href="../MA491-AY27-1/lesson-7.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA491-AY27-1/lesson-11.html">L11–14: Semi-Independent Project</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Setup &amp; Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L1: Unboxing — Raspberry Pi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L2: Linux, SSH, &amp; RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L3: Git &amp; GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L4: Databases &amp; APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L5: Data Exploration &amp; Dashboards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L6: Hosting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L7–10: Guided Project — NYC 311</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">L11–14: Semi-Independent Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L15: Portfolio Website</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L16–19: Connect Four</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L20–24: Single-Player Game</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA491-AY27-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L25–30: Passion Project &amp; Demo Day</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a>
+  <ul class="collapse">
+  <li><a href="#suggested-topics" id="toc-suggested-topics" class="nav-link" data-scroll-target="#suggested-topics">Suggested Topics</a></li>
+  </ul></li>
+  <li><a href="#lesson-11-get-clean-the-data" id="toc-lesson-11-get-clean-the-data" class="nav-link" data-scroll-target="#lesson-11-get-clean-the-data">Lesson 11: Get &amp; Clean the Data</a>
+  <ul class="collapse">
+  <li><a href="#minute-outline" id="toc-minute-outline" class="nav-link" data-scroll-target="#minute-outline">75-Minute Outline</a></li>
+  </ul></li>
+  <li><a href="#lesson-12-explore-model" id="toc-lesson-12-explore-model" class="nav-link" data-scroll-target="#lesson-12-explore-model">Lesson 12: Explore &amp; Model</a>
+  <ul class="collapse">
+  <li><a href="#minute-outline-1" id="toc-minute-outline-1" class="nav-link" data-scroll-target="#minute-outline-1">75-Minute Outline</a></li>
+  </ul></li>
+  <li><a href="#lesson-13-iterate-refine" id="toc-lesson-13-iterate-refine" class="nav-link" data-scroll-target="#lesson-13-iterate-refine">Lesson 13: Iterate &amp; Refine</a>
+  <ul class="collapse">
+  <li><a href="#minute-outline-2" id="toc-minute-outline-2" class="nav-link" data-scroll-target="#minute-outline-2">75-Minute Outline</a></li>
+  </ul></li>
+  <li><a href="#lesson-14-build-deploy-dashboard" id="toc-lesson-14-build-deploy-dashboard" class="nav-link" data-scroll-target="#lesson-14-build-deploy-dashboard">Lesson 14: Build &amp; Deploy Dashboard</a>
+  <ul class="collapse">
+  <li><a href="#minute-outline-3" id="toc-minute-outline-3" class="nav-link" data-scroll-target="#minute-outline-3">75-Minute Outline</a></li>
+  </ul></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div style="background-color: #28a745; color: white; text-align: center; padding: 6px 12px; font-size: 0.85em; font-weight: 600; letter-spacing: 0.5px; position: sticky; top: 0; z-index: 1000;">
+  DRAFT — This page is under development
+</div>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lessons 11–14: Semi-Independent Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>You just finished the NYC 311 guided project. You learned how to acquire data, clean it, explore it, model it, and build a dashboard. Now you do it again — but this time you pick the topic and drive the bus.</p>
+<p>The arc is the same four lessons: get and clean, explore and model, iterate and refine, build and deploy. The difference is autonomy. There is no starter code. There is no pre-cleaned dataset. You choose a question, find data that can answer it, and build something worth showing.</p>
+<p>Use AI aggressively to help you work through problems — but own every line of code you produce. If you cannot explain it, rewrite it until you can.</p>
+<section id="suggested-topics" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-topics">Suggested Topics</h3>
+<p>Pick one of these, or propose your own (clear it with the instructor by the end of Lesson 11):</p>
+<ul>
+<li><strong>Sports analytics</strong> — NFL play-by-play, NCAA basketball, Army football stats</li>
+<li><strong>Public health data</strong> — CDC WONDER, WHO Global Health Observatory, COVID tracking</li>
+<li><strong>Military installations / force structure</strong> — DMDC data, base locations, unit structure</li>
+<li><strong>Weather &amp; climate data</strong> — NOAA, OpenWeatherMap API, historical extremes</li>
+<li><strong>College Scorecard / education data</strong> — graduation rates, earnings, institutional comparisons</li>
+<li><strong>Reddit / social media analysis</strong> — subreddit trends, sentiment analysis, post engagement</li>
+<li><strong>Any public API or dataset that interests you</strong> — convince me it has enough depth for four lessons</li>
+</ul>
+<p>The best projects start with a question you actually care about.</p>
+<hr>
+</section>
+</section>
+<section id="lesson-11-get-clean-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-11-get-clean-the-data">Lesson 11: Get &amp; Clean the Data</h2>
+<p><strong>Goal:</strong> Walk out of class with a clean, analysis-ready dataset and a clear project question.</p>
+<section id="minute-outline" class="level3">
+<h3 class="anchored" data-anchor-id="minute-outline">75-Minute Outline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–10 min</td>
+<td><strong>Topic selection.</strong> Finalize your topic. If you already know, great. If not, browse the suggested list and talk it through with a classmate or the instructor. Lock it in.</td>
+</tr>
+<tr class="even">
+<td>10–25 min</td>
+<td><strong>Find and acquire data.</strong> Locate your data source. Download it, hit the API, or scrape it (ethically). Document where it came from and what each variable means.</td>
+</tr>
+<tr class="odd">
+<td>25–50 min</td>
+<td><strong>Clean and wrangle.</strong> Get the data into a tidy format. Handle missing values, fix data types, rename columns, filter to the subset you need. This is where most of the work lives.</td>
+</tr>
+<tr class="even">
+<td>50–65 min</td>
+<td><strong>Initial look.</strong> Produce 2–3 summary statistics or quick plots that confirm the data is what you think it is. Identify anything weird early.</td>
+</tr>
+<tr class="odd">
+<td>65–75 min</td>
+<td><strong>Document.</strong> Write a brief paragraph in your Quarto doc: what is the data, where did it come from, what question are you trying to answer?</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use AI to help you figure out how to read unfamiliar file formats, parse API responses, or debug cleaning code. Paste your <code>glimpse()</code> output and ask it to suggest cleaning steps.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lesson-12-explore-model" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-12-explore-model">Lesson 12: Explore &amp; Model</h2>
+<p><strong>Goal:</strong> Understand the structure of your data through EDA and fit an initial model.</p>
+<section id="minute-outline-1" class="level3">
+<h3 class="anchored" data-anchor-id="minute-outline-1">75-Minute Outline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–10 min</td>
+<td><strong>Review.</strong> Revisit your clean data. Make sure Lesson 11 work is solid. Fix anything that broke overnight.</td>
+</tr>
+<tr class="even">
+<td>10–30 min</td>
+<td><strong>Exploratory data analysis.</strong> Build visualizations tailored to your data. Distributions, relationships, trends over time — whatever makes sense for your question.</td>
+</tr>
+<tr class="odd">
+<td>30–50 min</td>
+<td><strong>Fit a model.</strong> Pick an appropriate model for your question. Linear regression, logistic regression, classification tree, clustering — match the method to the problem. Run it. Look at diagnostics.</td>
+</tr>
+<tr class="even">
+<td>50–65 min</td>
+<td><strong>Interpret results.</strong> What did the model find? What surprised you? What does not make sense yet? Write it down.</td>
+</tr>
+<tr class="odd">
+<td>65–75 min</td>
+<td><strong>Plan next steps.</strong> Identify 2–3 things to improve: a better feature, a different model, a visualization that tells the story more clearly.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are unsure which model fits your problem, describe your data and question to AI and ask it to suggest approaches. Then read about those approaches before blindly implementing them.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lesson-13-iterate-refine" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-13-iterate-refine">Lesson 13: Iterate &amp; Refine</h2>
+<p><strong>Goal:</strong> Improve your analysis based on what you learned in Lesson 12. Make it presentation-ready.</p>
+<section id="minute-outline-2" class="level3">
+<h3 class="anchored" data-anchor-id="minute-outline-2">75-Minute Outline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–10 min</td>
+<td><strong>Assess.</strong> Look at your Lesson 12 output with fresh eyes. What is the weakest part? Start there.</td>
+</tr>
+<tr class="even">
+<td>10–35 min</td>
+<td><strong>Improve the model or analysis.</strong> Try the better feature. Fit the alternative model. Engineer a new variable. Compare results to your first attempt.</td>
+</tr>
+<tr class="odd">
+<td>35–55 min</td>
+<td><strong>Refine visualizations.</strong> Make your plots clear, labeled, and honest. Every plot should answer a specific question. Remove chart junk. Add context.</td>
+</tr>
+<tr class="even">
+<td>55–70 min</td>
+<td><strong>Build the narrative.</strong> Your Quarto document should now read as a coherent story: question, data, exploration, model, findings. Fill in the gaps.</td>
+</tr>
+<tr class="odd">
+<td>70–75 min</td>
+<td><strong>Prep for dashboard.</strong> Decide which 3–4 elements will go on your dashboard. Sketch the layout.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ask AI to critique your visualizations. Paste your ggplot code and ask for specific improvements — better color scales, clearer labels, more informative titles.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lesson-14-build-deploy-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-14-build-deploy-dashboard">Lesson 14: Build &amp; Deploy Dashboard</h2>
+<p><strong>Goal:</strong> Build an interactive dashboard and present your work to the class.</p>
+<section id="minute-outline-3" class="level3">
+<h3 class="anchored" data-anchor-id="minute-outline-3">75-Minute Outline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–5 min</td>
+<td><strong>Setup.</strong> Open your project. Review your dashboard plan from Lesson 13.</td>
+</tr>
+<tr class="even">
+<td>5–35 min</td>
+<td><strong>Build the dashboard.</strong> Create your Quarto dashboard with 3–4 key panels. Include at least one interactive element (plotly, DT table, or Shiny widget).</td>
+</tr>
+<tr class="odd">
+<td>35–45 min</td>
+<td><strong>Deploy.</strong> Push to GitHub and deploy via Netlify or Quarto Pub. Confirm the live link works.</td>
+</tr>
+<tr class="even">
+<td>45–75 min</td>
+<td><strong>Presentations.</strong> Each person gives a 3–4 minute walkthrough of their dashboard. Cover: what question you asked, what the data showed, and one thing that surprised you. Class asks questions.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI Assist">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Assist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If your dashboard layout is fighting you, paste your YAML and error messages into AI. Dashboard formatting issues are exactly the kind of problem AI solves quickly.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>By the end of Lesson 14, you will submit:</p>
+<ol type="1">
+<li><strong>Quarto project on GitHub</strong> — all code, data (or data-fetching script), and rendered output</li>
+<li><strong>Deployed dashboard</strong> — live link that the instructor can visit and interact with</li>
+<li><strong>Brief write-up</strong> (embedded in your Quarto doc) covering:
+<ul>
+<li>Your question and why you chose it</li>
+<li>Where the data came from</li>
+<li>Key findings (with supporting visuals)</li>
+<li>One limitation or thing you would do differently with more time</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Expectations">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Expectations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have more autonomy on this project than on NYC 311. That means more freedom and more responsibility. The standard is the same: you must be able to explain every line of your code and every choice in your analysis. Use AI to accelerate your work, not to replace your thinking.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA491-AY27-1/lesson-7.html" class="pagination-link" aria-label="L7–10: Guided Project — NYC 311">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">L7–10: Guided Project — NYC 311</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA491-AY27-1/lesson-15.html" class="pagination-link" aria-label="L15: Portfolio Website">
+        <span class="nav-page-text">L15: Portfolio Website</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
