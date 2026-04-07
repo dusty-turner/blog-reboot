@@ -151,22 +151,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-10-guided-example-text-as-data" id="toc-week-10-guided-example-text-as-data" class="nav-link active" data-scroll-target="#week-10-guided-example-text-as-data">Week 10: Guided Example – Text as Data</a>
+  <li><a href="#lesson-10-tidy-data-pivots-joins-reshaping" id="toc-lesson-10-tidy-data-pivots-joins-reshaping" class="nav-link active" data-scroll-target="#lesson-10-tidy-data-pivots-joins-reshaping">Lesson 10: Tidy Data – Pivots, Joins, Reshaping</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#string-manipulation-with-stringr" id="toc-string-manipulation-with-stringr" class="nav-link" data-scroll-target="#string-manipulation-with-stringr">String Manipulation with <code>stringr</code></a></li>
-  <li><a href="#tidy-text-with-tidytext" id="toc-tidy-text-with-tidytext" class="nav-link" data-scroll-target="#tidy-text-with-tidytext">Tidy Text with <code>tidytext</code></a>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What Is Tidy Data?</a>
   <ul class="collapse">
-  <li><a href="#stop-words" id="toc-stop-words" class="nav-link" data-scroll-target="#stop-words">Stop Words</a></li>
+  <li><a href="#example-messy-vs.-tidy" id="toc-example-messy-vs.-tidy" class="nav-link" data-scroll-target="#example-messy-vs.-tidy">Example: Messy vs.&nbsp;Tidy</a></li>
   </ul></li>
-  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis">Sentiment Analysis</a></li>
-  <li><a href="#tf-idf" id="toc-tf-idf" class="nav-link" data-scroll-target="#tf-idf">TF-IDF</a></li>
-  <li><a href="#military-application" id="toc-military-application" class="nav-link" data-scroll-target="#military-application">Military Application</a></li>
+  <li><a href="#pivot_longer-wide-to-long" id="toc-pivot_longer-wide-to-long" class="nav-link" data-scroll-target="#pivot_longer-wide-to-long"><code>pivot_longer()</code> – Wide to Long</a>
+  <ul class="collapse">
+  <li><a href="#more-complex-pivots" id="toc-more-complex-pivots" class="nav-link" data-scroll-target="#more-complex-pivots">More Complex Pivots</a></li>
+  </ul></li>
+  <li><a href="#pivot_wider-long-to-wide" id="toc-pivot_wider-long-to-wide" class="nav-link" data-scroll-target="#pivot_wider-long-to-wide"><code>pivot_wider()</code> – Long to Wide</a>
+  <ul class="collapse">
+  <li><a href="#when-to-go-wide" id="toc-when-to-go-wide" class="nav-link" data-scroll-target="#when-to-go-wide">When to Go Wide</a></li>
+  </ul></li>
+  <li><a href="#joins-combining-datasets" id="toc-joins-combining-datasets" class="nav-link" data-scroll-target="#joins-combining-datasets">Joins – Combining Datasets</a>
+  <ul class="collapse">
+  <li><a href="#setup-two-tables" id="toc-setup-two-tables" class="nav-link" data-scroll-target="#setup-two-tables">Setup: Two Tables</a></li>
+  <li><a href="#join-types" id="toc-join-types" class="nav-link" data-scroll-target="#join-types">Join Types</a></li>
+  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins">Filtering Joins</a></li>
+  <li><a href="#when-key-names-differ" id="toc-when-key-names-differ" class="nav-link" data-scroll-target="#when-key-names-differ">When Key Names Differ</a></li>
+  <li><a href="#join-decision-guide" id="toc-join-decision-guide" class="nav-link" data-scroll-target="#join-decision-guide">Join Decision Guide</a></li>
+  </ul></li>
+  <li><a href="#separate-and-unite" id="toc-separate-and-unite" class="nav-link" data-scroll-target="#separate-and-unite"><code>separate()</code> and <code>unite()</code></a>
+  <ul class="collapse">
+  <li><a href="#split-one-column-into-multiple" id="toc-split-one-column-into-multiple" class="nav-link" data-scroll-target="#split-one-column-into-multiple">Split One Column into Multiple</a></li>
+  <li><a href="#combine-multiple-columns-into-one" id="toc-combine-multiple-columns-into-one" class="nav-link" data-scroll-target="#combine-multiple-columns-into-one">Combine Multiple Columns into One</a></li>
+  <li><a href="#separate_wider_delim-newer-tidyr" id="toc-separate_wider_delim-newer-tidyr" class="nav-link" data-scroll-target="#separate_wider_delim-newer-tidyr"><code>separate_wider_delim()</code> (newer tidyr)</a></li>
+  </ul></li>
+  <li><a href="#real-messy-data-example" id="toc-real-messy-data-example" class="nav-link" data-scroll-target="#real-messy-data-example">Real Messy Data Example</a></li>
+  <li><a href="#the-tidy-data-checklist" id="toc-the-tidy-data-checklist" class="nav-link" data-scroll-target="#the-tidy-data-checklist">The Tidy Data Checklist</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -178,11 +200,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="week-10-guided-example-text-as-data" class="level1">
-<h1>Week 10: Guided Example – Text as Data</h1>
+<section id="lesson-10-tidy-data-pivots-joins-reshaping" class="level1">
+<h1>Lesson 10: Tidy Data – Pivots, Joins, Reshaping</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Not all data comes in neat rows and columns. Text – reports, doctrine, news articles, social media – is one of the richest data sources available. This week you’ll learn to treat text as data: clean it, count it, and extract meaning from it.</p>
+<p>Most real-world data is messy. Columns are mislabeled, variables are spread across multiple columns, observations are split across rows, and the dataset you need is actually two datasets that have to be combined. This lesson teaches you the tools to fix all of that.</p>
+<p>The core idea is <strong>tidy data</strong>: each variable is a column, each observation is a row, each value is a cell. When your data is tidy, every tool in the tidyverse works smoothly. When it is not, you fight the tools at every step. Learning to reshape data is the single highest-leverage skill in practical data science.</p>
 <hr>
 </section>
 <section id="objectives" class="level2">
@@ -198,153 +221,394 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Manipulate strings with <code>stringr</code></li>
-<li>Tokenize text and compute word frequencies with <code>tidytext</code></li>
-<li>Perform sentiment analysis</li>
-<li>Calculate and interpret TF-IDF</li>
-<li>Apply text analysis to a real corpus</li>
+<li>Explain the tidy data principles</li>
+<li>Reshape wide data to long with <code>pivot_longer()</code></li>
+<li>Reshape long data to wide with <code>pivot_wider()</code></li>
+<li>Combine datasets with <code>left_join()</code>, <code>inner_join()</code>, <code>full_join()</code>, and <code>anti_join()</code></li>
+<li>Split and combine columns with <code>separate()</code> and <code>unite()</code></li>
+<li>Take a messy real-world dataset and make it tidy</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="string-manipulation-with-stringr" class="level2">
-<h2 class="anchored" data-anchor-id="string-manipulation-with-stringr">String Manipulation with <code>stringr</code></h2>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"The United States Military Academy at West Point, NY 10996"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(text)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"West Point"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(text, <span class="st">"NY"</span>, <span class="st">"New York"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">d{5}"</span>)          <span class="co"># extract zip code</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(text, <span class="st">" "</span>)                  <span class="co"># split into words</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="tidy-text-with-tidytext" class="level2">
-<h2 class="anchored" data-anchor-id="tidy-text-with-tidytext">Tidy Text with <code>tidytext</code></h2>
-<p>The tidy text principle: one token per row.</p>
+<section id="what-is-tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-tidy-data">What Is Tidy Data?</h2>
+<p>Tidy data has three rules:</p>
+<ol type="1">
+<li>Each <strong>variable</strong> is a column</li>
+<li>Each <strong>observation</strong> is a row</li>
+<li>Each <strong>value</strong> is a cell</li>
+</ol>
+<p>Most data you encounter violates at least one of these. The fix is usually a pivot.</p>
+<section id="example-messy-vs.-tidy" class="level3">
+<h3 class="anchored" data-anchor-id="example-messy-vs.-tidy">Example: Messy vs.&nbsp;Tidy</h3>
+<p>Messy (wide) – values of a variable (year) are spread across column names:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">1999</th>
+<th style="text-align: right;">2000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">745</td>
+<td style="text-align: right;">2666</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">37737</td>
+<td style="text-align: right;">80488</td>
+</tr>
+</tbody>
+</table>
+<p>Tidy (long) – year is now a variable in its own column:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: left;">year</th>
+<th style="text-align: right;">cases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">1999</td>
+<td style="text-align: right;">745</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">2666</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: left;">1999</td>
+<td style="text-align: right;">37737</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">80488</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="pivot_longer-wide-to-long" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-wide-to-long"><code>pivot_longer()</code> – Wide to Long</h2>
+<p>Use when column names contain data values (like years, months, or categories).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Jane Austen's novels</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janeaustenr)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tidy_books <span class="ot">&lt;-</span> <span class="fu">austen_books</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Word frequencies</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tidy_books <span class="sc">|&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table4a has columns: country, `1999`, `2000`</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>table4a</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>table4a <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>),    <span class="co"># columns to pivot</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,            <span class="co"># new column for old column names</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"cases"</span>           <span class="co"># new column for the values</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="stop-words" class="level3">
-<h3 class="anchored" data-anchor-id="stop-words">Stop Words</h3>
-<p>Common words (“the”, “and”, “is”) that add noise. Remove them:</p>
+<section id="more-complex-pivots" class="level3">
+<h3 class="anchored" data-anchor-id="more-complex-pivots">More Complex Pivots</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View stop words</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>stop_words</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove them</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tidy_books <span class="sc">|&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Most Common Words (excluding stop words)"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When you have many columns to pivot, use helpers</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose you have: id, score_math, score_reading, score_science</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">score_math =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">92</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">score_reading =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">score_science =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">95</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">|&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"score_"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"subject"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"score_"</span>,       <span class="co"># strip the prefix</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"score"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert year to integer during the pivot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>table4a <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.integer),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"cases"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
 </section>
-<section id="sentiment-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment Analysis</h2>
-<p>Assign emotional valence to words using a sentiment lexicon.</p>
+<section id="pivot_wider-long-to-wide" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_wider-long-to-wide"><code>pivot_wider()</code> – Long to Wide</h2>
+<p>Use when an observation is scattered across multiple rows.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the Bing lexicon (positive/negative)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sentiment_counts <span class="ot">&lt;-</span> tidy_books <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="fu">get_sentiments</span>(<span class="st">"bing"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(book, sentiment) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sentiment, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net_sentiment =</span> positive <span class="sc">-</span> negative)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>sentiment_counts</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sentiment over the course of a novel</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">austen_books</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"Pride &amp; Prejudice"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">line_number =</span> <span class="fu">row_number</span>(),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">chapter_group =</span> line_number <span class="sc">%/%</span> <span class="dv">80</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text) <span class="sc">|&gt;</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="fu">get_sentiments</span>(<span class="st">"bing"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(chapter_group, sentiment) <span class="sc">|&gt;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sentiment, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net =</span> positive <span class="sc">-</span> negative) <span class="sc">|&gt;</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> chapter_group, <span class="at">y =</span> net)) <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sentiment Arc: Pride &amp; Prejudice"</span>,</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Narrative Time"</span>, <span class="at">y =</span> <span class="st">"Net Sentiment"</span>) <span class="sc">+</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table2 has: country, year, type (cases/population), count</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>table2</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>table2 <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> type,       <span class="co"># values become column names</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> count      <span class="co"># values fill the new columns</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="when-to-go-wide" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-go-wide">When to Go Wide</h3>
+<ul>
+<li>Creating summary tables for presentation</li>
+<li>When you need one row per subject (e.g., for modeling)</li>
+<li>Cross-tabulations</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cross-tabulation</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cyl, gear) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> gear,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> n,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span>          <span class="co"># fill missing combos with 0</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="tf-idf" class="level2">
-<h2 class="anchored" data-anchor-id="tf-idf">TF-IDF</h2>
-<p><strong>Term Frequency – Inverse Document Frequency</strong>: identifies words that are important to a specific document relative to the whole corpus.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>book_words <span class="ot">&lt;-</span> <span class="fu">austen_books</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(book, word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>book_tfidf <span class="ot">&lt;-</span> book_words <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_tf_idf</span>(word, book, n)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Top TF-IDF words per book</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>book_tfidf <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">|&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(tf_idf, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder_within</span>(word, tf_idf, book), <span class="at">y =</span> tf_idf, <span class="at">fill =</span> book)) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>book, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>() <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top TF-IDF Words by Novel"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"TF-IDF"</span>) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<hr>
 </section>
-<section id="military-application" class="level2">
-<h2 class="anchored" data-anchor-id="military-application">Military Application</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Try This">
+<section id="joins-combining-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="joins-combining-datasets">Joins – Combining Datasets</h2>
+<p>Joins combine two data frames based on shared columns (keys).</p>
+<section id="setup-two-tables" class="level3">
+<h3 class="anchored" data-anchor-id="setup-two-tables">Setup: Two Tables</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Roster of students</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadet_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Adams"</span>, <span class="st">"Baker"</span>, <span class="st">"Clark"</span>, <span class="st">"Davis"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Grades (not everyone has a grade; some IDs don't match)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadet_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="dv">92</span>, <span class="dv">85</span>, <span class="dv">78</span>, <span class="dv">96</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="join-types" class="level3">
+<h3 class="anchored" data-anchor-id="join-types">Join Types</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># left_join: keep ALL rows from the left table</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add grades where available; NA for Davis (id 4)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">left_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># right_join: keep ALL rows from the right table</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Includes id 5 (not in roster); drops Davis</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">right_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># inner_join: keep ONLY rows that match in BOTH</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Only ids 1, 2, 3</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">inner_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># full_join: keep ALL rows from BOTH tables</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Includes everyone; NAs where no match</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">full_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="filtering-joins" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-joins">Filtering Joins</h3>
+<p>These do not add columns – they filter rows.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># semi_join: keep rows in roster that HAVE a match in grades</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">semi_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># anti_join: keep rows in roster that DO NOT have a match in grades</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(grades, <span class="at">by =</span> <span class="st">"cadet_id"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns Davis -- the student with no grade</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="anti_join for data quality">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try This
+<span class="screen-reader-only">Tip</span>anti_join for data quality
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Apply text analysis to a militarily-relevant corpus:</p>
-<ul>
-<li>Army doctrine publications (ADPs, FMs)</li>
-<li>After Action Reviews (AARs)</li>
-<li>News coverage of military operations</li>
-<li>Congressional testimony transcripts</li>
-</ul>
-<p>Questions to explore:</p>
-<ul>
-<li>How has the language of Army doctrine changed over time?</li>
-<li>What topics dominate AARs from different units or eras?</li>
-<li>How does media sentiment toward the military shift during conflicts?</li>
-</ul>
+<p><code>anti_join()</code> is your best friend for finding records that <em>should</em> match but don’t. Use it to find students missing grades, orders without customers, or sensor readings without a matching station ID.</p>
+</div>
+</div>
+</section>
+<section id="when-key-names-differ" class="level3">
+<h3 class="anchored" data-anchor-id="when-key-names-differ">When Key Names Differ</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If the key columns have different names</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>enrollments <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">student_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">course =</span> <span class="fu">c</span>(<span class="st">"MA491"</span>, <span class="st">"MA491"</span>, <span class="st">"MA206"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(enrollments, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"cadet_id"</span> <span class="ot">=</span> <span class="st">"student_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="join-decision-guide" class="level3">
+<h3 class="anchored" data-anchor-id="join-decision-guide">Join Decision Guide</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">You want…</th>
+<th style="text-align: left;">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All rows from the main table, add info if available</td>
+<td style="text-align: left;"><code>left_join()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Only rows that exist in both tables</td>
+<td style="text-align: left;"><code>inner_join()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All rows from both tables</td>
+<td style="text-align: left;"><code>full_join()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Find which rows in A have no match in B</td>
+<td style="text-align: left;"><code>anti_join()</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled" title="Duplicate key danger">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Duplicate key danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a key appears multiple times in the right table, your join will produce more rows than you started with. Always check <code>nrow()</code> before and after a join.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="separate-and-unite" class="level2">
+<h2 class="anchored" data-anchor-id="separate-and-unite"><code>separate()</code> and <code>unite()</code></h2>
+<section id="split-one-column-into-multiple" class="level3">
+<h3 class="anchored" data-anchor-id="split-one-column-into-multiple">Split One Column into Multiple</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_location =</span> <span class="fu">c</span>(<span class="st">"2025-03-15_WestPoint"</span>, <span class="st">"2025-03-16_FortLiberty"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>messy <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(date_location, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"location"</span>), <span class="at">sep =</span> <span class="st">"_"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="combine-multiple-columns-into-one" class="level3">
+<h3 class="anchored" data-anchor-id="combine-multiple-columns-into-one">Combine Multiple Columns into One</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2025</span>, <span class="dv">2025</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>clean <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"date"</span>, year, month, day, <span class="at">sep =</span> <span class="st">"-"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="separate_wider_delim-newer-tidyr" class="level3">
+<h3 class="anchored" data-anchor-id="separate_wider_delim-newer-tidyr"><code>separate_wider_delim()</code> (newer tidyr)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More explicit version</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>messy <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(date_location, <span class="at">delim =</span> <span class="st">"_"</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"location"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="real-messy-data-example" class="level2">
+<h2 class="anchored" data-anchor-id="real-messy-data-example">Real Messy Data Example</h2>
+<p>Here is a common pattern: data from a spreadsheet where the structure encodes information.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated PT test results -- wide format from a spreadsheet</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pt_scores <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadet =</span> <span class="fu">c</span>(<span class="st">"Adams"</span>, <span class="st">"Baker"</span>, <span class="st">"Clark"</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pushups_fall =</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">58</span>, <span class="dv">80</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pushups_spring =</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">65</span>, <span class="dv">82</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">run_fall =</span> <span class="fu">c</span>(<span class="fl">13.5</span>, <span class="fl">15.2</span>, <span class="fl">12.8</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">run_spring =</span> <span class="fu">c</span>(<span class="fl">13.1</span>, <span class="fl">14.8</span>, <span class="fl">12.5</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Pivot longer</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>pt_tidy <span class="ot">&lt;-</span> pt_scores <span class="sc">|&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>cadet,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"event"</span>, <span class="st">"semester"</span>),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"score"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>pt_tidy</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Now you can easily filter, group, and plot</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>pt_tidy <span class="sc">|&gt;</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semester, <span class="at">y =</span> score, <span class="at">color =</span> cadet, <span class="at">group =</span> cadet)) <span class="sc">+</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>event, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PT Score Changes by Semester"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="the-tidy-data-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="the-tidy-data-checklist">The Tidy Data Checklist</h2>
+<p>Before you start any analysis, ask:</p>
+<ol type="1">
+<li>Is each variable in its own column? (If not, <code>pivot_longer()</code>)</li>
+<li>Is each observation in its own row? (If not, <code>pivot_wider()</code> or <code>separate()</code>)</li>
+<li>Is each value in its own cell? (If not, <code>separate()</code>)</li>
+<li>Do I need to combine tables? (If yes, pick the right join)</li>
+<li>After joining, did the number of rows change unexpectedly? (Check for duplicate keys)</li>
+</ol>
+<hr>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Your Turn">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Take <code>table4a</code> and <code>table4b</code> (built into tidyr). Pivot both to long format, then join them together by country and year.</li>
+<li>Create a messy dataset with at least 3 columns that need pivoting. Pivot it. Make a plot from the tidy version.</li>
+<li>Use <code>anti_join()</code> to find which rows in one dataset have no match in another.</li>
+<li>Take the <code>who</code> dataset (built into tidyr) – this is genuinely messy tuberculosis data. See how far you can get cleaning it up.</li>
+</ol>
 </div>
 </div>
 <hr>
@@ -354,18 +618,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>You can tokenize, count, and visualize text data</li>
-<li>You understand sentiment analysis and TF-IDF</li>
-<li>You’ve seen how to apply text methods to real corpora</li>
+<li>You understand tidy data and why it matters</li>
+<li>You can reshape data with <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
+<li>You can combine datasets with the right join</li>
+<li>You can split and combine columns</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-11.html">Week 11: Guided Example – Spatial Data &amp; Mapping</a></p>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-11.html">Lesson 11: AI as a Coding Partner – Prompting, Verifying, Iterating</a></p>
 <ul>
-<li><code>sf</code> for spatial data</li>
-<li><code>leaflet</code> for interactive maps</li>
-<li>Choropleth maps and spatial joins</li>
+<li>How to use AI tools effectively for R coding</li>
+<li>The verification workflow: generate, read, run, test, own</li>
+<li>When AI helps and when it confidently fails</li>
 </ul>
 
 

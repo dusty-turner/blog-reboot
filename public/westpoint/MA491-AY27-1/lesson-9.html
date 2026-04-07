@@ -151,26 +151,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-9-guided-example-classification" id="toc-week-9-guided-example-classification" class="nav-link active" data-scroll-target="#week-9-guided-example-classification">Week 9: Guided Example – Classification</a>
+  <li><a href="#lesson-9-data-types-deep-dive-dates-strings-factors-nas" id="toc-lesson-9-data-types-deep-dive-dates-strings-factors-nas" class="nav-link active" data-scroll-target="#lesson-9-data-types-deep-dive-dates-strings-factors-nas">Lesson 9: Data Types Deep Dive – Dates, Strings, Factors, NAs</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#the-question" id="toc-the-question" class="nav-link" data-scroll-target="#the-question">The Question</a></li>
-  <li><a href="#traintest-split" id="toc-traintest-split" class="nav-link" data-scroll-target="#traintest-split">Train/Test Split</a></li>
-  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#dates-with-lubridate" id="toc-dates-with-lubridate" class="nav-link" data-scroll-target="#dates-with-lubridate">Dates with <code>lubridate</code></a>
   <ul class="collapse">
-  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions">Predictions</a></li>
+  <li><a href="#parsing-dates" id="toc-parsing-dates" class="nav-link" data-scroll-target="#parsing-dates">Parsing Dates</a></li>
+  <li><a href="#extracting-components" id="toc-extracting-components" class="nav-link" data-scroll-target="#extracting-components">Extracting Components</a></li>
+  <li><a href="#date-arithmetic" id="toc-date-arithmetic" class="nav-link" data-scroll-target="#date-arithmetic">Date Arithmetic</a></li>
+  <li><a href="#common-date-gotchas" id="toc-common-date-gotchas" class="nav-link" data-scroll-target="#common-date-gotchas">Common Date Gotchas</a></li>
   </ul></li>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees">Decision Trees</a>
+  <li><a href="#strings-with-stringr" id="toc-strings-with-stringr" class="nav-link" data-scroll-target="#strings-with-stringr">Strings with <code>stringr</code></a>
   <ul class="collapse">
-  <li><a href="#evaluate-the-tree" id="toc-evaluate-the-tree" class="nav-link" data-scroll-target="#evaluate-the-tree">Evaluate the Tree</a></li>
+  <li><a href="#detection-and-matching" id="toc-detection-and-matching" class="nav-link" data-scroll-target="#detection-and-matching">Detection and Matching</a></li>
+  <li><a href="#extraction-and-replacement" id="toc-extraction-and-replacement" class="nav-link" data-scroll-target="#extraction-and-replacement">Extraction and Replacement</a></li>
+  <li><a href="#splitting-and-combining" id="toc-splitting-and-combining" class="nav-link" data-scroll-target="#splitting-and-combining">Splitting and Combining</a></li>
+  <li><a href="#regex-basics" id="toc-regex-basics" class="nav-link" data-scroll-target="#regex-basics">Regex Basics</a></li>
   </ul></li>
-  <li><a href="#confusion-matrix-deep-dive" id="toc-confusion-matrix-deep-dive" class="nav-link" data-scroll-target="#confusion-matrix-deep-dive">Confusion Matrix Deep Dive</a></li>
-  <li><a href="#accuracy-vs.-interpretability" id="toc-accuracy-vs.-interpretability" class="nav-link" data-scroll-target="#accuracy-vs.-interpretability">Accuracy vs.&nbsp;Interpretability</a></li>
+  <li><a href="#factors-with-forcats" id="toc-factors-with-forcats" class="nav-link" data-scroll-target="#factors-with-forcats">Factors with <code>forcats</code></a>
+  <ul class="collapse">
+  <li><a href="#why-factors-matter" id="toc-why-factors-matter" class="nav-link" data-scroll-target="#why-factors-matter">Why Factors Matter</a></li>
+  <li><a href="#creating-and-reordering-factors" id="toc-creating-and-reordering-factors" class="nav-link" data-scroll-target="#creating-and-reordering-factors">Creating and Reordering Factors</a></li>
+  <li><a href="#common-forcats-functions" id="toc-common-forcats-functions" class="nav-link" data-scroll-target="#common-forcats-functions">Common <code>forcats</code> Functions</a></li>
+  </ul></li>
+  <li><a href="#missing-values-na" id="toc-missing-values-na" class="nav-link" data-scroll-target="#missing-values-na">Missing Values (<code>NA</code>)</a>
+  <ul class="collapse">
+  <li><a href="#na-propagation" id="toc-na-propagation" class="nav-link" data-scroll-target="#na-propagation">NA Propagation</a></li>
+  <li><a href="#detecting-nas" id="toc-detecting-nas" class="nav-link" data-scroll-target="#detecting-nas">Detecting NAs</a></li>
+  <li><a href="#handling-nas-in-data-frames" id="toc-handling-nas-in-data-frames" class="nav-link" data-scroll-target="#handling-nas-in-data-frames">Handling NAs in Data Frames</a></li>
+  <li><a href="#understanding-why-data-is-missing" id="toc-understanding-why-data-is-missing" class="nav-link" data-scroll-target="#understanding-why-data-is-missing">Understanding Why Data is Missing</a></li>
+  </ul></li>
+  <li><a href="#type-coercion" id="toc-type-coercion" class="nav-link" data-scroll-target="#type-coercion">Type Coercion</a></li>
+  <li><a href="#common-gotchas-summary" id="toc-common-gotchas-summary" class="nav-link" data-scroll-target="#common-gotchas-summary">Common Gotchas Summary</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -182,11 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="week-9-guided-example-classification" class="level1">
-<h1>Week 9: Guided Example – Classification</h1>
+<section id="lesson-9-data-types-deep-dive-dates-strings-factors-nas" class="level1">
+<h1>Lesson 9: Data Types Deep Dive – Dates, Strings, Factors, NAs</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Last week: predicting a continuous outcome (MPG). This week: predicting a category. Will a customer churn? Will a patient survive? Will a cadet pass? Classification is one of the most common tasks in applied data science.</p>
+<p>You can write perfect <code>dplyr</code> pipelines and <code>ggplot</code> charts, and they will still break when your dates are stored as strings, your categories are in the wrong order, or a single <code>NA</code> silently poisons your entire calculation. This lesson is about the data types that cause 80% of beginner pain: dates, strings, factors, and missing values.</p>
+<p>None of this is glamorous. All of it is essential. The difference between a data scientist who can handle real data and one who can only work with textbook examples is usually comfort with these topics.</p>
 <hr>
 </section>
 <section id="objectives" class="level2">
@@ -202,122 +222,145 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Fit a logistic regression model in R</li>
-<li>Build a decision tree classifier</li>
-<li>Split data into training and test sets</li>
-<li>Evaluate models with confusion matrices</li>
-<li>Weigh accuracy vs.&nbsp;interpretability</li>
-<li>Use <code>tidymodels</code> for a structured modeling workflow</li>
+<li>Parse and manipulate dates with <code>lubridate</code></li>
+<li>Detect, extract, and replace patterns in strings with <code>stringr</code></li>
+<li>Control factor ordering with <code>forcats</code> for clean plots and models</li>
+<li>Handle missing values (<code>NA</code>) without letting them silently wreck your results</li>
+<li>Coerce between types: <code>as.numeric()</code>, <code>as.character()</code>, <code>as.Date()</code>, <code>parse_number()</code></li>
+<li>Recognize and fix common data type gotchas</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="the-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-question">The Question</h2>
-<blockquote class="blockquote">
-<p><strong>Can we predict whether a car has a manual or automatic transmission based on its characteristics?</strong></p>
-</blockquote>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the outcome variable</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>car_data <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">am =</span> <span class="fu">factor</span>(am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"automatic"</span>, <span class="st">"manual"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)   <span class="co"># ships with tidyverse but good to be explicit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="traintest-split" class="level2">
-<h2 class="anchored" data-anchor-id="traintest-split">Train/Test Split</h2>
-<p>Never evaluate a model on the same data you trained it on.</p>
+<section id="dates-with-lubridate" class="level2">
+<h2 class="anchored" data-anchor-id="dates-with-lubridate">Dates with <code>lubridate</code></h2>
+<section id="parsing-dates" class="level3">
+<h3 class="anchored" data-anchor-id="parsing-dates">Parsing Dates</h3>
+<p><code>lubridate</code> figures out the date format from the order of components. You just tell it what order to expect.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">491</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>car_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(car_data, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> am)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>car_train <span class="ot">&lt;-</span> <span class="fu">training</span>(car_split)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>car_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(car_split)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(car_train)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(car_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Year-month-day</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-03-15"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Month-day-year</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"03/15/2025"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"March 15, 2025"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Day-month-year</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"15-03-2025"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># With times</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-03-15 14:30:00"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"03/15/2025 2:30 PM"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr>
 </section>
-<section id="logistic-regression" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h2>
+<section id="extracting-components" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-components">Extracting Components</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the model</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>log_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit on training data</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> log_spec <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(am <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> mpg, <span class="at">data =</span> car_train)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(log_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-03-15"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(d)          <span class="co"># 2025</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(d)         <span class="co"># 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(d, <span class="at">label =</span> <span class="cn">TRUE</span>)  <span class="co"># Mar</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(d)           <span class="co"># 15</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(d, <span class="at">label =</span> <span class="cn">TRUE</span>)   <span class="co"># Sat</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">week</span>(d)          <span class="co"># 11</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="predictions" class="level3">
-<h3 class="anchored" data-anchor-id="predictions">Predictions</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict on test data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> log_fit <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(car_test) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(car_test)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrix</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>log_preds <span class="sc">|&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> am, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Accuracy</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>log_preds <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(<span class="at">truth =</span> am, <span class="at">estimate =</span> .pred_class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<hr>
 </section>
-</section>
-<section id="decision-trees" class="level2">
-<h2 class="anchored" data-anchor-id="decision-trees">Decision Trees</h2>
+<section id="date-arithmetic" class="level3">
+<h3 class="anchored" data-anchor-id="date-arithmetic">Date Arithmetic</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the model</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tree_spec <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>tree_fit <span class="ot">&lt;-</span> tree_spec <span class="sc">|&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(am <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> mpg <span class="sc">+</span> cyl, <span class="at">data =</span> car_train)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the tree</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>tree_fit <span class="sc">|&gt;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpart.plot</span>(<span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Today and differences</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># How many days between two dates?</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-05-22"</span>) <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-13"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add durations</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">30</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">6</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Floor/ceiling to periods</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(<span class="fu">today</span>(), <span class="st">"month"</span>)     <span class="co"># first day of this month</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(<span class="fu">today</span>(), <span class="st">"week"</span>)    <span class="co"># start of next week</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="evaluate-the-tree" class="level3">
-<h3 class="anchored" data-anchor-id="evaluate-the-tree">Evaluate the Tree</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tree_preds <span class="ot">&lt;-</span> tree_fit <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(car_test) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(car_test)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>tree_preds <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> am, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tree_preds <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(<span class="at">truth =</span> am, <span class="at">estimate =</span> .pred_class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="common-date-gotchas" class="level3">
+<h3 class="anchored" data-anchor-id="common-date-gotchas">Common Date Gotchas</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Watch out for these">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Watch out for these
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>"12/31/2024"</code> vs <code>"2024-12-31"</code> – know your format before parsing</li>
+<li>Excel serial dates (e.g., 45658) – use <code>as.Date(45658, origin = "1899-12-30")</code></li>
+<li>Time zones – <code>lubridate</code> defaults to UTC; use <code>tz = "America/New_York"</code> when it matters</li>
+<li><code>"03/04/2025"</code> – is that March 4 or April 3? Context matters. Be explicit with <code>mdy()</code> vs <code>dmy()</code>.</li>
+</ul>
+</div>
 </div>
 <hr>
 </section>
 </section>
-<section id="confusion-matrix-deep-dive" class="level2">
-<h2 class="anchored" data-anchor-id="confusion-matrix-deep-dive">Confusion Matrix Deep Dive</h2>
-<pre><code>                Predicted
-              Auto    Manual
-Actual Auto    TN       FP
-       Manual  FN       TP</code></pre>
+<section id="strings-with-stringr" class="level2">
+<h2 class="anchored" data-anchor-id="strings-with-stringr">Strings with <code>stringr</code></h2>
+<p>All <code>stringr</code> functions start with <code>str_</code> so they autocomplete nicely.</p>
+<section id="detection-and-matching" class="level3">
+<h3 class="anchored" data-anchor-id="detection-and-matching">Detection and Matching</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pineapple"</span>, <span class="st">"grape"</span>, <span class="st">"grapefruit"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(fruits, <span class="st">"apple"</span>)      <span class="co"># TRUE FALSE TRUE FALSE FALSE</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_starts</span>(fruits, <span class="st">"grape"</span>)      <span class="co"># FALSE FALSE FALSE TRUE TRUE</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(fruits, <span class="st">"p"</span>)           <span class="co"># 2 0 3 1 0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use in a dplyr filter</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(name, <span class="st">"Skywalker"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="extraction-and-replacement" class="level3">
+<h3 class="anchored" data-anchor-id="extraction-and-replacement">Extraction and Replacement</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>address <span class="ot">&lt;-</span> <span class="st">"West Point, NY 10996"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(address, <span class="st">"</span><span class="sc">\\</span><span class="st">d{5}"</span>)               <span class="co"># "10996"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(address, <span class="st">"NY"</span>, <span class="st">"New York"</span>)        <span class="co"># "West Point, New York 10996"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(address, <span class="dv">1</span>, <span class="dv">10</span>)                       <span class="co"># "West Point"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove whitespace</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trim</span>(<span class="st">"  hello  "</span>)                          <span class="co"># "hello"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(<span class="st">"too   many   spaces"</span>)              <span class="co"># "too many spaces"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="splitting-and-combining" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-and-combining">Splitting and Combining</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">"one,two,three"</span>, <span class="st">","</span>)               <span class="co"># list: c("one", "two", "three")</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"Hello"</span>, <span class="st">"World"</span>, <span class="at">sep =</span> <span class="st">" "</span>)             <span class="co"># "Hello World"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_glue</span>(<span class="st">"Today is {today()}"</span>)                 <span class="co"># "Today is 2025-03-26"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="regex-basics" class="level3">
+<h3 class="anchored" data-anchor-id="regex-basics">Regex Basics</h3>
+<p>Regular expressions (regex) are patterns for matching text. You do not need to master them – just know the basics.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -326,69 +369,321 @@ Actual Auto    TN       FP
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Formula</th>
-<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Pattern</th>
+<th style="text-align: left;">Matches</th>
+<th style="text-align: left;">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Accuracy</strong></td>
-<td style="text-align: left;">(TP + TN) / Total</td>
-<td style="text-align: left;">Overall correctness</td>
+<td style="text-align: left;"><code>\\d</code></td>
+<td style="text-align: left;">Any digit</td>
+<td style="text-align: left;"><code>"\\d{5}"</code> matches zip codes</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Precision</strong></td>
-<td style="text-align: left;">TP / (TP + FP)</td>
-<td style="text-align: left;">Of predicted positives, how many are right?</td>
+<td style="text-align: left;"><code>\\w</code></td>
+<td style="text-align: left;">Any word character</td>
+<td style="text-align: left;"><code>"\\w+"</code> matches words</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Recall</strong></td>
-<td style="text-align: left;">TP / (TP + FN)</td>
-<td style="text-align: left;">Of actual positives, how many did we catch?</td>
+<td style="text-align: left;"><code>.</code></td>
+<td style="text-align: left;">Any character</td>
+<td style="text-align: left;"><code>"b.t"</code> matches “bat”, “bit”, “but”</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Specificity</strong></td>
-<td style="text-align: left;">TN / (TN + FP)</td>
-<td style="text-align: left;">Of actual negatives, how many did we catch?</td>
+<td style="text-align: left;"><code>^</code></td>
+<td style="text-align: left;">Start of string</td>
+<td style="text-align: left;"><code>"^The"</code> matches strings starting with “The”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>$</code></td>
+<td style="text-align: left;">End of string</td>
+<td style="text-align: left;"><code>"ing$"</code> matches strings ending in “ing”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[A-Z]</code></td>
+<td style="text-align: left;">Character class</td>
+<td style="text-align: left;"><code>"[A-Z]{2}"</code> matches two uppercase letters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;">One or more</td>
+<td style="text-align: left;"><code>"\\d+"</code> matches one or more digits</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">Zero or more</td>
+<td style="text-align: left;"><code>"\\d*"</code> matches zero or more digits</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Regex help">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Regex help
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you need a complex regex, ask AI. Explain what you want to match in plain English, and it will write the pattern. Then test it with <code>str_view()</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="factors-with-forcats" class="level2">
+<h2 class="anchored" data-anchor-id="factors-with-forcats">Factors with <code>forcats</code></h2>
+<p>Factors are R’s way of representing categorical data. They look like strings but have an underlying integer representation and a defined set of <strong>levels</strong> (allowed values in a fixed order).</p>
+<section id="why-factors-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-factors-matter">Why Factors Matter</h3>
+<ul>
+<li><code>ggplot2</code> orders bars and legends by factor levels</li>
+<li>Statistical models treat factors as categorical predictors with dummy coding</li>
+<li>Misspelled categories are caught as invalid levels</li>
+</ul>
+</section>
+<section id="creating-and-reordering-factors" class="level3">
+<h3 class="anchored" data-anchor-id="creating-and-reordering-factors">Creating and Reordering Factors</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Default: alphabetical order</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sizes <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Small"</span>, <span class="st">"Medium"</span>, <span class="st">"Large"</span>, <span class="st">"Small"</span>, <span class="st">"Large"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sizes)   <span class="co"># "Large" "Medium" "Small" -- alphabetical, not logical</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix with fct_relevel</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>sizes <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(sizes, <span class="st">"Small"</span>, <span class="st">"Medium"</span>, <span class="st">"Large"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sizes)   <span class="co"># "Small" "Medium" "Large" -- now correct</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="common-forcats-functions" class="level3">
+<h3 class="anchored" data-anchor-id="common-forcats-functions">Common <code>forcats</code> Functions</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder by another variable (great for plots)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">car =</span> <span class="fu">rownames</span>(mtcars),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">car =</span> <span class="fu">fct_reorder</span>(car, mpg)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> car)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Lump rare categories together</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_lump</span>(species, <span class="at">n =</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Order by frequency</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">eye_color =</span> <span class="fu">fct_infreq</span>(eye_color)) <span class="sc">|&gt;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color)) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse factor order</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">eye_color =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_infreq</span>(eye_color))) <span class="sc">|&gt;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color)) <span class="sc">+</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Factor gotcha in plots">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Factor gotcha in plots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If your bar chart categories appear in an unhelpful order, the fix is almost always <code>fct_reorder()</code> or <code>fct_infreq()</code>. Resist the urge to manually reorder your data frame rows – fix the factor levels instead.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="missing-values-na" class="level2">
+<h2 class="anchored" data-anchor-id="missing-values-na">Missing Values (<code>NA</code>)</h2>
+<p><code>NA</code> means “I don’t know.” It is not zero. It is not an empty string. It is the absence of a value, and it propagates through calculations.</p>
+<section id="na-propagation" class="level3">
+<h3 class="anchored" data-anchor-id="na-propagation">NA Propagation</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)          <span class="co"># NA -- the answer is "I don't know"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)   <span class="co"># 3 -- ignore missing values</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)           <span class="co"># NA</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)    <span class="co"># 12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="detecting-nas" class="level3">
+<h3 class="anchored" data-anchor-id="detecting-nas">Detecting NAs</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)                    <span class="co"># FALSE FALSE TRUE FALSE FALSE</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Count NAs per column</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(airquality))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Which rows are complete?</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">complete.cases</span>(airquality) <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="handling-nas-in-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="handling-nas-in-data-frames">Handling NAs in Data Frames</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with any NA</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with NA in specific columns</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Ozone)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA with a value</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ozone =</span> <span class="fu">replace_na</span>(Ozone, <span class="fu">median</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA with a value using coalesce (takes first non-NA)</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ozone =</span> <span class="fu">coalesce</span>(Ozone, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="understanding-why-data-is-missing" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-why-data-is-missing">Understanding Why Data is Missing</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Three types of missingness">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Three types of missingness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>MCAR</strong> (Missing Completely at Random) – the missingness has nothing to do with the data. Safe to drop.</li>
+<li><strong>MAR</strong> (Missing at Random) – the missingness is related to other observed variables. Imputation helps.</li>
+<li><strong>MNAR</strong> (Missing Not at Random) – the missingness is related to the missing value itself (e.g., people with high income refuse to report income). Hardest to handle.</li>
+</ol>
+<p>Before you drop or impute, ask: <em>why</em> is this value missing? The answer changes your strategy.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="type-coercion" class="level2">
+<h2 class="anchored" data-anchor-id="type-coercion">Type Coercion</h2>
+<p>Sometimes data arrives as the wrong type. Fix it explicitly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># String to number</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="st">"42"</span>)          <span class="co"># 42</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="st">"forty-two"</span>)   <span class="co"># NA (with a warning)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Number to string</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">42</span>)           <span class="co"># "42"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># String to date</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"2025-03-15"</span>)     <span class="co"># works if format is YYYY-MM-DD</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse messy numbers (readr)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(<span class="st">"$1,234.56"</span>)  <span class="co"># 1234.56</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(<span class="st">"30%"</span>)         <span class="co"># 30</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check types</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">42</span>)           <span class="co"># "numeric"</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"hello"</span>)      <span class="co"># "character"</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)         <span class="co"># "logical"</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">today</span>())      <span class="co"># "Date"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Silent type problems">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Silent type problems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CSV files store everything as text. <code>read_csv()</code> guesses column types but sometimes guesses wrong. A column of zip codes like “01234” gets read as the number 1234. Check your types with <code>glimpse()</code> after every file read.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="common-gotchas-summary" class="level2">
+<h2 class="anchored" data-anchor-id="common-gotchas-summary">Common Gotchas Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Problem</th>
+<th style="text-align: left;">Symptom</th>
+<th style="text-align: left;">Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Date parsed as character</td>
+<td style="text-align: left;">Dates sort wrong, arithmetic fails</td>
+<td style="text-align: left;"><code>ymd()</code>, <code>mdy()</code>, or <code>as.Date()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Excel serial date (45658)</td>
+<td style="text-align: left;">Numbers where dates should be</td>
+<td style="text-align: left;"><code>as.Date(x, origin = "1899-12-30")</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bars in wrong order</td>
+<td style="text-align: left;">Alphabetical instead of logical</td>
+<td style="text-align: left;"><code>fct_relevel()</code> or <code>fct_reorder()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>mean()</code> returns <code>NA</code></td>
+<td style="text-align: left;">One missing value in the vector</td>
+<td style="text-align: left;">Add <code>na.rm = TRUE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Zip codes lose leading zeros</td>
+<td style="text-align: left;">“01234” becomes 1234</td>
+<td style="text-align: left;">Read as character: <code>col_types = cols(zip = col_character())</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"TRUE"</code> vs <code>TRUE</code></td>
+<td style="text-align: left;">String comparison fails</td>
+<td style="text-align: left;"><code>as.logical()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Factor vs character</td>
+<td style="text-align: left;">Model treats variable differently</td>
+<td style="text-align: left;">Be intentional: <code>factor()</code> when categorical, <code>character</code> when just text</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-<section id="accuracy-vs.-interpretability" class="level2">
-<h2 class="anchored" data-anchor-id="accuracy-vs.-interpretability">Accuracy vs.&nbsp;Interpretability</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: left;">Interpretability</th>
-<th style="text-align: left;">Accuracy</th>
-<th style="text-align: left;">When to use</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Logistic regression</td>
-<td style="text-align: left;">High</td>
-<td style="text-align: left;">Moderate</td>
-<td style="text-align: left;">Need to explain effects</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Decision tree</td>
-<td style="text-align: left;">Very high</td>
-<td style="text-align: left;">Moderate</td>
-<td style="text-align: left;">Need visual explanation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Random forest</td>
-<td style="text-align: left;">Low</td>
-<td style="text-align: left;">High</td>
-<td style="text-align: left;">Prediction is the priority</td>
-</tr>
-</tbody>
-</table>
-<p>For this course, we emphasize interpretable models. You should be able to explain your model to a non-technical audience.</p>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Your Turn">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Create a vector of 5 dates in different formats and parse them all with <code>lubridate</code></li>
+<li>Use <code>stringr</code> to extract all numbers from the string <code>"Room 214, Building 753, West Point NY 10996"</code></li>
+<li>Take the <code>starwars</code> dataset: fix the species column so rare species are lumped, reorder by frequency, and make a bar chart</li>
+<li>Explore <code>airquality</code>: how many NAs per column? Replace Ozone NAs with the monthly median. Did it change the overall mean?</li>
+</ol>
+</div>
+</div>
 <hr>
 </section>
 <section id="before-you-leave" class="level2">
@@ -396,18 +691,19 @@ Actual Auto    TN       FP
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>You can fit and evaluate classification models</li>
-<li>You understand the confusion matrix and its metrics</li>
-<li>You’ve used <code>tidymodels</code> for a structured workflow</li>
+<li>You can parse dates, extract date components, and do date arithmetic</li>
+<li>You can detect, extract, and replace string patterns</li>
+<li>You can control factor ordering for clean plots</li>
+<li>You understand how <code>NA</code> propagates and how to handle it</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-10.html">Week 10: Guided Example – Text as Data</a></p>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-10.html">Lesson 10: Tidy Data – Pivots, Joins, Reshaping</a></p>
 <ul>
-<li>String manipulation with <code>stringr</code></li>
-<li>Text mining with <code>tidytext</code></li>
-<li>Sentiment analysis and TF-IDF</li>
+<li>What makes data “tidy” and why it matters</li>
+<li>Reshaping with <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
+<li>Combining datasets with joins</li>
 </ul>
 
 

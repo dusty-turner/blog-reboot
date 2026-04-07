@@ -151,24 +151,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-12-guided-example-time-series-forecasting" id="toc-week-12-guided-example-time-series-forecasting" class="nav-link active" data-scroll-target="#week-12-guided-example-time-series-forecasting">Week 12: Guided Example – Time Series &amp; Forecasting</a>
+  <li><a href="#lesson-12-exploratory-data-analysis-a-systematic-workflow" id="toc-lesson-12-exploratory-data-analysis-a-systematic-workflow" class="nav-link active" data-scroll-target="#lesson-12-exploratory-data-analysis-a-systematic-workflow">Lesson 12: Exploratory Data Analysis – A Systematic Workflow</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#time-series-structure" id="toc-time-series-structure" class="nav-link" data-scroll-target="#time-series-structure">Time Series Structure</a></li>
-  <li><a href="#tsibble-tidy-time-series" id="toc-tsibble-tidy-time-series" class="nav-link" data-scroll-target="#tsibble-tidy-time-series"><code>tsibble</code>: Tidy Time Series</a></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a></li>
-  <li><a href="#forecasting-with-fable" id="toc-forecasting-with-fable" class="nav-link" data-scroll-target="#forecasting-with-fable">Forecasting with <code>fable</code></a></li>
-  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#the-eda-workflow" id="toc-the-eda-workflow" class="nav-link" data-scroll-target="#the-eda-workflow">The EDA Workflow</a></li>
+  <li><a href="#step-1-first-contact-with-a-dataset" id="toc-step-1-first-contact-with-a-dataset" class="nav-link" data-scroll-target="#step-1-first-contact-with-a-dataset">Step 1: First Contact with a Dataset</a></li>
+  <li><a href="#step-2-summary-statistics" id="toc-step-2-summary-statistics" class="nav-link" data-scroll-target="#step-2-summary-statistics">Step 2: Summary Statistics</a>
   <ul class="collapse">
-  <li><a href="#common-metrics" id="toc-common-metrics" class="nav-link" data-scroll-target="#common-metrics">Common Metrics</a></li>
+  <li><a href="#overall-summaries" id="toc-overall-summaries" class="nav-link" data-scroll-target="#overall-summaries">Overall Summaries</a></li>
+  <li><a href="#by-group-summaries" id="toc-by-group-summaries" class="nav-link" data-scroll-target="#by-group-summaries">By-Group Summaries</a></li>
+  <li><a href="#summarize-across-multiple-columns" id="toc-summarize-across-multiple-columns" class="nav-link" data-scroll-target="#summarize-across-multiple-columns">Summarize Across Multiple Columns</a></li>
   </ul></li>
-  <li><a href="#arima-basics" id="toc-arima-basics" class="nav-link" data-scroll-target="#arima-basics">ARIMA Basics</a></li>
+  <li><a href="#step-3-distributions" id="toc-step-3-distributions" class="nav-link" data-scroll-target="#step-3-distributions">Step 3: Distributions</a>
+  <ul class="collapse">
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots">Density Plots</a></li>
+  <li><a href="#boxplots-for-comparison" id="toc-boxplots-for-comparison" class="nav-link" data-scroll-target="#boxplots-for-comparison">Boxplots for Comparison</a></li>
+  </ul></li>
+  <li><a href="#step-4-correlations" id="toc-step-4-correlations" class="nav-link" data-scroll-target="#step-4-correlations">Step 4: Correlations</a>
+  <ul class="collapse">
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">Correlation Matrix</a></li>
+  <li><a href="#scatterplot-matrix" id="toc-scatterplot-matrix" class="nav-link" data-scroll-target="#scatterplot-matrix">Scatterplot Matrix</a></li>
+  <li><a href="#ggally-for-richer-pair-plots" id="toc-ggally-for-richer-pair-plots" class="nav-link" data-scroll-target="#ggally-for-richer-pair-plots">GGally for Richer Pair Plots</a></li>
+  </ul></li>
+  <li><a href="#step-5-missing-data" id="toc-step-5-missing-data" class="nav-link" data-scroll-target="#step-5-missing-data">Step 5: Missing Data</a>
+  <ul class="collapse">
+  <li><a href="#how-much-is-missing" id="toc-how-much-is-missing" class="nav-link" data-scroll-target="#how-much-is-missing">How Much is Missing?</a></li>
+  <li><a href="#visualize-missingness" id="toc-visualize-missingness" class="nav-link" data-scroll-target="#visualize-missingness">Visualize Missingness</a></li>
+  <li><a href="#strategies-for-missing-data" id="toc-strategies-for-missing-data" class="nav-link" data-scroll-target="#strategies-for-missing-data">Strategies for Missing Data</a></li>
+  </ul></li>
+  <li><a href="#using-ai-for-eda-acceleration" id="toc-using-ai-for-eda-acceleration" class="nav-link" data-scroll-target="#using-ai-for-eda-acceleration">Using AI for EDA Acceleration</a></li>
+  <li><a href="#full-eda-example" id="toc-full-eda-example" class="nav-link" data-scroll-target="#full-eda-example">Full EDA Example</a></li>
+  <li><a href="#the-eda-report-skeleton" id="toc-the-eda-report-skeleton" class="nav-link" data-scroll-target="#the-eda-report-skeleton">The EDA Report Skeleton</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -180,11 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="week-12-guided-example-time-series-forecasting" class="level1">
-<h1>Week 12: Guided Example – Time Series &amp; Forecasting</h1>
+<section id="lesson-12-exploratory-data-analysis-a-systematic-workflow" class="level1">
+<h1>Lesson 12: Exploratory Data Analysis – A Systematic Workflow</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Data that arrives over time has special structure: trends, seasonality, and autocorrelation. This week you’ll learn to decompose, visualize, and forecast time series data using modern R tools.</p>
+<p>Exploratory Data Analysis (EDA) is where everything from the last five lessons comes together. You have dplyr for wrangling, ggplot2 for visualization, lubridate/stringr/forcats for data types, tidyr for reshaping, and AI as a collaborator. Now you put them all to work on the same dataset in a disciplined, iterative process.</p>
+<p>EDA is not a checklist to complete – it is a cycle. You ask a question, wrangle the data to answer it, visualize the result, and that visualization raises a new question. The best analysts run this loop fast and often. By the end of this lesson, you should have a repeatable workflow you can apply to any dataset you encounter for the rest of the course and beyond.</p>
 <hr>
 </section>
 <section id="objectives" class="level2">
@@ -200,180 +222,431 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Understand time series structure (trend, seasonality, residual)</li>
-<li>Create and work with <code>tsibble</code> objects</li>
-<li>Decompose a time series into its components</li>
-<li>Fit and evaluate forecasting models with <code>fable</code></li>
-<li>Understand ARIMA basics</li>
-<li>Visualize and forecast a real time series</li>
+<li>Follow the EDA workflow: question, wrangle, visualize, summarize, communicate</li>
+<li>Compute and interpret summary statistics (mean, median, sd, IQR, quantiles)</li>
+<li>Produce by-group summaries with <code>group_by()</code> + <code>summarize()</code> + <code>across()</code></li>
+<li>Visualize distributions, correlations, and relationships</li>
+<li>Assess and handle missing data systematically</li>
+<li>Use AI to accelerate (but not replace) exploration</li>
+<li>Run a complete EDA on a dataset from scratch</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="time-series-structure" class="level2">
-<h2 class="anchored" data-anchor-id="time-series-structure">Time Series Structure</h2>
-<p>A time series can be decomposed into:</p>
-<ul>
-<li><strong>Trend</strong>: Long-term increase or decrease</li>
-<li><strong>Seasonality</strong>: Regular periodic patterns (weekly, monthly, yearly)</li>
-<li><strong>Residual</strong>: What’s left after removing trend and seasonality</li>
-</ul>
-<hr>
-</section>
-<section id="tsibble-tidy-time-series" class="level2">
-<h2 class="anchored" data-anchor-id="tsibble-tidy-time-series"><code>tsibble</code>: Tidy Time Series</h2>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Australian tourism data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(tourism, <span class="at">package =</span> <span class="st">"tsibble"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tourism)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Or convert your own data</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>my_ts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>, <span class="at">length.out =</span> <span class="dv">36</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="dv">36</span>, <span class="at">mean =</span> <span class="dv">2</span>))</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<section id="the-eda-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-eda-workflow">The EDA Workflow</h2>
+<pre><code>1. QUESTION  →  2. WRANGLE  →  3. VISUALIZE  →  4. SUMMARIZE  →  5. COMMUNICATE
+      ↑                                                                    |
+      └────────────────────── new questions ←──────────────────────────────┘</code></pre>
+<ol type="1">
+<li><strong>Question</strong>: What are you trying to learn? Start broad, get specific.</li>
+<li><strong>Wrangle</strong>: Get the data into shape for the question at hand.</li>
+<li><strong>Visualize</strong>: Plot it. Look for patterns, outliers, surprises.</li>
+<li><strong>Summarize</strong>: Compute numbers that quantify what you see.</li>
+<li><strong>Communicate</strong>: Write down what you found. This often raises the next question.</li>
+</ol>
+<p>This loop runs many times per analysis. Each pass sharpens your understanding.</p>
+<hr>
+</section>
+<section id="step-1-first-contact-with-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-first-contact-with-a-dataset">Step 1: First Contact with a Dataset</h2>
+<p>Before you ask any specific questions, get oriented.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time plot</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Melbourne"</span>, Purpose <span class="sc">==</span> <span class="st">"Holiday"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Trips) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Melbourne Holiday Tourism"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Trips (thousands)"</span>) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Season plot</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">|&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Melbourne"</span>, Purpose <span class="sc">==</span> <span class="st">"Holiday"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(Trips) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Seasonal Pattern"</span>) <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Subseries plot</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">|&gt;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Melbourne"</span>, Purpose <span class="sc">==</span> <span class="st">"Holiday"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_subseries</span>(Trips) <span class="sc">+</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How big is it?</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mtcars)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the variables?</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick summary of every column</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># First few rows</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="The 30-second scan">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The 30-second scan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every time you open a new dataset, run <code>dim()</code>, <code>glimpse()</code>, and <code>summary()</code> before anything else. This takes 30 seconds and prevents 30 minutes of confusion later.</p>
+</div>
 </div>
 <hr>
 </section>
-<section id="decomposition" class="level2">
-<h2 class="anchored" data-anchor-id="decomposition">Decomposition</h2>
+<section id="step-2-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-summary-statistics">Step 2: Summary Statistics</h2>
+<section id="overall-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="overall-summaries">Overall Summaries</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Melbourne"</span>, Purpose <span class="sc">==</span> <span class="st">"Holiday"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(Trips <span class="sc">~</span> <span class="fu">season</span>(<span class="at">window =</span> <span class="st">"periodic"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Decomposition: Melbourne Holiday Tourism"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_mpg =</span> <span class="fu">median</span>(mpg),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mpg =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr_mpg =</span> <span class="fu">IQR</span>(mpg),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_mpg =</span> <span class="fu">min</span>(mpg),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_mpg =</span> <span class="fu">max</span>(mpg),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">q25 =</span> <span class="fu">quantile</span>(mpg, <span class="fl">0.25</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">q75 =</span> <span class="fu">quantile</span>(mpg, <span class="fl">0.75</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="by-group-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="by-group-summaries">By-Group Summaries</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary by cylinder count</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mpg =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hp =</span> <span class="fu">mean</span>(hp),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="summarize-across-multiple-columns" class="level3">
+<h3 class="anchored" data-anchor-id="summarize-across-multiple-columns">Summarize Across Multiple Columns</h3>
+<p><code>across()</code> lets you apply the same summary to many columns at once.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and SD of all numeric columns, by group</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(mpg, hp, wt, disp),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to all numeric columns</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="forecasting-with-fable" class="level2">
-<h2 class="anchored" data-anchor-id="forecasting-with-fable">Forecasting with <code>fable</code></h2>
+</section>
+<section id="step-3-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-distributions">Step 3: Distributions</h2>
+<p>Understanding how each variable is distributed is the foundation of EDA.</p>
+<section id="histograms" class="level3">
+<h3 class="anchored" data-anchor-id="histograms">Histograms</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>melb_holiday <span class="ot">&lt;-</span> tourism <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Melbourne"</span>, Purpose <span class="sc">==</span> <span class="st">"Holiday"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit multiple models</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> melb_holiday <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(Trips),</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(Trips),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">naive =</span> <span class="fu">NAIVE</span>(Trips),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">snaive =</span> <span class="fu">SNAIVE</span>(Trips)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Forecast 2 years ahead</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"2 years"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot forecasts</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(melb_holiday, <span class="at">level =</span> <span class="dv">80</span>) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tourism Forecasts: Melbourne Holiday"</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Trips (thousands)"</span>) <span class="sc">+</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>.model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of MPG"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="density-plots" class="level3">
+<h3 class="anchored" data-anchor-id="density-plots">Density Plots</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MPG Distribution by Cylinder Count"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="boxplots-for-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="boxplots-for-comparison">Boxplots for Comparison</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span>   <span class="co"># show the actual points</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cylinders"</span>, <span class="at">y =</span> <span class="st">"MPG"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"MPG by Cylinder Count"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Always add points to boxplots">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Always add points to boxplots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A boxplot of 5 data points looks the same as a boxplot of 500. Adding <code>geom_jitter()</code> shows you how much data is behind each box.</p>
+</div>
 </div>
 <hr>
 </section>
-<section id="model-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
+</section>
+<section id="step-4-correlations" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-correlations">Step 4: Correlations</h2>
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">Correlation Matrix</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Accuracy on training data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fit)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-validation for more robust evaluation</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>melb_holiday <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">12</span>, <span class="at">.step =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(Trips),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(Trips)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(melb_holiday)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pairwise correlations</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, wt, hp, disp, drat) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="common-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="common-metrics">Common Metrics</h3>
+</section>
+<section id="scatterplot-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-matrix">Scatterplot Matrix</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base R pairs plot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, wt, hp, disp) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairs</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ggally-for-richer-pair-plots" class="level3">
+<h3 class="anchored" data-anchor-id="ggally-for-richer-pair-plots">GGally for Richer Pair Plots</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, wt, hp, cyl) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">factor</span>(cyl)) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">color =</span> cyl), <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">"cor"</span>)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Correlation is not causation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Correlation is not causation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A strong correlation between two variables does not mean one causes the other. It might. It might not. Weight and MPG are correlated, but adding weight to a car does not directly reduce its MPG – engine size, aerodynamics, and drivetrain are confounders.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-5-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-missing-data">Step 5: Missing Data</h2>
+<section id="how-much-is-missing" class="level3">
+<h3 class="anchored" data-anchor-id="how-much-is-missing">How Much is Missing?</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count NAs per column</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(airquality))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># As a proportion</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">is.na</span>(airquality)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualize-missingness" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-missingness">Visualize Missingness</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart of missing counts per variable</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_var</span>(airquality) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missing Values by Variable"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap of missingness patterns</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(airquality) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missingness Pattern"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="strategies-for-missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="strategies-for-missing-data">Strategies for Missing Data</h3>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">What it measures</th>
+<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">When to use</th>
+<th style="text-align: left;">Code</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">MAE</td>
-<td style="text-align: left;">Average absolute error</td>
+<td style="text-align: left;">Drop rows</td>
+<td style="text-align: left;">Few NAs, large dataset</td>
+<td style="text-align: left;"><code>drop_na()</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">RMSE</td>
-<td style="text-align: left;">Root mean squared error (penalizes large errors)</td>
+<td style="text-align: left;">Drop specific columns</td>
+<td style="text-align: left;">Column is mostly NA</td>
+<td style="text-align: left;"><code>select(-col)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">MAPE</td>
-<td style="text-align: left;">Mean absolute percentage error</td>
+<td style="text-align: left;">Replace with median/mean</td>
+<td style="text-align: left;">MCAR, want to preserve sample size</td>
+<td style="text-align: left;"><code>replace_na()</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">MASE</td>
-<td style="text-align: left;">Mean absolute scaled error (compared to naive forecast)</td>
+<td style="text-align: left;">Flag it</td>
+<td style="text-align: left;">Missingness itself might be informative</td>
+<td style="text-align: left;"><code>mutate(was_missing = is.na(x))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Investigate first</td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Ask <em>why</em> it is missing</td>
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace Ozone NAs with the monthly median</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Month) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ozone =</span> <span class="fu">replace_na</span>(Ozone, <span class="fu">median</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Dropping data has consequences">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Dropping data has consequences
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you start with 153 rows and <code>drop_na()</code> leaves you with 111, you just lost 27% of your data. That might be fine, or it might introduce bias if the missing values are not random. Always report how much data you dropped and why.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
-<section id="arima-basics" class="level2">
-<h2 class="anchored" data-anchor-id="arima-basics">ARIMA Basics</h2>
-<p>ARIMA (AutoRegressive Integrated Moving Average) has three components:</p>
+<section id="using-ai-for-eda-acceleration" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-for-eda-acceleration">Using AI for EDA Acceleration</h2>
+<p>AI is particularly useful during EDA because exploration is open-ended and repetitive. Good prompts:</p>
 <ul>
-<li><strong>AR(p)</strong>: The value depends on its own past values</li>
-<li><strong>I(d)</strong>: Differencing to make the series stationary</li>
-<li><strong>MA(q)</strong>: The value depends on past forecast errors</li>
+<li>“I have a dataset with these columns: [paste <code>glimpse()</code> output]. Write an EDA starter script that checks distributions, correlations, and missing data.”</li>
+<li>“Suggest three interesting questions I could explore with this data.”</li>
+<li>“Write code to check for outliers in the <code>income</code> column using the IQR method.”</li>
+<li>“Create a faceted plot comparing the distribution of <code>score</code> across <code>region</code> and <code>year</code>.”</li>
 </ul>
+<p>Then apply the verification workflow from Lesson 11: read the code, run it, test it, own it.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI + EDA = fast iteration">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI + EDA = fast iteration
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The EDA loop (question, wrangle, visualize, summarize) runs faster when AI writes the boilerplate and you focus on interpreting the results. Ask the question, let AI write the code, verify the output, form the next question.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="full-eda-example" class="level2">
+<h2 class="anchored" data-anchor-id="full-eda-example">Full EDA Example</h2>
+<p>Here is a compressed example of a full EDA on <code>mtcars</code>. In practice, each step would be more detailed.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Auto ARIMA -- let R choose the best p, d, q</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arima_fit <span class="ot">&lt;-</span> melb_holiday <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Trips))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(arima_fit)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual diagnostics</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>arima_fit <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. QUESTION: How do car characteristics relate to fuel efficiency?</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. WRANGLE: Prepare the data</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">car =</span> <span class="fu">rownames</span>(mtcars),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cyl =</span> <span class="fu">factor</span>(cyl),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">am =</span> <span class="fu">factor</span>(am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>)),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">vs =</span> <span class="fu">factor</span>(vs, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"V-shaped"</span>, <span class="st">"Straight"</span>))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. VISUALIZE: Key relationships</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># MPG by weight, colored by cylinders</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heavier cars get worse mileage"</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>, <span class="at">y =</span> <span class="st">"MPG"</span>, <span class="at">color =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># MPG by transmission type</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> am, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Manual transmissions tend to get better mileage"</span>,</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. SUMMARIZE: Key numbers</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">|&gt;</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mpg =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_wt =</span> <span class="fu">mean</span>(wt),</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cyl, am)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. COMMUNICATE: Manual 4-cylinder cars average ~28 MPG.</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#    Automatic 8-cylinder cars average ~15 MPG.</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#    Weight is the strongest single predictor (r = -0.87).</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#    But: confounded -- lighter cars tend to have fewer cylinders</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#    and manual transmissions. Need modeling to disentangle.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="the-eda-report-skeleton" class="level2">
+<h2 class="anchored" data-anchor-id="the-eda-report-skeleton">The EDA Report Skeleton</h2>
+<p>When you write up an EDA (in Quarto), follow this structure:</p>
+<ol type="1">
+<li><strong>Data description</strong>: Where did it come from? How many rows/columns? What are the variables?</li>
+<li><strong>Missing data</strong>: How much? Which variables? What did you do about it?</li>
+<li><strong>Univariate summaries</strong>: Distribution of each key variable</li>
+<li><strong>Bivariate relationships</strong>: Correlations, scatterplots, grouped comparisons</li>
+<li><strong>Key findings</strong>: 3-5 bullet points of what you learned</li>
+<li><strong>Next steps</strong>: What questions remain? What analysis should come next?</li>
+</ol>
+<hr>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Your Turn">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pick one of these built-in datasets and run a full EDA:</p>
+<ul>
+<li><code>diamonds</code> – 54,000 diamonds with price, carat, cut, color, clarity</li>
+<li><code>storms</code> – Atlantic hurricane data with wind speed, pressure, category</li>
+<li><code>starwars</code> – Character data with height, mass, species, homeworld</li>
+<li><code>nycflights13::flights</code> – 336,000 flights from NYC in 2013 (install <code>nycflights13</code>)</li>
+</ul>
+<p>Your EDA should include:</p>
+<ol type="1">
+<li><code>dim()</code>, <code>glimpse()</code>, <code>summary()</code></li>
+<li>Missing data assessment</li>
+<li>At least 3 visualizations (different chart types)</li>
+<li>At least one grouped summary</li>
+<li>A correlation check for numeric variables</li>
+<li>3-5 written findings</li>
+</ol>
+<p>Use AI to generate starter code if you want – but verify everything and write the findings yourself.</p>
+</div>
 </div>
 <hr>
 </section>
@@ -382,18 +655,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>You can decompose and visualize time series</li>
-<li>You can fit and compare forecasting models</li>
-<li>You understand ARIMA at a conceptual level</li>
+<li>You have a systematic, repeatable EDA workflow</li>
+<li>You can compute summary statistics overall and by group</li>
+<li>You can visualize distributions, relationships, and missing data patterns</li>
+<li>You can use AI to accelerate exploration while maintaining understanding</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-13.html">Week 13: Capstone Work Session 1</a></p>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-13.html">Lesson 13: Getting Data – Files, APIs, Scraping, Databases</a></p>
 <ul>
-<li>Start your individual project</li>
-<li>Focus on data acquisition and initial EDA</li>
-<li>Instructor check-ins begin</li>
+<li>Reading CSV, Excel, and JSON files</li>
+<li>Querying REST APIs</li>
+<li>Light web scraping</li>
+<li>Connecting to databases</li>
 </ul>
 
 

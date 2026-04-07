@@ -151,27 +151,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-8-guided-example-regression" id="toc-week-8-guided-example-regression" class="nav-link active" data-scroll-target="#week-8-guided-example-regression">Week 8: Guided Example – Regression</a>
+  <li><a href="#lesson-8-ggplot2-grammar-of-graphics" id="toc-lesson-8-ggplot2-grammar-of-graphics" class="nav-link active" data-scroll-target="#lesson-8-ggplot2-grammar-of-graphics">Lesson 8: ggplot2 – Grammar of Graphics</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#the-question" id="toc-the-question" class="nav-link" data-scroll-target="#the-question">The Question</a></li>
-  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression">Simple Linear Regression</a>
+  <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics">The Grammar of Graphics</a></li>
+  <li><a href="#common-geoms" id="toc-common-geoms" class="nav-link" data-scroll-target="#common-geoms">Common Geoms</a>
   <ul class="collapse">
-  <li><a href="#visualize-the-fit" id="toc-visualize-the-fit" class="nav-link" data-scroll-target="#visualize-the-fit">Visualize the Fit</a></li>
-  <li><a href="#interpreting-coefficients" id="toc-interpreting-coefficients" class="nav-link" data-scroll-target="#interpreting-coefficients">Interpreting Coefficients</a></li>
+  <li><a href="#scatterplot-geom_point" id="toc-scatterplot-geom_point" class="nav-link" data-scroll-target="#scatterplot-geom_point">Scatterplot: <code>geom_point()</code></a></li>
+  <li><a href="#histogram-geom_histogram" id="toc-histogram-geom_histogram" class="nav-link" data-scroll-target="#histogram-geom_histogram">Histogram: <code>geom_histogram()</code></a></li>
+  <li><a href="#boxplot-geom_boxplot" id="toc-boxplot-geom_boxplot" class="nav-link" data-scroll-target="#boxplot-geom_boxplot">Boxplot: <code>geom_boxplot()</code></a></li>
+  <li><a href="#bar-chart-geom_bar-and-geom_col" id="toc-bar-chart-geom_bar-and-geom_col" class="nav-link" data-scroll-target="#bar-chart-geom_bar-and-geom_col">Bar Chart: <code>geom_bar()</code> and <code>geom_col()</code></a></li>
+  <li><a href="#line-chart-geom_line" id="toc-line-chart-geom_line" class="nav-link" data-scroll-target="#line-chart-geom_line">Line Chart: <code>geom_line()</code></a></li>
+  <li><a href="#density-plot-geom_density" id="toc-density-plot-geom_density" class="nav-link" data-scroll-target="#density-plot-geom_density">Density Plot: <code>geom_density()</code></a></li>
   </ul></li>
-  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression">Multiple Linear Regression</a></li>
-  <li><a href="#residual-diagnostics" id="toc-residual-diagnostics" class="nav-link" data-scroll-target="#residual-diagnostics">Residual Diagnostics</a>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings">Aesthetic Mappings</a>
   <ul class="collapse">
-  <li><a href="#what-to-look-for" id="toc-what-to-look-for" class="nav-link" data-scroll-target="#what-to-look-for">What to Look For</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick Reference</a></li>
   </ul></li>
-  <li><a href="#prediction-vs.-inference" id="toc-prediction-vs.-inference" class="nav-link" data-scroll-target="#prediction-vs.-inference">Prediction vs.&nbsp;Inference</a></li>
-  <li><a href="#the-full-workflow" id="toc-the-full-workflow" class="nav-link" data-scroll-target="#the-full-workflow">The Full Workflow</a></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
+  <li><a href="#saving-plots-with-ggsave" id="toc-saving-plots-with-ggsave" class="nav-link" data-scroll-target="#saving-plots-with-ggsave">Saving Plots with <code>ggsave()</code></a></li>
+  <li><a href="#which-chart-should-i-use" id="toc-which-chart-should-i-use" class="nav-link" data-scroll-target="#which-chart-should-i-use">Which Chart Should I Use?</a></li>
+  <li><a href="#putting-it-together" id="toc-putting-it-together" class="nav-link" data-scroll-target="#putting-it-together">Putting It Together</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -183,11 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="week-8-guided-example-regression" class="level1">
-<h1>Week 8: Guided Example – Regression</h1>
+<section id="lesson-8-ggplot2-grammar-of-graphics" class="level1">
+<h1>Lesson 8: ggplot2 – Grammar of Graphics</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This is the first of five guided examples. Each one walks through a complete analysis from question to communication. Today: linear regression – the workhorse of statistical modeling.</p>
+<p>A good chart is worth a thousand <code>print()</code> statements. <code>ggplot2</code> is the most widely used visualization package in R, and it works by layering components: you start with data, map variables to aesthetics, and add geometric objects. Once you internalize this grammar, you can build almost any chart you can imagine.</p>
+<p>This lesson covers the core geoms, aesthetic mappings, faceting, themes, and labels. By the end, you should be able to look at a dataset and know which chart to reach for – and how to build it.</p>
 <hr>
 </section>
 <section id="objectives" class="level2">
@@ -203,98 +212,298 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Fit simple and multiple linear regression models in R</li>
-<li>Interpret coefficients in context</li>
-<li>Perform residual diagnostics</li>
-<li>Distinguish prediction from inference</li>
-<li>Use <code>broom</code> for tidy model output</li>
-<li>Complete a guided analysis start to finish</li>
+<li>Explain the grammar of graphics: data + aesthetics + geoms</li>
+<li>Build plots with <code>ggplot()</code> + <code>aes()</code> + geom layers</li>
+<li>Use common geoms: point, histogram, boxplot, bar, line, col</li>
+<li>Map variables to color, fill, size, and shape</li>
+<li>Split plots with <code>facet_wrap()</code> and <code>facet_grid()</code></li>
+<li>Apply themes and customize labels</li>
+<li>Save plots with <code>ggsave()</code></li>
+<li>Choose the right chart type for a given question</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="the-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-question">The Question</h2>
-<blockquote class="blockquote">
-<p><strong>How does a car’s weight and engine size relate to its fuel efficiency?</strong></p>
-</blockquote>
-<p>We’ll use <code>mtcars</code> as our working example, then you’ll apply the same workflow to your own data.</p>
-<hr>
-</section>
-<section id="simple-linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="simple-linear-regression">Simple Linear Regression</h2>
+<section id="the-grammar-of-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="the-grammar-of-graphics">The Grammar of Graphics</h2>
+<p>Every ggplot has three required components:</p>
+<ol type="1">
+<li><strong>Data</strong> – the data frame</li>
+<li><strong>Aesthetics</strong> (<code>aes()</code>) – which variables map to which visual properties (x, y, color, size, shape)</li>
+<li><strong>Geoms</strong> – the geometric objects that represent the data (points, bars, lines, etc.)</li>
+</ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a simple linear model</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy output with broom</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_simple)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_simple)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The minimal ggplot</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="visualize-the-fit" class="level3">
-<h3 class="anchored" data-anchor-id="visualize-the-fit">Visualize the Fit</h3>
+<p>Read it as: “Take <code>mtcars</code>, put <code>wt</code> on x and <code>mpg</code> on y, draw points.”</p>
+<p>Everything else – colors, facets, themes, labels – is layered on top.</p>
+<hr>
+</section>
+<section id="common-geoms" class="level2">
+<h2 class="anchored" data-anchor-id="common-geoms">Common Geoms</h2>
+<section id="scatterplot-geom_point" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-geom_point">Scatterplot: <code>geom_point()</code></h3>
+<p>Best for: relationship between two continuous variables.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MPG vs. Weight"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a trend line</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="interpreting-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="interpreting-coefficients">Interpreting Coefficients</h3>
+<section id="histogram-geom_histogram" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-geom_histogram">Histogram: <code>geom_histogram()</code></h3>
+<p>Best for: distribution of a single continuous variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_simple)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Intercept: predicted MPG when weight = 0 (extrapolation -- not meaningful)</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wt slope: for each additional 1000 lbs, MPG decreases by ~5.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr>
-</section>
-</section>
-<section id="multiple-linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-linear-regression">Multiple Linear Regression</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add more predictors</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> cyl, <span class="at">data =</span> mtcars)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_multi)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_multi)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare models</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_simple)<span class="sc">$</span>r.squared</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_multi)<span class="sc">$</span>r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Bins matter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<hr>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Bins matter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Too few bins hide structure. Too many bins create noise. Start with the default, then adjust. Try <code>binwidth</code> as an alternative to <code>bins</code>.</p>
+</div>
+</div>
 </section>
-<section id="residual-diagnostics" class="level2">
-<h2 class="anchored" data-anchor-id="residual-diagnostics">Residual Diagnostics</h2>
-<p>A model is only useful if its assumptions hold. Check the residuals.</p>
+<section id="boxplot-geom_boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-geom_boxplot">Boxplot: <code>geom_boxplot()</code></h3>
+<p>Best for: comparing distributions across groups.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base R diagnostic plots</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_multi)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cylinders"</span>, <span class="at">y =</span> <span class="st">"MPG"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="bar-chart-geom_bar-and-geom_col" class="level3">
+<h3 class="anchored" data-anchor-id="bar-chart-geom_bar-and-geom_col">Bar Chart: <code>geom_bar()</code> and <code>geom_col()</code></h3>
+<p><code>geom_bar()</code> counts rows for you. <code>geom_col()</code> uses a y variable you provide.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_bar: counts automatically</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use augment from broom</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>model_multi <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs Fitted"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Fitted Values"</span>, <span class="at">y =</span> <span class="st">"Residuals"</span>) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_col: you supply the heights</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg)) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> avg_mpg)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="what-to-look-for" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-look-for">What to Look For</h3>
+</section>
+<section id="line-chart-geom_line" class="level3">
+<h3 class="anchored" data-anchor-id="line-chart-geom_line">Line Chart: <code>geom_line()</code></h3>
+<p>Best for: trends over time or ordered sequences.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Unemployment Over Time"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Unemployed (thousands)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="density-plot-geom_density" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot-geom_density">Density Plot: <code>geom_density()</code></h3>
+<p>Best for: smoothed distributions, especially when comparing groups.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Cylinders"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="aesthetic-mappings" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetic-mappings">Aesthetic Mappings</h2>
+<p>Aesthetics map data values to visual properties. Put them inside <code>aes()</code> when driven by data; put them outside <code>aes()</code> when setting a fixed value.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color mapped to a variable (inside aes)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Color set to a fixed value (outside aes)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple aesthetics</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl), <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="quick-reference" class="level3">
+<h3 class="anchored" data-anchor-id="quick-reference">Quick Reference</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Aesthetic</th>
+<th style="text-align: left;">Geom types</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>color</code></td>
+<td style="text-align: left;">Points, lines</td>
+<td style="text-align: left;">Outline or line color</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fill</code></td>
+<td style="text-align: left;">Bars, boxes, areas</td>
+<td style="text-align: left;">Interior color</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>size</code></td>
+<td style="text-align: left;">Points</td>
+<td style="text-align: left;">Point diameter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>shape</code></td>
+<td style="text-align: left;">Points</td>
+<td style="text-align: left;">Point symbol (max 6 distinct shapes)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>alpha</code></td>
+<td style="text-align: left;">All</td>
+<td style="text-align: left;">Transparency (0 = invisible, 1 = opaque)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>linetype</code></td>
+<td style="text-align: left;">Lines</td>
+<td style="text-align: left;">Solid, dashed, dotted</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled" title="color vs. fill">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>color vs.&nbsp;fill
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>color</code> controls outlines and lines. <code>fill</code> controls interiors. A bar chart needs <code>fill</code>; a scatterplot needs <code>color</code>. Mixing them up is one of the most common ggplot mistakes.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="faceting" class="level2">
+<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
+<p>Split one plot into multiple panels by a categorical variable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_wrap: panels in a ribbon</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_grid: rows and columns</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gear <span class="sc">~</span> cyl) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Free scales when ranges differ</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="When to facet">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>When to facet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Faceting is better than cramming multiple colors into one plot when you have 4+ groups or when the groups overlap heavily. Let each group breathe in its own panel.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="themes" class="level2">
+<h2 class="anchored" data-anchor-id="themes">Themes</h2>
+<p>Themes control the non-data appearance: background, gridlines, fonts.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Built-in themes</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>()        <span class="co"># clean, light</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>()             <span class="co"># black-and-white borders</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_classic</span>()        <span class="co"># no gridlines</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_void</span>()           <span class="co"># nothing but data</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize elements</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="labels" class="level2">
+<h2 class="anchored" data-anchor-id="labels">Labels</h2>
+<p>Always label your plots. Unlabeled axes are the hallmark of unfinished work.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel Efficiency vs. Weight"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Heavier cars get worse mileage"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: mtcars dataset"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="saving-plots-with-ggsave" class="level2">
+<h2 class="anchored" data-anchor-id="saving-plots-with-ggsave">Saving Plots with <code>ggsave()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the last plot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"my_plot.png"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a specific plot object</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"my_plot.pdf"</span>, <span class="at">plot =</span> my_plot, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="File formats">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>File formats
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>.png</code> for presentations and web. Use <code>.pdf</code> for print and Quarto reports. Use <code>.svg</code> if you need to edit the graphic later.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="which-chart-should-i-use" class="level2">
+<h2 class="anchored" data-anchor-id="which-chart-should-i-use">Which Chart Should I Use?</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -303,72 +512,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Plot</th>
-<th style="text-align: left;">What it checks</th>
-<th style="text-align: left;">Red flag</th>
+<th style="text-align: left;">Question</th>
+<th style="text-align: left;">Chart type</th>
+<th style="text-align: left;">Geom</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Residuals vs Fitted</td>
-<td style="text-align: left;">Linearity, constant variance</td>
-<td style="text-align: left;">Patterns or fan shape</td>
+<td style="text-align: left;">How is one variable distributed?</td>
+<td style="text-align: left;">Histogram or density</td>
+<td style="text-align: left;"><code>geom_histogram</code>, <code>geom_density</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Normal Q-Q</td>
-<td style="text-align: left;">Normality of residuals</td>
-<td style="text-align: left;">Points off the line</td>
+<td style="text-align: left;">How do distributions compare across groups?</td>
+<td style="text-align: left;">Boxplot or violin</td>
+<td style="text-align: left;"><code>geom_boxplot</code>, <code>geom_violin</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Scale-Location</td>
-<td style="text-align: left;">Homoscedasticity</td>
-<td style="text-align: left;">Upward trend</td>
+<td style="text-align: left;">What’s the relationship between two continuous variables?</td>
+<td style="text-align: left;">Scatterplot</td>
+<td style="text-align: left;"><code>geom_point</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Residuals vs Leverage</td>
-<td style="text-align: left;">Influential points</td>
-<td style="text-align: left;">Points in Cook’s distance zone</td>
+<td style="text-align: left;">How does a quantity change over time?</td>
+<td style="text-align: left;">Line chart</td>
+<td style="text-align: left;"><code>geom_line</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">How do counts compare across categories?</td>
+<td style="text-align: left;">Bar chart</td>
+<td style="text-align: left;"><code>geom_bar</code>, <code>geom_col</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">How do two categorical variables relate?</td>
+<td style="text-align: left;">Heatmap or stacked bar</td>
+<td style="text-align: left;"><code>geom_tile</code>, <code>geom_bar(position = "fill")</code></td>
 </tr>
 </tbody>
 </table>
-<hr>
-</section>
-</section>
-<section id="prediction-vs.-inference" class="level2">
-<h2 class="anchored" data-anchor-id="prediction-vs.-inference">Prediction vs.&nbsp;Inference</h2>
-<ul>
-<li><strong>Inference</strong>: Which predictors matter? What’s the effect of weight on MPG? (Use p-values, confidence intervals)</li>
-<li><strong>Prediction</strong>: What MPG will a new car get? (Use <code>predict()</code>, prediction intervals)</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict for a new car</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>new_car <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">wt =</span> <span class="fl">3.0</span>, <span class="at">hp =</span> <span class="dv">150</span>, <span class="at">cyl =</span> <span class="dv">6</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model_multi, <span class="at">newdata =</span> new_car, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<hr>
-</section>
-<section id="the-full-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="the-full-workflow">The Full Workflow</h2>
-<ol type="1">
-<li><strong>Question</strong>: How do car attributes affect fuel efficiency?</li>
-<li><strong>Data</strong>: <code>mtcars</code> (built-in)</li>
-<li><strong>EDA</strong>: Scatterplots, correlations, distributions</li>
-<li><strong>Model</strong>: Simple → multiple regression</li>
-<li><strong>Diagnostics</strong>: Check residuals</li>
-<li><strong>Interpret</strong>: Coefficients in context</li>
-<li><strong>Communicate</strong>: Write it up in Quarto</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled" title="Your Turn">
+<div class="callout callout-style-default callout-warning callout-titled" title="Chart crimes">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Your Turn
+<span class="screen-reader-only">Warning</span>Chart crimes
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Apply this exact workflow to a dataset of your choosing. Use <code>broom</code> for tidy output and include diagnostic plots.</p>
+<p>Avoid 3D charts, pie charts (use bar charts instead), dual y-axes, and truncated axes that exaggerate differences. Keep it simple and honest.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="putting-it-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-together">Putting It Together</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A polished, publication-ready chart</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">factor</span>(cyl)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Weight vs. MPG by Cylinder Count"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)   <span class="co"># redundant with facet labels</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Your Turn">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Pick a built-in dataset (<code>diamonds</code>, <code>mpg</code>, <code>storms</code>, <code>starwars</code>)</li>
+<li>Make at least three different chart types</li>
+<li>Use color or fill to encode a third variable</li>
+<li>Facet at least one chart</li>
+<li>Apply <code>theme_minimal()</code> and proper labels to every chart</li>
+<li>Save your best chart with <code>ggsave()</code></li>
+</ol>
 </div>
 </div>
 <hr>
@@ -378,17 +615,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>You can fit, interpret, and diagnose linear regression models</li>
-<li>You’ve seen a complete analysis from start to finish</li>
+<li>You can build layered plots using the grammar of graphics</li>
+<li>You know the common geoms and when to use each one</li>
+<li>You can map aesthetics, facet, theme, and label your charts</li>
+<li>You can save publication-quality plots</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-9.html">Week 9: Guided Example – Classification</a></p>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-9.html">Lesson 9: Data Types Deep Dive – Dates, Strings, Factors, NAs</a></p>
 <ul>
-<li>Logistic regression and decision trees</li>
-<li>Train/test splits and confusion matrices</li>
-<li>Intro to <code>tidymodels</code></li>
+<li>Working with dates (lubridate), strings (stringr), and factors (forcats)</li>
+<li>Handling missing values</li>
+<li>The type gotchas that cause 80% of beginner frustration</li>
 </ul>
 
 

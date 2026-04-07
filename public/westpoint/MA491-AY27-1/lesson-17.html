@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -116,15 +151,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-17-capstone-presentations" id="toc-week-17-capstone-presentations" class="nav-link active" data-scroll-target="#week-17-capstone-presentations">Week 17: Capstone Presentations</a>
+  <li><a href="#lesson-17-shiny-interactive-apps" id="toc-lesson-17-shiny-interactive-apps" class="nav-link active" data-scroll-target="#lesson-17-shiny-interactive-apps">Lesson 17: Shiny — Interactive Apps</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#presentation-format" id="toc-presentation-format" class="nav-link" data-scroll-target="#presentation-format">Presentation Format</a></li>
-  <li><a href="#presentation-order" id="toc-presentation-order" class="nav-link" data-scroll-target="#presentation-order">Presentation Order</a></li>
-  <li><a href="#evaluation-criteria" id="toc-evaluation-criteria" class="nav-link" data-scroll-target="#evaluation-criteria">Evaluation Criteria</a></li>
-  <li><a href="#final-submissions" id="toc-final-submissions" class="nav-link" data-scroll-target="#final-submissions">Final Submissions</a></li>
-  <li><a href="#audience-expectations" id="toc-audience-expectations" class="nav-link" data-scroll-target="#audience-expectations">Audience Expectations</a></li>
-  <li><a href="#course-wrap-up" id="toc-course-wrap-up" class="nav-link" data-scroll-target="#course-wrap-up">Course Wrap-Up</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#what-is-shiny" id="toc-what-is-shiny" class="nav-link" data-scroll-target="#what-is-shiny">What is Shiny?</a></li>
+  <li><a href="#common-inputs" id="toc-common-inputs" class="nav-link" data-scroll-target="#common-inputs">Common Inputs</a></li>
+  <li><a href="#common-outputs" id="toc-common-outputs" class="nav-link" data-scroll-target="#common-outputs">Common Outputs</a></li>
+  <li><a href="#reactivity" id="toc-reactivity" class="nav-link" data-scroll-target="#reactivity">Reactivity</a>
+  <ul class="collapse">
+  <li><a href="#reactive-create-a-reactive-expression" id="toc-reactive-create-a-reactive-expression" class="nav-link" data-scroll-target="#reactive-create-a-reactive-expression">reactive() — Create a Reactive Expression</a></li>
+  <li><a href="#observe-and-observeevent" id="toc-observe-and-observeevent" class="nav-link" data-scroll-target="#observe-and-observeevent">observe() and observeEvent()</a></li>
+  </ul></li>
+  <li><a href="#modern-layouts-with-bslib" id="toc-modern-layouts-with-bslib" class="nav-link" data-scroll-target="#modern-layouts-with-bslib">Modern Layouts with bslib</a></li>
+  <li><a href="#deploying-to-shinyapps.io" id="toc-deploying-to-shinyapps.io" class="nav-link" data-scroll-target="#deploying-to-shinyapps.io">Deploying to shinyapps.io</a></li>
+  <li><a href="#hosting-on-your-raspberry-pi" id="toc-hosting-on-your-raspberry-pi" class="nav-link" data-scroll-target="#hosting-on-your-raspberry-pi">Hosting on Your Raspberry Pi</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -135,41 +182,125 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-17-capstone-presentations" class="level1">
-<h1>Week 17: Capstone Presentations</h1>
+<section id="lesson-17-shiny-interactive-apps" class="level1">
+<h1>Lesson 17: Shiny — Interactive Apps</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This is it. Each cadet presents their end-to-end data science project to the class. You’ll demonstrate everything you’ve built over the semester: from setting up a Raspberry Pi to delivering a complete analysis with a Shiny app.</p>
+<p>Static reports are great for communicating results, but sometimes you want your audience to explore the data themselves. Shiny is an R package that turns your analysis into an interactive web application — no HTML, CSS, or JavaScript required. Users can adjust inputs (sliders, dropdowns, date ranges) and watch plots, tables, and text update instantly.</p>
+<p>This lesson covers the fundamentals of building, running, and deploying a Shiny app, including hosting on your Raspberry Pi.</p>
 <hr>
 </section>
-<section id="presentation-format" class="level2">
-<h2 class="anchored" data-anchor-id="presentation-format">Presentation Format</h2>
-<div class="callout callout-style-default callout-note callout-titled" title="Requirements">
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="By the end of this lesson, you will be able to:">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Requirements
+<span class="screen-reader-only">Note</span>By the end of this lesson, you will be able to:
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>10-minute talk</strong> followed by <strong>5-minute Q&amp;A</strong></li>
-<li>Demo your Shiny app live</li>
-<li>Communicate results to a non-technical audience</li>
+<li>Explain Shiny’s UI + Server architecture</li>
+<li>Build a basic Shiny app with inputs and outputs</li>
+<li>Use common input widgets and output renderers</li>
+<li>Understand reactivity: <code>reactive()</code>, <code>observe()</code>, <code>observeEvent()</code></li>
+<li>Create modern layouts with <code>bslib</code></li>
+<li>Deploy an app to shinyapps.io</li>
+<li>Host a Shiny app on your Raspberry Pi</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="presentation-order" class="level2">
-<h2 class="anchored" data-anchor-id="presentation-order">Presentation Order</h2>
-<p><em>To be determined.</em></p>
+<section id="what-is-shiny" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-shiny">What is Shiny?</h2>
+<p>A Shiny app has two parts:</p>
+<ol type="1">
+<li><strong>UI (User Interface)</strong> – defines what the user sees: inputs (sliders, buttons, dropdowns) and outputs (plots, tables, text)</li>
+<li><strong>Server</strong> – defines the logic: how inputs are transformed into outputs</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># UI: what the user sees</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"My First Shiny App"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>, <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">30</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">"histogram"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Server: the logic</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>histogram <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(mtcars<span class="sc">$</span>mpg, <span class="at">breaks =</span> input<span class="sc">$</span>bins,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">"MPG Distribution"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Miles per Gallon"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the app</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Running a Shiny App">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Running a Shiny App
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Save the code as <code>app.R</code> in its own directory, then run it with <code>shiny::runApp()</code> or click “Run App” in RStudio. The app opens in your browser. Press <code>Ctrl+C</code> in the console (or close the browser window) to stop it.</p>
+</div>
+</div>
 <hr>
 </section>
-<section id="evaluation-criteria" class="level2">
-<h2 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h2>
+<section id="common-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="common-inputs">Common Inputs</h2>
+<p>Inputs let the user control the app. Each input has an <code>inputId</code> that you reference in the server as <code>input$inputId</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Slider</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">"n"</span>, <span class="st">"Sample size:"</span>, <span class="at">min =</span> <span class="dv">10</span>, <span class="at">max =</span> <span class="dv">1000</span>, <span class="at">value =</span> <span class="dv">100</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropdown</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="st">"var"</span>, <span class="st">"Variable:"</span>, <span class="at">choices =</span> <span class="fu">names</span>(mtcars))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checkbox</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">checkboxInput</span>(<span class="st">"show_line"</span>, <span class="st">"Show trend line?"</span>, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Radio buttons</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">radioButtons</span>(<span class="st">"color"</span>, <span class="st">"Color scheme:"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"Blue"</span> <span class="ot">=</span> <span class="st">"steelblue"</span>, <span class="st">"Red"</span> <span class="ot">=</span> <span class="st">"tomato"</span>, <span class="st">"Green"</span> <span class="ot">=</span> <span class="st">"forestgreen"</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Text input</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">textInput</span>(<span class="st">"title"</span>, <span class="st">"Plot title:"</span>, <span class="at">value =</span> <span class="st">"My Plot"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Date range</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dateRangeInput</span>(<span class="st">"dates"</span>, <span class="st">"Date range:"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">start =</span> <span class="st">"2024-01-01"</span>, <span class="at">end =</span> <span class="st">"2024-12-31"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric input</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">numericInput</span>(<span class="st">"threshold"</span>, <span class="st">"Threshold:"</span>, <span class="at">value =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Action button</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">actionButton</span>(<span class="st">"go"</span>, <span class="st">"Run Analysis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="common-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="common-outputs">Common Outputs</h2>
+<p>Outputs display results. Each output function in the UI has a matching <code>render</code> function in the server.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -178,94 +309,273 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Criterion</th>
-<th style="text-align: center;">Weight</th>
-<th style="text-align: left;">Description</th>
+<th style="text-align: left;">UI function</th>
+<th style="text-align: left;">Server function</th>
+<th style="text-align: left;">What it shows</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Question &amp; Motivation</strong></td>
-<td style="text-align: center;">15%</td>
-<td style="text-align: left;">Is the question clear, relevant, and well-motivated?</td>
+<td style="text-align: left;"><code>plotOutput("id")</code></td>
+<td style="text-align: left;"><code>renderPlot({...})</code></td>
+<td style="text-align: left;">A plot</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Data &amp; Methods</strong></td>
-<td style="text-align: center;">20%</td>
-<td style="text-align: left;">Appropriate data acquisition, cleaning, and analytical methods?</td>
+<td style="text-align: left;"><code>tableOutput("id")</code></td>
+<td style="text-align: left;"><code>renderTable({...})</code></td>
+<td style="text-align: left;">A static table</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Results &amp; Interpretation</strong></td>
-<td style="text-align: center;">25%</td>
-<td style="text-align: left;">Are results clearly presented and correctly interpreted?</td>
+<td style="text-align: left;"><code>dataTableOutput("id")</code></td>
+<td style="text-align: left;"><code>renderDataTable({...})</code></td>
+<td style="text-align: left;">An interactive table</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Shiny App</strong></td>
-<td style="text-align: center;">15%</td>
-<td style="text-align: left;">Is the app functional, interactive, and informative?</td>
+<td style="text-align: left;"><code>textOutput("id")</code></td>
+<td style="text-align: left;"><code>renderText({...})</code></td>
+<td style="text-align: left;">Text</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Communication</strong></td>
-<td style="text-align: center;">15%</td>
-<td style="text-align: left;">Clear delivery, good visuals, appropriate for audience?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Q&amp;A</strong></td>
-<td style="text-align: center;">10%</td>
-<td style="text-align: left;">Thoughtful responses to questions?</td>
+<td style="text-align: left;"><code>verbatimTextOutput("id")</code></td>
+<td style="text-align: left;"><code>renderPrint({...})</code></td>
+<td style="text-align: left;">Console-style output</td>
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>my_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> input<span class="sc">$</span>title) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>my_table <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    mtcars <span class="sc">|&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>my_text <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"You selected:"</span>, input<span class="sc">$</span>var)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>my_datatable <span class="ot">&lt;-</span> <span class="fu">renderDataTable</span>({</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    mtcars</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <hr>
 </section>
-<section id="final-submissions" class="level2">
-<h2 class="anchored" data-anchor-id="final-submissions">Final Submissions</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Due Today">
+<section id="reactivity" class="level2">
+<h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
+<p>Reactivity is what makes Shiny work. When an input changes, any output that depends on it automatically re-runs.</p>
+<section id="reactive-create-a-reactive-expression" class="level3">
+<h3 class="anchored" data-anchor-id="reactive-create-a-reactive-expression">reactive() — Create a Reactive Expression</h3>
+<p>Use <code>reactive()</code> when multiple outputs need the same computed value. It caches the result so it’s only computed once per input change.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compute the filtered data once, use it in multiple outputs</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    mtcars <span class="sc">|&gt;</span> <span class="fu">filter</span>(cyl <span class="sc">==</span> input<span class="sc">$</span>n_cyl)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">filtered_data</span>(), <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(<span class="fu">filtered_data</span>()<span class="sc">$</span>mpg) <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Don't Forget the Parentheses">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Due Today
+<span class="screen-reader-only">Warning</span>Don’t Forget the Parentheses
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Submit the following:</p>
+<p><code>reactive()</code> creates a function. You must call it with parentheses: <code>filtered_data()</code>, not <code>filtered_data</code>.</p>
+</div>
+</div>
+</section>
+<section id="observe-and-observeevent" class="level3">
+<h3 class="anchored" data-anchor-id="observe-and-observeevent">observe() and observeEvent()</h3>
+<p>Use these for side effects (things that don’t produce output, like printing to the console or updating an input).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Runs every time input$var changes</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>({</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"User selected: "</span>, input<span class="sc">$</span>var)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Runs only when the button is clicked</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>go, {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Button clicked! Running analysis..."</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="modern-layouts-with-bslib" class="level2">
+<h2 class="anchored" data-anchor-id="modern-layouts-with-bslib">Modern Layouts with bslib</h2>
+<p>The <code>bslib</code> package provides modern, Bootstrap-based layouts that look professional with minimal effort.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"mtcars Explorer"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"x_var"</span>, <span class="st">"X axis:"</span>, <span class="at">choices =</span> <span class="fu">names</span>(mtcars), <span class="at">selected =</span> <span class="st">"wt"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"y_var"</span>, <span class="st">"Y axis:"</span>, <span class="at">choices =</span> <span class="fu">names</span>(mtcars), <span class="at">selected =</span> <span class="st">"mpg"</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">checkboxInput</span>(<span class="st">"smooth"</span>, <span class="st">"Add trend line?"</span>, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">card</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card_header</span>(<span class="st">"Scatter Plot"</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">"scatter"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">card</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card_header</span>(<span class="st">"Summary Statistics"</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tableOutput</span>(<span class="st">"stats"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>scatter <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> .data[[input<span class="sc">$</span>x_var]], <span class="at">y =</span> .data[[input<span class="sc">$</span>y_var]])) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>smooth) {</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    p</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>stats <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    mtcars <span class="sc">|&gt;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="fu">across</span>(<span class="fu">c</span>(<span class="fu">all_of</span>(input<span class="sc">$</span>x_var), <span class="fu">all_of</span>(input<span class="sc">$</span>y_var)),</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>               <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd, <span class="at">min =</span> min, <span class="at">max =</span> max))</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="deploying-to-shinyapps.io" class="level2">
+<h2 class="anchored" data-anchor-id="deploying-to-shinyapps.io">Deploying to shinyapps.io</h2>
+<p><a href="https://www.shinyapps.io/">shinyapps.io</a> is the easiest way to share your app with the world. Free tier gives you 5 apps and 25 active hours per month.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One-time setup</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rsconnect"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"your-account"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">token =</span> <span class="st">"your-token"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">secret =</span> <span class="st">"your-secret"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy (from the directory containing app.R)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="What Gets Deployed">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What Gets Deployed
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>shinyapps.io uploads everything in your app directory: <code>app.R</code>, data files, helper scripts. Make sure your data files are in the same directory (or a subdirectory) as <code>app.R</code>. Absolute file paths will not work on the server.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="hosting-on-your-raspberry-pi" class="level2">
+<h2 class="anchored" data-anchor-id="hosting-on-your-raspberry-pi">Hosting on Your Raspberry Pi</h2>
+<p>Your Pi can serve Shiny apps on your local network using Shiny Server.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Shiny Server on the Pi (one-time setup)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download3.rstudio.org/ubuntu-18.04/aarch64/shiny-server-1.5.21.1012-aarch64.deb</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi shiny-server-1.5.21.1012-aarch64.deb</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Your apps go here</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> my_app/ /srv/shiny-server/my_app/</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the app from any device on the same network</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># http://your-pi-ip:3838/my_app/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Pi Hosting Advantage">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pi Hosting Advantage
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With Shiny Server on your Pi, your app runs 24/7 on hardware you control. Anyone on the West Point network can access it through a browser. No shinyapps.io limits, no cloud costs.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Try This">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Try This
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Build a Shiny app that lets users explore the <code>mtcars</code> dataset:</p>
 <ol type="1">
-<li><strong>GitHub repository URL</strong> – clean, documented, reproducible</li>
-<li><strong>Rendered Quarto report</strong> (HTML or PDF)</li>
-<li><strong>Shiny app</strong> – deployed to shinyapps.io or confirmed working</li>
-<li><strong>Reflection memo</strong> (1 page): What did you learn? What would you do differently? What skill from this course will you use most?</li>
+<li><p><strong>Inputs</strong>: A dropdown to select the X variable, a dropdown to select the Y variable, a checkbox to toggle a trend line, and a slider to filter by horsepower range.</p></li>
+<li><p><strong>Outputs</strong>: A scatter plot that updates based on the inputs, a summary table showing mean, median, and sd for both selected variables, and a text line reporting the correlation between the two variables.</p></li>
+<li><p><strong>Layout</strong>: Use <code>bslib::page_sidebar()</code> with cards for each output.</p></li>
+<li><p><strong>Bonus</strong>: Add an action button that downloads the filtered data as a CSV.</p></li>
 </ol>
+<p>Save it as <code>app.R</code> in its own directory and run it.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="audience-expectations" class="level2">
-<h2 class="anchored" data-anchor-id="audience-expectations">Audience Expectations</h2>
-<p>When you’re not presenting:</p>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>Be an engaged, respectful audience</li>
-<li>Ask at least one question during the Q&amp;A</li>
-<li>Take notes – you might learn a technique you can use in your own work</li>
+<li>You can build a Shiny app with inputs, outputs, and reactive logic</li>
+<li>You understand the UI + Server architecture</li>
+<li>You can use <code>bslib</code> for modern layouts</li>
+<li>You know how to deploy to shinyapps.io and host on your Pi</li>
 </ul>
-<hr>
 </section>
-<section id="course-wrap-up" class="level2">
-<h2 class="anchored" data-anchor-id="course-wrap-up">Course Wrap-Up</h2>
-<p>You started the semester with a box of parts. Now you can:</p>
-<ul>
-<li>Set up computing infrastructure from scratch</li>
-<li>Write R code for data wrangling, visualization, and modeling</li>
-<li>Build interactive web applications</li>
-<li>Track your work with Git and communicate results with Quarto</li>
-<li>Acquire data from files, APIs, and the web</li>
-<li>Apply regression, classification, text analysis, spatial analysis, and time series methods</li>
-<li>Use AI tools responsibly as coding assistants</li>
-</ul>
-<p>That’s cradle-to-grave data science. Well done.</p>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-18.html">Lesson 18: Guided Example — Regression (Part 1: Question, Data, EDA)</a> – We’ll start a guided regression analysis, working through the full data science workflow from question formulation through exploratory data analysis.</p>
 
 
+</section>
 </section>
 </section>
 

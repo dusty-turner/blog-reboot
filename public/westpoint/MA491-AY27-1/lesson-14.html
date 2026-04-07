@@ -151,17 +151,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-14-capstone-work-session-2" id="toc-week-14-capstone-work-session-2" class="nav-link active" data-scroll-target="#week-14-capstone-work-session-2">Week 14: Capstone Work Session 2</a>
+  <li><a href="#lesson-14-getting-data-databases-sql-basics" id="toc-lesson-14-getting-data-databases-sql-basics" class="nav-link active" data-scroll-target="#lesson-14-getting-data-databases-sql-basics">Lesson 14: Getting Data — Databases &amp; SQL Basics</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#this-weeks-focus" id="toc-this-weeks-focus" class="nav-link" data-scroll-target="#this-weeks-focus">This Week’s Focus</a></li>
-  <li><a href="#modeling-reminders" id="toc-modeling-reminders" class="nav-link" data-scroll-target="#modeling-reminders">Modeling Reminders</a></li>
-  <li><a href="#quarto-report-structure" id="toc-quarto-report-structure" class="nav-link" data-scroll-target="#quarto-report-structure">Quarto Report Structure</a></li>
-  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#why-databases" id="toc-why-databases" class="nav-link" data-scroll-target="#why-databases">Why Databases?</a></li>
+  <li><a href="#sql-basics" id="toc-sql-basics" class="nav-link" data-scroll-target="#sql-basics">SQL Basics</a>
+  <ul class="collapse">
+  <li><a href="#select-and-from" id="toc-select-and-from" class="nav-link" data-scroll-target="#select-and-from">SELECT and FROM</a></li>
+  <li><a href="#where-filtering-rows" id="toc-where-filtering-rows" class="nav-link" data-scroll-target="#where-filtering-rows">WHERE (filtering rows)</a></li>
+  <li><a href="#group-by-and-aggregation" id="toc-group-by-and-aggregation" class="nav-link" data-scroll-target="#group-by-and-aggregation">GROUP BY and Aggregation</a></li>
+  <li><a href="#order-by-and-limit" id="toc-order-by-and-limit" class="nav-link" data-scroll-target="#order-by-and-limit">ORDER BY and LIMIT</a></li>
+  <li><a href="#join-combining-tables" id="toc-join-combining-tables" class="nav-link" data-scroll-target="#join-combining-tables">JOIN (combining tables)</a></li>
+  </ul></li>
+  <li><a href="#connecting-r-to-sqlite" id="toc-connecting-r-to-sqlite" class="nav-link" data-scroll-target="#connecting-r-to-sqlite">Connecting R to SQLite</a></li>
+  <li><a href="#creating-a-practice-database" id="toc-creating-a-practice-database" class="nav-link" data-scroll-target="#creating-a-practice-database">Creating a Practice Database</a></li>
+  <li><a href="#querying-from-r-with-dbgetquery" id="toc-querying-from-r-with-dbgetquery" class="nav-link" data-scroll-target="#querying-from-r-with-dbgetquery">Querying from R with <code>dbGetQuery()</code></a></li>
+  <li><a href="#using-dplyr-with-databases" id="toc-using-dplyr-with-databases" class="nav-link" data-scroll-target="#using-dplyr-with-databases">Using <code>dplyr</code> with Databases</a>
+  <ul class="collapse">
+  <li><a href="#joins-with-dplyr-on-databases" id="toc-joins-with-dplyr-on-databases" class="nav-link" data-scroll-target="#joins-with-dplyr-on-databases">Joins with dplyr on databases</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-databases-vs-files" id="toc-when-to-use-databases-vs-files" class="nav-link" data-scroll-target="#when-to-use-databases-vs-files">When to Use Databases vs Files</a></li>
+  <li><a href="#always-close-your-connection" id="toc-always-close-your-connection" class="nav-link" data-scroll-target="#always-close-your-connection">Always Close Your Connection</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -173,127 +189,411 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="week-14-capstone-work-session-2" class="level1">
-<h1>Week 14: Capstone Work Session 2</h1>
+<section id="lesson-14-getting-data-databases-sql-basics" class="level1">
+<h1>Lesson 14: Getting Data — Databases &amp; SQL Basics</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Your data is clean and you’ve explored it. Now it’s time to model and start writing up your results.</p>
+<p>CSV files work fine for small datasets, but when your data gets large, involves multiple related tables, or needs to be shared across a team, you need a database. This lesson introduces relational databases and SQL — the language used to query them. You’ll learn to connect R directly to a database, write SQL queries, and use dplyr’s database backend to write familiar R code that generates SQL behind the scenes.</p>
 <hr>
 </section>
-<section id="this-weeks-focus" class="level2">
-<h2 class="anchored" data-anchor-id="this-weeks-focus">This Week’s Focus</h2>
-<div class="callout callout-style-default callout-note callout-titled" title="Goals for Work Session 2">
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="By the end of this lesson, you will be able to:">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Goals for Work Session 2
+<span class="screen-reader-only">Note</span>By the end of this lesson, you will be able to:
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Apply your chosen modeling technique(s) to the data</li>
-<li>Evaluate model performance and run diagnostics</li>
-<li>Begin drafting your Quarto report</li>
-<li>Continue committing progress to GitHub</li>
+<li>Explain when a database is preferable to flat files</li>
+<li>Write basic SQL queries: SELECT, FROM, WHERE, GROUP BY, ORDER BY, JOIN, LIMIT</li>
+<li>Connect R to a SQLite database using <code>DBI</code> and <code>RSQLite</code></li>
+<li>Query a database from R with <code>dbGetQuery()</code></li>
+<li>Use <code>dplyr</code> with a database backend via <code>dbplyr</code></li>
+<li>Create a small SQLite database from R</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="modeling-reminders" class="level2">
-<h2 class="anchored" data-anchor-id="modeling-reminders">Modeling Reminders</h2>
-<p>Whatever approach you’re using, follow the workflow:</p>
-<ol type="1">
-<li><strong>Split</strong> your data (train/test) if doing prediction</li>
-<li><strong>Fit</strong> the model on training data</li>
-<li><strong>Evaluate</strong> on test data (or use cross-validation)</li>
-<li><strong>Diagnose</strong> – check residuals, assumptions, edge cases</li>
-<li><strong>Iterate</strong> – try alternative models or features</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled" title="Use What You've Learned">
+<section id="why-databases" class="level2">
+<h2 class="anchored" data-anchor-id="why-databases">Why Databases?</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">CSV Files</th>
+<th style="text-align: left;">Databases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Size</td>
+<td style="text-align: left;">Fine up to ~1 GB</td>
+<td style="text-align: left;">Handles terabytes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Multiple tables</td>
+<td style="text-align: left;">Separate files, manual joins</td>
+<td style="text-align: left;">Built-in relationships and joins</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Concurrent access</td>
+<td style="text-align: left;">Risky (file locking issues)</td>
+<td style="text-align: left;">Designed for it</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Data integrity</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Constraints, types, validation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Querying</td>
+<td style="text-align: left;">Load everything into memory</td>
+<td style="text-align: left;">Pull only what you need</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Version history</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">Transaction logs</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="The Practical Rule">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Use What You’ve Learned
+<span class="screen-reader-only">Tip</span>The Practical Rule
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>If your data fits comfortably in memory and only you use it, a CSV is fine. If it doesn’t fit, has multiple related tables, or multiple people need to read/write it, use a database.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sql-basics" class="level2">
+<h2 class="anchored" data-anchor-id="sql-basics">SQL Basics</h2>
+<p>SQL (Structured Query Language) is how you talk to databases. It reads almost like English.</p>
+<section id="select-and-from" class="level3">
+<h3 class="anchored" data-anchor-id="select-and-from">SELECT and FROM</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get all columns from the cadets table</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> cadets;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Get specific columns</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, company, class_year <span class="kw">FROM</span> cadets;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="where-filtering-rows" class="level3">
+<h3 class="anchored" data-anchor-id="where-filtering-rows">WHERE (filtering rows)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Filter to Class of 2027</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, company <span class="kw">FROM</span> cadets</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> class_year <span class="op">=</span> <span class="dv">2027</span>;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Multiple conditions</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, company <span class="kw">FROM</span> cadets</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> class_year <span class="op">=</span> <span class="dv">2027</span> <span class="kw">AND</span> company <span class="op">=</span> <span class="st">'A1'</span>;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Pattern matching</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name <span class="kw">FROM</span> cadets</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">'Smith%'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="group-by-and-aggregation" class="level3">
+<h3 class="anchored" data-anchor-id="group-by-and-aggregation">GROUP BY and Aggregation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Count cadets per company</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> company, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> n_cadets</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> cadets</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> company;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Average GPA by class year</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> class_year, <span class="fu">AVG</span>(gpa) <span class="kw">AS</span> avg_gpa</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> cadets</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> class_year;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="order-by-and-limit" class="level3">
+<h3 class="anchored" data-anchor-id="order-by-and-limit">ORDER BY and LIMIT</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Top 10 cadets by GPA</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, gpa <span class="kw">FROM</span> cadets</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> gpa <span class="kw">DESC</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="join-combining-tables" class="level3">
+<h3 class="anchored" data-anchor-id="join-combining-tables">JOIN (combining tables)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Combine cadets with their course enrollments</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c.name, e.course_id, e.grade</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> cadets c</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> enrollments e <span class="kw">ON</span> c.cadet_id <span class="op">=</span> e.cadet_id</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> e.course_id <span class="op">=</span> <span class="st">'MA491'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="SQL Style">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>SQL Style
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SQL keywords are conventionally written in UPPERCASE, but most databases are case-insensitive. The uppercase convention just makes queries easier to read.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="connecting-r-to-sqlite" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-r-to-sqlite">Connecting R to SQLite</h2>
+<p>SQLite is a lightweight database stored in a single file. No server needed — perfect for learning and for projects on your Pi.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to an existing SQLite database</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">"data/my_database.sqlite"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Or create a new one (the file is created automatically)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">"data/practice.sqlite"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># List the tables in the database</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="creating-a-practice-database" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-practice-database">Creating a Practice Database</h2>
+<p>Let’s build a small database from scratch so you have something to query.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">"data/practice.sqlite"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cadets table</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>cadets <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadet_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Adams"</span>, <span class="st">"Baker"</span>, <span class="st">"Clark"</span>, <span class="st">"Davis"</span>, <span class="st">"Evans"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Foster"</span>, <span class="st">"Garcia"</span>, <span class="st">"Hill"</span>, <span class="st">"Ito"</span>, <span class="st">"Jones"</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">company =</span> <span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C3"</span>, <span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C3"</span>, <span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C3"</span>, <span class="st">"A1"</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">class_year =</span> <span class="fu">c</span>(<span class="dv">2027</span>, <span class="dv">2027</span>, <span class="dv">2028</span>, <span class="dv">2026</span>, <span class="dv">2027</span>, <span class="dv">2028</span>, <span class="dv">2027</span>, <span class="dv">2026</span>, <span class="dv">2028</span>, <span class="dv">2027</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">gpa =</span> <span class="fu">c</span>(<span class="fl">3.4</span>, <span class="fl">3.8</span>, <span class="fl">3.1</span>, <span class="fl">3.9</span>, <span class="fl">3.2</span>, <span class="fl">3.6</span>, <span class="fl">3.5</span>, <span class="fl">3.7</span>, <span class="fl">3.3</span>, <span class="fl">3.0</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an enrollments table</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>enrollments <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadet_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">course_id =</span> <span class="fu">c</span>(<span class="st">"MA491"</span>, <span class="st">"MA206"</span>, <span class="st">"MA491"</span>, <span class="st">"MA153"</span>, <span class="st">"MA491"</span>, <span class="st">"MA206"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"MA153"</span>, <span class="st">"MA491"</span>, <span class="st">"MA206"</span>, <span class="st">"MA153"</span>, <span class="st">"MA491"</span>, <span class="st">"MA206"</span>, <span class="st">"MA206"</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">semester =</span> <span class="fu">c</span>(<span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>               <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>, <span class="st">"AY27-1"</span>),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="dv">92</span>, <span class="dv">85</span>, <span class="dv">95</span>, <span class="dv">78</span>, <span class="dv">97</span>, <span class="dv">82</span>, <span class="dv">74</span>, <span class="dv">91</span>, <span class="dv">88</span>, <span class="dv">80</span>, <span class="dv">86</span>, <span class="dv">90</span>, <span class="dv">83</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the data frames to the database as tables</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"cadets"</span>, cadets)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"enrollments"</span>, enrollments)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="querying-from-r-with-dbgetquery" class="level2">
+<h2 class="anchored" data-anchor-id="querying-from-r-with-dbgetquery">Querying from R with <code>dbGetQuery()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a SQL query and get a data frame back</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>top_students <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT name, gpa</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM cadets</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY gpa DESC</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">  LIMIT 5</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>top_students</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># A join query</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>course_roster <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT c.name, c.company, e.course_id, e.grade</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM cadets c</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN enrollments e ON c.cadet_id = e.cadet_id</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE e.course_id = 'MA491'</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY e.grade DESC</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>course_roster</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregation</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>avg_by_course <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT e.course_id,</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="st">         COUNT(*) AS n_students,</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">         ROUND(AVG(e.grade), 1) AS avg_grade</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM enrollments e</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY e.course_id</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY avg_grade DESC</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>avg_by_course</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="using-dplyr-with-databases" class="level2">
+<h2 class="anchored" data-anchor-id="using-dplyr-with-databases">Using <code>dplyr</code> with Databases</h2>
+<p>Here’s where it gets elegant. The <code>dbplyr</code> package lets you write familiar dplyr code against a database table. R translates your dplyr verbs into SQL and only pulls the results when you ask for them.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a reference to the table (not loaded into memory yet!)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>cadets_tbl <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"cadets"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>enrollments_tbl <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"enrollments"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write dplyr code as usual</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> cadets_tbl <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(class_year <span class="sc">==</span> <span class="dv">2027</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(gpa)) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, company, gpa)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># See the SQL that dplyr generated</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(result)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Actually pull the data into R</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>result <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="joins-with-dplyr-on-databases" class="level3">
+<h3 class="anchored" data-anchor-id="joins-with-dplyr-on-databases">Joins with dplyr on databases</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Join tables using dplyr syntax -- dbplyr generates the SQL</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> cadets_tbl <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(enrollments_tbl, <span class="at">by =</span> <span class="st">"cadet_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(course_id <span class="sc">==</span> <span class="st">"MA491"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, company, grade) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(grade))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># See the generated SQL</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(roster)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull into R</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="The dbplyr Workflow">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The dbplyr Workflow
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Connect to the database with <code>dbConnect()</code></li>
+<li>Create table references with <code>tbl()</code></li>
+<li>Write dplyr code as if the data were local</li>
+<li>Use <code>show_query()</code> to see the generated SQL (great for learning SQL!)</li>
+<li>Use <code>collect()</code> to pull results into R when you’re ready</li>
+<li>Disconnect with <code>dbDisconnect()</code> when done</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="when-to-use-databases-vs-files" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-databases-vs-files">When to Use Databases vs Files</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">If your project involves…</th>
-<th style="text-align: left;">Review…</th>
+<th style="text-align: left;">Situation</th>
+<th style="text-align: left;">Recommendation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Predicting a number</td>
-<td style="text-align: left;">Week 8: Regression</td>
+<td style="text-align: left;">Quick one-off analysis of a small dataset</td>
+<td style="text-align: left;">CSV file</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Predicting a category</td>
-<td style="text-align: left;">Week 9: Classification</td>
+<td style="text-align: left;">Data shared across a team</td>
+<td style="text-align: left;">Database</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Analyzing text</td>
-<td style="text-align: left;">Week 10: Text as Data</td>
+<td style="text-align: left;">Data too large for memory</td>
+<td style="text-align: left;">Database</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Mapping locations</td>
-<td style="text-align: left;">Week 11: Spatial Data</td>
+<td style="text-align: left;">Multiple related tables</td>
+<td style="text-align: left;">Database</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Forecasting over time</td>
-<td style="text-align: left;">Week 12: Time Series</td>
+<td style="text-align: left;">Your Pi collects sensor data continuously</td>
+<td style="text-align: left;">Database (SQLite)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">You downloaded a dataset from the web</td>
+<td style="text-align: left;">CSV file is fine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Production application</td>
+<td style="text-align: left;">Database</td>
 </tr>
 </tbody>
 </table>
+<hr>
+</section>
+<section id="always-close-your-connection" class="level2">
+<h2 class="anchored" data-anchor-id="always-close-your-connection">Always Close Your Connection</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When you're done, disconnect</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Don't Forget dbDisconnect()">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Don’t Forget dbDisconnect()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open database connections consume resources. Always close them when you’re finished. If your R session crashes with connections open, SQLite handles it gracefully (one of its advantages), but it’s still good practice.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="quarto-report-structure" class="level2">
-<h2 class="anchored" data-anchor-id="quarto-report-structure">Quarto Report Structure</h2>
-<p>Start filling in your <code>report.qmd</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Your Project Title"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "CDT Last Name"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>What question are you answering? Why does it matter?</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Where did it come from? How was it collected? What cleaning did you do?</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exploratory Data Analysis</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Key visualizations and patterns.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methods</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>What model(s) did you use? Why?</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>What did you find? Include model output, diagnostics, key visualizations.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusions</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>What do your results mean? Limitations? Future work?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-<section id="checklist" class="level2">
-<h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">At least one model fitted and evaluated</label></li>
-<li><label><input type="checkbox">Model diagnostics complete</label></li>
-<li><label><input type="checkbox">Quarto report started with Introduction and Data sections</label></li>
-<li><label><input type="checkbox">EDA visualizations included in report</label></li>
-<li><label><input type="checkbox">All code committed to GitHub</label></li>
-</ul>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Try This">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Try This
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Build it</strong>: Create the practice database above. Verify with <code>dbListTables()</code>.</p></li>
+<li><p><strong>SQL queries</strong>: Use <code>dbGetQuery()</code> to answer:</p>
+<ul>
+<li>Which cadets are in company A1?</li>
+<li>What is the average grade in each course?</li>
+<li>Which cadet has the highest grade in MA491?</li>
+</ul></li>
+<li><p><strong>dplyr approach</strong>: Answer the same questions using <code>tbl()</code> and dplyr verbs. Use <code>show_query()</code> to compare your dplyr code with the SQL it generates.</p></li>
+<li><p><strong>Your data</strong>: If your capstone data has multiple related tables, create a SQLite database for it and practice querying across tables with joins.</p></li>
+</ol>
+</div>
+</div>
 <hr>
 </section>
 <section id="before-you-leave" class="level2">
@@ -301,17 +601,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>Modeling is underway or complete</li>
-<li>Quarto report has a solid start</li>
+<li>You understand when databases are better than flat files</li>
+<li>You can write basic SQL queries</li>
+<li>You can connect R to SQLite and run queries</li>
+<li>You can use dplyr on database tables via dbplyr</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-15.html">Week 15: Capstone Work Session 3</a></p>
-<ul>
-<li>Build your Shiny app</li>
-<li>Iterate on your analysis</li>
-</ul>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-15.html">Lesson 15: Writing Functions &amp; Iteration (purrr)</a> – We’ll learn to write reusable functions and apply them across groups of data with <code>purrr</code>.</p>
 
 
 </section>

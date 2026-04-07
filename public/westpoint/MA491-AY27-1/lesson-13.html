@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -116,18 +151,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-13-capstone-work-session-1" id="toc-week-13-capstone-work-session-1" class="nav-link active" data-scroll-target="#week-13-capstone-work-session-1">Week 13: Capstone Work Session 1</a>
+  <li><a href="#lesson-13-getting-data-files-apis-web-scraping" id="toc-lesson-13-getting-data-files-apis-web-scraping" class="nav-link active" data-scroll-target="#lesson-13-getting-data-files-apis-web-scraping">Lesson 13: Getting Data — Files, APIs, Web Scraping</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#this-weeks-focus" id="toc-this-weeks-focus" class="nav-link" data-scroll-target="#this-weeks-focus">This Week’s Focus</a></li>
-  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
-  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
-  <li><a href="#peer-code-review" id="toc-peer-code-review" class="nav-link" data-scroll-target="#peer-code-review">Peer Code Review</a></li>
-  <li><a href="#instructor-check-in-topics" id="toc-instructor-check-in-topics" class="nav-link" data-scroll-target="#instructor-check-in-topics">Instructor Check-In Topics</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#reading-csv-files-with-readr" id="toc-reading-csv-files-with-readr" class="nav-link" data-scroll-target="#reading-csv-files-with-readr">Reading CSV Files with <code>readr</code></a></li>
+  <li><a href="#reading-excel-files-with-readxl" id="toc-reading-excel-files-with-readxl" class="nav-link" data-scroll-target="#reading-excel-files-with-readxl">Reading Excel Files with <code>readxl</code></a></li>
+  <li><a href="#rest-apis-with-httr2" id="toc-rest-apis-with-httr2" class="nav-link" data-scroll-target="#rest-apis-with-httr2">REST APIs with <code>httr2</code></a></li>
+  <li><a href="#api-tips" id="toc-api-tips" class="nav-link" data-scroll-target="#api-tips">API Tips</a></li>
+  <li><a href="#web-scraping-with-rvest" id="toc-web-scraping-with-rvest" class="nav-link" data-scroll-target="#web-scraping-with-rvest">Web Scraping with <code>rvest</code></a></li>
+  <li><a href="#scraping-ethics" id="toc-scraping-ethics" class="nav-link" data-scroll-target="#scraping-ethics">Scraping Ethics</a></li>
+  <li><a href="#using-ai-to-find-data-sources" id="toc-using-ai-to-find-data-sources" class="nav-link" data-scroll-target="#using-ai-to-find-data-sources">Using AI to Find Data Sources</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#next-week" id="toc-next-week" class="nav-link" data-scroll-target="#next-week">Next Week</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -139,86 +178,310 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-13-capstone-work-session-1" class="level1">
-<h1>Week 13: Capstone Work Session 1</h1>
+<section id="lesson-13-getting-data-files-apis-web-scraping" class="level1">
+<h1>Lesson 13: Getting Data — Files, APIs, Web Scraping</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The guided examples are done. For the remaining five weeks, you’ll apply everything you’ve learned to your own individual project. This week: get your data, clean it, and begin exploring.</p>
+<p>Before you can analyze anything, you need data. Sometimes it’s a CSV sitting on your desktop. Sometimes it lives behind an API. Sometimes it’s trapped in an HTML table on a government website. This lesson covers three fundamental approaches to getting data into R: reading local files, querying web APIs, and scraping web pages. You’ll also learn how to use AI tools to discover and evaluate data sources you didn’t know existed.</p>
 <hr>
 </section>
-<section id="this-weeks-focus" class="level2">
-<h2 class="anchored" data-anchor-id="this-weeks-focus">This Week’s Focus</h2>
-<div class="callout callout-style-default callout-note callout-titled" title="Goals for Work Session 1">
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="By the end of this lesson, you will be able to:">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Goals for Work Session 1
+<span class="screen-reader-only">Note</span>By the end of this lesson, you will be able to:
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Finalize your data source and acquire the data</li>
-<li>Load the data into R and perform initial cleaning</li>
-<li>Begin exploratory data analysis (EDA)</li>
-<li>Set up your project GitHub repository with a clean structure</li>
+<li>Read CSV and Excel files into R with <code>readr</code> and <code>readxl</code></li>
+<li>Query a REST API using <code>httr2</code> and parse the JSON response</li>
+<li>Scrape tables and text from web pages using <code>rvest</code></li>
+<li>Articulate the ethical boundaries of web scraping</li>
+<li>Use AI tools to identify and acquire relevant data sources</li>
 </ul>
 </div>
 </div>
 <hr>
 </section>
-<section id="project-structure" class="level2">
-<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
-<p>Your GitHub repo should look like this:</p>
-<pre><code>ma491-capstone/
-├── README.md
-├── data/
-│   ├── raw/           # original, untouched data files
-│   └── clean/         # processed data
-├── scripts/
-│   ├── 01-acquire.R   # data acquisition
-│   ├── 02-clean.R     # data cleaning
-│   ├── 03-eda.R       # exploratory analysis
-│   ├── 04-model.R     # modeling
-│   └── 05-app.R       # Shiny app (or app/ directory)
-├── report.qmd         # Quarto report
-└── .gitignore</code></pre>
+<section id="reading-csv-files-with-readr" class="level2">
+<h2 class="anchored" data-anchor-id="reading-csv-files-with-readr">Reading CSV Files with <code>readr</code></h2>
+<p>The <code>readr</code> package (part of the tidyverse) provides fast, consistent functions for reading delimited files.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a CSV file</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/weather_station.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csv() is smart about types, but you can override</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/weather_station.csv"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">col_date</span>(<span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">temp_f =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">station_id =</span> <span class="fu">col_character</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick look</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(weather)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="read_csv vs read.csv">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>read_csv vs read.csv
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>read_csv()</code> (underscore) from <code>readr</code>, not <code>read.csv()</code> (dot) from base R. The <code>readr</code> version is faster, produces tibbles, and handles column types more intelligently.</p>
+</div>
+</div>
 <hr>
 </section>
-<section id="checklist" class="level2">
-<h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Data acquired and saved to <code>data/raw/</code></label></li>
-<li><label><input type="checkbox">Data loaded into R successfully</label></li>
-<li><label><input type="checkbox">Initial cleaning script written (<code>02-clean.R</code>)</label></li>
-<li><label><input type="checkbox"><code>glimpse()</code> and <code>summary()</code> run on the clean data</label></li>
-<li><label><input type="checkbox">At least 3 exploratory visualizations created</label></li>
-<li><label><input type="checkbox">GitHub repo created and initial commit pushed</label></li>
-<li><label><input type="checkbox">Met with instructor to discuss progress</label></li>
-</ul>
-<hr>
-</section>
-<section id="peer-code-review" class="level2">
-<h2 class="anchored" data-anchor-id="peer-code-review">Peer Code Review</h2>
-<p>Today we’ll do an informal code review. Pair up and:</p>
-<ol type="1">
-<li>Pull your partner’s repo</li>
-<li>Run their data loading script – does it work?</li>
-<li>Read their code – is it clear? Any suggestions?</li>
-<li>Give constructive feedback</li>
-</ol>
-<hr>
-</section>
-<section id="instructor-check-in-topics" class="level2">
-<h2 class="anchored" data-anchor-id="instructor-check-in-topics">Instructor Check-In Topics</h2>
-<p>During check-ins, be ready to discuss:</p>
+<section id="reading-excel-files-with-readxl" class="level2">
+<h2 class="anchored" data-anchor-id="reading-excel-files-with-readxl">Reading Excel Files with <code>readxl</code></h2>
+<p>Excel files are everywhere in the Army. The <code>readxl</code> package reads <code>.xls</code> and <code>.xlsx</code> files without requiring Excel to be installed.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># See what sheets are in the workbook</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/unit_readiness.xlsx"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a specific sheet</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>personnel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/unit_readiness.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Personnel"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a range</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/unit_readiness.xlsx"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Summary"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">"A1:F50"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">2</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(personnel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Excel Gotchas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Excel Gotchas
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Is your data sufficient to answer your question?</li>
-<li>Any data quality issues (missing values, unexpected formats)?</li>
-<li>What patterns are emerging from your EDA?</li>
-<li>What modeling approach are you planning?</li>
+<li>Dates in Excel can come in as numbers (e.g., 45292). Use <code>janitor::excel_numeric_to_date()</code> to fix them.</li>
+<li>Merged cells cause problems. Unmerge them in Excel first, or use <code>readxl</code>’s <code>col_names</code> argument.</li>
+<li>Hidden sheets still show up in <code>excel_sheets()</code>.</li>
 </ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="rest-apis-with-httr2" class="level2">
+<h2 class="anchored" data-anchor-id="rest-apis-with-httr2">REST APIs with <code>httr2</code></h2>
+<p>An API (Application Programming Interface) lets you request data from a web service programmatically. Most modern APIs return JSON. The <code>httr2</code> package makes this straightforward.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Open-Meteo weather API (free, no key required)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the forecast for West Point, NY</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://api.open-meteo.com/v1/forecast"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_url_query</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">latitude =</span> <span class="fl">41.39</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">longitude =</span> <span class="sc">-</span><span class="fl">73.95</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily =</span> <span class="st">"temperature_2m_max,temperature_2m_min,precipitation_sum"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_unit =</span> <span class="st">"fahrenheit"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">timezone =</span> <span class="st">"America/New_York"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">forecast_days =</span> <span class="dv">7</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">resp_status</span>(resp)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the JSON response</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>weather_data <span class="ot">&lt;-</span> <span class="fu">resp_body_json</span>(resp)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># The structure is nested -- explore it</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(weather_data<span class="sc">$</span>daily)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a tibble</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">unlist</span>(weather_data<span class="sc">$</span>daily<span class="sc">$</span>time)),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">high =</span> <span class="fu">unlist</span>(weather_data<span class="sc">$</span>daily<span class="sc">$</span>temperature_2m_max),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">low =</span> <span class="fu">unlist</span>(weather_data<span class="sc">$</span>daily<span class="sc">$</span>temperature_2m_min),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">precip =</span> <span class="fu">unlist</span>(weather_data<span class="sc">$</span>daily<span class="sc">$</span>precipitation_sum)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>forecast</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="api-tips" class="level2">
+<h2 class="anchored" data-anchor-id="api-tips">API Tips</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Working with APIs">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Working with APIs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>API Keys</strong>: Many APIs require authentication. Store your key in an environment variable, never in your code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your .Renviron file (run usethis::edit_r_environ()):</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># MY_API_KEY=abc123xyz</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In your code:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>my_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"MY_API_KEY"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://api.example.com/data"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_headers</span>(<span class="at">Authorization =</span> <span class="fu">paste</span>(<span class="st">"Bearer"</span>, my_key)) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Rate Limits</strong>: APIs limit how many requests you can make. Be polite:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a delay between requests</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://api.example.com/data"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_throttle</span>(<span class="at">rate =</span> <span class="dv">10</span> <span class="sc">/</span> <span class="dv">60</span>) <span class="sc">|&gt;</span>  <span class="co"># 10 requests per minute</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Caching</strong>: Don’t re-download data you already have. Save API responses locally:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the parsed data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(forecast, <span class="st">"data/forecast_cache.csv"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Next time, check if the cache exists first</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">"data/forecast_cache.csv"</span>)) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  forecast <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/forecast_cache.csv"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make the API call</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="web-scraping-with-rvest" class="level2">
+<h2 class="anchored" data-anchor-id="web-scraping-with-rvest">Web Scraping with <code>rvest</code></h2>
+<p>When data lives on a web page but there’s no API, you can scrape it. The <code>rvest</code> package makes this manageable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a web page</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://en.wikipedia.org/wiki/List_of_U.S._states_by_population"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract all tables from the page</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">html_table</span>(page)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The first table is usually what you want</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> tables[[<span class="dv">1</span>]]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(population)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also target specific elements using CSS selectors</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://example.com/data-page"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all paragraph text</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>paragraphs <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Get text from elements with a specific class</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">".data-value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Get an attribute (like href from links)</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="scraping-ethics" class="level2">
+<h2 class="anchored" data-anchor-id="scraping-ethics">Scraping Ethics</h2>
+<div class="callout callout-style-default callout-warning callout-titled" title="Ethical Web Scraping">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Ethical Web Scraping
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Web scraping exists in a legal and ethical gray area. Follow these principles:</p>
+<ol type="1">
+<li><p><strong>Check <code>robots.txt</code></strong> – Visit <code>https://example.com/robots.txt</code> before scraping. It tells you what the site allows bots to access.</p></li>
+<li><p><strong>Read the Terms of Service</strong> – Some sites explicitly prohibit scraping. Respect that.</p></li>
+<li><p><strong>Don’t scrape personal data</strong> – Names, emails, phone numbers, and other PII are off limits unless the data is genuinely public and you have a legitimate purpose.</p></li>
+<li><p><strong>Be gentle</strong> – Add delays between requests. Don’t hammer a server with thousands of requests per second.</p></li>
+<li><p><strong>Prefer APIs</strong> – If the site offers an API, use it instead of scraping. It’s more reliable and more respectful.</p></li>
+<li><p><strong>Cache your results</strong> – Download once, analyze many times. Don’t re-scrape data you already have.</p></li>
+</ol>
+<p>As a general rule: if you wouldn’t be comfortable explaining your scraping to the site owner, don’t do it.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="using-ai-to-find-data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-to-find-data-sources">Using AI to Find Data Sources</h2>
+<p>AI tools (ChatGPT, Claude, Copilot) are surprisingly good at helping you find data. Try prompts like:</p>
+<ul>
+<li>“What public datasets exist about military installation energy usage?”</li>
+<li>“I need daily weather data for 50 US cities going back 10 years. What APIs or datasets are available?”</li>
+<li>“Is there a public API for Army recruiting statistics?”</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI-Assisted Data Discovery Workflow">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI-Assisted Data Discovery Workflow
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Describe your question</strong> to an AI tool. Be specific about what variables you need, the time range, and the geographic scope.</li>
+<li><strong>Ask for data sources</strong> – the AI will suggest datasets, APIs, and government data portals you may not have known about.</li>
+<li><strong>Verify the source</strong> – AI can hallucinate URLs and dataset names. Always click the link and confirm the data actually exists.</li>
+<li><strong>Ask for code</strong> – Once you’ve confirmed the source, ask the AI to write the <code>httr2</code> or <code>read_csv</code> code to pull the data.</li>
+<li><strong>Validate the data</strong> – Run <code>glimpse()</code>, <code>summary()</code>, and check for obvious problems before trusting it.</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Try This">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Try This
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>CSV</strong>: Download a CSV from <a href="https://data.gov">data.gov</a> and read it into R with <code>read_csv()</code>. Run <code>glimpse()</code> and <code>summary()</code>.</p></li>
+<li><p><strong>API</strong>: Use the Open-Meteo API code above to get a 7-day forecast for your hometown. Convert the result to a tibble and plot high/low temperatures.</p></li>
+<li><p><strong>Scraping</strong>: Pick a Wikipedia page with a table. Use <code>rvest</code> to extract the table and clean it with dplyr.</p></li>
+<li><p><strong>AI-Assisted</strong>: Ask an AI tool to help you find a dataset related to your capstone project topic. Acquire the data and load it into R.</p></li>
+</ol>
+</div>
+</div>
 <hr>
 </section>
 <section id="before-you-leave" class="level2">
@@ -226,18 +489,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="today" class="level3">
 <h3 class="anchored" data-anchor-id="today">Today</h3>
 <ul>
-<li>Data is acquired and loaded</li>
-<li>Initial EDA is underway</li>
-<li>GitHub repo is set up</li>
+<li>You can read CSV and Excel files into R</li>
+<li>You can query a REST API and parse the JSON response</li>
+<li>You can scrape tables from web pages</li>
+<li>You understand the ethical considerations of scraping</li>
 </ul>
 </section>
-<section id="next-week" class="level3">
-<h3 class="anchored" data-anchor-id="next-week">Next Week</h3>
-<p><a href="lesson-14.html">Week 14: Capstone Work Session 2</a></p>
-<ul>
-<li>Continue analysis: modeling and results</li>
-<li>Begin drafting your Quarto report</li>
-</ul>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-14.html">Lesson 14: Getting Data — Databases &amp; SQL Basics</a> – We’ll connect R to databases and learn the SQL you need to pull exactly the data you want.</p>
 
 
 </section>
