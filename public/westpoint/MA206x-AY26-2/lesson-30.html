@@ -601,15 +601,15 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="picking-up-where-we-left-off">Picking Up Where We Left Off</h2>
 <p>In Lesson 28, we fit a model predicting AFT scores from gym hours:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(soldiers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(soldiers[, <span class="fu">c</span>(<span class="st">"gym_hours"</span>, <span class="st">"aft_score"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  gym_hours aft_score
-1      10.6       482
-2       6.7       439
-3      10.5       504
-4       2.8       389
-5       2.3       396
-6       4.5       409</code></pre>
+1      10.6       518
+2       6.7       397
+3      10.5       492
+4       2.8       379
+5       2.3       402
+6       4.5       423</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -630,19 +630,19 @@ Call:
 lm(formula = aft_score ~ gym_hours, data = soldiers)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--24.584  -6.049  -2.001   6.088  25.846 
+     Min       1Q   Median       3Q      Max 
+-105.644  -31.471    7.454   37.627   64.745 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  353.418      8.644   40.88  &lt; 2e-16 ***
-gym_hours     12.231      1.141   10.72 3.02e-09 ***
+(Intercept)  344.181     20.077  17.143  &lt; 2e-16 ***
+gym_hours     13.804      2.558   5.396 2.74e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 14.18 on 18 degrees of freedom
-Multiple R-squared:  0.8646,    Adjusted R-squared:  0.8571 
-F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
+Residual standard error: 44.56 on 43 degrees of freedom
+Multiple R-squared:  0.4038,    Adjusted R-squared:  0.3899 
+F-statistic: 29.12 on 1 and 43 DF,  p-value: 2.74e-06</code></pre>
 </div>
 </div>
 <p>There’s a lot in this output. What should we look at?</p>
@@ -653,10 +653,10 @@ F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
 <section id="the-regression-equation" class="level3">
 <h3 class="anchored" data-anchor-id="the-regression-equation">1. The Regression Equation</h3>
 <p>From the <code>Estimate</code> column, we get the coefficients:</p>
-<p><span class="math display">\[\widehat{\text{AFT Score}} = 353.42 + 12.23 \cdot \text{Gym Hours}\]</span></p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 344.18 + 13.8 \cdot \text{Gym Hours}\]</span></p>
 <ul>
-<li><strong>Slope</strong> (<span class="math inline">\(b_1 = 12.23\)</span>): For each additional hour per week spent in the gym, a Soldier’s predicted AFT score increases by 12.23 points, on average.</li>
-<li><strong>Intercept</strong> (<span class="math inline">\(b_0 = 353.42\)</span>): A Soldier who spends zero hours per week in the gym has a predicted AFT score of 353.42 points.</li>
+<li><strong>Slope</strong> (<span class="math inline">\(b_1 = 13.8\)</span>): For each additional hour per week spent in the gym, a Soldier’s predicted AFT score increases by 13.8 points, on average.</li>
+<li><strong>Intercept</strong> (<span class="math inline">\(b_0 = 344.18\)</span>): A Soldier who spends zero hours per week in the gym has a predicted AFT score of 344.18 points.</li>
 </ul>
 <hr>
 </section>
@@ -667,9 +667,9 @@ F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
 <p><span class="math display">\[H_0: \beta_1 = 0 \quad \text{(no linear relationship between gym hours and AFT score)}\]</span> <span class="math display">\[H_a: \beta_1 \neq 0 \quad \text{(there is a linear relationship)}\]</span></p>
 <p>If we fail to reject <span class="math inline">\(H_0\)</span>, that means gym hours is <strong>not</strong> a useful predictor of AFT score. This is the test we care about most.</p>
 <p><strong>For the intercept:</strong></p>
-<p><span class="math display">\[H_0: \beta_0 = 0 \quad H_a: \beta_0 \neq 0\]</span></p>
+<p><span class="math display">\[H_0: \beta_0 = 0\]</span> <span class="math display">\[H_a: \beta_0 \neq 0\]</span></p>
 <p>This tests whether the intercept is different from zero – often less interesting in practice.</p>
-<p>The p-value for the slope is 3.02^{-9} – very small. We reject <span class="math inline">\(H_0\)</span> and conclude there <strong>is</strong> a statistically significant linear relationship between gym hours and AFT score.</p>
+<p>The p-value for the slope is 2.74^{-6} – very small. We reject <span class="math inline">\(H_0\)</span> and conclude there <strong>is</strong> a statistically significant linear relationship between gym hours and AFT score.</p>
 <hr>
 </section>
 <section id="r2-how-well-does-the-model-fit" class="level3">
@@ -695,7 +695,7 @@ F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
 <p><span class="math inline">\(R^2\)</span> is the proportion of variability in <span class="math inline">\(y\)</span> explained by <span class="math inline">\(x\)</span>.</p>
 </div>
 </div>
-<p>For our model, <span class="math inline">\(R^2 = 0.8646\)</span>, meaning gym hours explain about 86.5% of the variability in AFT scores.</p>
+<p>For our model, <span class="math inline">\(R^2 = 0.4038\)</span>, meaning gym hours explain about 40.4% of the variability in AFT scores.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="$R^2$ Cautions">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -732,51 +732,51 @@ F-statistic:   115 on 1 and 18 DF,  p-value: 3.02e-09</code></pre>
 </section>
 <section id="what-if-we-have-more-than-one-predictor" class="level2">
 <h2 class="anchored" data-anchor-id="what-if-we-have-more-than-one-predictor">What If We Have More Than One Predictor?</h2>
-<p>Gym hours probably isn’t the only thing that affects AFT scores. What if we collected more data on each Soldier?</p>
+<p>Gym hours probably isn’t the only thing that affects AFT scores. It turns out we actually collected more data on these same Soldiers – we just haven’t looked at it yet:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(soldiers_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(soldiers[, <span class="fu">c</span>(<span class="st">"gym_hours"</span>, <span class="st">"hours_gaming"</span>, <span class="st">"gpa"</span>, <span class="st">"aft_score"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  gym_hours hours_gaming  gpa aft_score
-1       9.0         18.2 2.60       409
-2       7.6          3.5 3.79       505
-3       3.4         14.6 3.13       358
-4       4.9          0.3 2.91       501
-5       7.6         11.7 2.80       436
-6       2.3          8.5 2.17       387</code></pre>
+1      10.6          2.3 2.80       518
+2       6.7         18.1 3.35       397
+3      10.5          2.8 3.41       492
+4       2.8         10.1 2.14       379
+5       2.3         12.7 3.61       402
+6       4.5          9.5 2.71       423</code></pre>
 </div>
 </div>
 <p>Now we have three potential predictors: <strong>gym hours</strong>, <strong>gaming hours</strong>, and <strong>GPA</strong>. Let’s fit a model with all three:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming <span class="sc">+</span> gpa, <span class="at">data =</span> soldiers_mlr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming <span class="sc">+</span> gpa, <span class="at">data =</span> soldiers)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = aft_score ~ gym_hours + hours_gaming + gpa, data = soldiers_mlr)
+lm(formula = aft_score ~ gym_hours + hours_gaming + gpa, data = soldiers)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--16.5182  -6.4093   0.0888   4.9078  15.9962 
+    Min      1Q  Median      3Q     Max 
+-41.932 -14.411  -1.957  16.266  45.215 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  431.9254    10.4331  41.400  &lt; 2e-16 ***
-gym_hours     11.7902     0.6450  18.279 2.32e-16 ***
-hours_gaming  -8.0622     0.2633 -30.620  &lt; 2e-16 ***
-gpa            1.3630     2.8190   0.484    0.633    
+(Intercept)   414.882     23.442  17.698  &lt; 2e-16 ***
+gym_hours       9.293      1.323   7.025 1.52e-08 ***
+hours_gaming   -6.053      0.536 -11.292 3.68e-14 ***
+gpa             7.522      5.807   1.295    0.202    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 8.733 on 26 degrees of freedom
-Multiple R-squared:  0.9789,    Adjusted R-squared:  0.9765 
-F-statistic: 402.9 on 3 and 26 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 21.82 on 41 degrees of freedom
+Multiple R-squared:  0.8637,    Adjusted R-squared:  0.8538 
+F-statistic: 86.62 on 3 and 41 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <section id="reading-this-output" class="level3">
 <h3 class="anchored" data-anchor-id="reading-this-output">Reading This Output</h3>
 <p>The same three things we looked for in SLR still apply:</p>
 <p><strong>1. The Equation:</strong></p>
-<p><span class="math display">\[\widehat{\text{AFT Score}} = 431.93 + 11.79 \cdot \text{Gym Hours} -8.06 \cdot \text{Gaming Hours} + 1.36 \cdot \text{GPA}\]</span></p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 414.88 + 9.29 \cdot \text{Gym Hours} -6.05 \cdot \text{Gaming Hours} + 7.52 \cdot \text{GPA}\]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Interpreting MLR Slopes">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -789,17 +789,18 @@ F-statistic: 402.9 on 3 and 26 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="callout-body-container callout-body">
 <p>In multiple regression, each slope is interpreted <strong>holding the other variables constant</strong>:</p>
 <ul>
-<li>For each additional gym hour per week, predicted AFT score increases by 11.79 points, <strong>holding gaming hours and GPA constant</strong>.</li>
-<li>For each additional hour of gaming per week, predicted AFT score <strong>decreases</strong> by 8.06 points, <strong>holding gym hours and GPA constant</strong>.</li>
-<li>For each additional GPA point, predicted AFT score changes by 1.36 points, <strong>holding gym hours and gaming hours constant</strong>.</li>
+<li>For each additional gym hour per week, predicted AFT score increases by 9.29 points, <strong>holding gaming hours and GPA constant</strong>.</li>
+<li>For each additional hour of gaming per week, predicted AFT score <strong>decreases</strong> by 6.05 points, <strong>holding gym hours and GPA constant</strong>.</li>
+<li>For each additional GPA point, predicted AFT score changes by 7.52 points, <strong>holding gym hours and gaming hours constant</strong>.</li>
 </ul>
 </div>
 </div>
 <p><strong>2. The P-Values:</strong></p>
-<p>Each predictor has its own hypothesis test: <span class="math inline">\(H_0: \beta_j = 0\)</span> vs <span class="math inline">\(H_a: \beta_j \neq 0\)</span>.</p>
+<p>Each predictor has its own hypothesis test:</p>
+<p><span class="math display">\[H_0: \beta_j = 0\]</span> <span class="math display">\[H_a: \beta_j \neq 0\]</span></p>
 <p>Look at the p-values – gym hours and gaming hours have small p-values (significant predictors), but GPA does not. We fail to reject <span class="math inline">\(H_0: \beta_3 = 0\)</span>, meaning GPA is <strong>not</strong> a significant predictor of AFT score. That makes sense!</p>
 <p><strong>3. <span class="math inline">\(R^2\)</span>:</strong></p>
-<p><span class="math inline">\(R^2 = 0.9789\)</span> – gym hours, gaming hours, and GPA together explain about 97.9% of the variability in AFT scores.</p>
+<p><span class="math inline">\(R^2 = 0.8637\)</span> – gym hours, gaming hours, and GPA together explain about 86.4% of the variability in AFT scores.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Not Every Variable Belongs in the Model">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -825,31 +826,32 @@ F-statistic: 402.9 on 3 and 26 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 class="anchored" data-anchor-id="removing-the-insignificant-predictor">Removing the Insignificant Predictor</h2>
 <p>Since GPA wasn’t significant, let’s drop it and refit with just gym hours and gaming hours:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming, <span class="at">data =</span> soldiers_mlr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming, <span class="at">data =</span> soldiers)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_reduced)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = aft_score ~ gym_hours + hours_gaming, data = soldiers_mlr)
+lm(formula = aft_score ~ gym_hours + hours_gaming, data = soldiers)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--15.443  -6.046  -0.469   4.394  16.818 
+-37.023 -15.642  -0.592  19.137  44.532 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  436.4609     4.5020   96.95   &lt;2e-16 ***
-gym_hours     11.7607     0.6330   18.58   &lt;2e-16 ***
-hours_gaming  -8.0729     0.2586  -31.21   &lt;2e-16 ***
+(Intercept)  440.3093    12.9181  34.085  &lt; 2e-16 ***
+gym_hours      9.1099     1.3258   6.871 2.22e-08 ***
+hours_gaming  -6.1731     0.5322 -11.599 1.12e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 8.609 on 27 degrees of freedom
-Multiple R-squared:  0.9788,    Adjusted R-squared:  0.9772 
-F-statistic: 621.8 on 2 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 21.99 on 42 degrees of freedom
+Multiple R-squared:  0.8581,    Adjusted R-squared:  0.8514 
+F-statistic:   127 on 2 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(R^2 = 0.9788\)</span> – nearly the same as the three-predictor model (<span class="math inline">\(R^2 = 0.9789\)</span>). Dropping GPA barely changed anything because it wasn’t contributing meaningful explanatory power.</p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 440.31 + 9.11 \cdot \text{Gym Hours} -6.17 \cdot \text{Gaming Hours}\]</span></p>
+<p><span class="math inline">\(R^2 = 0.8581\)</span> – nearly the same as the three-predictor model (<span class="math inline">\(R^2 = 0.8637\)</span>). Dropping GPA barely changed anything because it wasn’t contributing meaningful explanatory power.</p>
 <section id="comparing-all-three-models" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-all-three-models">Comparing All Three Models</h3>
 <div class="cell">
@@ -866,17 +868,17 @@ F-statistic: 621.8 on 2 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
 <tr class="odd">
 <td style="text-align: left;">SLR: Gym Hours only</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">0.8646</td>
+<td style="text-align: center;">0.4038</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">MLR: Gym Hours + Gaming + GPA</td>
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">0.9789</td>
+<td style="text-align: center;">0.8637</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MLR: Gym Hours + Gaming</td>
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">0.9788</td>
+<td style="text-align: center;">0.8581</td>
 </tr>
 </tbody>
 </table>
@@ -888,50 +890,50 @@ F-statistic: 621.8 on 2 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="what-about-categorical-predictors" class="level2">
 <h2 class="anchored" data-anchor-id="what-about-categorical-predictors">What About Categorical Predictors?</h2>
-<p>So far all our predictors have been numbers. But what if we want to include something like <strong>MOS branch</strong> – Infantry, Cyber, or Engineers?</p>
+<p>So far all our predictors have been numbers. But we also recorded each Soldier’s <strong>MOS branch</strong> – Infantry, Cyber, or Engineers:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>soldiers_cat[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">16</span><span class="sc">:</span><span class="dv">17</span>, <span class="dv">31</span><span class="sc">:</span><span class="dv">32</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(soldiers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gym_hours hours_gaming    branch aft_score
-1       11.1         19.2  Infantry       422
-2       11.4         17.8  Infantry       420
-16      11.4         13.5     Cyber       470
-17      11.8         19.7     Cyber       437
-31       9.4         14.4 Engineers       470
-32      10.1          0.2 Engineers       579</code></pre>
+<pre><code>  gym_hours hours_gaming  gpa    branch aft_score
+1      10.6          2.3 2.80     Cyber       518
+2       6.7         18.1 3.35 Engineers       397
+3      10.5          2.8 3.41  Infantry       492
+4       2.8         10.1 2.14     Cyber       379
+5       2.3         12.7 3.61 Engineers       402
+6       4.5          9.5 2.71  Infantry       423</code></pre>
 </div>
 </div>
 <p><code>branch</code> is a <strong>categorical variable</strong> with three levels. R handles this using <strong>indicator (dummy) variables</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model_cat <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming <span class="sc">+</span> branch, <span class="at">data =</span> soldiers_cat)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model_cat <span class="ot">&lt;-</span> <span class="fu">lm</span>(aft_score <span class="sc">~</span> gym_hours <span class="sc">+</span> hours_gaming <span class="sc">+</span> branch, <span class="at">data =</span> soldiers)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_cat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = aft_score ~ gym_hours + hours_gaming + branch, data = soldiers_cat)
+lm(formula = aft_score ~ gym_hours + hours_gaming + branch, data = soldiers)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.975  -8.229   2.424   6.684  19.489 
+-16.821  -8.555  -1.591   7.885  27.441 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)     454.1012     5.5379  81.998  &lt; 2e-16 ***
-gym_hours        10.2409     0.5849  17.507  &lt; 2e-16 ***
-hours_gaming     -6.8394     0.3142 -21.767  &lt; 2e-16 ***
-branchEngineers  14.8449     4.1268   3.597 0.000875 ***
-branchInfantry  -16.6698     4.0771  -4.089 0.000203 ***
+(Intercept)     435.2475     6.9776  62.378  &lt; 2e-16 ***
+gym_hours        10.5989     0.6934  15.284  &lt; 2e-16 ***
+hours_gaming     -7.0000     0.2888 -24.236  &lt; 2e-16 ***
+branchEngineers  27.6409     4.4745   6.177 2.66e-07 ***
+branchInfantry  -20.8838     4.1198  -5.069 9.50e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 11.08 on 40 degrees of freedom
-Multiple R-squared:  0.9481,    Adjusted R-squared:  0.9429 
-F-statistic: 182.5 on 4 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 11.26 on 40 degrees of freedom
+Multiple R-squared:  0.9646,    Adjusted R-squared:  0.9611 
+F-statistic: 272.5 on 4 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <section id="reading-this-output-1" class="level3">
 <h3 class="anchored" data-anchor-id="reading-this-output-1">Reading This Output</h3>
-<p><span class="math display">\[\widehat{\text{AFT Score}} = 454.1 + 10.24 \cdot \text{Gym Hours} - 6.84 \cdot \text{Gaming Hours} + 14.84 \cdot \text{Engineers} - 16.67 \cdot \text{Infantry}\]</span></p>
+<p><span class="math display">\[\widehat{\text{AFT Score}} = 435.25 + 10.6 \cdot \text{Gym Hours} - 7 \cdot \text{Gaming Hours} + 27.64 \cdot \text{Engineers} - 20.88 \cdot \text{Infantry}\]</span></p>
 <p>Wait – what are “Engineers” and “Infantry” in an equation? And where did Cyber go?</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Reference Level">
 <div class="callout-header d-flex align-content-center">
@@ -945,21 +947,21 @@ F-statistic: 182.5 on 4 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="callout-body-container callout-body">
 <p>R picks one level as the <strong>reference</strong> (baseline) – here it’s Cyber (alphabetically first). The indicator variables <code>Engineers</code> and <code>Infantry</code> are 0 or 1, so they “turn on” for that branch. Cyber doesn’t appear because it’s the baseline (both indicators = 0).</p>
 <ul>
-<li><strong>Intercept</strong> (<span class="math inline">\(454.1\)</span>): predicted AFT score for a <strong>Cyber</strong> Soldier with 0 gym hours and 0 gaming hours</li>
-<li><strong>gym_hours</strong> (<span class="math inline">\(10.24\)</span>): each additional gym hour increases predicted AFT score by 10.24 points, holding gaming hours and branch constant</li>
-<li><strong>hours_gaming</strong> (<span class="math inline">\(-6.84\)</span>): each additional gaming hour <strong>decreases</strong> predicted AFT score by 6.84 points, holding gym hours and branch constant</li>
-<li><strong>branchEngineers</strong> (<span class="math inline">\(14.84\)</span>): Engineers score 14.84 points <strong>higher</strong> than Cyber, holding all else constant</li>
-<li><strong>branchInfantry</strong> (<span class="math inline">\(-16.67\)</span>): Infantry score -16.67 points <strong>lower</strong> than Cyber, holding all else constant</li>
+<li><strong>Intercept</strong> (<span class="math inline">\(435.25\)</span>): predicted AFT score for a <strong>Cyber</strong> Soldier with 0 gym hours and 0 gaming hours</li>
+<li><strong>gym_hours</strong> (<span class="math inline">\(10.6\)</span>): each additional gym hour increases predicted AFT score by 10.6 points, holding gaming hours and branch constant</li>
+<li><strong>hours_gaming</strong> (<span class="math inline">\(-7\)</span>): each additional gaming hour <strong>decreases</strong> predicted AFT score by 7 points, holding gym hours and branch constant</li>
+<li><strong>branchEngineers</strong> (<span class="math inline">\(27.64\)</span>): Engineers score 27.64 points <strong>higher</strong> than Cyber, holding all else constant</li>
+<li><strong>branchInfantry</strong> (<span class="math inline">\(-20.88\)</span>): Infantry score -20.88 points <strong>lower</strong> than Cyber, holding all else constant</li>
 </ul>
 <p>The ordering is Infantry &lt; Cyber &lt; Engineers for predicted AFT scores.</p>
 </div>
 </div>
-<p>All predictors are significant, and <span class="math inline">\(R^2 = 0.9481\)</span>.</p>
+<p>All predictors are significant, and <span class="math inline">\(R^2 = 0.9646\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-30_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1076,8 +1078,9 @@ F-statistic: 182.5 on 4 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ol type="a">
 <li><p><strong>For each additional mile run per week, a Soldier’s predicted 12-mile ruck march time decreases by 2.8 minutes, on average.</strong></p></li>
 <li><p><strong>62% of the variability in ruck march times is explained by the linear relationship with weekly running miles.</strong> The remaining 38% is due to other factors (e.g., load carried, terrain experience, body composition).</p></li>
-<li><p><span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_a: \beta_1 \neq 0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \beta_1 = 0\)</span></p></li>
 </ol>
+<p><span class="math inline">\(H_a: \beta_1 \neq 0\)</span></p>
 <p><span class="math inline">\(t = b_1 / SE(b_1) = -2.8 / 0.55 = -5.09\)</span>, with <span class="math inline">\(df = 25 - 2 = 23\)</span>.</p>
 <p>The p-value for <span class="math inline">\(|t| = 5.09\)</span> with 23 df is very small (&lt; 0.001). We reject <span class="math inline">\(H_0\)</span> and conclude there is a statistically significant linear relationship between weekly running miles and ruck march time.</p>
 <ol start="4" type="a">
@@ -1137,8 +1140,9 @@ Multiple R-squared: 0.372</code></pre>
 </ol>
 <p><strong>Intercept:</strong> A Soldier with zero hours of dry-fire practice per month has a predicted qualification score of 185.20 points. (This is meaningful – some Soldiers may not do extra dry-fire practice.)</p>
 <ol start="3" type="a">
-<li><span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_a: \beta_1 \neq 0\)</span></li>
+<li><span class="math inline">\(H_0: \beta_1 = 0\)</span></li>
 </ol>
+<p><span class="math inline">\(H_a: \beta_1 \neq 0\)</span></p>
 <p><span class="math inline">\(t = b_1 / SE(b_1) = 4.15 / 1.02 = 4.07\)</span>, with <span class="math inline">\(df = 30 - 2 = 28\)</span>.</p>
 <p>The p-value is <span class="math inline">\(0.000345 &lt; 0.05\)</span>. We reject <span class="math inline">\(H_0\)</span> and conclude there is a statistically significant linear relationship between dry-fire hours and qualification score.</p>
 <ol start="4" type="a">
