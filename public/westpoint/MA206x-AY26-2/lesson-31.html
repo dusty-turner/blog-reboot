@@ -734,7 +734,13 @@ F-statistic:   324 on 5 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="regression-assumptions-line" class="level2">
 <h2 class="anchored" data-anchor-id="regression-assumptions-line">Regression Assumptions: LINE</h2>
-<p>We’ve been fitting models and reading output – but when are the results actually <strong>trustworthy</strong>? Regression inference (p-values, confidence intervals) relies on four assumptions. Remember them with <strong>LINE</strong>:</p>
+<p>We’ve been fitting models and reading output – but when are the results actually <strong>trustworthy</strong>?</p>
+<p>Just like every hypothesis test we’ve done this semester, regression has <strong>assumptions that must be satisfied</strong> for the inference to be valid. Remember:</p>
+<ul>
+<li>For a <strong>one-sample t-test</strong>, we needed <span class="math inline">\(n &gt; 30\)</span> (or a nearly normal population)</li>
+<li>For a <strong>one-proportion z-test</strong>, we needed <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p) \geq 10\)</span></li>
+</ul>
+<p>Regression is no different – it has its own set of assumptions. They’re a bit more involved, but the idea is the same: if the assumptions don’t hold, the p-values and confidence intervals can’t be trusted. Remember them with <strong>LINE</strong>:</p>
 <div class="callout callout-style-default callout-important callout-titled" title="LINE Assumptions">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -792,7 +798,7 @@ F-statistic:   324 on 5 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="l-linearity">L – Linearity</h3>
 <p>The relationship between each predictor and <span class="math inline">\(y\)</span> should be linear (not curved). We check this with a <strong>residuals vs.&nbsp;fitted values</strong> plot:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -845,7 +851,7 @@ F-statistic:   324 on 5 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Every observation has a residual: <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>. If we collect <strong>all</strong> of those residuals and make a histogram, they should look roughly bell-shaped – centered at zero with most values close to zero and fewer values far away. In other words, the model’s errors should follow a <strong>normal distribution</strong>. This matters because the p-values and confidence intervals from regression assume normally distributed errors.</p>
 <p>We check this with a <strong>QQ plot</strong> (quantile-quantile plot), which plots the residuals against what we’d expect if they were perfectly normal:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -887,7 +893,7 @@ F-statistic:   324 on 5 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="e-equal-variance-homoscedasticity">E – Equal Variance (Homoscedasticity)</h3>
 <p>The spread of residuals should be <strong>constant</strong> across all fitted values – no fanning out or funneling in. We check with the <strong>scale-location plot</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">3</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
