@@ -665,7 +665,7 @@ window.Quarto = {
 <p><strong>Sub-question 1.</strong> Sleep is an input to performance. Before we model final score, ask: are our cadets even hitting the Corps guidance of <strong>7 hours</strong> per night?</p>
 <ul>
 <li><span class="math inline">\(H_0: \mu_{\text{sleep}} = 7\)</span></li>
-<li><span class="math inline">\(H_A: \mu_{\text{sleep}} \ne 7\)</span></li>
+<li><span class="math inline">\(H_A: \mu_{\text{sleep}} &gt; 7\)</span></li>
 </ul>
 <section id="visualize" class="level3">
 <h3 class="anchored" data-anchor-id="visualize">Visualize</h3>
@@ -687,10 +687,10 @@ window.Quarto = {
     One Sample t-test
 
 data:  cadets$sleep_hours
-t = -5.4245, df = 59, p-value = 1.139e-06
-alternative hypothesis: true mean is not equal to 7
+t = -5.4245, df = 59, p-value = 1
+alternative hypothesis: true mean is greater than 7
 95 percent confidence interval:
- 6.169546 6.617121
+ 6.206442      Inf
 sample estimates:
 mean of x 
  6.393333 </code></pre>
@@ -703,7 +703,7 @@ mean of x
 </section>
 <section id="takeaway" class="level3">
 <h3 class="anchored" data-anchor-id="takeaway">Takeaway</h3>
-<p>The p-value is well below <span class="math inline">\(\alpha = 0.05\)</span>, so we <strong>reject <span class="math inline">\(H_0\)</span></strong>. We have strong evidence that average cadet sleep differs from 7 hours – and the sample mean tells us it’s <strong>lower</strong>. This is a problem for performance.</p>
+<p>The p-value is well above <span class="math inline">\(\alpha = 0.05\)</span>, so we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. We have no evidence that average cadet sleep exceeds 7 hours. The sample mean is well <strong>below</strong> the standard – cadets are not getting enough sleep, and that’s a problem for performance.</p>
 <hr>
 </section>
 </section>
@@ -711,8 +711,8 @@ mean of x
 <h2 class="anchored" data-anchor-id="part-2-two-sample-t-test-does-prior-stats-experience-matter">Part 2: Two-Sample t-Test – Does Prior Stats Experience Matter?</h2>
 <p><strong>Sub-question 2.</strong> Does taking a stats course in high school give cadets a leg up on the MA206 final?</p>
 <ul>
-<li><span class="math inline">\(H_0: \mu_{\text{Yes}} = \mu_{\text{No}}\)</span></li>
-<li><span class="math inline">\(H_A: \mu_{\text{Yes}} \ne \mu_{\text{No}}\)</span></li>
+<li><span class="math inline">\(H_0: \mu_{\text{Yes}} - \mu_{\text{No}} = 0\)</span></li>
+<li><span class="math inline">\(H_A: \mu_{\text{Yes}} - \mu_{\text{No}} \ne 0\)</span></li>
 </ul>
 <section id="visualize-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualize-1">Visualize</h3>
@@ -880,7 +880,7 @@ F-statistic:  56.1 on 4 and 55 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>What cadet habits and backgrounds drive MA206 final exam performance?</strong></p>
 <p>Stitching the three answers together:</p>
 <ol type="1">
-<li>Cadets are sleeping <strong>less</strong> than the 7-hour standard (Part 1) – so an input we know matters is under-supplied.</li>
+<li>No evidence cadets sleep <strong>more</strong> than the 7-hour standard (Part 1) – the sample mean falls well short, so an input we know matters is under-supplied.</li>
 <li>Prior high school stats coursework shows <strong>no evidence</strong> of changing final score (Part 2) – background doesn’t predetermine the outcome.</li>
 <li>Once we control for everything at once, <strong>sleep</strong>, <strong>study hours</strong>, and <strong>platoon</strong> are what actually move the score (Part 3).</li>
 </ol>
