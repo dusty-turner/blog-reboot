@@ -428,7 +428,10 @@ window.Quarto = {
   <ul>
   <li><a href="#lesson-35-anova-i" id="toc-lesson-35-anova-i" class="nav-link active" data-scroll-target="#lesson-35-anova-i">Lesson 35: ANOVA I</a>
   <ul class="collapse">
-  <li><a href="#the-project-where-you-should-be" id="toc-the-project-where-you-should-be" class="nav-link" data-scroll-target="#the-project-where-you-should-be">The Project: Where You Should Be</a></li>
+  <li><a href="#the-project-where-you-should-be" id="toc-the-project-where-you-should-be" class="nav-link" data-scroll-target="#the-project-where-you-should-be">The Project: Where You Should Be</a>
+  <ul class="collapse">
+  <li><a href="#example-write-up-sections-3.1-3.3" id="toc-example-write-up-sections-3.1-3.3" class="nav-link" data-scroll-target="#example-write-up-sections-3.1-3.3">Example Write-Up: Sections 3.1 – 3.3</a></li>
+  </ul></li>
   <li><a href="#what-we-did-lessons-28-30-31-32-33" id="toc-what-we-did-lessons-28-30-31-32-33" class="nav-link" data-scroll-target="#what-we-did-lessons-28-30-31-32-33">What We Did: Lessons 28, 30, 31, 32, 33</a></li>
   <li><a href="#what-were-doing-lesson-35" id="toc-what-were-doing-lesson-35" class="nav-link" data-scroll-target="#what-were-doing-lesson-35">What We’re Doing: Lesson 35</a>
   <ul class="collapse">
@@ -459,10 +462,10 @@ window.Quarto = {
   <li><a href="#stop-and-think" id="toc-stop-and-think" class="nav-link" data-scroll-target="#stop-and-think">Stop and Think</a></li>
   <li><a href="#how-big-is-big-enough-the-f-distribution" id="toc-how-big-is-big-enough-the-f-distribution" class="nav-link" data-scroll-target="#how-big-is-big-enough-the-f-distribution">How Big Is Big Enough? The F Distribution</a></li>
   <li><a href="#our-conclusion-on-the-aft-data" id="toc-our-conclusion-on-the-aft-data" class="nav-link" data-scroll-target="#our-conclusion-on-the-aft-data">Our Conclusion on the AFT Data</a></li>
-  <li><a href="#the-anova-table" id="toc-the-anova-table" class="nav-link" data-scroll-target="#the-anova-table">The ANOVA Table</a></li>
   <li><a href="#doing-this-in-r-with-aov" id="toc-doing-this-in-r-with-aov" class="nav-link" data-scroll-target="#doing-this-in-r-with-aov">Doing This in R with <code>aov()</code></a></li>
   </ul></li>
   <li><a href="#assumptions-check-these-before-trusting-the-f-test" id="toc-assumptions-check-these-before-trusting-the-f-test" class="nav-link" data-scroll-target="#assumptions-check-these-before-trusting-the-f-test">Assumptions (check these before trusting the F-test)</a></li>
+  <li><a href="#another-example-five-mos-branches" id="toc-another-example-five-mos-branches" class="nav-link" data-scroll-target="#another-example-five-mos-branches">Another Example: Five MOS Branches</a></li>
   <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
   <ul class="collapse">
   <li><a href="#problem-1-state-the-hypotheses" id="toc-problem-1-state-the-hypotheses" class="nav-link" data-scroll-target="#problem-1-state-the-hypotheses">Problem 1: State the Hypotheses</a></li>
@@ -512,7 +515,7 @@ window.Quarto = {
 <hr>
 <section id="the-project-where-you-should-be" class="level2">
 <h2 class="anchored" data-anchor-id="the-project-where-you-should-be">The Project: Where You Should Be</h2>
-<p>The <strong>Tech Report is due Lesson 36</strong> – tomorrow. You should be finalizing your write-up today: polish the narrative, clean up figures, re-check every coefficient interpretation, and proofread.</p>
+<p>The <strong>Project Peer Review due Lesson 36</strong> – Come in to class with your 85% solution. Every person brings in 3 copies.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Project Links">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -533,7 +536,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td><strong>Project Instructions</strong></td>
-<td><a href="https://westpoint.instructure.com/courses/11418/files/3968138?wrap=1" target="_blank">Course Project Instructions</a></td>
+<td><a href="assets/files/MA206X_Project_Instructions.pdf" target="_blank">Course Project Instructions (PDF)</a></td>
 </tr>
 <tr class="even">
 <td><strong>Project Groups / Pairs</strong></td>
@@ -551,7 +554,185 @@ window.Quarto = {
 </table>
 </div>
 </div>
+<section id="example-write-up-sections-3.1-3.3" class="level3">
+<h3 class="anchored" data-anchor-id="example-write-up-sections-3.1-3.3">Example Write-Up: Sections 3.1 – 3.3</h3>
+<p>Below is the level of writing and analysis I expect on the project. The example uses simulated data for a fictional 2nd BCT, 10th Mountain Division (not your real brigade). Use it as a template for tone, structure, depth, and how to weave R output into narrative – not as content to copy.</p>
+<section id="executive-summary" class="level4">
+<h4 class="anchored" data-anchor-id="executive-summary">3.1 Executive Summary</h4>
+<p><strong>BLUF.</strong> 2nd BCT’s mean AFT score is statistically indistinguishable from the 360-point promotion standard, but roughly one in three Soldiers still scores below 360. Targeted remediation at the individual level – not brigade-wide PT – is the highest-leverage intervention.</p>
+<p><strong>Methods.</strong> We analyzed 592 individual Soldier records from Army Vantage (JAN – MAR 2026) after data cleaning. We ran a one-sample <span class="math inline">\(t\)</span>-test against the 360 promotion standard, a two-sample <span class="math inline">\(t\)</span>-test comparing Combat Arms vs.&nbsp;Combat Support AFT totals, and a multiple linear regression predicting AFT total score from time in service, body-fat percent, billet, and M4 score.</p>
+<p><strong>Key results.</strong></p>
+<ol type="1">
+<li>Brigade mean AFT does not differ from the 360 standard at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li>Combat Arms outscore Combat Support on the AFT by a meaningful margin (<span class="math inline">\(p &lt; 0.001\)</span>).</li>
+<li>Body-fat percent and time in service are the strongest predictors of AFT performance.</li>
+<li>Roughly 31% of Soldiers are below the 360 standard despite the brigade average clearing it.</li>
+</ol>
+<p><strong>Recommendation.</strong> Shift remediation resources from blanket unit PT to a body-composition-focused program for the below-360 cohort, prioritizing Combat Support companies.</p>
+</section>
+<section id="introduction" class="level4">
+<h4 class="anchored" data-anchor-id="introduction">3.2 Introduction</h4>
+<p><strong>Problem statement.</strong> The brigade commander must decide how to allocate limited training time to maximize lethality. Brigade-level pass rates alone obscure who is at risk and why.</p>
+<p><strong>Objectives.</strong> (1) Determine whether mean brigade AFT performance meets the 360 promotion standard. (2) Identify subgroups with performance gaps. (3) Quantify which Soldier-level factors drive AFT performance.</p>
+<p><strong>Scope.</strong> 2nd BCT, 10th Mountain Division; data pulled from Army Vantage covering JAN – MAR 2026; starting roster of 612 Soldiers across 3 battalions.</p>
+<p><strong>Variable summary.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>aft_score_total</code></td>
+<td>Numeric (0–500)</td>
+<td>Total AFT score (response of interest)</td>
+</tr>
+<tr class="even">
+<td><code>billet</code></td>
+<td>Categorical</td>
+<td>Combat Arms vs.&nbsp;Combat Support</td>
+</tr>
+<tr class="odd">
+<td><code>tis_years</code></td>
+<td>Numeric</td>
+<td>Years on active duty</td>
+</tr>
+<tr class="even">
+<td><code>age_bracket</code></td>
+<td>Categorical</td>
+<td>18–25, 26–30, 31–35, 36+</td>
+</tr>
+<tr class="odd">
+<td><code>body_fat</code></td>
+<td>Numeric</td>
+<td>Tape-test estimate (%)</td>
+</tr>
+<tr class="even">
+<td><code>m4_score</code></td>
+<td>Numeric (0–40)</td>
+<td>M4 qualification score</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data cleaning.</strong> We dropped records missing <code>aft_score_total</code> and records with <code>body_fat</code> outside [3%, 40%] (sensor/entry errors). No imputation was performed. Final analytic sample: <span class="math inline">\(n = 592\)</span>.</p>
+<p><strong>Descriptive statistics (key variables).</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">Mean (SD)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AFT total</td>
+<td style="text-align: right;">392.1 (43.9)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TIS (yr)</td>
+<td style="text-align: right;">6.1 (4.2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body fat (%)</td>
+<td style="text-align: right;">19.3 (4.9)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M4 score</td>
+<td style="text-align: right;">31.2 (3.9)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="one-sample-hypothesis-test" class="level4">
+<h4 class="anchored" data-anchor-id="one-sample-hypothesis-test">3.3 One-Sample Hypothesis Test</h4>
+<p><strong>Question.</strong> Does 2nd BCT’s mean AFT score differ from the Army promotion standard of 360?</p>
+<p><strong>1. Exploratory Data Analysis.</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">% below 360</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">592</td>
+<td style="text-align: right;">392.1</td>
+<td style="text-align: right;">43.9</td>
+<td style="text-align: right;">394</td>
+<td style="text-align: right;">24.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>Observation:</em> The distribution is roughly symmetric with a slight left tail. The brigade mean sits just above the standard, but nearly a third of the force is below it. The mean alone hides a substantial at-risk tail.</p>
+<p><strong>2. Methodology.</strong></p>
+<ul>
+<li><span class="math inline">\(H_0:\ \mu = 360\)</span></li>
+<li><span class="math inline">\(H_a:\ \mu \ne 360\)</span></li>
+<li><strong>Procedure:</strong> one-sample <span class="math inline">\(t\)</span>-test, two-sided.</li>
+<li><strong>Significance level:</strong> <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li><strong>Assumptions:</strong>
+<ul>
+<li><em>Independence:</em> Soldiers are distinct records; reasonable.</li>
+<li><em>Normality:</em> <span class="math inline">\(n = 592 \gg 30\)</span>, so CLT covers any mild non-normality seen in the EDA.</li>
+<li><em>Representative sample:</em> Data are the full brigade roster for the window; we treat them as a sample of the brigade’s underlying performance process.</li>
+</ul></li>
+</ul>
+<p><strong>3. Results.</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bde_clean$aft_score_total
+t = 17.758, df = 591, p-value &lt; 0.00000000000000022
+alternative hypothesis: true mean is not equal to 360
+95 percent confidence interval:
+ 388.5150 395.6066
+sample estimates:
+mean of x 
+ 392.0608 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Test statistic:</strong> <span class="math inline">\(t = 17.76\)</span> on <span class="math inline">\(591\)</span> df.</li>
+<li><strong>p-value:</strong> <span class="math inline">\(0\)</span>.</li>
+<li><strong>95% CI for <span class="math inline">\(\mu\)</span>:</strong> <span class="math inline">\([388.5,\ 395.6]\)</span>.</li>
+<li><strong>Effect size:</strong> Cohen’s <span class="math inline">\(d = 0.73\)</span> – negligible.</li>
+<li><strong>Decision:</strong> <span class="math inline">\(p = 0 &lt; 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<p><strong>Interpretation.</strong> We do not have evidence that the brigade’s mean AFT score differs from the 360 promotion standard. Operationally, this is a mixed result: on average, 2nd BCT meets the standard, but the confidence interval straddles 360 and about a third of individual Soldiers still fail to clear it. Relying on the brigade mean would mask a real readiness problem at the Soldier level – the mean is a summary, not a roster. The one-sample test answers “is the <em>average</em> Soldier at standard?” but the commander’s real question is “how many Soldiers are <em>not</em>?” – which the two-sample and regression analyses in §3.4 and §3.5 address.</p>
 <hr>
+</section>
+</section>
 </section>
 <section id="what-we-did-lessons-28-30-31-32-33" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-did-lessons-28-30-31-32-33">What We Did: Lessons 28, 30, 31, 32, 33</h2>
@@ -693,18 +874,18 @@ window.Quarto = {
 <p><img src="assets/img/kids_l35_4.jpg" class="img-fluid"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="assets/img/kids_l35_5.jpg" class="img-fluid"></p>
+<p><img src="assets/img/kids_l35_8.jpg" class="img-fluid"></p>
 </div>
 </div>
 <div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_5.jpg" class="img-fluid"></p>
+</div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="assets/img/kids_l35_6.jpg" class="img-fluid"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="assets/img/kids_l35_7.jpg" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="assets/img/kids_l35_8.jpg" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -779,25 +960,28 @@ TBD
 <h3 class="anchored" data-anchor-id="start-simple-two-companies">Start Simple: Two Companies</h3>
 <p>Suppose for your project you want to compare <strong>AFT scores</strong> (max 500) between two companies in a battalion – say <strong>A Co</strong> and <strong>B Co</strong>. Easy: <strong>two-sample t-test</strong>, done. One test, one p-value, one <span class="math inline">\(\alpha\)</span>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">330</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">360</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(A)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 307.5771 334.6212 369.6961 301.7406 327.9937 333.3105</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 298.7073 371.9309 345.0860 379.8051 367.2409 378.4735</code></pre>
+</div>
 </div>
 <p>First, look at the data:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>B Co sits a bit higher than A Co.&nbsp;Is the gap big enough to be real? Run the test:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A, B, <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.level =</span> .<span class="dv">95</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -822,10 +1006,24 @@ mean of x mean of y
 <p>A vs B, A vs C, A vs HHC, B vs C, B vs HHC, C vs HHC.</p>
 <p>Look at all four:</p>
 <div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+# Groups:   company [4]
+  score company
+  &lt;dbl&gt; &lt;fct&gt;  
+1  375. A      
+2  308. A      
+3  341. B      
+4  372. B      
+5  336. C      
+6  354. C      
+7  358. HHC    
+8  338. HHC    </code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -855,50 +1053,50 @@ mean of x mean of y
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A vs B</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">-19.1</td>
-<td style="text-align: right;">0.0478</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">-16.8</td>
+<td style="text-align: right;">0.0377</td>
 <td style="text-align: right;">Reject H0 (significant)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">A vs C</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">-7.7</td>
-<td style="text-align: right;">0.4332</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">-4.4</td>
+<td style="text-align: right;">0.5246</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">A vs HHC</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">5.6</td>
-<td style="text-align: right;">0.5875</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">-5.7</td>
+<td style="text-align: right;">0.4503</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B vs C</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">11.4</td>
-<td style="text-align: right;">0.2324</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">0.0690</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">B vs HHC</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">24.7</td>
-<td style="text-align: right;">0.0163</td>
-<td style="text-align: right;">Reject H0 (significant)</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">0.1293</td>
+<td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C vs HHC</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">13.3</td>
-<td style="text-align: right;">0.2005</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">-1.2</td>
+<td style="text-align: right;">0.8407</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 </tbody>
@@ -967,50 +1165,50 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A vs B</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">-19.1</td>
-<td style="text-align: right;">0.0478</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">-16.8</td>
+<td style="text-align: right;">0.0377</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">A vs C</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">-7.7</td>
-<td style="text-align: right;">0.4332</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">-4.4</td>
+<td style="text-align: right;">0.5246</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">A vs HHC</td>
-<td style="text-align: right;">505.0</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">5.6</td>
-<td style="text-align: right;">0.5875</td>
+<td style="text-align: right;">338.3</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">-5.7</td>
+<td style="text-align: right;">0.4503</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B vs C</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">11.4</td>
-<td style="text-align: right;">0.2324</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">0.0690</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">B vs HHC</td>
-<td style="text-align: right;">524.1</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">24.7</td>
-<td style="text-align: right;">0.0163</td>
+<td style="text-align: right;">355.1</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">0.1293</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C vs HHC</td>
-<td style="text-align: right;">512.7</td>
-<td style="text-align: right;">499.5</td>
-<td style="text-align: right;">13.3</td>
-<td style="text-align: right;">0.2005</td>
+<td style="text-align: right;">342.8</td>
+<td style="text-align: right;">344.0</td>
+<td style="text-align: right;">-1.2</td>
+<td style="text-align: right;">0.8407</td>
 <td style="text-align: right;">Fail to reject</td>
 </tr>
 </tbody>
@@ -1036,7 +1234,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1047,7 +1245,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1062,12 +1260,12 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The means aren’t all stacked and the groups overlap. To turn that picture into a test, we need <strong>two numbers</strong>:</p>
+<p>We need a way to mathematically codify this concept – specifically, to measure the two sources of variability at work here:</p>
 <ol type="1">
 <li>A measure of <strong>between-group variability</strong> – how spread out the group means are</li>
 <li>A measure of <strong>within-group variability</strong> – how noisy each group is internally</li>
@@ -1078,16 +1276,9 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <li><span class="math inline">\(k\)</span> = number of groups; <span class="math inline">\(n_i\)</span> = sample size in group <span class="math inline">\(i\)</span>; <span class="math inline">\(N = \sum n_i\)</span> = total</li>
 <li><span class="math inline">\(\bar{x}_i\)</span> = sample mean of group <span class="math inline">\(i\)</span>; <span class="math inline">\(\bar{x}\)</span> = <strong>grand mean</strong> (mean of all data)</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">nlevels</span>(scores<span class="sc">$</span>company)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scores)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>grand_mean  <span class="ot">&lt;-</span> <span class="fu">mean</span>(scores<span class="sc">$</span>score)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(scores<span class="sc">$</span>score, scores<span class="sc">$</span>company, mean)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>group_n     <span class="ot">&lt;-</span> <span class="fu">tapply</span>(scores<span class="sc">$</span>score, scores<span class="sc">$</span>company, length)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>For our AFT data:</p>
-<p><span class="math display">\[ k = 4, \qquad N = 100, \qquad \bar{x} = 344.23 \]</span></p>
-<p><span class="math display">\[ \bar{x}_A = 338.35, \quad \bar{x}_B = 355.11, \quad \bar{x}_C = 348.1, \quad \bar{x}_{HHC} = 335.38 \]</span></p>
+<p><span class="math display">\[ k = 4, \qquad N = 100, \qquad \bar{x} = 345.07 \]</span></p>
+<p><span class="math display">\[ \bar{x}_A = 338.35, \quad \bar{x}_B = 355.11, \quad \bar{x}_C = 342.78, \quad \bar{x}_{HHC} = 344.02 \]</span></p>
 <hr>
 <section id="measuring-between-group-variability" class="level3">
 <h3 class="anchored" data-anchor-id="measuring-between-group-variability">Measuring Between-Group Variability</h3>
@@ -1096,12 +1287,12 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <p>And the <strong>mean square between</strong> just divides by its degrees of freedom:</p>
 <p><span class="math display">\[ MSR = \frac{SSR}{k - 1} \]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_n <span class="sc">*</span> (group_means <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MSR <span class="ot">&lt;-</span> SSR <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_n <span class="sc">*</span> (group_means <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>MSR <span class="ot">&lt;-</span> SSR <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Plugging in:</p>
-<p><span class="math display">\[ SSR = 25(338.35 - 344.23)^2 + 25(355.11 - 344.23)^2 + 25(348.1 - 344.23)^2 + 25(335.38 - 344.23)^2 = 6155 \]</span></p>
-<p><span class="math display">\[ MSR = \frac{SSR}{k-1} = \frac{6155}{3} = 2051.67 \]</span></p>
+<p><span class="math display">\[ SSR = 25(338.35 - 345.07)^2 + 25(355.11 - 345.07)^2 + 25(342.78 - 345.07)^2 + 25(344.02 - 345.07)^2 = 3806.41 \]</span></p>
+<p><span class="math display">\[ MSR = \frac{SSR}{k-1} = \frac{3806.41}{3} = 1268.8 \]</span></p>
 <hr>
 </section>
 <section id="measuring-within-group-variability" class="level3">
@@ -1111,10 +1302,10 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <p>And the <strong>mean square error</strong> divides by its degrees of freedom:</p>
 <p><span class="math display">\[ MSE = \frac{SSE}{N - k} \]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((scores<span class="sc">$</span>score <span class="sc">-</span> group_means[scores<span class="sc">$</span>company])<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> (N <span class="sc">-</span> k)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((scores<span class="sc">$</span>score <span class="sc">-</span> group_means[scores<span class="sc">$</span>company])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> (N <span class="sc">-</span> k)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><span class="math display">\[ SSE = 8.037914\times 10^{4} \qquad\qquad MSE = \frac{8.037914\times 10^{4}}{96} = 837.28 \]</span></p>
+<p><span class="math display">\[ SSE = 59558.59 \qquad\qquad MSE = \frac{59558.59}{96} = 620.4 \]</span></p>
 <hr>
 </section>
 <section id="the-ratio" class="level3">
@@ -1122,9 +1313,9 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <p>Combine them into a single signal-to-noise number:</p>
 <p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} \]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><span class="math display">\[ F = \frac{2051.67}{837.28} = 2.45 \]</span></p>
+<p><span class="math display">\[ F = \frac{1268.8}{620.4} = 2.045 \]</span></p>
 </section>
 <section id="stop-and-think" class="level3">
 <h3 class="anchored" data-anchor-id="stop-and-think">Stop and Think</h3>
@@ -1164,7 +1355,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-35_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -1179,68 +1370,28 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <p>If the shaded area (the p-value) is smaller than <span class="math inline">\(\alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span> and conclude that <strong>at least one company mean differs</strong> from the others. If not, we <strong>fail to reject</strong> – the data don’t give us enough evidence to say any company mean is different.</p>
 <p>ANOVA tells us <strong>that</strong> a difference exists, not <em>which</em> pair. Multiple-comparison procedures (Tukey HSD, Lesson 38) pick up from there.</p>
 <hr>
-</section>
-<section id="the-anova-table" class="level3">
-<h3 class="anchored" data-anchor-id="the-anova-table">The ANOVA Table</h3>
-<p>Everything we just computed, in one table:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th>df</th>
-<th>SS</th>
-<th>MS</th>
-<th>F</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Between (Treatment)</td>
-<td><span class="math inline">\(k - 1\)</span></td>
-<td><span class="math inline">\(SSR\)</span></td>
-<td><span class="math inline">\(MSR = SSR/(k-1)\)</span></td>
-<td><span class="math inline">\(MSR / MSE\)</span></td>
-</tr>
-<tr class="even">
-<td>Within (Error)</td>
-<td><span class="math inline">\(N - k\)</span></td>
-<td><span class="math inline">\(SSE\)</span></td>
-<td><span class="math inline">\(MSE = SSE/(N-k)\)</span></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td><span class="math inline">\(N - 1\)</span></td>
-<td><span class="math inline">\(SST\)</span></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<!-- ### The ANOVA Table -->
+<!-- Everything we just computed, in one table: -->
+<!-- | Source | df | SS | MS | F | -->
+<!-- |---|---|---|---|---| -->
+<!-- | Between (Treatment) | $k - 1$ | $SSR$ | $MSR = SSR/(k-1)$ | $MSR / MSE$ | -->
+<!-- | Within (Error)      | $N - k$ | $SSE$  | $MSE = SSE/(N-k)$   | | -->
+<!-- | Total               | $N - 1$ | $SST$  | | | -->
 </section>
 <section id="doing-this-in-r-with-aov" class="level3">
 <h3 class="anchored" data-anchor-id="doing-this-in-r-with-aov">Doing This in R with <code>aov()</code></h3>
 <p>You don’t have to compute any of this by hand. R’s <code>aov()</code> builds the whole ANOVA table from a formula <code>outcome ~ group</code>.</p>
 <p>Step 1: <strong>fit</strong> the model. The formula reads “score <em>as a function of</em> company,” and <code>data = scores</code> tells R which dataframe to pull the columns from.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> company, <span class="at">data =</span> scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> company, <span class="at">data =</span> scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Step 2: <strong>look at the ANOVA table</strong> with <code>summary()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-company      3   6155  2051.7    2.45 0.0682 .
-Residuals   96  80379   837.3                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+company      3   3806  1268.8   2.045  0.113
+Residuals   96  59559   620.4               </code></pre>
 </div>
 </div>
 <p>Match the output to what we just did by hand:</p>
@@ -1282,10 +1433,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </table>
 <p>If you want just the p-value for a calculation, pull it out directly:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_aov)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>anova_summary[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_aov)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>anova_summary[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.06817574</code></pre>
+<pre><code>[1] 0.1126863</code></pre>
 </div>
 </div>
 <hr>
@@ -1335,6 +1486,51 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>It’s a <strong>signal-to-noise ratio</strong>.</p>
 </div>
 </div>
+<hr>
+</section>
+<section id="another-example-five-mos-branches" class="level2">
+<h2 class="anchored" data-anchor-id="another-example-five-mos-branches">Another Example: Five MOS Branches</h2>
+<p>Same idea, new data. Suppose we pull 2-mile run times (minutes) from Soldiers across <strong>five MOS branches</strong> – <strong>Combat Engineer (12B), Armor (19K), Artillery (13B), Signal (25U), and Infantry (11B)</strong> – and want to know if any branch differs on average.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>12B looks fastest, 11B slowest, with the other three branches in between. Does ANOVA agree that the gap is real?</p>
+<p><strong>Hypotheses:</strong></p>
+<ul>
+<li><span class="math inline">\(H_0:\ \mu_{12B} = \mu_{19K} = \mu_{13B} = \mu_{25U} = \mu_{11B}\)</span></li>
+<li><span class="math inline">\(H_a:\)</span> at least one branch mean differs</li>
+</ul>
+<p><strong>Fit the model:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mos_fit <span class="ot">&lt;-</span> <span class="fu">aov</span>(run_time <span class="sc">~</span> branch, <span class="at">data =</span> mos_data)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mos_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+branch        4   20.1   5.020   2.201 0.0718 .
+Residuals   145  330.8   2.281                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><strong>Read the table.</strong> With <span class="math inline">\(k = 5\)</span> branches and <span class="math inline">\(N = 150\)</span> Soldiers, df = (4, 145). The <span class="math inline">\(F\)</span>-statistic is large and the p-value is far below <span class="math inline">\(0.05\)</span>, so we <strong>reject <span class="math inline">\(H_0\)</span></strong>: mean 2-mile run time differs across branches.</p>
+<p><strong>Plot the F-statistic against the null distribution:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our observed <span class="math inline">\(F\)</span> sits far into the right tail of <span class="math inline">\(F_{4,145}\)</span> – essentially no area remains beyond it, which is why the p-value is so small.</p>
+<p>ANOVA does not tell us <em>which</em> pairs differ – the boxplot suggests 12B leads and 11B trails, but confirming specific pairwise gaps is a job for Tukey HSD in Lesson 38.</p>
 <hr>
 </section>
 <section id="board-problems" class="level2">
