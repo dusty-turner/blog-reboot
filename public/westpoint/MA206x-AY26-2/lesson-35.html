@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-35 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-34.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-35.html">Lesson 35</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-30.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-31.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 31</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-32.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 32</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-33.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 33</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-34.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 34</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-35.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 35</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-35-anova-i" id="toc-lesson-35-anova-i" class="nav-link active" data-scroll-target="#lesson-35-anova-i">Lesson 35: ANOVA I</a>
+  <ul class="collapse">
+  <li><a href="#the-project-where-you-should-be" id="toc-the-project-where-you-should-be" class="nav-link" data-scroll-target="#the-project-where-you-should-be">The Project: Where You Should Be</a></li>
+  <li><a href="#what-we-did-lessons-28-30-31-32-33" id="toc-what-we-did-lessons-28-30-31-32-33" class="nav-link" data-scroll-target="#what-we-did-lessons-28-30-31-32-33">What We Did: Lessons 28, 30, 31, 32, 33</a></li>
+  <li><a href="#what-were-doing-lesson-35" id="toc-what-were-doing-lesson-35" class="nav-link" data-scroll-target="#what-were-doing-lesson-35">What We’re Doing: Lesson 35</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#the-kids" id="toc-the-kids" class="nav-link" data-scroll-target="#the-kids">The Kids</a></li>
+  <li><a href="#in-memoriam-cpt-tim-cunningham" id="toc-in-memoriam-cpt-tim-cunningham" class="nav-link" data-scroll-target="#in-memoriam-cpt-tim-cunningham">In Memoriam: CPT Tim Cunningham</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#motivating-anova-what-if-we-want-a-lot-of-pairwise-comparisons" id="toc-motivating-anova-what-if-we-want-a-lot-of-pairwise-comparisons" class="nav-link" data-scroll-target="#motivating-anova-what-if-we-want-a-lot-of-pairwise-comparisons">Motivating ANOVA: What If We Want a Lot of Pairwise Comparisons?</a>
+  <ul class="collapse">
+  <li><a href="#start-simple-two-companies" id="toc-start-simple-two-companies" class="nav-link" data-scroll-target="#start-simple-two-companies">Start Simple: Two Companies</a></li>
+  <li><a href="#now-add-more-companies" id="toc-now-add-more-companies" class="nav-link" data-scroll-target="#now-add-more-companies">Now Add More Companies</a></li>
+  <li><a href="#what-is-alpha-really" id="toc-what-is-alpha-really" class="nav-link" data-scroll-target="#what-is-alpha-really">What Is <span class="math inline">\(\alpha\)</span>, Really?</a></li>
+  <li><a href="#the-problem-false-positives-pile-up" id="toc-the-problem-false-positives-pile-up" class="nav-link" data-scroll-target="#the-problem-false-positives-pile-up">The Problem: False Positives Pile Up</a></li>
+  <li><a href="#how-do-we-fix-it" id="toc-how-do-we-fix-it" class="nav-link" data-scroll-target="#how-do-we-fix-it">How Do We Fix It?</a></li>
+  <li><a href="#a-different-approach-one-big-question" id="toc-a-different-approach-one-big-question" class="nav-link" data-scroll-target="#a-different-approach-one-big-question">A Different Approach: One Big Question</a></li>
+  </ul></li>
+  <li><a href="#building-intuition-what-does-different-means-look-like" id="toc-building-intuition-what-does-different-means-look-like" class="nav-link" data-scroll-target="#building-intuition-what-does-different-means-look-like">Building Intuition: What Does “Different Means” Look Like?</a></li>
+  <li><a href="#building-anova-from-the-aft-data" id="toc-building-anova-from-the-aft-data" class="nav-link" data-scroll-target="#building-anova-from-the-aft-data">Building ANOVA from the AFT Data</a>
+  <ul class="collapse">
+  <li><a href="#measuring-between-group-variability" id="toc-measuring-between-group-variability" class="nav-link" data-scroll-target="#measuring-between-group-variability">Measuring Between-Group Variability</a></li>
+  <li><a href="#measuring-within-group-variability" id="toc-measuring-within-group-variability" class="nav-link" data-scroll-target="#measuring-within-group-variability">Measuring Within-Group Variability</a></li>
+  <li><a href="#the-ratio" id="toc-the-ratio" class="nav-link" data-scroll-target="#the-ratio">The Ratio</a></li>
+  <li><a href="#stop-and-think" id="toc-stop-and-think" class="nav-link" data-scroll-target="#stop-and-think">Stop and Think</a></li>
+  <li><a href="#how-big-is-big-enough-the-f-distribution" id="toc-how-big-is-big-enough-the-f-distribution" class="nav-link" data-scroll-target="#how-big-is-big-enough-the-f-distribution">How Big Is Big Enough? The F Distribution</a></li>
+  <li><a href="#our-conclusion-on-the-aft-data" id="toc-our-conclusion-on-the-aft-data" class="nav-link" data-scroll-target="#our-conclusion-on-the-aft-data">Our Conclusion on the AFT Data</a></li>
+  <li><a href="#the-anova-table" id="toc-the-anova-table" class="nav-link" data-scroll-target="#the-anova-table">The ANOVA Table</a></li>
+  <li><a href="#doing-this-in-r-with-aov" id="toc-doing-this-in-r-with-aov" class="nav-link" data-scroll-target="#doing-this-in-r-with-aov">Doing This in R with <code>aov()</code></a></li>
+  </ul></li>
+  <li><a href="#assumptions-check-these-before-trusting-the-f-test" id="toc-assumptions-check-these-before-trusting-the-f-test" class="nav-link" data-scroll-target="#assumptions-check-these-before-trusting-the-f-test">Assumptions (check these before trusting the F-test)</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-state-the-hypotheses" id="toc-problem-1-state-the-hypotheses" class="nav-link" data-scroll-target="#problem-1-state-the-hypotheses">Problem 1: State the Hypotheses</a></li>
+  <li><a href="#problem-2-compute-the-f-statistic" id="toc-problem-2-compute-the-f-statistic" class="nav-link" data-scroll-target="#problem-2-compute-the-f-statistic">Problem 2: Compute the F-Statistic</a></li>
+  <li><a href="#problem-3-assumption-check" id="toc-problem-3-assumption-check" class="nav-link" data-scroll-target="#problem-3-assumption-check">Problem 3: Assumption Check</a></li>
+  <li><a href="#problem-4-interpret-a-result" id="toc-problem-4-interpret-a-result" class="nav-link" data-scroll-target="#problem-4-interpret-a-result">Problem 4: Interpret a Result</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-35-anova-i" class="level1">
+<h1>Lesson 35: ANOVA I</h1>
+<!-- page-scoped CSS -->
+<style>
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- XKCD 1478: "P-Values" -- scale of significance (fits multiple comparisons / ANOVA) -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="the-project-where-you-should-be" class="level2">
+<h2 class="anchored" data-anchor-id="the-project-where-you-should-be">The Project: Where You Should Be</h2>
+<p>The <strong>Tech Report is due Lesson 36</strong> – tomorrow. You should be finalizing your write-up today: polish the narrative, clean up figures, re-check every coefficient interpretation, and proofread.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Project Links">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Project Links
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Project Instructions</strong></td>
+<td><a href="https://westpoint.instructure.com/courses/11418/files/3968138?wrap=1" target="_blank">Course Project Instructions</a></td>
+</tr>
+<tr class="even">
+<td><strong>Project Groups / Pairs</strong></td>
+<td><a href="https://dustydell.tail280d22.ts.net/pair" target="_blank">Project Pairs</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Presentation Template</strong></td>
+<td><a href="assets/files/MA206X_WestPoint_Template.pptx">MA206X West Point Template (.pptx)</a></td>
+</tr>
+<tr class="even">
+<td><strong>Army Vantage</strong></td>
+<td><a href="https://vantage.army.mil/workspace/module/view/latest/ri.workshop.main.module.5306a642-a786-488b-9e10-2e20ae2beadf" target="_blank">Vantage Workspace</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lessons-28-30-31-32-33" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-28-30-31-32-33">What We Did: Lessons 28, 30, 31, 32, 33</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 28: Simple Linear Regression I">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 28: Simple Linear Regression I
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Least squares</strong> fits <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> by minimizing <span class="math inline">\(\sum(y_i - \hat{y}_i)^2\)</span></li>
+<li><strong><span class="math inline">\(R^2\)</span></strong> = fraction of variability in <span class="math inline">\(y\)</span> explained</li>
+<li>Decompose variability: <strong>SST = SSR + SSE</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 30: Simple Linear Regression II">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 30: Simple Linear Regression II
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Test the slope</strong> with <span class="math inline">\(t = b_1 / SE(b_1)\)</span></li>
+<li>Prediction vs.&nbsp;mean-response intervals</li>
+<li>Residual and QQ plots to assess adequacy</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 31: Multiple Linear Regression I">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 31: Multiple Linear Regression I
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Interpret each slope <strong>holding other variables constant</strong></li>
+<li><strong>LINE</strong> assumptions: Linearity, Independence, Normality, Equal variance</li>
+<li>Adjusted <span class="math inline">\(R^2\)</span> and multicollinearity</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 32: Multiple Linear Regression II">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 32: Multiple Linear Regression II
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Categorical predictors</strong> via indicator variables with a reference level</li>
+<li>Identify and <strong>control for confounders</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 33: Multiple Linear Regression III">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 33: Multiple Linear Regression III
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Interaction terms</strong>: effect of one predictor depends on another</li>
+<li>Distinguish main effects from interaction effects</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-35" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-35">What We’re Doing: Lesson 35</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>State <strong>ANOVA assumptions and hypotheses</strong></li>
+<li>Compute the <strong><span class="math inline">\(F\)</span>-statistic</strong> from sums of squares</li>
+<li>Conduct <strong>one-way ANOVA</strong> tests</li>
+<li>Report differences with <strong>CIs and effect sizes</strong></li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Section 10.1</p>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="the-kids" class="level3">
+<h3 class="anchored" data-anchor-id="the-kids">The Kids</h3>
+<div class="quarto-layout-panel" data-layout="[[1,1],[1,1,1],[1,1,1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="assets/img/kids_l35_1.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="assets/img/kids_l35_2.jpg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_3.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_4.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_5.jpg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_6.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_7.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="assets/img/kids_l35_8.jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<hr>
+<!--
+### DMath Volleyball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 13-7"}
+<div style="text-align: center; font-size: 5em;">
+TBD
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/volleyball.png){fig-align="center" width="50%"}
+
+### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously 13-7"}
+<div style="text-align: center; font-size: 5em;">
+TBD
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"}
+-->
+</section>
+<section id="in-memoriam-cpt-tim-cunningham" class="level3">
+<h3 class="anchored" data-anchor-id="in-memoriam-cpt-tim-cunningham">In Memoriam: CPT Tim Cunningham</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/timC.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>A moment to remember <strong>CPT Tim Cunningham</strong>.</p>
+<p>Listen / read: <a href="https://www.npr.org/2008/01/25/18376657/soldiers-try-to-cope-with-battlefield-losses"><em>Soldiers Try to Cope with Battlefield Losses</em> – NPR (2008)</a></p>
+<hr>
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="One-Way ANOVA Key Ideas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>One-Way ANOVA Key Ideas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Goal:</strong> compare means across <strong><span class="math inline">\(k \ge 3\)</span></strong> groups</li>
+<li><strong>Hypotheses:</strong>
+<ul>
+<li><span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_k\)</span></li>
+<li><span class="math inline">\(H_a:\)</span> at least one <span class="math inline">\(\mu_i\)</span> differs</li>
+</ul></li>
+<li><strong>Test statistic:</strong> <span class="math inline">\(F = \dfrac{MSR}{MSE}\)</span></li>
+<li><strong>Reject <span class="math inline">\(H_0\)</span></strong> when <span class="math inline">\(F\)</span> is large (variation <em>between</em> groups exceeds variation <em>within</em> groups)</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="motivating-anova-what-if-we-want-a-lot-of-pairwise-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-anova-what-if-we-want-a-lot-of-pairwise-comparisons">Motivating ANOVA: What If We Want a Lot of Pairwise Comparisons?</h2>
+<section id="start-simple-two-companies" class="level3">
+<h3 class="anchored" data-anchor-id="start-simple-two-companies">Start Simple: Two Companies</h3>
+<p>Suppose for your project you want to compare <strong>AFT scores</strong> (max 500) between two companies in a battalion – say <strong>A Co</strong> and <strong>B Co</strong>. Easy: <strong>two-sample t-test</strong>, done. One test, one p-value, one <span class="math inline">\(\alpha\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">330</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">360</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>First, look at the data:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>B Co sits a bit higher than A Co.&nbsp;Is the gap big enough to be real? Run the test:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  A and B
+t = -2.1372, df = 47.799, p-value = 0.03773
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -32.5258433  -0.9905815
+sample estimates:
+mean of x mean of y 
+ 338.3493  355.1076 </code></pre>
+</div>
+</div>
+<p>The p-value is below <span class="math inline">\(0.05\)</span>, so we <strong>reject <span class="math inline">\(H_0\)</span></strong> – A Co and B Co really do differ. Clean result.</p>
+</section>
+<section id="now-add-more-companies" class="level3">
+<h3 class="anchored" data-anchor-id="now-add-more-companies">Now Add More Companies</h3>
+<p>But a battalion has <strong>A, B, C, and HHC</strong>. We want to know: <em>“do any companies differ in average AFT score?”</em></p>
+<p>How many pairwise comparisons is that?</p>
+<p><span class="math display">\[ \binom{4}{2} = \frac{4 \cdot 3}{2} = 6 \text{ tests} \]</span></p>
+<p>A vs B, A vs C, A vs HHC, B vs C, B vs HHC, C vs HHC.</p>
+<p>Look at all four:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Some companies look different, others look similar – but our eyes are unreliable with this much overlap. Let’s run all six pairwise t-tests:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Mean 1</th>
+<th style="text-align: right;">Mean 2</th>
+<th style="text-align: right;">Difference</th>
+<th style="text-align: right;">p-value</th>
+<th style="text-align: right;">Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A vs B</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">-19.1</td>
+<td style="text-align: right;">0.0478</td>
+<td style="text-align: right;">Reject H0 (significant)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A vs C</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">-7.7</td>
+<td style="text-align: right;">0.4332</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A vs HHC</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">5.6</td>
+<td style="text-align: right;">0.5875</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B vs C</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">0.2324</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B vs HHC</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">24.7</td>
+<td style="text-align: right;">0.0163</td>
+<td style="text-align: right;">Reject H0 (significant)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C vs HHC</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">13.3</td>
+<td style="text-align: right;">0.2005</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Some pairs come back significant, others don’t. Each <strong>individual</strong> test was run at <span class="math inline">\(\alpha = 0.05\)</span> – but we just ran <strong>six</strong> of them.</p>
+</section>
+<section id="what-is-alpha-really" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-alpha-really">What Is <span class="math inline">\(\alpha\)</span>, Really?</h3>
+<p>When we run <strong>one</strong> test at <span class="math inline">\(\alpha = 0.05\)</span>, we’re saying:</p>
+<blockquote class="blockquote">
+<p><em>“If <span class="math inline">\(H_0\)</span> is true, I’m willing to accept a <strong>5% chance</strong> of a false positive – concluding the means differ when they really don’t.”</em></p>
+</blockquote>
+<p>That’s fine for <strong>one</strong> test. But we just ran <strong>six</strong>.</p>
+</section>
+<section id="the-problem-false-positives-pile-up" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-false-positives-pile-up">The Problem: False Positives Pile Up</h3>
+<p>If all 6 null hypotheses are true, and each test independently has a 5% chance of a false positive, the probability of <strong>at least one</strong> false positive across the family is:</p>
+<p><span class="math display">\[
+P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 0.265
+\]</span></p>
+<p>So with 4 companies and 6 pairwise tests at <span class="math inline">\(\alpha = 0.05\)</span>, there’s roughly a <strong>26.5% chance</strong> we’ll claim <em>somewhere</em> that two companies differ – even if they are all identical.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="This Is the Multiple Comparisons Problem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>This Is the Multiple Comparisons Problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run enough tests and you <strong>will</strong> find “significance” by pure chance. Your stated <span class="math inline">\(\alpha\)</span> per test is not your real <span class="math inline">\(\alpha\)</span> for the <em>whole</em> question.</p>
+</div>
+</div>
+</section>
+<section id="how-do-we-fix-it" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-we-fix-it">How Do We Fix It?</h3>
+<p>One simple fix: <strong>use a stricter threshold on each test</strong>. If we want the <em>family-wise</em> false-positive rate to stay at 5%, we shrink each test’s <span class="math inline">\(\alpha\)</span>. The <strong>Bonferroni correction</strong> divides by the number of tests:</p>
+<p><span class="math display">\[
+\alpha^* = \frac{\alpha}{m} = \frac{0.05}{6} \approx 0.0083
+\]</span></p>
+<p>Now each pairwise test must clear a much smaller p-value to be called significant. Let’s redo the table with the corrected threshold:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Mean 1</th>
+<th style="text-align: right;">Mean 2</th>
+<th style="text-align: right;">Difference</th>
+<th style="text-align: right;">p-value</th>
+<th style="text-align: right;">Decision (α* = 0.0083)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A vs B</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">-19.1</td>
+<td style="text-align: right;">0.0478</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A vs C</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">-7.7</td>
+<td style="text-align: right;">0.4332</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A vs HHC</td>
+<td style="text-align: right;">505.0</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">5.6</td>
+<td style="text-align: right;">0.5875</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B vs C</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">0.2324</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B vs HHC</td>
+<td style="text-align: right;">524.1</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">24.7</td>
+<td style="text-align: right;">0.0163</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C vs HHC</td>
+<td style="text-align: right;">512.7</td>
+<td style="text-align: right;">499.5</td>
+<td style="text-align: right;">13.3</td>
+<td style="text-align: right;">0.2005</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Now <strong>nothing is significant</strong>. Bonferroni controls the family-wise error rate, but the cost is obvious: it is <em>very conservative</em> – we may miss real differences that a single pre-planned t-test would have caught.</p>
+</section>
+<section id="a-different-approach-one-big-question" class="level3">
+<h3 class="anchored" data-anchor-id="a-different-approach-one-big-question">A Different Approach: One Big Question</h3>
+<p>Instead of running many small tests and patching up the error rate, we can ask <strong>one big question</strong> with a single test at level <span class="math inline">\(\alpha\)</span>:</p>
+<blockquote class="blockquote">
+<p><em>“Are <strong>any</strong> of the group means different?”</em></p>
+</blockquote>
+<p>That single test is <strong>ANOVA</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="building-intuition-what-does-different-means-look-like" class="level2">
+<h2 class="anchored" data-anchor-id="building-intuition-what-does-different-means-look-like">Building Intuition: What Does “Different Means” Look Like?</h2>
+<p>Before any math, let’s just <em>look</em> at group data. Here are four companies (A, B, C, HHC) and their AFT scores. In all four panels the <strong>group means are identical</strong> – it’s the <strong>within-group spread</strong> that changes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Same means, wildly different conclusions. When within-group spread is tiny (left), even a small gap between group means looks meaningful. When within-group spread is huge (right), the same gap vanishes into noise.</p>
+<p>Now flip it: keep the <strong>within-group spread fixed</strong> and move the means around.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The punchline: whether the groups <em>really</em> differ depends on both <strong>how far apart the group means are</strong> and <strong>how noisy each group is</strong>. Next we need a way to quantify both.</p>
+<hr>
+</section>
+<section id="building-anova-from-the-aft-data" class="level2">
+<h2 class="anchored" data-anchor-id="building-anova-from-the-aft-data">Building ANOVA from the AFT Data</h2>
+<p>Here’s the boxplot we had from the motivation – the four companies’ AFT scores:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The means aren’t all stacked and the groups overlap. To turn that picture into a test, we need <strong>two numbers</strong>:</p>
+<ol type="1">
+<li>A measure of <strong>between-group variability</strong> – how spread out the group means are</li>
+<li>A measure of <strong>within-group variability</strong> – how noisy each group is internally</li>
+</ol>
+<p>Once we have both, we’ll combine them into a single ratio. Let’s build each one from scratch.</p>
+<p>A bit of notation we’ll use:</p>
+<ul>
+<li><span class="math inline">\(k\)</span> = number of groups; <span class="math inline">\(n_i\)</span> = sample size in group <span class="math inline">\(i\)</span>; <span class="math inline">\(N = \sum n_i\)</span> = total</li>
+<li><span class="math inline">\(\bar{x}_i\)</span> = sample mean of group <span class="math inline">\(i\)</span>; <span class="math inline">\(\bar{x}\)</span> = <strong>grand mean</strong> (mean of all data)</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">nlevels</span>(scores<span class="sc">$</span>company)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scores)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>grand_mean  <span class="ot">&lt;-</span> <span class="fu">mean</span>(scores<span class="sc">$</span>score)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(scores<span class="sc">$</span>score, scores<span class="sc">$</span>company, mean)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>group_n     <span class="ot">&lt;-</span> <span class="fu">tapply</span>(scores<span class="sc">$</span>score, scores<span class="sc">$</span>company, length)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For our AFT data:</p>
+<p><span class="math display">\[ k = 4, \qquad N = 100, \qquad \bar{x} = 344.23 \]</span></p>
+<p><span class="math display">\[ \bar{x}_A = 338.35, \quad \bar{x}_B = 355.11, \quad \bar{x}_C = 348.1, \quad \bar{x}_{HHC} = 335.38 \]</span></p>
+<hr>
+<section id="measuring-between-group-variability" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-between-group-variability">Measuring Between-Group Variability</h3>
+<p>We want a number that’s <strong>big when the group means are spread out</strong> and <strong>small when they’re all close to the grand mean</strong>. The <strong>sum of squares between</strong> (a.k.a. <strong>sum of squares treatment</strong>) does that:</p>
+<p><span class="math display">\[ SSR = \sum_{i=1}^{k} n_i \,(\bar{x}_i - \bar{x})^2 \]</span></p>
+<p>And the <strong>mean square between</strong> just divides by its degrees of freedom:</p>
+<p><span class="math display">\[ MSR = \frac{SSR}{k - 1} \]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_n <span class="sc">*</span> (group_means <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MSR <span class="ot">&lt;-</span> SSR <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Plugging in:</p>
+<p><span class="math display">\[ SSR = 25(338.35 - 344.23)^2 + 25(355.11 - 344.23)^2 + 25(348.1 - 344.23)^2 + 25(335.38 - 344.23)^2 = 6155 \]</span></p>
+<p><span class="math display">\[ MSR = \frac{SSR}{k-1} = \frac{6155}{3} = 2051.67 \]</span></p>
+<hr>
+</section>
+<section id="measuring-within-group-variability" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-within-group-variability">Measuring Within-Group Variability</h3>
+<p>Now a number for how noisy each group is. The <strong>sum of squares error</strong> sums every observation’s squared distance from <em>its own</em> group mean:</p>
+<p><span class="math display">\[ SSE = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2 \]</span></p>
+<p>And the <strong>mean square error</strong> divides by its degrees of freedom:</p>
+<p><span class="math display">\[ MSE = \frac{SSE}{N - k} \]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((scores<span class="sc">$</span>score <span class="sc">-</span> group_means[scores<span class="sc">$</span>company])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> (N <span class="sc">-</span> k)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><span class="math display">\[ SSE = 8.037914\times 10^{4} \qquad\qquad MSE = \frac{8.037914\times 10^{4}}{96} = 837.28 \]</span></p>
+<hr>
+</section>
+<section id="the-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="the-ratio">The Ratio</h3>
+<p>Combine them into a single signal-to-noise number:</p>
+<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} \]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><span class="math display">\[ F = \frac{2051.67}{837.28} = 2.45 \]</span></p>
+</section>
+<section id="stop-and-think" class="level3">
+<h3 class="anchored" data-anchor-id="stop-and-think">Stop and Think</h3>
+<p>What does this ratio tell us?</p>
+<ul>
+<li>If the ratio is <strong>near 1</strong>, the between-group spread is about the same as the within-group noise. The gaps between company means look like ordinary random variation – <strong>consistent with all groups being the same.</strong></li>
+<li>If the ratio is <strong>much bigger than 1</strong>, the between-group spread is <em>larger</em> than ordinary noise can produce. That’s evidence the <strong>means are actually different.</strong></li>
+</ul>
+<p>So our decision depends on where our <span class="math inline">\(F\)</span> value falls on a sliding scale: small → same, big → different.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Wait... this sounds like a hypothesis test.">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Wait… this sounds like a hypothesis test.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It does, because it is. We can write the question formally:</p>
+<ul>
+<li><strong><span class="math inline">\(H_0\)</span></strong>: <span class="math inline">\(\mu_A = \mu_B = \mu_C = \mu_{HHC}\)</span> (all company means are the same)</li>
+<li><strong><span class="math inline">\(H_a\)</span></strong>: at least one mean differs</li>
+<li><strong>Test statistic</strong>: <span class="math inline">\(F = MSR / MSE\)</span>, small under <span class="math inline">\(H_0\)</span> and large under <span class="math inline">\(H_a\)</span></li>
+</ul>
+<p>The only thing left: <strong>how big does <span class="math inline">\(F\)</span> have to be before we call it “big”?</strong></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-big-is-big-enough-the-f-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="how-big-is-big-enough-the-f-distribution">How Big Is Big Enough? The F Distribution</h3>
+<p>Under <span class="math inline">\(H_0\)</span> (all group means equal), the ratio <span class="math inline">\(F = MSR/MSE\)</span> follows an <strong>F distribution</strong> with <strong><span class="math inline">\(k-1\)</span></strong> numerator df (between) and <strong><span class="math inline">\(N-k\)</span></strong> denominator df (within):</p>
+<p><span class="math display">\[ F \;\sim\; F_{\,k-1,\; N-k} \qquad\text{when } H_0 \text{ is true} \]</span></p>
+<p>For our AFT data: <span class="math inline">\(k - 1 = 3\)</span> and <span class="math inline">\(N - k = 96\)</span>. Plot the null distribution and mark our observed <span class="math inline">\(F\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-35_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Blue line</strong> = our observed <span class="math inline">\(F\)</span></li>
+<li><strong>Blue shaded area</strong> = the <strong>p-value</strong> – the probability under <span class="math inline">\(H_0\)</span> of getting an <span class="math inline">\(F\)</span> at least as extreme as ours</li>
+</ul>
+</section>
+<section id="our-conclusion-on-the-aft-data" class="level3">
+<h3 class="anchored" data-anchor-id="our-conclusion-on-the-aft-data">Our Conclusion on the AFT Data</h3>
+<p>If the shaded area (the p-value) is smaller than <span class="math inline">\(\alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span> and conclude that <strong>at least one company mean differs</strong> from the others. If not, we <strong>fail to reject</strong> – the data don’t give us enough evidence to say any company mean is different.</p>
+<p>ANOVA tells us <strong>that</strong> a difference exists, not <em>which</em> pair. Multiple-comparison procedures (Tukey HSD, Lesson 38) pick up from there.</p>
+<hr>
+</section>
+<section id="the-anova-table" class="level3">
+<h3 class="anchored" data-anchor-id="the-anova-table">The ANOVA Table</h3>
+<p>Everything we just computed, in one table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>df</th>
+<th>SS</th>
+<th>MS</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Between (Treatment)</td>
+<td><span class="math inline">\(k - 1\)</span></td>
+<td><span class="math inline">\(SSR\)</span></td>
+<td><span class="math inline">\(MSR = SSR/(k-1)\)</span></td>
+<td><span class="math inline">\(MSR / MSE\)</span></td>
+</tr>
+<tr class="even">
+<td>Within (Error)</td>
+<td><span class="math inline">\(N - k\)</span></td>
+<td><span class="math inline">\(SSE\)</span></td>
+<td><span class="math inline">\(MSE = SSE/(N-k)\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(N - 1\)</span></td>
+<td><span class="math inline">\(SST\)</span></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="doing-this-in-r-with-aov" class="level3">
+<h3 class="anchored" data-anchor-id="doing-this-in-r-with-aov">Doing This in R with <code>aov()</code></h3>
+<p>You don’t have to compute any of this by hand. R’s <code>aov()</code> builds the whole ANOVA table from a formula <code>outcome ~ group</code>.</p>
+<p>Step 1: <strong>fit</strong> the model. The formula reads “score <em>as a function of</em> company,” and <code>data = scores</code> tells R which dataframe to pull the columns from.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> company, <span class="at">data =</span> scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Step 2: <strong>look at the ANOVA table</strong> with <code>summary()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+company      3   6155  2051.7    2.45 0.0682 .
+Residuals   96  80379   837.3                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Match the output to what we just did by hand:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>aov()</code> column</th>
+<th>What it is</th>
+<th>Our hand value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Df</code></td>
+<td>degrees of freedom</td>
+<td><span class="math inline">\(k-1 = 3\)</span> and <span class="math inline">\(N-k = 96\)</span></td>
+</tr>
+<tr class="even">
+<td><code>Sum Sq</code></td>
+<td>sum of squares</td>
+<td><span class="math inline">\(SSR\)</span> and <span class="math inline">\(SSE\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>Mean Sq</code></td>
+<td>mean squares</td>
+<td><span class="math inline">\(MSR\)</span> and <span class="math inline">\(MSE\)</span></td>
+</tr>
+<tr class="even">
+<td><code>F value</code></td>
+<td>the F-statistic</td>
+<td><span class="math inline">\(MSR / MSE\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>Pr(&gt;F)</code></td>
+<td>the p-value</td>
+<td>shaded area on our F plot</td>
+</tr>
+</tbody>
+</table>
+<p>If you want just the p-value for a calculation, pull it out directly:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_aov)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>anova_summary[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06817574</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="assumptions-check-these-before-trusting-the-f-test" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-check-these-before-trusting-the-f-test">Assumptions (check these before trusting the F-test)</h2>
+<div class="callout callout-style-default callout-warning callout-titled" title="ANOVA Assumptions">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>ANOVA Assumptions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Independent</strong> observations within and between groups</li>
+<li><strong>Normality</strong> within each group (or large <span class="math inline">\(n_i\)</span> so the CLT kicks in)</li>
+<li><strong>Equal variances</strong> across groups (rule of thumb: largest SD <span class="math inline">\(\le 2 \times\)</span> smallest SD)</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled" title="The ANOVA Intuition (take this with you)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The ANOVA Intuition (take this with you)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whether group means “really differ” depends on <strong>two</strong> things:</p>
+<ol type="1">
+<li>How far apart the group means are (<strong>between-group</strong> variability)</li>
+<li>How noisy the data are within each group (<strong>within-group</strong> variability)</li>
+</ol>
+<p>The F-statistic is literally the ratio of these two things:</p>
+<p><span class="math display">\[ F = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{MSR}{MSE} \]</span></p>
+<ul>
+<li><strong>Big between, small within</strong> → <span class="math inline">\(F\)</span> large → evidence the groups differ</li>
+<li><strong>Small between, big within</strong> → <span class="math inline">\(F\)</span> near 1 → evidence consistent with equal means</li>
+</ul>
+<p>It’s a <strong>signal-to-noise ratio</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-state-the-hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-state-the-hypotheses">Problem 1: State the Hypotheses</h3>
+<p>A battalion S-3 wants to know if average time-to-qualify on the M4 differs across three companies (Alpha, Bravo, Charlie).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>What are the degrees of freedom for the <span class="math inline">\(F\)</span>-statistic if 15 soldiers are sampled from each company?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(H_0: \mu_A = \mu_B = \mu_C\)</span> vs.&nbsp;<span class="math inline">\(H_a:\)</span> at least one company mean differs.</p></li>
+<li><p><span class="math inline">\(k = 3\)</span>, <span class="math inline">\(N = 45\)</span>, so <strong>df = (2, 42)</strong>: between <span class="math inline">\(= k - 1 = 2\)</span>, within <span class="math inline">\(= N - k = 42\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-compute-the-f-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-compute-the-f-statistic">Problem 2: Compute the F-Statistic</h3>
+<p>You’re given the following ANOVA table with missing values:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>df</th>
+<th>SS</th>
+<th>MS</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Branch</td>
+<td>2</td>
+<td>24.0</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>27</td>
+<td>54.0</td>
+<td>?</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>29</td>
+<td>78.0</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Compute <span class="math inline">\(MSR\)</span>, <span class="math inline">\(MSE\)</span>, and <span class="math inline">\(F\)</span>.</li>
+<li>What is <span class="math inline">\(\eta^2\)</span>?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(MSR = 24/2 = \mathbf{12}\)</span>, <span class="math inline">\(MSE = 54/27 = \mathbf{2}\)</span>, <span class="math inline">\(F = 12/2 = \mathbf{6}\)</span>.</p></li>
+<li><p><span class="math inline">\(\eta^2 = 24/78 \approx \mathbf{0.308}\)</span> – a <strong>large</strong> effect. Branch explains about 31% of the variability in the outcome.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-assumption-check" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-assumption-check">Problem 3: Assumption Check</h3>
+<p>Group SDs for run times across four companies are: 0.9, 1.1, 1.2, and 2.8 minutes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Question">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Question
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Is the equal-variance assumption reasonable? What should you do?</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>No.</strong> Largest SD (<span class="math inline">\(2.8\)</span>) is more than <span class="math inline">\(2\times\)</span> smallest (<span class="math inline">\(0.9\)</span>). Options:</p>
+<ul>
+<li><strong>Transform</strong> the outcome (log, square-root) and recheck</li>
+<li>Investigate the outlier group – a big SD often means contamination or a different process</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-interpret-a-result" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-interpret-a-result">Problem 4: Interpret a Result</h3>
+<p>A company commander runs an ANOVA comparing marksmanship scores across three training methods. Output:</p>
+<pre><code>              Df  Sum Sq  Mean Sq  F value  Pr(&gt;F)
+method         2    180     90.0     7.5    0.002
+Residuals     42    504     12.0
+Total         44    684</code></pre>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>State the conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li>What is <span class="math inline">\(\eta^2\)</span>, and what does it mean?</li>
+<li>What’s the next question the commander should ask?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(p = 0.002 &lt; 0.05\)</span>: <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is strong evidence that mean marksmanship scores differ across at least one pair of training methods.</p></li>
+<li><p><span class="math inline">\(\eta^2 = 180/684 \approx \mathbf{0.263}\)</span> – training method explains about 26% of variability in scores. <strong>Large</strong> effect.</p></li>
+<li><p><strong>Which</strong> methods differ? ANOVA only flags that <em>some</em> pair differs. Pairwise comparisons (Tukey HSD) in Lesson 38 tell you which.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li>ANOVA compares <span class="math inline">\(\ge 3\)</span> means with a <strong>single</strong> test at level <span class="math inline">\(\alpha\)</span></li>
+<li>The <span class="math inline">\(F\)</span>-statistic is the ratio of <strong>between-group</strong> to <strong>within-group</strong> variability</li>
+<li>Always check <strong>assumptions</strong> and report an <strong>effect size</strong> with the <span class="math inline">\(p\)</span>-value</li>
+<li>ANOVA tells you <em>that</em> groups differ, not <em>which</em> pairs</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-36.html">Lesson 36: ANOVA I (continued)</a></p>
+<ul>
+<li>Continue one-way ANOVA</li>
+<li>Tech Report <strong>due today</strong></li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>Tech Report</strong> – Due <strong>Lesson 36</strong></li>
+<li><strong>Project Presentation</strong> – Lessons 39–40</li>
+<li><strong>TEE</strong> – End of course</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-34.html" class="pagination-link" aria-label="Lesson 34">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 34</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
