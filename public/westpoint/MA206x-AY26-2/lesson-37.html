@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-37 – LTC Dusty Turner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206x-AY26-2/lesson-36.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206x-AY26-2/index.html" aria-current="page"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206x-AY26-2/lesson-37.html">Lesson 37</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-30.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-31.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 31</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-32.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 32</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-33.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 33</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-34.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 34</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-35.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 35</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-36.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 36</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206x-AY26-2/lesson-37.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 37</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-37-anova-ii" id="toc-lesson-37-anova-ii" class="nav-link active" data-scroll-target="#lesson-37-anova-ii">Lesson 37: ANOVA II</a>
+  <ul class="collapse">
+  <li><a href="#project-day-expectations-tuesday-5-may-lesson-38" id="toc-project-day-expectations-tuesday-5-may-lesson-38" class="nav-link" data-scroll-target="#project-day-expectations-tuesday-5-may-lesson-38">Project Day Expectations – Tuesday, 5 May (Lesson 38)</a></li>
+  <li><a href="#what-we-did-lesson-35-anova-i" id="toc-what-we-did-lesson-35-anova-i" class="nav-link" data-scroll-target="#what-we-did-lesson-35-anova-i">What We Did: Lesson 35 (ANOVA I)</a></li>
+  <li><a href="#what-were-doing-lesson-37" id="toc-what-were-doing-lesson-37" class="nav-link" data-scroll-target="#what-were-doing-lesson-37">What We’re Doing: Lesson 37</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#one-way-anova-refresher" id="toc-one-way-anova-refresher" class="nav-link" data-scroll-target="#one-way-anova-refresher">One-Way ANOVA Refresher</a>
+  <ul class="collapse">
+  <li><a href="#the-two-pieces-signal-and-noise" id="toc-the-two-pieces-signal-and-noise" class="nav-link" data-scroll-target="#the-two-pieces-signal-and-noise">The Two Pieces: Signal and Noise</a></li>
+  <li><a href="#the-ratio" id="toc-the-ratio" class="nav-link" data-scroll-target="#the-ratio">The Ratio</a></li>
+  <li><a href="#computing-f-by-hand" id="toc-computing-f-by-hand" class="nav-link" data-scroll-target="#computing-f-by-hand">Computing F by Hand</a></li>
+  <li><a href="#confirm-with-r" id="toc-confirm-with-r" class="nav-link" data-scroll-target="#confirm-with-r">Confirm with R</a></li>
+  </ul></li>
+  <li><a href="#tukeys-hsd-which-pairs-actually-differ" id="toc-tukeys-hsd-which-pairs-actually-differ" class="nav-link" data-scroll-target="#tukeys-hsd-which-pairs-actually-differ">Tukey’s HSD: Which Pairs Actually Differ?</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-tukeys-hsd" id="toc-visualizing-tukeys-hsd" class="nav-link" data-scroll-target="#visualizing-tukeys-hsd">Visualizing Tukey’s HSD</a></li>
+  <li><a href="#reporting-it" id="toc-reporting-it" class="nav-link" data-scroll-target="#reporting-it">Reporting It</a></li>
+  </ul></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-tukey-hsd-output" id="toc-problem-1-tukey-hsd-output" class="nav-link" data-scroll-target="#problem-1-tukey-hsd-output">Problem 1: Tukey HSD Output</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-37-anova-ii" class="level1">
+<h1>Lesson 37: ANOVA II</h1>
+<!-- page-scoped CSS -->
+<style>
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+pre.email, pre.email-template, div.sourceCode pre.email, div.sourceCode pre.email-template,
+pre > code.email, pre > code.email-template {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- XKCD 2533: "Slope Hypothesis Testing" - close enough; pivots well to factorial / interaction story -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar_ma206x_cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<hr>
+<section id="project-day-expectations-tuesday-5-may-lesson-38" class="level2">
+<h2 class="anchored" data-anchor-id="project-day-expectations-tuesday-5-may-lesson-38">Project Day Expectations – Tuesday, 5 May (Lesson 38)</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="What you must do BEFORE class on 5 May">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>What you must do BEFORE class on 5 May
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Email your non-cadet guest</strong> the formal invitation – <strong>deadline is today (Thursday)</strong>.
+<ul>
+<li><strong>CC or BCC</strong> <code>dusty.turner@westpoint.edu</code>.</li>
+<li>Include title, classroom (TH339), date, and class hour.</li>
+</ul></li>
+<li><strong>Print every slide in COLOR</strong>, one slide per page.</li>
+<li><strong>Tape your slides to the board / wall</strong> before class begins.
+<ul>
+<li>Arrive <strong>early</strong> – have everything posted before guests walk in.</li>
+<li>Order your slides left-to-right so a reader can walk the wall like a poster.</li>
+</ul></li>
+<li><strong>Stand by your display</strong> for the entire hour. Guests circulate; you don’t.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Invitation email template (if you still need to send it)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Invitation email template (if you still need to send it)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode email email-template code-with-copy"><code class="sourceCode email"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">To:</span>    [guest name and email]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>CC/BCC: dusty.turner@westpoint.edu</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Subj: </span> Invitation -- MA206X Project Presentation: [your title] -- 5 May 2026</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Sir / Ma'am,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>I'd like to invite you to my MA206X (Probability &amp; Statistics) final project</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>presentation. My partner CDT [Partner Last Name] and I analyzed real Army Vantage</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data from [your assigned brigade]. Our presentation, "[your title]," covers the</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>brigade readiness question we set out to answer; one-sample, two-sample, and</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>multiple-regression analyses on individual Soldier records; and recommendations</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>a brigade commander could act on.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>When:   Tuesday, 5 May 2026, [class hour, e.g., A hour, 0740--0835]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Where:  Thayer Hall, Room TH339</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Format: Walk-around / poster style. Every team posts their slides on the</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        classroom walls; you can stop at any team's display, look at the analysis,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        and ask questions. My partner and I will be standing by ours -- come</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        whenever works, stay as long or short as you'd like.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Please let me know if you can attend.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Very respectfully,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>CDT [Last Name], USCC</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>[Company / Regiment]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>[Your USMA email]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="TEE Schedule (reminder)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>TEE Schedule (reminder)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Section</th>
+<th style="text-align: center;">12 May<br>0730–1100</th>
+<th style="text-align: center;">13 May<br>0730–1100</th>
+<th style="text-align: center;">15 May<br>1300–1630</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">12</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="lesson-36.html">Lesson 36</a> for the full section roster by date.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lesson-35-anova-i" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-35-anova-i">What We Did: Lesson 35 (ANOVA I)</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Lesson 35: One-Way ANOVA">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lesson 35: One-Way ANOVA
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Pairwise <span class="math inline">\(t\)</span>-tests inflate the family-wise false-positive rate (1 - 0.95^6 ≈ 26.5% for 4 groups)</li>
+<li><strong>One-way ANOVA</strong> asks one question – “do <em>any</em> group means differ?” – with a single test at level <span class="math inline">\(\alpha\)</span></li>
+<li><span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_k\)</span> vs.&nbsp;<span class="math inline">\(H_a:\)</span> at least one differs</li>
+<li><span class="math inline">\(F = MSR / MSE\)</span> on <span class="math inline">\((k-1,\ N-k)\)</span> df; reject when <span class="math inline">\(F\)</span> is large</li>
+<li>ANOVA tells you <strong>that</strong> groups differ, not <strong>which</strong> pairs</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-37" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-37">What We’re Doing: Lesson 37</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Continue one-way ANOVA: assumptions, effect sizes, and reporting</li>
+<li>Use <strong>multiple comparisons</strong> (Tukey HSD) to identify <em>which</em> group pairs differ while controlling the family-wise error rate</li>
+</ul>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore, Section 10.2 (focus on multiple comparisons)</p>
+<hr>
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Today's Key Ideas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Today’s Key Ideas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>One-way ANOVA</strong> answers “do <em>any</em> group means differ?” – but it does <strong>not</strong> say which.</li>
+<li>Running all <span class="math inline">\(\binom{k}{2}\)</span> pairwise <span class="math inline">\(t\)</span>-tests inflates the family-wise false-positive rate.</li>
+<li><strong>Tukey’s HSD</strong> tests every pair while holding the family-wise error rate at <span class="math inline">\(\alpha\)</span>.</li>
+<li>Read Tukey output as <strong>CIs</strong> – if the CI excludes 0, that pair differs.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="one-way-anova-refresher" class="level2">
+<h2 class="anchored" data-anchor-id="one-way-anova-refresher">One-Way ANOVA Refresher</h2>
+<p>Today’s scenario: a brigade S-3 wants to know whether <strong>Land Navigation completion times</strong> (minutes) differ across the <strong>four cadet regiments</strong> (1st, 2nd, 3rd, 4th). We have 25 cadets sampled from each.</p>
+<ul>
+<li><span class="math inline">\(H_0:\ \mu_1 = \mu_2 = \mu_3 = \mu_4\)</span></li>
+<li><span class="math inline">\(H_a:\)</span> at least one regiment mean differs</li>
+<li>Test statistic: <span class="math inline">\(F = MSR / MSE\)</span> on <span class="math inline">\((k - 1,\ N - k)\)</span> df</li>
+</ul>
+<section id="the-two-pieces-signal-and-noise" class="level3">
+<h3 class="anchored" data-anchor-id="the-two-pieces-signal-and-noise">The Two Pieces: Signal and Noise</h3>
+<p>ANOVA is a <strong>signal-to-noise</strong> ratio. The two pieces:</p>
+<div class="callout callout-style-default callout-important callout-titled" title="MSR -- Mean Square Regression (between-group, the **signal**)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>MSR – Mean Square Regression (between-group, the <strong>signal</strong>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How far apart are the <strong>group means</strong> from the grand mean? When the groups really differ, this is large.</p>
+<p><span class="math display">\[ SSR = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2 \qquad MSR = \frac{SSR}{k - 1} \]</span></p>
+<p>This is the <strong>betweenness</strong> – it captures variation <strong>between</strong> the groups.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="MSE -- Mean Square Error (within-group, the **noise**)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>MSE – Mean Square Error (within-group, the <strong>noise</strong>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How spread out is the data <strong>within</strong> each group, around its own group mean? This is the background noise that’s there even if the groups are identical.</p>
+<p><span class="math display">\[ SSE = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2 \qquad MSE = \frac{SSE}{N - k} \]</span></p>
+<p>This is the <strong>withinness</strong> – it captures variation <strong>within</strong> each group.</p>
+</div>
+</div>
+</section>
+<section id="the-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="the-ratio">The Ratio</h3>
+<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{\text{signal}}{\text{noise}} \]</span></p>
+<ul>
+<li><span class="math inline">\(F\)</span> near 1 → between-group spread looks like ordinary noise → consistent with <span class="math inline">\(H_0\)</span></li>
+<li><span class="math inline">\(F\)</span> much larger than 1 → between-group spread is bigger than noise can explain → reject <span class="math inline">\(H_0\)</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-f-by-hand" class="level3">
+<h3 class="anchored" data-anchor-id="computing-f-by-hand">Computing F by Hand</h3>
+<p>Before we let R do it, let’s build the F statistic ourselves from the four regiment means. With <span class="math inline">\(n_i = 25\)</span>, <span class="math inline">\(N = 100\)</span>, <span class="math inline">\(k = 4\)</span>:</p>
+<p><strong>Step 1 – group means and grand mean.</strong> From the data,</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Regiment</th>
+<th style="text-align: center;"><span class="math inline">\(\bar{x}_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1st</td>
+<td style="text-align: center;">161.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2nd</td>
+<td style="text-align: center;">172.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3rd</td>
+<td style="text-align: center;">167.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4th</td>
+<td style="text-align: center;">175.36</td>
+</tr>
+</tbody>
+</table>
+<p>Grand mean: <span class="math inline">\(\bar{x} = 169.28\)</span>.</p>
+<p><strong>Step 2 – SSR (between groups, the <em>signal</em>).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+SSR &amp;= \sum_{i=1}^{4} n_i (\bar{x}_i - \bar{x})^2 \\
+    &amp;= 25\,[(161.72 - 169.28)^2 + (172.65 - 169.28)^2 + (167.40 - 169.28)^2 + (175.36 - 169.28)^2] \\
+    &amp;= 25\,[57.20 + 11.37 + 3.53 + 36.97] \\
+    &amp;\approx 2725.3
+\end{aligned}
+\]</span></p>
+<p>On <span class="math inline">\(k - 1 = 3\)</span> df, <span class="math inline">\(MSR = 2725.3 / 3 \approx 908.4\)</span>.</p>
+<p><strong>Step 3 – SSE (within groups, the <em>noise</em>).</strong></p>
+<p><span class="math display">\[ SSE = \sum_{i=1}^{4} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2 \approx 27{,}286.5 \]</span></p>
+<p>On <span class="math inline">\(N - k = 96\)</span> df, <span class="math inline">\(MSE = 27{,}286.5 / 96 \approx 284.2\)</span>.</p>
+<p><strong>Step 4 – assemble F.</strong></p>
+<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{908.4}{284.2} \approx 3.20 \quad\text{on }(3,\,96)\text{ df.} \]</span></p>
+<p>The p-value is the area to the right of <span class="math inline">\(F = 3.20\)</span> under the <span class="math inline">\(F_{3,\,96}\)</span> density:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So <span class="math inline">\(p \approx 0.027\)</span>. Under <span class="math inline">\(H_0\)</span> (all regiment means equal), an F this extreme or worse happens about 2.7% of the time – small enough to reject at <span class="math inline">\(\alpha = 0.05\)</span>, <strong>but only barely.</strong></p>
+</section>
+<section id="confirm-with-r" class="level3">
+<h3 class="anchored" data-anchor-id="confirm-with-r">Confirm with R</h3>
+<p>Now let R do the same calculation:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> regiment, <span class="at">data =</span> landnav)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+regiment     3   2725   908.4   3.196 0.0269 *
+Residuals   96  27286   284.2                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Same <span class="math inline">\(F_{3,\,96} \approx 3.20\)</span>, same <span class="math inline">\(p \approx 0.027\)</span>. We reject <span class="math inline">\(H_0\)</span>: <strong>at least one</strong> regiment’s mean Land Nav time differs from the others.</p>
+<p>But that’s all ANOVA tells us. <strong>We still don’t know which regiments differ – if any specific pair actually does.</strong> Rejecting <span class="math inline">\(H_0\)</span> only says “somewhere in there, at least one mean is different.” The pair could be 1st vs.&nbsp;4th, or 3rd vs.&nbsp;2nd, or some other combination – ANOVA is silent on that.</p>
+<p>That’s the gap we close today, with <strong>Tukey’s HSD</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="tukeys-hsd-which-pairs-actually-differ" class="level2">
+<h2 class="anchored" data-anchor-id="tukeys-hsd-which-pairs-actually-differ">Tukey’s HSD: Which Pairs Actually Differ?</h2>
+<p><strong>Tukey’s HSD</strong> (Honestly Significant Difference) compares <strong>every pair</strong> of group means while holding the family-wise error rate at <span class="math inline">\(\alpha\)</span>.</p>
+<p>The procedure:</p>
+<ol type="1">
+<li>Run ANOVA. (You should reject <span class="math inline">\(H_0\)</span> first – otherwise there’s nothing to dissect.)</li>
+<li>For each pair <span class="math inline">\((i, j)\)</span>, compute the difference <span class="math inline">\(\bar{x}_i - \bar{x}_j\)</span> and a CI based on the <strong>studentized range</strong> distribution and <span class="math inline">\(MSE\)</span> from the ANOVA.</li>
+<li>Any pair whose CI excludes 0 is significantly different at the family-wise <span class="math inline">\(\alpha\)</span> level.</li>
+</ol>
+<p>The family-wise <span class="math inline">\((1-\alpha)\)</span> confidence interval for <span class="math inline">\(\mu_i - \mu_j\)</span> is</p>
+<p><span class="math display">\[
+(\bar{x}_i - \bar{x}_j) \;\pm\; \frac{q_{\alpha,\, k,\, N-k}}{\sqrt{2}} \,\sqrt{MSE\left(\frac{1}{n_i} + \frac{1}{n_j}\right)}
+\]</span></p>
+<p>where <span class="math inline">\(q_{\alpha, k, N-k}\)</span> is the upper-<span class="math inline">\(\alpha\)</span> critical value of the <strong>studentized range distribution</strong> with <span class="math inline">\(k\)</span> groups and <span class="math inline">\(N-k\)</span> residual degrees of freedom, and <span class="math inline">\(MSE\)</span> is taken from the ANOVA table. (The <span class="math inline">\(\sqrt{2}\)</span> converts the studentized range into a margin on a single difference.)</p>
+<p>In R, <code>TukeyHSD()</code> takes the fitted <code>aov</code> object:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = time ~ regiment, data = landnav)
+
+$regiment
+             diff        lwr       upr     p adj
+2nd-1st 10.934419  -1.533367 23.402205 0.1068156
+3rd-1st  5.680381  -6.787405 18.148167 0.6338551
+4th-1st 13.637740   1.169954 26.105526 0.0262837
+3rd-2nd -5.254038 -17.721824  7.213748 0.6892838
+4th-2nd  2.703321  -9.764465 15.171107 0.9416500
+4th-3rd  7.957359  -4.510427 20.425145 0.3458277</code></pre>
+</div>
+</div>
+<p>For each pair you get:</p>
+<ul>
+<li><strong><code>diff</code></strong> – sample mean difference <span class="math inline">\(\bar{x}_i - \bar{x}_j\)</span></li>
+<li><strong><code>lwr</code>, <code>upr</code></strong> – family-wise 95% CI for the true difference</li>
+<li><strong><code>p adj</code></strong> – Tukey-adjusted p-value</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="How to read it">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How to read it
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If the <strong>CI excludes 0</strong> (equivalently, <code>p adj &lt; 0.05</code>), the pair is significantly different.</li>
+<li>If the CI <strong>includes 0</strong>, the data don’t separate that pair.</li>
+</ul>
+</div>
+</div>
+<section id="visualizing-tukeys-hsd" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-tukeys-hsd">Visualizing Tukey’s HSD</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Any interval crossing the dashed zero line is <strong>not</strong> a significant pair. Intervals fully to one side of zero <strong>are</strong>.</p>
+</section>
+<section id="reporting-it" class="level3">
+<h3 class="anchored" data-anchor-id="reporting-it">Reporting It</h3>
+<p>After Tukey’s HSD, write the result like this:</p>
+<blockquote class="blockquote">
+<p>A one-way ANOVA found a significant difference in mean Land Nav completion time across the four regiments (<span class="math inline">\(F_{3, 96} \approx 19\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>). Tukey’s HSD identified four significantly different pairs at the family-wise 5% level: <strong>2nd vs.&nbsp;1st</strong>, <strong>4th vs.&nbsp;1st</strong>, <strong>3rd vs.&nbsp;2nd</strong>, and <strong>4th vs.&nbsp;3rd</strong>. Operationally, <strong>3rd Regiment was the fastest</strong> and <strong>4th Regiment was the slowest</strong>; the gap between them is roughly 24 minutes (95% family-wise CI excludes 0). The 3rd-vs-1st and 4th-vs-2nd pairs were not significantly different.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-tukey-hsd-output" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-tukey-hsd-output">Problem 1: Tukey HSD Output</h3>
+<p><code>TukeyHSD()</code> for a one-way ANOVA on three platoons returns:</p>
+<pre><code>              diff     lwr     upr   p adj
+B - A        4.20   -1.10    9.50   0.146
+C - A        9.80    4.50   15.10   0.001
+C - B        5.60    0.30   10.90   0.038</code></pre>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Which pairs differ at the family-wise 5% level?</li>
+<li>Construct the “underline” or “letter” summary: which means group together?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>C vs.&nbsp;A</strong> (<span class="math inline">\(p = 0.001\)</span>) and <strong>C vs.&nbsp;B</strong> (<span class="math inline">\(p = 0.038\)</span>). B vs.&nbsp;A does not.</p></li>
+<li><p>Letters: <strong>A and B share a group; C is its own group.</strong> <span class="math display">\[ \underline{\bar{x}_A \quad \bar{x}_B} \qquad \bar{x}_C \]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<ul>
+<li>One-way ANOVA tells you <strong>that</strong> at least one mean differs – not <strong>which</strong>.</li>
+<li><strong>Tukey’s HSD</strong> compares every pair while holding family-wise error at <span class="math inline">\(\alpha\)</span>.</li>
+<li>Read the output as <strong>CIs</strong>: any interval excluding 0 is a significantly different pair.</li>
+</ul>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><a href="lesson-38.html">Lesson 38: Project Presentations</a></p>
+<ul>
+<li><strong>Tuesday, 5 May 2026</strong> – walk-around presentations</li>
+<li>Slides printed in <strong>color</strong> and taped to the board before class begins</li>
+<li>Non-cadet guest invited (with me CC/BCC’d)</li>
+<li>Stand by your display; guests circulate</li>
+</ul>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<ul>
+<li><strong>Project Presentation</strong> – <strong>5 May 2026 (Lesson 38)</strong></li>
+<li><strong>Tech Report (final)</strong> – see Canvas</li>
+<li><strong>TEE</strong> – 12, 13, 15 May 2026 (per section schedule)</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206x-AY26-2/lesson-36.html" class="pagination-link" aria-label="Lesson 36">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 36</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
