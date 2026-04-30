@@ -464,6 +464,7 @@ window.Quarto = {
   <li><a href="#visualizing-tukeys-hsd" id="toc-visualizing-tukeys-hsd" class="nav-link" data-scroll-target="#visualizing-tukeys-hsd">Visualizing Tukey’s HSD</a></li>
   <li><a href="#reporting-it" id="toc-reporting-it" class="nav-link" data-scroll-target="#reporting-it">Reporting It</a></li>
   </ul></li>
+  <li><a href="#worked-example-coffee-shop-wait-times" id="toc-worked-example-coffee-shop-wait-times" class="nav-link" data-scroll-target="#worked-example-coffee-shop-wait-times">Worked Example: Coffee Shop Wait Times</a></li>
   <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
   <ul class="collapse">
   <li><a href="#problem-1-tukey-hsd-output" id="toc-problem-1-tukey-hsd-output" class="nav-link" data-scroll-target="#problem-1-tukey-hsd-output">Problem 1: Tukey HSD Output</a></li>
@@ -654,7 +655,7 @@ pre > code.email, pre > code.email-template {
 <li>Pairwise <span class="math inline">\(t\)</span>-tests inflate the family-wise false-positive rate (1 - 0.95^6 ≈ 26.5% for 4 groups)</li>
 <li><strong>One-way ANOVA</strong> asks one question – “do <em>any</em> group means differ?” – with a single test at level <span class="math inline">\(\alpha\)</span></li>
 <li><span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_k\)</span> vs.&nbsp;<span class="math inline">\(H_a:\)</span> at least one differs</li>
-<li><span class="math inline">\(F = MSR / MSE\)</span> on <span class="math inline">\((k-1,\ N-k)\)</span> df; reject when <span class="math inline">\(F\)</span> is large</li>
+<li><span class="math inline">\(F = MSTr / MSE\)</span> on <span class="math inline">\((k-1,\ N-k)\)</span> df; reject when <span class="math inline">\(F\)</span> is large</li>
 <li>ANOVA tells you <strong>that</strong> groups differ, not <strong>which</strong> pairs</li>
 </ul>
 </div>
@@ -725,23 +726,32 @@ pre > code.email, pre > code.email-template {
 <ul>
 <li><span class="math inline">\(H_0:\ \mu_1 = \mu_2 = \mu_3 = \mu_4\)</span></li>
 <li><span class="math inline">\(H_a:\)</span> at least one regiment mean differs</li>
-<li>Test statistic: <span class="math inline">\(F = MSR / MSE\)</span> on <span class="math inline">\((k - 1,\ N - k)\)</span> df</li>
+<li>Test statistic: <span class="math inline">\(F = MSTr / MSE\)</span> on <span class="math inline">\((k - 1,\ N - k)\)</span> df</li>
 </ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <section id="the-two-pieces-signal-and-noise" class="level3">
 <h3 class="anchored" data-anchor-id="the-two-pieces-signal-and-noise">The Two Pieces: Signal and Noise</h3>
 <p>ANOVA is a <strong>signal-to-noise</strong> ratio. The two pieces:</p>
-<div class="callout callout-style-default callout-important callout-titled" title="MSR -- Mean Square Regression (between-group, the **signal**)">
+<div class="callout callout-style-default callout-important callout-titled" title="MSTr -- Mean Square Treatment (between-group, the **signal**)">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>MSR – Mean Square Regression (between-group, the <strong>signal</strong>)
+<span class="screen-reader-only">Important</span>MSTr – Mean Square Treatment (between-group, the <strong>signal</strong>)
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>How far apart are the <strong>group means</strong> from the grand mean? When the groups really differ, this is large.</p>
-<p><span class="math display">\[ SSR = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2 \qquad MSR = \frac{SSR}{k - 1} \]</span></p>
+<p><span class="math display">\[ SSTr = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2 \qquad MSTr = \frac{SSTr}{k - 1} \]</span></p>
 <p>This is the <strong>betweenness</strong> – it captures variation <strong>between</strong> the groups.</p>
 </div>
 </div>
@@ -763,7 +773,7 @@ pre > code.email, pre > code.email-template {
 </section>
 <section id="the-ratio" class="level3">
 <h3 class="anchored" data-anchor-id="the-ratio">The Ratio</h3>
-<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{\text{signal}}{\text{noise}} \]</span></p>
+<p><span class="math display">\[ F = \frac{MSTr}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{\text{signal}}{\text{noise}} \]</span></p>
 <ul>
 <li><span class="math inline">\(F\)</span> near 1 → between-group spread looks like ordinary noise → consistent with <span class="math inline">\(H_0\)</span></li>
 <li><span class="math inline">\(F\)</span> much larger than 1 → between-group spread is bigger than noise can explain → reject <span class="math inline">\(H_0\)</span></li>
@@ -772,7 +782,7 @@ pre > code.email, pre > code.email-template {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-37_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -792,49 +802,44 @@ pre > code.email, pre > code.email-template {
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1st</td>
-<td style="text-align: center;">161.72</td>
+<td style="text-align: center;">154.72</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2nd</td>
-<td style="text-align: center;">172.65</td>
+<td style="text-align: center;">171.65</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3rd</td>
-<td style="text-align: center;">167.40</td>
+<td style="text-align: center;">164.40</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4th</td>
-<td style="text-align: center;">175.36</td>
+<td style="text-align: center;">181.36</td>
 </tr>
 </tbody>
 </table>
-<p>Grand mean: <span class="math inline">\(\bar{x} = 169.28\)</span>.</p>
-<p><strong>Step 2 – SSR (between groups, the <em>signal</em>).</strong></p>
+<p>Grand mean: <span class="math inline">\(\bar{x} = 168.03\)</span>.</p>
+<p><strong>Step 2 – SSTr (between groups, the <em>signal</em>).</strong></p>
 <p><span class="math display">\[
-\begin{aligned}
-SSR &amp;= \sum_{i=1}^{4} n_i (\bar{x}_i - \bar{x})^2 \\
-    &amp;= 25\,[(161.72 - 169.28)^2 + (172.65 - 169.28)^2 + (167.40 - 169.28)^2 + (175.36 - 169.28)^2] \\
-    &amp;= 25\,[57.20 + 11.37 + 3.53 + 36.97] \\
-    &amp;\approx 2725.3
-\end{aligned}
+SSTr = \sum_{i=1}^{4} n_i (\bar{x}_i - \bar{x})^2 \approx 9527.4
 \]</span></p>
-<p>On <span class="math inline">\(k - 1 = 3\)</span> df, <span class="math inline">\(MSR = 2725.3 / 3 \approx 908.4\)</span>.</p>
+<p>On <span class="math inline">\(k - 1 = 3\)</span> df, <span class="math inline">\(MSTr = 9527.4 / 3 \approx 3175.8\)</span>.</p>
 <p><strong>Step 3 – SSE (within groups, the <em>noise</em>).</strong></p>
-<p><span class="math display">\[ SSE = \sum_{i=1}^{4} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2 \approx 27{,}286.5 \]</span></p>
-<p>On <span class="math inline">\(N - k = 96\)</span> df, <span class="math inline">\(MSE = 27{,}286.5 / 96 \approx 284.2\)</span>.</p>
+<p><span class="math display">\[ SSE = \sum_{i=1}^{4} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2 \approx 27,286.5 \]</span></p>
+<p>On <span class="math inline">\(N - k = 96\)</span> df, <span class="math inline">\(MSE = 27,286.5 / 96 \approx 284.2\)</span>.</p>
 <p><strong>Step 4 – assemble F.</strong></p>
-<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{908.4}{284.2} \approx 3.20 \quad\text{on }(3,\,96)\text{ df.} \]</span></p>
-<p>The p-value is the area to the right of <span class="math inline">\(F = 3.20\)</span> under the <span class="math inline">\(F_{3,\,96}\)</span> density:</p>
+<p><span class="math display">\[ F = \frac{MSTr}{MSE} = \frac{3175.8}{284.2} \approx 11.17 \quad\text{on }(3,\,96)\text{ df.} \]</span></p>
+<p>The p-value is the area to the right of <span class="math inline">\(F = 11.17\)</span> under the <span class="math inline">\(F_{3,\,96}\)</span> density:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-37_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>So <span class="math inline">\(p \approx 0.027\)</span>. Under <span class="math inline">\(H_0\)</span> (all regiment means equal), an F this extreme or worse happens about 2.7% of the time – small enough to reject at <span class="math inline">\(\alpha = 0.05\)</span>, <strong>but only barely.</strong></p>
+<p>So <span class="math inline">\(p \approx 0.0000\)</span> – well below <span class="math inline">\(\alpha = 0.05\)</span>, so we <strong>reject <span class="math inline">\(H_0\)</span></strong>: at least one regiment mean differs.</p>
 </section>
 <section id="confirm-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="confirm-with-r">Confirm with R</h3>
@@ -843,14 +848,14 @@ SSR &amp;= \sum_{i=1}^{4} n_i (\bar{x}_i - \bar{x})^2 \\
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> regiment, <span class="at">data =</span> landnav)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-regiment     3   2725   908.4   3.196 0.0269 *
-Residuals   96  27286   284.2                 
+<pre><code>            Df Sum Sq Mean Sq F value     Pr(&gt;F)    
+regiment     3   9527    3176   11.17 0.00000236 ***
+Residuals   96  27286     284                       
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Same <span class="math inline">\(F_{3,\,96} \approx 3.20\)</span>, same <span class="math inline">\(p \approx 0.027\)</span>. We reject <span class="math inline">\(H_0\)</span>: <strong>at least one</strong> regiment’s mean Land Nav time differs from the others.</p>
+<p>Same <span class="math inline">\(F_{3,\,96} \approx 11.17\)</span>, same <span class="math inline">\(p \approx 0.0000\)</span>. We reject <span class="math inline">\(H_0\)</span>: <strong>at least one</strong> regiment’s mean Land Nav time differs from the others.</p>
 <p>But that’s all ANOVA tells us. <strong>We still don’t know which regiments differ – if any specific pair actually does.</strong> Rejecting <span class="math inline">\(H_0\)</span> only says “somewhere in there, at least one mean is different.” The pair could be 1st vs.&nbsp;4th, or 3rd vs.&nbsp;2nd, or some other combination – ANOVA is silent on that.</p>
 <p>That’s the gap we close today, with <strong>Tukey’s HSD</strong>.</p>
 <hr>
@@ -865,11 +870,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>For each pair <span class="math inline">\((i, j)\)</span>, compute the difference <span class="math inline">\(\bar{x}_i - \bar{x}_j\)</span> and a CI based on the <strong>studentized range</strong> distribution and <span class="math inline">\(MSE\)</span> from the ANOVA.</li>
 <li>Any pair whose CI excludes 0 is significantly different at the family-wise <span class="math inline">\(\alpha\)</span> level.</li>
 </ol>
-<p>The family-wise <span class="math inline">\((1-\alpha)\)</span> confidence interval for <span class="math inline">\(\mu_i - \mu_j\)</span> is</p>
+<p>For a balanced design with <span class="math inline">\(J\)</span> observations per group and <span class="math inline">\(I\)</span> groups, the family-wise <span class="math inline">\((1-\alpha)\)</span> confidence interval for <span class="math inline">\(\mu_i - \mu_j\)</span> (Devore §10.2) is</p>
 <p><span class="math display">\[
-(\bar{x}_i - \bar{x}_j) \;\pm\; \frac{q_{\alpha,\, k,\, N-k}}{\sqrt{2}} \,\sqrt{MSE\left(\frac{1}{n_i} + \frac{1}{n_j}\right)}
+\bar{X}_i - \bar{X}_j \;\pm\; Q_{\alpha,\, I,\, I(J-1)} \cdot \sqrt{\frac{MSE}{J}}
 \]</span></p>
-<p>where <span class="math inline">\(q_{\alpha, k, N-k}\)</span> is the upper-<span class="math inline">\(\alpha\)</span> critical value of the <strong>studentized range distribution</strong> with <span class="math inline">\(k\)</span> groups and <span class="math inline">\(N-k\)</span> residual degrees of freedom, and <span class="math inline">\(MSE\)</span> is taken from the ANOVA table. (The <span class="math inline">\(\sqrt{2}\)</span> converts the studentized range into a margin on a single difference.)</p>
+<p><span class="math inline">\(Q\)</span> is the upper-<span class="math inline">\(\alpha\)</span> critical value of the <strong>studentized range distribution</strong> – a separate tabulated distribution (like <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span>) built specifically for “what’s the largest gap among <span class="math inline">\(I\)</span> group means, scaled by their standard error?” With <span class="math inline">\(I = 4\)</span>, <span class="math inline">\(J = 25\)</span>, <span class="math inline">\(MSE \approx 284.2\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>: <span class="math inline">\(Q_{0.05,\,4,\,96} \approx 3.70\)</span>, giving a margin of <span class="math inline">\(\approx 12.47\)</span> minutes. Any pair of regiment means more than that far apart is significantly different at the family-wise 5% level.</p>
 <p>In R, <code>TukeyHSD()</code> takes the fitted <code>aov</code> object:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fit_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -881,12 +886,12 @@ Fit: aov(formula = time ~ regiment, data = landnav)
 
 $regiment
              diff        lwr       upr     p adj
-2nd-1st 10.934419  -1.533367 23.402205 0.1068156
-3rd-1st  5.680381  -6.787405 18.148167 0.6338551
-4th-1st 13.637740   1.169954 26.105526 0.0262837
-3rd-2nd -5.254038 -17.721824  7.213748 0.6892838
-4th-2nd  2.703321  -9.764465 15.171107 0.9416500
-4th-3rd  7.957359  -4.510427 20.425145 0.3458277</code></pre>
+2nd-1st 16.934419   4.466633 29.402205 0.0032893
+3rd-1st  9.680381  -2.787405 22.148167 0.1842393
+4th-1st 26.637740  14.169954 39.105526 0.0000013
+3rd-2nd -7.254038 -19.721824  5.213748 0.4289106
+4th-2nd  9.703321  -2.764465 22.171107 0.1825279
+4th-3rd 16.957359   4.489573 29.425145 0.0032380</code></pre>
 </div>
 </div>
 <p>For each pair you get:</p>
@@ -917,7 +922,7 @@ $regiment
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-37_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -928,10 +933,68 @@ $regiment
 <h3 class="anchored" data-anchor-id="reporting-it">Reporting It</h3>
 <p>After Tukey’s HSD, write the result like this:</p>
 <blockquote class="blockquote">
-<p>A one-way ANOVA found a significant difference in mean Land Nav completion time across the four regiments (<span class="math inline">\(F_{3, 96} \approx 19\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>). Tukey’s HSD identified four significantly different pairs at the family-wise 5% level: <strong>2nd vs.&nbsp;1st</strong>, <strong>4th vs.&nbsp;1st</strong>, <strong>3rd vs.&nbsp;2nd</strong>, and <strong>4th vs.&nbsp;3rd</strong>. Operationally, <strong>3rd Regiment was the fastest</strong> and <strong>4th Regiment was the slowest</strong>; the gap between them is roughly 24 minutes (95% family-wise CI excludes 0). The 3rd-vs-1st and 4th-vs-2nd pairs were not significantly different.</p>
+<p>A one-way ANOVA found a significant difference in mean Land Nav completion time across the four regiments (<span class="math inline">\(F_{3, 96} \approx 11.2\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>). Tukey’s HSD identified three significantly different pairs at the family-wise 5% level: <strong>2nd vs.&nbsp;1st</strong>, <strong>4th vs.&nbsp;1st</strong>, and <strong>4th vs.&nbsp;3rd</strong>. Operationally, <strong>1st Regiment was the fastest</strong> and <strong>4th Regiment was the slowest</strong>; the gap between them is roughly 27 minutes (95% family-wise CI excludes 0). The 3rd-vs-1st, 3rd-vs-2nd, and 4th-vs-2nd pairs were not significantly different.</p>
 </blockquote>
 <hr>
 </section>
+</section>
+<section id="worked-example-coffee-shop-wait-times" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example-coffee-shop-wait-times">Worked Example: Coffee Shop Wait Times</h2>
+<p>A regional coffee chain wants to know if <strong>mean wait time (seconds)</strong> differs across its <strong>three store formats</strong>: drive-thru only, in-store only, and hybrid. They time 30 random orders at each.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Step 1 – ANOVA.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit_coffee <span class="ot">&lt;-</span> <span class="fu">aov</span>(wait <span class="sc">~</span> format, <span class="at">data =</span> coffee)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_coffee)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value         Pr(&gt;F)    
+format       2  42609   21304   27.95 0.000000000423 ***
+Residuals   87  66322     762                           
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>We reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>: at least one format’s mean wait differs.</p>
+<p><strong>Step 2 – Tukey HSD at 90% confidence (<span class="math inline">\(\alpha = 0.10\)</span>).</strong></p>
+<p>Suppose the chain is willing to tolerate a higher false-positive rate in exchange for tighter intervals. Pass <code>conf.level = 0.90</code> to <code>TukeyHSD()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fit_coffee, <span class="at">conf.level =</span> <span class="fl">0.90</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    90% family-wise confidence level
+
+Fit: aov(formula = wait ~ format, data = coffee)
+
+$format
+                         diff       lwr        upr     p adj
+In-store-Drive-thru  40.04380  25.21776  54.869846 0.0000007
+Hybrid-Drive-thru   -10.43791 -25.26396   4.388135 0.3131373
+Hybrid-In-store     -50.48171 -65.30776 -35.655665 0.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-37_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Read it.</strong> With the <strong>90% family-wise CIs</strong>, In-store vs.&nbsp;Drive-thru and In-store vs.&nbsp;Hybrid still exclude 0 (those pairs differ even at this looser level). Drive-thru vs.&nbsp;Hybrid still straddles 0 – the gap isn’t detectable even when we relax to <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<p><strong>Report.</strong></p>
+<blockquote class="blockquote">
+<p>A one-way ANOVA found a significant difference in mean wait time across the three store formats (<span class="math inline">\(F_{2,87} \approx 28\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>). At a <strong>family-wise 90% confidence level</strong> (<span class="math inline">\(\alpha = 0.10\)</span>), Tukey’s HSD shows <strong>In-store is slower than both Drive-thru (<span class="math inline">\(\approx 40\)</span> sec) and Hybrid (<span class="math inline">\(\approx 50\)</span> sec)</strong>, while <strong>Drive-thru and Hybrid remain statistically indistinguishable</strong> (90% CI for the difference still includes 0). Operationally: if reducing wait time is the goal, in-store ordering – not the choice between drive-thru and hybrid – is where to focus.</p>
+</blockquote>
+<hr>
 </section>
 <section id="board-problems" class="level2">
 <h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>

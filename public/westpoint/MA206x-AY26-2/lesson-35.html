@@ -959,7 +959,7 @@ TBD
 <li><span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_k\)</span></li>
 <li><span class="math inline">\(H_a:\)</span> at least one <span class="math inline">\(\mu_i\)</span> differs</li>
 </ul></li>
-<li><strong>Test statistic:</strong> <span class="math inline">\(F = \dfrac{MSR}{MSE}\)</span></li>
+<li><strong>Test statistic:</strong> <span class="math inline">\(F = \dfrac{MSTr}{MSE}\)</span></li>
 <li><strong>Reject <span class="math inline">\(H_0\)</span></strong> when <span class="math inline">\(F\)</span> is large (variation <em>between</em> groups exceeds variation <em>within</em> groups)</li>
 </ul>
 </div>
@@ -1296,16 +1296,16 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <section id="measuring-between-group-variability" class="level3">
 <h3 class="anchored" data-anchor-id="measuring-between-group-variability">Measuring Between-Group Variability</h3>
 <p>We want a number that’s <strong>big when the group means are spread out</strong> and <strong>small when they’re all close to the grand mean</strong>. The <strong>sum of squares between</strong> (a.k.a. <strong>sum of squares treatment</strong>) does that:</p>
-<p><span class="math display">\[ SSR = \sum_{i=1}^{k} n_i \,(\bar{x}_i - \bar{x})^2 \]</span></p>
+<p><span class="math display">\[ SSTr = \sum_{i=1}^{k} n_i \,(\bar{x}_i - \bar{x})^2 \]</span></p>
 <p>And the <strong>mean square between</strong> just divides by its degrees of freedom:</p>
-<p><span class="math display">\[ MSR = \frac{SSR}{k - 1} \]</span></p>
+<p><span class="math display">\[ MSTr = \frac{SSTr}{k - 1} \]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_n <span class="sc">*</span> (group_means <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>MSR <span class="ot">&lt;-</span> SSR <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SSTr <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_n <span class="sc">*</span> (group_means <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>MSTr <span class="ot">&lt;-</span> SSTr <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Plugging in:</p>
-<p><span class="math display">\[ SSR = 25(338.35 - 345.07)^2 + 25(355.11 - 345.07)^2 + 25(342.78 - 345.07)^2 + 25(344.02 - 345.07)^2 = 3806.41 \]</span></p>
-<p><span class="math display">\[ MSR = \frac{SSR}{k-1} = \frac{3806.41}{3} = 1268.8 \]</span></p>
+<p><span class="math display">\[ SSTr = 25(338.35 - 345.07)^2 + 25(355.11 - 345.07)^2 + 25(342.78 - 345.07)^2 + 25(344.02 - 345.07)^2 = 3806.41 \]</span></p>
+<p><span class="math display">\[ MSTr = \frac{SSTr}{k-1} = \frac{3806.41}{3} = 1268.8 \]</span></p>
 <hr>
 </section>
 <section id="measuring-within-group-variability" class="level3">
@@ -1324,9 +1324,9 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <section id="the-ratio" class="level3">
 <h3 class="anchored" data-anchor-id="the-ratio">The Ratio</h3>
 <p>Combine them into a single signal-to-noise number:</p>
-<p><span class="math display">\[ F = \frac{MSR}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} \]</span></p>
+<p><span class="math display">\[ F = \frac{MSTr}{MSE} = \frac{\text{between-group variability}}{\text{within-group variability}} \]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> MSTr <span class="sc">/</span> MSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><span class="math display">\[ F = \frac{1268.8}{620.4} = 2.045 \]</span></p>
 </section>
@@ -1352,7 +1352,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <ul>
 <li><strong><span class="math inline">\(H_0\)</span></strong>: <span class="math inline">\(\mu_A = \mu_B = \mu_C = \mu_{HHC}\)</span> (all company means are the same)</li>
 <li><strong><span class="math inline">\(H_a\)</span></strong>: at least one mean differs</li>
-<li><strong>Test statistic</strong>: <span class="math inline">\(F = MSR / MSE\)</span>, small under <span class="math inline">\(H_0\)</span> and large under <span class="math inline">\(H_a\)</span></li>
+<li><strong>Test statistic</strong>: <span class="math inline">\(F = MSTr / MSE\)</span>, small under <span class="math inline">\(H_0\)</span> and large under <span class="math inline">\(H_a\)</span></li>
 </ul>
 <p>The only thing left: <strong>how big does <span class="math inline">\(F\)</span> have to be before we call it “big”?</strong></p>
 </div>
@@ -1361,7 +1361,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 </section>
 <section id="how-big-is-big-enough-the-f-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="how-big-is-big-enough-the-f-distribution">How Big Is Big Enough? The F Distribution</h3>
-<p>Under <span class="math inline">\(H_0\)</span> (all group means equal), the ratio <span class="math inline">\(F = MSR/MSE\)</span> follows an <strong>F distribution</strong> with <strong><span class="math inline">\(k-1\)</span></strong> numerator df (between) and <strong><span class="math inline">\(N-k\)</span></strong> denominator df (within):</p>
+<p>Under <span class="math inline">\(H_0\)</span> (all group means equal), the ratio <span class="math inline">\(F = MSTr/MSE\)</span> follows an <strong>F distribution</strong> with <strong><span class="math inline">\(k-1\)</span></strong> numerator df (between) and <strong><span class="math inline">\(N-k\)</span></strong> denominator df (within):</p>
 <p><span class="math display">\[ F \;\sim\; F_{\,k-1,\; N-k} \qquad\text{when } H_0 \text{ is true} \]</span></p>
 <p>For our AFT data: <span class="math inline">\(k - 1 = 3\)</span> and <span class="math inline">\(N - k = 96\)</span>. Plot the null distribution and mark our observed <span class="math inline">\(F\)</span>:</p>
 <div class="cell">
@@ -1387,7 +1387,7 @@ P(\text{at least one false positive}) = 1 - (1 - \alpha)^m = 1 - 0.95^6 \approx 
 <!-- Everything we just computed, in one table: -->
 <!-- | Source | df | SS | MS | F | -->
 <!-- |---|---|---|---|---| -->
-<!-- | Between (Treatment) | $k - 1$ | $SSR$ | $MSR = SSR/(k-1)$ | $MSR / MSE$ | -->
+<!-- | Between (Treatment) | $k - 1$ | $SSTr$ | $MSTr = SSTr/(k-1)$ | $MSTr / MSE$ | -->
 <!-- | Within (Error)      | $N - k$ | $SSE$  | $MSE = SSE/(N-k)$   | | -->
 <!-- | Total               | $N - 1$ | $SST$  | | | -->
 </section>
@@ -1425,17 +1425,17 @@ Residuals   96  59559   620.4               </code></pre>
 <tr class="even">
 <td><code>Sum Sq</code></td>
 <td>sum of squares</td>
-<td><span class="math inline">\(SSR\)</span> and <span class="math inline">\(SSE\)</span></td>
+<td><span class="math inline">\(SSTr\)</span> and <span class="math inline">\(SSE\)</span></td>
 </tr>
 <tr class="odd">
 <td><code>Mean Sq</code></td>
 <td>mean squares</td>
-<td><span class="math inline">\(MSR\)</span> and <span class="math inline">\(MSE\)</span></td>
+<td><span class="math inline">\(MSTr\)</span> and <span class="math inline">\(MSE\)</span></td>
 </tr>
 <tr class="even">
 <td><code>F value</code></td>
 <td>the F-statistic</td>
-<td><span class="math inline">\(MSR / MSE\)</span></td>
+<td><span class="math inline">\(MSTr / MSE\)</span></td>
 </tr>
 <tr class="odd">
 <td><code>Pr(&gt;F)</code></td>
@@ -1491,7 +1491,7 @@ Residuals   96  59559   620.4               </code></pre>
 <li>How noisy the data are within each group (<strong>within-group</strong> variability)</li>
 </ol>
 <p>The F-statistic is literally the ratio of these two things:</p>
-<p><span class="math display">\[ F = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{MSR}{MSE} \]</span></p>
+<p><span class="math display">\[ F = \frac{\text{between-group variability}}{\text{within-group variability}} = \frac{MSTr}{MSE} \]</span></p>
 <ul>
 <li><strong>Big between, small within</strong> → <span class="math inline">\(F\)</span> large → evidence the groups differ</li>
 <li><strong>Small between, big within</strong> → <span class="math inline">\(F\)</span> near 1 → evidence consistent with equal means</li>
@@ -1641,7 +1641,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
-<li>Compute <span class="math inline">\(MSR\)</span>, <span class="math inline">\(MSE\)</span>, and <span class="math inline">\(F\)</span>.</li>
+<li>Compute <span class="math inline">\(MSTr\)</span>, <span class="math inline">\(MSE\)</span>, and <span class="math inline">\(F\)</span>.</li>
 <li>What is <span class="math inline">\(\eta^2\)</span>?</li>
 </ol>
 </div>
@@ -1660,7 +1660,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
-<li><p><span class="math inline">\(MSR = 24/2 = \mathbf{12}\)</span>, <span class="math inline">\(MSE = 54/27 = \mathbf{2}\)</span>, <span class="math inline">\(F = 12/2 = \mathbf{6}\)</span>.</p></li>
+<li><p><span class="math inline">\(MSTr = 24/2 = \mathbf{12}\)</span>, <span class="math inline">\(MSE = 54/27 = \mathbf{2}\)</span>, <span class="math inline">\(F = 12/2 = \mathbf{6}\)</span>.</p></li>
 <li><p><span class="math inline">\(\eta^2 = 24/78 \approx \mathbf{0.308}\)</span> – a <strong>large</strong> effect. Branch explains about 31% of the variability in the outcome.</p></li>
 </ol>
 </div>
