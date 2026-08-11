@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA491: Research Seminar – LTC Dusty Turner</title>
+<title>Hypothesis Tests — Course Reference – CD Notes — MA206 AY27-1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,30 +26,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../MA491-AY27-1/syllabus.html" rel="next">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-787e033c7b6f65c9dfccb6078e5d2d34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -73,46 +72,51 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">LTC Dusty Turner</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
-<span class="menu-text">MA206x-AY26-2</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
-<span class="menu-text">MA206-AY26-1</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA491-AY27-1/index.html">Course Information</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      CD Notes — MA206 AY27-1
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -122,9 +126,14 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CD Notes — MA206 AY27-1</a> 
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -134,31 +143,73 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../MA491-AY27-1/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Course Information</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../MA491-AY27-1/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
+  <a href="./slos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SLOs</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Forges</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./forge-0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forge 0: Reorgy Week</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./admin/feedback_attachment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDW / Workshop Week Feedback</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-six-test-procedures" id="toc-the-six-test-procedures" class="nav-link active" data-scroll-target="#the-six-test-procedures">The six test procedures</a></li>
+  <li><a href="#small-vs.-large-sample" id="toc-small-vs.-large-sample" class="nav-link" data-scroll-target="#small-vs.-large-sample">Small vs.&nbsp;large sample</a></li>
+  <li><a href="#tee-coverage" id="toc-tee-coverage" class="nav-link" data-scroll-target="#tee-coverage">TEE coverage</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<div style="background-color: #28a745; color: white; text-align: center; padding: 6px 12px; font-size: 0.85em; font-weight: 600; letter-spacing: 0.5px; position: sticky; top: 0; z-index: 1000;">
-  DRAFT — This page is under development
-</div>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MA491: Research Seminar</h1>
+<h1 class="title">Hypothesis Tests — Course Reference</h1>
+<p class="subtitle lead">Every mean/proportion test we teach, and which are assessed on the TEE</p>
 </div>
 
 
@@ -175,149 +226,163 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div style="text-align: center;">
-<img src="Crest.png" width="120px">
-<p style="font-size: 1.1em; color: #666; margin-top: 10px;">
-AY27-1 | United States Military Academy
-</p>
-</div>
-<hr>
-<section id="course-overview" class="level2">
-<h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
-<p>MA491 is a capstone research course for non-thesis cadets in the Department of Mathematical Sciences. Cadets stand up a working computational environment from bare hardware (Raspberry Pi), then run the research cycle four times with the scaffolding coming off a step at a time: guided, semi-independent, independent, and finally a capstone that culminates in a public Demo Day. Cadets use AI tools throughout as collaborators in the research and analytical workflow.</p>
-<p>By the end of the semester, every cadet will have a portfolio of hosted projects, a personal website, and experience presenting findings to real stakeholders.</p>
-<hr>
-</section>
-<section id="course-links" class="level2">
-<h2 class="anchored" data-anchor-id="course-links">Course Links</h2>
-<ul>
-<li>📄 <a href="../MA491-AY27-1/syllabus.html"><strong>Syllabus</strong></a> &nbsp;·&nbsp; <a href="syllabus.pdf">Download PDF</a></li>
-<li>🎓 <a href="https://westpoint.instructure.com/"><strong>Canvas Page</strong></a></li>
-</ul>
-<hr>
-</section>
-<section id="course-information" class="level2">
-<h2 class="anchored" data-anchor-id="course-information">Course Information</h2>
+<p>This reference covers the inference procedures for <strong>means and proportions</strong> taught across Lessons 22–26. Regression <em>t</em>-tests and the ANOVA <em>F</em>-test are separate families (Lessons 29+) and are not included here.</p>
+<section id="the-six-test-procedures" class="level2">
+<h2 class="anchored" data-anchor-id="the-six-test-procedures">The six test procedures</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 26%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Samples</th>
+<th style="text-align: left;">Structure</th>
+<th style="text-align: left;">Test</th>
+<th style="text-align: left;">Distribution (df)</th>
+<th style="text-align: left;">Key detail</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Course</strong></td>
-<td style="text-align: left;">MA491: Research Seminar</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Mean <span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;">one</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">one-sample <span class="math inline">\(t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(df = n-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span> unknown <span class="math inline">\(\Rightarrow\)</span> use <span class="math inline">\(s\)</span>; large <span class="math inline">\(n \Rightarrow t \approx z\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Term</strong></td>
-<td style="text-align: left;">AY27-1 (Fall 2027)</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_1 - \mu_2\)</span></td>
+<td style="text-align: left;">two</td>
+<td style="text-align: left;">independent, <strong>equal variance</strong></td>
+<td style="text-align: left;">two-sample <span class="math inline">\(t\)</span> (pooled)</td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(df = n_1 + n_2 - 2\)</span></td>
+<td style="text-align: left;">pooled SD</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Credits</strong></td>
-<td style="text-align: left;">3.0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_1 - \mu_2\)</span></td>
+<td style="text-align: left;">two</td>
+<td style="text-align: left;">independent, <strong>unequal variance</strong></td>
+<td style="text-align: left;">two-sample <span class="math inline">\(t\)</span> (Welch)</td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, Welch–Satterthwaite <span class="math inline">\(df\)</span></td>
+<td style="text-align: left;">unpooled SE</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Meeting Time</strong></td>
-<td style="text-align: left;">A2 hour</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_d\)</span></td>
+<td style="text-align: left;">two</td>
+<td style="text-align: left;"><strong>paired / matched</strong></td>
+<td style="text-align: left;">paired <span class="math inline">\(t\)</span> (one-sample <span class="math inline">\(t\)</span> on the differences)</td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(df = n-1\)</span></td>
+<td style="text-align: left;">analyze the differences</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Location</strong></td>
-<td style="text-align: left;">TH239B</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Proportion <span class="math inline">\(p\)</span></td>
+<td style="text-align: left;">one</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">one-proportion <span class="math inline">\(z\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: left;">conditions <span class="math inline">\(np_0,\ n(1-p_0) \ge 10\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><span class="math inline">\(p_1 - p_2\)</span></td>
+<td style="text-align: left;">two</td>
+<td style="text-align: left;">independent</td>
+<td style="text-align: left;">two-proportion <span class="math inline">\(z\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: left;"><strong>pooled</strong> SE for the test, <strong>unpooled</strong> SE for the CI</td>
 </tr>
 </tbody>
 </table>
-<hr>
+<p><strong>The combo grid:</strong> <span class="math inline">\(\{\text{one-sample},\ \text{two-sample}\} \times \{\text{mean},\ \text{proportion}\}\)</span>, with means splitting into <strong>paired vs.&nbsp;unpaired</strong>, and unpaired means splitting into <strong>pooled vs.&nbsp;Welch</strong> — six distinct procedures.</p>
 </section>
-<section id="instructor" class="level2">
-<h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
-<div class="grid">
-<div class="g-col-12 g-col-md-8">
-<p><strong>LTC Dusty Turner, PhD</strong> Academy Professor, Department of Mathematical Sciences</p>
+<section id="small-vs.-large-sample" class="level2">
+<h2 class="anchored" data-anchor-id="small-vs.-large-sample">Small vs.&nbsp;large sample</h2>
+<p>“Small vs.&nbsp;large sample” is <strong>not a different test</strong> — for means it changes the <em>condition check</em>, not the procedure:</p>
 <ul>
-<li><strong>Office</strong>: Thayer Hall</li>
-<li><strong>Email</strong>: dusty.turner@westpoint.edu</li>
-<li><strong>Website</strong>: <a href="https://www.dustysturner.com/">dustysturner.com</a></li>
+<li><strong><span class="math inline">\(n &gt; 20\)</span></strong> → CLT covers you; approximate normality is assumed.</li>
+<li><strong><span class="math inline">\(n \le 20\)</span></strong> → the data (or the paired differences) must be roughly symmetric, with no strong skew or outliers.</li>
+<li><strong>Proportions</strong> are always large-sample <span class="math inline">\(z\)</span>, justified by the success–failure condition (not by <span class="math inline">\(n &gt; 20\)</span>).</li>
 </ul>
-<p><em>Email to coordinate Additional Instruction.</em></p>
-</div>
-</div>
+</section>
+<section id="tee-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="tee-coverage">TEE coverage</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 50%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Test</th>
+<th style="text-align: center;">On the TEE?</th>
+<th style="text-align: left;">Where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">One-sample <span class="math inline">\(t\)</span></td>
+<td style="text-align: center;">✅ Dedicated part</td>
+<td style="text-align: left;">Part IV (caloric intake, <span class="math inline">\(H_a: \mu &gt; 3200\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Two-sample <span class="math inline">\(t\)</span></td>
+<td style="text-align: center;">✅ Dedicated part</td>
+<td style="text-align: left;">Part V (VR vs.&nbsp;traditional, <span class="math inline">\(H_a: \mu_1 \ne \mu_2\)</span>, Welch <span class="math inline">\(df = 51.7\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">One-proportion <span class="math inline">\(z\)</span></td>
+<td style="text-align: center;">✅ Dedicated part</td>
+<td style="text-align: left;">Part V (rifle qualification, <span class="math inline">\(H_a: p &lt; 0.75\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paired <span class="math inline">\(t\)</span></td>
+<td style="text-align: center;">⚠️ Concept only</td>
+<td style="text-align: left;">Part I MC (recognize the matched-pairs design)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two-proportion <span class="math inline">\(z\)</span></td>
+<td style="text-align: center;">❌ Not assessed</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Two-sample <span class="math inline">\(t\)</span> (pooled vs.&nbsp;Welch)</td>
+<td style="text-align: center;">◑ Welch only</td>
+<td style="text-align: left;">Part V uses Welch <span class="math inline">\(df\)</span>; the pooled variant is not separately assessed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Summary.</strong> Of the six procedures, <strong>three</strong> have a dedicated free-response part (one-sample <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(t\)</span>, one-proportion <span class="math inline">\(z\)</span>). <strong>Paired <span class="math inline">\(t\)</span></strong> appears only as a multiple-choice concept check, and <strong>two-proportion <span class="math inline">\(z\)</span></strong> is taught but not assessed on the exam at all.</p>
+<p>Across the assessed tests, the alternative-hypothesis directions are also varied: Part IV is one-sided <span class="math inline">\(&gt;\)</span>, Part V two-sample is two-sided <span class="math inline">\(\ne\)</span>, and Part V proportion is one-sided <span class="math inline">\(&lt;\)</span> — one of each direction.</p>
 
 
 </section>
 
 </main> <!-- /main -->
 <script>
-(function() {
-  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
-
-  function getVisitorId() {
-    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
-    if (match) return match[1];
-    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
-    return id;
-  }
-
-  function sendHit(publicIp) {
-    try {
-      var data = {
-        page: window.location.pathname,
-        url: window.location.href,
-        referrer: document.referrer || null,
-        title: document.title || null,
-        screen_width: screen.width,
-        screen_height: screen.height,
-        user_agent: navigator.userAgent,
-        language: navigator.language,
-        timestamp: new Date().toISOString(),
-        visitor_id: getVisitorId(),
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
-        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
-        public_ip: publicIp || null
-      };
-
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(API_URL, JSON.stringify(data));
-      } else {
-        fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-          keepalive: true
-        }).catch(function() {});
-      }
-    } catch(e) {}
-  }
-
-  // Check localStorage cache first (refreshed daily)
-  function getCachedIp() {
-    try {
-      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
-      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
-    } catch(e) {}
-    return null;
-  }
-
-  function cacheIp(ip) {
-    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
-  }
-
-  var cachedIp = getCachedIp();
-  if (cachedIp) {
-    sendHit(cachedIp);
-    return;
-  }
-
-  // Try multiple IP services, use whichever responds first
-  var sent = false;
-  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
-
-  function tryService(url, extract) {
-    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
-      var ip = extract(d);
-      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
-    }).catch(function() {});
-  }
-
-  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
-  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
-})();
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".sidebar-item-text, .menu-text").forEach(function(el) {
+    var text = el.textContent.trim();
+    var match = text.match(/^(Forge \d+):\s*(.+)$/);
+    if (match) {
+      el.innerHTML = '<span class="forge-label">' + match[1] + '</span><span class="forge-topic">' + match[2] + '</span>';
+    }
+  });
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -719,19 +784,10 @@ AY27-1 | United States Military Academy
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../MA491-AY27-1/syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
