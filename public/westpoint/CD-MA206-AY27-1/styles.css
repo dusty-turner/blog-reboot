@@ -80,3 +80,29 @@ ul.emph .pts {
   padding: 0.1rem 0.55rem;
   white-space: nowrap;
 }
+
+/* Semester progress bars: where we are in the calendar, and how much of the
+   1000 points is already in the gradebook. Blue = time, orange = points, so the
+   two bars stay distinguishable at a glance and match the team color pair. */
+.pbar-wrap { margin: 0.5rem 0 1.1rem; }
+.pbar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9em;
+  margin-bottom: 0.25rem;
+}
+.pbar-head .pbar-name { font-weight: 700; color: #1f2937; }
+.pbar-head .pbar-val { color: #5a6472; }
+.pbar {
+  background: #e6ebf2;
+  border-radius: 8px;
+  height: 16px;
+  overflow: hidden;
+}
+.pbar > span {
+  display: block;
+  height: 100%;
+  background: #1f5fa8;
+}
+.pbar.pts > span { background: #c25708; }
