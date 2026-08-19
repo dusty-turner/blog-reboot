@@ -106,3 +106,98 @@ ul.emph .pts {
   background: #1f5fa8;
 }
 .pbar.pts > span { background: #c25708; }
+
+/* WebAssign enrollment: three lists side by side, compact. */
+.wa-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.wa-col { flex: 1 1 260px; min-width: 250px; }
+.wa-col h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 0.1rem 0;
+}
+.wa-col .wa-do {
+  font-size: 0.8rem;
+  color: #5a6472;
+  margin: 0 0 0.4rem 0;
+}
+.wa-col table {
+  font-size: 0.76rem;
+  width: 100%;
+  margin: 0;
+}
+.wa-col th, .wa-col td {
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+.wa-col th { border-bottom: 1px solid #c9d2de; }
+
+.wa-col h4.wa-gap { margin-top: 1.75rem; }
+
+/* Coverage plan: one row per meeting that needs a body, grouped under the date.
+   Date rules the group, section and who is out recede, the open slot stands out. */
+.cov table {
+  width: 100%;
+  max-width: 640px;
+  border-collapse: collapse;
+  margin: 0.2rem 0 1.4rem;
+  font-size: 0.95rem;
+}
+.cov table > :not(caption) > * > * {
+  padding: 0.32rem 0.9rem;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.cov tr.cov-group td {
+  padding-top: 1.1rem;
+  padding-left: 0;
+  font-weight: 700;
+  color: #1f2937;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+.cov tr.cov-group:first-child td { padding-top: 0.2rem; }
+.cov thead th {
+  padding-left: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8a94a3;
+  border-bottom: 1px solid #adb5bd !important;
+}
+.cov thead th:not(:first-child) { padding-left: 0.9rem; }
+.cov .cov-when { font-weight: 400; color: #8a94a3; font-size: 0.88em; }
+.cov tbody tr:not(.cov-group) td { border-bottom: 1px solid #f1f3f5 !important; }
+.cov .cov-sec { padding-left: 0; white-space: nowrap; }
+.cov .cov-out { color: #5a6472; white-space: nowrap; }
+.cov-tbd { color: #c25708; font-weight: 600; }
+
+/* Two way count table: narrow, centred, margins muted so the four interior
+   counts are what the eye lands on. */
+.twoway table {
+  width: auto;
+  margin: 0.2rem auto 1.4rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.twoway table > :not(caption) > * > * {
+  padding: 0.3rem 1.1rem;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.twoway thead th {
+  font-weight: 600;
+  color: #5a6472;
+  border-bottom: 1px solid #adb5bd !important;
+}
+.twoway tbody td { font-variant-numeric: tabular-nums; }
+.twoway tbody td:last-child,
+.twoway tbody tr:last-child td { color: #8a94a3; font-weight: 400; }
+.twoway tbody tr:last-child td { border-top: 1px solid #dee2e6 !important; }
+.twoway tbody tr:last-child td:first-child { color: #5a6472; }

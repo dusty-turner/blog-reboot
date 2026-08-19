@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -150,11 +179,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#coverage-plan" id="toc-coverage-plan" class="nav-link active" data-scroll-target="#coverage-plan">Coverage Plan</a>
+  <li><a href="#coverage-plan" id="toc-coverage-plan" class="nav-link active" data-scroll-target="#coverage-plan">Coverage Plan</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do">To Do</a>
   <ul class="collapse">
-  <li><a href="#this-forge-wed-19-aug-to-tue-25-aug" id="toc-this-forge-wed-19-aug-to-tue-25-aug" class="nav-link" data-scroll-target="#this-forge-wed-19-aug-to-tue-25-aug">This forge: Wed 19 Aug to Tue 25 Aug</a></li>
-  <li><a href="#next-forge-wed-26-aug-to-tue-01-sep" id="toc-next-forge-wed-26-aug-to-tue-01-sep" class="nav-link" data-scroll-target="#next-forge-wed-26-aug-to-tue-01-sep">Next forge: Wed 26 Aug to Tue 01 Sep</a></li>
+  <li><a href="#book-return" id="toc-book-return" class="nav-link" data-scroll-target="#book-return">Book Return</a></li>
   </ul></li>
+  <li><a href="#webassign-enrollment" id="toc-webassign-enrollment" class="nav-link" data-scroll-target="#webassign-enrollment">WebAssign Enrollment</a></li>
+  <li><a href="#where-block-i-is-headed" id="toc-where-block-i-is-headed" class="nav-link" data-scroll-target="#where-block-i-is-headed">Where Block I Is Headed</a></li>
+  <li><a href="#lesson-2-measures-of-location-and-variability" id="toc-lesson-2-measures-of-location-and-variability" class="nav-link" data-scroll-target="#lesson-2-measures-of-location-and-variability">Lesson 2: Measures of Location and Variability</a>
+  <ul class="collapse">
+  <li><a href="#ways-to-frame-the-discussion" id="toc-ways-to-frame-the-discussion" class="nav-link" data-scroll-target="#ways-to-frame-the-discussion">Ways to Frame the Discussion</a></li>
+  <li><a href="#let-them-invent-the-vocabulary" id="toc-let-them-invent-the-vocabulary" class="nav-link" data-scroll-target="#let-them-invent-the-vocabulary">Let Them Invent the Vocabulary</a></li>
+  </ul></li>
+  <li><a href="#lesson-3-set-theory" id="toc-lesson-3-set-theory" class="nav-link" data-scroll-target="#lesson-3-set-theory">Lesson 3: Set Theory</a></li>
+  <li><a href="#lesson-4-probability-basics" id="toc-lesson-4-probability-basics" class="nav-link" data-scroll-target="#lesson-4-probability-basics">Lesson 4: Probability Basics</a></li>
+  <li><a href="#before-the-next-forge" id="toc-before-the-next-forge" class="nav-link" data-scroll-target="#before-the-next-forge">Before the Next Forge</a></li>
   </ul>
 </nav>
     </div>
@@ -191,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="pbar-wrap">
 <div class="pbar-head">
-<span class="pbar-name">Points in the gradebook</span><span class="pbar-val">0 of 1000 (0%)</span>
+<span class="pbar-name">Points in the gradebook</span><span class="pbar-val">4 of 1000 (0%)</span>
 </div>
 <div class="pbar pts">
 <span style="width:0%"></span>
@@ -200,104 +239,693 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Lessons 2-4:</strong> L2 Measures of Location &amp; Variability, L3 Set Theory, L4 Probability Basics</p>
 <section id="coverage-plan" class="level2">
 <h2 class="anchored" data-anchor-id="coverage-plan">Coverage Plan</h2>
-<section id="this-forge-wed-19-aug-to-tue-25-aug" class="level3">
-<h3 class="anchored" data-anchor-id="this-forge-wed-19-aug-to-tue-25-aug">This forge: Wed 19 Aug to Tue 25 Aug</h3>
+<p><strong>9 of 14 meetings still need a body.</strong></p>
+<div class="cov">
 <table>
 <thead>
 <tr>
-<th style="text-align:left;">
-Out
-</th>
-<th style="text-align:left;">
+<th>
 Section
 </th>
-<th style="text-align:center;">
-Wed 19 Aug<br>1-2, L2
+<th>
+Out
 </th>
-<th style="text-align:center;">
-Thu 20 Aug<br>2-2, L2
-</th>
-<th style="text-align:center;">
-Fri 21 Aug<br>2-3, L3
-</th>
-<th style="text-align:center;">
-Mon 24 Aug<br>1-3, L3
-</th>
-<th style="text-align:center;">
-Tue 25 Aug<br>2-4, L4
+<th>
+Covered by
 </th>
 </tr>
 </thead>
 <tbody>
+<tr class="cov-group">
+<td colspan="3">
+Wed 19 Aug <span class="cov-when">1-2, L2</span>
+</td>
+</tr>
 <tr>
-<td style="text-align:left;">
+<td class="cov-sec">
+Day 1, hour E, TH321
 </td>
-<td style="text-align:left;">
+<td class="cov-out">
+Lovas
 </td>
-<td style="text-align:center;">
+<td>
+Turner
 </td>
-<td style="text-align:center;">
+</tr>
+<tr class="cov-group">
+<td colspan="3">
+Thu 20 Aug <span class="cov-when">2-2, L2</span>
 </td>
-<td style="text-align:center;">
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour E, TH321
 </td>
-<td style="text-align:center;">
+<td class="cov-out">
+Lovas
 </td>
-<td style="text-align:center;">
+<td>
+Day
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour F, TH321
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+</tr>
+<tr class="cov-group">
+<td colspan="3">
+Fri 21 Aug <span class="cov-when">2-3, L3</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour E, TH321
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour F, TH321
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+</tr>
+<tr class="cov-group">
+<td colspan="3">
+Mon 14 Sep <span class="cov-when">1-10, L10</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour C, TH317
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour D, TH317
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr class="cov-group">
+<td colspan="3">
+Tue 15 Sep <span class="cov-when">2-11, L11</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour A, TH317
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 2, hour D, TH321
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr class="cov-group">
+<td colspan="3">
+Wed 16 Sep <span class="cov-when">1-11, L11</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour A, TH317
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour B, TH317
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour C, TH317
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour D, TH317
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+</tr>
+<tr>
+<td class="cov-sec">
+Day 1, hour D, TH321
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
-<section id="next-forge-wed-26-aug-to-tue-01-sep" class="level3">
-<h3 class="anchored" data-anchor-id="next-forge-wed-26-aug-to-tue-01-sep">Next forge: Wed 26 Aug to Tue 01 Sep</h3>
-<table>
+<section id="to-do" class="level2">
+<h2 class="anchored" data-anchor-id="to-do">To Do</h2>
+<ul>
+<li>Sort out <a href="#webassign-enrollment">WebAssign enrollment</a></li>
+<li>Go over honor and AI briefs. For support: <a href="https://usarmywestpoint.sharepoint.com/sites/Math.Teach/MA206/AY27-1%20MA206/DAAW%20Related%20Briefs.zip">DAAW Related Briefs.zip</a> in <code>AY27-1 MA206</code>: Academic Security, and Doc of Sources / Ack of Assistance / Cover Page</li>
+<li>Have cadets request an account on <a href="https://vantage.army.mil/">Army Vantage</a>. Walkthrough is <a href="https://usarmywestpoint.sharepoint.com/sites/Math.Teach/MA206/AY27-1%20MA206/HowToVantage.pdf">HowToVantage.pdf</a> in <code>AY27-1 MA206</code></li>
+<li>Tell your cadets to return the Tintle book and switch to Devore. See <a href="#book-return">Book Return</a>, the window is short</li>
+<li>Read WPR I and send me your feedback by <strong>4 Sep</strong>. It is in <code>AY27-1 MA206 &gt; Instructor Materials</code>. Flag anything ambiguous, mis-scoped, or out of order while there is still time to fix it</li>
+</ul>
+<section id="book-return" class="level3">
+<h3 class="anchored" data-anchor-id="book-return">Book Return</h3>
+<p>The bookstore listed Tintle (Wiley) by mistake. Our text is Devore, 9th ed.&nbsp;Cadets should return Tintle and skip buying a hard copy unless they want one.</p>
+<ul>
+<li><strong>Two weeks from purchase.</strong> Cadets start the return themselves at <a href="https://bncvirtual.com/westpoint">bncvirtual.com/westpoint</a>, Your Account &gt; Return Center</li>
+<li><strong>Devore is free online</strong> through Cengage Unlimited. Hard copy is optional</li>
+<li><strong>Shop around.</strong> Bookstore is $230.50 new, $172.75 used. Amazon was around $60</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/book-return-1.png" class="img-fluid figure-img" alt="Bookstore order history table with a red arrow pointing to the Return Center link below the orders"></p>
+<figcaption>Your Account &gt; Return Center</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/book-return-2.png" class="img-fluid figure-img" alt="Virtual bookstore listing for MA206 showing Devore, Probability and Statistics for Engineering and the Sciences, 9th edition, flagged OPTIONAL, with print prices of $172.75 used and $230.50 new and digital rental options"></p>
+<figcaption>The corrected listing, marked optional</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="webassign-enrollment" class="level2">
+<h2 class="anchored" data-anchor-id="webassign-enrollment">WebAssign Enrollment</h2>
+<p>43 cadets are wrong in WebAssign.</p>
+<div class="wa-grid">
+<div class="wa-col">
+<section id="wrong-day-6" class="level4">
+<h4 class="anchored" data-anchor-id="wrong-day-6">Wrong day (6)</h4>
+<p>Drop the wrong class, enroll in the right one.</p>
+<table class="caption-top table">
 <thead>
-<tr>
-<th style="text-align:left;">
-Out
-</th>
-<th style="text-align:left;">
-Section
-</th>
-<th style="text-align:center;">
-Wed 26 Aug<br>1-4, L4
-</th>
-<th style="text-align:center;">
-Thu 27 Aug<br>2-5, L5
-</th>
-<th style="text-align:center;">
-Fri 28 Aug<br>1-5, L5
-</th>
-<th style="text-align:center;">
-Mon 31 Aug<br>1-6, L6
-</th>
-<th style="text-align:center;">
-Tue 01 Sep<br>2-6, L6
-</th>
+<tr class="header">
+<th style="text-align: left;">Sec</th>
+<th style="text-align: left;">Cadet</th>
+<th style="text-align: center;">Move</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left;">E1 126</td>
+<td style="text-align: left;">Brocken, Dwayne</td>
+<td style="text-align: center;">2 to 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A2 133</td>
+<td style="text-align: left;">Smith, Milan</td>
+<td style="text-align: center;">1 to 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A2 134</td>
+<td style="text-align: left;">Nwawuihe, Godspower</td>
+<td style="text-align: center;">1 to 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C2 148</td>
+<td style="text-align: left;">Williams, Caleb</td>
+<td style="text-align: center;">1 to 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2 123</td>
+<td style="text-align: left;">Spaulding, Wyatt</td>
+<td style="text-align: center;">1 to 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2 121</td>
+<td style="text-align: left;">Ramos, Christian</td>
+<td style="text-align: center;">1 to 2</td>
 </tr>
 </tbody>
 </table>
-
-
 </section>
+<section id="not-on-the-roster-2" class="level4 wa-gap">
+<h4 class="wa-gap anchored" data-anchor-id="not-on-the-roster-2">Not on the roster (2)</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cadet</th>
+<th style="text-align: center;">In</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luft, Alex</td>
+<td style="text-align: center;">Day 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burns, Grace</td>
+<td style="text-align: center;">Day 2</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+<section id="in-both-classes-18" class="level4 wa-col">
+<h4 class="anchored" data-anchor-id="in-both-classes-18">In both classes (18)</h4>
+<p>Drop the one that is not Keep. Flag it if they already have work there.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sec</th>
+<th style="text-align: left;">Cadet</th>
+<th style="text-align: center;">Keep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A1 130</td>
+<td style="text-align: left;">Pidgeon, Michael</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A1 131</td>
+<td style="text-align: left;">Aquino, Noah</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B1 143</td>
+<td style="text-align: left;">Maybury, Layton</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B1 143</td>
+<td style="text-align: left;">Thornton, Abigail</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B1 147</td>
+<td style="text-align: left;">Yoo, Daniel</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D1 110</td>
+<td style="text-align: left;">Price, Tyler</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A2 133</td>
+<td style="text-align: left;">Oblepias, Robynn</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A2 133</td>
+<td style="text-align: left;">Park, Ian</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A2 134</td>
+<td style="text-align: left;">Dortch, Cade</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A2 134</td>
+<td style="text-align: left;">Saftner, Peter</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A2 135</td>
+<td style="text-align: left;">Gibson, Jonathan</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B2 146</td>
+<td style="text-align: left;">Lee, Julia</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B2 146</td>
+<td style="text-align: left;">Martin, Andrew</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C2 148</td>
+<td style="text-align: left;">Williams, Brad</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D2 116</td>
+<td style="text-align: left;">Liu, Melanie</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D2 141</td>
+<td style="text-align: left;">Ahn, Noah</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2 124</td>
+<td style="text-align: left;">Gu, Caleb</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2 119</td>
+<td style="text-align: left;">Choi, Joseph</td>
+<td style="text-align: center;">2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="in-neither-class-19" class="level4 wa-col">
+<h4 class="anchored" data-anchor-id="in-neither-class-19">In neither class (19)</h4>
+<p>Self enroll in the class that matches Add.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sec</th>
+<th style="text-align: left;">Cadet</th>
+<th style="text-align: center;">Add</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A1 107</td>
+<td style="text-align: left;">Eugene, Felix</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A1 129</td>
+<td style="text-align: left;">Lum, Finlay</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A1 129</td>
+<td style="text-align: left;">Stewart, Demani</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B1 143</td>
+<td style="text-align: left;">Carter, Van</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D1 110</td>
+<td style="text-align: left;">Ujiie, Adam</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D1 139</td>
+<td style="text-align: left;">Suarez, Nicholas</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E1 111</td>
+<td style="text-align: left;">Dudas, Paloma</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E1 126</td>
+<td style="text-align: left;">Lengemann, Alexa</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F1 127</td>
+<td style="text-align: left;">Duvall, Micah</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F1 127</td>
+<td style="text-align: left;">Hoang, Maxwell</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F1 127</td>
+<td style="text-align: left;">Torrellas Santiago, Jose</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A2 133</td>
+<td style="text-align: left;">MacDougall, Declan</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A2 134</td>
+<td style="text-align: left;">Martini, Jake</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C2 115</td>
+<td style="text-align: left;">Cotterill, Jacob</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2 123</td>
+<td style="text-align: left;">Mass, Harrison</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2 118</td>
+<td style="text-align: left;">Reddington, Merrick</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F2 118</td>
+<td style="text-align: left;">Walker, Noah</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2 121</td>
+<td style="text-align: left;">Hamburger, Wilhelm</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F2 121</td>
+<td style="text-align: left;">Leyva, Ricardo</td>
+<td style="text-align: center;">2</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</section>
+<section id="where-block-i-is-headed" class="level2">
+<h2 class="anchored" data-anchor-id="where-block-i-is-headed">Where Block I Is Headed</h2>
+<p>Block II is inference. Read this right to left: each thing we teach exists because the thing pointing at it cannot be taught without it.</p>
+<svg viewbox="0 0 820 248" width="100%" role="img" aria-label="Two parallel tracks converging on inference. Inference in Block II needs random variables and distributions in Lessons 8 to 13, which needs probability in Lessons 4 to 7, which needs set theory in Lesson 3. Inference separately needs exploratory data analysis in Lesson 14, which needs data collection and summary statistics in Lessons 1 to 2. That second track runs alongside the probability track rather than feeding into it." style="max-width:100%;height:auto;font-family:inherit">
+<defs><marker id="arw" viewbox="0 0 10 10" refx="10" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7a8595"></path></marker></defs> <rect x="0" y="20" width="160" height="70" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="80.0" y="52" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Set Theory</text> <text x="80.0" y="70" text-anchor="middle" font-size="11.5" fill="#5a6472">L3</text> <rect x="200" y="20" width="160" height="70" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="280.0" y="52" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Probability</text> <text x="280.0" y="70" text-anchor="middle" font-size="11.5" fill="#5a6472">L4 to L7</text> <rect x="400" y="20" width="160" height="70" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="480.0" y="44" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Random Variables</text> <text x="480.0" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">and Distributions</text> <text x="480.0" y="78" text-anchor="middle" font-size="11.5" fill="#5a6472">L8 to L13</text> <rect x="0" y="150" width="160" height="70" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="80.0" y="174" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Data and</text> <text x="80.0" y="190" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Summary Statistics</text> <text x="80.0" y="208" text-anchor="middle" font-size="11.5" fill="#5a6472">L1 to L2</text> <rect x="200" y="150" width="160" height="70" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="280.0" y="174" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Exploratory</text> <text x="280.0" y="190" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Data Analysis</text> <text x="280.0" y="208" text-anchor="middle" font-size="11.5" fill="#5a6472">L14</text> <rect x="640" y="85" width="160" height="70" rx="5" fill="#fdf4ed" stroke="#c25708" stroke-width="1.5"></rect> <text x="720.0" y="117" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Inference</text> <text x="720.0" y="135" text-anchor="middle" font-size="11.5" fill="#5a6472">Block II</text> <line x1="195" y1="55" x2="169" y2="55" stroke="#7a8595" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arw)"></line> <line x1="395" y1="55" x2="369" y2="55" stroke="#7a8595" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arw)"></line> <line x1="195" y1="185" x2="169" y2="185" stroke="#7a8595" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arw)"></line> <path d="M 638 120 H 605 V 55 H 569" stroke="#7a8595" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arw)"></path> <path d="M 638 120 H 605 V 185 H 369" stroke="#7a8595" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arw)"></path> <text x="182" y="46" text-anchor="middle" font-size="10" fill="#7a8595">needs</text> <text x="382" y="46" text-anchor="middle" font-size="10" fill="#7a8595">needs</text> <text x="587" y="46" text-anchor="middle" font-size="10" fill="#7a8595">needs</text> <text x="182" y="176" text-anchor="middle" font-size="10" fill="#7a8595">needs</text> <text x="487" y="176" text-anchor="middle" font-size="10" fill="#7a8595">needs</text> <text x="180" y="238" text-anchor="middle" font-size="10.5" font-style="italic" fill="#8a94a3">runs alongside the whole block</text>
+</svg>
+</section>
+<section id="lesson-2-measures-of-location-and-variability" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-2-measures-of-location-and-variability">Lesson 2: Measures of Location and Variability</h2>
+<p><em>Devore 1.3, 1.4, and S2.</em></p>
+<section id="ways-to-frame-the-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="ways-to-frame-the-discussion">Ways to Frame the Discussion</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-four-platoons" class="quarto-float quarto-figure quarto-figure-center anchored" width="864" alt="Four bordered panels labeled A through D, each showing fifteen observed task times for one platoon against a dashed line at the standard, with a bar at the platoon mean and no axis labels. Panel A sits just above the standard and is tightly packed. Panel B sits three minutes above and is widely spread. Panel C sits three minutes above and is tightly packed. Panel D sits just below the standard and is widely spread.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-four-platoons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="forge-1_files/figure-html/fig-four-platoons-1.png" id="fig-four-platoons" class="img-fluid figure-img" alt="Four bordered panels labeled A through D, each showing fifteen observed task times for one platoon against a dashed line at the standard, with a bar at the platoon mean and no axis labels. Panel A sits just above the standard and is tightly packed. Panel B sits three minutes above and is widely spread. Panel C sits three minutes above and is tightly packed. Panel D sits just below the standard and is widely spread." width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-four-platoons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<svg viewbox="0 30 820 220" width="100%" role="img" aria-label="What you saw minus what you expected, divided by how much it naturally varies, feeding into how surprising that is under an assumed model. Lesson 2 builds both halves of the fraction. Lessons 3 and 4 turn the result into a number. Lessons 8 to 13 supply the model, Lesson 18 applies it to a statistic, and Lesson 21 onward runs the sentence again and again." style="max-width:100%;height:auto;font-family:inherit">
+<defs><marker id="arw2" viewbox="0 0 10 10" refx="10" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7a8595"></path></marker></defs> <rect x="90" y="48" width="320" height="46" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="250" y="77" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">what you saw minus what you expected</text> <line x1="80" y1="112" x2="420" y2="112" stroke="#1f2937" stroke-width="2"></line> <rect x="90" y="126" width="320" height="46" rx="5" fill="#f7f9fc" stroke="#1f5fa8" stroke-width="1.5"></rect> <text x="250" y="155" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">how much it naturally varies</text> <text x="250" y="196" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c25708">L2 builds both halves</text> <path d="M 428 112 H 504" stroke="#7a8595" stroke-width="1.5" fill="none" marker-end="url(#arw2)"></path> <rect x="510" y="76" width="250" height="72" rx="5" fill="#fdf4ed" stroke="#c25708" stroke-width="1.5"></rect> <text x="635" y="106" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">how surprising is that?</text> <text x="635" y="128" text-anchor="middle" font-size="11.5" fill="#5a6472">a probability, under an assumed model</text> <text x="635" y="196" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c25708">L3 and L4 turn it into a number</text> <text x="410" y="232" text-anchor="middle" font-size="10.5" font-style="italic" fill="#8a94a3">L8 to L13 supply the model. L18 applies it to a statistic. L21 onward runs this sentence again and again.</text>
+</svg>
+<p><img src="assets/img/population-sample.png" class="img-fluid" alt="Population circle and sample circle. Random sampling collects the data from the population, statistical inference reasons back from the sample. Parameters mu, sigma, p are fixed and unknown. Statistics x-bar, s, p-hat are computed from data."></p>
+</section>
+<section id="let-them-invent-the-vocabulary" class="level3">
+<h3 class="anchored" data-anchor-id="let-them-invent-the-vocabulary">Let Them Invent the Vocabulary</h3>
+<ul class="emph">
+<li>
+<span class="con">Where it sits.</span> Mean, median, trimmed mean. <span class="ex">Three answers to one question. Which you report depends on what the tail is doing.</span>
+</li>
+<li>
+<span class="con">How wide it is.</span> Standard deviation, variance, fourth spread. <span class="ex">Same idea. Pair the mean with <span class="math inline">\(s\)</span>, pair the median with the fourth spread, and do not mix them.</span>
+</li>
+<li>
+<span class="con">Crazy observations.</span> Fence them with the fourth spread, mild past <span class="math inline">\(1.5 f_s\)</span> outside the fourths, extreme past <span class="math inline">\(3 f_s\)</span>. Say out loud that a committee picked 1.5. <span class="ex">Then answer the question they will ask. Throwing one out is an ethics call, and it is no unless you can name the reason: a transcription error, a stopwatch that failed, a soldier who never ran the lane. “It weakens my conclusion” is not a reason.</span>
+</li>
+</ul>
+<p><img src="assets/img/fourth-spread-repair.png" class="img-fluid" alt="The same fifty job times shown twice, once as recorded and once with the longest job typed as 370 hours. The box, the median, and the outlier fences are unchanged. Only the mean moves."></p>
+</section>
+</section>
+<section id="lesson-3-set-theory" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-3-set-theory">Lesson 3: Set Theory</h2>
+<p><em>Devore 2.1.</em></p>
+<p><strong>The experiment.</strong> One soldier is picked at random from a company of 100. Forty are expert with the rifle, thirty with the pistol, ten with both. Run the whole period off that one sentence.</p>
+<p>Build it in three passes, in this order. Each pass is the same company, said a different way.</p>
+<p><strong>1. Counts first.</strong> Put up the table and have them fill it. No notation yet, just arithmetic they cannot get wrong.</p>
+<div class="twoway">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Pistol</th>
+<th style="text-align: center;">No pistol</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Rifle</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>No rifle</strong></td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>2. Words to picture.</strong> Now say a phrase in plain English and have them shade it. The counts carry over, so nothing is abstract yet.</p>
+<svg viewbox="0 0 820 212" width="100%" role="img" aria-label="The same company of 100 shown three times. Thirty are expert with the rifle only, ten with both, twenty with the pistol only, and forty with neither. The first panel shades only the overlap, expert with both, R intersect P. The second shades both circles, expert with either, R union P. The third shades everything outside the rifle circle, not expert with the rifle, R complement." style="max-width:100%;height:auto;font-family:inherit">
+<defs> <clippath id="clipInt"><circle cx="95" cy="112" r="52"></circle></clippath> <mask id="maskNotR"><rect x="570" y="34" width="250" height="145" fill="#ffffff"></rect><circle cx="665" cy="112" r="52" fill="#000000"></circle></mask> </defs> <text x="125" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">expert with both</text> <circle cx="155" cy="112" r="52" fill="#a9c9e8" clip-path="url(#clipInt)"></circle> <rect x="0" y="34" width="250" height="145" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <text x="9" y="50" font-size="10.5" fill="#8a94a3">S = 100</text> <circle cx="95" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <circle cx="155" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <text x="72" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">R 40</text> <text x="180" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">P 30</text> <text x="70" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">30</text> <text x="125" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">10</text> <text x="180" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">20</text> <text x="228" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#5a6472">40</text> <text x="125" y="202" text-anchor="middle" font-size="13" fill="#5a6472">R ∩ P</text> <text x="410" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">expert with either</text> <g fill="#a9c9e8"><circle cx="380" cy="112" r="52"></circle><circle cx="440" cy="112" r="52"></circle></g> <rect x="285" y="34" width="250" height="145" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <text x="294" y="50" font-size="10.5" fill="#8a94a3">S = 100</text> <circle cx="380" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <circle cx="440" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <text x="357" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">R 40</text> <text x="465" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">P 30</text> <text x="355" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">30</text> <text x="410" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">10</text> <text x="465" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">20</text> <text x="513" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#5a6472">40</text> <text x="410" y="202" text-anchor="middle" font-size="13" fill="#5a6472">R ∪ P</text> <text x="695" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">not expert with the rifle</text> <rect x="570" y="34" width="250" height="145" rx="4" fill="#a9c9e8" mask="url(#maskNotR)"></rect> <rect x="570" y="34" width="250" height="145" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <text x="579" y="50" font-size="10.5" fill="#8a94a3">S = 100</text> <circle cx="665" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <circle cx="725" cy="112" r="52" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <text x="642" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">R 40</text> <text x="750" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fa8">P 30</text> <text x="640" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">30</text> <text x="695" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">10</text> <text x="750" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">20</text> <text x="798" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#5a6472">40</text> <text x="695" y="202" text-anchor="middle" font-size="13" fill="#5a6472">R<tspan dy="-5" font-size="9.5">c</tspan></text>
+</svg>
+<p><strong>3. Words to symbols.</strong> Only now write the notation, and write it next to the phrase it replaces. This is the translation the rest of Block I runs on.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Say this</th>
+<th style="text-align: left;">Write this</th>
+<th style="text-align: center;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">expert with both</td>
+<td style="text-align: left;"><span class="math inline">\(R \cap P\)</span></td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">expert with either</td>
+<td style="text-align: left;"><span class="math inline">\(R \cup P\)</span></td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">not expert with the rifle</td>
+<td style="text-align: left;"><span class="math inline">\(R^c\)</span></td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">expert with neither</td>
+<td style="text-align: left;"><span class="math inline">\((R \cup P)^c = R^c \cap P^c\)</span></td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+<p>Run it the other way too. Give them <span class="math inline">\(R^c \cap P\)</span> and make them say it out loud, then point at the cell.</p>
+</section>
+<section id="lesson-4-probability-basics" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-4-probability-basics">Lesson 4: Probability Basics</h2>
+<p><em>Devore 2.2.</em></p>
+<p><strong>The three axioms.</strong> Everything else in the block is derived from these, so derive them live rather than handing out a rule sheet.</p>
+<ul class="emph">
+<li>
+<span class="con"><span class="math inline">\(P(A) \ge 0\)</span> for every event <span class="math inline">\(A\)</span>.</span>
+</li>
+<li>
+<span class="con"><span class="math inline">\(P(S) = 1\)</span>.</span>
+</li>
+<li>
+<span class="con">For disjoint events, probability adds.</span> <span class="math inline">\(P(A_1 \cup A_2 \cup \cdots) = \sum_i P(A_i)\)</span> when no two of them can happen together.
+</li>
+</ul>
+<svg viewbox="0 0 820 165" width="100%" role="img" aria-label="Axiom three drawn as an equation of four boxes. The first box has three separate non overlapping circles all shaded, the probability of A1 or A2 or A3. It equals a box with only the first circle shaded, plus a box with only the second shaded, plus a box with only the third shaded. Nothing is subtracted because the circles never touch." style="max-width:100%;height:auto;font-family:inherit">
+<rect x="30" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="72" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="110" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="148" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <text x="110" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A<tspan dy="4" font-size="9.5">1</tspan><tspan dy="-4"></tspan> ∪ A<tspan dy="4" font-size="9.5">2</tspan><tspan dy="-4"></tspan> ∪ A<tspan dy="4" font-size="9.5">3</tspan><tspan dy="-4"></tspan>)</text> <text x="210" y="88" text-anchor="middle" font-size="21" fill="#5a6472">=</text> <rect x="230" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="272" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="310" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="348" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <text x="310" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A<tspan dy="4" font-size="9.5">1</tspan><tspan dy="-4"></tspan>)</text> <text x="410" y="88" text-anchor="middle" font-size="21" fill="#5a6472">+</text> <rect x="430" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="472" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="510" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="548" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <text x="510" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A<tspan dy="4" font-size="9.5">2</tspan><tspan dy="-4"></tspan>)</text> <text x="610" y="88" text-anchor="middle" font-size="21" fill="#5a6472">+</text> <rect x="630" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="672" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="710" cy="80" r="17" fill="none" stroke="#1f5fa8" stroke-width="1.3"></circle> <circle cx="748" cy="80" r="17" fill="#a9c9e8" stroke="#1f5fa8" stroke-width="1.3"></circle> <text x="710" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A<tspan dy="4" font-size="9.5">3</tspan><tspan dy="-4"></tspan>)</text>
+</svg>
+<p><strong>The addition rule.</strong> The overlap is inside both circles, so adding <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> counts it twice. Subtract it once.</p>
+<svg viewbox="0 0 820 165" width="100%" role="img" aria-label="The addition rule drawn as an equation of four Venn diagrams. The probability of A union B, with both circles shaded, equals the probability of A, with circle A shaded, plus the probability of B, with circle B shaded, minus the probability of A intersect B, with only the overlap shaded." style="max-width:100%;height:auto;font-family:inherit">
+<defs><clippath id="clipL4"><circle cx="692" cy="80" r="34"></circle></clippath></defs> <g fill="#a9c9e8"><circle cx="92" cy="80" r="34"></circle><circle cx="128" cy="80" r="34"></circle></g> <rect x="30" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="92" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <circle cx="128" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="110" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A ∪ B)</text> <text x="210" y="88" text-anchor="middle" font-size="21" fill="#5a6472">=</text> <circle cx="292" cy="80" r="34" fill="#a9c9e8"></circle> <rect x="230" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="292" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <circle cx="328" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="310" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A)</text> <text x="410" y="88" text-anchor="middle" font-size="21" fill="#5a6472">+</text> <circle cx="528" cy="80" r="34" fill="#a9c9e8"></circle> <rect x="430" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="492" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <circle cx="528" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="510" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(B)</text> <text x="610" y="88" text-anchor="middle" font-size="21" fill="#5a6472">−</text> <circle cx="728" cy="80" r="34" fill="#a9c9e8" clip-path="url(#clipL4)"></circle> <rect x="630" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="692" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <circle cx="728" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="710" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A ∩ B)</text>
+</svg>
+<p><span class="math display">\[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]</span></p>
+<p><strong>Three events.</strong> Same idea run twice. Add the singles, subtract the pairs, add the middle back, because subtracting all three pairs takes the centre out one time too many.</p>
+<svg viewbox="250 30 320 300" role="img" aria-label="Three overlapping circles A, B and C. Each region that belongs to only one circle is marked plus. Each region shared by exactly two circles is marked minus. The region shared by all three is marked plus. Add the singles, subtract the pairs, add the middle back." style="width:100%;max-width:390px;height:auto;display:block;margin:0 auto;font-family:inherit">
+<circle cx="355" cy="120" r="78" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <circle cx="465" cy="120" r="78" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <circle cx="410" cy="215" r="78" fill="none" stroke="#1f5fa8" stroke-width="1.5"></circle> <text x="283" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fa8">A</text> <text x="537" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fa8">B</text> <text x="410" y="318" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fa8">C</text> <text x="300" y="105" text-anchor="middle" font-size="19" font-weight="700" fill="#1f5fa8">+</text> <text x="520" y="105" text-anchor="middle" font-size="19" font-weight="700" fill="#1f5fa8">+</text> <text x="410" y="272" text-anchor="middle" font-size="19" font-weight="700" fill="#1f5fa8">+</text> <text x="410" y="92" text-anchor="middle" font-size="19" font-weight="700" fill="#c25708">−</text> <text x="338" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#c25708">−</text> <text x="482" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#c25708">−</text> <text x="410" y="165" text-anchor="middle" font-size="19" font-weight="700" fill="#1f5fa8">+</text>
+</svg>
+<p><span class="math display">\[P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)\]</span></p>
+<p><strong>The complement rule.</strong> Same axiom. <span class="math inline">\(A\)</span> and <span class="math inline">\(A^c\)</span> are disjoint and union to <span class="math inline">\(S\)</span>, so their probabilities add to 1. Derive it live, do not hand it out.</p>
+<svg viewbox="0 0 820 165" width="100%" role="img" aria-label="The complement rule drawn as an equation of three boxes. A box with circle A shaded, the probability of A, plus a box with everything outside circle A shaded, the probability of not A, equals a box shaded completely, which is one." style="max-width:100%;height:auto;font-family:inherit">
+<defs><mask id="maskComp"><rect x="330" y="30" width="160" height="100" fill="#ffffff"></rect><circle cx="410" cy="80" r="34" fill="#000000"></circle></mask></defs> <circle cx="210" cy="80" r="34" fill="#a9c9e8"></circle> <rect x="130" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="210" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="210" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A)</text> <text x="310" y="88" text-anchor="middle" font-size="21" fill="#5a6472">+</text> <rect x="330" y="30" width="160" height="100" rx="4" fill="#a9c9e8" mask="url(#maskComp)"></rect> <rect x="330" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="410" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="410" y="152" text-anchor="middle" font-size="13" fill="#1f2937">P(A<tspan dy="-5" font-size="9.5">c</tspan>)</text> <text x="510" y="88" text-anchor="middle" font-size="21" fill="#5a6472">=</text> <rect x="530" y="30" width="160" height="100" rx="4" fill="#a9c9e8"></rect> <rect x="530" y="30" width="160" height="100" rx="4" fill="none" stroke="#dee2e6" stroke-width="1"></rect> <circle cx="610" cy="80" r="34" fill="none" stroke="#1f5fa8" stroke-width="1.4"></circle> <text x="610" y="152" text-anchor="middle" font-size="13" fill="#1f2937">1</text>
+</svg>
+<p><span class="math display">\[P(A^c) = 1 - P(A)\]</span></p>
+</section>
+<section id="before-the-next-forge" class="level2">
+<h2 class="anchored" data-anchor-id="before-the-next-forge">Before the Next Forge</h2>
+<p>Only Day 2 sees Lesson 4 before we meet on 25 Aug.&nbsp;Day 1 gets it Wed 26 Aug.</p>
+
+
 </section>
 
 </main> <!-- /main -->
