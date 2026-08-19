@@ -138,43 +138,32 @@ ul.emph .pts {
 
 .wa-col h4.wa-gap { margin-top: 1.75rem; }
 
-/* Coverage plan: one row per meeting that needs a body, grouped under the date.
-   Date rules the group, section and who is out recede, the open slot stands out. */
+/* Coverage plan: one row per meeting that needs a body, split into scannable
+   columns. Section and who is out recede, the open slot stands out. */
 .cov table {
   width: 100%;
-  max-width: 640px;
   border-collapse: collapse;
   margin: 0.2rem 0 1.4rem;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
 }
 .cov table > :not(caption) > * > * {
-  padding: 0.32rem 0.9rem;
+  padding: 0.3rem 0.75rem 0.3rem 0;
   border: 0;
   background: none;
   box-shadow: none;
+  white-space: nowrap;
 }
-.cov tr.cov-group td {
-  padding-top: 1.1rem;
-  padding-left: 0;
-  font-weight: 700;
-  color: #1f2937;
-  border-bottom: 1px solid #dee2e6 !important;
-}
-.cov tr.cov-group:first-child td { padding-top: 0.2rem; }
 .cov thead th {
-  padding-left: 0;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #8a94a3;
   border-bottom: 1px solid #adb5bd !important;
 }
-.cov thead th:not(:first-child) { padding-left: 0.9rem; }
-.cov .cov-when { font-weight: 400; color: #8a94a3; font-size: 0.88em; }
-.cov tbody tr:not(.cov-group) td { border-bottom: 1px solid #f1f3f5 !important; }
-.cov .cov-sec { padding-left: 0; white-space: nowrap; }
-.cov .cov-out { color: #5a6472; white-space: nowrap; }
+.cov tbody td { border-bottom: 1px solid #f1f3f5 !important; }
+.cov td.num { font-variant-numeric: tabular-nums; text-align: right; padding-right: 0.35rem; }
+.cov .cov-sec, .cov .cov-out { color: #5a6472; }
 .cov-tbd { color: #c25708; font-weight: 600; }
 
 /* Two way count table: narrow, centred, margins muted so the four interior
