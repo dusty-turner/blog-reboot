@@ -213,3 +213,84 @@ ul.emph .pts {
 }
 .cov tbody tr.cov-grp > td { border-top: 2px solid #adb5bd !important; }
 .cov-q { color: #c25708; font-weight: 700; padding-left: 0.1rem; }
+
+/* Counting quad chart: order matters against replacement. */
+.quad {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 0.4rem;
+  align-items: stretch;
+  margin: 1rem 0 0.75rem;
+}
+.quad-chead {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5a6472;
+  align-self: end;
+  padding-bottom: 0.15rem;
+}
+.quad-rhead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5a6472;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 0 0.15rem;
+}
+.quad-cell {
+  background: #f7f9fc;
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #1f5fa8;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem 0.35rem;
+  text-align: center;
+}
+.quad-cell .quad-tag { display: none; }
+.quad-cell .quad-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.quad-cell .quad-eg {
+  display: block;
+  font-size: 0.75rem;
+  color: #7a8595;
+  line-height: 1.3;
+}
+.quad-cell .math.display { margin: 0.15rem 0 0.3rem; }
+.quad-cell mjx-container[display="true"] { margin: 0.2rem 0 0.35rem !important; }
+.quad-off {
+  background: #fbfbfc;
+  border-style: dashed;
+  border-left: 3px dashed #adb5bd;
+}
+.quad-off .quad-name { color: #7a8595; font-weight: 600; }
+.quad-off mjx-container { opacity: 0.75; }
+
+@media (max-width: 620px) {
+  .quad { grid-template-columns: 1fr; }
+  .quad-corner { display: none; }
+  .quad-chead { display: none; }
+  .quad-cell .quad-tag {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #7a8595;
+  }
+  .quad-rhead {
+    writing-mode: horizontal-tb;
+    transform: none;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+  }
+}
