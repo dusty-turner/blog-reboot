@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -827,14 +856,7 @@ Instructor lay down, who teaches which hour
 </section>
 <section id="vantage-accounts" class="level3">
 <h3 class="anchored" data-anchor-id="vantage-accounts">Vantage Accounts</h3>
-<p>Everyone needs an account, and approval takes a day or two, so do it now rather than the week we need it.</p>
-<ol type="1">
-<li>Go to <a href="https://vantage.army.mil/">vantage.army.mil</a></li>
-<li>Click <strong>Request Account</strong></li>
-<li>Fill out the required information</li>
-<li>For Commander email, use <code>jonathan.l.day3.mil@army.mil</code></li>
-</ol>
-<p>Once you are in, go to our course folder: <strong><a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0">MA206 workspace in Vantage</a></strong>. Bookmark it, that is where R and the project data live.</p>
+<p>Go to <a href="**[MA206 workspace in Vantage](https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0)**">Vantage</a></p>
 <p>Longer walkthrough is <a href="https://usarmywestpoint.sharepoint.com/sites/Math.Teach/MA206/AY27-1%20MA206/HowToVantage.pdf">HowToVantage.pdf</a> in <code>AY27-1 MA206</code>. We use Vantage for R and for the project all semester.</p>
 </section>
 </section>
@@ -846,6 +868,36 @@ Instructor lay down, who teaches which hour
 <section id="lesson-5-counting" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-5-counting">Lesson 5: Counting</h2>
 <p><em>Devore 2.3.</em></p>
+<p>Every counting problem in 2.3 is one of four cells. Drawing <span class="math inline">\(k\)</span> objects from <span class="math inline">\(n\)</span> distinct objects, the only two questions are whether order matters and whether an object can be drawn twice.</p>
+<table class="caption-top table">
+<caption>Counting <span class="math inline">\(k\)</span> draws from <span class="math inline">\(n\)</span> objects, Devore notation</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Without replacement</strong></th>
+<th style="text-align: left;"><strong>With replacement</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ordered</strong></td>
+<td style="text-align: left;"><span class="math inline">\(P_{k,n} = \dfrac{n!}{(n-k)!}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n^{k}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Unordered</strong></td>
+<td style="text-align: left;"><span class="math inline">\(C_{k,n} = \dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dbinom{n+k-1}{k}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>With <span class="math inline">\(n = 10\)</span> and <span class="math inline">\(k = 3\)</span>: 720 ordered without replacement, 1000 ordered with replacement, 120 unordered without replacement, 220 unordered with replacement.</p>
+<p><strong>Devore teaches only three of the four.</strong> Section 2.3 gives the product rule (<span class="math inline">\(n^{k}\)</span>), <span class="math inline">\(P_{k,n}\)</span>, and <span class="math inline">\(C_{k,n}\)</span>. Unordered with replacement is not in the text and is not on any graded event, so it is there to complete the picture, not to assign.</p>
 </section>
 <section id="lesson-6-conditional-probability" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-6-conditional-probability">Lesson 6: Conditional Probability</h2>
