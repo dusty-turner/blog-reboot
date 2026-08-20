@@ -193,7 +193,10 @@ window.Quarto = {
   <li><a href="#vantage-accounts" id="toc-vantage-accounts" class="nav-link" data-scroll-target="#vantage-accounts">Vantage Accounts</a></li>
   </ul></li>
   <li><a href="#lesson-4-probability-basics" id="toc-lesson-4-probability-basics" class="nav-link" data-scroll-target="#lesson-4-probability-basics">Lesson 4: Probability Basics</a></li>
-  <li><a href="#lesson-5-counting" id="toc-lesson-5-counting" class="nav-link" data-scroll-target="#lesson-5-counting">Lesson 5: Counting</a></li>
+  <li><a href="#lesson-5-counting" id="toc-lesson-5-counting" class="nav-link" data-scroll-target="#lesson-5-counting">Lesson 5: Counting</a>
+  <ul class="collapse">
+  <li><a href="#four-doors-to-the-same-number" id="toc-four-doors-to-the-same-number" class="nav-link" data-scroll-target="#four-doors-to-the-same-number">Four Doors to the Same Number</a></li>
+  </ul></li>
   <li><a href="#lesson-6-conditional-probability" id="toc-lesson-6-conditional-probability" class="nav-link" data-scroll-target="#lesson-6-conditional-probability">Lesson 6: Conditional Probability</a></li>
   <li><a href="#before-the-next-forge" id="toc-before-the-next-forge" class="nav-link" data-scroll-target="#before-the-next-forge">Before the Next Forge</a></li>
   </ul>
@@ -899,6 +902,29 @@ Instructor lay down, who teaches which hour
 </div>
 </div>
 <p>Section 2.3 gives three of the four: the product rule, <span class="math inline">\(P_{k,n}\)</span>, and <span class="math inline">\(C_{k,n}\)</span>. Unordered with replacement is not in the text and is not on any graded event. It is there so the picture is closed, not to assign.</p>
+<section id="four-doors-to-the-same-number" class="level3">
+<h3 class="anchored" data-anchor-id="four-doors-to-the-same-number">Four Doors to the Same Number</h3>
+<p>Every one of these lands on the same answer. Working out which cell of the quad each one belongs in is the exercise.</p>
+<ol type="1">
+<li><p><strong>The box.</strong> The mess hall has 5 flavors of donut and you are taking back a box of 10. Unlimited of any flavor, and a box is just a box, so what order they sit in does not matter. How many different boxes are there?</p></li>
+<li><p><strong>The string.</strong> You are writing a string of 14 characters using exactly 10 zeros and 4 ones. How many strings can you write?</p></li>
+<li><p><strong>One at a time.</strong> Same 14 slots, all empty. Drop in the first 1, then the second, then the third, then the fourth, each into a slot that is still open. How many placement sequences are there, and why is that not your answer to number 2?</p></li>
+<li><p><strong>The walk.</strong> Starting at <span class="math inline">\((0,0)\)</span> you take 14 steps, each one either right or up. How many routes finish at <span class="math inline">\((10,4)\)</span>?</p></li>
+</ol>
+<div class="fold">
+<details>
+<summary>
+Answers, and which cell each one is
+</summary>
+<p>All four are <span class="math inline">\(\mathbf{1001}\)</span>.</p>
+<p><strong>1. The box. Unordered, with replacement.</strong> Stars and bars. Ten donuts and 4 dividers to separate 5 flavors: <span class="math inline">\(\binom{10+5-1}{10} = \binom{14}{10} = 1001\)</span>. Those 4 dividers are the 4 ones from problem 2.</p>
+<p><strong>2. The string. Unordered, without replacement.</strong> You are only choosing which 4 of the 14 slots hold a one: <span class="math inline">\(\binom{14}{4} = 1001\)</span>. Nothing repeats and nothing is ranked.</p>
+<p><strong>3. One at a time. Ordered, without replacement.</strong> The first 1 has 14 open slots, then 13, then 12, then 11: <span class="math inline">\(P_{4,14} = 14 \cdot 13 \cdot 12 \cdot 11 = 24{,}024\)</span>. But the four ones are identical, so every answer to problem 2 got counted <span class="math inline">\(4! = 24\)</span> times, once for each order you could have dropped them in. <span class="math inline">\(24{,}024 / 24 = 1001\)</span>. This is <span class="math inline">\(C_{k,n} = P_{k,n} / k!\)</span> happening in the open, which is the reason this problem is in the set.</p>
+<p><strong>4. The walk. Ordered, with replacement.</strong> Every step is a free choice of two, so there are <span class="math inline">\(2^{14} = 16{,}384\)</span> routes in all. Finishing at <span class="math inline">\((10,4)\)</span> means exactly 4 of the 14 steps were up: <span class="math inline">\(\binom{14}{4} = 1001\)</span>. Call right a zero and up a one and this is problem 2 wearing a coat.</p>
+<p>The donuts and the walk look like unrelated problems and are the same 14 characters. That is the point worth landing.</p>
+</details>
+</div>
+</section>
 </section>
 <section id="lesson-6-conditional-probability" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-6-conditional-probability">Lesson 6: Conditional Probability</h2>
