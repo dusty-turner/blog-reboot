@@ -197,8 +197,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#stretch-example-problem" id="toc-stretch-example-problem" class="nav-link" data-scroll-target="#stretch-example-problem">Stretch Example Problem</a></li>
   </ul></li>
-  <li><a href="#lesson-6-conditional-probability" id="toc-lesson-6-conditional-probability" class="nav-link" data-scroll-target="#lesson-6-conditional-probability">Lesson 6: Conditional Probability</a></li>
-  <li><a href="#before-the-next-forge" id="toc-before-the-next-forge" class="nav-link" data-scroll-target="#before-the-next-forge">Before the Next Forge</a></li>
+  <li><a href="#lesson-6-conditional-probability" id="toc-lesson-6-conditional-probability" class="nav-link" data-scroll-target="#lesson-6-conditional-probability">Lesson 6: Conditional Probability</a>
+  <ul class="collapse">
+  <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas">Formulas</a></li>
+  <li><a href="#bayes-example-cancer-screening" id="toc-bayes-example-cancer-screening" class="nav-link" data-scroll-target="#bayes-example-cancer-screening">Bayes Example: Cancer Screening</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -843,10 +846,9 @@ Instructor lay down, who teaches which hour
 </section>
 <section id="to-do" class="level2">
 <h2 class="anchored" data-anchor-id="to-do">To Do</h2>
-<p>Three carryovers from Forge 1, all still open.</p>
 <section id="wpr-i-feedback" class="level3">
 <h3 class="anchored" data-anchor-id="wpr-i-feedback">WPR I Feedback</h3>
-<p><strong>Due 4 Sep.</strong> Read WPR I and send me your feedback. It is in <code>AY27-1 MA206 &gt; Instructor Materials</code>. Flag anything ambiguous, mis-scoped, or out of order while there is still time to fix it.</p>
+<p><strong>Due 4 Sep.</strong> Send me your feedback on the draft. Flag anything ambiguous, mis-scoped, or out of order while there is still time to fix it. You know where it lives.</p>
 </section>
 <section id="book-return" class="level3">
 <h3 class="anchored" data-anchor-id="book-return">Book Return</h3>
@@ -859,14 +861,33 @@ Instructor lay down, who teaches which hour
 </section>
 <section id="vantage-accounts" class="level3">
 <h3 class="anchored" data-anchor-id="vantage-accounts">Vantage Accounts</h3>
-<p>Go to <a href="**[MA206 workspace in Vantage](https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0)**">Vantage</a></p>
-<p>Longer walkthrough is <a href="https://usarmywestpoint.sharepoint.com/sites/Math.Teach/MA206/AY27-1%20MA206/HowToVantage.pdf">HowToVantage.pdf</a> in <code>AY27-1 MA206</code>. We use Vantage for R and for the project all semester.</p>
+<p>Go to the <a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0">MA206 workspace in Vantage</a>.</p>
 </section>
 </section>
 <section id="lesson-4-probability-basics" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-4-probability-basics">Lesson 4: Probability Basics</h2>
 <p><em>Devore 2.2.</em></p>
 <p>[Day 2 saw L4 on 25 Aug; Day 1 gets it Wed 26 Aug.]</p>
+<p>Open with what a probability even is, because the two camps answer it differently.</p>
+<div class="quad2">
+<div class="quad-cell quad-prob">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/people/fisher.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="140"></p>
+</figure>
+</div>
+<p><span class="quad-num">Ronald A. Fisher, 1890 to 1962</span> <span class="quad-name">The frequentist</span> A probability is a <strong>long run relative frequency</strong>. Run the experiment over and over and <span class="math inline">\(P(A)\)</span> is the proportion of times <span class="math inline">\(A\)</span> happens.</p>
+</div>
+<div class="quad-cell quad-prob">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/people/bayes.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="140"></p>
+</figure>
+</div>
+<p><span class="quad-num">Thomas Bayes, 1701 to 1761</span> <span class="quad-name">The Bayesian</span> A probability is a <strong>degree of belief</strong>, how strongly you expect something given what you know, updated as evidence arrives.</p>
+</div>
+</div>
+<p>We teach it the frequentist way.</p>
 </section>
 <section id="lesson-5-counting" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-5-counting">Lesson 5: Counting</h2>
@@ -904,16 +925,24 @@ Instructor lay down, who teaches which hour
 <p>Section 2.3 gives three of the four: the product rule, <span class="math inline">\(P_{k,n}\)</span>, and <span class="math inline">\(C_{k,n}\)</span>. Unordered with replacement is not in the text and is not on any graded event. It is there so the picture is closed, not to assign.</p>
 <section id="stretch-example-problem" class="level3">
 <h3 class="anchored" data-anchor-id="stretch-example-problem">Stretch Example Problem</h3>
-<ol type="1">
-<li><p><strong>The shooter.</strong> You finish the game 4 for 14 from the field. How many different ways could those makes and misses have fallen?</p></li>
-<li><p><strong>The string.</strong> You are writing a string of exactly 10 zeros and 4 ones. How many strings can you write?</p></li>
-<li><p><strong>The walk.</strong> Starting at <span class="math inline">\((0,0)\)</span>, you move to <span class="math inline">\((10,4)\)</span> going only right or up. How many ways can you do this?</p></li>
-<li><p><strong>The box.</strong> The mess hall has 5 flavors of donut and you are taking back a box of 10. Unlimited of any flavor, and a box is just a box, so what order they sit in does not matter. How many different boxes are there?</p></li>
-</ol>
+<div class="quad2">
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">1</span> <span class="quad-name">The shooter</span> You finish the game 4 for 14 from the field. How many different ways could those makes and misses have fallen?</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">2</span> <span class="quad-name">The string</span> You are writing a string of exactly 10 zeros and 4 ones. How many strings can you write?</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">3</span> <span class="quad-name">The walk</span> Starting at <span class="math inline">\((0,0)\)</span>, you move to <span class="math inline">\((10,4)\)</span> going only right or up. How many ways can you do this?</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">4</span> <span class="quad-name">The box</span> The mess hall has 5 flavors of donut and you are taking back a box of 10. Unlimited of any flavor, and a box is just a box, so what order they sit in does not matter. How many different boxes are there?</p>
+</div>
+</div>
 <div class="fold">
 <details>
 <summary>
-Answers, and which cell each one is
+Answers
 </summary>
 <p>All four are <span class="math inline">\(\mathbf{1001}\)</span>.</p>
 <p><strong>1. The shooter. Unordered, without replacement.</strong> You are choosing which 4 of the 14 attempts went in: <span class="math inline">\(\binom{14}{4} = 1001\)</span>. An attempt cannot be chosen twice and the order you made them in is not part of the answer.</p>
@@ -928,12 +957,86 @@ Answers, and which cell each one is
 <section id="lesson-6-conditional-probability" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-6-conditional-probability">Lesson 6: Conditional Probability</h2>
 <p><em>Devore 2.4.</em></p>
+<section id="formulas" class="level3">
+<h3 class="anchored" data-anchor-id="formulas">Formulas</h3>
+<p>Conditional probability, for <span class="math inline">\(P(B) &gt; 0\)</span>: <span class="math display">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="forge-2_files/figure-html/venn-conditional-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Two Venn diagrams. On the left, a rectangle labeled S holds circles A and B with their overlap shaded. On the right, everything outside B is greyed out, B is filled light and its overlap with A is filled darker, showing B as the new sample space."></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Multiplication rule: <span class="math display">\[P(A \cap B) = P(A \mid B)\,P(B) = P(B \mid A)\,P(A)\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="forge-2_files/figure-html/tree-multiplication-1.png" class="img-fluid figure-img" style="width:100.0%" alt="A two stage tree. From the root, branches split to B and B prime, labeled P of B and P of B prime. From B, branches split to A and A prime, labeled P of A given B and P of A prime given B. The path through B then A is highlighted, with its leaf reading P of A intersect B equals P of B times P of A given B. The other three leaves are shown in grey."></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Law of total probability, for a partition <span class="math inline">\(A_1, \ldots, A_k\)</span> of <span class="math inline">\(\mathcal{S}\)</span>: <span class="math display">\[P(B) = \sum_{i=1}^{k} P(B \mid A_i)\,P(A_i)\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="forge-2_files/figure-html/venn-total-probability-1.png" class="img-fluid figure-img" style="width:92.0%" alt="A rectangle labeled S split into three vertical slabs labeled A1, A2 and A3. An ellipse labeled B lies across all three, and the part of B inside each slab is shaded a different tone, showing B cut into three pieces."></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(B\)</span> is chopped into one piece per slab, and the pieces cannot overlap, so their probabilities add.</p>
+<p>Bayes’ Theorem: <span class="math display">\[P(A_j \mid B) = \frac{P(B \mid A_j)\,P(A_j)}{\displaystyle\sum_{i=1}^{k} P(B \mid A_i)\,P(A_i)}\]</span></p>
 </section>
-<section id="before-the-next-forge" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-next-forge">Before the Next Forge</h2>
-<p>[What each section will and will not have seen by the 1 Sep forge.]</p>
+<section id="bayes-example-cancer-screening" class="level3">
+<h3 class="anchored" data-anchor-id="bayes-example-cancer-screening">Bayes Example: Cancer Screening</h3>
+<p>A screening test for a cancer is given to everyone in a population. In that population:</p>
+<div class="compact">
+<ul>
+<li><strong>1 percent</strong> actually have the cancer.</li>
+<li>Of the people who <strong>have</strong> it, the test is positive <strong>90 percent</strong> of the time.</li>
+<li>Of the people who <strong>do not</strong> have it, the test is positive <strong>9 percent</strong> of the time.</li>
+</ul>
+</div>
+<p><strong>A patient tests positive. What is the probability the patient has the cancer?</strong></p>
+<p>Name the events:</p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(C\)</span> = has the cancer, <span class="math inline">\(C'\)</span> = does not have the cancer</li>
+<li><span class="math inline">\(+\)</span> = the test comes back positive</li>
+</ul>
+</div>
+<p>The four probabilities you are given:</p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(P(C) = 0.01\)</span>, the share who have it</li>
+<li><span class="math inline">\(P(C') = 0.99\)</span>, the share who do not</li>
+<li><span class="math inline">\(P(+ \mid C) = 0.90\)</span>, positive given they have it</li>
+<li><span class="math inline">\(P(+ \mid C') = 0.09\)</span>, positive given they do not</li>
+</ul>
+</div>
+<p>The question asks for <span class="math inline">\(P(C \mid +)\)</span>, which is the reverse of what you were handed. That is the whole reason Bayes exists.</p>
+<p><span class="math display">\[P(C \mid +) = \frac{P(+ \mid C)\,P(C)}{P(+ \mid C)\,P(C) + P(+ \mid C')\,P(C')}\]</span></p>
+<p><span class="math display">\[P(C \mid +) = \frac{(0.90)(0.01)}{(0.90)(0.01) + (0.09)(0.99)} = \frac{0.0090}{0.0090 + 0.0891} = \frac{0.0090}{0.0981} \approx 0.092\]</span></p>
+<p><strong>About 9 percent.</strong> The denominator is the law of total probability: <span class="math inline">\(P(+) = 0.0981\)</span>, and only <span class="math inline">\(0.0090\)</span> of that comes from people who actually have the cancer.</p>
+<p>The same answer as 10,000 people, one square each:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="forge-2_files/figure-html/icon-bayes-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:62.0%" alt="A block of 10,000 small squares, 200 across and 50 down, one per screened person. The first 90 squares are dark blue for people who have the cancer and test positive, the next 10 are light blue for people who have it and test negative, the next 891 are orange for people who do not have it but test positive, and the remaining 9,009 are pale grey. The orange block is roughly ten times the size of the dark blue one."></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Of the <span class="math inline">\(90 + 891 = 981\)</span> people who test positive, only <span class="math inline">\(90\)</span> have the cancer: <span class="math inline">\(90/981 \approx 0.092\)</span>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -276,7 +276,42 @@ ul.emph .pts {
 .quad-off .quad-name { color: #7a8595; font-weight: 600; }
 .quad-off mjx-container { opacity: 0.75; }
 
+/* Four problem cards in a 2x2, echoing the quad chart above them. */
+.quad2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  align-items: stretch;
+  margin: 1rem 0 0.75rem;
+}
+.quad-prob {
+  text-align: left;
+  padding: 0.6rem 0.85rem 0.7rem;
+}
+.quad-prob .quad-num {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7a8595;
+}
+.quad-prob .quad-name {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.2rem;
+}
+.quad-prob p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #1f2937;
+}
+
 @media (max-width: 620px) {
+  .quad2 { grid-template-columns: 1fr; }
   .quad { grid-template-columns: 1fr; }
   .quad-corner { display: none; }
   .quad-chead { display: none; }
