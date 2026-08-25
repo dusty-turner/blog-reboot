@@ -276,14 +276,16 @@ ul.emph .pts {
 .quad-off .quad-name { color: #7a8595; font-weight: 600; }
 .quad-off mjx-container { opacity: 0.75; }
 
-/* Four problem cards in a 2x2, echoing the quad chart above them. */
+/* Problem cards, stacked full width so each one reads on its own line. */
 .quad2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.6rem;
   align-items: stretch;
   margin: 1rem 0 0.75rem;
 }
+/* Two cards meant to be read against each other sit side by side. */
+.quad2-2col { grid-template-columns: 1fr 1fr; }
 .quad-prob {
   text-align: left;
   padding: 0.6rem 0.85rem 0.7rem;
@@ -311,7 +313,7 @@ ul.emph .pts {
 }
 
 @media (max-width: 620px) {
-  .quad2 { grid-template-columns: 1fr; }
+  .quad2-2col { grid-template-columns: 1fr; }
   .quad { grid-template-columns: 1fr; }
   .quad-corner { display: none; }
   .quad-chead { display: none; }
