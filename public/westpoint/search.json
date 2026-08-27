@@ -7974,5 +7974,302 @@
       "MA206-AY27-1",
       "Lesson 4"
     ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html",
+    "href": "MA206-AY27-1/lesson-5.html",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "NoteReview: Data, Study Design, and Summaries (Lessons 1 and 2)\n\n\n\n\n\n\n\nPopulation vs sample, parameter (\\(\\mu\\), \\(\\sigma\\), \\(p\\)) vs statistic (\\(\\bar{x}\\), \\(s\\), \\(\\hat{p}\\)).\nRandom sampling buys generalization, random assignment buys causation.\nCenter: mean, median, trimmed mean. Spread: \\(s^2\\), \\(s\\), and the fourth spread \\(f_s\\).\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Set Theory (Lesson 3)\n\n\n\n\n\n\n\nExperiment, sample space \\(\\mathcal{S}\\), event as a subset of \\(\\mathcal{S}\\).\nUnion \\(A \\cup B\\) is “or”, intersection \\(A \\cap B\\) is “and”, complement \\(A'\\) is “not”.\nMutually exclusive: \\(A \\cap B = \\emptyset\\).\nDe Morgan: \\((A \\cup B)' = A' \\cap B'\\) and \\((A \\cap B)' = A' \\cup B'\\).\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Probability Basics (Lesson 4)\n\n\n\n\n\n\n\nThree axioms: \\(P(A) \\ge 0\\), \\(P(\\mathcal{S}) = 1\\), and mutually exclusive events add.\nComplement rule: \\(P(A') = 1 - P(A)\\).\nAddition rule: \\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\).\nEqually likely outcomes: \\(P(A) = N(A)/N\\).\n\n\nThat last bullet is why we are here. A 30 player league picking a 5 person all star team has 142,506 possibilities, and nobody is listing those.\n\n\n\n\n\n\n\n\n\n\n\nApply the product rule, permutations, and combinations to count outcomes. (SLO 7)\nUse counting techniques to compute probabilities of equally likely outcomes. (SLO 7)\n\n\n\n\n\nDevore 2.3\n\n\n\n\n\n\n\n\n12345678\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe bookstore listed Tintle by mistake. Our text is Devore, 9th ed., and it is free online through Cengage Unlimited. A hard copy is optional.\n\n\nThe return window is two weeks from purchase\nStart it yourself at bncvirtual.com/westpoint, then Your Account &gt; Return Center\nIf you do want a hard copy, shop around. The bookstore is $230.50 new and $172.75 used\n\n\n\n\n\nYour Account &gt; Return Center\n\n\n\n\n\nThe corrected listing, marked optional\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 5\n\n\n\n\n\nProduct rule: \\(n_1 n_2 \\cdots n_k\\)\nPermutation (order matters): \\(P_{k,n} = \\dfrac{n!}{(n-k)!}\\)\nCombination (order does not): \\(\\dbinom{n}{k} = \\dfrac{n!}{k!\\,(n-k)!}\\)\nThey differ only by \\(k!\\)\n\\(0! = 1\\) and \\(\\dbinom{n}{k} = \\dbinom{n}{n-k}\\)\nAll of it feeds \\(P(A) = N(A)/N\\)\n\n\n\n\n\n\n\n\n\nLast lesson ended here:\n\\[P(A) = \\frac{N(A)}{N}\\]\nBoth pieces are counts. This whole lesson is about finding the simplest way to count the number of ways things can happen under different conditions.\n\n\n\n\nHow many ways can we arrange all \\(n\\) objects in order?\nHow many ways can Cal’s coach set the batting order for his 9 starters? Nine players for the leadoff spot, eight left for the second, and so on down to one.\n\\[9 \\times 8 \\times 7 \\times \\cdots \\times 2 \\times 1 = 9! = 362{,}880\\]\n\n\n\n\n\n\nImportantFactorial\n\n\n\n\\[n! = n(n-1)(n-2)\\cdots(2)(1), \\qquad 0! = 1\\]\nThe number of ways to arrange all \\(n\\) objects in order.\n\n\nEvery count in this lesson is built out of \\(n!\\).\n\n\n\n\nHow many ways can we build an outcome in \\(k\\) separate stages?\nHow many uniforms can Cal build from pants (grey or white), a jersey (red, blue, or white), and socks (blue or red)?\n\n\n\n\n\n\n\n\n\n\\[n_1 \\times n_2 \\times n_3 = 2 \\times 3 \\times 2 = 12\\]\n12 uniforms.\n\n\n\n\n\n\nImportantProduct Rule\n\n\n\nAn outcome built in \\(k\\) stages, with \\(n_1\\) ways at stage 1, \\(n_2\\) ways at stage 2 for each of those, and so on:\n\\[n_1 \\times n_2 \\times \\cdots \\times n_k\\]\n\n\nThe batting order was this rule with the options shrinking by one at each stage. Here the stages have nothing to do with each other.\n\n\n\n\nThe product rule just built a pool: 12 uniforms. Everything left today draws \\(k\\) items from one pool of \\(n\\). Three questions:\n\n\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing uniforms freely?\nHow many ways if no uniform repeats?\nHow many ways can he pick which 4 uniforms get worn, sorting out the days later?\n\n\nTwo tests tell them apart:\n\n\nDoes order matter? Swap two picks. Different outcome or the same one?\nAre repeats allowed (with replacement)?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways can we fill \\(k\\) ordered slots from the same \\(n\\) options, repeats allowed?\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing uniforms freely?\nOrder matters because the games are different days. Grey/Red/Blue then White/Blue/Red is not the same week as the reverse, so both get counted.\n\\[12 \\times 12 \\times 12 \\times 12 = 12^4 = 20{,}736\\]\n\n\n\n\n\n\nImportantWith Replacement\n\n\n\n\\(k\\) picks from the same \\(n\\) options every time, order matters:\n\\[n \\times n \\times \\cdots \\times n = n^k\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways can we fill \\(k\\) ordered slots from \\(n\\) objects, no repeats?\nHow many ways can he do it for those same 4 games with no uniform repeated? Game 1 has 12 choices, game 2 has 11 left, game 3 has 10, game 4 has 9.\n\\[P_{4,12} = \\frac{12!}{8!} = 12 \\times 11 \\times 10 \\times 9 = 11{,}880\\]\n\n\n\n\n\n\nImportantPermutations\n\n\n\nAn ordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[P_{k,n} = n(n-1)\\cdots(n-k+1) = \\frac{n!}{(n-k)!}\\]\nwith \\(0! = 1\\).\n\n\nBoth counts for the week are now in hand:\n\\[P(\\text{all four games look different}) = \\frac{11{,}880}{20{,}736} = 0.573\\]\nThe \\((n-k)!\\) cancels the slots you never filled. When \\(k = n\\) nothing is left to cancel and \\(P_{n,n} = n!/0! = n!\\), back to arranging everyone.\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter?\nHow many ways can the coach pick which 4 uniforms get worn this week, sorting out the days later? Those same four in any other order is the same weekly set.\n\\[\\binom{12}{4} = \\frac{12 \\times 11 \\times 10 \\times 9}{4!} = \\frac{11{,}880}{24} = 495\\]\n\n\n\n\n\n\nImportantCombinations\n\n\n\nAn unordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[\\binom{n}{k} = \\frac{P_{k,n}}{k!} = \\frac{n!}{k!\\,(n-k)!}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter and repeats are allowed?\nA donut shop has 12 flavors. You buy 4 donuts and they all go in one box, so the order does not matter, and nothing stops you from taking two of the same flavor.\n\\[\\binom{n + k - 1}{k} = \\binom{15}{4} = 1{,}365\\]\nBeyond MA206, so it stays greyed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipThe pattern\n\n\n\n\\(N\\) is the number of ways to make the selection at all. \\(N(A)\\) is the number of those with the property you want. Build \\(N(A)\\) in stages: pick from the group you want, fill the rest from what is left, then multiply.\n\n\n\n\n\nCal’s league has 30 players, 12 of them pitchers. 5 are picked at random for the all star team.\n\n\nHow many teams are possible?\n\\(P(\\text{exactly 2 pitchers})\\)?\n\\(P(\\text{no pitchers})\\)?\n\\(P(\\text{at least 1 pitcher})\\)?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[N = \\binom{30}{5} = 142{,}506\\]\nChoose 2 of the 12 pitchers, then 3 of the 18 others: \\[P = \\frac{\\binom{12}{2}\\binom{18}{3}}{\\binom{30}{5}} = \\frac{66 \\times 816}{142{,}506} \\approx \\mathbf{0.378}\\]\n\\[P = \\frac{\\binom{18}{5}}{\\binom{30}{5}} = \\frac{8{,}568}{142{,}506} \\approx \\mathbf{0.060}\\]\nComplement of (c): \\(1 - 0.060 = \\mathbf{0.940}\\).\n\nThe long way works too, one pitcher through five: \\[\\frac{\\binom{12}{1}\\binom{18}{4} + \\binom{12}{2}\\binom{18}{3} + \\binom{12}{3}\\binom{18}{2}\n+ \\binom{12}{4}\\binom{18}{1} + \\binom{12}{5}\\binom{18}{0}}{\\binom{30}{5}}\\]\n\\[= \\frac{36{,}720 + 53{,}856 + 33{,}660 + 8{,}910 + 792}{142{,}506}\n= \\frac{133{,}938}{142{,}506} \\approx \\mathbf{0.940}\\]\nFive terms instead of one subtraction.\n\n\n\n\n\n\n\n\nA section of 18 cadets has 7 who are prior service. 4 are picked at random for a panel.\n\n\nHow many panels are possible?\n\\(P(\\text{exactly 2 prior service})\\)?\n\\(P(\\text{no prior service})\\)?\n\\(P(\\text{at least 1 prior service})\\)?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[N = \\binom{18}{4} = 3{,}060\\]\nChoose 2 of the 7 prior service, then 2 of the 11 others: \\[P = \\frac{\\binom{7}{2}\\binom{11}{2}}{\\binom{18}{4}} = \\frac{21 \\times 55}{3{,}060} \\approx \\mathbf{0.377}\\]\n\\[P = \\frac{\\binom{11}{4}}{\\binom{18}{4}} = \\frac{330}{3{,}060} \\approx \\mathbf{0.108}\\]\nComplement of (c): \\(1 - 0.108 = \\mathbf{0.892}\\).\n\n\n\n\n\n\n\n\nFour problems that sound like four different problems.\n\n\n1 The string You are writing a string of exactly 10 zeros and 4 ones. How many strings can you write?\n\n\n2 The shooter You finish the game 4 for 14 from the field. How many different ways could those makes and misses have fallen?\n\n\n3 The walk Starting at \\((0,0)\\), you move to \\((10,4)\\) going only right or up. How many ways can you do this?\n\n\n4 The box The mess hall has 5 flavors of donut and you are taking back a box of 10. Unlimited of any flavor, and a box is just a box, so what order they sit in does not matter. How many different boxes are there?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\nAll four are \\(\\mathbf{1001}\\).\n1. The string. Unordered, without replacement. You are choosing which 4 of the 14 slots hold a one: \\(\\dbinom{14}{4} = 1001\\). A slot cannot be chosen twice and the order you filled them in is not part of the answer.\n2. The shooter. Unordered, without replacement. Same cell, same count: choose which 4 of the 14 attempts went in, \\(\\dbinom{14}{4} = 1001\\). Write a make as a one and a miss as a zero and this is problem 1 with different clothes.\n3. The walk. Ordered, with replacement. Getting there takes 10 rights and 4 ups, so 14 steps, and each one is a free choice of two: \\(2^{14} = 16{,}384\\) sequences in all. Finishing at \\((10,4)\\) means exactly 4 of the 14 steps were up: \\(\\dbinom{14}{4} = 1001\\). Call right a zero and up a one and you are back at problem 1.\n4. The box. Unordered, with replacement. Stars and bars. Ten donuts and 4 dividers to separate 5 flavors: \\(\\dbinom{10+5-1}{10} = \\dbinom{14}{10} = 1001\\). Those 4 dividers are the 4 ones again.\nNobody’s problem lands in the fourth cell, ordered without replacement, and it is worth walking there anyway. Place the four ones into the 14 slots one at a time: \\(14 \\cdot 13 \\cdot 12 \\cdot 11 = P_{4,14} = 24{,}024\\). That counts every string \\(4! = 24\\) times, once for each order you could have dropped the identical ones in, so \\(24{,}024 / 24 = 1001\\). That is \\(\\dbinom{n}{k} = P_{k,n} / k!\\) in the open.\n\n\n\n\n\n\n\n\n\n\n\nProduct rule: \\(n_1 n_2 \\cdots n_k\\)\nPermutation \\(P_{k,n} = \\dfrac{n!}{(n-k)!}\\) when the chosen objects get roles\nCombination \\(\\dbinom{n}{k} = \\dfrac{n!}{k!(n-k)!}\\) when they do not\nThey differ only by \\(k!\\)\n\\(0! = 1\\) and \\(\\dbinom{n}{k} = \\dbinom{n}{n-k}\\)\n“At least one” still means take the complement\n\n\nAny questions?\n\n\n\n\nLesson 6: Conditional Probability\n\n\nCompute conditional probabilities and apply the multiplication rule\nApply the Law of Total Probability\nApply Bayes’ Theorem to update probabilities given new information\n\n\nReading: Devore 2.4\n\n\n\n\n\n\nWebAssign 2.3 - Due at the start of Lesson 6\nWPR I - Lesson 16 (covers Lessons 1-13)\nTEE - 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#what-we-did-lessons-1-through-4",
+    "href": "MA206-AY27-1/lesson-5.html#what-we-did-lessons-1-through-4",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "NoteReview: Data, Study Design, and Summaries (Lessons 1 and 2)\n\n\n\n\n\n\n\nPopulation vs sample, parameter (\\(\\mu\\), \\(\\sigma\\), \\(p\\)) vs statistic (\\(\\bar{x}\\), \\(s\\), \\(\\hat{p}\\)).\nRandom sampling buys generalization, random assignment buys causation.\nCenter: mean, median, trimmed mean. Spread: \\(s^2\\), \\(s\\), and the fourth spread \\(f_s\\).\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Set Theory (Lesson 3)\n\n\n\n\n\n\n\nExperiment, sample space \\(\\mathcal{S}\\), event as a subset of \\(\\mathcal{S}\\).\nUnion \\(A \\cup B\\) is “or”, intersection \\(A \\cap B\\) is “and”, complement \\(A'\\) is “not”.\nMutually exclusive: \\(A \\cap B = \\emptyset\\).\nDe Morgan: \\((A \\cup B)' = A' \\cap B'\\) and \\((A \\cap B)' = A' \\cup B'\\).\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Probability Basics (Lesson 4)\n\n\n\n\n\n\n\nThree axioms: \\(P(A) \\ge 0\\), \\(P(\\mathcal{S}) = 1\\), and mutually exclusive events add.\nComplement rule: \\(P(A') = 1 - P(A)\\).\nAddition rule: \\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\).\nEqually likely outcomes: \\(P(A) = N(A)/N\\).\n\n\nThat last bullet is why we are here. A 30 player league picking a 5 person all star team has 142,506 possibilities, and nobody is listing those.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#what-were-doing-lesson-5",
+    "href": "MA206-AY27-1/lesson-5.html#what-were-doing-lesson-5",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Apply the product rule, permutations, and combinations to count outcomes. (SLO 7)\nUse counting techniques to compute probabilities of equally likely outcomes. (SLO 7)\n\n\n\n\n\nDevore 2.3",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#break",
+    "href": "MA206-AY27-1/lesson-5.html#break",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "12345678\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Your browser does not support the video tag.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#why-counting-is-a-probability-topic",
+    "href": "MA206-AY27-1/lesson-5.html#why-counting-is-a-probability-topic",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Last lesson ended here:\n\\[P(A) = \\frac{N(A)}{N}\\]\nBoth pieces are counts. This whole lesson is about finding the simplest way to count the number of ways things can happen under different conditions.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#the-product-rule",
+    "href": "MA206-AY27-1/lesson-5.html#the-product-rule",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we build an outcome in \\(k\\) separate stages?\nHow many uniforms can Cal build from pants (grey or white), a jersey (red, blue, or white), and socks (blue or red)?\n\n\n\n\n\n\n\n\n\n\\[n_1 \\times n_2 \\times n_3 = 2 \\times 3 \\times 2 = 12\\]\n12 uniforms.\n\n\n\n\n\n\nImportantProduct Rule\n\n\n\nAn outcome built in \\(k\\) stages, with \\(n_1\\) ways at stage 1, \\(n_2\\) ways at stage 2 for each of those, and so on:\n\\[n_1 \\times n_2 \\times \\cdots \\times n_k\\]\n\n\nThe batting order was this rule with the options shrinking by one at each stage. Here the stages have nothing to do with each other.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#permutations-order-matters",
+    "href": "MA206-AY27-1/lesson-5.html#permutations-order-matters",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we fill \\(k\\) ordered slots from \\(n\\) objects, no repeats?\nHow many ways can he do it for those same 4 games with no uniform repeated? Game 1 has 12 choices, game 2 has 11 left, game 3 has 10, game 4 has 9.\n\\[P_{4,12} = \\frac{12!}{8!} = 12 \\times 11 \\times 10 \\times 9 = 11{,}880\\]\n\n\n\n\n\n\nImportantPermutations\n\n\n\nAn ordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[P_{k,n} = n(n-1)\\cdots(n-k+1) = \\frac{n!}{(n-k)!}\\]\nwith \\(0! = 1\\).\n\n\nBoth counts for the week are now in hand:\n\\[P(\\text{all four games look different}) = \\frac{11{,}880}{20{,}736} = 0.573\\]\nThe \\((n-k)!\\) cancels the slots you never filled. When \\(k = n\\) nothing is left to cancel and \\(P_{n,n} = n!/0! = n!\\), back to arranging everyone.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#combinations-order-does-not-matter",
+    "href": "MA206-AY27-1/lesson-5.html#combinations-order-does-not-matter",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter?\nHow many ways can the coach pick which 4 uniforms get worn this week, sorting out the days later? Those same four in any other order is the same weekly set.\n\\[\\binom{12}{4} = \\frac{12 \\times 11 \\times 10 \\times 9}{4!} = \\frac{11{,}880}{24} = 495\\]\n\n\n\n\n\n\nImportantCombinations\n\n\n\nAn unordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[\\binom{n}{k} = \\frac{P_{k,n}}{k!} = \\frac{n!}{k!\\,(n-k)!}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe fourth cell has a formula, but it is beyond this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipTwo properties\n\n\n\n\\(\\dbinom{n}{0} = \\dbinom{n}{n} = 1\\)\n\\(\\dbinom{n}{k} = \\dbinom{n}{n-k}\\), so count the smaller side.\n\n\n\n\n\n\n\n\nWarningCommon mistake\n\n\n\nUsing \\(P_{k,n}\\) when there are no roles. Game 1 and game 2 are roles. Four uniforms worn at some point this week are not.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#putting-it-together-counting-to-get-a-probability",
+    "href": "MA206-AY27-1/lesson-5.html#putting-it-together-counting-to-get-a-probability",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Counting is a means to an end, and the end is \\(N(A)/N\\).\n\n\n\n\n\n\nTipThe pattern\n\n\n\n\\(N\\), the denominator, is the number of ways to make the selection at all. \\(N(A)\\), the numerator, is the number of those selections with the property you want. Build the numerator with the product rule: choose the ones you want from the group you want them from, then choose the rest from whatever is left.\n\n\n\n\n\nA platoon of 30 soldiers contains 12 who qualified expert on the rifle. The platoon sergeant selects 5 soldiers at random for a detail.\n\n\nHow many different details are possible?\nWhat is the probability that exactly 2 of the 5 are experts?\nWhat is the probability that none of the 5 is an expert?\nWhat is the probability that at least one is an expert?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\nThe 5 soldiers all pull the same detail, so there are no roles and no order: \\[N = \\binom{30}{5} = \\frac{30 \\times 29 \\times 28 \\times 27 \\times 26}{5!} = 142{,}506\\]\nBuild the numerator in two stages. Choose 2 of the 12 experts, then 3 of the 18 non experts, and multiply by the product rule: \\[N(A) = \\binom{12}{2}\\binom{18}{3} = 66 \\times 816 = 53{,}856\\] \\[P(A) = \\frac{53{,}856}{142{,}506} \\approx \\mathbf{0.378}\\]\nAll 5 come from the 18 non experts: \\[P(\\text{no experts}) = \\frac{\\binom{18}{5}}{\\binom{30}{5}} = \\frac{8{,}568}{142{,}506} \\approx \\mathbf{0.060}\\]\n“At least one” is the complement of “none”, which is exactly the Lesson 4 move: \\[P(\\text{at least one expert}) = 1 - 0.060 = \\mathbf{0.940}\\] Doing part (d) directly would mean adding up the cases for exactly 1, 2, 3, 4, and 5 experts. The complement replaces five calculations with one.\n\n\n\n\n\n\n\n\nIn part (b), \\(12/30 = 40\\) percent of the platoon is expert, so a 5 person detail should carry about 2 experts on average. Exactly 2 is the most likely single result, and \\(0.378\\) says it happens a little over a third of the time. If a counting answer disagrees with your gut by a lot, one of the two is wrong, and it is worth five seconds to find out which.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#practical-exercise-counting-this-section",
+    "href": "MA206-AY27-1/lesson-5.html#practical-exercise-counting-this-section",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Let \\(n\\) be the number of cadets in this section.\n\n\n\nOne cadet briefs, a different cadet runs the board. How many ways?\nSame two jobs, but one cadet may do both. How many ways?\nA briefer, a board runner, and a timekeeper, all different. Write it as \\(P_{k,n}\\).\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(n(n-1) = P_{2,n}\\)\n\\(n^2\\). The gap between (a) and (b) is \\(n\\), the cases where one cadet does both.\n\\(P_{3,n} = n(n-1)(n-2)\\)\n\n\n\n\n\n\n\n\n\nThree cadets for a detail, no titles. How many ways?\nCheck that Part 1(c) is \\(3!\\) times this. Why?\nHow many ways to split the section into a group of 3 and a group of \\(n-3\\)?\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\dbinom{n}{3} = \\dfrac{n(n-1)(n-2)}{6}\\)\nEvery unordered trio can be arranged \\(3! = 6\\) ways.\nThe same number. \\(\\dbinom{n}{3} = \\dbinom{n}{n-3}\\).\n\n\n\n\n\n\n\n\n\nThree cadets are picked at random. What is the probability you are one of them?\nWhat is the probability the cadets on your left and right are both picked?\nSimplify (a). Does it make sense?\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\nLock yourself in, choose 2 more from \\(n-1\\): \\[P = \\frac{\\binom{n-1}{2}}{\\binom{n}{3}}\\]\nLock in both, choose 1 more from \\(n-2\\): \\[P = \\frac{n-2}{\\binom{n}{3}}\\]\n\\(\\mathbf{3/n}\\). Three of \\(n\\) seats get taken and every cadet is equally likely.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#board-problems",
+    "href": "MA206-AY27-1/lesson-5.html#board-problems",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Cal’s team has 5 jerseys and plays 3 games this week.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nHow many ways to pick a jersey for each game, repeats allowed?\nHow many with no jersey repeated?\nHow many ways to pick which 3 jerseys get worn, ignoring which day?\nOne assignment is picked at random. \\(P(\\text{no jersey repeated})\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(5^3 = \\mathbf{125}\\)\n\\(5 \\times 4 \\times 3 = P_{3,5} = \\mathbf{60}\\)\n\\(\\dbinom{5}{3} = \\mathbf{10}\\)\n\\(60/125 = \\mathbf{0.48}\\)\n\n\n\n\n\n\n\n\nA movement plan has 3 routes, 4 SP times, and 2 formations.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nHow many plans are possible?\nOne plan is picked at random. \\(P(\\text{northern route})\\)?\nTwo of the four SP times are at night. \\(P(\\text{northern route and night SP})\\)?\nBlue route closes. How many plans remain?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(3 \\times 4 \\times 2 = \\mathbf{24}\\)\n\\(1 \\times 4 \\times 2 = 8\\), so \\(8/24 = \\mathbf{1/3}\\)\n\\(1 \\times 2 \\times 2 = 4\\), so \\(4/24 = \\mathbf{1/6}\\)\n\\(2 \\times 4 \\times 2 = \\mathbf{16}\\)\n\n\n\n\n\n\n\n\nEight cadets are eligible.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nHow many ways to award first, second, and third?\nHow many ways to pick 3 of 8 for a group photograph?\nExplain the ratio between the two.\nHow many ways to arrange all 8 in a single rank?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(P_{3,8} = 8 \\times 7 \\times 6 = \\mathbf{336}\\)\n\\(\\dbinom{8}{3} = 336/3! = \\mathbf{56}\\)\n\\(3! = 6\\). Each group of 3 can be awarded first, second, third in 6 ways.\n\\(8! = \\mathbf{40{,}320}\\)\n\n\n\n\n\n\n\n\nA section of 18 cadets has 7 firsties. Four are selected at random.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nHow many details are possible?\n\\(P(\\text{all 4 firsties})\\)?\n\\(P(\\text{exactly 2 firsties})\\)?\n\\(P(\\text{at least 1 firstie})\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\dbinom{18}{4} = \\mathbf{3{,}060}\\)\n\\[P = \\frac{\\binom{7}{4}}{\\binom{18}{4}} = \\frac{35}{3{,}060} \\approx \\mathbf{0.011}\\]\n\\[P = \\frac{\\binom{7}{2}\\binom{11}{2}}{\\binom{18}{4}} = \\frac{1{,}155}{3{,}060} \\approx \\mathbf{0.377}\\]\n\\[P = 1 - \\frac{\\binom{11}{4}}{\\binom{18}{4}} = 1 - \\frac{330}{3{,}060} \\approx \\mathbf{0.892}\\]\n\n\n\n\n\n\n\n\nA PIN is 6 digits, each 0 through 9, assigned at random.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nHow many PINs are possible?\nHow many use six different digits?\n\\(P(\\text{no repeated digit})\\)?\n\\(P(\\text{at least one repeat})\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(10^6 = \\mathbf{1{,}000{,}000}\\)\n\\(P_{6,10} = 10 \\times 9 \\times 8 \\times 7 \\times 6 \\times 5 = \\mathbf{151{,}200}\\)\n\\(151{,}200 / 1{,}000{,}000 = \\mathbf{0.1512}\\)\n\\(1 - 0.1512 = \\mathbf{0.8488}\\)\n\n\n\n\n\n\n\n\nProduct rule, permutation, or combination? Then count it.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nA three letter unit code, A through Z, repeats allowed.\nFour cadets from 20 for a color guard: national colors, unit colors, rifle left, rifle right.\nFour cadets from 20 for a work detail, all the same job.\nA five person fire team arranged in a file.\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\nProduct rule: \\(26^3 = \\mathbf{17{,}576}\\)\nPermutation, four distinct positions: \\(P_{4,20} = \\mathbf{116{,}280}\\)\nCombination, no roles: \\(\\dbinom{20}{4} = 116{,}280/4! = \\mathbf{4{,}845}\\)\nPermutation with \\(k = n\\): \\(5! = \\mathbf{120}\\)\n\n\nand (c) differ only by whether the four get distinct roles, a factor of \\(4! = 24\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#before-you-leave",
+    "href": "MA206-AY27-1/lesson-5.html#before-you-leave",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Product rule: \\(n_1 n_2 \\cdots n_k\\)\nPermutation \\(P_{k,n} = \\dfrac{n!}{(n-k)!}\\) when the chosen objects get roles\nCombination \\(\\dbinom{n}{k} = \\dfrac{n!}{k!(n-k)!}\\) when they do not\nThey differ only by \\(k!\\)\n\\(0! = 1\\) and \\(\\dbinom{n}{k} = \\dbinom{n}{n-k}\\)\n“At least one” still means take the complement\n\n\nAny questions?\n\n\n\n\nLesson 6: Conditional Probability\n\n\nCompute conditional probabilities and apply the multiplication rule\nApply the Law of Total Probability\nApply Bayes’ Theorem to update probabilities given new information\n\n\nReading: Devore 2.4\n\n\n\n\n\n\nWebAssign 2.3 - Due at the start of Lesson 6\nWPR I - Lesson 16 (covers Lessons 1-13)\nTEE - 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#counting-to-get-a-probability",
+    "href": "MA206-AY27-1/lesson-5.html#counting-to-get-a-probability",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "TipThe pattern\n\n\n\n\\(N\\) is the number of ways to make the selection at all. \\(N(A)\\) is the number of those with the property you want. Build \\(N(A)\\) in stages: pick from the group you want, fill the rest from what is left, then multiply.\n\n\n\n\n\nCal’s league has 30 players, 12 of them pitchers. 5 are picked at random for the all star team.\n\n\nHow many teams are possible?\n\\(P(\\text{exactly 2 pitchers})\\)?\n\\(P(\\text{no pitchers})\\)?\n\\(P(\\text{at least 1 pitcher})\\)?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[N = \\binom{30}{5} = 142{,}506\\]\nChoose 2 of the 12 pitchers, then 3 of the 18 others: \\[P = \\frac{\\binom{12}{2}\\binom{18}{3}}{\\binom{30}{5}} = \\frac{66 \\times 816}{142{,}506} \\approx \\mathbf{0.378}\\]\n\\[P = \\frac{\\binom{18}{5}}{\\binom{30}{5}} = \\frac{8{,}568}{142{,}506} \\approx \\mathbf{0.060}\\]\nComplement of (c): \\(1 - 0.060 = \\mathbf{0.940}\\).\n\nThe long way works too, one pitcher through five: \\[\\frac{\\binom{12}{1}\\binom{18}{4} + \\binom{12}{2}\\binom{18}{3} + \\binom{12}{3}\\binom{18}{2}\n+ \\binom{12}{4}\\binom{18}{1} + \\binom{12}{5}\\binom{18}{0}}{\\binom{30}{5}}\\]\n\\[= \\frac{36{,}720 + 53{,}856 + 33{,}660 + 8{,}910 + 792}{142{,}506}\n= \\frac{133{,}938}{142{,}506} \\approx \\mathbf{0.940}\\]\nFive terms instead of one subtraction.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#branching",
+    "href": "MA206-AY27-1/lesson-5.html#branching",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Why I branched Engineer\nWhat I think you should do\nWhat I actually do as an Engineer\nWhat my branch looks like now",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#book-return",
+    "href": "MA206-AY27-1/lesson-5.html#book-return",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "The bookstore listed Tintle by mistake. Our text is Devore, 9th ed., and it is free online through Cengage Unlimited. A hard copy is optional.\n\n\nThe return window is two weeks from purchase\nStart it yourself at bncvirtual.com/westpoint, then Your Account &gt; Return Center\nIf you do want a hard copy, shop around. The bookstore is $230.50 new and $172.75 used\n\n\n\n\n\nYour Account &gt; Return Center\n\n\n\n\n\nThe corrected listing, marked optional",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#branch-week",
+    "href": "MA206-AY27-1/lesson-5.html#branch-week",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "NoteKey Concepts from Lesson 5\n\n\n\n\n\nProduct rule: \\(n_1 n_2 \\cdots n_k\\)\nPermutation (order matters): \\(P_{k,n} = \\dfrac{n!}{(n-k)!}\\)\nCombination (order does not): \\(\\dbinom{n}{k} = \\dfrac{n!}{k!\\,(n-k)!}\\)\nThey differ only by \\(k!\\)\n\\(0! = 1\\) and \\(\\dbinom{n}{k} = \\dbinom{n}{n-k}\\)\nAll of it feeds \\(P(A) = N(A)/N\\)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#factorials-arrange-everything",
+    "href": "MA206-AY27-1/lesson-5.html#factorials-arrange-everything",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we arrange all \\(n\\) objects in order?\nHow many ways can Cal’s coach set the batting order for his 9 starters? Nine players for the leadoff spot, eight left for the second, and so on down to one.\n\\[9 \\times 8 \\times 7 \\times \\cdots \\times 2 \\times 1 = 9! = 362{,}880\\]\n\n\n\n\n\n\nImportantFactorial\n\n\n\n\\[n! = n(n-1)(n-2)\\cdots(2)(1), \\qquad 0! = 1\\]\nThe number of ways to arrange all \\(n\\) objects in order.\n\n\nEvery count in this lesson is built out of \\(n!\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#stretch-problems",
+    "href": "MA206-AY27-1/lesson-5.html#stretch-problems",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "Four problems that sound like four different problems.\n\n\n1 The string You are writing a string of exactly 10 zeros and 4 ones. How many strings can you write?\n\n\n2 The shooter You finish the game 4 for 14 from the field. How many different ways could those makes and misses have fallen?\n\n\n3 The walk Starting at \\((0,0)\\), you move to \\((10,4)\\) going only right or up. How many ways can you do this?\n\n\n4 The box The mess hall has 5 flavors of donut and you are taking back a box of 10. Unlimited of any flavor, and a box is just a box, so what order they sit in does not matter. How many different boxes are there?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\nAll four are \\(\\mathbf{1001}\\).\n1. The string. Unordered, without replacement. You are choosing which 4 of the 14 slots hold a one: \\(\\dbinom{14}{4} = 1001\\). A slot cannot be chosen twice and the order you filled them in is not part of the answer.\n2. The shooter. Unordered, without replacement. Same cell, same count: choose which 4 of the 14 attempts went in, \\(\\dbinom{14}{4} = 1001\\). Write a make as a one and a miss as a zero and this is problem 1 with different clothes.\n3. The walk. Ordered, with replacement. Getting there takes 10 rights and 4 ups, so 14 steps, and each one is a free choice of two: \\(2^{14} = 16{,}384\\) sequences in all. Finishing at \\((10,4)\\) means exactly 4 of the 14 steps were up: \\(\\dbinom{14}{4} = 1001\\). Call right a zero and up a one and you are back at problem 1.\n4. The box. Unordered, with replacement. Stars and bars. Ten donuts and 4 dividers to separate 5 flavors: \\(\\dbinom{10+5-1}{10} = \\dbinom{14}{10} = 1001\\). Those 4 dividers are the 4 ones again.\nNobody’s problem lands in the fourth cell, ordered without replacement, and it is worth walking there anyway. Place the four ones into the 14 slots one at a time: \\(14 \\cdot 13 \\cdot 12 \\cdot 11 = P_{4,14} = 24{,}024\\). That counts every string \\(4! = 24\\) times, once for each order you could have dropped the identical ones in, so \\(24{,}024 / 24 = 1001\\). That is \\(\\dbinom{n}{k} = P_{k,n} / k!\\) in the open.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#sampling-drawing-k-from-n",
+    "href": "MA206-AY27-1/lesson-5.html#sampling-drawing-k-from-n",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "The product rule just built a pool: 12 uniforms. Everything left today draws \\(k\\) items from one pool of \\(n\\). Three questions:\n\n\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing uniforms freely?\nHow many ways if no uniform repeats?\nHow many ways can he pick which 4 uniforms get worn, sorting out the days later?\n\n\nTwo tests tell them apart:\n\n\nDoes order matter? Swap two picks. Different outcome or the same one?\nAre repeats allowed (with replacement)?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#with-replacement-nk",
+    "href": "MA206-AY27-1/lesson-5.html#with-replacement-nk",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we fill \\(k\\) ordered slots from the same \\(n\\) options, repeats allowed?\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing combos freely?\nOrder matters because the games are different days. Grey/Red/Blue then White/Blue/Red is not the same week as the reverse, so both get counted.\n\\[12 \\times 12 \\times 12 \\times 12 = 12^4 = 20{,}736\\]\n\n\n\n\n\n\nImportantWith Replacement\n\n\n\n\\(k\\) picks from the same \\(n\\) options every time, order matters:\n\\[n \\times n \\times \\cdots \\times n = n^k\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#with-replacement",
+    "href": "MA206-AY27-1/lesson-5.html#with-replacement",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we fill \\(k\\) ordered slots from the same \\(n\\) options, repeats allowed?\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing uniforms freely?\nOrder matters because the games are different days. Grey/Red/Blue then White/Blue/Red is not the same week as the reverse, so both get counted.\n\\[12 \\times 12 \\times 12 \\times 12 = 12^4 = 20{,}736\\]\n\n\n\n\n\n\nImportantWith Replacement\n\n\n\n\\(k\\) picks from the same \\(n\\) options every time, order matters:\n\\[n \\times n \\times \\cdots \\times n = n^k\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#order-matters-with-replacement",
+    "href": "MA206-AY27-1/lesson-5.html#order-matters-with-replacement",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we fill \\(k\\) ordered slots from the same \\(n\\) options, repeats allowed?\nHow many ways can the coach pick a uniform for each of the 4 games this week, reusing uniforms freely?\nOrder matters because the games are different days. Grey/Red/Blue then White/Blue/Red is not the same week as the reverse, so both get counted.\n\\[12 \\times 12 \\times 12 \\times 12 = 12^4 = 20{,}736\\]\n\n\n\n\n\n\nImportantWith Replacement\n\n\n\n\\(k\\) picks from the same \\(n\\) options every time, order matters:\n\\[n \\times n \\times \\cdots \\times n = n^k\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#order-matters-without-replacement-permutations",
+    "href": "MA206-AY27-1/lesson-5.html#order-matters-without-replacement-permutations",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we fill \\(k\\) ordered slots from \\(n\\) objects, no repeats?\nHow many ways can he do it for those same 4 games with no uniform repeated? Game 1 has 12 choices, game 2 has 11 left, game 3 has 10, game 4 has 9.\n\\[P_{4,12} = \\frac{12!}{8!} = 12 \\times 11 \\times 10 \\times 9 = 11{,}880\\]\n\n\n\n\n\n\nImportantPermutations\n\n\n\nAn ordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[P_{k,n} = n(n-1)\\cdots(n-k+1) = \\frac{n!}{(n-k)!}\\]\nwith \\(0! = 1\\).\n\n\nBoth counts for the week are now in hand:\n\\[P(\\text{all four games look different}) = \\frac{11{,}880}{20{,}736} = 0.573\\]\nThe \\((n-k)!\\) cancels the slots you never filled. When \\(k = n\\) nothing is left to cancel and \\(P_{n,n} = n!/0! = n!\\), back to arranging everyone.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#order-does-not-matter-without-replacement-combinations",
+    "href": "MA206-AY27-1/lesson-5.html#order-does-not-matter-without-replacement-combinations",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter?\nHow many ways can the coach pick which 4 uniforms get worn this week, sorting out the days later? Those same four in any other order is the same weekly set.\n\\[\\binom{12}{4} = \\frac{12 \\times 11 \\times 10 \\times 9}{4!} = \\frac{11{,}880}{24} = 495\\]\n\n\n\n\n\n\nImportantCombinations\n\n\n\nAn unordered subset of size \\(k\\) from \\(n\\) distinct objects.\n\\[\\binom{n}{k} = \\frac{P_{k,n}}{k!} = \\frac{n!}{k!\\,(n-k)!}\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#order-does-not-matter-with-replacement",
+    "href": "MA206-AY27-1/lesson-5.html#order-does-not-matter-with-replacement",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter and repeats are allowed?\nA donut shop has 12 flavors. You buy 4 donuts and they all go in one box, so the order does not matter, and nothing stops you from taking two of the same flavor.\n\\[\\binom{n + k - 1}{k} = \\binom{15}{4} = 1{,}365\\]\nBeyond MA206, so it stays greyed.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#order-does-not-matter-with-replacement-fyi",
+    "href": "MA206-AY27-1/lesson-5.html#order-does-not-matter-with-replacement-fyi",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "How many ways can we choose \\(k\\) of \\(n\\) objects when order does not matter and repeats are allowed?\nA donut shop has 12 flavors. You buy 4 donuts and they all go in one box, so the order does not matter, and nothing stops you from taking two of the same flavor.\n\\[\\binom{n + k - 1}{k} = \\binom{15}{4} = 1{,}365\\]\nBeyond MA206, so it stays greyed.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-5.html#board-problem",
+    "href": "MA206-AY27-1/lesson-5.html#board-problem",
+    "title": "Lesson 5: Counting",
+    "section": "",
+    "text": "A section of 18 cadets has 7 who are prior service. 4 are picked at random for a panel.\n\n\nHow many panels are possible?\n\\(P(\\text{exactly 2 prior service})\\)?\n\\(P(\\text{no prior service})\\)?\n\\(P(\\text{at least 1 prior service})\\)?\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[N = \\binom{18}{4} = 3{,}060\\]\nChoose 2 of the 7 prior service, then 2 of the 11 others: \\[P = \\frac{\\binom{7}{2}\\binom{11}{2}}{\\binom{18}{4}} = \\frac{21 \\times 55}{3{,}060} \\approx \\mathbf{0.377}\\]\n\\[P = \\frac{\\binom{11}{4}}{\\binom{18}{4}} = \\frac{330}{3{,}060} \\approx \\mathbf{0.108}\\]\nComplement of (c): \\(1 - 0.108 = \\mathbf{0.892}\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 5"
+    ]
   }
 ]
