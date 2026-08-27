@@ -854,10 +854,20 @@ window.Quarto = {
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>All four are <span class="math inline">\(\mathbf{1001}\)</span>.</p>
+<p>One example, written four ways. The same 4 of the 14 slots get picked every time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-5_files/figure-html/stretch-alignment-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Four rows of 14 slots each, lined up in the same columns. Row 1, the string, is zeros with ones in slots 4, 7, 9 and 11. Row 2, the shooter, is the same zeros and ones, where a one is a make. Row 3, the walk, is right arrows with up arrows in those same four slots. Row 4, the box, is donuts with dividers in those same four slots, reading 000, divider, 00, divider, 0, divider, 0, divider, 000. Highlighted bands run down all four rows through slots 4, 7, 9 and 11. The caption reads same 14 slots, same 4 picks, every time."></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>1. The string. Unordered, without replacement.</strong> You are choosing which 4 of the 14 slots hold a one: <span class="math inline">\(\dbinom{14}{4} = 1001\)</span>. A slot cannot be chosen twice and the order you filled them in is not part of the answer.</p>
 <p><strong>2. The shooter. Unordered, without replacement.</strong> Same cell, same count: choose which 4 of the 14 attempts went in, <span class="math inline">\(\dbinom{14}{4} = 1001\)</span>. Write a make as a one and a miss as a zero and this is problem 1 with different clothes.</p>
 <p><strong>3. The walk. Ordered, with replacement.</strong> Getting there takes 10 rights and 4 ups, so 14 steps, and each one is a free choice of two: <span class="math inline">\(2^{14} = 16{,}384\)</span> sequences in all. Finishing at <span class="math inline">\((10,4)\)</span> means exactly 4 of the 14 steps were up: <span class="math inline">\(\dbinom{14}{4} = 1001\)</span>. Call right a zero and up a one and you are back at problem 1.</p>
-<p><strong>4. The box. Unordered, with replacement.</strong> Stars and bars. Ten donuts and 4 dividers to separate 5 flavors: <span class="math inline">\(\dbinom{10+5-1}{10} = \dbinom{14}{10} = 1001\)</span>. Those 4 dividers are the 4 ones again.</p>
+<p><strong>4. The box. Unordered, with replacement.</strong> Stars and bars. A donut is a <span class="math inline">\(0\)</span> and a divider between flavors is a <span class="math inline">\(|\)</span>, so row 4 reads <span class="math inline">\(000|00|0|0|000\)</span>: three of the first flavor, two of the second, one each of the next two, three of the last. Ten donuts and 4 dividers to make 5 flavors fill 14 slots, and the box is settled the moment you say which 4 slots hold the dividers: <span class="math inline">\(\dbinom{14}{4} = 1001\)</span>. Those 4 dividers are the 4 ones again. The formula <span class="math inline">\(\dbinom{n+k-1}{k}\)</span> with <span class="math inline">\(n = 5\)</span> flavors and <span class="math inline">\(k = 10\)</span> donuts gives <span class="math inline">\(\dbinom{14}{10}\)</span>, the same count read off the donut slots instead of the divider slots, and <span class="math inline">\(\dbinom{14}{10} = \dbinom{14}{4}\)</span>.</p>
 <p>Nobody’s problem lands in the fourth cell, ordered without replacement, and it is worth walking there anyway. Place the four ones into the 14 slots one at a time: <span class="math inline">\(14 \cdot 13 \cdot 12 \cdot 11 = P_{4,14} = 24{,}024\)</span>. That counts every string <span class="math inline">\(4! = 24\)</span> times, once for each order you could have dropped the identical ones in, so <span class="math inline">\(24{,}024 / 24 = 1001\)</span>. That is <span class="math inline">\(\dbinom{n}{k} = P_{k,n} / k!\)</span> in the open.</p>
 </div>
 </div>
