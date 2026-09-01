@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA206 AY27-1: Instructor Home – CD Notes — MA206 AY27-1</title>
+<title>Forge 3 – CD Notes — MA206 AY27-1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./forge-0.html" rel="next">
+<link href="./forge-2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -86,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Instructor Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forge-0.html">Forges</a></li><li class="breadcrumb-item"><a href="./forge-3.html">Forge 3: Lessons 7-8</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,19 +142,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instructor Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Forges</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./forge-0.html" class="sidebar-item-text sidebar-link">
@@ -146,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./forge-3.html" class="sidebar-item-text sidebar-link">
+  <a href="./forge-3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Forge 3: Lessons 7-8</span></a>
   </div>
 </li>
@@ -162,18 +191,38 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#canvas" id="toc-canvas" class="nav-link active" data-scroll-target="#canvas">Canvas</a></li>
-  <li><a href="#teaching-slate" id="toc-teaching-slate" class="nav-link" data-scroll-target="#teaching-slate">Teaching Slate</a></li>
-  <li><a href="#course-coverage" id="toc-course-coverage" class="nav-link" data-scroll-target="#course-coverage">Course Coverage</a></li>
+  <li><a href="#coverage-plan" id="toc-coverage-plan" class="nav-link active" data-scroll-target="#coverage-plan">Coverage Plan</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do">To Do</a>
+  <ul class="collapse">
+  <li><a href="#wpr-i-feedback" id="toc-wpr-i-feedback" class="nav-link" data-scroll-target="#wpr-i-feedback">WPR I Feedback</a></li>
+  <li><a href="#project-data-agreement" id="toc-project-data-agreement" class="nav-link" data-scroll-target="#project-data-agreement">Project Data Agreement</a></li>
+  </ul></li>
+  <li><a href="#vantage-turn-in-for-the-project" id="toc-vantage-turn-in-for-the-project" class="nav-link" data-scroll-target="#vantage-turn-in-for-the-project">Vantage Turn In for the Project</a></li>
+  <li><a href="#webassign-enrollment" id="toc-webassign-enrollment" class="nav-link" data-scroll-target="#webassign-enrollment">WebAssign Enrollment</a></li>
+  <li><a href="#lesson-7-independence" id="toc-lesson-7-independence" class="nav-link" data-scroll-target="#lesson-7-independence">Lesson 7: Independence</a>
+  <ul class="collapse">
+  <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas">Formulas</a></li>
+  </ul></li>
+  <li><a href="#lesson-8-discrete-random-variables" id="toc-lesson-8-discrete-random-variables" class="nav-link" data-scroll-target="#lesson-8-discrete-random-variables">Lesson 8: Discrete Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#discrete-or-continuous" id="toc-discrete-or-continuous" class="nav-link" data-scroll-target="#discrete-or-continuous">Discrete or Continuous</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#example-probability-mass-function-pmf" id="toc-example-probability-mass-function-pmf" class="nav-link" data-scroll-target="#example-probability-mass-function-pmf">Example Probability Mass Function (pmf)</a></li>
+  <li><a href="#cumulative-distribution-function-cdf" id="toc-cumulative-distribution-function-cdf" class="nav-link" data-scroll-target="#cumulative-distribution-function-cdf">Cumulative Distribution Function (cdf)</a></li>
+  <li><a href="#example-cumulative-distribution-function-cdf" id="toc-example-cumulative-distribution-function-cdf" class="nav-link" data-scroll-target="#example-cumulative-distribution-function-cdf">Example Cumulative Distribution Function (cdf)</a></li>
+  <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected Value</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forge-0.html">Forges</a></li><li class="breadcrumb-item"><a href="./forge-3.html">Forge 3: Lessons 7-8</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">MA206 AY27-1: Instructor Home</h1>
+<h1 class="title">Forge 3</h1>
+<p class="subtitle lead">Lessons 7-8</p>
 </div>
 
 
@@ -190,12 +239,627 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="canvas" class="level2">
-<h2 class="anchored" data-anchor-id="canvas">Canvas</h2>
-<p><a href="https://westpoint.instructure.com/courses/12748">MA206 AY27-1 on Canvas</a></p>
-</section>
-<section id="teaching-slate" class="level2">
-<h2 class="anchored" data-anchor-id="teaching-slate">Teaching Slate</h2>
+<div class="pbar-wrap">
+<div class="pbar-head">
+<span class="pbar-name">Semester</span><span class="pbar-val">Week 3 of 18</span>
+</div>
+<div class="pbar">
+<span style="width:17%"></span>
+</div>
+</div>
+<div class="pbar-wrap">
+<div class="pbar-head">
+<span class="pbar-name">Points in the gradebook</span><span class="pbar-val">22 of 1000 (2%)</span>
+</div>
+<div class="pbar pts">
+<span style="width:2%"></span>
+</div>
+</div>
+<p><strong>Lessons 7-8:</strong> L7 Independence, L8 Discrete Random Variables</p>
+<section id="coverage-plan" class="level2">
+<h2 class="anchored" data-anchor-id="coverage-plan">Coverage Plan</h2>
+<div class="cov">
+<table>
+<thead>
+<tr>
+<th>
+Day
+</th>
+<th>
+Date
+</th>
+<th>
+Month
+</th>
+<th>
+Class day
+</th>
+<th>
+Hour
+</th>
+<th>
+Room
+</th>
+<th>
+Lesson
+</th>
+<th>
+Out
+</th>
+<th>
+Covered by
+</th>
+<th>
+Who is available
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Tue
+</td>
+<td class="num">
+15
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+D
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+Hedglin
+</td>
+<td class="cov-avail">
+Adams, Crow, Freeny, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+16
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+C
+</td>
+<td class="cov-sec">
+TH317
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+Crow<span class="cov-q">?</span>
+</td>
+<td class="cov-avail">
+Adams, Dykhuis, Hedglin, Lovas, Ozga, Thomas, Turner
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+16
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+D
+</td>
+<td class="cov-sec">
+TH317
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Day
+</td>
+<td>
+Crow<span class="cov-q">?</span>
+</td>
+<td class="cov-avail">
+Adams, Dykhuis, Hedglin, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr class="cov-grp">
+<td>
+Tue
+</td>
+<td class="num">
+15
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH317
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+Ozga<span class="cov-q">?</span>
+</td>
+<td class="cov-avail">
+Adams, Dykhuis, Freeny, Lovas, Turner
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+16
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH317
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Dykhuis, Freeny, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+16
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+B
+</td>
+<td class="cov-sec">
+TH317
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Adams, Crow, Dykhuis, Freeny, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+16
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+D
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L11
+</td>
+<td class="cov-out">
+Strack
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Adams, Dykhuis, Hedglin, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr class="cov-grp">
+<td>
+Fri
+</td>
+<td class="num">
+04
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L8
+</td>
+<td class="cov-out">
+Thomas
+</td>
+<td>
+Pleuss
+</td>
+<td class="cov-avail">
+Adams, Day, Dykhuis, Freeny, Lovas, Ozga, Turner
+</td>
+</tr>
+<tr>
+<td>
+Fri
+</td>
+<td class="num">
+04
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+B
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L8
+</td>
+<td class="cov-out">
+Thomas
+</td>
+<td>
+Pleuss
+</td>
+<td class="cov-avail">
+Adams, Crow, Day, Dykhuis, Freeny, Hedglin, Lovas, Ozga, Strack
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+24
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L14
+</td>
+<td class="cov-out">
+Thomas
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+<td class="cov-avail">
+Adams, Day, Dykhuis, Freeny, Lovas, Ozga, Turner
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+24
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+B
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L14
+</td>
+<td class="cov-out">
+Thomas
+</td>
+<td>
+<span class="cov-tbd">needs a volunteer</span>
+</td>
+<td class="cov-avail">
+Adams, Crow, Day, Dykhuis, Freeny, Hedglin, Lovas, Ozga, Strack
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="cov-past">
+<summary>
+Already covered (5)
+</summary>
+<div class="cov">
+<table>
+<thead>
+<tr>
+<th>
+Day
+</th>
+<th>
+Date
+</th>
+<th>
+Month
+</th>
+<th>
+Class day
+</th>
+<th>
+Hour
+</th>
+<th>
+Room
+</th>
+<th>
+Lesson
+</th>
+<th>
+Out
+</th>
+<th>
+Covered by
+</th>
+<th>
+Who is available
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+19
+</td>
+<td>
+Aug
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+E
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L2
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Adams, Crow, Day, Dykhuis, Hedglin, Strack, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+20
+</td>
+<td>
+Aug
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+E
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L2
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Crow, Dykhuis, Freeny, Hedglin, Strack, Thomas, Turner
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+20
+</td>
+<td>
+Aug
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+F
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L2
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Crow, Dykhuis, Freeny, Hedglin, Strack, Thomas, Turner
+</td>
+</tr>
+<tr>
+<td>
+Fri
+</td>
+<td class="num">
+21
+</td>
+<td>
+Aug
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+E
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L3
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Crow, Dykhuis, Freeny, Hedglin, Strack, Thomas, Turner
+</td>
+</tr>
+<tr>
+<td>
+Fri
+</td>
+<td class="num">
+21
+</td>
+<td>
+Aug
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+F
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L3
+</td>
+<td class="cov-out">
+Lovas
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Crow, Dykhuis, Freeny, Hedglin, Strack, Thomas, Turner
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="cov-past">
+<summary>
+Instructor lay down, who teaches which hour
+</summary>
+<div class="tight">
 <p><span class="t1"><strong>Team 1</strong></span> &nbsp;&nbsp; <span class="t2"><strong>Team 2</strong></span></p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
@@ -316,63 +980,234 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p><small><span class="t1">Team 1 (Crow, Day, Dykhuis, Freeny, Hedglin, Strack)</span> is free Day 2 hours B, E, F.<br> <span class="t2">Team 2 (Adams, Lovas, Ozga, Thomas, Turner)</span> is free Day 1 hours B, C, D.</small></p>
+</div>
+</details>
 </section>
-<section id="course-coverage" class="level2">
-<h2 class="anchored" data-anchor-id="course-coverage">Course Coverage</h2>
-<p>Who is covering for whom this week.</p>
+<section id="to-do" class="level2">
+<h2 class="anchored" data-anchor-id="to-do">To Do</h2>
+<section id="wpr-i-feedback" class="level3">
+<h3 class="anchored" data-anchor-id="wpr-i-feedback">WPR I Feedback</h3>
+<p><strong>Due 4 Sep.</strong> Send me your feedback on the draft.</p>
+</section>
+<section id="project-data-agreement" class="level3">
+<h3 class="anchored" data-anchor-id="project-data-agreement">Project Data Agreement</h3>
+<p><strong>Due Lesson 8.</strong> Every cadet has to sign the data agreement for the project.</p>
+</section>
+</section>
+<section id="vantage-turn-in-for-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="vantage-turn-in-for-the-project">Vantage Turn In for the Project</h2>
+<p><a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0">MA206 workspace in Vantage</a></p>
+</section>
+<section id="webassign-enrollment" class="level2">
+<h2 class="anchored" data-anchor-id="webassign-enrollment">WebAssign Enrollment</h2>
+<p>No updated enrollment list this week. The last audit is in <a href="forge-2.html#webassign-enrollment">Forge 2</a>.</p>
+<p>Cadets are reporting that their account access has been revoked. We know about it and are working it with the WebAssign rep.</p>
+</section>
+<section id="lesson-7-independence" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-7-independence">Lesson 7: Independence</h2>
+<p><em>Devore 2.5.</em></p>
+<section id="formulas" class="level3">
+<h3 class="anchored" data-anchor-id="formulas">Formulas</h3>
+<p><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent when <span class="math display">\[P(A \cap B) = P(A)\,P(B)\]</span></p>
+<p>Nothing new this lesson. Independence collapses the rules they already have.</p>
+<div class="rulecols">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 38%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Out</th>
-<th style="text-align: left;">Section</th>
-<th style="text-align: center;">Mon 17 Aug<br>1-1, L1</th>
-<th style="text-align: center;">Tue 18 Aug<br>2-1, L1</th>
-<th style="text-align: center;">Wed 19 Aug<br>1-2, L2</th>
-<th style="text-align: center;">Thu 20 Aug<br>2-2, L2</th>
-<th style="text-align: center;">Fri 21 Aug<br>2-3, L3</th>
+<th style="text-align: left;">Rule</th>
+<th style="text-align: left;">What they learned</th>
+<th style="text-align: left;">Under independence</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Lovas</td>
-<td style="text-align: left;">Day 1 hour E, TH321</td>
-<td style="text-align: center;">Turner</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;">Turner</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
+<td style="text-align: left;">Conditional probability</td>
+<td style="text-align: left;"><span class="math inline">\(P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(A \mid B) = P(A)\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Lovas</td>
-<td style="text-align: left;">Day 2 hour E, TH321</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;">Day</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;">Day</td>
-<td style="text-align: center;">Day</td>
+<td style="text-align: left;">Multiplication rule</td>
+<td style="text-align: left;"><span class="math inline">\(P(A \cap B) = P(A \mid B)\,P(B)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(A \cap B) = P(A)\,P(B)\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Lovas</td>
-<td style="text-align: left;">Day 2 hour F, TH321</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;">Day</td>
-<td style="text-align: center;"><span class="nc">no class</span></td>
-<td style="text-align: center;">Day</td>
-<td style="text-align: center;">Day</td>
+<td style="text-align: left;">Addition rule</td>
+<td style="text-align: left;"><span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(A) + P(B) - P(A)P(B)\)</span></td>
 </tr>
 </tbody>
 </table>
+</div>
+<p><strong>Caution.</strong> Mutually exclusive is the opposite of independent. Mutually exclusive means <span class="math inline">\(P(A \cap B) = 0\)</span>, so <span class="math display">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{0}{P(B)} = 0 \ne P(A)\]</span> Learning that <span class="math inline">\(B\)</span> happened rules <span class="math inline">\(A\)</span> out completely, which is the most informative <span class="math inline">\(B\)</span> can be. Independence is <span class="math inline">\(P(A \mid B) = P(A)\)</span>, where <span class="math inline">\(B\)</span> tells you nothing.</p>
+</section>
+</section>
+<section id="lesson-8-discrete-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-8-discrete-random-variables">Lesson 8: Discrete Random Variables</h2>
+<p><em>Devore 3.1, 3.2, 3.3.</em></p>
+<section id="discrete-or-continuous" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-or-continuous">Discrete or Continuous</h3>
+<div class="quad2 quad2-2col">
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">Discrete</span> <span class="quad-name">You can list the values</span> L8 unnamed<br> L9 Binomial<br> L10 Poisson</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">Continuous</span> <span class="quad-name">You cannot</span> L11 unnamed<br> L12 Normal<br> L13 Exponential</p>
+</div>
+</div>
+<p>Worth a discussion of what makes something discrete and what makes it continuous.</p>
+</section>
+<section id="notation" class="level3">
+<h3 class="anchored" data-anchor-id="notation">Notation</h3>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(X\)</span> is the random outcome of a process.</li>
+<li><span class="math inline">\(x\)</span> is a specific value.</li>
+<li><span class="math inline">\(P\)</span> takes an event. <span class="math inline">\(p\)</span> takes a number.</li>
+</ul>
+</div>
+<p><span class="math display">\[p(x) = P(X = x)\]</span></p>
+<p>The probability that the random outcome <span class="math inline">\(X\)</span> equals the specific value <span class="math inline">\(x\)</span>.</p>
+</section>
+<section id="example-probability-mass-function-pmf" class="level3">
+<h3 class="anchored" data-anchor-id="example-probability-mass-function-pmf">Example Probability Mass Function (pmf)</h3>
+<p><span class="math inline">\(X\)</span> takes the values 0, 1, 5, 6:</p>
+<p><span class="math display">\[p_X(x) = \begin{cases}
+0.1 &amp; \text{if } x = 0 \\
+0.2 &amp; \text{if } x = 1 \\
+0.4 &amp; \text{if } x = 5 \\
+0.3 &amp; \text{if } x = 6 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<p>Same thing as a table:</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="cumulative-distribution-function-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="cumulative-distribution-function-cdf">Cumulative Distribution Function (cdf)</h3>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(F\)</span> accumulates. It adds up every <span class="math inline">\(p_X(y)\)</span> at or below <span class="math inline">\(x\)</span>.</li>
+<li><span class="math inline">\(x\)</span> is still a specific value, and any real number is a legal input.</li>
+</ul>
+</div>
+<p><span class="math display">\[F(x) = P(X \le x) = \sum_{y \le x} p_X(y)\]</span></p>
+<p>The probability that the random outcome <span class="math inline">\(X\)</span> lands at or below the specific value <span class="math inline">\(x\)</span>.</p>
+</section>
+<section id="example-cumulative-distribution-function-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="example-cumulative-distribution-function-cdf">Example Cumulative Distribution Function (cdf)</h3>
+<p>Same <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[F_X(x) = \begin{cases}
+0 &amp; \text{if } x &lt; 0 \\
+0.1 &amp; \text{if } 0 \le x &lt; 1 \\
+0.3 &amp; \text{if } 1 \le x &lt; 5 \\
+0.7 &amp; \text{if } 5 \le x &lt; 6 \\
+1 &amp; \text{if } x \ge 6
+\end{cases}\]</span></p>
+<p>Same thing as a table:</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(F_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">1.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each jump is exactly <span class="math inline">\(p_X(x)\)</span>, and <span class="math inline">\(F\)</span> holds flat everywhere else. It sits at 0.3 from 1 all the way to 5.</p>
+</section>
+<section id="expected-value" class="level3">
+<h3 class="anchored" data-anchor-id="expected-value">Expected Value</h3>
+<p>Back to the pmf:</p>
+<p><span class="math display">\[p_X(x) = \begin{cases}
+0.1 &amp; \text{if } x = 0 \\
+0.2 &amp; \text{if } x = 1 \\
+0.4 &amp; \text{if } x = 5 \\
+0.3 &amp; \text{if } x = 6 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="math display">\[E(X) = \sum_x x\,p_X(x)\]</span></p>
+<p>One term per value, weight times value:</p>
+<p><span class="math display">\[E(X) = (0)(0.1) + (1)(0.2) + (5)(0.4) + (6)(0.3) = 4\]</span></p>
+</section>
+<section id="variance" class="level3">
+<h3 class="anchored" data-anchor-id="variance">Variance</h3>
+<p>Two formulas, same answer. The definition:</p>
+<p><span class="math display">\[V(X) = \sigma^2 = \sum_x (x - \mu)^2 p_X(x) = E[(X - \mu)^2]\]</span></p>
+<p><span class="math display">\[V(X) = (0-4)^2(0.1) + (1-4)^2(0.2) + (5-4)^2(0.4) + (6-4)^2(0.3) = 5\]</span></p>
+<p>The shortcut:</p>
+<p><span class="math display">\[V(X) = E(X^2) - [E(X)]^2\]</span></p>
+<p><span class="math display">\[E(X^2) = (0)(0.1) + (1)(0.2) + (25)(0.4) + (36)(0.3) = 21\]</span></p>
+<p><span class="math display">\[V(X) = 21 - 4^2 = 5\]</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -789,11 +1624,11 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./forge-2.html" class="pagination-link" aria-label="Forge 2: Lessons 4-6">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Forge 2: Lessons 4-6</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./forge-0.html" class="pagination-link" aria-label="Forge 0: Reorgy Week">
-        <span class="nav-page-text">Forge 0: Reorgy Week</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
