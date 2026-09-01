@@ -569,7 +569,8 @@ window.Quarto = {
 </section>
 <section id="conditional-probability" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-probability">Conditional Probability</h2>
-<!-- TODO: define P(A|B) as renormalizing to B, with a 2x2 table or Venn picture -->
+<p><span class="math display">\[P(A \mid B)\]</span></p>
+<p><span class="math display">\[P(\;\underbrace{A}_{\substack{\text{the event we want}\\ \text{a probability for}}}\;\underbrace{\mid}_{\substack{\text{"given that"}\\ \text{(not division)}}}\;\underbrace{B}_{\substack{\text{what we already}\\ \text{know happened}}}\;)\]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Definition: Conditional Probability">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -660,7 +661,7 @@ window.Quarto = {
 </section>
 <section id="the-multiplication-rule" class="level2">
 <h2 class="anchored" data-anchor-id="the-multiplication-rule">The Multiplication Rule</h2>
-<p>Nothing new here. Start with the definition and multiply both sides by <span class="math inline">\(P(B)\)</span>:</p>
+<p>Start with the definition and multiply both sides by <span class="math inline">\(P(B)\)</span>:</p>
 <p><span class="math display">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)} \;\;\Longrightarrow\;\; P(A \mid B)\,P(B) = P(A \cap B)\]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Multiplication Rule">
 <div class="callout-header d-flex align-content-center">
@@ -708,7 +709,6 @@ window.Quarto = {
 </section>
 <section id="the-law-of-total-probability" class="level2">
 <h2 class="anchored" data-anchor-id="the-law-of-total-probability">The Law of Total Probability</h2>
-<!-- TODO: partition picture, then a worked example -->
 <div class="callout callout-style-default callout-important callout-titled" title="Law of Total Probability">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -726,12 +726,12 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lesson-6_files/figure-html/venn-total-probability-1.png" class="img-fluid figure-img" style="width:92.0%" alt="A rectangle labeled S split into three vertical slabs labeled A1, A2 and A3. An ellipse labeled B lies across all three, and the part of B inside each slab is shaded a different tone, showing B cut into three pieces."></p>
+<p><img src="lesson-6_files/figure-html/venn-total-probability-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Two rectangles labeled S side by side. On the left S is split into two vertical slabs A1 and A2; on the right into three slabs A1, A2 and A3. In each, an ellipse labeled B lies across all the slabs and the part of B inside each slab is shaded a different tone, showing B cut into two pieces on the left and three on the right."></p>
 </figure>
 </div>
 </div>
 </div>
-<p><span class="math inline">\(B\)</span> is chopped into one piece per slab, and the pieces cannot overlap, so their probabilities add.</p>
+<p><span class="math inline">\(B\)</span> is chopped into one piece per slab, and the pieces cannot overlap, so their probabilities add. Two slabs or three, the picture is the same: any <span class="math inline">\(k\)</span> works as long as the <span class="math inline">\(A_i\)</span> are mutually exclusive and cover <span class="math inline">\(S\)</span>.</p>
 <section id="the-same-thing-as-a-tree" class="level3">
 <h3 class="anchored" data-anchor-id="the-same-thing-as-a-tree">The Same Thing as a Tree</h3>
 <p>Multiply along each path, then add the paths that land in <span class="math inline">\(B\)</span>.</p>
