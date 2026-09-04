@@ -648,13 +648,49 @@ window.Quarto = {
 </table>
 <p>Check the two conditions. Every value is nonnegative, and <span class="math inline">\(0.1 + 0.2 + 0.4 + 0.3 = 1\)</span>. It is a legal pmf.</p>
 <p>Let’s answer some questions about our pmf.</p>
-<div class="compact">
-<ul>
-<li><span class="math inline">\(P(X = 3) = 0\)</span>, because <span class="math inline">\(3\)</span> is not one of the values.</li>
-<li><span class="math inline">\(P(X \le 1) = 0.1 + 0.2 = 0.3\)</span>.</li>
-<li><span class="math inline">\(P(X &gt; 1) = 0.4 + 0.3 = 0.7\)</span>, or <span class="math inline">\(1 - 0.3\)</span> by the complement rule.</li>
-<li><span class="math inline">\(P(1 \le X \le 5) = 0.2 + 0.4 = 0.6\)</span>.</li>
-</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(P(X = 5)\)</span> and <span class="math inline">\(P(X = 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1)\)</span> and <span class="math inline">\(P(X \le 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 5)\)</span> and <span class="math inline">\(P(X \ge 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 4)\)</span> and <span class="math inline">\(P(X \le 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(1 \le X \le 5)\)</span> and <span class="math inline">\(P(1 &lt; X &lt; 5)\)</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(P(X = 5) = 0.4\)</span>. <span class="math inline">\(P(X = 3) = 0\)</span>, because <span class="math inline">\(3\)</span> is not one of the values.</p></li>
+<li><p><span class="math inline">\(P(X &lt; 1) = 0.1\)</span>, which is only <span class="math inline">\(x = 0\)</span>. <span class="math inline">\(P(X \le 1) = 0.1 + 0.2 = 0.3\)</span>, which also picks up <span class="math inline">\(x = 1\)</span>. When the endpoint is a value <span class="math inline">\(X\)</span> can take, strict and inclusive give different answers.</p></li>
+<li><p><span class="math inline">\(P(X &gt; 5) = 0.3\)</span>. <span class="math inline">\(P(X \ge 5) = 0.4 + 0.3 = 0.7\)</span>. By the complement rule, <span class="math inline">\(P(X &gt; 5) = 1 - P(X \le 5) = 1 - 0.7 = 0.3\)</span>.</p></li>
+<li><p><span class="math inline">\(P(X &lt; 4) = P(X \le 4) = 0.1 + 0.2 = 0.3\)</span>. At <span class="math inline">\(4\)</span>, a value <span class="math inline">\(X\)</span> never takes, strict and inclusive agree.</p></li>
+<li><p><span class="math inline">\(P(1 \le X \le 5) = 0.2 + 0.4 = 0.6\)</span>. <span class="math inline">\(P(1 &lt; X &lt; 5) = 0\)</span>, since no value sits strictly between <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span>.</p></li>
+</ol>
+</div>
+</div>
 </div>
 <hr>
 </section>
@@ -743,6 +779,51 @@ window.Quarto = {
 <figure class="figure">
 <p><img src="lesson-8_files/figure-html/pmf-cdf-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Two panels. Left, a stem plot of the pmf with spikes of height 0.1, 0.2, 0.4, and 0.3 at x equal to 0, 1, 5, and 6, and an orange triangle on the axis at the mean of 4. Right, the matching cdf drawn as a step function rising from 0 to 0.1, 0.3, 0.7, and 1, with a closed circle at the top of each jump and an open circle at the bottom."></p>
 </figure>
+</div>
+</div>
+</div>
+<p>Now the same five questions off the cdf.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(F_X(4.2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \le 5)\)</span> and <span class="math inline">\(P(X &lt; 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 5)\)</span> and <span class="math inline">\(P(X \ge 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X = 5)\)</span>, using <span class="math inline">\(F\)</span> alone</p></li>
+<li><p><span class="math inline">\(P(1 &lt; X \le 6)\)</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(F_X(4.2) = 0.3\)</span>. <span class="math inline">\(F\)</span> holds flat between values, so it returns the running total through the last value at or below <span class="math inline">\(4.2\)</span>, which is <span class="math inline">\(1\)</span>.</p></li>
+<li><p><span class="math inline">\(P(X \le 5) = F_X(5) = 0.7\)</span>, read straight off. <span class="math inline">\(P(X &lt; 5) = F_X(1) = 0.3\)</span>: strict means step back to the previous value, not <span class="math inline">\(F_X(5)\)</span>.</p></li>
+<li><p><span class="math inline">\(P(X &gt; 5) = 1 - F_X(5) = 1 - 0.7 = 0.3\)</span>. <span class="math inline">\(P(X \ge 5) = 1 - F_X(1) = 1 - 0.3 = 0.7\)</span>. The complement of <span class="math inline">\(\ge 5\)</span> is <span class="math inline">\(&lt; 5\)</span>, so subtract <span class="math inline">\(F\)</span> at the previous value.</p></li>
+<li><p><span class="math inline">\(P(X = 5) = F_X(5) - F_X(1) = 0.7 - 0.3 = 0.4\)</span>, the size of the jump at <span class="math inline">\(5\)</span>.</p></li>
+<li><p><span class="math inline">\(P(1 &lt; X \le 6) = F_X(6) - F_X(1) = 1 - 0.3 = 0.7\)</span>. Subtracting <span class="math inline">\(F_X(1)\)</span> removes everything at or below <span class="math inline">\(1\)</span>, which is what the strict left end asks for.</p></li>
+</ol>
 </div>
 </div>
 </div>
@@ -866,7 +947,7 @@ window.Quarto = {
 </div>
 <p><strong>a) Is this a legal pmf?</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -875,7 +956,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Every value is nonnegative, and <span class="math inline">\(0.50 + 0.20 + 0.20 + 0.10 = 1\)</span>. Both conditions hold.</p>
 </div>
@@ -883,7 +964,7 @@ window.Quarto = {
 </div>
 <p><strong>b) Build the cdf.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -892,7 +973,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Run a total through the pmf: <span class="math inline">\(0.50\)</span>, then <span class="math inline">\(0.50 + 0.20 = 0.70\)</span>, then <span class="math inline">\(0.70 + 0.20 = 0.90\)</span>, then <span class="math inline">\(0.90 + 0.10 = 1\)</span>.</p>
 <div class="sbs">
@@ -941,7 +1022,7 @@ window.Quarto = {
 </div>
 <p><strong>c) Find <span class="math inline">\(E(X)\)</span>.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -950,7 +1031,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[E(X) = (2)(0.50) + (5)(0.20) + (10)(0.20) + (20)(0.10) = 1 + 1 + 2 + 2 = \mathbf{\$6.00}\]</span></p>
 <p>The ticket costs <span class="math inline">\(\$8\)</span> and pays back <span class="math inline">\(\$6\)</span> on average, so the player is down two dollars a ticket in the long run. And <span class="math inline">\(\$6\)</span> is not a payout the ticket can produce.</p>
@@ -959,7 +1040,7 @@ window.Quarto = {
 </div>
 <p><strong>d) Find <span class="math inline">\(V(X)\)</span> and <span class="math inline">\(\sigma_X\)</span>.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -968,7 +1049,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Use the shortcut. First <span class="math inline">\(E(X^2)\)</span>, which squares the value and keeps the same weight:</p>
 <p><span class="math display">\[E(X^2) = (2^2)(0.50) + (5^2)(0.20) + (10^2)(0.20) + (20^2)(0.10) = 2 + 5 + 20 + 40 = 67\]</span></p>
@@ -980,7 +1061,7 @@ window.Quarto = {
 </div>
 <p><strong>e) Find <span class="math inline">\(P(X = 10)\)</span>, <span class="math inline">\(P(X \le 5)\)</span>, <span class="math inline">\(P(X &lt; 5)\)</span>, <span class="math inline">\(P(X \ge 10)\)</span>, <span class="math inline">\(P(5 \le X \le 10)\)</span>, <span class="math inline">\(P(X = 7)\)</span>, <span class="math inline">\(F_X(8)\)</span>, and <span class="math inline">\(F_X(1)\)</span>.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -989,7 +1070,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="compact">
 <ul>
@@ -1008,7 +1089,7 @@ window.Quarto = {
 </div>
 <p><strong>f) Given the ticket paid more than <span class="math inline">\(\$2\)</span>, what is the probability it paid at least <span class="math inline">\(\$10\)</span>?</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1017,7 +1098,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Lesson 6 conditional probability, now on a random variable. With <span class="math inline">\(A = \{X \ge 10\}\)</span> inside <span class="math inline">\(B = \{X &gt; 2\}\)</span>, we get <span class="math inline">\(A \cap B = A\)</span>, so</p>
 <p><span class="math display">\[P(X \ge 10 \mid X &gt; 2) = \frac{P(X \ge 10)}{P(X &gt; 2)} = \frac{0.30}{1 - F_X(2)}
@@ -1057,7 +1138,7 @@ window.Quarto = {
 </tbody>
 </table>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1066,7 +1147,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Find the missing probability.</p></li>
@@ -1078,7 +1159,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1087,7 +1168,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>The pmf has to sum to <span class="math inline">\(1\)</span>:</li>
@@ -1136,7 +1217,7 @@ window.Quarto = {
 1 &amp; \text{if } x \ge 3
 \end{cases}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1145,7 +1226,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Recover the pmf.</p></li>
@@ -1157,7 +1238,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1166,7 +1247,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>The pmf is the size of each jump:</li>
@@ -1248,7 +1329,7 @@ window.Quarto = {
 </tbody>
 </table>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1257,7 +1338,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Which route has the smaller expected delay?</p></li>
@@ -1269,7 +1350,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1278,7 +1359,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math display">\[E(X) = (0)(0.6) + (1)(0.3) + (4)(0.1) = 0.3 + 0.4 = \mathbf{0.7 \text{ hours}}\]</span></li>
@@ -1311,7 +1392,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="problem-4-building-a-pmf-from-scratch">Problem 4: Building a pmf from Scratch</h3>
 <p>Three cadets attempt the obstacle course independently. Each passes with probability <span class="math inline">\(0.8\)</span>. Let <span class="math inline">\(X\)</span> be the number who pass.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1320,7 +1401,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Construct the pmf of <span class="math inline">\(X\)</span>.</p></li>
@@ -1331,7 +1412,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1340,7 +1421,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>Independence gives the probability of one sequence, counting gives how many sequences have <span class="math inline">\(k\)</span> passes, exactly the Lesson 7 move:</li>
@@ -1393,7 +1474,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="problem-5-stretch">Problem 5: Stretch</h3>
 <p>Let <span class="math inline">\(X\)</span> have <span class="math inline">\(E(X) = 10\)</span> and <span class="math inline">\(V(X) = 4\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1402,7 +1483,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Find <span class="math inline">\(\sigma_X\)</span>.</p></li>
@@ -1413,7 +1494,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1422,7 +1503,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math display">\[\sigma_X = \sqrt{V(X)} = \sqrt{4} = \mathbf{2}\]</span></p></li>
