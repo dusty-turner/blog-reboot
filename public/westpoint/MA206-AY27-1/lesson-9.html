@@ -1,0 +1,2336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-9 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206-AY27-1/lesson-8.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206-AY27-1/index.html" aria-current="page"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY27-1/lesson-9.html">Lesson 9</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-9.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-9-binomial-distribution" id="toc-lesson-9-binomial-distribution" class="nav-link active" data-scroll-target="#lesson-9-binomial-distribution">Lesson 9: Binomial Distribution</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#what-we-did-lessons-1-through-8" id="toc-what-we-did-lessons-1-through-8" class="nav-link" data-scroll-target="#what-we-did-lessons-1-through-8">What We Did: Lessons 1 through 8</a></li>
+  <li><a href="#what-were-doing-lesson-9" id="toc-what-were-doing-lesson-9" class="nav-link" data-scroll-target="#what-were-doing-lesson-9">What We’re Doing: Lesson 9</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a>
+  <ul class="collapse">
+  <li><a href="#r-lite" id="toc-r-lite" class="nav-link" data-scroll-target="#r-lite">R-Lite</a></li>
+  <li><a href="#guest-lecture" id="toc-guest-lecture" class="nav-link" data-scroll-target="#guest-lecture">Guest Lecture</a></li>
+  </ul></li>
+  <li><a href="#finishing-lesson-8-expected-value-and-variance" id="toc-finishing-lesson-8-expected-value-and-variance" class="nav-link" data-scroll-target="#finishing-lesson-8-expected-value-and-variance">Finishing Lesson 8: Expected Value and Variance</a>
+  <ul class="collapse">
+  <li><a href="#where-we-left-off" id="toc-where-we-left-off" class="nav-link" data-scroll-target="#where-we-left-off">Where We Left Off</a></li>
+  <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected Value</a></li>
+  <li><a href="#variance-and-standard-deviation" id="toc-variance-and-standard-deviation" class="nav-link" data-scroll-target="#variance-and-standard-deviation">Variance and Standard Deviation</a></li>
+  <li><a href="#start-to-finish-a-scratch-off-ticket" id="toc-start-to-finish-a-scratch-off-ticket" class="nav-link" data-scroll-target="#start-to-finish-a-scratch-off-ticket">Start to Finish: A Scratch-Off Ticket</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#reese-softball" id="toc-reese-softball" class="nav-link" data-scroll-target="#reese-softball">Reese, Softball</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#opening-five-free-throws" id="toc-opening-five-free-throws" class="nav-link" data-scroll-target="#opening-five-free-throws">Opening: Five Free Throws</a>
+  <ul class="collapse">
+  <li><a href="#generalize" id="toc-generalize" class="nav-link" data-scroll-target="#generalize">Generalize</a></li>
+  </ul></li>
+  <li><a href="#is-it-a-binomial-experiment" id="toc-is-it-a-binomial-experiment" class="nav-link" data-scroll-target="#is-it-a-binomial-experiment">Is It a Binomial Experiment?</a></li>
+  <li><a href="#finding-probabilities-with-the-binomial-distribution" id="toc-finding-probabilities-with-the-binomial-distribution" class="nav-link" data-scroll-target="#finding-probabilities-with-the-binomial-distribution">Finding Probabilities with the Binomial Distribution</a></li>
+  <li><a href="#mean-and-variance" id="toc-mean-and-variance" class="nav-link" data-scroll-target="#mean-and-variance">Mean and Variance</a>
+  <ul class="collapse">
+  <li><a href="#what-the-distribution-looks-like" id="toc-what-the-distribution-looks-like" class="nav-link" data-scroll-target="#what-the-distribution-looks-like">What the Distribution Looks Like</a></li>
+  <li><a href="#class-problem" id="toc-class-problem" class="nav-link" data-scroll-target="#class-problem">Class Problem</a></li>
+  </ul></li>
+  <li><a href="#a-fun-exercise" id="toc-a-fun-exercise" class="nav-link" data-scroll-target="#a-fun-exercise">A Fun Exercise</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-land-navigation" id="toc-problem-1-land-navigation" class="nav-link" data-scroll-target="#problem-1-land-navigation">Problem 1: Land Navigation</a></li>
+  <li><a href="#problem-2-drone-sorties" id="toc-problem-2-drone-sorties" class="nav-link" data-scroll-target="#problem-2-drone-sorties">Problem 2: Drone Sorties</a></li>
+  <li><a href="#problem-3-rifle-qualification" id="toc-problem-3-rifle-qualification" class="nav-link" data-scroll-target="#problem-3-rifle-qualification">Problem 3: Rifle Qualification</a></li>
+  <li><a href="#problem-4-the-wrong-model" id="toc-problem-4-the-wrong-model" class="nav-link" data-scroll-target="#problem-4-the-wrong-model">Problem 4: The Wrong Model</a></li>
+  <li><a href="#problem-5-stretch" id="toc-problem-5-stretch" class="nav-link" data-scroll-target="#problem-5-stretch">Problem 5: Stretch</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-9-binomial-distribution" class="level1">
+<h1>Lesson 9: Binomial Distribution</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* faint divider between the worked examples */
+.exsep { border: 0; border-top: 1px solid #ccd3dc; margin: 2rem 0 1.6rem; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* two columns of math, for showing the pmf next to the table */
+.sbs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: start;
+       margin: 1rem 0 1.2rem; }
+@media (max-width: 700px) { .sbs { grid-template-columns: 1fr; } }
+.sbs-col > p:first-child { margin-bottom: 0.2rem; text-align: center; }
+
+/* the start to finish walkthrough, tightened vertically */
+.walk p { margin: 0.4rem 0; }
+.walk .math.display { margin: 0.45rem 0; font-size: 0.95em; }
+.walk .callout { margin: 0.45rem 0 1rem; }
+.walk table { margin: 0.4rem 0; font-size: 0.92rem; }
+.walk .sbs { margin: 0.5rem 0 0.6rem; }
+.walk ul { margin: 0.25rem 0 0.25rem 1.2rem; }
+.walk li { margin: 0.15rem 0; }
+
+/* side by side cards, same format as the forge */
+.quad2 { display: grid; grid-template-columns: 1fr; gap: 0.6rem; margin: 1rem 0 0.75rem; }
+.quad2-2col { grid-template-columns: 1fr 1fr; }
+.quad2-3col { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 700px) { .quad2-2col, .quad2-3col { grid-template-columns: 1fr; } }
+.quad-cell { background: #f7f9fc; border: 1px solid #dee2e6; border-left: 3px solid #1f5fa8;
+             border-radius: 5px; padding: 0.5rem 0.75rem 0.35rem; }
+.quad-prob { text-align: left; padding: 0.6rem 0.85rem 0.7rem; }
+.quad-prob .quad-num { display: block; font-size: 0.68rem; font-weight: 700;
+                       letter-spacing: 0.06em; text-transform: uppercase; color: #7a8595; }
+.quad-prob .quad-name { display: block; font-size: 0.95rem; font-weight: 700;
+                        color: #1f2937; margin-bottom: 0.2rem; }
+.quad-prob p { margin: 0; font-size: 0.88rem; line-height: 1.45; color: #1f2937; }
+
+/* the R-Lite reference table: vertical rules so the statement, the call, and the
+   value read as three separate columns. Same treatment as the forge. */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* display math that reads better flush left than centered */
+.math-left mjx-container[display="true"],
+.math-left .math.display {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+.math-left mjx-container[display="true"] > svg,
+.math-left mjx-container[display="true"] > mjx-math {
+  margin-left: 0 !important;
+}
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-9_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- Previously used this term: 552 (L1), 2435 (L2), 982 (L3), 1132 (L4), 936 (L5), 795 (L6), flag (L7), 221 (L8) -->
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Block I calendar, weeks 1 through 7, with a red box around Wednesday 9 September, Lesson 9, Binomial Distribution."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lessons-1-through-8" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-1-through-8">What We Did: Lessons 1 through 8</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Data, Study Design, and Summaries (Lessons 1 and 2)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Data, Study Design, and Summaries (Lessons 1 and 2)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Population</strong> vs <strong>sample</strong>, <strong>parameter</strong> (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(p\)</span>) vs <strong>statistic</strong> (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\hat{p}\)</span>).</li>
+<li><strong>Random sampling</strong> buys generalization, <strong>random assignment</strong> buys causation.</li>
+<li><strong>Center</strong>: mean, median, trimmed mean. <strong>Spread</strong>: <span class="math inline">\(s^2\)</span>, <span class="math inline">\(s\)</span>, and the fourth spread <span class="math inline">\(f_s\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Set Theory and Probability Basics (Lessons 3 and 4)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Set Theory and Probability Basics (Lessons 3 and 4)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Experiment</strong>, <strong>sample space</strong> <span class="math inline">\(\mathcal{S}\)</span>, <strong>event</strong> as a subset of <span class="math inline">\(\mathcal{S}\)</span>.</li>
+<li><strong>Union</strong> is “or”, <strong>intersection</strong> is “and”, <strong>complement</strong> is “not”.</li>
+<li>Three <strong>axioms</strong>, the <strong>complement rule</strong> <span class="math inline">\(P(A') = 1 - P(A)\)</span>, and the <strong>addition rule</strong> <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span>.</li>
+<li><strong>Equally likely outcomes</strong>: <span class="math inline">\(P(A) = N(A)/N\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Counting (Lesson 5)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Counting (Lesson 5)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Product rule</strong>: <span class="math inline">\(n_1 n_2 \cdots n_k\)</span>.</li>
+<li><strong>Permutation</strong> (order matters): <span class="math inline">\(P_{k,n} = \dfrac{n!}{(n-k)!}\)</span>.</li>
+<li><strong>Combination</strong> (order does not): <span class="math inline">\(\dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!}\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Conditional Probability (Lesson 6)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Conditional Probability (Lesson 6)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Conditional probability</strong>: <span class="math inline">\(P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}\)</span>.</li>
+<li><strong>Multiplication rule</strong>: <span class="math inline">\(P(A \cap B) = P(A \mid B)\,P(B)\)</span>.</li>
+<li><strong>Law of Total Probability</strong>: <span class="math inline">\(P(B) = \sum_{i=1}^{k} P(B \mid A_i)\,P(A_i)\)</span>.</li>
+<li><strong>Bayes’ Theorem</strong> flips the conditioning, and <span class="math inline">\(P(A \mid B) \ne P(B \mid A)\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Independence (Lesson 7)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Independence (Lesson 7)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Independent</strong>: <span class="math inline">\(P(A \mid B) = P(A)\)</span>, tested with <span class="math inline">\(P(A \cap B) = P(A)\,P(B)\)</span>.</li>
+<li>Independence collapses the conditional, multiplication, and addition rules.</li>
+<li><strong>Mutually exclusive is not independent.</strong> Disjoint events are as dependent as events get.</li>
+<li><span class="math inline">\(P(\text{at least one}) = 1 - P(\text{none})\)</span>, and “none” is a product under independence.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Discrete Random Variables (Lesson 8)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Discrete Random Variables (Lesson 8)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>A <strong>random variable</strong> <span class="math inline">\(X\)</span> assigns a number to every outcome in <span class="math inline">\(\mathcal{S}\)</span>.</li>
+<li><strong>pmf</strong>: <span class="math inline">\(p_X(x) = P(X = x)\)</span>, with <span class="math inline">\(p_X(x) \ge 0\)</span> and <span class="math inline">\(\sum_x p_X(x) = 1\)</span>.</li>
+<li><strong>cdf</strong>: <span class="math inline">\(F_X(x) = P(X \le x)\)</span>, a step function that jumps by <span class="math inline">\(p_X(x)\)</span> at each value.</li>
+<li>For a discrete <span class="math inline">\(X\)</span>, <span class="math inline">\(\le\)</span> and <span class="math inline">\(&lt;\)</span> are <strong>not</strong> interchangeable.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>We ran out of time before expected value and variance, so we finish those first, then name our first distribution.</p>
+<hr>
+</section>
+<section id="what-were-doing-lesson-9" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-9">What We’re Doing: Lesson 9</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li>Finish Lesson 8: compute the expected value <span class="math inline">\(E(X)\)</span> and variance <span class="math inline">\(V(X)\)</span> of a discrete random variable. (SLO 7)</li>
+<li>Identify a binomial experiment and verify its conditions. (SLO 7)</li>
+<li>Compute binomial probabilities using the pmf and cdf (tables and software). (SLO 7, 4)</li>
+<li>State and interpret the mean and variance of a binomial random variable. (SLO 7)</li>
+</ul>
+</div>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore 3.3 (carryover) and 3.4</p>
+<hr>
+</section>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<section id="r-lite" class="level3">
+<h3 class="anchored" data-anchor-id="r-lite">R-Lite</h3>
+<p>Download <a href="https://westpoint.instructure.com/courses/12748/files/4236681?wrap=1">R-Lite</a> from Canvas today. We demonstrate it in class this lesson.</p>
+<div class="compact">
+<ul>
+<li>Every distribution from here on has a one line R-Lite call.</li>
+<li>You will need it for WPR I, so do not wait.</li>
+</ul>
+</div>
+</section>
+<section id="guest-lecture" class="level3">
+<h3 class="anchored" data-anchor-id="guest-lecture">Guest Lecture</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/people/sikora.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="COL Tim Sikora." width="260"></p>
+</figure>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Who:</strong> COL Tim Sikora, commander of the Cyber Protection Brigade, math instructor here from 2016 to 2019.</li>
+<li><strong>When:</strong> 30 Sep, Dean’s Hour.</li>
+<li><strong>Where:</strong> Robinson Auditorium.</li>
+</ul>
+</div>
+<hr>
+</section>
+</section>
+<section id="finishing-lesson-8-expected-value-and-variance" class="level2">
+<h2 class="anchored" data-anchor-id="finishing-lesson-8-expected-value-and-variance">Finishing Lesson 8: Expected Value and Variance</h2>
+<section id="where-we-left-off" class="level3">
+<h3 class="anchored" data-anchor-id="where-we-left-off">Where We Left Off</h3>
+<p>Remember this function? The <strong>pmf</strong> of <span class="math inline">\(X\)</span>, which says where the probability sits.</p>
+<div class="sbs">
+<div class="sbs-col">
+<p><span class="math display">\[p_X(x) = \begin{cases}
+0.1 &amp; \text{if } x = 0 \\
+0.2 &amp; \text{if } x = 1 \\
+0.4 &amp; \text{if } x = 5 \\
+0.3 &amp; \text{if } x = 6 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+</div>
+<div class="sbs-col">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+</tbody>
+</table>
+<p>Nonnegative, and the four probabilities add to <span class="math inline">\(1\)</span>. A legal pmf.</p>
+</div>
+</div>
+<p>And remember that we created this from it? The <strong>cdf</strong>, which accumulates.</p>
+<div class="sbs">
+<div class="sbs-col">
+<p><span class="math display">\[F_X(x) = \begin{cases}
+0 &amp; \text{if } x &lt; 0 \\
+0.1 &amp; \text{if } 0 \le x &lt; 1 \\
+0.3 &amp; \text{if } 1 \le x &lt; 5 \\
+0.7 &amp; \text{if } 5 \le x &lt; 6 \\
+1 &amp; \text{if } x \ge 6
+\end{cases}\]</span></p>
+</div>
+<div class="sbs-col">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(F_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Each jump in <span class="math inline">\(F\)</span> is exactly <span class="math inline">\(p_X(x)\)</span>, and <span class="math inline">\(F\)</span> holds flat in between.</p>
+</div>
+</div>
+<p>With those two we found things like this.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(P(X = 5)\)</span> and <span class="math inline">\(P(X = 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1)\)</span> and <span class="math inline">\(P(X \le 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 5)\)</span> and <span class="math inline">\(P(X \ge 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(1 \le X \le 5)\)</span></p></li>
+<li><p><span class="math inline">\(F_X(4.2)\)</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(P(X = 5) = 0.4\)</span>, straight off the pmf. <span class="math inline">\(P(X = 3) = 0\)</span>, because <span class="math inline">\(3\)</span> is not a value <span class="math inline">\(X\)</span> takes.</p></li>
+<li><p><span class="math inline">\(P(X &lt; 1) = 0.1\)</span>, only <span class="math inline">\(x = 0\)</span>. <span class="math inline">\(P(X \le 1) = 0.1 + 0.2 = 0.3\)</span>, which also picks up <span class="math inline">\(x = 1\)</span>.</p></li>
+<li><p><span class="math inline">\(P(X &gt; 5) = 0.3\)</span>. <span class="math inline">\(P(X \ge 5) = 0.4 + 0.3 = 0.7\)</span>. Off the cdf, <span class="math inline">\(P(X \ge 5) = 1 - F_X(1) = 1 - 0.3 = 0.7\)</span>.</p></li>
+<li><p><span class="math inline">\(P(1 \le X \le 5) = 0.2 + 0.4 = 0.6\)</span>. Off the cdf, <span class="math inline">\(F_X(5) - F_X(0) = 0.7 - 0.1 = 0.6\)</span>, cutting <strong>below</strong> the left endpoint.</p></li>
+<li><p><span class="math inline">\(F_X(4.2) = 0.3\)</span>. <span class="math inline">\(F\)</span> holds flat between values, so it returns the running total through <span class="math inline">\(x = 1\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p>Every one of those questions locates probability. Now we want two numbers that summarize the whole distribution: the <strong>expected value</strong> and the <strong>variance</strong>.</p>
+</section>
+<section id="expected-value" class="level3">
+<h3 class="anchored" data-anchor-id="expected-value">Expected Value</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Definition: Expected Value">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Definition: Expected Value
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>expected value</strong> (or mean) of a discrete random variable <span class="math inline">\(X\)</span> with pmf <span class="math inline">\(p_X(x)\)</span> is <span class="math display">\[E(X) = \mu_X = \sum_{\text{all } x} x \, p_X(x).\]</span></p>
+</div>
+</div>
+<p>One term per value, weight times value. It is the mean of the population <span class="math inline">\(X\)</span> describes, not the mean of a sample.</p>
+<p>Same <span class="math inline">\(X\)</span> from above:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[E(X) = (0)(0.1) + (1)(0.2) + (5)(0.4) + (6)(0.3) = 0 + 0.2 + 2.0 + 1.8 = 4\]</span></p>
+<p>Put the four spikes on a seesaw and it balances at <span class="math inline">\(4\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-9_files/figure-html/balance-point-1.png" class="img-fluid figure-img" style="width:100.0%" alt="A stem plot of the pmf with spikes of height 0.1, 0.2, 0.4, and 0.3 at x equal to 0, 1, 5, and 6, and an orange triangle on the axis at the mean of 4."></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="An Expected Value Is Not a Prediction">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>An Expected Value Is Not a Prediction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(X\)</span> is never <span class="math inline">\(4\)</span>. It can only be <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(5\)</span>, or <span class="math inline">\(6\)</span>. Expected value is the balance point of the pmf, the long run average over many repetitions, and it does not have to be a value <span class="math inline">\(X\)</span> can take.</p>
+</div>
+</div>
+</section>
+<section id="variance-and-standard-deviation" class="level3">
+<h3 class="anchored" data-anchor-id="variance-and-standard-deviation">Variance and Standard Deviation</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="Definition: Variance and Standard Deviation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Definition: Variance and Standard Deviation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[V(X) = \sigma_X^2 = \sum_{\text{all } x} (x - \mu)^2 \, p_X(x) = E[(X - \mu)^2]\]</span></p>
+<p>The <strong>shortcut formula</strong>, which is usually less work: <span class="math display">\[V(X) = E(X^2) - [E(X)]^2, \qquad \text{where } E(X^2) = \sum_x x^2 \, p_X(x).\]</span></p>
+<p>The <strong>standard deviation</strong> is <span class="math inline">\(\sigma_X = \sqrt{V(X)}\)</span>, back in the units of <span class="math inline">\(X\)</span>.</p>
+</div>
+</div>
+<p>Same idea as <span class="math inline">\(s^2\)</span> from Lesson 2, except the weights are probabilities instead of <span class="math inline">\(1/(n-1)\)</span>.</p>
+<p>Same <span class="math inline">\(X\)</span> again, with <span class="math inline">\(\mu = 4\)</span> from above.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>By the definition.</strong> Squared distance from <span class="math inline">\(\mu = 4\)</span>, weighted:</p>
+<p><span class="math display">\[V(X) = (0-4)^2(0.1) + (1-4)^2(0.2) + (5-4)^2(0.4) + (6-4)^2(0.3)\]</span></p>
+<p><span class="math display">\[V(X) = (16)(0.1) + (9)(0.2) + (1)(0.4) + (4)(0.3) = 1.6 + 1.8 + 0.4 + 1.2 = 5\]</span></p>
+<p><strong>By the shortcut.</strong> Same answer, fewer subtractions. First <span class="math inline">\(E(X^2)\)</span>, which squares the value and keeps the same weight:</p>
+<p><span class="math display">\[E(X^2) = (0^2)(0.1) + (1^2)(0.2) + (5^2)(0.4) + (6^2)(0.3) = 0 + 0.2 + 10 + 10.8 = 21\]</span></p>
+<p><span class="math display">\[V(X) = 21 - 4^2 = 21 - 16 = 5\]</span></p>
+<p>So <span class="math inline">\(\sigma_X = \sqrt{5} \approx 2.236\)</span>.</p>
+</section>
+<section id="start-to-finish-a-scratch-off-ticket" class="level3">
+<h3 class="anchored" data-anchor-id="start-to-finish-a-scratch-off-ticket">Start to Finish: A Scratch-Off Ticket</h3>
+<div class="walk">
+<p>A gas station sells an <span class="math inline">\(\$8\)</span> scratch-off ticket. Every ticket wins something. Let <span class="math inline">\(X\)</span> be the dollars it pays out.</p>
+<div class="sbs">
+<div class="sbs-col">
+<p><span class="math display">\[p_X(x) = \begin{cases}
+0.50 &amp; \text{if } x = 2 \\
+0.20 &amp; \text{if } x = 5 \\
+0.20 &amp; \text{if } x = 10 \\
+0.10 &amp; \text{if } x = 20 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+</div>
+<div class="sbs-col">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.10</td>
+</tr>
+</tbody>
+</table>
+<p>The values are not consecutive, and they do not start at <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>. A random variable takes whatever values the problem hands it.</p>
+</div>
+</div>
+<p><strong>a) Is this a legal pmf?</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Every value is nonnegative, and <span class="math inline">\(0.50 + 0.20 + 0.20 + 0.10 = 1\)</span>. Both conditions hold.</p>
+</div>
+</div>
+</div>
+<p><strong>b) Build the cdf.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Run a total through the pmf: <span class="math inline">\(0.50\)</span>, then <span class="math inline">\(0.50 + 0.20 = 0.70\)</span>, then <span class="math inline">\(0.70 + 0.20 = 0.90\)</span>, then <span class="math inline">\(0.90 + 0.10 = 1\)</span>.</p>
+<div class="sbs">
+<div class="sbs-col">
+<p><span class="math display">\[F_X(x) = \begin{cases}
+0 &amp; \text{if } x &lt; 2 \\
+0.50 &amp; \text{if } 2 \le x &lt; 5 \\
+0.70 &amp; \text{if } 5 \le x &lt; 10 \\
+0.90 &amp; \text{if } 10 \le x &lt; 20 \\
+1 &amp; \text{if } x \ge 20
+\end{cases}\]</span></p>
+</div>
+<div class="sbs-col">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_X(x)\)</span></td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(F_X(x)\)</span></td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.70</td>
+<td style="text-align: center;">0.90</td>
+<td style="text-align: center;">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>The gaps show up as long flats. <span class="math inline">\(F\)</span> holds at <span class="math inline">\(0.70\)</span> from <span class="math inline">\(5\)</span> all the way to <span class="math inline">\(10\)</span>, and is still <span class="math inline">\(0\)</span> up to <span class="math inline">\(2\)</span>, since <span class="math inline">\(2\)</span> is the smallest payout.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>c) Find <span class="math inline">\(E(X)\)</span>.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[E(X) = (2)(0.50) + (5)(0.20) + (10)(0.20) + (20)(0.10) = 1 + 1 + 2 + 2 = \mathbf{\$6.00}\]</span></p>
+<p>The ticket costs <span class="math inline">\(\$8\)</span> and pays back <span class="math inline">\(\$6\)</span> on average, so the player is down two dollars a ticket in the long run. And <span class="math inline">\(\$6\)</span> is not a payout the ticket can produce.</p>
+</div>
+</div>
+</div>
+<p><strong>d) Find <span class="math inline">\(V(X)\)</span> and <span class="math inline">\(\sigma_X\)</span>.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the shortcut. First <span class="math inline">\(E(X^2)\)</span>, which squares the value and keeps the same weight:</p>
+<p><span class="math display">\[E(X^2) = (2^2)(0.50) + (5^2)(0.20) + (10^2)(0.20) + (20^2)(0.10) = 2 + 5 + 20 + 40 = 67\]</span></p>
+<p><span class="math display">\[V(X) = E(X^2) - [E(X)]^2 = 67 - 6^2 = \mathbf{31}, \qquad
+\sigma_X = \sqrt{31} \approx \mathbf{\$5.57}\]</span></p>
+<p>The standard deviation is nearly as large as the mean. That <span class="math inline">\(\$20\)</span> payout is uncommon, but it sits far enough out to drive most of the spread.</p>
+</div>
+</div>
+</div>
+<p><strong>e) Find <span class="math inline">\(P(X = 10)\)</span>, <span class="math inline">\(P(X \le 5)\)</span>, <span class="math inline">\(P(X &lt; 5)\)</span>, <span class="math inline">\(P(X \ge 10)\)</span>, <span class="math inline">\(P(5 \le X \le 10)\)</span>, <span class="math inline">\(P(X = 7)\)</span>, <span class="math inline">\(F_X(8)\)</span>, and <span class="math inline">\(F_X(1)\)</span>.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><span class="math inline">\(P(X = 10) = p_X(10) = \mathbf{0.20}\)</span>, straight off the pmf.</li>
+<li><span class="math inline">\(P(X \le 5) = F_X(5) = \mathbf{0.70}\)</span>, straight off the cdf.</li>
+<li><span class="math inline">\(P(X &lt; 5) = F_X(2) = \mathbf{0.50}\)</span>. Strict inequality drops <span class="math inline">\(x = 5\)</span>, and <span class="math inline">\(2\)</span> is the next value down.</li>
+<li><span class="math inline">\(P(X \ge 10) = 1 - F_X(5) = \mathbf{0.30}\)</span>. Complement, cut below the smallest value in the event.</li>
+<li><span class="math inline">\(P(5 \le X \le 10) = F_X(10) - F_X(2) = 0.90 - 0.50 = \mathbf{0.40}\)</span>. Subtract below the left endpoint, not at it, or you lose <span class="math inline">\(x = 5\)</span>. Check the pmf: <span class="math inline">\(0.20 + 0.20 = 0.40\)</span>.</li>
+<li><span class="math inline">\(P(X = 7) = \mathbf{0}\)</span>. Seven sits inside the range of <span class="math inline">\(X\)</span>, but no mass sits on it.</li>
+<li><span class="math inline">\(F_X(8) = \mathbf{0.70}\)</span> and <span class="math inline">\(F_X(1) = \mathbf{0}\)</span>. Any real number is a legal input to <span class="math inline">\(F\)</span>.</li>
+</ul>
+</div>
+<p>For a discrete <span class="math inline">\(X\)</span>, <span class="math inline">\(\le\)</span> and <span class="math inline">\(&lt;\)</span> are <strong>not</strong> interchangeable. Ask whether the endpoint is inside the event, and with gaps, cut at the next value that actually exists.</p>
+</div>
+</div>
+</div>
+<p><strong>f) Given the ticket paid more than <span class="math inline">\(\$2\)</span>, what is the probability it paid at least <span class="math inline">\(\$10\)</span>?</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lesson 6 conditional probability, now on a random variable. With <span class="math inline">\(A = \{X \ge 10\}\)</span> inside <span class="math inline">\(B = \{X &gt; 2\}\)</span>, we get <span class="math inline">\(A \cap B = A\)</span>, so</p>
+<p><span class="math display">\[P(X \ge 10 \mid X &gt; 2) = \frac{P(X \ge 10)}{P(X &gt; 2)} = \frac{0.30}{1 - F_X(2)}
+= \frac{0.30}{0.50} = \mathbf{0.60}\]</span></p>
+<p>Only <span class="math inline">\(30\%\)</span> of all tickets pay <span class="math inline">\(\$10\)</span> or more, but among the tickets that beat the minimum payout, <span class="math inline">\(60\%\)</span> do.</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="reese-softball" class="level3">
+<h3 class="anchored" data-anchor-id="reese-softball">Reese, Softball</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false" href="">7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false" href="">8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false" href="">9</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false" href="">10</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="assets/img/reese-softball/windup.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="assets/img/reese-softball/sunset-pitch.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><img src="assets/img/reese-softball/fielding.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p><img src="assets/img/reese-softball/pop-fly.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p><img src="assets/img/reese-softball/out-of-the-box.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p><img src="assets/img/reese-softball/coming-home.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<p><img src="assets/img/reese-softball/dad-at-the-fence.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<video width="100%" controls="">
+<source src="assets/video/reese-softball-clip-1.mp4" type="video/mp4">
+</video>
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+<video width="100%" controls="">
+<source src="assets/video/reese-softball-clip-2.mp4" type="video/mp4">
+</video>
+</div>
+<div id="tabset-1-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-10-tab">
+<video width="100%" controls="">
+<source src="assets/video/reese-softball-clip-3.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<hr>
+<!--
+### DMath Volleyball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously ?-?"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/volleyball.png){fig-align="center" width="50%"}
+
+### DMath Basketball!!
+
+**Math vs TBD**
+
+:::{.callout-note collapse="true" title="Previously ?-?"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"}
+
+---
+-->
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 9">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 9
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Expected value</strong>: <span class="math inline">\(E(X) = \sum_x x\,p_X(x)\)</span>. <strong>Variance</strong>: <span class="math inline">\(V(X) = E(X^2) - [E(X)]^2\)</span></li>
+<li>A <strong>binomial experiment</strong> is <span class="math inline">\(n\)</span> fixed independent trials, two outcomes, constant <span class="math inline">\(p\)</span></li>
+<li><strong>pmf</strong>: <span class="math inline">\(p(x) = \dbinom{n}{x} p^x (1-p)^{n-x}\)</span> for <span class="math inline">\(x = 0, 1, \dots, n\)</span></li>
+<li><strong>Fully specify</strong> a distribution: name the variable, name the distribution, give the parameters, as in <span class="math inline">\(X \sim \text{Binom}(n = 5,\ p = 0.75)\)</span></li>
+<li><strong>In R-Lite</strong>: <code>dbinom</code> is the pmf, <code>pbinom</code> is the cdf, and every other statement is built from those two with a complement or a subtraction</li>
+<li><strong>Mean and variance</strong>: <span class="math inline">\(E(X) = np\)</span> and <span class="math inline">\(V(X) = np(1-p)\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="opening-five-free-throws" class="level2">
+<h2 class="anchored" data-anchor-id="opening-five-free-throws">Opening: Five Free Throws</h2>
+<p>Shoot <span class="math inline">\(5\)</span> free throws. The probability of making one is <span class="math inline">\(75\%\)</span>. What is the probability of making exactly <span class="math inline">\(3\)</span>?</p>
+<p>Start with one specific sequence, say make, make, make, miss, miss. The shots are independent, so the Lesson 7 multiplication rule turns it into a product:</p>
+<p><span class="math display">\[(0.75)(0.75)(0.75)(0.25)(0.25) = (0.75)^3 (0.25)^2 = 0.0264\]</span></p>
+<p>That is one way to make exactly <span class="math inline">\(3\)</span>. How many ways are there? Choose which <span class="math inline">\(3\)</span> of the <span class="math inline">\(5\)</span> attempts are the makes, which is Lesson 5 counting:</p>
+<p><span class="math display">\[\binom{5}{3} = 10\]</span></p>
+<p>Every one of those <span class="math inline">\(10\)</span> orders has the same probability <span class="math inline">\(0.0264\)</span>, because it uses the same three <span class="math inline">\(0.75\)</span>s and the same two <span class="math inline">\(0.25\)</span>s in a different order. The <span class="math inline">\(10\)</span> orders are mutually exclusive, so the Lesson 4 addition rule just adds them:</p>
+<p><span class="math display">\[P(X = 3) = \binom{5}{3} (0.75)^3 (0.25)^2 = 10(0.0264) = \mathbf{0.264}\]</span></p>
+<div class="quad2 quad2-3col">
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">Lesson 5</span> <span class="quad-name">Counting</span> <span class="math inline">\(\dbinom{5}{3} = 10\)</span> orders have exactly three makes.</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">Lesson 7</span> <span class="quad-name">Multiplication</span> Independence turns one order into <span class="math inline">\((0.75)^3(0.25)^2\)</span>.</p>
+</div>
+<div class="quad-cell quad-prob">
+<p><span class="quad-num">Lesson 4</span> <span class="quad-name">Addition</span> The <span class="math inline">\(10\)</span> orders are disjoint, so their probabilities add.</p>
+</div>
+</div>
+<p>Three lessons, one formula.</p>
+<section id="generalize" class="level3">
+<h3 class="anchored" data-anchor-id="generalize">Generalize</h3>
+<p>Replace <span class="math inline">\(5\)</span> with <span class="math inline">\(n\)</span>, replace <span class="math inline">\(3\)</span> with <span class="math inline">\(x\)</span>, and replace <span class="math inline">\(0.75\)</span> with <span class="math inline">\(p\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Definition: The Binomial pmf">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Definition: The Binomial pmf
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[p(x) = \binom{n}{x} p^x (1-p)^{n-x}, \qquad x = 0, 1, 2, \dots, n\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(p^x\)</span> is the <span class="math inline">\(x\)</span> successes</li>
+<li><span class="math inline">\((1-p)^{n-x}\)</span> is the <span class="math inline">\(n - x\)</span> failures</li>
+<li><span class="math inline">\(\dbinom{n}{x}\)</span> is how many orders produce exactly <span class="math inline">\(x\)</span> successes</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Fully specify the distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[X \sim \text{Binom}(n = 5,\ p = 0.75)\]</span></p>
+<div class="compact">
+<ul>
+<li><strong>Designate the random variable.</strong> <span class="math inline">\(X\)</span> is the number of makes in <span class="math inline">\(5\)</span> attempts.</li>
+<li><strong>Name the distribution.</strong> Binomial.</li>
+<li><strong>Specify the parameters.</strong> <span class="math inline">\(n = 5\)</span> and <span class="math inline">\(p = 0.75\)</span>.</li>
+</ul>
+</div>
+<p>All three, every time. A distribution without its parameters is not an answer.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="is-it-a-binomial-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="is-it-a-binomial-experiment">Is It a Binomial Experiment?</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The Four Conditions: BINS">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The Four Conditions: BINS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>B</strong>inary. Each trial has two outcomes, success and failure.</li>
+<li><strong>I</strong>ndependent. The trials do not affect each other.</li>
+<li><strong>N</strong>umber fixed. <span class="math inline">\(n\)</span> is set in advance, not decided as you go.</li>
+<li><strong>S</strong>ame probability. <span class="math inline">\(p\)</span> is identical on every trial.</li>
+</ul>
+</div>
+<p>All four, or it is not binomial. Check them:</p>
+<ol type="a">
+<li>A cadet shoots <span class="math inline">\(40\)</span> rounds at qualification, hitting each target with probability <span class="math inline">\(0.7\)</span>. Count the hits.</li>
+</ol>
+<p><strong>Binomial.</strong> Binary (hit or miss), independent shots, <span class="math inline">\(n = 40\)</span> fixed, <span class="math inline">\(p = 0.7\)</span> every round. <span class="math inline">\(X \sim \text{Binom}(40, 0.7)\)</span>.</p>
+<ol start="2" type="a">
+<li>Shoot free throws until you miss. Count the makes.</li>
+</ol>
+<p><strong>Not binomial.</strong> <span class="math inline">\(n\)</span> is not fixed. You stop when the miss happens, so the number of trials is itself random. That is a geometric random variable, not one of ours this semester.</p>
+<ol start="3" type="a">
+<li>Draw <span class="math inline">\(5\)</span> cadets from a <span class="math inline">\(12\)</span> cadet squad, <span class="math inline">\(4\)</span> of whom are Firsties. Count the Firsties.</li>
+</ol>
+<p><strong>Not binomial.</strong> Drawing without replacement breaks both <strong>I</strong> and <strong>S</strong>. After you pull one Firstie, the next draw has <span class="math inline">\(3\)</span> Firsties left out of <span class="math inline">\(11\)</span>, so <span class="math inline">\(p\)</span> moved from <span class="math inline">\(4/12\)</span> to <span class="math inline">\(3/11\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="finding-probabilities-with-the-binomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="finding-probabilities-with-the-binomial-distribution">Finding Probabilities with the Binomial Distribution</h2>
+<p><span class="math inline">\(X \sim \text{Binom}(n = 5,\ p = 0.75)\)</span>, our free throw shooter.</p>
+<p><strong><span class="math inline">\(P(X = 3)\)</span>, exactly three makes.</strong> Straight off the pmf, the way we just did it:</p>
+<p><span class="math display">\[P(X = 3) = \binom{5}{3}(0.75)^3(0.25)^2 = 0.2637\]</span></p>
+<p><strong><span class="math inline">\(P(X \le 3)\)</span>, three or fewer makes.</strong> The pmf gives one bar at a time, so evaluate it at every value the event contains:</p>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+P(X = 0) &amp;= \binom{5}{0}(0.75)^0(0.25)^5 = 0.0010 \\
+P(X = 1) &amp;= \binom{5}{1}(0.75)^1(0.25)^4 = 0.0146 \\
+P(X = 2) &amp;= \binom{5}{2}(0.75)^2(0.25)^3 = 0.0879 \\
+P(X = 3) &amp;= \binom{5}{3}(0.75)^3(0.25)^2 = 0.2637
+\end{aligned}\]</span></p>
+</div>
+<p>They are disjoint, so add them:</p>
+<p><span class="math display">\[P(X \le 3) = 0.0010 + 0.0146 + 0.0879 + 0.2637 = 0.3672\]</span></p>
+<p>Write that as one line:</p>
+<p><span class="math display">\[P(X \le 3) = \sum_{x = 0}^{3} \binom{5}{x}(0.75)^x(0.25)^{5-x}\]</span></p>
+<p>This is the cdf of the binomial distribution.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">statement</th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 3)\)</span></td>
+<td style="text-align: left;"><code>dbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 3)\)</span></td>
+<td style="text-align: left;"><code>pbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 3)\)</span></td>
+<td style="text-align: left;"><code>pbinom(2, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 3)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>pbinom(3, 5, 0.75, lower.tail = FALSE)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 3)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(2, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>pbinom(2, 5, 0.75, lower.tail = FALSE)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \ne 3)\)</span></td>
+<td style="text-align: left;"><code>1 - dbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(2 \le X \le 4)\)</span></td>
+<td style="text-align: left;"><code>pbinom(4, 5, 0.75) - pbinom(1, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(2 &lt; X &lt; 4)\)</span></td>
+<td style="text-align: left;"><code>dbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Fill in the value column in class.</p>
+<hr>
+</section>
+<section id="mean-and-variance" class="level2">
+<h2 class="anchored" data-anchor-id="mean-and-variance">Mean and Variance</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Mean and Variance of a Binomial">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Mean and Variance of a Binomial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(X \sim \text{Binom}(n, p)\)</span>, then <span class="math display">\[E(X) = np, \qquad V(X) = np(1-p), \qquad \sigma = \sqrt{np(1-p)}.\]</span></p>
+</div>
+</div>
+<p>For the free throw shooter:</p>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+\mu = E(X) &amp;= np = 5(0.75) = 3.75 \\
+\sigma^2 = V(X) &amp;= np(1-p) = 5(0.75)(0.25) = 0.9375 \\
+\sigma &amp;= \sqrt{np(1-p)} = \sqrt{0.9375} = 0.968
+\end{aligned}\]</span></p>
+</div>
+<p>Out of <span class="math inline">\(5\)</span> attempts a <span class="math inline">\(75\%\)</span> shooter makes <span class="math inline">\(3.75\)</span> on average, give or take about one.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How We Derived the Distributions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Start from the Lesson 8 definition and substitute the binomial pmf.</p>
+<p><span class="math display">\[E(X) = \sum_x x\,p(x) = \sum_{x=0}^{n} x \binom{n}{x} p^x (1-p)^{n-x}\]</span></p>
+<p>The <span class="math inline">\(x = 0\)</span> term is zero, so start at <span class="math inline">\(1\)</span>. Use <span class="math inline">\(x\binom{n}{x} = n\binom{n-1}{x-1}\)</span> and pull <span class="math inline">\(np\)</span> out front.</p>
+<p><span class="math display">\[E(X) = np \sum_{x=1}^{n} \binom{n-1}{x-1} p^{x-1} (1-p)^{n-x}\]</span></p>
+<p>Let <span class="math inline">\(y = x - 1\)</span>. What is left is a full binomial pmf on <span class="math inline">\(n-1\)</span> trials, so it sums to <span class="math inline">\(1\)</span>.</p>
+<p><span class="math display">\[E(X) = np \sum_{y=0}^{n-1} \binom{n-1}{y} p^{y} (1-p)^{(n-1)-y} = np\]</span></p>
+<p>For the variance, the same trick twice gives</p>
+<p><span class="math display">\[E[X(X-1)] = n(n-1)p^2 \quad\Longrightarrow\quad E(X^2) = n(n-1)p^2 + np\]</span></p>
+<p>Then use the Lesson 8 shortcut <span class="math inline">\(V(X) = E(X^2) - [E(X)]^2\)</span>.</p>
+<p><span class="math display">\[V(X) = n(n-1)p^2 + np - (np)^2 = np - np^2 = np(1-p)\]</span></p>
+</div>
+</div>
+</div>
+<section id="what-the-distribution-looks-like" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-distribution-looks-like">What the Distribution Looks Like</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-9_files/figure-html/binom-shapes-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Three stem plots of binomial pmfs, all with n equal to 20. At p equal to 0.15 the mass piles up near 3 and trails off to the right. At p equal to 0.5 the mass is symmetric around 10. At p equal to 0.85 the mass piles up near 17 and trails off to the left. An orange triangle marks the mean np on each."></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>The mean sits at <span class="math inline">\(np\)</span>, and the whole distribution slides with it.</li>
+<li><span class="math inline">\(p = 0.5\)</span> is symmetric. Push <span class="math inline">\(p\)</span> toward either end and the distribution skews away from that end, because it is running out of room.</li>
+<li>The spread <span class="math inline">\(np(1-p)\)</span> is largest at <span class="math inline">\(p = 0.5\)</span> and shrinks as <span class="math inline">\(p\)</span> approaches <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>. A <span class="math inline">\(95\%\)</span> shooter is predictable, a <span class="math inline">\(50\%\)</span> shooter is not.</li>
+</ul>
+</div>
+</section>
+<section id="class-problem" class="level3">
+<h3 class="anchored" data-anchor-id="class-problem">Class Problem</h3>
+<p>The same shooter takes <span class="math inline">\(40\)</span> free throws, so <span class="math inline">\(X \sim \text{Binom}(40, 0.75)\)</span>. What is the probability the number of makes lands either more than one standard deviation <strong>above</strong> the mean or more than one standard deviation <strong>below</strong> it, that is, <span class="math inline">\(X\)</span> outside the interval <span class="math inline">\((\mu - \sigma,\ \mu + \sigma)\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\mu = np = 40(0.75) = 30, \qquad \sigma = \sqrt{np(1-p)} = \sqrt{7.5} = 2.74\]</span></p>
+<p>More than one standard deviation away means outside <span class="math inline">\(30 \pm 2.74\)</span>, that is outside <span class="math inline">\((27.26,\ 32.74)\)</span>. <span class="math inline">\(X\)</span> counts makes, so the event is <span class="math inline">\(X \le 27\)</span> or <span class="math inline">\(X \ge 33\)</span>.</p>
+<p><span class="math display">\[P(X \le 27) + P(X \ge 33) = 0.1791 + 0.1820 = 0.3611\]</span></p>
+<p><code>pbinom(27, 40, 0.75) + 1 - pbinom(32, 40, 0.75)</code></p>
+<p>Same answer from the other direction: <code>1 - (pbinom(32, 40, 0.75) - pbinom(27, 40, 0.75))</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="a-fun-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="a-fun-exercise">A Fun Exercise</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/quarter.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:32.0%" alt="The obverse of a United States quarter."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-land-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-land-navigation">Problem 1: Land Navigation</h3>
+<p>Each cadet on the land nav course finds a given point with probability <span class="math inline">\(0.8\)</span>, independently of the others. There are <span class="math inline">\(8\)</span> points on the course. Let <span class="math inline">\(X\)</span> be the number of points found.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Fully specify the distribution of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Verify BINS.</p></li>
+<li><p>Give the R-Lite call and the value for each: <span class="math inline">\(P(X = 7)\)</span>, <span class="math inline">\(P(X &lt; 7)\)</span>, <span class="math inline">\(P(X \le 7)\)</span>, <span class="math inline">\(P(X &gt; 7)\)</span>, and <span class="math inline">\(P(X \ge 7)\)</span>. Do <span class="math inline">\(P(X = 7)\)</span> by hand first.</p></li>
+<li><p>Find <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(V(X)\)</span>, and <span class="math inline">\(\sigma_X\)</span>, then find the probability <span class="math inline">\(X\)</span> lands more than one standard deviation above or below the mean.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(X\)</span> is the number of the <span class="math inline">\(8\)</span> points found. <span class="math inline">\(X \sim \text{Binom}(n = 8,\ p = 0.8)\)</span>.</p></li>
+<li><p><strong>B</strong>: found or not found. <strong>I</strong>: stated independent. <strong>N</strong>: <span class="math inline">\(n = 8\)</span>, fixed by the course. <strong>S</strong>: <span class="math inline">\(p = 0.8\)</span> at every point. All four hold.</p></li>
+<li><p>By hand,</p></li>
+</ol>
+<p><span class="math display">\[P(X = 7) = \binom{8}{7}(0.8)^7(0.2)^1 = 8(0.2097)(0.2) = \mathbf{0.3355}\]</span></p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">statement</th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 7)\)</span></td>
+<td style="text-align: left;"><code>dbinom(7, 8, 0.8)</code></td>
+<td style="text-align: right;">0.3355</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 7)\)</span></td>
+<td style="text-align: left;"><code>pbinom(6, 8, 0.8)</code></td>
+<td style="text-align: right;">0.4967</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 7)\)</span></td>
+<td style="text-align: left;"><code>pbinom(7, 8, 0.8)</code></td>
+<td style="text-align: right;">0.8322</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 7)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(7, 8, 0.8)</code></td>
+<td style="text-align: right;">0.1678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 7)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(6, 8, 0.8)</code></td>
+<td style="text-align: right;">0.5033</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start="4" type="a">
+<li><span class="math display">\[E(X) = np = 6.4, \qquad V(X) = np(1-p) = 1.28, \qquad \sigma_X = \sqrt{1.28} = 1.1314\]</span></li>
+</ol>
+<p>One standard deviation around the mean is <span class="math inline">\((5.2686,\ 7.5314)\)</span>, so more than one away means <span class="math inline">\(X \le 5\)</span> or <span class="math inline">\(X \ge 8\)</span>.</p>
+<p><span class="math display">\[P(X \le 5) + P(X \ge 8) = 0.2031 + 0.1678 = \mathbf{0.3709}\]</span></p>
+<p>R-Lite: <code>pbinom(5, 8, 0.8) + 1 - pbinom(7, 8, 0.8)</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-drone-sorties" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-drone-sorties">Problem 2: Drone Sorties</h3>
+<p>A platoon flies <span class="math inline">\(12\)</span> drone sorties in a week. Each sortie returns without a maintenance fault with probability <span class="math inline">\(0.85\)</span>, independently. Let <span class="math inline">\(X\)</span> be the number of clean returns.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Fully specify the distribution of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Verify BINS.</p></li>
+<li><p>Give the R-Lite call and the value for each: <span class="math inline">\(P(X = 12)\)</span>, <span class="math inline">\(P(X &lt; 10)\)</span>, <span class="math inline">\(P(X \le 10)\)</span>, <span class="math inline">\(P(X &gt; 10)\)</span>, <span class="math inline">\(P(X \ge 10)\)</span>, <span class="math inline">\(P(X \ne 12)\)</span>, and <span class="math inline">\(P(9 \le X \le 11)\)</span>.</p></li>
+<li><p>Which two of those differ only because of a strict versus inclusive endpoint, and by how much?</p></li>
+<li><p>Find <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(V(X)\)</span>, and <span class="math inline">\(\sigma_X\)</span>, then find the probability <span class="math inline">\(X\)</span> lands more than one standard deviation above or below the mean.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(X\)</span> is the number of clean returns in <span class="math inline">\(12\)</span> sorties. <span class="math inline">\(X \sim \text{Binom}(n = 12,\ p = 0.85)\)</span>.</p></li>
+<li><p><strong>B</strong>: clean return or fault. <strong>I</strong>: stated independent. <strong>N</strong>: <span class="math inline">\(n = 12\)</span> sorties, planned in advance. <strong>S</strong>: <span class="math inline">\(p = 0.85\)</span> on every sortie. All four hold.</p></li>
+<li></li>
+</ol>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">statement</th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 12)\)</span></td>
+<td style="text-align: left;"><code>dbinom(12, 12, 0.85)</code></td>
+<td style="text-align: right;">0.1422</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 10)\)</span></td>
+<td style="text-align: left;"><code>pbinom(9, 12, 0.85)</code></td>
+<td style="text-align: right;">0.2642</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 10)\)</span></td>
+<td style="text-align: left;"><code>pbinom(10, 12, 0.85)</code></td>
+<td style="text-align: right;">0.5565</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 10)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(10, 12, 0.85)</code></td>
+<td style="text-align: right;">0.4435</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 10)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(9, 12, 0.85)</code></td>
+<td style="text-align: right;">0.7358</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \ne 12)\)</span></td>
+<td style="text-align: left;"><code>1 - dbinom(12, 12, 0.85)</code></td>
+<td style="text-align: right;">0.8578</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(9 \le X \le 11)\)</span></td>
+<td style="text-align: left;"><code>pbinom(11, 12, 0.85) - pbinom(8, 12, 0.85)</code></td>
+<td style="text-align: right;">0.7656</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start="4" type="a">
+<li><p><span class="math inline">\(P(X \le 10)\)</span> and <span class="math inline">\(P(X &lt; 10)\)</span> differ by <span class="math inline">\(p(10) = 0.2924\)</span>. So do <span class="math inline">\(P(X &gt; 10)\)</span> and <span class="math inline">\(P(X \ge 10)\)</span>, by the same <span class="math inline">\(0.2924\)</span>. That single bar carries almost <span class="math inline">\(30\%\)</span> of the probability, so misreading the inequality is not a small error.</p></li>
+<li><p><span class="math display">\[E(X) = np = 10.2, \qquad V(X) = np(1-p) = 1.53, \qquad \sigma_X = \sqrt{1.53} = 1.2369\]</span></p></li>
+</ol>
+<p>One standard deviation around the mean is <span class="math inline">\((8.9631,\ 11.4369)\)</span>, so more than one away means <span class="math inline">\(X \le 8\)</span> or <span class="math inline">\(X \ge 12\)</span>.</p>
+<p><span class="math display">\[P(X \le 8) + P(X \ge 12) = 0.0922 + 0.1422 = \mathbf{0.2344}\]</span></p>
+<p>R-Lite: <code>pbinom(8, 12, 0.85) + 1 - pbinom(11, 12, 0.85)</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-rifle-qualification" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-rifle-qualification">Problem 3: Rifle Qualification</h3>
+<p>A cadet fires <span class="math inline">\(40\)</span> rounds. Each hits with probability <span class="math inline">\(0.7\)</span>, independently. Let <span class="math inline">\(X\)</span> be the number of hits. Qualification is <span class="math inline">\(30\)</span> hits.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Fully specify the distribution of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Verify BINS.</p></li>
+<li><p>Give the R-Lite call and the value for each: <span class="math inline">\(P(X = 30)\)</span>, <span class="math inline">\(P(X &lt; 30)\)</span>, <span class="math inline">\(P(X \le 30)\)</span>, <span class="math inline">\(P(X &gt; 30)\)</span>, and <span class="math inline">\(P(X \ge 30)\)</span>. Before you run <span class="math inline">\(P(X \ge 30)\)</span>, say whether it should be above or below <span class="math inline">\(0.5\)</span>.</p></li>
+<li><p>Find <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(V(X)\)</span>, and <span class="math inline">\(\sigma_X\)</span>, interpret <span class="math inline">\(\sigma_X\)</span> in one sentence, then find the probability <span class="math inline">\(X\)</span> lands more than one standard deviation above or below the mean.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(X\)</span> is the number of hits in <span class="math inline">\(40\)</span> rounds. <span class="math inline">\(X \sim \text{Binom}(n = 40,\ p = 0.7)\)</span>.</p></li>
+<li><p><strong>B</strong>: hit or miss. <strong>I</strong>: stated independent. <strong>N</strong>: <span class="math inline">\(n = 40\)</span> rounds, fixed by the standard. <strong>S</strong>: <span class="math inline">\(p = 0.7\)</span> on every round. All four hold.</p></li>
+<li><p><span class="math inline">\(P(X \ge 30)\)</span> should be <strong>below</strong> <span class="math inline">\(0.5\)</span>, because <span class="math inline">\(30\)</span> sits above the mean of <span class="math inline">\(28\)</span>, so you are asking for the smaller side.</p></li>
+</ol>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">statement</th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 30)\)</span></td>
+<td style="text-align: left;"><code>dbinom(30, 40, 0.7)</code></td>
+<td style="text-align: right;">0.1128</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 30)\)</span></td>
+<td style="text-align: left;"><code>pbinom(29, 40, 0.7)</code></td>
+<td style="text-align: right;">0.6913</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 30)\)</span></td>
+<td style="text-align: left;"><code>pbinom(30, 40, 0.7)</code></td>
+<td style="text-align: right;">0.8041</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 30)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(30, 40, 0.7)</code></td>
+<td style="text-align: right;">0.1959</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 30)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(29, 40, 0.7)</code></td>
+<td style="text-align: right;">0.3087</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start="4" type="a">
+<li><span class="math display">\[E(X) = np = 28, \qquad V(X) = np(1-p) = 8.4, \qquad \sigma_X = \sqrt{8.4} = 2.8983\]</span></li>
+</ol>
+<p>A typical qualification lands within about <span class="math inline">\(3\)</span> hits of <span class="math inline">\(28\)</span>.</p>
+<p>One standard deviation around the mean is <span class="math inline">\((25.1017,\ 30.8983)\)</span>, so more than one away means <span class="math inline">\(X \le 25\)</span> or <span class="math inline">\(X \ge 31\)</span>.</p>
+<p><span class="math display">\[P(X \le 25) + P(X \ge 31) = 0.1926 + 0.1959 = \mathbf{0.3885}\]</span></p>
+<p>R-Lite: <code>pbinom(25, 40, 0.7) + 1 - pbinom(30, 40, 0.7)</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-the-wrong-model" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-the-wrong-model">Problem 4: The Wrong Model</h3>
+<p>A squad has <span class="math inline">\(12\)</span> cadets, <span class="math inline">\(4\)</span> of whom are Firsties. The squad leader picks <span class="math inline">\(5\)</span> at random for a detail. Let <span class="math inline">\(X\)</span> be the number of Firsties picked.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Which of BINS fails?</p></li>
+<li><p>Compute <span class="math inline">\(P(X = 2)\)</span> correctly, using Lesson 5 counting.</p></li>
+<li><p>Compute what the binomial would have given with <span class="math inline">\(p = 4/12\)</span>, and compare.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>I</strong> and <strong>S</strong> both fail. The picks are without replacement, so the first pick changes the pool for the second. If the first pick is a Firstie, the next has probability <span class="math inline">\(3/11\)</span>, not <span class="math inline">\(4/12\)</span>. Nothing fixes this: <span class="math inline">\(p\)</span> is not constant and the trials are not independent.</p></li>
+<li><p>Count outcomes, exactly the Lesson 5 move. Choose <span class="math inline">\(2\)</span> of the <span class="math inline">\(4\)</span> Firsties and <span class="math inline">\(3\)</span> of the <span class="math inline">\(8\)</span> others, out of all ways to choose <span class="math inline">\(5\)</span> of <span class="math inline">\(12\)</span>:</p></li>
+</ol>
+<p><span class="math display">\[P(X = 2) = \frac{\dbinom{4}{2}\dbinom{8}{3}}{\dbinom{12}{5}}
+= \frac{(6)(56)}{792} = \frac{336}{792} = \mathbf{0.4242}\]</span></p>
+<ol start="3" type="a">
+<li>The binomial with <span class="math inline">\(n = 5\)</span> and <span class="math inline">\(p = 1/3\)</span> gives</li>
+</ol>
+<p><span class="math display">\[\binom{5}{2}\left(\tfrac{1}{3}\right)^2\left(\tfrac{2}{3}\right)^3 = \mathbf{0.3292}\]</span></p>
+<p>Off by about <span class="math inline">\(0.10\)</span>, roughly a <span class="math inline">\(22\%\)</span> relative error. The sample is <span class="math inline">\(5\)</span> of the <span class="math inline">\(12\)</span> cadets, a huge slice of the population, so the approximation has no business being used here.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-5-stretch" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5-stretch">Problem 5: Stretch</h3>
+<p>A signal has a <span class="math inline">\(0.35\)</span> chance of getting through on any single transmission attempt, independently each time.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>With <span class="math inline">\(n\)</span> attempts, write <span class="math inline">\(P(\text{at least one gets through})\)</span> in terms of <span class="math inline">\(n\)</span>.</p></li>
+<li><p>How many attempts are needed for that probability to reach <span class="math inline">\(0.99\)</span>?</p></li>
+<li><p>You now plan <span class="math inline">\(20\)</span> attempts. What is the smallest <span class="math inline">\(k\)</span> with <span class="math inline">\(P(X \le k) \ge 0.99\)</span>, and what R-Lite call answers it directly?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Lesson 7’s move. “At least one” is the complement of “none”, and “none” is <span class="math inline">\(n\)</span> failures in a row under independence:</li>
+</ol>
+<p><span class="math display">\[P(X \ge 1) = 1 - P(X = 0) = 1 - \binom{n}{0}(0.35)^0(0.65)^n = 1 - (0.65)^n\]</span></p>
+<ol start="2" type="a">
+<li>Solve <span class="math inline">\(1 - (0.65)^n \ge 0.99\)</span>, so <span class="math inline">\((0.65)^n \le 0.01\)</span>:</li>
+</ol>
+<p><span class="math display">\[n \ge \frac{\ln(0.01)}{\ln(0.65)} = \frac{-4.605}{-0.4308} = 10.69\]</span></p>
+<p>Round <strong>up</strong>, since <span class="math inline">\(n\)</span> is a whole number of attempts, so <span class="math inline">\(n = \mathbf{11}\)</span>. Check: <span class="math inline">\(1 - (0.65)^{11} = 0.9912\)</span>, and <span class="math inline">\(1 - (0.65)^{10} = 0.9865\)</span> falls short.</p>
+<ol start="3" type="a">
+<li>That is what <code>qbinom</code> is for: <code>qbinom(0.99, 20, 0.35)</code> returns the smallest <span class="math inline">\(k\)</span> with <span class="math inline">\(F(k) \ge 0.99\)</span>, which is <span class="math inline">\(\mathbf{12}\)</span>. Note <code>qbinom</code> runs the cdf backwards, taking a probability and handing back a value, the reverse of <code>pbinom</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(E(X)\)</span> balances the pmf, and <span class="math inline">\(V(X) = E(X^2) - [E(X)]^2\)</span> measures its spread</li>
+<li>The binomial is counting, multiplication, and addition from Block I fused into one formula</li>
+<li>Check BINS before you use it</li>
+<li><code>dbinom</code> and <code>pbinom</code> cover every probability statement once you handle the endpoints</li>
+<li><span class="math inline">\(E(X) = np\)</span> and <span class="math inline">\(V(X) = np(1-p)\)</span>, no table required</li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 10: Poisson Distribution</strong></p>
+<div class="compact">
+<ul>
+<li>Identify settings modeled by the Poisson distribution, including the Poisson process</li>
+<li>Compute Poisson probabilities using <span class="math inline">\(\mu = \lambda t\)</span> and interpret <span class="math inline">\(\mu\)</span></li>
+<li>State and interpret the mean and variance of a Poisson random variable, noting that both equal <span class="math inline">\(\mu\)</span></li>
+</ul>
+</div>
+<p><strong>Reading:</strong> Devore 3.6</p>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<div class="compact">
+<ul>
+<li><strong>WebAssign 3.4</strong> - Due at the start of Lesson 10</li>
+<li><strong>WPR I</strong> - Lesson 16 (covers Lessons 1-13)</li>
+<li><strong>TEE</strong> - 15-18 Dec 2026</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY27-1/lesson-8.html" class="pagination-link" aria-label="Lesson 8">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 8</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
