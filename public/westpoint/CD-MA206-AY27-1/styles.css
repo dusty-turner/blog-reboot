@@ -352,3 +352,61 @@ ul.emph .pts {
 .rulecols table > :not(caption) > * > * + * {
   border-left: 1px solid #dee2e6 !important;
 }
+
+/* Presentation support: the instructor lay down grid with the helper named
+   underneath each section, so one cell answers "who is in this room". */
+.psup { display: flex; gap: 1.6rem; flex-wrap: wrap; margin: 0.4rem 0 1rem; }
+.psup table {
+  width: auto;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 0;
+}
+.psup table > :not(caption) > * > * {
+  padding: 0.25rem 0.55rem;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  text-align: center;
+  vertical-align: top;
+}
+.psup thead th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8a94a3;
+  border-bottom: 1px solid #adb5bd !important;
+}
+.psup thead th:first-child { color: #5a6472; text-transform: none; letter-spacing: 0; }
+.psup tbody td { border-bottom: 1px solid #f1f3f5 !important; }
+.psup tbody th {
+  font-weight: 600;
+  color: #5a6472;
+  border-bottom: 1px solid #f1f3f5 !important;
+  text-align: center;
+  padding: 0.25rem 0.55rem;
+}
+/* The helper sits under the instructor, quieter, so the grid still reads as
+   the lay down first and the support assignment second. */
+.psup .psup-help {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #7a8595;
+  line-height: 1.2;
+}
+.psup .psup-help::before { content: "+ "; color: #adb5bd; }
+.psup td.psup-empty { border-bottom: 1px solid #f8f9fa !important; }
+.psup-note { font-size: 0.75rem; color: #7a8595; margin: -0.4rem 0 1.2rem; }
+
+/* Display math that reads better flush left than centered. */
+.math-left mjx-container[display="true"],
+.math-left .math.display {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+.math-left mjx-container[display="true"] > svg,
+.math-left mjx-container[display="true"] > mjx-math {
+  margin-left: 0 !important;
+}

@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./forge-3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -72,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -85,9 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      CD Notes — MA206 AY27-1
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forge-0.html">Forges</a></li><li class="breadcrumb-item"><a href="./forge-4.html">Forge 4: Lessons 9-11</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,13 +148,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Forges</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./forge-0.html" class="sidebar-item-text sidebar-link">
@@ -151,6 +179,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Forge 3: Lessons 7-8</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./forge-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Forge 4: Lessons 9-11</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -166,23 +200,38 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#coverage-plan" id="toc-coverage-plan" class="nav-link active" data-scroll-target="#coverage-plan">Coverage Plan</a></li>
   <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do">To Do</a>
   <ul class="collapse">
-  <li><a href="#vantage-turn-in-for-the-peth-project" id="toc-vantage-turn-in-for-the-peth-project" class="nav-link" data-scroll-target="#vantage-turn-in-for-the-peth-project">Vantage Turn In for the PETH Project</a></li>
+  <li><a href="#data-agreement" id="toc-data-agreement" class="nav-link" data-scroll-target="#data-agreement">Data Agreement</a></li>
   <li><a href="#wpr-i" id="toc-wpr-i" class="nav-link" data-scroll-target="#wpr-i">WPR I</a></li>
-  <li><a href="#eda-lesson" id="toc-eda-lesson" class="nav-link" data-scroll-target="#eda-lesson">EDA Lesson</a></li>
-  <li><a href="#cengage-accounts" id="toc-cengage-accounts" class="nav-link" data-scroll-target="#cengage-accounts">Cengage Accounts</a></li>
-  <li><a href="#vantage-accounts" id="toc-vantage-accounts" class="nav-link" data-scroll-target="#vantage-accounts">Vantage Accounts</a></li>
-  </ul></li>
   <li><a href="#webassign-enrollment" id="toc-webassign-enrollment" class="nav-link" data-scroll-target="#webassign-enrollment">WebAssign Enrollment</a></li>
-  <li><a href="#lesson-9-binomial-distribution" id="toc-lesson-9-binomial-distribution" class="nav-link" data-scroll-target="#lesson-9-binomial-distribution">Lesson 9: Binomial Distribution</a></li>
-  <li><a href="#lesson-10-poisson-distribution" id="toc-lesson-10-poisson-distribution" class="nav-link" data-scroll-target="#lesson-10-poisson-distribution">Lesson 10: Poisson Distribution</a></li>
-  <li><a href="#lesson-11-continuous-random-variables" id="toc-lesson-11-continuous-random-variables" class="nav-link" data-scroll-target="#lesson-11-continuous-random-variables">Lesson 11: Continuous Random Variables</a></li>
+  <li><a href="#guest-lecture" id="toc-guest-lecture" class="nav-link" data-scroll-target="#guest-lecture">Guest Lecture</a></li>
+  </ul></li>
+  <li><a href="#lesson-9-binomial-distribution" id="toc-lesson-9-binomial-distribution" class="nav-link" data-scroll-target="#lesson-9-binomial-distribution">Lesson 9: Binomial Distribution</a>
+  <ul class="collapse">
+  <li><a href="#r-lite" id="toc-r-lite" class="nav-link" data-scroll-target="#r-lite">R-Lite</a></li>
+  <li><a href="#opening-as-a-counting-problem" id="toc-opening-as-a-counting-problem" class="nav-link" data-scroll-target="#opening-as-a-counting-problem">Opening as a Counting Problem</a></li>
+  <li><a href="#in-r-lite" id="toc-in-r-lite" class="nav-link" data-scroll-target="#in-r-lite">In R-Lite</a></li>
+  <li><a href="#mean-and-variance" id="toc-mean-and-variance" class="nav-link" data-scroll-target="#mean-and-variance">Mean and Variance</a></li>
+  <li><a href="#a-fun-exercise" id="toc-a-fun-exercise" class="nav-link" data-scroll-target="#a-fun-exercise">A Fun Exercise</a></li>
+  </ul></li>
+  <li><a href="#lesson-10-poisson-distribution" id="toc-lesson-10-poisson-distribution" class="nav-link" data-scroll-target="#lesson-10-poisson-distribution">Lesson 10: Poisson Distribution</a>
+  <ul class="collapse">
+  <li><a href="#what-cadets-should-look-for" id="toc-what-cadets-should-look-for" class="nav-link" data-scroll-target="#what-cadets-should-look-for">What Cadets Should Look For</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
+  <li><a href="#in-r-lite-1" id="toc-in-r-lite-1" class="nav-link" data-scroll-target="#in-r-lite-1">In R-Lite</a></li>
+  <li><a href="#mean-and-variance-1" id="toc-mean-and-variance-1" class="nav-link" data-scroll-target="#mean-and-variance-1">Mean and Variance</a></li>
+  </ul></li>
+  <li><a href="#lesson-11-continuous-random-variables" id="toc-lesson-11-continuous-random-variables" class="nav-link" data-scroll-target="#lesson-11-continuous-random-variables">Lesson 11: Continuous Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked Example</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forge-0.html">Forges</a></li><li class="breadcrumb-item"><a href="./forge-4.html">Forge 4: Lessons 9-11</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Forge 4</h1>
 <p class="subtitle lead">Lessons 9-11</p>
@@ -218,7 +267,12 @@ ul.task-list li input[type="checkbox"] {
 <span style="width:3%"></span>
 </div>
 </div>
-<p><strong>Lessons 9-11:</strong> L9 Binomial Distribution, L10 Poisson Distribution, L11 Continuous Random Variables</p>
+<p><strong>Lessons 9-11</strong></p>
+<ul>
+<li><strong>L9</strong> Binomial Distribution</li>
+<li><strong>L10</strong> Poisson Distribution</li>
+<li><strong>L11</strong> Continuous Random Variables</li>
+</ul>
 <section id="coverage-plan" class="level2">
 <h2 class="anchored" data-anchor-id="coverage-plan">Coverage Plan</h2>
 <div class="cov">
@@ -259,6 +313,198 @@ Who is available
 </thead>
 <tbody>
 <tr>
+<td>
+Wed
+</td>
+<td class="num">
+09
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L9
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+<span class="cov-tbd">TBD</span>
+</td>
+<td class="cov-avail">
+Adams, Day, Dykhuis, Freeny, Lovas, Ozga, Turner
+</td>
+</tr>
+<tr>
+<td>
+Wed
+</td>
+<td class="num">
+09
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+C
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L9
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Adams, Crow, Freeny, Lovas, Ozga, Strack, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+10
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L9
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Day, Dykhuis, Freeny, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Thu
+</td>
+<td class="num">
+10
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+1
+</td>
+<td class="cov-sec">
+B
+</td>
+<td class="cov-sec">
+TH319
+</td>
+<td>
+L9
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+Turner
+</td>
+<td class="cov-avail">
+Adams, Crow, Day, Dykhuis, Freeny, Lovas, Ozga, Thomas
+</td>
+</tr>
+<tr>
+<td>
+Fri
+</td>
+<td class="num">
+11
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+A
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L10
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+<span class="cov-tbd">TBD</span>
+</td>
+<td class="cov-avail">
+Adams, Day, Dykhuis, Freeny, Lovas, Ozga, Turner
+</td>
+</tr>
+<tr>
+<td>
+Fri
+</td>
+<td class="num">
+11
+</td>
+<td>
+Sep
+</td>
+<td class="cov-sec">
+2
+</td>
+<td class="cov-sec">
+C
+</td>
+<td class="cov-sec">
+TH321
+</td>
+<td>
+L10
+</td>
+<td class="cov-out">
+Hedglin
+</td>
+<td>
+Day
+</td>
+<td class="cov-avail">
+Adams, Crow, Freeny, Lovas, Ozga, Strack, Thomas
+</td>
+</tr>
+<tr class="cov-grp">
 <td>
 Tue
 </td>
@@ -316,10 +562,10 @@ L11
 Day
 </td>
 <td>
-Crow<span class="cov-q">?</span>
+Adams
 </td>
 <td class="cov-avail">
-Adams, Dykhuis, Hedglin, Lovas, Ozga, Thomas, Turner
+Crow, Dykhuis, Hedglin, Lovas, Ozga, Thomas, Turner
 </td>
 </tr>
 <tr>
@@ -348,7 +594,7 @@ L11
 Day
 </td>
 <td>
-Crow<span class="cov-q">?</span>
+Crow
 </td>
 <td class="cov-avail">
 Adams, Dykhuis, Hedglin, Lovas, Ozga, Thomas
@@ -508,7 +754,7 @@ L14
 Thomas
 </td>
 <td>
-<span class="cov-tbd">needs a volunteer</span>
+<span class="cov-tbd">TBD</span>
 </td>
 <td class="cov-avail">
 Adams, Day, Dykhuis, Freeny, Lovas, Ozga, Turner
@@ -540,7 +786,7 @@ L14
 Thomas
 </td>
 <td>
-<span class="cov-tbd">needs a volunteer</span>
+<span class="cov-tbd">TBD</span>
 </td>
 <td class="cov-avail">
 Adams, Crow, Day, Dykhuis, Freeny, Hedglin, Lovas, Ozga, Strack
@@ -945,57 +1191,401 @@ Instructor lay down, who teaches which hour
 <p><small><span class="t1">Team 1 (Crow, Day, Dykhuis, Freeny, Hedglin, Strack)</span> is free Day 2 hours B, E, F.<br> <span class="t2">Team 2 (Adams, Lovas, Ozga, Thomas, Turner)</span> is free Day 1 hours B, C, D.</small></p>
 </div>
 </details>
+<!-- Project Presentation Support, commented out. To restore: delete this
+comment wrapper and the `#| eval: false` line in the project-support chunk.
+
+## Project Presentation Support
+
+Presentations run in every section, so every section needs a second instructor in the room. The same helper takes the same section on both days, so they see the sections through. An instructor teaching that period cannot help, and the job goes to whoever is carrying the fewest so far.
+
+
+
+-->
 </section>
 <section id="to-do" class="level2">
 <h2 class="anchored" data-anchor-id="to-do">To Do</h2>
-<section id="vantage-turn-in-for-the-peth-project" class="level3">
-<h3 class="anchored" data-anchor-id="vantage-turn-in-for-the-peth-project">Vantage Turn In for the PETH Project</h3>
-<p>[What cadets turn in, where in Vantage it goes, and the date. Add the walkthrough link if there is one. Still open from <a href="forge-3.html#vantage-turn-in-for-the-peth-project">Forge 3</a>.]</p>
+<section id="data-agreement" class="level3">
+<h3 class="anchored" data-anchor-id="data-agreement">Data Agreement</h3>
+<p>Managed at the instructor level. Keep hard copies, and get them completed before cadets get into Vantage.</p>
 </section>
 <section id="wpr-i" class="level3">
 <h3 class="anchored" data-anchor-id="wpr-i">WPR I</h3>
-<p><strong>Day 2 on 29 Sep, Day 1 on 30 Sep.</strong> [Feedback closed 4 Sep.&nbsp;Say whether the exam is final, what the proctoring and seating plan is, and what cadets may bring.]</p>
-</section>
-<section id="eda-lesson" class="level3">
-<h3 class="anchored" data-anchor-id="eda-lesson">EDA Lesson</h3>
-<p><strong>L14, 23-24 Sep.</strong> [Reading is S3. Note what cadets need loaded in Vantage before that lesson, and how the 25 point EDA event is graded.]</p>
-</section>
-<section id="cengage-accounts" class="level3">
-<h3 class="anchored" data-anchor-id="cengage-accounts">Cengage Accounts</h3>
-<p><a href="assets/downloads/cengage-account-instructions.pdf">Cadet setup guide</a>. Push it to your sections.</p>
-<p><strong>Yearlings whose access expired.</strong> They got two codes plebe year and redeemed only one. Homework showing as <strong>not started</strong> is the same problem.</p>
+<p><strong>Day 2 on 29 Sep, Day 1 on 30 Sep.</strong></p>
 <ul>
-<li>Find the second code in the plebe year bookstore email, redeem it (guide page 5)</li>
-<li>Bookstore resends it if the email is gone</li>
-<li>No purchase, and no grace period</li>
-<li>Tell me once they are back in and I will reopen what they missed</li>
+<li>I am working through feedback now. Final versions go to Jon this week to get to the print plant.</li>
+<li><strong>Jon and George</strong>, build a make up tracker?</li>
+<li>Academic security runs a week from the first exam, so through 6 Oct.</li>
+<li>Instructors can schedule their own make ups.</li>
 </ul>
 </section>
-<section id="vantage-accounts" class="level3">
-<h3 class="anchored" data-anchor-id="vantage-accounts">Vantage Accounts</h3>
-<p>Go to the <a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.4dea124a-76b5-4b62-a62d-58669808dde0">MA206 workspace in Vantage</a>.</p>
+<section id="webassign-enrollment" class="level3">
+<h3 class="anchored" data-anchor-id="webassign-enrollment">WebAssign Enrollment</h3>
+<ul>
+<li><strong>Clean.</strong> 582 cadets, all in the class matching their section.
+<ul>
+<li>278 Day 1, 304 Day 2</li>
+<li>None on the wrong day, none in both, none missing</li>
+</ul></li>
+<li><strong>Suarez, Nicholas.</strong> Extra in Day 1, not on the MA206 roster.</li>
+<li><strong>Six signed in under a different email.</strong> Matched by name, right day, nothing to do.
+<ul>
+<li>Andersen, Mallorie: mallorie.smith@westpoint.edu</li>
+<li>Aquino, Noah: noahkalanihoku@gmail.com</li>
+<li>Hunt, Morgan: c28morgan.hunt@afacademy.af.edu</li>
+<li>Jo, Matthew: otuggle@srvusd.net</li>
+<li>Needham, Tobias: c28tobias.needham@afacademy.af.edu</li>
+<li>Williams, Anna: williams.annafaith@gmail.com</li>
+</ul></li>
+</ul>
 </section>
+<section id="guest-lecture" class="level3">
+<h3 class="anchored" data-anchor-id="guest-lecture">Guest Lecture</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/people/sikora.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="260"></p>
+</figure>
+</div>
+<ul>
+<li><strong>Who:</strong> COL Tim Sikora, commander of the Cyber Protection Brigade, math instructor here from 2016 to 2019.</li>
+<li><strong>What:</strong> Guest lecture.</li>
+<li><strong>When:</strong> 30 Sep, Dean’s Hour.</li>
+<li><strong>Where:</strong> Robinson Auditorium.</li>
+</ul>
 </section>
-<section id="webassign-enrollment" class="level2">
-<h2 class="anchored" data-anchor-id="webassign-enrollment">WebAssign Enrollment</h2>
-<p>[Re-run the audit. Forge 2 closed at 26 wrong of 584, down from 43, and Forge 3 did not re-audit. Carry the four tables over from <a href="forge-2.html#webassign-enrollment">Forge 2</a> if names are still outstanding, or say it is clean.]</p>
 </section>
 <section id="lesson-9-binomial-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-9-binomial-distribution">Lesson 9: Binomial Distribution</h2>
 <p><em>Devore 3.4.</em></p>
-<p>[Lesson block.]</p>
+<section id="r-lite" class="level3">
+<h3 class="anchored" data-anchor-id="r-lite">R-Lite</h3>
+<p><a href="https://westpoint.instructure.com/courses/12748/files/4236681?wrap=1">R-Lite</a> on Canvas.</p>
+<div class="compact">
+<ul>
+<li>Ensure cadets have it downloaded.</li>
+<li>Demonstrate how to use it in class.</li>
+<li>Will need for WPR I.</li>
+</ul>
+</div>
+</section>
+<section id="opening-as-a-counting-problem" class="level3">
+<h3 class="anchored" data-anchor-id="opening-as-a-counting-problem">Opening as a Counting Problem</h3>
+<p>Shoot 5 free throws. Probability of making one is 75%. What is the probability of making exactly 3?</p>
+<p><span class="math display">\[(0.75)(0.75)(0.75)(0.25)(0.25) = (0.75)^3 (0.25)^2 = 0.0264\]</span></p>
+<p>How many ways can we choose 3 makes out of 5 attempts? 5 choose 3.</p>
+<p><span class="math display">\[\binom{5}{3} = 10\]</span></p>
+<p>Those 10 ways are mutually exclusive, so the addition rule applies and the probabilities add.</p>
+<p><span class="math display">\[P(X = 3) = \binom{5}{3} (0.75)^3 (0.25)^2 = 10(0.0264) = 0.264\]</span></p>
+<p>Great place to tie in:</p>
+<ul>
+<li>L5 counting</li>
+<li>Multiplication rule from L7 independence</li>
+<li>Addition rule from L4</li>
+</ul>
+<p>Now we can generalize:</p>
+<p>Replacing 5 with <span class="math inline">\(n\)</span>, 3 with <span class="math inline">\(x\)</span>, and 0.75 with <span class="math inline">\(p\)</span> gives the pmf:</p>
+<p><span class="math display">\[p(x) = \binom{n}{x} p^x (1-p)^{n-x}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Fully specify the distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[X \sim \text{Binom}(n = 5,\ p = 0.75)\]</span></p>
+<div class="compact">
+<ul>
+<li><strong>Designate the random variable.</strong> <span class="math inline">\(X\)</span> is the number of makes in 5 attempts.</li>
+<li><strong>Name the distribution.</strong> Binomial.</li>
+<li><strong>Specify the parameters.</strong> <span class="math inline">\(n = 5\)</span> and <span class="math inline">\(p = 0.75\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="in-r-lite" class="level3">
+<h3 class="anchored" data-anchor-id="in-r-lite">In R-Lite</h3>
+<p><span class="math inline">\(X \sim \text{Bin}(5, 0.75)\)</span>. <code>dbinom</code> is the pmf, <code>pbinom</code> is the cdf.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 3)\)</span></td>
+<td style="text-align: left;"><code>dbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;">0.2637</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 3)\)</span></td>
+<td style="text-align: left;"><code>pbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;">0.3672</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 3)\)</span></td>
+<td style="text-align: left;"><code>pbinom(2, 5, 0.75)</code></td>
+<td style="text-align: right;">0.1035</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 3)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(3, 5, 0.75)</code></td>
+<td style="text-align: right;">0.6328</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>pbinom(3, 5, 0.75, lower.tail = FALSE)</code></td>
+<td style="text-align: right;">0.6328</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 3)\)</span></td>
+<td style="text-align: left;"><code>1 - pbinom(2, 5, 0.75)</code></td>
+<td style="text-align: right;">0.8965</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>pbinom(2, 5, 0.75, lower.tail = FALSE)</code></td>
+<td style="text-align: right;">0.8965</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mean-and-variance" class="level3">
+<h3 class="anchored" data-anchor-id="mean-and-variance">Mean and Variance</h3>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+\mu = E(X) &amp;= np = 5(0.75) = 3.75 \\
+\sigma^2 = V(X) &amp;= np(1-p) = 5(0.75)(0.25) = 0.9375 \\
+\sigma &amp;= \sqrt{np(1-p)} = \sqrt{0.9375} = 0.968
+\end{aligned}\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Where these come from
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Start from the L8 definition and substitute the binomial pmf.</p>
+<p><span class="math display">\[E(X) = \sum_x x\,p(x) = \sum_{x=0}^{n} x \binom{n}{x} p^x (1-p)^{n-x}\]</span></p>
+<p>The <span class="math inline">\(x = 0\)</span> term is zero, so start at 1. Use <span class="math inline">\(x\binom{n}{x} = n\binom{n-1}{x-1}\)</span> and pull <span class="math inline">\(np\)</span> out front.</p>
+<p><span class="math display">\[E(X) = np \sum_{x=1}^{n} \binom{n-1}{x-1} p^{x-1} (1-p)^{n-x}\]</span></p>
+<p>Let <span class="math inline">\(y = x - 1\)</span>. What is left is a full binomial pmf on <span class="math inline">\(n-1\)</span> trials, so it sums to 1.</p>
+<p><span class="math display">\[E(X) = np \sum_{y=0}^{n-1} \binom{n-1}{y} p^{y} (1-p)^{(n-1)-y} = np\]</span></p>
+<p>For the variance, the same trick twice gives</p>
+<p><span class="math display">\[E[X(X-1)] = n(n-1)p^2 \quad\Longrightarrow\quad E(X^2) = n(n-1)p^2 + np\]</span></p>
+<p>Then use the L8 shortcut <span class="math inline">\(V(X) = E(X^2) - [E(X)]^2\)</span>.</p>
+<p><span class="math display">\[V(X) = n(n-1)p^2 + np - (np)^2 = np - np^2 = np(1-p)\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-fun-exercise" class="level3">
+<h3 class="anchored" data-anchor-id="a-fun-exercise">A Fun Exercise</h3>
+<div class="compact">
+<ul>
+<li>Pass out quarters.</li>
+<li>Have everyone flip until someone stops a streak of all heads or all tails.</li>
+<li>Find the probability of hitting that many or more.</li>
+<li>Ask the class if we think there is something up with their flipping ability.</li>
+<li>Just for fun. It gets them starting to think about hypothesis testing. Was this so extreme we do not believe it? How unlikely would it have to be before we stopped believing?</li>
+</ul>
+</div>
+</section>
 </section>
 <section id="lesson-10-poisson-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-10-poisson-distribution">Lesson 10: Poisson Distribution</h2>
 <p><em>Devore 3.6.</em></p>
-<p>[Lesson block.]</p>
+<section id="what-cadets-should-look-for" class="level3">
+<h3 class="anchored" data-anchor-id="what-cadets-should-look-for">What Cadets Should Look For</h3>
+<div class="compact">
+<ul>
+<li>A <strong>rate</strong>, given per unit of time, length, or area.</li>
+<li>A <strong>window</strong>, the interval the count is taken over.</li>
+<li>A count with <strong>no fixed <span class="math inline">\(n\)</span></strong>. Nothing caps how many can happen.</li>
+</ul>
+</div>
+</section>
+<section id="parameters" class="level3">
+<h3 class="anchored" data-anchor-id="parameters">Parameters</h3>
+<p><span class="math inline">\(\lambda\)</span> is the rate. <span class="math inline">\(t\)</span> is the length of the window. The distribution depends only on their product.</p>
+<p><span class="math display">\[\mu = \lambda t\]</span></p>
+<p>Cadets arrive at the counter at <span class="math inline">\(\lambda = 2.5\)</span> per hour. Over a <span class="math inline">\(t = 2\)</span> hour window, <span class="math inline">\(\mu = 5\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Fully specify the distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[X \sim \text{Pois}(\mu = 5)\]</span></p>
+<div class="compact">
+<ul>
+<li><strong>Designate the random variable.</strong> <span class="math inline">\(X\)</span> is the number of arrivals in 2 hours.</li>
+<li><strong>Name the distribution.</strong> Poisson.</li>
+<li><strong>Specify the parameter.</strong> <span class="math inline">\(\mu = \lambda t = 2.5(2) = 5\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="in-r-lite-1" class="level3">
+<h3 class="anchored" data-anchor-id="in-r-lite-1">In R-Lite</h3>
+<p><code>dpois</code> is the pmf, <code>ppois</code> is the cdf.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">R-Lite</th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X = 3)\)</span></td>
+<td style="text-align: left;"><code>dpois(3, 5)</code></td>
+<td style="text-align: right;">0.1404</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \le 3)\)</span></td>
+<td style="text-align: left;"><code>ppois(3, 5)</code></td>
+<td style="text-align: right;">0.2650</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P(X &lt; 3)\)</span></td>
+<td style="text-align: left;"><code>ppois(2, 5)</code></td>
+<td style="text-align: right;">0.1247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X &gt; 3)\)</span></td>
+<td style="text-align: left;"><code>1 - ppois(3, 5)</code></td>
+<td style="text-align: right;">0.7350</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>ppois(3, 5, lower.tail = FALSE)</code></td>
+<td style="text-align: right;">0.7350</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(P(X \ge 3)\)</span></td>
+<td style="text-align: left;"><code>1 - ppois(2, 5)</code></td>
+<td style="text-align: right;">0.8753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>ppois(2, 5, lower.tail = FALSE)</code></td>
+<td style="text-align: right;">0.8753</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mean-and-variance-1" class="level3">
+<h3 class="anchored" data-anchor-id="mean-and-variance-1">Mean and Variance</h3>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+\mu = E(X) &amp;= \lambda t = 2.5(2) = 5 \\
+\sigma^2 = V(X) &amp;= \lambda t = 5 \\
+\sigma &amp;= \sqrt{\lambda t} = \sqrt{5} = 2.236
+\end{aligned}\]</span></p>
+</div>
+<p>The mean and the variance are the same number.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Where these come from
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Start from the L8 definition and substitute the Poisson pmf.</p>
+<p><span class="math display">\[E(X) = \sum_x x\,p(x) = \sum_{x=0}^{\infty} x \, \frac{e^{-\mu} \mu^x}{x!}\]</span></p>
+<p>The <span class="math inline">\(x = 0\)</span> term is zero, so start at 1. Cancel the <span class="math inline">\(x\)</span> against <span class="math inline">\(x!\)</span> and pull <span class="math inline">\(\mu\)</span> out front.</p>
+<p><span class="math display">\[E(X) = \mu \sum_{x=1}^{\infty} \frac{e^{-\mu} \mu^{x-1}}{(x-1)!}\]</span></p>
+<p>Let <span class="math inline">\(y = x - 1\)</span>. What is left is a full Poisson pmf, so it sums to 1.</p>
+<p><span class="math display">\[E(X) = \mu \sum_{y=0}^{\infty} \frac{e^{-\mu} \mu^{y}}{y!} = \mu\]</span></p>
+<p>For the variance, the same trick twice gives</p>
+<p><span class="math display">\[E[X(X-1)] = \mu^2 \quad\Longrightarrow\quad E(X^2) = \mu^2 + \mu\]</span></p>
+<p>Then use the L8 shortcut <span class="math inline">\(V(X) = E(X^2) - [E(X)]^2\)</span>.</p>
+<p><span class="math display">\[V(X) = \mu^2 + \mu - \mu^2 = \mu\]</span></p>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="lesson-11-continuous-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-11-continuous-random-variables">Lesson 11: Continuous Random Variables</h2>
 <p><em>Devore 4.1, 4.2.</em></p>
-<p>[Lesson block.]</p>
+<section id="expectations" class="level3">
+<h3 class="anchored" data-anchor-id="expectations">Expectations</h3>
+<p>Cadets should be able to:</p>
+<div class="compact">
+<ul>
+<li>Solve for an unknown constant <span class="math inline">\(k\)</span> in a pdf.</li>
+<li>Fully define the cdf.</li>
+<li>Find probabilities from the pdf and from the cdf.</li>
+<li>Explain why <span class="math inline">\(P(X = c) = 0\)</span>.</li>
+<li>Compute expected value, variance, and standard deviation.</li>
+</ul>
+</div>
+</section>
+<section id="worked-example" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example">Worked Example</h3>
+<p><span class="math display">\[f_X(x) = \begin{cases}
+k x &amp; 0 \le x \le 4 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<p><strong>Solve for <span class="math inline">\(k\)</span>.</strong> Total area is 1.</p>
+<p><span class="math display">\[\int_0^4 k x \, dx = k \frac{x^2}{2} \bigg|_0^4 = 8k = 1 \quad \Longrightarrow \quad k = \frac{1}{8}\]</span></p>
+<p><strong>Fully define the cdf.</strong> Integrate the pdf from the left edge of the support.</p>
+<p><span class="math display">\[F_X(x) = \int_0^x \frac{1}{8} t \, dt = \frac{x^2}{16}\]</span></p>
+<p><span class="math display">\[F_X(x) = \begin{cases}
+0 &amp; x &lt; 0 \\
+\dfrac{x^2}{16} &amp; 0 \le x \le 4 \\
+1 &amp; x &gt; 4
+\end{cases}\]</span></p>
+<p><strong>Find a probability two ways.</strong> <span class="math inline">\(P(1 \le X \le 2)\)</span>.</p>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+\text{pdf} \quad &amp; \int_1^{2} \frac{1}{8} x \, dx = \frac{x^2}{16} \bigg|_1^{2} = \frac{4 - 1}{16} = 0.1875 \\
+\text{cdf} \quad &amp; F(2) - F(1) = \frac{4}{16} - \frac{1}{16} = 0.1875
+\end{aligned}\]</span></p>
+</div>
+<p><strong>Why <span class="math inline">\(P(X = c) = 0\)</span>.</strong> The integral over a single point has no width.</p>
+<p><span class="math display">\[P(X = c) = \int_c^c f(x) \, dx = 0\]</span></p>
+<p>So <span class="math inline">\(\le\)</span> and <span class="math inline">\(&lt;\)</span> give the same answer here, unlike L8 through L10.</p>
+<p><strong>Expected value and variance.</strong></p>
+<div class="math-left">
+<p><span class="math display">\[\begin{aligned}
+E(X) &amp;= \int_0^4 x \cdot \frac{1}{8} x \, dx = \frac{1}{8} \cdot \frac{x^3}{3} \bigg|_0^4 = \frac{8}{3} = 2.667 \\
+E(X^2) &amp;= \int_0^4 x^2 \cdot \frac{1}{8} x \, dx = \frac{1}{8} \cdot \frac{x^4}{4} \bigg|_0^4 = 8 \\
+V(X) &amp;= E(X^2) - [E(X)]^2 = 8 - \frac{64}{9} = \frac{8}{9} = 0.889 \\
+\sigma &amp;= \sqrt{0.889} = 0.943
+\end{aligned}\]</span></p>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1410,6 +2000,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./forge-3.html" class="pagination-link" aria-label="Forge 3: Lessons 7-8">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Forge 3: Lessons 7-8</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
