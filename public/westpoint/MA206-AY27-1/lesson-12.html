@@ -284,6 +284,7 @@ window.Quarto = {
   <li><a href="#the-same-percentile-in-z-units" id="toc-the-same-percentile-in-z-units" class="nav-link" data-scroll-target="#the-same-percentile-in-z-units">The Same Percentile in <span class="math inline">\(z\)</span> Units</a></li>
   <li><a href="#critical-values" id="toc-critical-values" class="nav-link" data-scroll-target="#critical-values">Critical Values</a></li>
   </ul></li>
+  <li><a href="#distributions-so-far" id="toc-distributions-so-far" class="nav-link" data-scroll-target="#distributions-so-far">Distributions So Far</a></li>
   <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
   <ul class="collapse">
   <li><a href="#problem-1-ruck-march-times" id="toc-problem-1-ruck-march-times" class="nav-link" data-scroll-target="#problem-1-ruck-march-times">Problem 1: Ruck March Times</a></li>
@@ -1458,13 +1459,149 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 <hr>
 </section>
 </section>
+<section id="distributions-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="distributions-so-far">Distributions So Far</h2>
+<p>Three named distributions. Naming one is not an answer. Fully specifying it is, and it is the same three steps every time: <strong>designate</strong> the random variable in words with units, <strong>name</strong> the distribution, <strong>specify</strong> the parameters as numbers.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Binomial</strong></th>
+<th style="text-align: left;"><strong>Poisson</strong></th>
+<th style="text-align: left;"><strong>Normal</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Type</strong></td>
+<td style="text-align: left;">Discrete</td>
+<td style="text-align: left;">Discrete</td>
+<td style="text-align: left;">Continuous</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use it when</strong></td>
+<td style="text-align: left;"><span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> fixed trials</td>
+<td style="text-align: left;"><span class="math inline">\(x\)</span> events in a window</td>
+<td style="text-align: left;">Symmetric, bell shaped measurement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Fully specified</strong></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim \text{Binom}(n,\ p)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim \text{Pois}(\mu)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim N(\mu,\ \sigma^2)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Parameters</strong></td>
+<td style="text-align: left;"><span class="math inline">\(n\)</span> trials, <span class="math inline">\(p\)</span> success probability</td>
+<td style="text-align: left;"><span class="math inline">\(\mu = \lambda t\)</span>, expected count</td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span> center, <span class="math inline">\(\sigma\)</span> spread</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Possible values</strong></td>
+<td style="text-align: left;"><span class="math inline">\(x = 0, 1, \dots, n\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(x = 0, 1, 2, \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; x &lt; \infty\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>pmf or pdf</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\dbinom{n}{x} p^x (1-p)^{n-x}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{e^{-\mu}\mu^x}{x!}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{1}{\sqrt{2\pi}\,\sigma} e^{-(x-\mu)^2/(2\sigma^2)}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(E(X)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(np\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(V(X)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(np(1-p)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>d</code>, the pmf or pdf</strong></td>
+<td style="text-align: left;"><code>dbinom(x, n, p)</code></td>
+<td style="text-align: left;"><code>dpois(x, mu)</code></td>
+<td style="text-align: left;"><code>dnorm(x, mean, sd)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>p</code>, the cdf <span class="math inline">\(P(X \le x)\)</span></strong></td>
+<td style="text-align: left;"><code>pbinom(x, n, p)</code></td>
+<td style="text-align: left;"><code>ppois(x, mu)</code></td>
+<td style="text-align: left;"><code>pnorm(x, mean, sd)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>q</code>, the cdf backwards</strong></td>
+<td style="text-align: left;"><code>qbinom(area, n, p)</code></td>
+<td style="text-align: left;"><code>qpois(area, mu)</code></td>
+<td style="text-align: left;"><code>qnorm(area, mean, sd)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Our example</strong></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim \text{Binom}(n = 5,\ p = 0.75)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim \text{Pois}(\mu = 5)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim N(\mu = 16,\ \sigma^2 = 2^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(P(X = 3)\)</span></strong></td>
+<td style="text-align: left;"><code>dbinom(3, 5, 0.75)</code></td>
+<td style="text-align: left;"><code>dpois(3, 5)</code></td>
+<td style="text-align: left;"><span class="math inline">\(0\)</span>, use an interval</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><span class="math inline">\(P(X \le 3)\)</span></strong></td>
+<td style="text-align: left;"><code>pbinom(3, 5, 0.75)</code></td>
+<td style="text-align: left;"><code>ppois(3, 5)</code></td>
+<td style="text-align: left;"><code>pnorm(3, 16, 2)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(90\)</span>th percentile</strong></td>
+<td style="text-align: left;"><code>qbinom(0.90, 5, 0.75)</code></td>
+<td style="text-align: left;"><code>qpois(0.90, 5)</code></td>
+<td style="text-align: left;"><code>qnorm(0.90, 16, 2)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Where people lose points">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Where people lose points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><code>dnorm</code> is a <strong>height</strong>, not a probability. For a continuous variable <span class="math inline">\(P(X = x) = 0\)</span>.</li>
+<li><code>dbinom</code> and <code>dpois</code> <strong>are</strong> probabilities. <span class="math inline">\(P(X = x)\)</span> is real for a discrete variable.</li>
+<li>The normal takes <span class="math inline">\(\sigma\)</span>, not <span class="math inline">\(\sigma^2\)</span>. The Poisson takes <span class="math inline">\(\mu\)</span>, not <span class="math inline">\(\lambda\)</span>.</li>
+<li>Leave <code>mean</code> and <code>sd</code> off and R assumes the standard normal, <span class="math inline">\(Z \sim N(0, 1)\)</span>.</li>
+<li><code>p</code> takes an <span class="math inline">\(x\)</span> and returns an area. <code>q</code> takes an area and returns an <span class="math inline">\(x\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
 <section id="board-problems" class="level2">
 <h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
 <section id="problem-1-ruck-march-times" class="level3">
 <h3 class="anchored" data-anchor-id="problem-1-ruck-march-times">Problem 1: Ruck March Times</h3>
 <p>Times for a 12 mile ruck are normal with a mean of 105 minutes and a standard deviation of 12 minutes.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1473,7 +1610,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Fully specify the distribution, then find <span class="math inline">\(P(X &lt; 90)\)</span>.</p></li>
@@ -1485,7 +1622,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1494,7 +1631,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(X\)</span> is a cadet ruck time in minutes, <span class="math inline">\(X \sim N(\mu = 105,\ \sigma^2 = 12^2)\)</span>.</li>
@@ -1558,7 +1695,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 <h3 class="anchored" data-anchor-id="problem-2-mortar-round-weight">Problem 2: Mortar Round Weight</h3>
 <p>A production line fills 60mm mortar rounds to a weight that is normal with <span class="math inline">\(\mu = 4.2\)</span> kg and <span class="math inline">\(\sigma = 0.05\)</span> kg. A round is in spec if it weighs between 4.1 and 4.3 kg.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1567,7 +1704,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Without using R, what fraction of rounds are in spec? Which rule gets you there?</p></li>
@@ -1578,7 +1715,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1587,7 +1724,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>The spec limits are exactly <span class="math inline">\(\mu \pm 2\sigma = 4.2 \pm 0.10\)</span>, so the <strong>empirical rule</strong> gives <span class="math inline">\(\mathbf{0.9545}\)</span>.</li>
@@ -1628,7 +1765,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 <h3 class="anchored" data-anchor-id="problem-3-two-different-scales">Problem 3: Two Different Scales</h3>
 <p>Cadet A shoots 36 on a rifle qualification where scores are <span class="math inline">\(N(31, 3^2)\)</span>. Cadet B scores 285 on an indoor simulator where scores are <span class="math inline">\(N(268, 14^2)\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1637,7 +1774,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Standardize both scores.</p></li>
@@ -1648,7 +1785,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1657,7 +1794,7 @@ V(X) &amp;= E\left[(X - \mu)^2\right] \\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li></li>
@@ -1694,7 +1831,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 <h3 class="anchored" data-anchor-id="problem-4-body-armor-sizing">Problem 4: Body Armor Sizing</h3>
 <p>Chest circumference for incoming cadets is normal with <span class="math inline">\(\mu = 39\)</span> inches and <span class="math inline">\(\sigma = 2.2\)</span> inches. The supply sergeant stocks a medium plate carrier that fits from 37 to 41 inches.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1703,7 +1840,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>What fraction of cadets fit the medium?</p></li>
@@ -1714,7 +1851,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1723,7 +1860,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math display">\[P(37 \le X \le 41) = F(41) - F(37) = \mathbf{0.6367}\]</span></li>
@@ -1763,7 +1900,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 <h3 class="anchored" data-anchor-id="problem-5-stretch-solve-for-the-parameters">Problem 5: Stretch, Solve for the Parameters</h3>
 <p>Artillery rounds land at a range that is normal. Nobody tells you <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span>, but the firing tables say 5% of rounds fall short of 100 meters and 10% carry past 140 meters.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1772,7 +1909,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Write the two standardized equations these facts give you.</p></li>
@@ -1783,7 +1920,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1792,7 +1929,7 @@ z_B &amp;= \frac{285 - 268}{14} = \mathbf{1.2143}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(P(X &lt; 100) = 0.05\)</span> puts 100 at <span class="math inline">\(z = -1.6449\)</span>, and <span class="math inline">\(P(X &gt; 140) = 0.10\)</span> puts 140 at <span class="math inline">\(z = 1.2816\)</span>.</li>
