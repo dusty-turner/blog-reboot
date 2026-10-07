@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Central Limit Theorem Machine</title>
+<!-- Embedded in MA206-AY27-1/lesson-19.qmd through an iframe. Recreated from clt_machine.html. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    --paper:#EAE3D0; --panel:#F2EDDE; --ink:#2A2D22; --rule:#9A9477;
+    --od:#5B6044; --coyote:#B49668; --alert:#C74A1F; --board:#20241B;
+  }
+  *,*:before,*:after{box-sizing:inherit}
+  html.embedded{overflow:hidden}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+  h1,h2,.osw{font-family:"Oswald",system-ui,sans-serif;letter-spacing:.02em}
+  .wrap{max-width:1080px;margin:0 auto;padding:12px 14px 14px}
+  header.top{border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+  header.top h1{font-size:23px;font-weight:600;margin:0}
+  .stack{display:grid;gap:10px;position:relative}
+  #fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;
+    background:transparent;border-radius:0}
+  .panel{background:var(--panel);border:1.5px solid var(--ink);border-radius:4px;padding:10px 12px}
+  .panel h2{font-size:15px;font-weight:600;margin:0 0 6px}
+  canvas{display:block;width:100%;height:auto;background:var(--board);border-radius:3px;touch-action:none}
+  #pop{cursor:crosshair}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+  button{font:600 13.5px "Oswald",sans-serif;letter-spacing:.03em;color:var(--paper);
+    background:var(--od);border:1.5px solid var(--ink);border-radius:3px;padding:6px 11px;cursor:pointer}
+  button.alt{background:var(--coyote);color:#25200f}
+  button.ghost{background:transparent;color:var(--ink)}
+  button.pre{background:var(--panel);color:var(--ink)}
+  button.on{background:var(--od);color:var(--paper)}
+  button:disabled{opacity:.4;cursor:default}
+  button:focus-visible,input:focus-visible{outline:3px solid var(--coyote);outline-offset:1px}
+  input[type=range]{accent-color:var(--od)}
+  .readout{font-family:"Oswald";font-weight:500}
+  .stat{display:inline-block;margin-right:16px}
+  .stat b{font-size:18px}
+  .stat > span{display:block;font-size:11.5px;opacity:.75;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>The Central Limit Theorem Machine</h1>
+  </header>
+
+  <div class="stack">
+    <div class="panel">
+      <h2>1 · The population, <span id="popName"></span> (drag to redraw):
+        <span class="readout">μ = <span id="muV">–</span>,&nbsp; σ = <span id="sdV">–</span></span></h2>
+      <canvas id="pop" width="1040" height="200"></canvas>
+      <div class="bar">
+        <span>We've covered:</span>
+        <button class="pre" data-p="binom">Binom(10, 0.75)</button>
+        <button class="pre" data-p="pois">Pois(6)</button>
+        <button class="pre" data-p="exp">Exp(6)</button>
+        <button class="pre" data-p="norm">N(70, 3²)</button>
+      </div>
+      <div class="bar">
+        <span>Or something strange:</span>
+        <button class="ghost" data-p="flat">Flat</button>
+        <button class="ghost" data-p="skew">Dragon (long tail)</button>
+        <button class="ghost" data-p="bunny">Bunny ears (two humps)</button>
+        <button class="ghost" data-p="spikes">Spikes</button>
+        <button class="ghost" data-p="chaos">Chaos</button>
+      </div>
+      <div class="bar">
+        <button class="alt" id="hide">Hide distribution and pick a random one</button>
+        <button id="reveal" disabled>Reveal</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>2 · Pull samples</h2>
+      <div class="bar">
+        <label>Sample size n =
+          <input type="range" id="n" min="1" max="100" value="40" style="width:180px">
+          <b class="readout" id="nV">40</b></label>
+        <button id="one">Pull 1 sample (watch it)</button>
+        <button class="alt" id="hundred">Pull 100</button>
+        <button class="alt" id="thousand">Pull 5,000</button>
+        <button class="ghost" id="clear">Clear means</button>
+      </div>
+      <canvas id="tray" width="1040" height="70"></canvas>
+    </div>
+
+    <div class="panel">
+      <h2>3 · The distribution of sample means</h2>
+      <canvas id="means" width="1040" height="240"></canvas>
+      <div class="bar readout">
+        <span class="stat"><b id="cnt">0</b><span>sample means collected</span></span>
+        <span class="stat"><b id="mm">–</b><span>their average (theory says μ)</span></span>
+        <span class="stat"><b id="ms">–</b><span>their SD (theory says σ/√n = <span id="seV">–</span>)</span></span>
+      </div>
+    </div>
+    <canvas id="fx"></canvas>
+  </div>
+</div>
+
+<script>
+"use strict";
+// A population is K bars. Bar i sits at the value lo + i*step. A discrete population
+// takes exactly those values; a continuous one spreads each bar over a bin of width step.
+function fact(k){ let f=1; for(let j=2;j<=k;j++) f*=j; return f; }
+function choose(m,k){ return fact(m)/(fact(k)*fact(m-k)); }
+const POPS={
+  binom:{name:"free throws made out of 10", K:11, lo:0, step:1, discrete:true,
+         f:i=>choose(10,i)*0.75**i*0.25**(10-i)},
+  pois: {name:"cadets arriving in an hour", K:19, lo:0, step:1, discrete:true,
+         f:i=>Math.exp(-6)*6**i/fact(i)},
+  exp:  {name:"hours until the next cadet", K:52, lo:0, step:1.3/52, discrete:false,
+         f:(i,x)=>6*Math.exp(-6*x)},
+  norm: {name:"one cadet's height in inches", K:52, lo:57, step:0.5, discrete:false,
+         f:(i,x)=>Math.exp(-((x-70)**2)/18)},
+  flat:  {name:"flat", K:52, lo:0, step:1, discrete:false, f:()=>1},
+  skew:  {name:"dragon", K:52, lo:0, step:1, discrete:false, f:i=>Math.exp(-i/7)*10},
+  bunny: {name:"bunny ears", K:52, lo:0, step:1, discrete:false,
+          f:i=>Math.exp(-((i-12)**2)/18)*8+Math.exp(-((i-40)**2)/18)*8+0.1},
+  spikes:{name:"spikes", K:52, lo:0, step:1, discrete:false, f:i=>[6,18,33,47].includes(i)?9:0},
+  chaos: {name:"chaos", K:52, lo:0, step:1, discrete:false, f:()=>Math.random()**2*9+0.05},
+};
+let P=POPS.binom, K=P.K, w=[], n=40, means=[], hidden=false;
+
+const pop=document.getElementById("pop"), px=pop.getContext("2d");
+const tray=document.getElementById("tray"), tx=tray.getContext("2d");
+const mc=document.getElementById("means"), mx=mc.getContext("2d");
+const $=id=>document.getElementById(id);
+const BOARD="#20241B", CHALK="#E8E2C8";
+
+// The horizontal axis, shared by all three boards.
+const xmin=()=>P.discrete ? P.lo-P.step/2 : P.lo;
+const span=()=>K*P.step;
+const X=(v,W)=>(v-xmin())/span()*W;
+const center=i=>P.discrete ? P.lo+i*P.step : P.lo+(i+0.5)*P.step;
+const fmt=v=>String(Number(v.toPrecision(4)));
+
+function stats(){
+  const tot=w.reduce((a,b)=>a+b,0)||1;
+  let mu=0; for(let i=0;i<K;i++) mu+=center(i)*w[i]/tot;
+  let v=0;  for(let i=0;i<K;i++) v+=(center(i)-mu)**2*w[i]/tot;
+  if(!P.discrete) v+=P.step**2/12;      // spread inside each bin
+  return {mu, sd:Math.sqrt(v), tot};
+}
+function draw1(){ // inverse cdf draw from the bars
+  const {tot}=stats(); let u=Math.random()*tot;
+  for(let i=0;i<K;i++){ u-=w[i]; if(u<=0) return P.discrete ? center(i) : P.lo+(i+Math.random())*P.step; }
+  return center(K-1);
+}
+function setPop(key, pop){
+  P=pop||POPS[key]; K=P.K;
+  hidden=!!pop;
+  w=Array.from({length:K},(_,i)=>Math.max(1e-9,P.f(i,center(i))));
+  $("popName").textContent=P.name;
+  $("reveal").disabled=!hidden;
+  document.querySelectorAll("[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===key));
+  clearMeans(); drawPop();
+}
+// A population nobody in the room has seen: a random shape on a random scale.
+function mystery(){
+  const r=Math.random, pick=a=>a[Math.floor(r()*a.length)];
+  const c1=6+r()*40, c2=6+r()*40, s1=3+r()*7, s2=3+r()*7, mix=0.25+r()*0.5, rate=4+r()*9;
+  const from=Math.floor(r()*20), to=from+12+Math.floor(r()*(40-from));
+  const flip=r()<0.5, spots=[0,1,2,3].map(()=>Math.floor(r()*52));
+  const shape=pick([
+    i=>Math.exp(-(flip?51-i:i)/rate),                                           // long tail, either side
+    i=>mix*Math.exp(-((i-c1)**2)/(2*s1*s1))+(1-mix)*Math.exp(-((i-c2)**2)/(2*s2*s2)),  // two humps
+    i=>(i>=from&&i<=to)?1:0,                                                    // a flat block
+    i=>(i>=from&&i<=to)?(flip?to-i+1:i-from+1):0,                               // a ramp
+    i=>spots.includes(i)?1:0,                                                   // spikes
+  ]);
+  const heights=Array.from({length:52},(_,i)=>shape(i));
+  return {name:"a mystery population", K:52, lo:Math.round(r()*200)*pick([0.1,1,5]),
+          step:pick([0.05,0.2,0.5,1,2,10]), discrete:false, f:i=>heights[i]};
+}
+
+/* ---------- painting ---------- */
+let painting=false;
+function paint(ev){
+  if(hidden) return;
+  const r=pop.getBoundingClientRect();
+  const x=(ev.clientX-r.left)*pop.width/r.width;
+  const y=(ev.clientY-r.top)*pop.height/r.height;
+  const i=Math.max(0,Math.min(K-1,Math.floor(x/(pop.width/K))));
+  const top=Math.max(...w);
+  w[i]=Math.max(0.002*top, (pop.height-BOT-y)/(pop.height-BOT-10)*top);
+  clearMeans(); drawPop();
+}
+pop.addEventListener("pointerdown",e=>{painting=true;paint(e);pop.setPointerCapture(e.pointerId)});
+pop.addEventListener("pointermove",e=>{if(painting)paint(e)});
+pop.addEventListener("pointerup",()=>painting=false);
+document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>setPop(b.dataset.p)));
+
+/* ---------- rendering ---------- */
+const BOT=22;   // room under each board for the axis numbers
+function ticks(){
+  if(P.discrete){
+    const every=K<=12?1:2, t=[];
+    for(let i=0;i<K;i+=every) t.push(center(i));
+    return t;
+  }
+  const raw=span()/7, mag=10**Math.floor(Math.log10(raw));
+  const st=[1,2,2.5,5,10].map(m=>m*mag).find(m=>m>=raw);
+  const t=[]; for(let v=Math.ceil(xmin()/st-1e-9)*st; v<=xmin()+span()+1e-9; v+=st) t.push(v);
+  return t;
+}
+function axis(ctx,W,H){
+  ctx.fillStyle=CHALK; ctx.font="500 12px Oswald"; ctx.textAlign="center";
+  ticks().forEach(v=>{
+    const x=Math.min(W-12,Math.max(12,X(v,W)));
+    ctx.fillText(fmt(v), x, H-6);
+  });
+  ctx.textAlign="left";
+}
+function drawPop(){
+  const W=pop.width,H=pop.height,bw=W/K,{mu,sd}=stats();
+  px.clearRect(0,0,W,H); px.fillStyle=BOARD; px.fillRect(0,0,W,H);
+  if(hidden){
+    px.fillStyle=CHALK; px.textAlign="center";
+    px.font="600 96px Oswald"; px.fillText("?", W/2, H/2+22);
+    px.font="500 14px Oswald"; px.fillText("the population is hidden", W/2, H-BOT-12);
+    px.textAlign="left";
+    axis(px,W,H);
+    $("muV").textContent="?"; $("sdV").textContent="?"; $("seV").textContent="?";
+    drawMeans();
+    return;
+  }
+  const top=Math.max(...w), gap=P.discrete?Math.min(10,bw*0.18):1;
+  px.fillStyle="#B49668";
+  for(let i=0;i<K;i++){
+    const h=(w[i]/top)*(H-BOT-10);
+    px.fillRect(i*bw+gap, H-BOT-h, bw-2*gap, h);
+  }
+  px.strokeStyle=CHALK; px.setLineDash([5,4]); px.lineWidth=2;
+  px.beginPath(); const xm=X(mu,W); px.moveTo(xm,4); px.lineTo(xm,H-BOT); px.stroke();
+  px.setLineDash([]);
+  px.fillStyle=CHALK; px.font="500 12px Oswald";
+  px.fillText("μ", xm+5, 16);
+  axis(px,W,H);
+  $("muV").textContent=fmt(mu); $("sdV").textContent=fmt(sd);
+  $("seV").textContent=fmt(sd/Math.sqrt(n));
+  drawMeans();
+}
+let lastTray=null;
+function makeTray(sample, mean){
+  const W=tray.width,H=tray.height;
+  return {n:sample.length, mean, pts:sample.map(v=>({
+    x:X(v,W)+(P.discrete?(Math.random()-.5)*W/K*0.6:0), y:H*0.62+(Math.random()-.5)*16}))};
+}
+function drawTray(st, label){
+  const W=tray.width,H=tray.height;
+  tx.clearRect(0,0,W,H); tx.fillStyle=BOARD; tx.fillRect(0,0,W,H);
+  tx.fillStyle=CHALK; tx.font="500 12px Oswald";
+  tx.fillText(label || (st?`one sample of n = ${st.n}  →  its mean = ${fmt(st.mean)}`:"pulled samples appear here"), 8, 16);
+  if(st){
+    tx.fillStyle="#8fb7e0";
+    st.pts.forEach(q=>{tx.beginPath();tx.arc(q.x,q.y,4,0,7);tx.fill()});
+    tx.strokeStyle="#E06A3A"; tx.lineWidth=3;
+    tx.beginPath(); tx.moveTo(X(st.mean,W),H*0.3); tx.lineTo(X(st.mean,W),H-6); tx.stroke();
+  }
+}
+// Bins for the sample means. A mean from a discrete population can only land on
+// multiples of step/n, so each bin holds a whole number of those or the bars comb.
+function meanBins(){
+  let bwv=span()/140;
+  if(P.discrete){ const g=P.step/n; bwv=Math.max(1,Math.round(bwv/g))*g; }
+  return {bwv, MB:Math.ceil(span()/bwv-1e-9)};
+}
+function drawMeans(){
+  const W=mc.width,H=mc.height,{mu,sd}=stats(),se=sd/Math.sqrt(n);
+  mx.clearRect(0,0,W,H); mx.fillStyle=BOARD; mx.fillRect(0,0,W,H);
+  const {bwv,MB}=meanBins(), bw=bwv/span()*W, counts=new Array(MB).fill(0);
+  // The half bin shift centers each discrete bin on the values it collects.
+  const off=P.discrete ? (bwv-P.step/n)/2 : 0;
+  means.forEach(m=>{const b=Math.max(0,Math.min(MB-1,Math.floor((m-xmin()+off)/bwv)));counts[b]++});
+  const peak=Math.max(1,...counts), top=H-BOT-22;
+  mx.fillStyle="#8B9370";
+  for(let b=0;b<MB;b++){
+    const h=counts[b]/peak*top;
+    if(counts[b]) mx.fillRect(b*bw-off/span()*W, H-BOT-h, Math.max(1,bw-1), h);
+  }
+  // CLT prediction, scaled to the current histogram area. At n = 1 the CLT claims
+  // nothing: the pile converges to the population itself, so no normal curve is drawn.
+  mx.fillStyle=CHALK; mx.font="500 12px Oswald";
+  if(hidden){
+    mx.fillText("population hidden: no CLT curve until you reveal it", 8, 16);
+  } else if(n===1 && means.length>1){
+    mx.fillText("n = 1: no curve to draw. The pile is rebuilding the population. Slide n up.", 8, 16);
+  }
+  if(!hidden && n>1 && means.length>1 && se>0){
+    const area=means.length*bwv;
+    mx.strokeStyle=CHALK; mx.setLineDash([6,5]); mx.lineWidth=2; mx.beginPath();
+    for(let j=0;j<=400;j++){
+      const x=xmin()+span()*j/400;
+      const pdf=Math.exp(-((x-mu)**2)/(2*se*se))/(se*Math.sqrt(2*Math.PI));
+      const y=H-BOT-(pdf*area)/peak*top;
+      j? mx.lineTo(j/400*W,y) : mx.moveTo(0,y);
+    }
+    mx.stroke(); mx.setLineDash([]);
+    mx.fillText("dashed = N(μ, (σ/√n)²), what the CLT predicts", 8, 16);
+  }
+  axis(mx,W,H);
+  $("cnt").textContent=means.length.toLocaleString();
+  if(means.length){
+    const mm=means.reduce((a,b)=>a+b,0)/means.length;
+    const msd=Math.sqrt(means.reduce((a,b)=>a+(b-mm)**2,0)/means.length);
+    $("mm").textContent=fmt(mm); $("ms").textContent=fmt(msd);
+  } else { $("mm").textContent="–"; $("ms").textContent="–"; }
+}
+function clearMeans(){ stopAnim(false); means=[]; lastTray=null; drawTray(null); drawMeans(); }
+
+/* ---------- actions ---------- */
+function pull(count){
+  stopAnim(true);
+  const all=[];
+  for(let c=0;c<count;c++){
+    const smp=Array.from({length:n},draw1);
+    all.push(smp.reduce((a,b)=>a+b,0)/n);
+  }
+  const label=`${count.toLocaleString()} samples of n = ${n}`;
+  let done=0;
+  const finish=()=>{ while(done<all.length) means.push(all[done++]); lastTray=null; drawTray(null,label); drawMeans(); };
+  if(STILL){ finish(); return; }
+  fitFx();
+  const scale=mc.getBoundingClientRect().width/mc.width;
+  const DUR=1600, FALL=320, rain=[];
+  drawTray(null, "pulling "+label);
+  const a=anim={raf:0, finish}, start=performance.now();
+  function frame(now){
+    if(anim!==a) return;
+    const t=now-start, f=Math.min(1,t/DUR);
+    const target=Math.floor(all.length*f*f*(3-2*f));      // slow, fast, slow
+    const before=done;
+    while(done<target) means.push(all[done++]);
+    // a few of the new means are shown falling; the rest just land
+    for(let j=before;j<done && j<before+8;j++){
+      const m=all[j];
+      rain.push({t0:t, from:place(tray,X(m,tray.width),tray.height*0.6), to:place(mc,X(m,mc.width),mc.height-BOT-6)});
+    }
+    drawMeans();
+    fxc.clearRect(0,0,fx.width,fx.height);
+    fxc.fillStyle="#E06A3A";
+    for(let j=rain.length-1;j>=0;j--){
+      const r=rain[j], g=(t-r.t0)/FALL;
+      if(g>=1){ rain.splice(j,1); continue; }
+      fxc.beginPath(); fxc.arc(r.from.x, r.from.y+(r.to.y-r.from.y)*g*g, 4.5*scale, 0, 7); fxc.fill();
+    }
+    if(f>=1 && !rain.length){ stopAnim(true); return; }
+    a.raf=requestAnimationFrame(frame);
+  }
+  a.raf=requestAnimationFrame(frame);
+}
+
+/* ---------- watch one sample fall ----------
+   The dots appear inside the population bars, drop into the tray, and then the
+   sample mean drops into the bottom board. Everything in flight is drawn on #fx,
+   a transparent canvas laid over all three boards. */
+const fx=$("fx"), fxc=fx.getContext("2d");
+const STILL=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let anim=null;
+function fitFx(){
+  const r=fx.parentElement.getBoundingClientRect(), d=window.devicePixelRatio||1;
+  fx.width=Math.round(r.width*d); fx.height=Math.round(r.height*d);
+  fxc.setTransform(d,0,0,d,0,0);
+}
+function place(cv,x,y){   // a point on one board, in the overlay's coordinates
+  const r=cv.getBoundingClientRect(), o=fx.parentElement.getBoundingClientRect();
+  return {x:r.left-o.left+x*r.width/cv.width, y:r.top-o.top+y*r.height/cv.height};
+}
+function land(a){ means.push(a.st.mean); lastTray=a.st; drawTray(a.st); drawMeans(); }
+function stopAnim(commit){
+  if(!anim) return;
+  cancelAnimationFrame(anim.raf);
+  const a=anim; anim=null;
+  fxc.clearRect(0,0,fx.width,fx.height);
+  if(commit) a.finish();
+}
+function watchPull(){
+  stopAnim(true);
+  const smp=Array.from({length:n},draw1), st=makeTray(smp, smp.reduce((a,b)=>a+b,0)/n);
+  if(STILL){ land({st}); return; }
+  fitFx();
+  const top=Math.max(...w), scale=pop.getBoundingClientRect().width/pop.width;
+  const SPREAD=Math.min(900,n*40), HOLD=250, FALL=650, LANDED=SPREAD+HOLD+FALL;
+  const LINE=LANDED+200, DROP=550, END=LINE+DROP;
+  const dots=smp.map((v,i)=>{
+    const bin=Math.max(0,Math.min(K-1,P.discrete?Math.round((v-P.lo)/P.step):Math.floor((v-P.lo)/P.step)));
+    const h=(w[bin]/top)*(pop.height-BOT-10);
+    return {from:place(pop, st.pts[i].x, pop.height-BOT-4-Math.random()*Math.max(0,h-8)),
+            to:place(tray, st.pts[i].x, st.pts[i].y), t0:i/n*SPREAD};
+  });
+  const mFrom=place(tray, X(st.mean,tray.width), tray.height*0.5);
+  const mTo=place(mc, X(st.mean,mc.width), mc.height-BOT-6);
+  drawTray(null, `pulling a sample of n = ${n}`);
+  const a=anim={st, raf:0, inTray:false, finish:()=>land({st})}, start=performance.now();
+  function frame(now){
+    if(anim!==a) return;
+    const t=now-start;
+    fxc.clearRect(0,0,fx.width,fx.height);
+    if(t<LANDED){
+      fxc.fillStyle="#8fb7e0";
+      dots.forEach(d=>{
+        if(t<d.t0) return;
+        const grow=Math.min(1,(t-d.t0)/120);
+        const f=Math.max(0,Math.min(1,(t-d.t0-HOLD)/FALL)), e=f*f;   // falls like gravity
+        fxc.beginPath();
+        fxc.arc(d.from.x+(d.to.x-d.from.x)*e, d.from.y+(d.to.y-d.from.y)*e, 4.5*scale*grow, 0, 7);
+        fxc.fill();
+      });
+    } else if(!a.inTray){ drawTray(st); a.inTray=true; }
+    if(t>=LINE){
+      const f=Math.min(1,(t-LINE)/DROP), e=f*f;
+      fxc.fillStyle="#E06A3A";
+      fxc.beginPath();
+      fxc.arc(mFrom.x, mFrom.y+(mTo.y-mFrom.y)*e, 6*scale, 0, 7);
+      fxc.fill();
+    }
+    if(t>=END){ stopAnim(true); return; }
+    a.raf=requestAnimationFrame(frame);
+  }
+  a.raf=requestAnimationFrame(frame);
+}
+$("n").addEventListener("input",e=>{n=+e.target.value;$("nV").textContent=n;clearMeans();drawPop()});
+$("one").addEventListener("click",watchPull);
+$("hundred").addEventListener("click",()=>pull(100));
+$("thousand").addEventListener("click",()=>pull(5000));
+$("clear").addEventListener("click",clearMeans);
+$("hide").addEventListener("click",()=>setPop(null, mystery()));
+$("reveal").addEventListener("click",()=>{
+  stopAnim(true); hidden=false; $("reveal").disabled=true;
+  $("popName").textContent="the mystery population, revealed";
+  drawPop();
+});
+
+setPop("binom");
+// Inside the lesson page: tell the host how tall this is so the frame never scrolls.
+if(window.parent!==window){
+  document.documentElement.classList.add("embedded");
+  const tell=()=>window.parent.postMessage({cltHeight:document.querySelector(".wrap").offsetHeight},"*");
+  new ResizeObserver(tell).observe(document.querySelector(".wrap"));
+  window.addEventListener("load",tell); tell();
+}
+// The canvas text uses Oswald; redraw once the web font has loaded.
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>{drawPop(); if(!anim && !means.length) drawTray(lastTray);});
+</script>
+</body>
+</html>

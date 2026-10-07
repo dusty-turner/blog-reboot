@@ -10183,5 +10183,148 @@
       "MA206-AY27-1",
       "Lesson 18"
     ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html",
+    "href": "MA206-AY27-1/lesson-19.html",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "NoteReview: Central Limit Theorem (Lesson 18)\n\n\n\n\n\n\n\n\\(\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\dfrac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\), approximately, for \\(n &gt; 40\\)\nNormal population: exact for any \\(n\\)\npnorm(x, mu, sigma/sqrt(n))\n\\(\\hat{p} \\sim N\\left(p,\\ \\dfrac{p(1-p)}{n}\\right)\\), approximately, when \\(np \\ge 10\\) and \\(n(1-p) \\ge 10\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpret a confidence level and the basic properties of a confidence interval. (SLO 5)\nConstruct a large-sample confidence interval for a population mean. (SLO 5)\nConstruct a large-sample confidence interval for a population proportion. (SLO 5)\n\n\n\n\n\nDevore 7.1, 7.2\n\n\n\n\n\n\n\n\n\n\n\n\nCross CountryThe SeasonThe Projection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPhotosVideo\n\n\n\n  \n  \n  \n  \n\n\n\n\n  \n    \n    Your browser does not support the video tag.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 19\n\n\n\n\n\nEvery interval: \\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nMean, \\(n &gt; 40\\): \\(\\bar{x} \\pm z_{\\alpha/2}\\,\\dfrac{s}{\\sqrt{n}}\\)\nProportion, \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\): \\(\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}\\)\nCritical value: qnorm(0.975) for 95%, qnorm(0.95) for 90%, qnorm(0.995) for 99%\n95% confident describes the method: about 95% of intervals built this way contain the parameter\n\n\n\n\n\n\n\n\n\n\\[\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\]\nThe mean of \\(\\bar{X}\\) is the mean of the underlying distribution, and the standard deviation is the standard deviation of the underlying distribution divided by the square root of the sample size.\n\n\n\n\n\n\nWhat if we don’t know the true mean \\(\\mu\\)? We’d love to put some sort of bounds around it, based off our sample, where we had reasonable assurance (a confidence level) that the true mean was within those bounds.\nStep 1: Start with the CLT.\n\\[\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\]\nStep 2: Standardize.\n\\[Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\sim N(0,\\ 1)\\]\nStep 3: Take the middle \\(1 - \\alpha\\). The critical value \\(z_{\\alpha/2}\\) leaves \\(\\alpha/2\\) in each tail.\n\\[P\\left(-z_{\\alpha/2} &lt; Z &lt; z_{\\alpha/2}\\right) = 1 - \\alpha\\]\n\n\n\n\n\n\n\n\n\nStep 4: Substitute for \\(Z\\).\n\\[P\\left(-z_{\\alpha/2} &lt; \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} &lt; z_{\\alpha/2}\\right) = 1 - \\alpha\\]\nStep 5: Multiply all three parts by \\(\\dfrac{\\sigma}{\\sqrt{n}}\\).\n\\[P\\left(-z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; \\bar{X} - \\mu &lt; z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 6: Subtract \\(\\bar{X}\\) from all three parts.\n\\[P\\left(-\\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; -\\mu &lt; -\\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 7: Multiply by \\(-1\\). The inequalities flip.\n\\[P\\left(\\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &gt; \\mu &gt; \\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 8: Rewrite in order.\n\\[P\\left(\\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; \\mu &lt; \\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nSo we are \\(100(1 - \\alpha)\\%\\) confident that the true mean \\(\\mu\\) is somewhere within these bounds.\n\\[\\boxed{\\bar{X} \\pm z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}}\\]\n\n\n\n50 cadets, 2 mile run times: \\(\\bar{x} = 14.81\\) minutes, \\(s = 1.86\\) minutes.\nBuild a 95% confidence interval for \\(\\mu\\).\n\\(1 - \\alpha = 0.95\\), so \\(\\alpha = 0.05\\) and \\(\\alpha/2 = 0.025\\). The critical value is \\(z_{0.025}\\).\n\n\n\n\n\n\n\n\n\nqnorm(0.975) = 1.96\n\\[14.81 \\pm 1.96\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.516 = (14.29,\\ 15.33)\\]\nInterpretation: We are 95% confident the true mean 2 mile run time of all cadets is between 14.29 and 15.33 minutes.\n\n\n\n\n\n\n\n\n\n\n\nImportantLarge-Sample Confidence Interval for \\(\\mu\\)\n\n\n\n\\[\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\n\n\nCondition: \\(n &gt; 40\\)\nEstimate: \\(\\bar{x}\\)\nCritical value: \\(z_{\\alpha/2}\\)\nStandard error: \\(\\dfrac{s}{\\sqrt{n}}\\)\n\n\n\n\n\n\nA \\(100(1-\\alpha)\\%\\) interval leaves \\(\\alpha/2\\) in each tail.\n\n\n\n\nconfidence level\n\\(\\alpha\\)\n\\(\\alpha/2\\)\nR-Lite\n\\(z_{\\alpha/2}\\)\n\n\n\n\n90%\n0.10\n0.05\nqnorm(0.95)\n1.645\n\n\n95%\n0.05\n0.025\nqnorm(0.975)\n1.960\n\n\n99%\n0.01\n0.005\nqnorm(0.995)\n2.576\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(n = 50\\), \\(\\bar{x} = 14.81\\), \\(s = 1.86\\).\n\\[\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\na) Build a 90% confidence interval for \\(\\mu\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[14.81 \\pm 1.645\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.433 = (\\mathbf{14.38},\\ \\mathbf{15.24})\\]\n14.81 + c(-1, 1) * qnorm(0.95) * 1.86 / sqrt(50)\n\n\n\nb) Build a 99% confidence interval for \\(\\mu\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[14.81 \\pm 2.576\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.678 = (\\mathbf{14.13},\\ \\mathbf{15.49})\\]\n14.81 + c(-1, 1) * qnorm(0.995) * 1.86 / sqrt(50)\n\n\n\nc) Which interval is widest?\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nThe 99% interval.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantTwo ways to correctly interpret it\n\n\n\n\nWe are 95% confident the true mean 2 mile run time of all cadets is between 14.29 and 15.33 minutes.\n\n\nIf we took a new sample and built the interval again, over and over, about 95% of those intervals would contain the true mean 2 mile run time.\n\n\n\n\n\n\n\n\n\nWarningWhat the confidence level does not say\n\n\n\n\n\nWrong: 95% of cadets run between 14.29 and 15.33 minutes.\nWrong: there is a 95% chance \\(\\mu\\) is in this interval. \\(\\mu\\) is fixed. The interval is what is random.\n\n\n\n\n\n\n\n\n\\[\\text{width} = 2\\,z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\n\n\nHigher confidence level: wider\nLarger \\(n\\): narrower\nLarger \\(s\\): wider\n\n\n\n\n\n\n\n\n\n\n\n\nImportantLarge-Sample Confidence Interval for \\(p\\)\n\n\n\n\\[\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\]\n\n\nCondition: \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\)\nEstimate: \\(\\hat{p} = \\dfrac{x}{n}\\)\nCritical value: \\(z_{\\alpha/2}\\)\nStandard error: \\(\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}\\)\n\n\n\n\n\n\nIn a random sample of \\(150\\) cadets, \\(66\\) drink coffee before first hour.\na) Find \\(\\hat{p}\\) and check the condition.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\hat{p} = \\frac{66}{150} = \\mathbf{0.44}\\]\n\\(n\\hat{p} = 66 \\ge 10\\) and \\(n(1-\\hat{p}) = 84 \\ge 10\\).\n\n\n\nb) Build a 95% confidence interval for \\(p\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[0.44 \\pm 1.96\\sqrt{\\frac{0.44(0.56)}{150}} = 0.44 \\pm 0.0794 = (\\mathbf{0.3606},\\ \\mathbf{0.5194})\\]\n0.44 + c(-1, 1) * qnorm(0.975) * sqrt(0.44 * 0.56 / 150)\n\n\n\nc) Interpret the interval.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nWe are 95% confident the true proportion of all cadets who drink coffee before first hour is between 0.3606 and 0.5194.\n\n\n\n\n\n\n\n\n\n\nA random sample of \\(64\\) cadets averages \\(\\bar{x} = 5.8\\) hours of sleep on a weeknight with \\(s = 1.2\\) hours.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nCheck the condition.\nBuild a 95% confidence interval for \\(\\mu\\).\nInterpret the interval.\nBuild a 99% confidence interval for \\(\\mu\\).\nIs 7 hours a plausible value for \\(\\mu\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(n = 64 &gt; 40\\).\n\\[5.8 \\pm 1.96\\,\\frac{1.2}{\\sqrt{64}} = 5.8 \\pm 0.294 = (\\mathbf{5.506},\\ \\mathbf{6.094})\\]\n\n5.8 + c(-1, 1) * qnorm(0.975) * 1.2 / sqrt(64)\n\nWe are 95% confident the true mean weeknight sleep of all cadets is between 5.506 and 6.094 hours.\n\\[5.8 \\pm 2.576\\,\\frac{1.2}{\\sqrt{64}} = 5.8 \\pm 0.386 = (\\mathbf{5.414},\\ \\mathbf{6.186})\\]\n\n5.8 + c(-1, 1) * qnorm(0.995) * 1.2 / sqrt(64)\n\nNo. 7 is above both intervals.\n\n\n\n\n\n\n\n\nAn inspector takes a random sample of \\(225\\) vehicles in a brigade. \\(54\\) have a fault on their PMCS.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nFind \\(\\hat{p}\\) and check the condition.\nBuild a 95% confidence interval for \\(p\\).\nInterpret the interval.\nBuild a 90% confidence interval for \\(p\\).\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\hat{p} = 54/225 = \\mathbf{0.24}\\). \\(n\\hat{p} = 54 \\ge 10\\) and \\(n(1-\\hat{p}) = 171 \\ge 10\\).\n\\[0.24 \\pm 1.96\\sqrt{\\frac{0.24(0.76)}{225}} = 0.24 \\pm 0.0558 = (\\mathbf{0.1842},\\ \\mathbf{0.2958})\\]\n\n0.24 + c(-1, 1) * qnorm(0.975) * sqrt(0.24 * 0.76 / 225)\n\nWe are 95% confident the true proportion of all vehicles in the brigade with a fault is between 0.1842 and 0.2958.\n\\[0.24 \\pm 1.645\\sqrt{\\frac{0.24(0.76)}{225}} = 0.24 \\pm 0.0468 = (\\mathbf{0.1932},\\ \\mathbf{0.2868})\\]\n\n0.24 + c(-1, 1) * qnorm(0.95) * sqrt(0.24 * 0.76 / 225)\n\n\n\n\n\n\n\nA random sample of \\(81\\) cadets records their wait at the barbershop: \\(\\bar{x} = 22.5\\) minutes, \\(s = 6.3\\) minutes. The 95% confidence interval for \\(\\mu\\) is \\((21.128,\\ 23.872)\\).\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nVerify the interval.\nTrue or false: 95% of cadets wait between 21.128 and 23.872 minutes.\nTrue or false: there is a 95% chance \\(\\mu\\) is between 21.128 and 23.872.\nTrue or false: if we repeated the sampling many times, about 95% of the intervals would contain \\(\\mu\\).\nWith the same \\(\\bar{x}\\) and \\(s\\) from \\(324\\) cadets, what happens to the width?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(n = 81 &gt; 40\\).\n\n\\[22.5 \\pm 1.96\\,\\frac{6.3}{\\sqrt{81}} = 22.5 \\pm 1.372 = (\\mathbf{21.128},\\ \\mathbf{23.872})\\]\n\nFalse. The interval is about \\(\\mu\\), not about individual waits.\nFalse. \\(\\mu\\) is fixed. It is in this interval or it is not.\nTrue.\nHalf as wide. \\(\\sqrt{324} = 18 = 2\\sqrt{81}\\), so the standard error drops from \\(0.7\\) to \\(0.35\\).\n\n\n\n\n\n\n\n\nIn a random sample of \\(400\\) cadets, \\(120\\) went to Arvin at least four times last week.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nBuild a 99% confidence interval for \\(p\\).\nInterpret the interval.\nA cadet claims a third of the Corps goes at least four times a week. Is that plausible?\nA second sample of \\(40\\) cadets has \\(8\\) who did. Can you build the interval?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\hat{p} = 120/400 = 0.30\\). \\(n\\hat{p} = 120 \\ge 10\\) and \\(n(1-\\hat{p}) = 280 \\ge 10\\).\n\n\\[0.30 \\pm 2.576\\sqrt{\\frac{0.30(0.70)}{400}} = 0.30 \\pm 0.0590 = (\\mathbf{0.2410},\\ \\mathbf{0.3590})\\]\n0.30 + c(-1, 1) * qnorm(0.995) * sqrt(0.30 * 0.70 / 400)\n\nWe are 99% confident the true proportion of all cadets who went to Arvin at least four times last week is between 0.2410 and 0.3590.\nYes. \\(0.333\\) is inside the interval.\nNo. \\(n\\hat{p} = 8 &lt; 10\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nMean, \\(n &gt; 40\\): \\(\\bar{x} \\pm z_{\\alpha/2}\\,s/\\sqrt{n}\\)\nProportion, \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\): \\(\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\hat{p}(1-\\hat{p})/n}\\)\n95% confident is about the method\n\n\nAny questions?\n\n\n\n\nLesson 20: Confidence Intervals II\n\n\nConstruct a confidence interval for a mean based on a normal population using the \\(t\\) distribution\nDetermine the sample size needed to achieve a specified interval width\nInterpret a confidence interval correctly\n\n\nReading: Devore 7.3\n\n\n\n\n\n\nWebAssign 7.1, 7.2: due at the start of Lesson 20\nEDA: due 11 October\nWPR II: Lesson 28 (covers Lessons 18-26)\nTEE: 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#what-we-did-lesson-18",
+    "href": "MA206-AY27-1/lesson-19.html#what-we-did-lesson-18",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "NoteReview: Central Limit Theorem (Lesson 18)\n\n\n\n\n\n\n\n\\(\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\dfrac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\), approximately, for \\(n &gt; 40\\)\nNormal population: exact for any \\(n\\)\npnorm(x, mu, sigma/sqrt(n))\n\\(\\hat{p} \\sim N\\left(p,\\ \\dfrac{p(1-p)}{n}\\right)\\), approximately, when \\(np \\ge 10\\) and \\(n(1-p) \\ge 10\\)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#what-were-doing-lesson-19",
+    "href": "MA206-AY27-1/lesson-19.html#what-were-doing-lesson-19",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "Interpret a confidence level and the basic properties of a confidence interval. (SLO 5)\nConstruct a large-sample confidence interval for a population mean. (SLO 5)\nConstruct a large-sample confidence interval for a population proportion. (SLO 5)\n\n\n\n\n\nDevore 7.1, 7.2",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#break",
+    "href": "MA206-AY27-1/lesson-19.html#break",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "Cross CountryThe SeasonThe Projection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPhotosVideo\n\n\n\n  \n  \n  \n  \n\n\n\n\n  \n    \n    Your browser does not support the video tag.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 19\n\n\n\n\n\nEvery interval: \\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nMean, \\(n &gt; 40\\): \\(\\bar{x} \\pm z_{\\alpha/2}\\,\\dfrac{s}{\\sqrt{n}}\\)\nProportion, \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\): \\(\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}\\)\nCritical value: qnorm(0.975) for 95%, qnorm(0.95) for 90%, qnorm(0.995) for 99%\n95% confident describes the method: about 95% of intervals built this way contain the parameter",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#last-lessons-question",
+    "href": "MA206-AY27-1/lesson-19.html#last-lessons-question",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "50 cadets, 2 mile run times: \\(\\bar{x} = 14.81\\) minutes, \\(s = 1.86\\) minutes.\nWe don’t know \\(\\mu\\), the mean run time of all cadets. What can we say about it?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#from-the-clt-to-an-interval",
+    "href": "MA206-AY27-1/lesson-19.html#from-the-clt-to-an-interval",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "What if we don’t know the true mean \\(\\mu\\)? We’d love to put some sort of bounds around it, based off our sample, where we had reasonable assurance (a confidence level) that the true mean was within those bounds.\nStep 1: Start with the CLT.\n\\[\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\]\nStep 2: Standardize.\n\\[Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\sim N(0,\\ 1)\\]\nStep 3: Take the middle \\(1 - \\alpha\\). The critical value \\(z_{\\alpha/2}\\) leaves \\(\\alpha/2\\) in each tail.\n\\[P\\left(-z_{\\alpha/2} &lt; Z &lt; z_{\\alpha/2}\\right) = 1 - \\alpha\\]\n\n\n\n\n\n\n\n\n\nStep 4: Substitute for \\(Z\\).\n\\[P\\left(-z_{\\alpha/2} &lt; \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} &lt; z_{\\alpha/2}\\right) = 1 - \\alpha\\]\nStep 5: Multiply all three parts by \\(\\dfrac{\\sigma}{\\sqrt{n}}\\).\n\\[P\\left(-z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; \\bar{X} - \\mu &lt; z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 6: Subtract \\(\\bar{X}\\) from all three parts.\n\\[P\\left(-\\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; -\\mu &lt; -\\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 7: Multiply by \\(-1\\). The inequalities flip.\n\\[P\\left(\\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &gt; \\mu &gt; \\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nStep 8: Rewrite in order.\n\\[P\\left(\\bar{X} - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}} &lt; \\mu &lt; \\bar{X} + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\right) = 1 - \\alpha\\]\nSo we are \\(100(1 - \\alpha)\\%\\) confident that the true mean \\(\\mu\\) is somewhere within these bounds.\n\\[\\boxed{\\bar{X} \\pm z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}}\\]\n\n\n\n50 cadets, 2 mile run times: \\(\\bar{x} = 14.81\\) minutes, \\(s = 1.86\\) minutes.\nBuild a 95% confidence interval for \\(\\mu\\).\n\\(1 - \\alpha = 0.95\\), so \\(\\alpha = 0.05\\) and \\(\\alpha/2 = 0.025\\). The critical value is \\(z_{0.025}\\).\n\n\n\n\n\n\n\n\n\nqnorm(0.975) = 1.96\n\\[14.81 \\pm 1.96\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.516 = (14.29,\\ 15.33)\\]\nInterpretation: We are 95% confident the true mean 2 mile run time of all cadets is between 14.29 and 15.33 minutes.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#confidence-interval-for-a-mean",
+    "href": "MA206-AY27-1/lesson-19.html#confidence-interval-for-a-mean",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "ImportantLarge-Sample Confidence Interval for \\(\\mu\\)\n\n\n\n\\[\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\n\n\nCondition: \\(n &gt; 40\\)\nEstimate: \\(\\bar{x}\\)\nCritical value: \\(z_{\\alpha/2}\\)\nStandard error: \\(\\dfrac{s}{\\sqrt{n}}\\)\n\n\n\n\n\n\nA \\(100(1-\\alpha)\\%\\) interval leaves \\(\\alpha/2\\) in each tail.\n\n\n\n\nconfidence level\n\\(\\alpha\\)\n\\(\\alpha/2\\)\nR-Lite\n\\(z_{\\alpha/2}\\)\n\n\n\n\n90%\n0.10\n0.05\nqnorm(0.95)\n1.645\n\n\n95%\n0.05\n0.025\nqnorm(0.975)\n1.960\n\n\n99%\n0.01\n0.005\nqnorm(0.995)\n2.576\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(n = 50\\), \\(\\bar{x} = 14.81\\), \\(s = 1.86\\).\n\\[\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\na) Build a 90% confidence interval for \\(\\mu\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[14.81 \\pm 1.645\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.433 = (\\mathbf{14.38},\\ \\mathbf{15.24})\\]\n14.81 + c(-1, 1) * qnorm(0.95) * 1.86 / sqrt(50)\n\n\n\nb) Build a 99% confidence interval for \\(\\mu\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[14.81 \\pm 2.576\\,\\frac{1.86}{\\sqrt{50}} = 14.81 \\pm 0.678 = (\\mathbf{14.13},\\ \\mathbf{15.49})\\]\n14.81 + c(-1, 1) * qnorm(0.995) * 1.86 / sqrt(50)\n\n\n\nc) Which interval is widest?\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nThe 99% interval.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#what-does-95-confident-mean",
+    "href": "MA206-AY27-1/lesson-19.html#what-does-95-confident-mean",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "ImportantTwo ways to correctly interpret it\n\n\n\n\nWe are 95% confident the true mean 2 mile run time of all cadets is between 14.29 and 15.33 minutes.\n\n\nIf we took a new sample and built the interval again, over and over, about 95% of those intervals would contain the true mean 2 mile run time.\n\n\n\n\n\n\n\n\n\nWarningWhat the confidence level does not say\n\n\n\n\n\nWrong: 95% of cadets run between 14.29 and 15.33 minutes.\nWrong: there is a 95% chance \\(\\mu\\) is in this interval. \\(\\mu\\) is fixed. The interval is what is random.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#what-changes-the-width",
+    "href": "MA206-AY27-1/lesson-19.html#what-changes-the-width",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "\\[\\text{width} = 2\\,z_{\\alpha/2}\\,\\frac{s}{\\sqrt{n}}\\]\n\n\nHigher confidence level: wider\nLarger \\(n\\): narrower\nLarger \\(s\\): wider",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#confidence-interval-for-a-proportion",
+    "href": "MA206-AY27-1/lesson-19.html#confidence-interval-for-a-proportion",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "ImportantLarge-Sample Confidence Interval for \\(p\\)\n\n\n\n\\[\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\]\n\n\nCondition: \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\)\nEstimate: \\(\\hat{p} = \\dfrac{x}{n}\\)\nCritical value: \\(z_{\\alpha/2}\\)\nStandard error: \\(\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}\\)\n\n\n\n\n\n\nIn a random sample of \\(150\\) cadets, \\(66\\) drink coffee before first hour.\na) Find \\(\\hat{p}\\) and check the condition.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\hat{p} = \\frac{66}{150} = \\mathbf{0.44}\\]\n\\(n\\hat{p} = 66 \\ge 10\\) and \\(n(1-\\hat{p}) = 84 \\ge 10\\).\n\n\n\nb) Build a 95% confidence interval for \\(p\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[0.44 \\pm 1.96\\sqrt{\\frac{0.44(0.56)}{150}} = 0.44 \\pm 0.0794 = (\\mathbf{0.3606},\\ \\mathbf{0.5194})\\]\n0.44 + c(-1, 1) * qnorm(0.975) * sqrt(0.44 * 0.56 / 150)\n\n\n\nc) Interpret the interval.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nWe are 95% confident the true proportion of all cadets who drink coffee before first hour is between 0.3606 and 0.5194.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#board-problems",
+    "href": "MA206-AY27-1/lesson-19.html#board-problems",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "A random sample of \\(64\\) cadets averages \\(\\bar{x} = 5.8\\) hours of sleep on a weeknight with \\(s = 1.2\\) hours.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nCheck the condition.\nBuild a 95% confidence interval for \\(\\mu\\).\nInterpret the interval.\nBuild a 99% confidence interval for \\(\\mu\\).\nIs 7 hours a plausible value for \\(\\mu\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(n = 64 &gt; 40\\).\n\\[5.8 \\pm 1.96\\,\\frac{1.2}{\\sqrt{64}} = 5.8 \\pm 0.294 = (\\mathbf{5.506},\\ \\mathbf{6.094})\\]\n\n5.8 + c(-1, 1) * qnorm(0.975) * 1.2 / sqrt(64)\n\nWe are 95% confident the true mean weeknight sleep of all cadets is between 5.506 and 6.094 hours.\n\\[5.8 \\pm 2.576\\,\\frac{1.2}{\\sqrt{64}} = 5.8 \\pm 0.386 = (\\mathbf{5.414},\\ \\mathbf{6.186})\\]\n\n5.8 + c(-1, 1) * qnorm(0.995) * 1.2 / sqrt(64)\n\nNo. 7 is above both intervals.\n\n\n\n\n\n\n\n\nAn inspector takes a random sample of \\(225\\) vehicles in a brigade. \\(54\\) have a fault on their PMCS.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nFind \\(\\hat{p}\\) and check the condition.\nBuild a 95% confidence interval for \\(p\\).\nInterpret the interval.\nBuild a 90% confidence interval for \\(p\\).\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\hat{p} = 54/225 = \\mathbf{0.24}\\). \\(n\\hat{p} = 54 \\ge 10\\) and \\(n(1-\\hat{p}) = 171 \\ge 10\\).\n\\[0.24 \\pm 1.96\\sqrt{\\frac{0.24(0.76)}{225}} = 0.24 \\pm 0.0558 = (\\mathbf{0.1842},\\ \\mathbf{0.2958})\\]\n\n0.24 + c(-1, 1) * qnorm(0.975) * sqrt(0.24 * 0.76 / 225)\n\nWe are 95% confident the true proportion of all vehicles in the brigade with a fault is between 0.1842 and 0.2958.\n\\[0.24 \\pm 1.645\\sqrt{\\frac{0.24(0.76)}{225}} = 0.24 \\pm 0.0468 = (\\mathbf{0.1932},\\ \\mathbf{0.2868})\\]\n\n0.24 + c(-1, 1) * qnorm(0.95) * sqrt(0.24 * 0.76 / 225)\n\n\n\n\n\n\n\nA random sample of \\(81\\) cadets records their wait at the barbershop: \\(\\bar{x} = 22.5\\) minutes, \\(s = 6.3\\) minutes. The 95% confidence interval for \\(\\mu\\) is \\((21.128,\\ 23.872)\\).\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nVerify the interval.\nTrue or false: 95% of cadets wait between 21.128 and 23.872 minutes.\nTrue or false: there is a 95% chance \\(\\mu\\) is between 21.128 and 23.872.\nTrue or false: if we repeated the sampling many times, about 95% of the intervals would contain \\(\\mu\\).\nWith the same \\(\\bar{x}\\) and \\(s\\) from \\(324\\) cadets, what happens to the width?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(n = 81 &gt; 40\\).\n\n\\[22.5 \\pm 1.96\\,\\frac{6.3}{\\sqrt{81}} = 22.5 \\pm 1.372 = (\\mathbf{21.128},\\ \\mathbf{23.872})\\]\n\nFalse. The interval is about \\(\\mu\\), not about individual waits.\nFalse. \\(\\mu\\) is fixed. It is in this interval or it is not.\nTrue.\nHalf as wide. \\(\\sqrt{324} = 18 = 2\\sqrt{81}\\), so the standard error drops from \\(0.7\\) to \\(0.35\\).\n\n\n\n\n\n\n\n\nIn a random sample of \\(400\\) cadets, \\(120\\) went to Arvin at least four times last week.\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nBuild a 99% confidence interval for \\(p\\).\nInterpret the interval.\nA cadet claims a third of the Corps goes at least four times a week. Is that plausible?\nA second sample of \\(40\\) cadets has \\(8\\) who did. Can you build the interval?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\hat{p} = 120/400 = 0.30\\). \\(n\\hat{p} = 120 \\ge 10\\) and \\(n(1-\\hat{p}) = 280 \\ge 10\\).\n\n\\[0.30 \\pm 2.576\\sqrt{\\frac{0.30(0.70)}{400}} = 0.30 \\pm 0.0590 = (\\mathbf{0.2410},\\ \\mathbf{0.3590})\\]\n0.30 + c(-1, 1) * qnorm(0.995) * sqrt(0.30 * 0.70 / 400)\n\nWe are 99% confident the true proportion of all cadets who went to Arvin at least four times last week is between 0.2410 and 0.3590.\nYes. \\(0.333\\) is inside the interval.\nNo. \\(n\\hat{p} = 8 &lt; 10\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#before-you-leave",
+    "href": "MA206-AY27-1/lesson-19.html#before-you-leave",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "\\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nMean, \\(n &gt; 40\\): \\(\\bar{x} \\pm z_{\\alpha/2}\\,s/\\sqrt{n}\\)\nProportion, \\(n\\hat{p} \\ge 10\\) and \\(n(1-\\hat{p}) \\ge 10\\): \\(\\hat{p} \\pm z_{\\alpha/2}\\sqrt{\\hat{p}(1-\\hat{p})/n}\\)\n95% confident is about the method\n\n\nAny questions?\n\n\n\n\nLesson 20: Confidence Intervals II\n\n\nConstruct a confidence interval for a mean based on a normal population using the \\(t\\) distribution\nDetermine the sample size needed to achieve a specified interval width\nInterpret a confidence interval correctly\n\n\nReading: Devore 7.3\n\n\n\n\n\n\nWebAssign 7.1, 7.2: due at the start of Lesson 20\nEDA: due 11 October\nWPR II: Lesson 28 (covers Lessons 18-26)\nTEE: 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-19.html#yesterday-the-central-limit-theorem",
+    "href": "MA206-AY27-1/lesson-19.html#yesterday-the-central-limit-theorem",
+    "title": "Lesson 19: Confidence Intervals I",
+    "section": "",
+    "text": "\\[\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\]\nThe mean of \\(\\bar{X}\\) is the mean of the underlying distribution, and the standard deviation is the standard deviation of the underlying distribution divided by the square root of the sample size.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 19"
+    ]
   }
 ]
