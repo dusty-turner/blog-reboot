@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>t and Z</title>
+<style>
+  :root { --blue: #1f5fa8; --orange: #c25708; --muted: #5a6472; --dark: #1f2937; --line: #dee2e6; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #ffffff; color: var(--dark);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: 4px; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .controls label { font-size: 1rem; }
+  .df { flex: 1 1 320px; display: flex; align-items: center; gap: 10px; }
+  .df input[type=range] { flex: 1; min-width: 160px; accent-color: var(--orange); }
+  .dfval { font-size: 1.5rem; font-weight: 600; color: var(--orange); min-width: 5.2em; }
+  select, button { font: inherit; padding: 4px 10px; border: 1px solid #adb5bd; border-radius: 4px;
+    background: #ffffff; color: var(--dark); cursor: pointer; }
+  button:hover, select:hover { background: #f1f3f5; }
+  canvas { display: block; width: 100%; margin-top: 8px; }
+  .read { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 8px; }
+  .box { flex: 1 1 200px; border: 1px solid var(--line); border-radius: 4px; padding: 6px 10px; }
+  .box .k { font-size: 0.85rem; color: var(--muted); }
+  .box .v { font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .box code { font-size: 0.9rem; color: var(--muted); }
+  .t .v { color: var(--orange); } .z .v { color: var(--blue); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="controls">
+    <div class="df">
+      <label for="df">df</label>
+      <button id="minus" type="button" aria-label="df minus 1">&minus; 1</button>
+      <input id="df" type="range" min="1" max="100" step="1" value="2">
+      <button id="plus" type="button" aria-label="df plus 1">+ 1</button>
+      <span class="dfval" id="dfval">df = 2</span>
+    </div>
+    <label>level
+      <select id="level">
+        <option value="0.90">90%</option>
+        <option value="0.95" selected>95%</option>
+        <option value="0.99">99%</option>
+      </select>
+    </label>
+    <button id="play" type="button">Play</button>
+    <button id="reset" type="button">Reset</button>
+  </div>
+  <canvas id="plot" height="340"></canvas>
+  <div class="read">
+    <div class="box t"><div class="k">t critical value</div><div class="v" id="tcrit"></div><code id="tcode"></code></div>
+    <div class="box z"><div class="k">z critical value</div><div class="v" id="zcrit"></div><code id="zcode"></code></div>
+    <div class="box"><div class="k">t is larger by</div><div class="v" id="gap"></div></div>
+  </div>
+</div>
+<script>
+(function () {
+  var BLUE = "#1f5fa8", ORNG = "#c25708", MUTED = "#5a6472", DARK = "#1f2937";
+  var XMAX = 5;
+
+  function lgamma(x) {
+    var c = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+             -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+    var y = x, t = x + 5.5, s = 1.000000000190015;
+    t -= (x + 0.5) * Math.log(t);
+    for (var j = 0; j < 6; j++) { y += 1; s += c[j] / y; }
+    return -t + Math.log(2.5066282746310005 * s / x);
+  }
+  function dnorm(x) { return Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI); }
+  function dt(x, v) {
+    return Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2)) / Math.sqrt(v * Math.PI) *
+           Math.pow(1 + x * x / v, -(v + 1) / 2);
+  }
+  // upper quantile by bisection on a Simpson's rule cdf
+  function upperArea(f, a) {            // area from 0 to a
+    var n = 400, h = a / n, s = f(0) + f(a);
+    for (var i = 1; i < n; i++) s += f(i * h) * (i % 2 ? 4 : 2);
+    return s * h / 3;
+  }
+  function quantile(f, p) {             // p above 0.5
+    var lo = 0, hi = 2;
+    while (0.5 + upperArea(f, hi) < p) hi *= 2;
+    for (var i = 0; i < 60; i++) {
+      var mid = (lo + hi) / 2;
+      if (0.5 + upperArea(f, mid) < p) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+  }
+  var ZQ = { "0.90": 1.6448536, "0.95": 1.9599640, "0.99": 2.5758293 };
+
+  var cv = document.getElementById("plot"), ctx = cv.getContext("2d");
+  var dfEl = document.getElementById("df"), lvEl = document.getElementById("level");
+  var timer = null;
+
+  function draw() {
+    var v = +dfEl.value, level = lvEl.value, p = 1 - (1 - +level) / 2;
+    var tq = quantile(function (x) { return dt(x, v); }, p), zq = ZQ[level];
+
+    var dpr = window.devicePixelRatio || 1, W = cv.clientWidth, H = 340;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    var L = 16, R = 16, T = 14, B = 34, pw = W - L - R, ph = H - T - B, ymax = 0.42;
+    function X(x) { return L + (x + XMAX) / (2 * XMAX) * pw; }
+    function Y(y) { return T + ph - y / ymax * ph; }
+
+    // t tails
+    function tail(from, to) {
+      ctx.beginPath(); ctx.moveTo(X(from), Y(0));
+      for (var i = 0; i <= 80; i++) { var x = from + (to - from) * i / 80; ctx.lineTo(X(x), Y(dt(x, v))); }
+      ctx.lineTo(X(to), Y(0)); ctx.closePath();
+      ctx.fillStyle = "rgba(194, 87, 8, 0.22)"; ctx.fill();
+    }
+    if (tq < XMAX) { tail(tq, XMAX); tail(-XMAX, -tq); }
+
+    // axis
+    ctx.strokeStyle = MUTED; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(X(-XMAX), Y(0)); ctx.lineTo(X(XMAX), Y(0)); ctx.stroke();
+    ctx.fillStyle = MUTED; ctx.font = "13px sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (var k = -XMAX; k <= XMAX; k++) {
+      ctx.beginPath(); ctx.moveTo(X(k), Y(0)); ctx.lineTo(X(k), Y(0) + 5); ctx.stroke();
+      ctx.fillText(String(k), X(k), Y(0) + 8);
+    }
+
+    function curve(f, col, lw) {
+      ctx.beginPath();
+      for (var i = 0; i <= 400; i++) {
+        var x = -XMAX + 2 * XMAX * i / 400;
+        if (i === 0) ctx.moveTo(X(x), Y(f(x))); else ctx.lineTo(X(x), Y(f(x)));
+      }
+      ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.stroke();
+    }
+    curve(dnorm, BLUE, 3);
+    curve(function (x) { return dt(x, v); }, ORNG, 3);
+
+    // critical value markers
+    function marks(q, col, f) {
+      if (q >= XMAX) return;
+      ctx.setLineDash([5, 4]); ctx.strokeStyle = col; ctx.lineWidth = 1.6;
+      [-q, q].forEach(function (x) {
+        ctx.beginPath(); ctx.moveTo(X(x), Y(0)); ctx.lineTo(X(x), Y(Math.max(f(x), 0.06))); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+    }
+    marks(zq, BLUE, dnorm);
+    marks(tq, ORNG, function (x) { return dt(x, v); });
+
+    // legend
+    ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.font = "15px sans-serif";
+    ctx.strokeStyle = BLUE; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(L + 6, T + 12); ctx.lineTo(L + 34, T + 12); ctx.stroke();
+    ctx.fillStyle = DARK; ctx.fillText("Z", L + 42, T + 12);
+    ctx.strokeStyle = ORNG;
+    ctx.beginPath(); ctx.moveTo(L + 6, T + 34); ctx.lineTo(L + 34, T + 34); ctx.stroke();
+    ctx.fillText("t, df = " + v, L + 42, T + 34);
+
+    document.getElementById("dfval").textContent = "df = " + v;
+    document.getElementById("tcrit").textContent = tq.toFixed(3);
+    document.getElementById("zcrit").textContent = zq.toFixed(3);
+    document.getElementById("gap").textContent = (tq - zq).toFixed(3);
+    document.getElementById("tcode").textContent = "qt(" + p + ", " + v + ")";
+    document.getElementById("zcode").textContent = "qnorm(" + p + ")";
+
+    if (window.parent !== window) {
+      window.parent.postMessage({ tHeight: Math.ceil(document.querySelector(".wrap").getBoundingClientRect().height) }, "*");
+    }
+  }
+
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+    document.getElementById("play").textContent = "Play";
+  }
+  document.getElementById("play").addEventListener("click", function () {
+    if (timer) { stop(); return; }
+    if (+dfEl.value >= +dfEl.max) dfEl.value = 1;
+    this.textContent = "Pause";
+    timer = setInterval(function () {
+      var v = +dfEl.value;
+      if (v >= +dfEl.max) { stop(); return; }
+      dfEl.value = v + 1; draw();
+    }, 120);
+  });
+  document.getElementById("reset").addEventListener("click", function () { stop(); dfEl.value = 2; draw(); });
+  dfEl.addEventListener("input", function () { stop(); draw(); });
+  function step(d) {
+    stop();
+    dfEl.value = Math.min(+dfEl.max, Math.max(+dfEl.min, +dfEl.value + d));
+    draw();
+  }
+  document.getElementById("minus").addEventListener("click", function () { step(-1); });
+  document.getElementById("plus").addEventListener("click", function () { step(1); });
+  lvEl.addEventListener("change", draw);
+  window.addEventListener("resize", draw);
+  window.addEventListener("load", draw);
+  draw();
+})();
+</script>
+</body>
+</html>
