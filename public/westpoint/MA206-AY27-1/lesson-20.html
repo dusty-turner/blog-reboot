@@ -319,7 +319,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
   </ul></li>
-  <li><a href="#last-lesson-two-intervals" id="toc-last-lesson-two-intervals" class="nav-link" data-scroll-target="#last-lesson-two-intervals">Last Lesson: Two Intervals</a>
+  <li><a href="#last-lessons" id="toc-last-lessons" class="nav-link" data-scroll-target="#last-lessons">Last Lessons</a>
   <ul class="collapse">
   <li><a href="#study-hours" id="toc-study-hours" class="nav-link" data-scroll-target="#study-hours">Study Hours</a></li>
   <li><a href="#cars" id="toc-cars" class="nav-link" data-scroll-target="#cars">Cars</a></li>
@@ -611,8 +611,31 @@ document.addEventListener("DOMContentLoaded", function () {
 <hr>
 </section>
 </section>
-<section id="last-lesson-two-intervals" class="level2">
-<h2 class="anchored" data-anchor-id="last-lesson-two-intervals">Last Lesson: Two Intervals</h2>
+<section id="last-lessons" class="level2">
+<h2 class="anchored" data-anchor-id="last-lessons">Last Lessons</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Sample Means</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Confidence Intervals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<iframe id="clt-machine" src="assets/html/clt-machine.html" title="The Central Limit Theorem Machine" scrolling="no" style="width: 100%; height: 1000px; border: 0; border-radius: 4px;"></iframe>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<iframe id="ci-machine" src="assets/html/ci-machine.html" title="The Confidence Interval Machine" scrolling="no" style="width: 100%; height: 1220px; border: 0; border-radius: 4px;"></iframe>
+<script>
+// Each machine reports its own height, so its frame is always tall enough to show all of it.
+// A machine in a hidden tab reports zero, which is ignored.
+window.addEventListener("message", function (e) {
+  [["clt-machine", "cltHeight"], ["ci-machine", "ciHeight"]].forEach(function (m) {
+    var f = document.getElementById(m[0]);
+    if (f && e.source === f.contentWindow && e.data && e.data[m[1]] > 50) {
+      f.style.height = (e.data[m[1]] + 4) + "px";
+    }
+  });
+});
+</script>
+</div>
+</div>
+</div>
 <div class="columns">
 <div class="column" style="width:49%;">
 <div class="callout callout-style-default callout-important callout-titled" title="Mean">
@@ -878,7 +901,7 @@ window.addEventListener("message", function (e) {
 <section id="study-hours-12-cadets" class="level3">
 <h3 class="anchored" data-anchor-id="study-hours-12-cadets">Study Hours, 12 Cadets</h3>
 <p><span class="math inline">\(n = 12\)</span>, <span class="math inline">\(\bar{x} = 17.9\)</span>, <span class="math inline">\(s = 5.1\)</span>. Weekly study time is approximately normal.</p>
-<p><strong>a) Find the critical value for 95%.</strong></p>
+<p><strong>a) Build a 95% confidence interval for <span class="math inline">\(\mu\)</span>.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -891,12 +914,12 @@ window.addEventListener("message", function (e) {
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(\text{df} = 12 - 1 = 11\)</span>.</p>
-<p><code>qt(0.975, 11)</code> <span class="math inline">\(=\)</span> 2.201</p>
+<p><span class="math display">\[17.9 \pm 2.201\,\frac{5.1}{\sqrt{12}} = 17.9 \pm 3.240 = (\mathbf{14.660},\ \mathbf{21.140})\]</span></p>
+<p><code>17.9 + c(-1, 1) * qt(0.975, 11) * 5.1 / sqrt(12)</code></p>
 </div>
 </div>
 </div>
-<p><strong>b) Build a 95% confidence interval for <span class="math inline">\(\mu\)</span>.</strong></p>
+<p><strong>b) Interpret the interval.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -909,12 +932,11 @@ window.addEventListener("message", function (e) {
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[17.9 \pm 2.201\,\frac{5.1}{\sqrt{12}} = 17.9 \pm 3.240 = (\mathbf{14.660},\ \mathbf{21.140})\]</span></p>
-<p><code>17.9 + c(-1, 1) * qt(0.975, 11) * 5.1 / sqrt(12)</code></p>
+<p>We are 95% confident the true mean weekly study time of all cadets is between 14.660 and 21.140 hours.</p>
 </div>
 </div>
 </div>
-<p><strong>c) Interpret the interval.</strong></p>
+<p><strong>c) What if we had used <span class="math inline">\(1.96\)</span>?</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -926,23 +948,6 @@ window.addEventListener("message", function (e) {
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>We are 95% confident the true mean weekly study time of all cadets is between 14.660 and 21.140 hours.</p>
-</div>
-</div>
-</div>
-<p><strong>d) What if we had used <span class="math inline">\(1.96\)</span>?</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\((15.014,\ 20.786)\)</span>. Too narrow. It would capture <span class="math inline">\(\mu\)</span> less than 95% of the time.</p>
 </div>
@@ -980,7 +985,7 @@ window.addEventListener("message", function (e) {
 <h3 class="anchored" data-anchor-id="study-hours-how-many-cadets">Study Hours, How Many Cadets?</h3>
 <p>We want a 95% confidence interval for mean weekly study time that is <span class="math inline">\(2\)</span> hours wide. Use <span class="math inline">\(\sigma = 5.4\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -989,7 +994,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[n = \left(\frac{2(1.96)(5.4)}{2}\right)^2 = 112.02\]</span></p>
 <p>Round up: <span class="math inline">\(n = \mathbf{113}\)</span> cadets.</p>
@@ -1038,7 +1043,7 @@ window.addEventListener("message", function (e) {
 <h3 class="anchored" data-anchor-id="problem-1-rifle-qualification">Problem 1: Rifle Qualification</h3>
 <p>A random sample of <span class="math inline">\(10\)</span> cadets fires the rifle qualification table. Hits out of <span class="math inline">\(40\)</span>: <span class="math inline">\(\bar{x} = 31.2\)</span>, <span class="math inline">\(s = 4.1\)</span>. Scores are approximately normal.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1047,7 +1052,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Why not use the large-sample interval?</p></li>
@@ -1060,7 +1065,7 @@ window.addEventListener("message", function (e) {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1069,7 +1074,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(n = 10\)</span> is not greater than <span class="math inline">\(40\)</span>.</p></li>
@@ -1090,7 +1095,7 @@ window.addEventListener("message", function (e) {
 <h3 class="anchored" data-anchor-id="problem-2-ruck-march">Problem 2: Ruck March</h3>
 <p>A random sample of <span class="math inline">\(16\)</span> cadets completes a 12 mile ruck march. Times in minutes: <span class="math inline">\(\bar{x} = 172\)</span>, <span class="math inline">\(s = 14\)</span>. Times are approximately normal.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1099,7 +1104,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Build a 90% confidence interval for <span class="math inline">\(\mu\)</span>.</p></li>
@@ -1111,7 +1116,7 @@ window.addEventListener("message", function (e) {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1120,7 +1125,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(\text{df} = 15\)</span>. <code>qt(0.95, 15)</code> <span class="math inline">\(=\)</span> 1.753</li>
@@ -1144,7 +1149,7 @@ window.addEventListener("message", function (e) {
 <section id="problem-3-which-critical-value" class="level3">
 <h3 class="anchored" data-anchor-id="problem-3-which-critical-value">Problem 3: Which Critical Value?</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1153,7 +1158,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For each, give the R-Lite command for the critical value, or say that neither interval applies.</p>
 <ol type="a">
@@ -1167,7 +1172,7 @@ window.addEventListener("message", function (e) {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1176,7 +1181,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><code>qnorm(0.975)</code> <span class="math inline">\(=\)</span> 1.960</p></li>
@@ -1194,7 +1199,7 @@ window.addEventListener("message", function (e) {
 <h3 class="anchored" data-anchor-id="problem-4-mess-hall-line">Problem 4: Mess Hall Line</h3>
 <p>We want to estimate the mean wait in the mess hall line. A prior study gives <span class="math inline">\(\sigma = 4\)</span> minutes.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1203,7 +1208,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>How many cadets do we need for a 95% interval that is <span class="math inline">\(1\)</span> minute wide?</p></li>
@@ -1215,7 +1220,7 @@ window.addEventListener("message", function (e) {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1224,7 +1229,7 @@ window.addEventListener("message", function (e) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math display">\[n = \left(\frac{2(1.96)(4)}{1}\right)^2 = 245.85\]</span></li>
