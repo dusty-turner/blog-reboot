@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-21 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../misc-lessons/lesson-1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY27-1/index.html"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../misc-lessons/index.html" aria-current="page"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA376-AY27-1/lesson-21.html">MA376 AY27-1 Lesson 21</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 AY26-2 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA376 AY27-1 Lesson 21</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-21-class-imbalance-and-prevalence" id="toc-lesson-21-class-imbalance-and-prevalence" class="nav-link active" data-scroll-target="#lesson-21-class-imbalance-and-prevalence">Lesson 21: Class Imbalance and Prevalence</a>
+  <ul class="collapse">
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#family" id="toc-family" class="nav-link" data-scroll-target="#family">Family</a></li>
+  <li><a href="#dmath-frisbee" id="toc-dmath-frisbee" class="nav-link" data-scroll-target="#dmath-frisbee">DMath Frisbee!!</a></li>
+  </ul></li>
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#what-we-did-lesson-20" id="toc-what-we-did-lesson-20" class="nav-link" data-scroll-target="#what-we-did-lesson-20">What We Did: Lesson 20</a>
+  <ul class="collapse">
+  <li><a href="#clinic-appointments-lesson-9" id="toc-clinic-appointments-lesson-9" class="nav-link" data-scroll-target="#clinic-appointments-lesson-9">Clinic Appointments (Lesson 9)</a></li>
+  <li><a href="#all-at-once" id="toc-all-at-once" class="nav-link" data-scroll-target="#all-at-once">All at Once</a></li>
+  </ul></li>
+  <li><a href="#what-were-doing-lesson-21" id="toc-what-were-doing-lesson-21" class="nav-link" data-scroll-target="#what-were-doing-lesson-21">What We’re Doing: Lesson 21</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
+  </ul></li>
+  <li><a href="#what-if-the-data-looked-like-this" id="toc-what-if-the-data-looked-like-this" class="nav-link" data-scroll-target="#what-if-the-data-looked-like-this">What If the Data Looked Like This?</a>
+  <ul class="collapse">
+  <li><a href="#recalculate" id="toc-recalculate" class="nav-link" data-scroll-target="#recalculate">Recalculate</a></li>
+  <li><a href="#what-is-out-of-whack" id="toc-what-is-out-of-whack" class="nav-link" data-scroll-target="#what-is-out-of-whack">What Is Out of Whack</a></li>
+  <li><a href="#what-rare-does-to-each-metric" id="toc-what-rare-does-to-each-metric" class="nav-link" data-scroll-target="#what-rare-does-to-each-metric">What Rare Does to Each Metric</a></li>
+  </ul></li>
+  <li><a href="#three-fixes" id="toc-three-fixes" class="nav-link" data-scroll-target="#three-fixes">Three Fixes</a>
+  <ul class="collapse">
+  <li><a href="#fix-1-move-the-threshold" id="toc-fix-1-move-the-threshold" class="nav-link" data-scroll-target="#fix-1-move-the-threshold">Fix 1: Move the Threshold</a></li>
+  <li><a href="#fix-2-class-weights" id="toc-fix-2-class-weights" class="nav-link" data-scroll-target="#fix-2-class-weights">Fix 2: Class Weights</a></li>
+  <li><a href="#fix-3-undersample" id="toc-fix-3-undersample" class="nav-link" data-scroll-target="#fix-3-undersample">Fix 3: Undersample</a></li>
+  <li><a href="#side-by-side" id="toc-side-by-side" class="nav-link" data-scroll-target="#side-by-side">Side by Side</a></li>
+  </ul></li>
+  <li><a href="#precision-moves-with-prevalence" id="toc-precision-moves-with-prevalence" class="nav-link" data-scroll-target="#precision-moves-with-prevalence">Precision Moves with Prevalence</a>
+  <ul class="collapse">
+  <li><a href="#precision-at-each-prevalence" id="toc-precision-at-each-prevalence" class="nav-link" data-scroll-target="#precision-at-each-prevalence">Precision at Each Prevalence</a></li>
+  <li><a href="#reporting-it" id="toc-reporting-it" class="nav-link" data-scroll-target="#reporting-it">Reporting It</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-21-class-imbalance-and-prevalence" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 21: Class Imbalance and Prevalence</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- 1132 is "Frequentists vs. Bayesians" (the sun detector). Panel and alt text checked, no profanity. -->
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<style>
+img.kid-zoomable { cursor: zoom-in; border-radius: 4px; }
+#kid-zoom { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.88);
+  align-items: center; justify-content: center; cursor: zoom-out; }
+#kid-zoom img { max-width: 95vw; max-height: 95vh; border-radius: 4px; background: white; }
+</style>
+<div id="kid-zoom"><img alt=""></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var box = document.getElementById("kid-zoom");
+  document.querySelectorAll("img.kid-zoomable").forEach(function (im) {
+    im.addEventListener("click", function () {
+      box.firstElementChild.src = im.src;
+      box.style.display = "flex";
+    });
+  });
+  box.addEventListener("click", function () { box.style.display = "none"; });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") box.style.display = "none";
+  });
+});
+</script>
+<section id="family" class="level3">
+<h3 class="anchored" data-anchor-id="family">Family</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Jill</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Math Prom</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Cal and Reese</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Baseball</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Softball</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">Community</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/jill/jill-baylor.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%" alt="Dusty and Jill Turner standing together in Baylor pullovers."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY27-1/assets/img/math-prom.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:42.0%" alt="Jill in a red gown and Dusty in a red paisley dinner jacket, both wearing masquerade masks."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY27-1/assets/img/kids-l18/siblings.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:42.0%" alt="Reese in her softball uniform and Cal in his baseball uniform standing side by side on an infield."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/cal/caltv.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="A television broadcast of the Little League World Series Southwest Region showing Cal at bat for Texas West, with a graphic listing his age, height, and special talent."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/reese/reeseashit.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Reese swinging at a pitch in her Midway All-Stars softball uniform in front of a full crowd."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY27-1/assets/img/kids-l19/cross-country.jpg" class="kid-zoomable img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" alt="Cal and two friends in cross country uniforms standing together on a grass field after a meet."></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dmath-frisbee" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-frisbee">DMath Frisbee!!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/frisbee.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs DMI</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>9-0</p>
+</div>
+<div style="text-align: center; font-size: 2.2em;">
+<p>15-3</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l21.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calendar for 5 October to 6 November with a red box around Wednesday 14 October, Lesson 21, Class Imbalance and Prevalence."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lesson-20" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-20">What We Did: Lesson 20</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Judging a Classifier (Lesson 20)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Judging a Classifier (Lesson 20)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth positive</th>
+<th style="text-align: center;">Truth negative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted positive</strong></td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">FP, a false alarm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted negative</strong></td>
+<td style="text-align: center;">FN, a miss</td>
+<td style="text-align: center;">TN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Accuracy <span class="math inline">\(= \dfrac{TP + TN}{n}\)</span></li>
+<li>Sensitivity <span class="math inline">\(= \dfrac{TP}{TP + FN}\)</span></li>
+<li>Specificity <span class="math inline">\(= \dfrac{TN}{TN + FP}\)</span></li>
+<li>Precision <span class="math inline">\(= \dfrac{TP}{TP + FP}\)</span></li>
+<li><span class="math inline">\(F_1 = \dfrac{2\,TP}{2\,TP + FP + FN}\)</span></li>
+<li>Heart study at threshold <span class="math inline">\(0.5\)</span>: 0 men warned, 91.3% accurate</li>
+<li>Threshold tuned on <span class="math inline">\(F_1\)</span>: <span class="math inline">\(0.125\)</span>, catches 39 of 82</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<section id="clinic-appointments-lesson-9" class="level3">
+<h3 class="anchored" data-anchor-id="clinic-appointments-lesson-9">Clinic Appointments (Lesson 9)</h3>
+<p>4,000 appointments, simulated from the Lesson 9 Air Force Academy clinic data. 2,053 were no-shows.</p>
+<div class="compact">
+<ul>
+<li><code>lead_days</code>: days between booking the appointment and the visit</li>
+<li><code>no_show</code>: 1 if the patient missed the appointment, 0 if it was kept</li>
+<li><code>set</code>: <code>train</code> (2,800 appointments) or <code>test</code> (1,200)</li>
+</ul>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>clinic <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L21_clinic.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>train  <span class="ot">&lt;-</span> clinic[clinic<span class="sc">$</span>set <span class="sc">==</span> <span class="st">"train"</span>, ]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>test   <span class="ot">&lt;-</span> clinic[clinic<span class="sc">$</span>set <span class="sc">==</span> <span class="st">"test"</span>, ]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = no_show ~ lead_days, family = binomial, data = train)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -7.871644   0.294502  -26.73   &lt;2e-16 ***
+lead_days    0.184134   0.006815   27.02   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3879.7  on 2799  degrees of freedom
+Residual deviance: 1913.8  on 2798  degrees of freedom
+AIC: 1917.8
+
+Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\text{logit}\,P(\text{no-show}) = -7.87 + 0.184\,(\text{lead days})\]</span></p>
+<p>Flag an appointment when <span class="math inline">\(\hat{p} \ge 0.5\)</span>. Scored on the 1,200 test appointments.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 533</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 83</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 499</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Of</th>
+<th style="text-align: left;">Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;">all appointments, the share called right</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + TN}{n} = \dfrac{533 + 499}{1200} = 0.860\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;">the real no-shows, the share caught</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FN} = \dfrac{533}{533 + 83} = 0.865\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Specificity</td>
+<td style="text-align: left;">the kept appointments, the share left alone</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN}{TN + FP} = \dfrac{499}{499 + 85} = 0.854\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;">the flagged appointments, the share that were real</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FP} = \dfrac{533}{533 + 85} = 0.862\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span>*</td>
+<td style="text-align: left;">the harmonic mean of sensitivity and precision</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2\,TP}{2\,TP + FP + FN} = \dfrac{2(533)}{2(533) + 85 + 83} = 0.864\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Null classifier</td>
+<td style="text-align: left;">call every appointment a no-show, the larger class</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + FN}{n} = \dfrac{533 + 83}{1200} = 0.513\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact" style="font-size: 0.9em;">
+<p>* <strong><span class="math inline">\(F_1\)</span>, in plain terms</strong></p>
+<ul>
+<li>One score for two jobs: catch the real ones (sensitivity) and do not cry wolf (precision).</li>
+<li><span class="math inline">\(F_1 = \dfrac{TP}{TP + \frac{1}{2}(FP + FN)}\)</span>: the hits, against the hits plus the average of the two kinds of mistake.</li>
+<li>Harmonic mean of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>: <span class="math inline">\(\dfrac{2ab}{a + b}\)</span>. It sits near the smaller one. Sensitivity <span class="math inline">\(1.00\)</span> and precision <span class="math inline">\(0.10\)</span> average to <span class="math inline">\(0.55\)</span>, but <span class="math inline">\(F_1 = 0.18\)</span>.</li>
+<li>Flag everyone: sensitivity is <span class="math inline">\(1\)</span>, precision is poor, <span class="math inline">\(F_1\)</span> is low. Flag one sure case: precision is <span class="math inline">\(1\)</span>, sensitivity is poor, <span class="math inline">\(F_1\)</span> is low.</li>
+<li><span class="math inline">\(TN\)</span> never appears, so a big pile of easy negatives cannot raise it. That is why it is used when the outcome is rare.</li>
+</ul>
+</div>
+</section>
+<section id="all-at-once" class="level3">
+<h3 class="anchored" data-anchor-id="all-at-once">All at Once</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yardstick)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, test, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(test<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"no-show"</span>, <span class="st">"kept"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"no-show"</span>, <span class="st">"kept"</span>)),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pred  =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(p_hat <span class="sc">&gt;=</span> <span class="fl">0.5</span>, <span class="st">"no-show"</span>, <span class="st">"kept"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"no-show"</span>, <span class="st">"kept"</span>)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction no-show kept
+   no-show     533   85
+   kept         83  499</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>five <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, precision, f_meas)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">five</span>(results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  .metric     .estimator .estimate
+  &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy    binary         0.86 
+2 sensitivity binary         0.865
+3 specificity binary         0.854
+4 precision   binary         0.862
+5 f_meas      binary         0.864</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-were-doing-lesson-21" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-21">What We’re Doing: Lesson 21</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> Say what a rare outcome does to each metric before any model is fit.</li>
+<li><strong>Apply.</strong> Handle imbalance three ways (threshold, class weights, undersampling) and compare what each one flags.</li>
+<li><strong>Mean.</strong> Each fix moves the cutoff and none improves the model. Precision moves with prevalence.</li>
+<li><strong>Communicate.</strong> Report a classifier’s performance with the prevalence it was measured at.</li>
+</ul>
+</div>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Altman and Bland (1994), <a href="https://www.bmj.com/content/309/6947/102.1.long">Diagnostic tests 2: predictive values</a>, one page. Their positive predictive value is our precision.</p>
+</section>
+<section id="files" class="level3">
+<h3 class="anchored" data-anchor-id="files">Files</h3>
+<div class="compact">
+<ul>
+<li><a href="boardsheet-L21.pdf">Board Sheet</a></li>
+<li><a href="files/L21_Class_Imbalance_inclass.R">R Script</a></li>
+<li>Data: <a href="data/L21_clinic.csv">L21_clinic.csv</a>, <a href="data/L21_clinic_rare.csv">L21_clinic_rare.csv</a></li>
+</ul>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-if-the-data-looked-like-this" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-the-data-looked-like-this">What If the Data Looked Like This?</h2>
+<p>2,163 appointments. 216 were no-shows. That is only 10 percent. Previously we had 51 percent.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rare  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L21_clinic_rare.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> rare[rare<span class="sc">$</span>set <span class="sc">==</span> <span class="st">"train"</span>, ]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> rare[rare<span class="sc">$</span>set <span class="sc">==</span> <span class="st">"test"</span>, ]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[\text{logit}\,P(\text{no-show}) = -9.88 + 0.180\,(\text{lead days})\]</span></p>
+<p>Flag an appointment when <span class="math inline">\(\hat{p} \ge 0.5\)</span>. Scored on the 649 test appointments.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="recalculate" class="level3">
+<h3 class="anchored" data-anchor-id="recalculate">Recalculate</h3>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 38</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 27</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 577</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Calculation</th>
+<th style="text-align: center;">Before</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + TN}{n} = \dfrac{38 + 577}{649} = 0.948\)</span></td>
+<td style="text-align: center;">0.860</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FN} = \dfrac{38}{38 + 27} = 0.585\)</span></td>
+<td style="text-align: center;">0.865</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Specificity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN}{TN + FP} = \dfrac{577}{577 + 7} = 0.988\)</span></td>
+<td style="text-align: center;">0.854</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FP} = \dfrac{38}{38 + 7} = 0.844\)</span></td>
+<td style="text-align: center;">0.862</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2\,TP}{2\,TP + FP + FN} = \dfrac{2(38)}{2(38) + 7 + 27} = 0.691\)</span></td>
+<td style="text-align: center;">0.864</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Null classifier (call every appointment kept)</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN + FP}{n} = \dfrac{577 + 7}{649} = 0.900\)</span></td>
+<td style="text-align: center;">0.513</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="what-is-out-of-whack" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-out-of-whack">What Is Out of Whack</h3>
+<div class="compact">
+<ul>
+<li><strong>Sensitivity:</strong> 0.865 to 0.585. The model misses 27 of the 65 no-shows.</li>
+<li><strong><span class="math inline">\(F_1\)</span>:</strong> 0.864 to 0.691</li>
+<li><strong>Accuracy:</strong> up, 0.860 to 0.948. The null classifier scores 0.900.</li>
+<li><strong>The cutoff:</strong> flag at 42.7 days to flag at 54.9 days</li>
+</ul>
+</div>
+</section>
+<section id="what-rare-does-to-each-metric" class="level3">
+<h3 class="anchored" data-anchor-id="what-rare-does-to-each-metric">What Rare Does to Each Metric</h3>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Share of</th>
+<th style="text-align: left;">As prevalence falls</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;">everyone</td>
+<td style="text-align: left;">The null classifier scores <span class="math inline">\(1 - \text{prevalence}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;">the Truth positive column</td>
+<td style="text-align: left;">falls at a fixed threshold of <span class="math inline">\(0.5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;">the Predicted positive row</td>
+<td style="text-align: left;">falls at a fixed sensitivity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">falls</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</section>
+</section>
+<section id="three-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="three-fixes">Three Fixes</h2>
+<p>Fit on the training set. Scored on the 649 test appointments, 65 no-shows.</p>
+<section id="fix-1-move-the-threshold" class="level3">
+<h3 class="anchored" data-anchor-id="fix-1-move-the-threshold">Fix 1: Move the Threshold</h3>
+<p>Tune the threshold on <span class="math inline">\(F_1\)</span> by five-fold cross-validation on the training set, as in Lesson 20.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plain <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="fl">0.50</span>, <span class="at">by =</span> <span class="fl">0.025</span>)                     <span class="co"># the thresholds to try</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fold <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(train)))    <span class="co"># each training appointment gets a fold</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>p_cv <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(train))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train[fold <span class="sc">!=</span> k, ])   <span class="co"># fit on four folds</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  p_cv[fold <span class="sc">==</span> k] <span class="ot">&lt;-</span> <span class="fu">predict</span>(f, train[fold <span class="sc">==</span> k, ], <span class="at">type =</span> <span class="st">"response"</span>)          <span class="co"># predict the fifth</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(ts, <span class="cf">function</span>(t) {</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  flag <span class="ot">&lt;-</span> p_cv <span class="sc">&gt;=</span> t</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(flag <span class="sc">&amp;</span> train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="fu">sum</span>(flag) <span class="sc">+</span> <span class="fu">sum</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> ts[<span class="fu">which.max</span>(f1)]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>flag <span class="ot">&lt;-</span> <span class="fu">predict</span>(plain, test, <span class="at">type =</span> <span class="st">"response"</span>) <span class="sc">&gt;=</span> best</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Flag when <span class="math inline">\(\hat{p} \ge 0.275\)</span>. Scored on the 649 test appointments.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 47</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 18</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 554</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 74%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Calculation</th>
+<th style="text-align: center;">Plain at 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + TN}{n} = \dfrac{47 + 554}{649} = 0.926\)</span></td>
+<td style="text-align: center;">0.948</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FN} = \dfrac{47}{47 + 18} = 0.723\)</span></td>
+<td style="text-align: center;">0.585</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Specificity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN}{TN + FP} = \dfrac{554}{554 + 30} = 0.949\)</span></td>
+<td style="text-align: center;">0.988</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FP} = \dfrac{47}{47 + 30} = 0.610\)</span></td>
+<td style="text-align: center;">0.844</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2\,TP}{2\,TP + FP + FN} = \dfrac{2(47)}{2(47) + 30 + 18} = 0.662\)</span></td>
+<td style="text-align: center;">0.691</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Same model, same curve. Only the threshold moved.</li>
+<li>The cutoff went from 54.9 days to 49.5 days.</li>
+<li>77 test appointments flagged, up from 45.</li>
+<li>On the training folds <span class="math inline">\(F_1\)</span> was 0.642 at 0.275 and 0.584 at <span class="math inline">\(0.5\)</span>. On the test set it is 0.662 and 0.691: with 65 no-shows, a few appointments move it.</li>
+</ul>
+</div>
+</section>
+<section id="fix-2-class-weights" class="level3">
+<h3 class="anchored" data-anchor-id="fix-2-class-weights">Fix 2: Class Weights</h3>
+<p>Each training no-show counts as <span class="math inline">\(\dfrac{n_0}{n_1} = \dfrac{1363}{151} = 9.03\)</span> appointments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">sum</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>weighted <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train, <span class="at">weights =</span> w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Flag when <span class="math inline">\(\hat{p} \ge 0.5\)</span>. Scored on the 649 test appointments.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 59</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 6</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 499</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 73%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Calculation</th>
+<th style="text-align: center;">Plain at 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + TN}{n} = \dfrac{59 + 499}{649} = 0.860\)</span></td>
+<td style="text-align: center;">0.948</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FN} = \dfrac{59}{59 + 6} = 0.908\)</span></td>
+<td style="text-align: center;">0.585</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Specificity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN}{TN + FP} = \dfrac{499}{499 + 85} = 0.854\)</span></td>
+<td style="text-align: center;">0.988</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FP} = \dfrac{59}{59 + 85} = 0.410\)</span></td>
+<td style="text-align: center;">0.844</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2\,TP}{2\,TP + FP + FN} = \dfrac{2(59)}{2(59) + 85 + 6} = 0.565\)</span></td>
+<td style="text-align: center;">0.691</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>A new model, so the curve moved. The threshold is back at <span class="math inline">\(0.5\)</span>.</li>
+<li>The cutoff is 42.8 days. Fix 1 put it at 49.5 days.</li>
+<li>144 test appointments flagged. A threshold of 0.10, the prevalence, on the plain model flags the same 144.</li>
+</ul>
+</div>
+</section>
+<section id="fix-3-undersample" class="level3">
+<h3 class="anchored" data-anchor-id="fix-3-undersample">Fix 3: Undersample</h3>
+<p>In the training set, keep all 151 no-shows and a random 151 of the 1,363 kept appointments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>keep  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>), <span class="fu">sample</span>(<span class="fu">which</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">0</span>), <span class="fu">sum</span>(train<span class="sc">$</span>no_show <span class="sc">==</span> <span class="dv">1</span>)))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>under <span class="ot">&lt;-</span> <span class="fu">glm</span>(no_show <span class="sc">~</span> lead_days, <span class="at">family =</span> binomial, <span class="at">data =</span> train[keep, ])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Flag when <span class="math inline">\(\hat{p} \ge 0.5\)</span>. Scored on the 649 test appointments.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 57</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 76</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 8</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 508</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 73%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Calculation</th>
+<th style="text-align: center;">Plain at 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP + TN}{n} = \dfrac{57 + 508}{649} = 0.871\)</span></td>
+<td style="text-align: center;">0.948</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sensitivity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FN} = \dfrac{57}{57 + 8} = 0.877\)</span></td>
+<td style="text-align: center;">0.585</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Specificity</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TN}{TN + FP} = \dfrac{508}{508 + 76} = 0.870\)</span></td>
+<td style="text-align: center;">0.988</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{TP}{TP + FP} = \dfrac{57}{57 + 76} = 0.429\)</span></td>
+<td style="text-align: center;">0.844</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2\,TP}{2\,TP + FP + FN} = \dfrac{2(57)}{2(57) + 76 + 8} = 0.576\)</span></td>
+<td style="text-align: center;">0.691</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>A new model fit on 302 training appointments. The threshold is <span class="math inline">\(0.5\)</span>.</li>
+<li>The cutoff is 43.1 days.</li>
+<li>133 test appointments flagged, close to Fix 2. The draw is random, so another seed moves these numbers a little.</li>
+</ul>
+</div>
+</section>
+<section id="side-by-side" class="level3">
+<h3 class="anchored" data-anchor-id="side-by-side">Side by Side</h3>
+<p>All four rows are scored on the same 649 test appointments.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: center;">Threshold</th>
+<th style="text-align: center;">Flag at (days)</th>
+<th style="text-align: center;">Flagged</th>
+<th style="text-align: center;">Caught</th>
+<th style="text-align: center;">Sensitivity</th>
+<th style="text-align: center;">Precision</th>
+<th style="text-align: center;"><span class="math inline">\(F_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Plain</td>
+<td style="text-align: center;"><span class="math inline">\(0.5\)</span></td>
+<td style="text-align: center;">54.9</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">0.585</td>
+<td style="text-align: center;">0.844</td>
+<td style="text-align: center;">0.691</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Plain, tuned</td>
+<td style="text-align: center;"><span class="math inline">\(0.275\)</span></td>
+<td style="text-align: center;">49.5</td>
+<td style="text-align: center;">77</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">0.723</td>
+<td style="text-align: center;">0.610</td>
+<td style="text-align: center;">0.662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Class weights</td>
+<td style="text-align: center;"><span class="math inline">\(0.5\)</span></td>
+<td style="text-align: center;">42.8</td>
+<td style="text-align: center;">144</td>
+<td style="text-align: center;">59</td>
+<td style="text-align: center;">0.908</td>
+<td style="text-align: center;">0.410</td>
+<td style="text-align: center;">0.565</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Undersampled</td>
+<td style="text-align: center;"><span class="math inline">\(0.5\)</span></td>
+<td style="text-align: center;">43.1</td>
+<td style="text-align: center;">133</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">0.877</td>
+<td style="text-align: center;">0.429</td>
+<td style="text-align: center;">0.576</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Takeaway">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>A rare outcome breaks the <span class="math inline">\(0.5\)</span> threshold, not the model.</li>
+<li>The threshold is yours to set. Tuned on <span class="math inline">\(F_1\)</span>: 47 of 65 no-shows caught, 30 false alarms.</li>
+<li>Class weights and undersampling set it for you, near the prevalence: 59 caught, 85 false alarms.</li>
+<li>None of the three improves the model. Each one moves the cutoff.</li>
+<li>Choose the cutoff from what a miss and a false alarm cost.</li>
+<li>Report sensitivity and precision together, with the null classifier and the prevalence.</li>
+<li>All of this works for any model that gives a probability. So far: logistic regression (Lessons 9 and 20) and the random forest you saw in Lesson 20. Coming: mixed-effects logistic regression (Lesson 24), trees and random forest (Lesson 25).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="precision-moves-with-prevalence" class="level2">
+<h2 class="anchored" data-anchor-id="precision-moves-with-prevalence">Precision Moves with Prevalence</h2>
+<div class="compact">
+<ul>
+<li><strong>Prevalence:</strong> of all the appointments, the share that really are no-shows. How common the thing you are hunting is.</li>
+<li><strong>Precision:</strong> of the appointments you flagged, the share that really are no-shows. How often a flag is right.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Precision at a Given Prevalence">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Precision at a Given Prevalence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{precision} = \frac{\text{no-shows caught}}{\text{no-shows caught} + \text{kept, flagged by mistake}} = \frac{\text{sensitivity}\cdot\text{prevalence}}{\text{sensitivity}\cdot\text{prevalence} + (1 - \text{specificity})(1 - \text{prevalence})}\]</span></p>
+</div>
+</div>
+<section id="precision-at-each-prevalence" class="level3">
+<h3 class="anchored" data-anchor-id="precision-at-each-prevalence">Precision at Each Prevalence</h3>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 12%">
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Plain at 0.5</th>
+<th style="text-align: center;">Fix 1: tuned threshold</th>
+<th style="text-align: center;">Fix 2: class weights</th>
+<th style="text-align: center;">Fix 3: undersample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sensitivity, at every prevalence</td>
+<td style="text-align: center;">0.585</td>
+<td style="text-align: center;">0.723</td>
+<td style="text-align: center;">0.908</td>
+<td style="text-align: center;">0.877</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Specificity, at every prevalence</td>
+<td style="text-align: center;">0.988</td>
+<td style="text-align: center;">0.949</td>
+<td style="text-align: center;">0.854</td>
+<td style="text-align: center;">0.870</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precision at 51.3% prevalence</td>
+<td style="text-align: center;">0.981</td>
+<td style="text-align: center;">0.937</td>
+<td style="text-align: center;">0.868</td>
+<td style="text-align: center;">0.877</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision at 25.0% prevalence</td>
+<td style="text-align: center;">0.942</td>
+<td style="text-align: center;">0.824</td>
+<td style="text-align: center;">0.675</td>
+<td style="text-align: center;">0.692</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precision at 10.0% prevalence</td>
+<td style="text-align: center;">0.844</td>
+<td style="text-align: center;">0.609</td>
+<td style="text-align: center;">0.409</td>
+<td style="text-align: center;">0.427</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision at 5.0% prevalence</td>
+<td style="text-align: center;">0.720</td>
+<td style="text-align: center;">0.426</td>
+<td style="text-align: center;">0.247</td>
+<td style="text-align: center;">0.262</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precision at 2.6% prevalence</td>
+<td style="text-align: center;">0.566</td>
+<td style="text-align: center;">0.273</td>
+<td style="text-align: center;">0.143</td>
+<td style="text-align: center;">0.152</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-21_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reporting-it" class="level3">
+<h3 class="anchored" data-anchor-id="reporting-it">Reporting It</h3>
+<p>At a threshold of <span class="math inline">\(0.275\)</span>, on appointments of which 10% were no-shows, the model caught 72% of the no-shows and 61% of its flags were real. At a prevalence of 2.6%, 27% of its flags would be real.</p>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li>A rare outcome: accuracy and the <span class="math inline">\(0.5\)</span> threshold both fail</li>
+<li>Threshold, class weights, undersampling: each moves the cutoff, none improves the model</li>
+<li>Sensitivity and specificity do not move with prevalence. Precision does.</li>
+<li>Report performance with the prevalence it was measured at</li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 22: Rater Agreement and the ICC (lab)</strong></p>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> A rater is a classifier with no truth column, so agreement replaces accuracy.</li>
+<li><strong>Apply.</strong> Percent agreement, kappa, PABAK, and the ICC from a two-way ANOVA with raters as blocks.</li>
+<li><strong>Mean.</strong> Chance agreement rises as prevalence moves to an extreme, so kappa collapses while agreement stays high. The ICC is the share of variance that is rep to rep.</li>
+<li><strong>Communicate.</strong> Tell the first sergeant whether the graders agree and which grader is the problem.</li>
+</ul>
+</div>
+<p><strong>Reading:</strong> Koo and Li (2016)</p>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<div class="compact">
+<ul>
+<li><strong>Capstone milestone 1 (exploratory):</strong> due 2359 Friday 16 October</li>
+<li><strong>Block 3 quiz (Lessons 20 to 23):</strong> Lesson 27</li>
+<li><strong>Memo 4:</strong> due in class, hard copy, Lesson 27</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../misc-lessons/lesson-1.html" class="pagination-link" aria-label="MA476 AY26-2 Lesson 23">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA476 AY26-2 Lesson 23</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
