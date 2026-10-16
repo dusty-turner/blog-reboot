@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-22 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA376-AY27-1/lesson-21.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY27-1/index.html"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../misc-lessons/index.html" aria-current="page"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA376-AY27-1/lesson-22.html">MA376 AY27-1 Lesson 22</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 AY26-2 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA376 AY27-1 Lesson 22</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-22-rater-agreement-and-the-intraclass-correlation-coefficient-icc" id="toc-lesson-22-rater-agreement-and-the-intraclass-correlation-coefficient-icc" class="nav-link active" data-scroll-target="#lesson-22-rater-agreement-and-the-intraclass-correlation-coefficient-icc">Lesson 22: Rater Agreement and the Intraclass Correlation Coefficient (ICC)</a>
+  <ul class="collapse">
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#cal" id="toc-cal" class="nav-link" data-scroll-target="#cal">Cal</a></li>
+  <li><a href="#dmath-frisbee" id="toc-dmath-frisbee" class="nav-link" data-scroll-target="#dmath-frisbee">DMath Frisbee!!</a></li>
+  </ul></li>
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a></li>
+  <li><a href="#what-we-did-lesson-21" id="toc-what-we-did-lesson-21" class="nav-link" data-scroll-target="#what-we-did-lesson-21">What We Did: Lesson 21</a></li>
+  <li><a href="#what-were-doing-lesson-22" id="toc-what-were-doing-lesson-22" class="nav-link" data-scroll-target="#what-were-doing-lesson-22">What We’re Doing: Lesson 22</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#remember-this" id="toc-remember-this" class="nav-link" data-scroll-target="#remember-this">Remember This?</a></li>
+  <li><a href="#what-if-there-is-no-answer-key" id="toc-what-if-there-is-no-answer-key" class="nav-link" data-scroll-target="#what-if-there-is-no-answer-key">What If There Is No Answer Key?</a></li>
+  <li><a href="#the-acft-graders" id="toc-the-acft-graders" class="nav-link" data-scroll-target="#the-acft-graders">The ACFT Graders</a></li>
+  <li><a href="#two-graders" id="toc-two-graders" class="nav-link" data-scroll-target="#two-graders">Two Graders</a>
+  <ul class="collapse">
+  <li><a href="#percent-agreement" id="toc-percent-agreement" class="nav-link" data-scroll-target="#percent-agreement">Percent Agreement</a></li>
+  <li><a href="#chance-agreement" id="toc-chance-agreement" class="nav-link" data-scroll-target="#chance-agreement">Chance Agreement</a></li>
+  <li><a href="#cohens-kappa" id="toc-cohens-kappa" class="nav-link" data-scroll-target="#cohens-kappa">Cohen’s Kappa</a></li>
+  <li><a href="#a-drawback-of-kappa-it-depends-on-prevalence" id="toc-a-drawback-of-kappa-it-depends-on-prevalence" class="nav-link" data-scroll-target="#a-drawback-of-kappa-it-depends-on-prevalence">A Drawback of Kappa: It Depends on Prevalence</a></li>
+  <li><a href="#pabak" id="toc-pabak" class="nav-link" data-scroll-target="#pabak">PABAK</a></li>
+  </ul></li>
+  <li><a href="#grader-d" id="toc-grader-d" class="nav-link" data-scroll-target="#grader-d">Grader D</a>
+  <ul class="collapse">
+  <li><a href="#all-ten-pairs" id="toc-all-ten-pairs" class="nav-link" data-scroll-target="#all-ten-pairs">All Ten Pairs</a></li>
+  </ul></li>
+  <li><a href="#the-intraclass-correlation-coefficient-icc" id="toc-the-intraclass-correlation-coefficient-icc" class="nav-link" data-scroll-target="#the-intraclass-correlation-coefficient-icc">The Intraclass Correlation Coefficient (ICC)</a>
+  <ul class="collapse">
+  <li><a href="#two-way-anova-graders-as-blocks" id="toc-two-way-anova-graders-as-blocks" class="nav-link" data-scroll-target="#two-way-anova-graders-as-blocks">Two-Way ANOVA, Graders as Blocks</a></li>
+  <li><a href="#where-the-variance-is" id="toc-where-the-variance-is" class="nav-link" data-scroll-target="#where-the-variance-is">Where the Variance Is</a></li>
+  </ul></li>
+  <li><a href="#which-grader-is-the-problem" id="toc-which-grader-is-the-problem" class="nav-link" data-scroll-target="#which-grader-is-the-problem">Which Grader Is the Problem</a>
+  <ul class="collapse">
+  <li><a href="#tell-the-first-sergeant" id="toc-tell-the-first-sergeant" class="nav-link" data-scroll-target="#tell-the-first-sergeant">Tell the First Sergeant</a></li>
+  </ul></li>
+  <li><a href="#your-turn-is-it-a-sandwich" id="toc-your-turn-is-it-a-sandwich" class="nav-link" data-scroll-target="#your-turn-is-it-a-sandwich">Your Turn: Is It a Sandwich?</a></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-22-rater-agreement-and-the-intraclass-correlation-coefficient-icc" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 22: Rater Agreement and the Intraclass Correlation Coefficient (ICC)</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+
+/* tables whose text wraps */
+.cards td { white-space: normal !important; vertical-align: top; }
+</style>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- 937 is "TornadoGuard": four reviewers, three give five stars, one says it missed the tornado. Panel and alt text checked, no profanity. -->
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<section id="cal" class="level3">
+<h3 class="anchored" data-anchor-id="cal">Cal</h3>
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="../MA206-AY27-1/assets/video/cal-l21.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</section>
+<section id="dmath-frisbee" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-frisbee">DMath Frisbee!!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/frisbee.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs CBSE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>10-0</p>
+</div>
+<div style="text-align: center; font-size: 2.2em;">
+<p>15-12</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l22.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calendar for 5 October to 6 November with a red box around Friday 16 October, Lesson 22, Rater Agreement and the ICC."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<div class="compact">
+<ul>
+<li>I’m here through Lesson 29, 6 November.</li>
+<li><strong>Capstone Milestone 1 (exploration and scope):</strong> due 2359 Friday 16 October on Canvas. 1 to 2 pages of EDA, 40 points.</li>
+<li><strong>Before Lesson 23:</strong> <code>install.packages("lme4")</code></li>
+<li><strong>Block 3 quiz (Lessons 20 to 23):</strong> Lesson 27</li>
+<li><strong>Memo 4:</strong> due in class, hard copy, Lesson 27</li>
+<li><strong>Capstone Milestone 2 (methodology and preliminary results):</strong> due 2359 Friday 13 November</li>
+<li>Data: <a href="data/L22_acft_graders.csv">L22_acft_graders.csv</a></li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lesson-21" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-21">What We Did: Lesson 21</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Class Imbalance and Prevalence (Lesson 21)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Class Imbalance and Prevalence (Lesson 21)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Rare outcome: the null classifier scores <span class="math inline">\(1 - \text{prevalence}\)</span>, and a <span class="math inline">\(0.5\)</span> threshold flags almost nothing.</li>
+<li>Three fixes: move the threshold, class weights, undersample. Each one moves the cutoff. None improves the model.</li>
+<li>Sensitivity and specificity do not move with prevalence. Precision does.</li>
+<li>Report performance with the prevalence it was measured at.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-22" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-22">What We’re Doing: Lesson 22</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> A rater is a classifier with no truth column, so agreement replaces accuracy.</li>
+<li><strong>Apply.</strong> Percent agreement, kappa, PABAK, and the intraclass correlation coefficient (ICC) from a two-way ANOVA with raters as blocks.</li>
+<li><strong>Mean.</strong> Chance agreement rises as prevalence moves to an extreme, so kappa collapses while agreement stays high. The ICC is the share of variance that is rep to rep.</li>
+<li><strong>Communicate.</strong> Tell the first sergeant whether the graders agree and which grader is the problem.</li>
+</ul>
+</div>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Koo and Li (2016), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4913118/">A guideline of selecting and reporting intraclass correlation coefficients for reliability research</a>, <em>Journal of Chiropractic Medicine</em> 15(2), 155 to 163. Also on Canvas.</p>
+<hr>
+</section>
+</section>
+<section id="remember-this" class="level2">
+<h2 class="anchored" data-anchor-id="remember-this">Remember This?</h2>
+<p>Lesson 21’s clinic: 1,200 test appointments. Flag a no-show when <span class="math inline">\(\hat{p} \ge 0.5\)</span>.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth: no-show</th>
+<th style="text-align: center;">Truth: kept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted no-show</strong></td>
+<td style="text-align: center;">TP <span class="math inline">\(=\)</span> 533</td>
+<td style="text-align: center;">FP <span class="math inline">\(=\)</span> 85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted kept</strong></td>
+<td style="text-align: center;">FN <span class="math inline">\(=\)</span> 83</td>
+<td style="text-align: center;">TN <span class="math inline">\(=\)</span> 499</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Accuracy</th>
+<th style="text-align: center;">Sensitivity</th>
+<th style="text-align: center;">Specificity</th>
+<th style="text-align: center;">Precision</th>
+<th style="text-align: center;"><span class="math inline">\(F_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0.860</td>
+<td style="text-align: center;">0.865</td>
+<td style="text-align: center;">0.854</td>
+<td style="text-align: center;">0.862</td>
+<td style="text-align: center;">0.864</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every number here needs the Truth column. The clinic records who showed up.</p>
+<hr>
+</section>
+<section id="what-if-there-is-no-answer-key" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-there-is-no-answer-key">What If There Is No Answer Key?</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>What color is the dress?</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/2/21/The_dress_blueblackwhitegold.jpg" class="img-fluid figure-img" style="width:58.0%" alt="The 2015 viral photo of a striped lace dress that some people see as blue and black and others as white and gold."></p>
+<figcaption>Photo: Cecilia Bleasdale (2015), via <a href="https://en.wikipedia.org/wiki/The_dress">Wikipedia</a>.</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<p><strong>Does pineapple belong on pizza?</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/pineapple-pizza.jpg" class="img-fluid figure-img" style="width:100.0%" alt="A ham and pineapple pizza in a box."></p>
+<figcaption>Photo: <a href="https://commons.wikimedia.org/wiki/File:Pizza_with_pineapple.jpg">Janine</a>, CC BY 2.0.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>The dress had a right answer, and nobody could check it from the photo. Pineapple has no right answer at all.</li>
+<li>Without the answer key: no accuracy, sensitivity, specificity, precision or <span class="math inline">\(F_1\)</span>.</li>
+<li>What is left: do the raters agree?</li>
+<li>A rater is a classifier with no truth column.</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="the-acft-graders" class="level2">
+<h2 class="anchored" data-anchor-id="the-acft-graders">The ACFT Graders</h2>
+<p>No answer key here either. The first sergeant says the push-up graders are inconsistent. The graders say they agree 90% of the time.</p>
+<p>40 hand-release push-up reps on video. 5 graders watch every rep and call it a rep or a no rep.</p>
+<div class="compact">
+<ul>
+<li><code>pushup</code>: the push-up’s number on the video, 1 to 40</li>
+<li><code>A</code> to <code>E</code>: 1 if that grader called a no rep, 0 if the rep counts</li>
+<li>No truth column. Nobody knows which reps were really bad.</li>
+</ul>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>graders <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L22_acft_graders.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(graders[, <span class="sc">-</span><span class="dv">1</span>])     <span class="co"># no reps called by each grader</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A B C D E 
+3 5 5 0 4 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="two-graders" class="level2">
+<h2 class="anchored" data-anchor-id="two-graders">Two Graders</h2>
+<p>Grader B against Grader E. Same table as the clinic, but the Truth column is now another grader.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">B: no rep</th>
+<th style="text-align: center;">B: rep</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>E: no rep</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>E: rep</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="percent-agreement" class="level3">
+<h3 class="anchored" data-anchor-id="percent-agreement">Percent Agreement</h3>
+<p><span class="math display">\[p_o = \frac{\text{both no rep} + \text{both rep}}{n} = \frac{2 + 33}{40} = 0.875\]</span></p>
+</section>
+<section id="chance-agreement" class="level3">
+<h3 class="anchored" data-anchor-id="chance-agreement">Chance Agreement</h3>
+<p>Take away the video and keep each grader’s habit.</p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(P(B) = P(\text{Grader B calls no rep}) = \dfrac{5}{40} = 0.125\)</span></li>
+<li><span class="math inline">\(P(E) = P(\text{Grader E calls no rep}) = \dfrac{4}{40} = 0.100\)</span></li>
+</ul>
+</div>
+<p>Blind guesses are independent, so by the multiplication rule from MA206 every cell is a product, <span class="math inline">\(P(B \cap E) = P(B)\,P(E)\)</span>:</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">B: no rep</th>
+<th style="text-align: center;">B: rep</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>E: no rep</strong></td>
+<td style="text-align: center;"><span class="math inline">\(P(B \cap E) = P(B)\,P(E)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(B^c \cap E) = P(B^c)\,P(E)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(E)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>E: rep</strong></td>
+<td style="text-align: center;"><span class="math inline">\(P(B \cap E^c) = P(B)\,P(E^c)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(B^c \cap E^c) = P(B^c)\,P(E^c)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(E^c)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><span class="math inline">\(P(B)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(B^c)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">B: no rep</th>
+<th style="text-align: center;">B: rep</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>E: no rep</strong></td>
+<td style="text-align: center;"><span class="math inline">\(0.125 \times 0.100 = 0.0125\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.875 \times 0.100 = 0.0875\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.100\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>E: rep</strong></td>
+<td style="text-align: center;"><span class="math inline">\(0.125 \times 0.900 = 0.1125\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.875 \times 0.900 = 0.7875\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.900\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><span class="math inline">\(0.125\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.875\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>They agree on the diagonal: both no rep or both rep.</p>
+<p><span class="math display">\[p_e = P(B \cap E) + P(B^c \cap E^c) = 0.0125 + 0.7875 = 0.800\]</span></p>
+</section>
+<section id="cohens-kappa" class="level3">
+<h3 class="anchored" data-anchor-id="cohens-kappa">Cohen’s Kappa</h3>
+<p>How much two raters agree beyond chance, as a share of the most they could have agreed beyond chance.</p>
+<div class="compact">
+<ul>
+<li>Percent agreement (<span class="math inline">\(p_o\)</span>): how often did they match?</li>
+<li>Chance agreement (<span class="math inline">\(p_e\)</span>): how often would they match by chance?</li>
+</ul>
+</div>
+<p><span class="math display">\[\kappa = \frac{p_o - p_e}{1 - p_e} = \frac{0.875 - 0.800}{1 - 0.800} = \frac{0.075}{0.200} = 0.375\]</span></p>
+<div class="compact">
+<ul>
+<li>Kappa (<span class="math inline">\(\kappa\)</span>): how much they agreed once you remove chance.</li>
+<li><strong>Top</strong>, <span class="math inline">\(p_o - p_e = 0.075\)</span>: the agreement beyond chance.</li>
+<li><strong>Bottom</strong>, <span class="math inline">\(1 - p_e = 0.200\)</span>: the most agreement beyond chance there was room for.</li>
+</ul>
+</div>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\kappa = 1\)</span>: perfect agreement.</li>
+<li><span class="math inline">\(\kappa = 0\)</span>: no better than chance.</li>
+<li><span class="math inline">\(\kappa &lt; 0\)</span>: worse than chance. Something systematic, like one rater reading the scale backwards.</li>
+</ul>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kappa</th>
+<th style="text-align: center;">0 to 0.20</th>
+<th style="text-align: center;">0.21 to 0.40</th>
+<th style="text-align: center;">0.41 to 0.60</th>
+<th style="text-align: center;">0.61 to 0.80</th>
+<th style="text-align: center;">above 0.80</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Agreement</td>
+<td style="text-align: center;">slight</td>
+<td style="text-align: center;">fair</td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">substantial</td>
+<td style="text-align: center;">almost perfect</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Landis and Koch (1977).</p>
+<div class="compact">
+<ul>
+<li>87.5% agreement and <span class="math inline">\(\kappa = 0.38\)</span>, fair. Chance alone gets them to 80.0%.</li>
+</ul>
+</div>
+</section>
+<section id="a-drawback-of-kappa-it-depends-on-prevalence" class="level3">
+<h3 class="anchored" data-anchor-id="a-drawback-of-kappa-it-depends-on-prevalence">A Drawback of Kappa: It Depends on Prevalence</h3>
+<p>When almost every rep is good, or almost every rep is bad (prevalence near 0% or 100%), graders agree a lot by chance alone. Kappa drops even though percent agreement stays high.</p>
+<p>Hold percent agreement at 87.5%. Change how often each grader calls a no rep (prevalence).</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 39%">
+<col style="width: 10%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">No rep (prevalence)</th>
+<th style="text-align: center;"><span class="math inline">\(p_o\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(p_e\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\dfrac{p_o - p_e}{1 - p_e}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\kappa\)</span></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">B and E (about 11%)</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.800</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.800}{1 - 0.800}\)</span></td>
+<td style="text-align: center;">0.375</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.820</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.820}{1 - 0.820}\)</span></td>
+<td style="text-align: center;">0.306</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">20%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.680</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.680}{1 - 0.680}\)</span></td>
+<td style="text-align: center;">0.609</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.580</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.580}{1 - 0.580}\)</span></td>
+<td style="text-align: center;">0.702</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">40%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.520</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.520}{1 - 0.520}\)</span></td>
+<td style="text-align: center;">0.740</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">50%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.500</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.500}{1 - 0.500}\)</span></td>
+<td style="text-align: center;">0.750</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.520</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.520}{1 - 0.520}\)</span></td>
+<td style="text-align: center;">0.740</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">70%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.580</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.580}{1 - 0.580}\)</span></td>
+<td style="text-align: center;">0.702</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">80%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.680</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.680}{1 - 0.680}\)</span></td>
+<td style="text-align: center;">0.609</td>
+<td style="text-align: left;">substantial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">90%</td>
+<td style="text-align: center;">0.875</td>
+<td style="text-align: center;">0.820</td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{0.875 - 0.820}{1 - 0.820}\)</span></td>
+<td style="text-align: center;">0.306</td>
+<td style="text-align: left;">fair</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Do not compare kappas across groups with different prevalence.</li>
+</ul>
+</div>
+<p><strong>PABAK fixes this.</strong> It puts every pair of graders at the same prevalence, half, so their kappas can be compared.</p>
+</section>
+<section id="pabak" class="level3">
+<h3 class="anchored" data-anchor-id="pabak">PABAK</h3>
+<p>Prevalence and bias adjusted kappa: the kappa you would get if both graders no-repped half the reps.</p>
+<p>If both graders call no rep half the time:</p>
+<p><span class="math display">\[p_e = (0.5)(0.5) + (0.5)(0.5) = 0.5\]</span></p>
+<p>Put that into kappa:</p>
+<p><span class="math display">\[\kappa = \frac{p_o - 0.5}{1 - 0.5} = \frac{p_o - 0.5}{0.5} = 2p_o - 1\]</span></p>
+<p><span class="math display">\[\text{PABAK} = 2p_o - 1 = 2(0.875) - 1 = 0.750\]</span></p>
+<p>Only <span class="math inline">\(p_o\)</span> is in it, so prevalence cannot move it.</p>
+<p>Graders B and E: <span class="math inline">\(\kappa = 0.375\)</span> (fair), PABAK <span class="math inline">\(= 0.750\)</span> (substantial). Of the 7 reps either one called a no rep, they agreed on 2. They agree on the easy reps, not the bad ones.</p>
+<hr>
+</section>
+</section>
+<section id="grader-d" class="level2">
+<h2 class="anchored" data-anchor-id="grader-d">Grader D</h2>
+<p>Grader A against Grader D.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">A: no rep</th>
+<th style="text-align: center;">A: rep</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>D: no rep</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D: rep</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Percent agreement</td>
+<td style="text-align: left;"><span class="math inline">\(p_o = \dfrac{0 + 37}{40} = 0.925\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chance agreement</td>
+<td style="text-align: left;"><span class="math inline">\(p_e = \dfrac{3}{40}\cdot\dfrac{0}{40} + \dfrac{37}{40}\cdot\dfrac{40}{40} = 0.925\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kappa</td>
+<td style="text-align: left;"><span class="math inline">\(\kappa = \dfrac{0.925 - 0.925}{1 - 0.925} = 0.000\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PABAK</td>
+<td style="text-align: left;"><span class="math inline">\(2(0.925) - 1 = 0.850\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Grader D never called a no rep. Grader D is the null classifier from Lesson 21: count every rep and agree 92.5% of the time.</li>
+<li>Kappa catches Grader D. PABAK does not: it adjusts away the bias that is the problem.</li>
+</ul>
+</div>
+<section id="all-ten-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="all-ten-pairs">All Ten Pairs</h3>
+<p>Kappa for every pair. Each row is one grader’s report card.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;">E</th>
+<th style="text-align: center;">Average with the others, not D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">0.66</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>B</strong></td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.38</td>
+<td style="text-align: center;">0.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.63</td>
+<td style="text-align: center;">0.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D</strong></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>E</strong></td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">0.38</td>
+<td style="text-align: center;">0.63</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Every pair agrees 88% to 95%. Agreement cannot find the problem grader. Kappa can.</li>
+<li>A, B and C are consistent with each other (0.72 to 0.77). Consistent, not proven right: with no truth column, they could all be wrong the same way.</li>
+<li>E is less consistent (0.38 to 0.63). D agrees with no one.</li>
+<li>Use A, B and C as the standard. Retrain D, then check E.</li>
+<li>Kappa takes two graders at a time. The ICC takes all five at once.</li>
+</ul>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-intraclass-correlation-coefficient-icc" class="level2">
+<h2 class="anchored" data-anchor-id="the-intraclass-correlation-coefficient-icc">The Intraclass Correlation Coefficient (ICC)</h2>
+<p>The ICC is the share of the variation in a call that comes from the rep.</p>
+<section id="two-way-anova-graders-as-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="two-way-anova-graders-as-blocks">Two-Way ANOVA, Graders as Blocks</h3>
+<p>Each rep is graded by every grader, so the grader is a block, as in Lessons 15 and 16.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pushup =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(graders<span class="sc">$</span>pushup, <span class="dv">5</span>)),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">grader =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>), <span class="at">each =</span> <span class="dv">40</span>)),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">no_rep =</span> <span class="fu">c</span>(<span class="fu">as.matrix</span>(graders[, <span class="sc">-</span><span class="dv">1</span>])))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long)                 <span class="co"># one row per call: 40 reps x 5 graders = 200 rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  pushup grader no_rep
+1      1      A      0
+2      2      A      0
+3      3      A      0
+4      4      A      0
+5      5      A      0
+6      6      A      0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>long[long<span class="sc">$</span>pushup <span class="sc">==</span> <span class="dv">30</span>, ]  <span class="co"># one push-up, all five graders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    pushup grader no_rep
+30      30      A      1
+70      30      B      1
+110     30      C      1
+150     30      D      0
+190     30      E      1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(no_rep <span class="sc">~</span> pushup <span class="sc">+</span> grader, <span class="at">data =</span> long)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: no_rep
+           Df Sum Sq  Mean Sq F value    Pr(&gt;F)    
+pushup     39  8.755 0.224487  5.4976 7.697e-15 ***
+grader      4  0.430 0.107500  2.6327   0.03634 *  
+Residuals 156  6.370 0.040833                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="where-the-variance-is" class="level3">
+<h3 class="anchored" data-anchor-id="where-the-variance-is">Where the Variance Is</h3>
+<p><span class="math inline">\(MS_R\)</span>, <span class="math inline">\(MS_C\)</span>, <span class="math inline">\(MS_E\)</span>: the <code>Mean Sq</code> column for <code>pushup</code>, <code>grader</code>, <code>Residuals</code>.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">What it measures</th>
+<th style="text-align: left;">Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Rep</td>
+<td style="text-align: left;">real differences in form</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma^2_{\text{rep}} = \dfrac{MS_R - MS_E}{k} = \dfrac{0.224 - 0.041}{5} = 0.037\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grader</td>
+<td style="text-align: left;">one grader harsher or softer</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma^2_{\text{grader}} = \dfrac{MS_C - MS_E}{n} = \dfrac{0.107 - 0.041}{40} = 0.002\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: left;">a grader and a rep that do not line up</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma^2_{\text{error}} = MS_E = 0.041\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="The ICC">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The ICC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{ICC} = \frac{\hat\sigma^2_{\text{rep}}}{\hat\sigma^2_{\text{rep}} + \hat\sigma^2_{\text{grader}} + \hat\sigma^2_{\text{error}}} = \frac{0.037}{0.037 + 0.002 + 0.041} = 0.464\]</span></p>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">ICC</th>
+<th style="text-align: center;">below 0.50</th>
+<th style="text-align: center;">0.50 to 0.75</th>
+<th style="text-align: center;">0.75 to 0.90</th>
+<th style="text-align: center;">above 0.90</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Koo and Li</td>
+<td style="text-align: center;">poor</td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">good</td>
+<td style="text-align: center;">excellent</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>46% of the variation in a call comes from the rep: poor.</p>
+<p>Koo and Li list several kinds of ICC. Ours: the same graders grade every rep, a soldier gets one grader, and the calls must match exactly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(irr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">icc</span>(graders[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">model =</span> <span class="st">"twoway"</span>, <span class="at">type =</span> <span class="st">"agreement"</span>, <span class="at">unit =</span> <span class="st">"single"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Single Score Intraclass Correlation
+
+   Model: twoway 
+   Type : agreement 
+
+   Subjects = 40 
+     Raters = 5 
+   ICC(A,1) = 0.464
+
+ F-Test, H0: r0 = 0 ; H1: r0 &gt; 0 
+  F(39,155) = 5.5 , p = 8.08e-15 
+
+ 95%-Confidence Interval for ICC Population Values:
+  0.321 &lt; ICC &lt; 0.618</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="which-grader-is-the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="which-grader-is-the-problem">Which Grader Is the Problem</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">All five</th>
+<th style="text-align: center;">Without Grader D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Grader effect, p-value</td>
+<td style="text-align: center;">0.036</td>
+<td style="text-align: center;">0.590</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ICC</td>
+<td style="text-align: center;">0.464 (poor)</td>
+<td style="text-align: center;">0.633 (moderate)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(no_rep <span class="sc">~</span> pushup <span class="sc">+</span> grader, <span class="at">data =</span> <span class="fu">droplevels</span>(long[long<span class="sc">$</span>grader <span class="sc">!=</span> <span class="st">"D"</span>, ]))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="compact">
+<ul>
+<li>With Grader D, the graders differ (<span class="math inline">\(p = 0.036\)</span>). Without Grader D, they do not (<span class="math inline">\(p = 0.590\)</span>).</li>
+<li>The ICC climbs from 0.464 to 0.633 when one grader leaves.</li>
+</ul>
+</div>
+<section id="tell-the-first-sergeant" class="level3">
+<h3 class="anchored" data-anchor-id="tell-the-first-sergeant">Tell the First Sergeant</h3>
+<p>Graders agreed on 88% to 95% of 40 reps, but no reps are rare, so most of that agreement comes from counting good reps. Grader D never called a no rep. Grader D’s calls agree with the other graders no more than chance does (<span class="math inline">\(\kappa = 0\)</span>), and the grader effect is gone without Grader D. With all five graders, 46% of the variation in a call comes from the rep itself (ICC 0.46, poor). Without Grader D, 63% (moderate). Retrain Grader D first.</p>
+<hr>
+</section>
+</section>
+<section id="your-turn-is-it-a-sandwich" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-is-it-a-sandwich">Your Turn: Is It a Sandwich?</h2>
+<p>On your own, call each one <strong>Y</strong> (sandwich) or <strong>N</strong> (not a sandwich). No talking. Then enter your neighbor’s calls. Add a rater for each extra person in your group.</p>
+<div class="compact">
+<ul>
+<li>Is your agreement high because you think alike, or because you both said N to almost everything?</li>
+<li>How much of your agreement was free? Compare kappa to percent agreement.</li>
+<li>What does PABAK say? Who in the room is your Grader D?</li>
+</ul>
+</div>
+<style>
+#sw { --sw-blue: #1f5fa8; --sw-orng: #c25708; --sw-line: #dee2e6; --sw-muted: #5a6472; --sw-soft: #f4f6f9;
+  --sw-card: #ffffff; max-width: 900px; margin: 1rem auto; font-size: 0.95rem; }
+#sw .scroll { overflow-x: auto; }
+#sw table.items { width: 100%; border-collapse: collapse; }
+#sw table.items th, #sw table.items td { padding: 0.3rem 0.4rem; border-bottom: 1px solid var(--sw-line); text-align: center; white-space: nowrap; }
+#sw table.items td.item { text-align: left; }
+#sw table.items th input { width: 6.2rem; text-align: center; font-weight: 600; border: 1px dashed var(--sw-line);
+  border-radius: 4px; padding: 0.1rem 0.2rem; background: transparent; color: inherit; }
+#sw .rm { border: none; background: transparent; color: var(--sw-muted); cursor: pointer; font-size: 0.9rem; padding: 0 0.2rem; }
+#sw .pick button { width: 2rem; padding: 0.1rem 0; margin: 0 0.05rem; border: 1px solid var(--sw-line);
+  border-radius: 4px; background: transparent; color: inherit; font-weight: 600; cursor: pointer; }
+#sw .pick button.on[data-v="Y"] { background: var(--sw-blue); border-color: var(--sw-blue); color: #fff; }
+#sw .pick button.on[data-v="N"] { background: var(--sw-orng); border-color: var(--sw-orng); color: #fff; }
+#sw tr.agree td.item { font-weight: 600; }
+#sw tr.split td.item { color: var(--sw-orng); }
+#sw .controls { display: flex; justify-content: center; gap: 0.6rem; margin-top: 0.8rem; }
+#sw .controls button:disabled { opacity: 0.4; cursor: default; }
+#sw .controls button { padding: 0.2rem 0.9rem; border: 1px solid var(--sw-line); border-radius: 4px;
+  background: transparent; color: inherit; cursor: pointer; }
+#sw .status { margin: 0.9rem 0 0.5rem; color: var(--sw-muted); font-size: 0.85rem; text-align: center; }
+#sw .xtab { margin: 0 auto 1rem; border-collapse: separate; border-spacing: 4px; }
+#sw .xtab th { font-weight: 600; font-size: 0.85rem; color: var(--sw-muted); padding: 0.2rem 0.5rem; white-space: nowrap; }
+#sw .xtab td { min-width: 4rem; text-align: center; padding: 0.45rem 0.6rem; border-radius: 6px;
+  background: var(--sw-soft); font-size: 1.1rem; font-weight: 600; }
+#sw .xtab td.diag { background: #dce9f6; color: var(--sw-blue); }
+#sw .xtab td.tot, #sw .xtab td.self { background: transparent; color: var(--sw-muted); font-weight: 400; font-size: 0.95rem; }
+#sw .xtab td.avg { background: transparent; color: var(--sw-blue); }
+#sw .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 0.6rem; }
+#sw .card { border: 1px solid var(--sw-line); border-radius: 8px; padding: 0.6rem 0.7rem; background: var(--sw-card); }
+#sw .card .name { font-size: 0.8rem; color: var(--sw-muted); font-weight: 600; }
+#sw .card .val { font-size: 1.7rem; font-weight: 700; color: var(--sw-blue); line-height: 1.2; margin: 0.15rem 0; }
+#sw .card .cat { display: inline-block; font-size: 0.75rem; padding: 0.05rem 0.45rem; border-radius: 999px;
+  background: var(--sw-soft); color: var(--sw-muted); min-height: 1.1rem; }
+#sw .card .how { font-size: 0.75rem; color: var(--sw-muted); margin-top: 0.35rem; font-family: var(--bs-font-monospace, monospace); }
+</style>
+<div id="sw">
+  <div class="scroll" id="sw-grid"></div>
+  <div class="controls"><button id="sw-add">+ Add a rater</button><button id="sw-sub">− Remove a rater</button><button id="sw-reset">Clear all calls</button></div>
+  <div class="status" id="sw-status"></div>
+  <div class="scroll" id="sw-xtab"></div>
+  <div class="cards" id="sw-cards"></div>
+</div>
+<script>
+(function () {
+  var items = ["Hot dog", "Taco", "Burrito", "Pop-Tart", "Ice cream sandwich", "Sub", "Wrap", "Gyro",
+               "Oreo", "Sloppy joe", "Quesadilla", "Open-faced turkey"];
+  var MAX = 8, MIN = 2;
+  function blankCalls() { return items.map(function () { return null; }); }
+  var raters = [{ name: "You", calls: blankCalls() }, { name: "Neighbor", calls: blankCalls() }];
+  var grid = document.getElementById("sw-grid");
+  var TB = "table";   // built from a variable so Quarto does not read these strings as tables
+
+  function z(v) { return Math.abs(v) < 0.0005 ? 0 : v; }   // no "-0.00" from rounding
+  function f3(v) { return z(v).toFixed(3); }
+  function f2(v) { return z(v).toFixed(2); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function landis(k) { return k <= 0 ? "no better than chance" : k <= 0.2 ? "slight" : k <= 0.4 ? "fair" :
+                       k <= 0.6 ? "moderate" : k <= 0.8 ? "substantial" : "almost perfect"; }
+  function koo(v) { return v < 0.5 ? "poor" : v < 0.75 ? "moderate" : v < 0.9 ? "good" : "excellent"; }
+
+  function build() {
+    var headHtml = "<tr><th></th><th style='text-align:left'>Item</th>" + raters.map(function (r, j) {
+      return "<th><input data-j='" + j + "' value='" + esc(r.name) + "' aria-label='Rater name'>" +
+        (raters.length > MIN ? "<button class='rm' data-j='" + j + "' title='Remove this rater'>&times;</button>" : "") + "</th>";
+    }).join("") + "</tr>";
+    var rowHtml = items.map(function (it, i) {
+      return "<tr id='sw-r" + i + "'><td>" + (i + 1) + "</td><td class='item'>" + it + "</td>" + raters.map(function (r, j) {
+        return "<td><span class='pick' data-j='" + j + "' data-i='" + i + "'><button data-v='Y'>Y</button><button data-v='N'>N</button></span></td>";
+      }).join("") + "</tr>";
+    }).join("");
+    grid.innerHTML = "<" + TB + " class='items'><thead>" + headHtml + "</thead><tbody>" + rowHtml + "</tbody></" + TB + ">";
+    document.getElementById("sw-add").disabled = raters.length >= MAX;
+    document.getElementById("sw-sub").disabled = raters.length <= MIN;
+    draw();
+  }
+
+  grid.addEventListener("input", function (e) {
+    if (e.target.tagName === "INPUT") { raters[+e.target.dataset.j].name = e.target.value || ("Rater " + (+e.target.dataset.j + 1)); draw(); }
+  });
+  grid.addEventListener("click", function (e) {
+    var rm = e.target.closest("button.rm");
+    if (rm) { raters.splice(+rm.dataset.j, 1); build(); return; }
+    var b = e.target.closest(".pick button"); if (!b) return;
+    var sp = b.parentNode, r = raters[+sp.dataset.j], i = +sp.dataset.i;
+    r.calls[i] = r.calls[i] === b.dataset.v ? null : b.dataset.v;
+    draw();
+  });
+  document.getElementById("sw-add").addEventListener("click", function () {
+    if (raters.length < MAX) { raters.push({ name: "Rater " + (raters.length + 1), calls: blankCalls() }); build(); }
+  });
+  document.getElementById("sw-sub").addEventListener("click", function () {
+    if (raters.length > MIN) { raters.pop(); build(); }
+  });
+  document.getElementById("sw-reset").addEventListener("click", function () {
+    raters.forEach(function (r) { r.calls = blankCalls(); }); draw();
+  });
+
+  // ICC: two-way ANOVA with items and raters, single rater, absolute agreement (as in the ACFT section).
+  function icc(m) {
+    var n = m.length, k = m[0].length, g = 0;
+    if (n < 2) return null;
+    m.forEach(function (row) { row.forEach(function (x) { g += x; }); }); g /= n * k;
+    var ssr = 0, ssc = 0, sst = 0, col = [];
+    for (var j = 0; j < k; j++) col.push(0);
+    m.forEach(function (row) {
+      var rm = 0; row.forEach(function (x, j) { rm += x; col[j] += x; sst += (x - g) * (x - g); });
+      rm /= k; ssr += k * (rm - g) * (rm - g);
+    });
+    col.forEach(function (c) { ssc += n * (c / n - g) * (c / n - g); });
+    var sse = sst - ssr - ssc;
+    var msr = ssr / (n - 1), msc = ssc / (k - 1), mse = sse / ((n - 1) * (k - 1));
+    var den = msr + (k - 1) * mse + k * (msc - mse) / n;
+    return den > 1e-12 ? (msr - mse) / den : null;
+  }
+  function pair(a, b) {
+    var n = a.length, yy = 0, yn = 0, ny = 0, nn = 0;
+    for (var i = 0; i < n; i++) {
+      if (a[i] && b[i]) yy++; else if (a[i]) yn++; else if (b[i]) ny++; else nn++;
+    }
+    var po = (yy + nn) / n, pa = (yy + yn) / n, pb = (yy + ny) / n, pe = pa * pb + (1 - pa) * (1 - pb);
+    return { yy: yy, yn: yn, ny: ny, nn: nn, po: po, pa: pa, pb: pb, pe: pe, k: pe >= 1 ? null : (po - pe) / (1 - pe) };
+  }
+  function card(name, val, cat, how) {
+    return "<div class='card'><div class='name'>" + name + "</div><div class='val'>" + val + "</div><div class='cat'>" +
+      cat + "</div><div class='how'>" + how + "</div></div>";
+  }
+
+  function draw() {
+    var k = raters.length, done = [];
+    items.forEach(function (it, i) {
+      var r = document.getElementById("sw-r" + i);
+      r.querySelectorAll(".pick").forEach(function (sp) {
+        var v = raters[+sp.dataset.j].calls[i];
+        sp.querySelectorAll("button").forEach(function (b) { b.classList.toggle("on", b.dataset.v === v); });
+      });
+      var all = raters.every(function (rt) { return rt.calls[i]; });
+      r.className = "";
+      if (all) {
+        var row = raters.map(function (rt) { return rt.calls[i] === "Y" ? 1 : 0; });
+        r.className = row.every(function (x) { return x === row[0]; }) ? "agree" : "split";
+        done.push(row);
+      }
+    });
+    var n = done.length, xt = document.getElementById("sw-xtab"), cards = document.getElementById("sw-cards");
+    var names = raters.map(function (r) { return esc(r.name); });
+    if (n === 0) {
+      document.getElementById("sw-status").textContent = "Make your calls. An item counts once every rater has called it.";
+      xt.innerHTML = ""; cards.innerHTML = ""; return;
+    }
+    document.getElementById("sw-status").textContent = n < items.length ?
+      (items.length - n) + " of " + items.length + " items still need every rater's call." : "All " + items.length + " items called.";
+    var cols = []; for (var j = 0; j < k; j++) cols.push(done.map(function (row) { return row[j]; }));
+    var ic = icc(done);
+    var iccCard = ic === null ? card("ICC", "&ndash;", "undefined", "no variation to split yet")
+                              : card("ICC", f3(ic), koo(ic), "share of variation from the item");
+
+    if (k === 2) {
+      var p = pair(cols[0], cols[1]);
+      xt.innerHTML = "<" + TB + " class='xtab'><tr><th></th><th>" + names[0] + ": Y</th><th>" + names[0] + ": N</th><th></th></tr>" +
+        "<tr><th>" + names[1] + ": Y</th><td class='diag'>" + p.yy + "</td><td>" + p.ny + "</td><td class='tot'>" + (p.yy + p.ny) + "</td></tr>" +
+        "<tr><th>" + names[1] + ": N</th><td>" + p.yn + "</td><td class='diag'>" + p.nn + "</td><td class='tot'>" + (p.yn + p.nn) + "</td></tr>" +
+        "<tr><th></th><td class='tot'>" + (p.yy + p.yn) + "</td><td class='tot'>" + (p.ny + p.nn) + "</td><td class='tot'>" + n + "</td></tr></" + TB + ">";
+      cards.innerHTML =
+        card("Percent agreement p<sub>o</sub>", f3(p.po), "how often you matched", "(" + p.yy + " + " + p.nn + ") / " + n) +
+        card("Chance agreement p<sub>e</sub>", f3(p.pe), "matches expected by chance",
+             f3(p.pa) + "&times;" + f3(p.pb) + " + " + f3(1 - p.pa) + "&times;" + f3(1 - p.pb)) +
+        (p.k === null ? card("Kappa &kappa;", "&ndash;", "undefined", "you called everything the same way")
+                      : card("Kappa &kappa;", f3(p.k), landis(p.k), "(" + f3(p.po) + " &minus; " + f3(p.pe) + ") / (1 &minus; " + f3(p.pe) + ")")) +
+        card("PABAK", f3(2 * p.po - 1), landis(2 * p.po - 1), "2(" + f3(p.po) + ") &minus; 1") + iccCard;
+      return;
+    }
+
+    // Three or more raters: every pair's kappa, each rater's average, and the group summaries.
+    var km = [], pos = [], ks = [];
+    for (var a = 0; a < k; a++) { km.push([]); for (var b = 0; b < k; b++) km[a].push(null); }
+    for (a = 0; a < k; a++) for (b = a + 1; b < k; b++) {
+      var q = pair(cols[a], cols[b]); km[a][b] = km[b][a] = q.k; pos.push(q.po); if (q.k !== null) ks.push(q.k);
+    }
+    function mean(v) { return v.reduce(function (s, x) { return s + x; }, 0) / v.length; }
+    xt.innerHTML = "<" + TB + " class='xtab'><tr><th>Kappa</th>" + names.map(function (nm) { return "<th>" + nm + "</th>"; }).join("") + "<th>Average</th></tr>" +
+      km.map(function (row, a) {
+        var others = row.filter(function (x, b) { return b !== a && x !== null; });
+        return "<tr><th>" + names[a] + "</th>" + row.map(function (x, b) {
+          return b === a ? "<td class='self'></td>" : "<td>" + (x === null ? "&ndash;" : f2(x)) + "</td>";
+        }).join("") + "<td class='avg'>" + (others.length ? f2(mean(others)) : "&ndash;") + "</td></tr>";
+      }).join("") + "</" + TB + ">";
+    var mpo = mean(pos);
+    cards.innerHTML =
+      card("Average agreement p<sub>o</sub>", f3(mpo), "over " + pos.length + " pairs", "mean of every pair's p<sub>o</sub>") +
+      (ks.length ? card("Average kappa &kappa;", f3(mean(ks)), landis(mean(ks)), "mean of the grid above")
+                 : card("Average kappa &kappa;", "&ndash;", "undefined", "every pair called everything the same way")) +
+      card("Average PABAK", f3(2 * mpo - 1), landis(2 * mpo - 1), "2(" + f3(mpo) + ") &minus; 1") + iccCard;
+  }
+  build();
+})();
+</script>
+<div class="callout callout-style-default callout-note callout-titled" title="Even Judges Disagree">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Even Judges Disagree
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Massachusetts, 2006</strong> (<em>White City Shopping Center v. PR Restaurants</em>): a burrito is not a sandwich. Panera’s lease barred other sandwich shops, and Panera tried to use it to keep Qdoba out.</li>
+<li><strong>Indiana, 2024</strong> (<em>Quintana v. Fort Wayne Plan Commission</em>): tacos and burritos are “Mexican-style sandwiches.”</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Takeaway">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>No truth column: judge raters by agreement, not accuracy.</li>
+<li>When one call is rare, percent agreement is mostly chance. Kappa removes the chance.</li>
+<li>Kappa falls as prevalence moves to an extreme even when agreement holds. PABAK puts the prevalence back at half.</li>
+<li>PABAK also removes bias, so it cannot find the grader who counts everything. Kappa and the grader effect can.</li>
+<li>The ICC is the share of variance that is rep to rep. Graders as blocks in a two-way ANOVA give it to you.</li>
+<li>The labels in a data set are only as good as the raters who made them. Ask who labeled Memo 4’s data.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li>A rater is a classifier with no truth column</li>
+<li>Percent agreement, kappa, PABAK: high agreement and low kappa is the prevalence paradox</li>
+<li>The ICC from a two-way ANOVA with raters as blocks: the share of variance that is rep to rep</li>
+<li>Grader D: kappa and the grader effect find him, PABAK does not</li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 23: Fixed, Random and Mixed Effects</strong></p>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> A factor is fixed when its levels are the only ones you care about and random when they are a sample of many.</li>
+<li><strong>Apply.</strong> Fit a random-intercept model with <code>lme4</code> and recover the ICC from its variance components.</li>
+<li><strong>Mean.</strong> A random intercept shrinks a small group toward the overall mean. The ICC is the correlation between two observations in the same group.</li>
+<li><strong>Communicate.</strong> Explain what a station effect means when the stations are a sample.</li>
+</ul>
+</div>
+<p><strong>Before class:</strong> <code>install.packages("lme4")</code>. Today’s grader data comes back.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA376-AY27-1/lesson-21.html" class="pagination-link" aria-label="MA376 AY27-1 Lesson 21">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA376 AY27-1 Lesson 21</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
