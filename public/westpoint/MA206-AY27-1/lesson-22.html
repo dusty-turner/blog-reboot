@@ -345,6 +345,10 @@ window.Quarto = {
   <li><a href="#range-day" id="toc-range-day" class="nav-link" data-scroll-target="#range-day">Range Day</a></li>
   <li><a href="#in-r" id="toc-in-r" class="nav-link" data-scroll-target="#in-r">In R</a></li>
   </ul></li>
+  <li><a href="#deflated-footballs" id="toc-deflated-footballs" class="nav-link" data-scroll-target="#deflated-footballs">Deflated Footballs</a>
+  <ul class="collapse">
+  <li><a href="#what-if-we-used-another-standard" id="toc-what-if-we-used-another-standard" class="nav-link" data-scroll-target="#what-if-we-used-another-standard">What If We Used Another Standard?</a></li>
+  </ul></li>
   <li><a href="#teaser-for-next-lesson" id="toc-teaser-for-next-lesson" class="nav-link" data-scroll-target="#teaser-for-next-lesson">Teaser for Next Lesson</a>
   <ul class="collapse">
   <li><a href="#corps-squad" id="toc-corps-squad" class="nav-link" data-scroll-target="#corps-squad">Corps Squad</a></li>
@@ -1180,6 +1184,268 @@ mean of x
 <hr>
 </section>
 </section>
+<section id="deflated-footballs" class="level2">
+<h2 class="anchored" data-anchor-id="deflated-footballs">Deflated Footballs</h2>
+<p>Purely hypothetically, suppose a famous quarterback is accused of playing with footballs below the allowable pressure. The rule: at least <span class="math inline">\(12.5\)</span> psi. At halftime the officials measure <span class="math inline">\(11\)</span> of his footballs:</p>
+<p>11.80, 11.20, 11.50, 11.00, 11.45, 11.95, 12.30, 11.55, 11.35, 10.90, 11.35</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" alt="Dot plot of 11 football pressures between 10.9 and 12.3 psi, with a dotted line at the 12.5 psi standard to the right of every ball." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Test at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>1. Hypotheses:</strong> State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[H_0: \mu = 12.5\]</span></p>
+<p><span class="math display">\[H_a: \mu &lt; 12.5\]</span></p>
+<p><span class="math inline">\(\mu\)</span> is the true mean halftime pressure of his footballs.</p>
+</div>
+</div>
+</div>
+<p><strong>2. Conditions:</strong> What conditions allow us to do this?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Treat the <span class="math inline">\(11\)</span> balls as a random sample. <span class="math inline">\(n = 11 \le 40\)</span>, so we assume pressures are normal.</p>
+</div>
+</div>
+</div>
+<p><strong>3. Test statistic:</strong> Compute it.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\bar{x} = 11.4864\)</span>, <span class="math inline">\(s = 0.4099\)</span></p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\]</span></p>
+<p><span class="math display">\[t = \frac{11.4864 - 12.5}{0.4099/\sqrt{11}} = \mathbf{-8.20}\]</span></p>
+<p><span class="math display">\[\text{df} = 11 - 1 = 10\]</span></p>
+</div>
+</div>
+</div>
+<p><strong>4. P-value:</strong> Find it.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[P(T \le -8.20) = \mathbf{0.000005}\]</span></p>
+<p><code>pt(-8.20, 10)</code></p>
+</div>
+</div>
+</div>
+<p><strong>5. Decision:</strong> Reject or fail to reject?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(0.000005 \le 0.05\)</span>. <strong>Reject <span class="math inline">\(H_0\)</span>.</strong></p>
+</div>
+</div>
+</div>
+<p><strong>6. Conclusion:</strong> State it in context.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since the P-value <span class="math inline">\(0.000005 \le \alpha = 0.05\)</span>, reject <span class="math inline">\(H_0\)</span>. At the 5% level there is sufficient evidence that the true mean halftime pressure of his footballs is less than 12.5 psi.</p>
+</div>
+</div>
+</div>
+<p>These are the real numbers: 2015 AFC Championship, Patriots footballs, from the NFL’s Wells Report.</p>
+<section id="what-if-we-used-another-standard" class="level3">
+<h3 class="anchored" data-anchor-id="what-if-we-used-another-standard">What If We Used Another Standard?</h3>
+<div class="compact">
+<ul>
+<li>The balls were set to <span class="math inline">\(12.5\)</span> psi in a locker room at about <span class="math inline">\(71°\)</span>F</li>
+<li>The game was played at about <span class="math inline">\(48°\)</span>F</li>
+<li>Cold air loses pressure (ideal gas law): a <span class="math inline">\(12.5\)</span> psi ball that nobody touched should read about <span class="math inline">\(\mathbf{11.32}\)</span> psi at halftime</li>
+</ul>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" alt="The same dot plot of 11 football pressures with a second dotted line at 11.32 psi, the pressure expected from cold weather alone. Most balls sit above it." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Test at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>1. Hypotheses:</strong> State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[H_0: \mu = 11.32\]</span></p>
+<p><span class="math display">\[H_a: \mu &lt; 11.32\]</span></p>
+<p><span class="math inline">\(\mu\)</span> is the true mean halftime pressure of his footballs.</p>
+</div>
+</div>
+</div>
+<p><strong>2. Conditions:</strong> What conditions allow us to do this?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Treat the <span class="math inline">\(11\)</span> balls as a random sample. <span class="math inline">\(n = 11 \le 40\)</span>, so we assume pressures are normal.</p>
+</div>
+</div>
+</div>
+<p><strong>3. Test statistic:</strong> Compute it.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\bar{x} = 11.4864\)</span>, <span class="math inline">\(s = 0.4099\)</span></p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\]</span></p>
+<p><span class="math display">\[t = \frac{11.4864 - 11.32}{0.4099/\sqrt{11}} = \mathbf{1.35}\]</span></p>
+<p><span class="math display">\[\text{df} = 11 - 1 = 10\]</span></p>
+</div>
+</div>
+</div>
+<p><strong>4. P-value:</strong> Find it.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-22_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="t curve with 10 degrees of freedom. The test statistic t equals 1.35 is marked to the right of zero, and most of the curve to its left is shaded." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[P(T \le 1.35) = \mathbf{0.8960}\]</span></p>
+<p><code>pt(1.35, 10)</code></p>
+</div>
+</div>
+</div>
+<p><strong>5. Decision:</strong> Reject or fail to reject?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(0.8960 &gt; 0.05\)</span>. <strong>Fail to reject <span class="math inline">\(H_0\)</span>.</strong></p>
+</div>
+</div>
+</div>
+<p><strong>6. Conclusion:</strong> State it in context.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since the P-value <span class="math inline">\(0.8960 &gt; \alpha = 0.05\)</span>, fail to reject <span class="math inline">\(H_0\)</span>. At the 5% level there is insufficient evidence that the true mean halftime pressure of his footballs is less than 11.32 psi, the pressure cold weather alone explains.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
 <section id="teaser-for-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="teaser-for-next-lesson">Teaser for Next Lesson</h2>
 <p>What about a proportion?</p>
@@ -1286,7 +1552,7 @@ mean of x
 <section id="problem-1-which-test" class="level3">
 <h3 class="anchored" data-anchor-id="problem-1-which-test">Problem 1: Which Test?</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1295,7 +1561,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For each, choose the <span class="math inline">\(z\)</span> test, the <span class="math inline">\(t\)</span> test, or neither.</p>
 <ol type="a">
@@ -1308,7 +1574,7 @@ mean of x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1317,7 +1583,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><strong><span class="math inline">\(z\)</span> test.</strong> Random sample, <span class="math inline">\(n = 80 &gt; 40\)</span>.</p></li>
@@ -1334,7 +1600,7 @@ mean of x
 <h3 class="anchored" data-anchor-id="problem-2-radio-batteries">Problem 2: Radio Batteries</h3>
 <p>Radio batteries are rated for <span class="math inline">\(20\)</span> hours. The commo section thinks they die sooner. A random sample of <span class="math inline">\(12\)</span> batteries: <span class="math inline">\(\bar{x} = 18.9\)</span> hours, <span class="math inline">\(s = 2.1\)</span> hours. Battery life is approximately normal. Test at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1343,7 +1609,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>State the hypotheses.</p></li>
@@ -1358,7 +1624,7 @@ mean of x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1367,7 +1633,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math display">\[H_0: \mu = 20\]</span></li>
@@ -1401,7 +1667,7 @@ mean of x
 <p>14.2, 12.8, 15.9, 13.5, 16.4, 14.8, 13.1, 15.3</p>
 <p>Packing times are approximately normal. Test at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1410,7 +1676,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>State the hypotheses.</p></li>
@@ -1424,7 +1690,7 @@ mean of x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1433,7 +1699,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math display">\[H_0: \mu = 13\]</span></li>
@@ -1465,7 +1731,7 @@ mean of x
 <h3 class="anchored" data-anchor-id="problem-4-interval-to-test">Problem 4: Interval to Test</h3>
 <p>A random sample of <span class="math inline">\(20\)</span> cadets gives a 95% confidence interval for mean daily water intake of <span class="math inline">\((2.4,\ 3.1)\)</span> liters.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Questions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1474,7 +1740,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Test <span class="math inline">\(H_0: \mu = 3\)</span> versus <span class="math inline">\(H_a: \mu \ne 3\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>. Decision?</p></li>
@@ -1486,7 +1752,7 @@ mean of x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Answers">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1495,7 +1761,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><strong>Fail to reject.</strong> <span class="math inline">\(3\)</span> is inside the interval.</p></li>
