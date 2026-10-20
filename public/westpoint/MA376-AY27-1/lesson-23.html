@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-23 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA376-AY27-1/lesson-22.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY27-1/index.html"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../misc-lessons/index.html" aria-current="page"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA376-AY27-1/lesson-23.html">MA376 AY27-1 Lesson 23</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 AY26-2 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-23.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA376 AY27-1 Lesson 23</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-23-fixed-random-and-mixed-effects" id="toc-lesson-23-fixed-random-and-mixed-effects" class="nav-link active" data-scroll-target="#lesson-23-fixed-random-and-mixed-effects">Lesson 23: Fixed, Random and Mixed Effects</a>
+  <ul class="collapse">
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a></li>
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a></li>
+  <li><a href="#what-we-did-lesson-22" id="toc-what-we-did-lesson-22" class="nav-link" data-scroll-target="#what-we-did-lesson-22">What We Did: Lesson 22</a></li>
+  <li><a href="#what-were-doing-lesson-23" id="toc-what-were-doing-lesson-23" class="nav-link" data-scroll-target="#what-were-doing-lesson-23">What We’re Doing: Lesson 23</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  </ul></li>
+  <li><a href="#the-aft-data" id="toc-the-aft-data" class="nav-link" data-scroll-target="#the-aft-data">The AFT Data</a></li>
+  <li><a href="#model-1-no-company-effect" id="toc-model-1-no-company-effect" class="nav-link" data-scroll-target="#model-1-no-company-effect">Model 1: No Company Effect</a>
+  <ul class="collapse">
+  <li><a href="#predicting-a-cadet" id="toc-predicting-a-cadet" class="nav-link" data-scroll-target="#predicting-a-cadet">Predicting a Cadet</a></li>
+  </ul></li>
+  <li><a href="#model-2-fixed-company-effect" id="toc-model-2-fixed-company-effect" class="nav-link" data-scroll-target="#model-2-fixed-company-effect">Model 2: Fixed Company Effect</a>
+  <ul class="collapse">
+  <li><a href="#predicting-a-cadet-1" id="toc-predicting-a-cadet-1" class="nav-link" data-scroll-target="#predicting-a-cadet-1">Predicting a Cadet</a></li>
+  </ul></li>
+  <li><a href="#model-3-random-company-effect" id="toc-model-3-random-company-effect" class="nav-link" data-scroll-target="#model-3-random-company-effect">Model 3: Random Company Effect</a>
+  <ul class="collapse">
+  <li><a href="#fitting-it-lmer" id="toc-fitting-it-lmer" class="nav-link" data-scroll-target="#fitting-it-lmer">Fitting It: <code>lmer</code></a></li>
+  <li><a href="#the-model-3-formula" id="toc-the-model-3-formula" class="nav-link" data-scroll-target="#the-model-3-formula">The Model 3 Formula</a></li>
+  <li><a href="#shrinkage" id="toc-shrinkage" class="nav-link" data-scroll-target="#shrinkage">Shrinkage</a></li>
+  </ul></li>
+  <li><a href="#side-by-side" id="toc-side-by-side" class="nav-link" data-scroll-target="#side-by-side">Side by Side</a></li>
+  <li><a href="#how-much-does-company-matter-the-icc" id="toc-how-much-does-company-matter-the-icc" class="nav-link" data-scroll-target="#how-much-does-company-matter-the-icc">How Much Does Company Matter? The ICC</a>
+  <ul class="collapse">
+  <li><a href="#the-icc-sets-the-pull" id="toc-the-icc-sets-the-pull" class="nav-link" data-scroll-target="#the-icc-sets-the-pull">The ICC Sets the Pull</a></li>
+  </ul></li>
+  <li><a href="#tell-the-commander" id="toc-tell-the-commander" class="nav-link" data-scroll-target="#tell-the-commander">Tell the Commander</a></li>
+  <li><a href="#fixed-or-random" id="toc-fixed-or-random" class="nav-link" data-scroll-target="#fixed-or-random">Fixed or Random?</a>
+  <ul class="collapse">
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-23-fixed-random-and-mixed-effects" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 23: Fixed, Random and Mixed Effects</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+
+/* long R output scrolls in a box instead of running down the page */
+pre.scroll-out { max-height: 420px; overflow-y: auto; }
+</style>
+<p><img src="https://imgs.xkcd.com/comics/extrapolating.png" class="img-fluid quarto-figure quarto-figure-center" style="width:75.0%" alt="xkcd 605, My Hobby: Extrapolating. A graph shows zero husbands yesterday and one today, and the stick figure says that by late next month she will have over four dozen husbands."> <!-- 605 is "Extrapolating": one husband today, four dozen by next month. Too much from too little data, which is the small-company problem. No profanity. --></p>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Cal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Marlins</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Reese</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/cal-l23.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/marlins-l23.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="The New York Marlins youth baseball team and two coaches posed at home plate in front of fall trees."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Under the Lights</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Williamsport</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/reese-l23.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-army-3.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="The Turner family selfie in the stands at Williamsport."></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-army-1.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Reese winding up to throw a softball while an Army softball player cheers behind her at Williamsport."></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-army-2.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Reese in a blue uniform throwing a softball to two college softball players on the outfield grass at Williamsport."></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/reese/reese-venom-6.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Reese leaping over small hurdles on the outfield grass at Williamsport."></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/cal/cal-wilport.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Cal with a glove standing next to a player on the field at Williamsport."></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l23.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calendar for 5 October to 6 November with a red box around Tuesday 20 October, Lesson 23, Fixed, Random and Mixed Effects."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<div class="compact">
+<ul>
+<li><strong>This lesson</strong>
+<ul>
+<li>Data: <a href="data/L23_aft_companies.csv">L23_aft_companies.csv</a></li>
+</ul></li>
+<li><strong>Lesson 27</strong>
+<ul>
+<li>Block 3 quiz (Lessons 20 to 23)</li>
+<li>Memo 4 due in class, hard copy</li>
+</ul></li>
+<li><strong>Capstone Milestone 2: methodology and preliminary results.</strong> Due 2359 Friday 13 November, 60 points.
+<ul>
+<li>2 to 4 pages that motivate and defend your method, with a short look at results</li>
+<li>A plebe in MA103 should understand at least 80% of it</li>
+</ul></li>
+<li><strong>Capstone final presentation.</strong> Lessons 37 and 38, 3 to 8 December, 100 points.</li>
+<li>I’m here through Lesson 29, 6 November.</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lesson-22" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-22">What We Did: Lesson 22</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Rater Agreement and the ICC (Lesson 22)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Rater Agreement and the ICC (Lesson 22)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>A rater is a classifier with no truth column, so agreement replaces accuracy.</li>
+<li>Kappa removes chance agreement. It falls as prevalence moves to an extreme. PABAK puts the prevalence at half.</li>
+<li>The ICC is the share of the variance that is rep to rep, from a two-way ANOVA with graders as blocks.</li>
+<li>Grader D never called a no rep. Kappa and the grader effect found him. PABAK did not.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-23" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-23">What We’re Doing: Lesson 23</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> A factor is fixed when its levels are the only ones you care about and random when they are a sample of many.</li>
+<li><strong>Apply.</strong> Fit a random-intercept model with <code>lme4</code> and recover the ICC from its variance components.</li>
+<li><strong>Mean.</strong> A random intercept shrinks a small group toward the overall mean. The ICC is the correlation between two observations in the same group.</li>
+<li><strong>Communicate.</strong> Explain what a company effect means when the companies are a sample.</li>
+</ul>
+</div>
+</section>
+<section id="reading" class="level3">
+<h3 class="anchored" data-anchor-id="reading">Reading</h3>
+<p>None.</p>
+<hr>
+</section>
+</section>
+<section id="the-aft-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-aft-data">The AFT Data</h2>
+<p>Fall Army Fitness Test (AFT) results reported so far. Some companies have tested most cadets, some only a handful.</p>
+<div class="compact">
+<ul>
+<li><code>company</code>: A1 to I4, 36 companies</li>
+<li><code>score</code>: AFT total, 0 to 500</li>
+<li>1,684 cadets. 4 to 120 per company.</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>aft <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L23_aft_companies.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aft)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  company score
+1      A1   353
+2      A1   329
+3      A1   443
+4      A1   347
+5      A1   387
+6      A1   386</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(aft<span class="sc">$</span>company)    <span class="co"># cadets tested per company</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ A1  A2  A3  A4  B1  B2  B3  B4  C1  C2  C3  C4  D1  D2  D3  D4  E1  E2  E3  E4 
+  8   5   6   8  80  45  10   4  20  80 110  80   5  20   4  60  10 100   5 100 
+ F1  F2  F3  F4  G1  G2  G3  G4  H1  H2  H3  H4  I1  I2  I3  I4 
+100  15 110  30  30  12  10 100  45 120   4  30 100   8 100 110 </code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The number over each dot is how many cadets tested.</p>
+<p><strong>The commander’s question: which company is the most fit?</strong></p>
+<p>Three ways to model it.</p>
+<hr>
+</section>
+<section id="model-1-no-company-effect" class="level2">
+<h2 class="anchored" data-anchor-id="model-1-no-company-effect">Model 1: No Company Effect</h2>
+<p><span class="math display">\[y_{ij} = \mu + \varepsilon_{ij}, \qquad \varepsilon_{ij} \sim N(0, \sigma^2)\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(y_{ij}\)</span>: cadet <span class="math inline">\(i\)</span> in company <span class="math inline">\(j\)</span></li>
+<li><span class="math inline">\(\mu\)</span>: the overall average</li>
+<li><span class="math inline">\(\varepsilon_{ij}\)</span>: how far cadet <span class="math inline">\(i\)</span> sits from <span class="math inline">\(\mu\)</span></li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> aft)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = score ~ 1, data = aft)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-140.952  -28.952    0.048   29.048   99.048 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  400.952      1.038   386.4   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 42.58 on 1683 degrees of freedom</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>One parameter. Every company gets 401.0.</li>
+<li>Answer to the commander: they are all the same. The plot says they are not.</li>
+</ul>
+</div>
+<section id="predicting-a-cadet" class="level3">
+<h3 class="anchored" data-anchor-id="predicting-a-cadet">Predicting a Cadet</h3>
+<p><span class="math display">\[\hat y_{ij} = \hat\mu\]</span></p>
+<div class="compact">
+<ul>
+<li>A cadet in D3: <span class="math inline">\(401.0\)</span></li>
+<li>A cadet in H2: <span class="math inline">\(401.0\)</span></li>
+<li>A cadet in J5, a new company: <span class="math inline">\(401.0\)</span></li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit1, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>, <span class="st">"J5"</span>)))   <span class="co"># J5 is a new company</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+400.9519 400.9519 400.9519 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="model-2-fixed-company-effect" class="level2">
+<h2 class="anchored" data-anchor-id="model-2-fixed-company-effect">Model 2: Fixed Company Effect</h2>
+<p>Lesson 13: ANOVA is regression with indicators.</p>
+<p><span class="math display">\[y_{ij} = \beta_0 + \beta_j + \varepsilon_{ij}\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>: company A1’s average (the baseline)</li>
+<li><span class="math inline">\(\beta_j\)</span>: how far company <span class="math inline">\(j\)</span> sits from A1, one dummy per company</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> company, <span class="at">data =</span> aft)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre class="scroll-out"><code>
+Call:
+lm(formula = score ~ company, data = aft)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-124.800  -26.736   -1.286   27.487  121.590 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  376.250     14.505  25.939  &lt; 2e-16 ***
+companyA2     55.750     23.389   2.384 0.017256 *  
+companyA3      1.250     22.157   0.056 0.955018    
+companyA4     31.375     20.513   1.529 0.126335    
+companyB1     51.250     15.213   3.369 0.000772 ***
+companyB2      7.706     15.742   0.489 0.624555    
+companyB3     32.550     19.461   1.673 0.094596 .  
+companyB4     38.500     25.124   1.532 0.125611    
+companyC1     14.350     17.163   0.836 0.403212    
+companyC2      8.825     15.213   0.580 0.561933    
+companyC3     13.923     15.023   0.927 0.354198    
+companyC4     17.325     15.213   1.139 0.254944    
+companyD1     -3.850     23.389  -0.165 0.869272    
+companyD2     26.750     17.163   1.559 0.119281    
+companyD3     76.750     25.124   3.055 0.002288 ** 
+companyD4     21.267     15.442   1.377 0.168636    
+companyE1     17.550     19.461   0.902 0.367286    
+companyE2     33.550     15.074   2.226 0.026172 *  
+companyE3     -8.850     23.389  -0.378 0.705193    
+companyE4     28.770     15.074   1.909 0.056492 .  
+companyF1      2.160     15.074   0.143 0.886078    
+companyF2     39.617     17.961   2.206 0.027546 *  
+companyF3     33.486     15.023   2.229 0.025951 *  
+companyF4     19.550     16.325   1.198 0.231265    
+companyG1     24.650     16.325   1.510 0.131247    
+companyG2     -0.500     18.726  -0.027 0.978702    
+companyG3     14.950     19.461   0.768 0.442470    
+companyG4     19.800     15.074   1.314 0.189196    
+companyH1     22.283     15.742   1.416 0.157095    
+companyH2     38.092     14.981   2.543 0.011091 *  
+companyH3     20.000     25.124   0.796 0.426110    
+companyH4     25.217     16.325   1.545 0.122619    
+companyI1     37.550     15.074   2.491 0.012836 *  
+companyI2     28.125     20.513   1.371 0.170544    
+companyI3     18.950     15.074   1.257 0.208890    
+companyI4     32.123     15.023   2.138 0.032648 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 41.03 on 1648 degrees of freedom
+Multiple R-squared:  0.09084,   Adjusted R-squared:  0.07153 
+F-statistic: 4.704 on 35 and 1648 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>36 parameters. Each company’s estimate is its own average.</li>
+<li>Answer to the commander: D3, at 453.0, on 4 cadets.</li>
+<li>The highest and lowest companies are the small ones. A few scores can land high or low by luck.</li>
+<li>D3’s 4 cadets count as much as H2’s 120.</li>
+</ul>
+</div>
+<section id="predicting-a-cadet-1" class="level3">
+<h3 class="anchored" data-anchor-id="predicting-a-cadet-1">Predicting a Cadet</h3>
+<p><span class="math display">\[\hat y_{ij} = \hat\beta_0 + \hat\beta_j\]</span></p>
+<div class="compact">
+<ul>
+<li>A cadet in D3: <span class="math inline">\(376.25 + 76.75 = 453.0\)</span></li>
+<li>A cadet in H2: <span class="math inline">\(376.25 + 38.09 = 414.3\)</span></li>
+<li>A cadet in J5, a new company: no <span class="math inline">\(\hat\beta_{J5}\)</span>, so no prediction</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit2, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2 
+453.0000 414.3417 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">predict</span>(fit2, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="st">"J5"</span>)))   <span class="co"># J5 is a new company</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels) : 
+  factor company has new level J5</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="model-3-random-company-effect" class="level2">
+<h2 class="anchored" data-anchor-id="model-3-random-company-effect">Model 3: Random Company Effect</h2>
+<p>Same equation as Model 2, one new assumption about the company effects:</p>
+<div class="compact">
+<ul>
+<li><strong>Model 2:</strong> 36 unrelated numbers. Each company’s effect comes only from its own cadets.</li>
+<li><strong>Model 3:</strong> all 36 come from one normal distribution. Companies tell you about each other.</li>
+</ul>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Differences between companies</th>
+<th style="text-align: left;">Differences between cadets in a company</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Model 2</td>
+<td style="text-align: left;">35 separate <span class="math inline">\(\beta_j\)</span>, no variance</td>
+<td style="text-align: left;">one variance, <span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model 3</td>
+<td style="text-align: left;">one variance, <span class="math inline">\(\sigma^2_u\)</span></td>
+<td style="text-align: left;">one variance, <span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="math display">\[y_{ij} = \mu + u_j + \varepsilon_{ij}, \qquad u_j \sim N(0, \sigma^2_u), \qquad \varepsilon_{ij} \sim N(0, \sigma^2)\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\mu\)</span>: the overall average</li>
+<li><span class="math inline">\(u_j\)</span>: how far company <span class="math inline">\(j\)</span> sits from <span class="math inline">\(\mu\)</span> (Model 2’s <span class="math inline">\(\beta_j\)</span>)</li>
+<li><span class="math inline">\(\sigma^2_u\)</span>: how much companies differ</li>
+<li><span class="math inline">\(\sigma^2\)</span>: the variance left over after accounting for company</li>
+</ul>
+</div>
+<section id="fitting-it-lmer" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-it-lmer">Fitting It: <code>lmer</code></h3>
+<p><code>lmer()</code> from the <code>lme4</code> package: <strong>l</strong>inear <strong>m</strong>ixed-<strong>e</strong>ffects <strong>r</strong>egression. Same formula as <code>lm()</code>, plus random effects.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Piece of the formula</th>
+<th style="text-align: left;">Means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>score ~ 1</code></td>
+<td style="text-align: left;">one overall average, <span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>(1 | company)</code></td>
+<td style="text-align: left;">an intercept (<span class="math inline">\(1\)</span>) for each company, drawn from <span class="math inline">\(N(0, \sigma^2_u)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(score <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> company), <span class="at">data =</span> aft)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: score ~ 1 + (1 | company)
+   Data: aft
+
+REML criterion at convergence: 17330.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.99943 -0.64960 -0.03483  0.67039  2.90049 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ company  (Intercept)  125.6   11.21   
+ Residual             1685.3   41.05   
+Number of obs: 1684, groups:  company, 36
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  399.704      2.374   168.3</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Random effects:</strong> the two variances. <code>company</code> is <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span>. <code>Residual</code> is <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span>.</li>
+<li><strong>Fixed effects:</strong> <code>(Intercept)</code> is <span class="math inline">\(\hat\mu = 399.7\)</span>.</li>
+<li>3 parameters: <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2_u\)</span>, <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+</div>
+</section>
+<section id="the-model-3-formula" class="level3">
+<h3 class="anchored" data-anchor-id="the-model-3-formula">The Model 3 Formula</h3>
+<p>Start from the model:</p>
+<p><span class="math display">\[y_{ij} = \mu + u_j + \varepsilon_{ij}\]</span></p>
+<p>Like Models 1 and 2, predict a cadet by dropping <span class="math inline">\(\varepsilon_{ij}\)</span> (it averages 0):</p>
+<p><span class="math display">\[\hat y_{ij} = \hat\mu + \hat u_j\]</span></p>
+<p>where <span class="math inline">\(\hat\mu = 399.7\)</span> comes from the summary, and</p>
+<p><span class="math display">\[\hat u_j = w_j\,(\bar y_j - \hat\mu)\]</span></p>
+<p>the company’s gap from the overall average, times a trust <span class="math inline">\(w_j\)</span> between 0 (ignore the gap, Model 1) and 1 (take all of it, Model 2), where</p>
+<p><span class="math display">\[w_j = \frac{n_j}{n_j + \lambda}\]</span></p>
+<p>more cadets (<span class="math inline">\(n_j\)</span>), more trust; when <span class="math inline">\(n_j = \lambda\)</span>, the company’s own average gets half the weight, where</p>
+<p><span class="math display">\[\lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1685.3}{125.6} = 13.4\]</span></p>
+<p>cadet noise (<code>Residual</code>) over how much companies really differ (<code>company</code>), both from the summary.</p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\lambda\)</span> is big when cadets vary a lot or companies barely differ (a small company’s average is mostly luck), and small when companies really differ (trust each company’s own average).</li>
+<li>Here <span class="math inline">\(\lambda = 13.4\)</span>: a company needs about 13 cadets before its own average gets half the weight.</li>
+</ul>
+</div>
+<p>Why <span class="math inline">\(w_j\)</span> and <span class="math inline">\(\lambda\)</span> take these forms: the collapsed box below.</p>
+<p><strong>D3:</strong> <span class="math inline">\(n_j = 4\)</span>, <span class="math inline">\(\bar y_j = 453.0\)</span>.</p>
+<p><span class="math display">\[w = \frac{4}{4 + 13.4} = 0.23, \qquad \hat u = 0.23\,(453.0 - 399.7) = 12.2, \qquad \hat y = 399.7 + 12.2 = 411.9\]</span></p>
+<p><strong>H2:</strong> <span class="math inline">\(n_j = 120\)</span>, <span class="math inline">\(\bar y_j = 414.3\)</span>.</p>
+<p><span class="math display">\[w = \frac{120}{120 + 13.4} = 0.90, \qquad \hat u = 0.90\,(414.3 - 399.7) = 13.2, \qquad \hat y = 399.7 + 13.2 = 412.9\]</span></p>
+<div class="compact">
+<ul>
+<li>D3: 4 cadets, <span class="math inline">\(w = 0.23\)</span>. Keeps 23% of its gap.</li>
+<li>H2: 120 cadets, <span class="math inline">\(w = 0.90\)</span>. Keeps 90% of its gap.</li>
+</ul>
+</div>
+<p><strong>A new company, J5:</strong> no cadets, so no gap to trust. <span class="math inline">\(\hat u_{J5} = 0\)</span> and <span class="math inline">\(\hat y = 399.7\)</span>.</p>
+<p><strong>Why shrink?</strong> Companies differ by about 11.2 points (SD). D3’s 53.3-point gap would be 4.8 SDs out, on 4 cadets. Unlikely, so the model trusts it little.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fixef</span>(fit3)                                            <span class="co"># mu-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept) 
+   399.7035 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fit3)<span class="sc">$</span>company[<span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]     <span class="co"># u-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   (Intercept)
+D3    12.23671
+H2    13.16557</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit3, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>, <span class="st">"J5"</span>)), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)   <span class="co"># J5 is a new company</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+411.9403 412.8691 399.7035 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Where w and lambda come from: ridge regression">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Where w and lambda come from: ridge regression
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>The <span class="math inline">\(\hat u_j\)</span>.</strong> Lesson 8’s ridge regression. <code>lmer</code> picks the <span class="math inline">\(u_j\)</span> that minimize</p>
+<p><span class="math display">\[\underbrace{\sum_{i,j} (y_{ij} - \mu - u_j)^2}_{\text{fit the cadets}} \;+\; \underbrace{\lambda \sum_j u_j^2}_{\text{penalty: keep each } u_j \text{ near } 0}\]</span></p>
+<div class="compact">
+<ul>
+<li>First part: least squares, same as <code>lm</code>. Alone, it gives Model 2: each company its own average.</li>
+<li>Second part: a ridge penalty that pulls every <span class="math inline">\(u_j\)</span> toward 0, the overall average. <span class="math inline">\(\lambda\)</span> sets how hard.</li>
+</ul>
+</div>
+<p><strong>Solve for one company.</strong> Only company <span class="math inline">\(j\)</span>’s cadets involve <span class="math inline">\(u_j\)</span>:</p>
+<p><span class="math display">\[f(u_j) = \sum_{i=1}^{n_j} (y_{ij} - \mu - u_j)^2 + \lambda u_j^2\]</span></p>
+<p><strong>1. Take the derivative.</strong></p>
+<p><span class="math display">\[f'(u_j) = -2\sum_{i=1}^{n_j} (y_{ij} - \mu - u_j) + 2\lambda u_j\]</span></p>
+<p><strong>2. Set it to 0.</strong> The sum of <span class="math inline">\(n_j\)</span> cadets’ scores is <span class="math inline">\(n_j \bar y_j\)</span>, so <span class="math inline">\(\sum_i (y_{ij} - \mu - u_j) = n_j(\bar y_j - \mu - u_j)\)</span>:</p>
+<p><span class="math display">\[n_j(\bar y_j - \mu - u_j) = \lambda u_j\]</span></p>
+<p><strong>3. Solve for <span class="math inline">\(u_j\)</span>.</strong></p>
+<p><span class="math display">\[n_j(\bar y_j - \mu) = (n_j + \lambda)\,u_j \quad\Rightarrow\quad \hat u_j = \frac{n_j}{n_j + \lambda}\,(\bar y_j - \hat\mu)\]</span></p>
+<p>The trust <span class="math inline">\(w_j\)</span> times the raw gap, as above.</p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\lambda = 0\)</span>, no penalty: <span class="math inline">\(w_j = 1\)</span>, <span class="math inline">\(\hat u_j\)</span> is the whole raw gap. Model 2.</li>
+<li><span class="math inline">\(\lambda\)</span> huge: <span class="math inline">\(w_j \to 0\)</span>, <span class="math inline">\(\hat u_j \to 0\)</span>. Every company is the overall average. Model 1.</li>
+<li>Model 3 sits between, and <span class="math inline">\(\lambda\)</span> decides where.</li>
+</ul>
+</div>
+<p><strong>Why <span class="math inline">\(\lambda\)</span> is the variance ratio.</strong> Lesson 8 tuned <span class="math inline">\(\lambda\)</span> by cross-validation. Here the assumption <span class="math inline">\(u_j \sim N(0, \sigma^2_u)\)</span> sets it. Model 3’s two assumptions, written as how likely the data are, have two pieces:</p>
+<p><span class="math display">\[\underbrace{\frac{1}{\sigma^2}\sum_{i,j}(y_{ij} - \mu - u_j)^2}_{\text{cadets: } \varepsilon \sim N(0, \sigma^2)} + \underbrace{\frac{1}{\sigma^2_u}\sum_j u_j^2}_{\text{companies: } u_j \sim N(0, \sigma^2_u)}\]</span></p>
+<p>Multiply by <span class="math inline">\(\sigma^2\)</span>: the ridge objective with <span class="math inline">\(\lambda = \sigma^2 / \sigma^2_u\)</span>. Ridge had no rule for <span class="math inline">\(\lambda\)</span>. This assumption gives one.</p>
+<p><strong>How <code>lmer</code> finds the two variances.</strong> By maximum likelihood, with calculus, like Lesson 9’s logistic regression.</p>
+<p><strong>1. Write down how likely the data are</strong> for any values of the two variances. Company <span class="math inline">\(j\)</span>’s average has variance <span class="math inline">\(v_j = \sigma^2_u + \sigma^2 / n_j\)</span>: real company spread plus the luck of <span class="math inline">\(n_j\)</span> cadets. The log-likelihood:</p>
+<p><span class="math display">\[\ell(\mu, \sigma^2_u, \sigma^2) = -\frac{1}{2}\sum_j \left[ (n_j - 1)\log\sigma^2 + \frac{SS_j}{\sigma^2} + \log v_j + \frac{(\bar y_j - \mu)^2}{v_j} \right] + \text{const}\]</span></p>
+<p><span class="math inline">\(SS_j\)</span>: the sum of squares of cadets around their own company average.</p>
+<p><strong>2. Take the derivative and set it to 0.</strong></p>
+<p><span class="math display">\[\frac{\partial \ell}{\partial \sigma^2_u} = -\frac{1}{2}\sum_j \left[ \frac{1}{v_j} - \frac{(\bar y_j - \mu)^2}{v_j^2} \right] = 0\]</span></p>
+<p><strong>3. No closed-form answer.</strong> <span class="math inline">\(\sigma^2_u\)</span> sits inside every <span class="math inline">\(v_j\)</span>, and each company has its own <span class="math inline">\(n_j\)</span>. You cannot solve it by hand. The computer climbs the hill, as <code>glm</code> did in Lesson 9. <code>lmer</code> uses REML, a version of maximum likelihood with a small correction for estimating <span class="math inline">\(\mu\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>4. Read off the top.</strong> <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span> and <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="shrinkage" class="level3">
+<h3 class="anchored" data-anchor-id="shrinkage">Shrinkage</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Small companies get pulled toward the overall average. Large companies barely move.</li>
+<li>This is shrinkage.</li>
+</ul>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 33%">
+<col style="width: 12%">
+<col style="width: 33%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Rank</th>
+<th style="text-align: center;">Model 2: company (cadets)</th>
+<th style="text-align: center;">Estimate</th>
+<th style="text-align: center;">Model 3: company (cadets)</th>
+<th style="text-align: center;">Estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">D3 (4)</td>
+<td style="text-align: center;">453.0</td>
+<td style="text-align: center;">B1 (80)</td>
+<td style="text-align: center;">423.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A2 (5)</td>
+<td style="text-align: center;">432.0</td>
+<td style="text-align: center;">H2 (120)</td>
+<td style="text-align: center;">412.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B1 (80)</td>
+<td style="text-align: center;">427.5</td>
+<td style="text-align: center;">I1 (100)</td>
+<td style="text-align: center;">412.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">F2 (15)</td>
+<td style="text-align: center;">415.9</td>
+<td style="text-align: center;">D3 (4)</td>
+<td style="text-align: center;">411.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">B4 (4)</td>
+<td style="text-align: center;">414.8</td>
+<td style="text-align: center;">F3 (110)</td>
+<td style="text-align: center;">408.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Answer to the commander: B1. 80 cadets, a high average that holds up.</p>
+<hr>
+</section>
+</section>
+<section id="side-by-side" class="level2">
+<h2 class="anchored" data-anchor-id="side-by-side">Side by Side</h2>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><code>R</code></th>
+<th style="text-align: center;">Parameters</th>
+<th style="text-align: center;">D3 (4 cadets)</th>
+<th style="text-align: center;">H2 (120 cadets)</th>
+<th style="text-align: left;">J5 (new company)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Model 1: no company effect</td>
+<td style="text-align: left;"><code>lm(score ~ 1)</code></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">401.0</td>
+<td style="text-align: center;">401.0</td>
+<td style="text-align: left;">401.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model 2: fixed company effect</td>
+<td style="text-align: left;"><code>lm(score ~ company)</code></td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">453.0</td>
+<td style="text-align: center;">414.3</td>
+<td style="text-align: left;">nothing to say</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model 3: random company effect</td>
+<td style="text-align: left;"><code>lmer(score ~ 1 + (1 | company))</code></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">411.9</td>
+<td style="text-align: center;">412.9</td>
+<td style="text-align: left;">400, give or take 22</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</section>
+<section id="how-much-does-company-matter-the-icc" class="level2">
+<h2 class="anchored" data-anchor-id="how-much-does-company-matter-the-icc">How Much Does Company Matter? The ICC</h2>
+<p>From Model 3’s two variances, <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span> (company) and <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span> (cadet):</p>
+<div class="callout callout-style-default callout-important callout-titled" title="The ICC">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The ICC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{ICC} = \frac{\hat\sigma^2_u}{\hat\sigma^2_u + \hat\sigma^2} = \frac{125.6}{125.6 + 1685.3} = 0.069\]</span></p>
+</div>
+</div>
+<p><strong>Intraclass correlation coefficient (ICC):</strong> the share of the total variance that comes from the groups. “Intraclass” means within a class (here, a company): how alike two members of the same group are.</p>
+<div class="compact">
+<ul>
+<li>0: the company tells you nothing. Every company looks the same.</li>
+<li>1: everyone in a company scores the same. All the variation is company to company.</li>
+<li>7% of the variation in a cadet’s score comes from the company. The rest is cadet to cadet.</li>
+<li>Also a correlation: two cadets in the same company have scores correlated at 0.07.</li>
+</ul>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Why the ICC is a correlation">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why the ICC is a correlation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Two cadets in the same company share <span class="math inline">\(u_j\)</span>:</p>
+<p><span class="math display">\[y_{1j} = \mu + u_j + \varepsilon_{1j}, \qquad y_{2j} = \mu + u_j + \varepsilon_{2j}\]</span></p>
+<p><span class="math display">\[\text{Cor}(y_{1j}, y_{2j}) = \frac{\text{Cov}(y_{1j}, y_{2j})}{\text{Var}(y_{1j})} = \frac{\sigma^2_u}{\sigma^2_u + \sigma^2} = \text{ICC}\]</span></p>
+<p>Model 1 assumes every cadet is independent. They are not, so its standard errors are too small.</p>
+</div>
+</div>
+</div>
+<section id="the-icc-sets-the-pull" class="level3">
+<h3 class="anchored" data-anchor-id="the-icc-sets-the-pull">The ICC Sets the Pull</h3>
+<p><span class="math display">\[\lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1 - \text{ICC}}{\text{ICC}} = \frac{1 - 0.069}{0.069} = 13.4\]</span></p>
+<div class="compact">
+<ul>
+<li>Low ICC: companies barely differ, so a small company’s average is mostly luck. Big pull.</li>
+<li>High ICC: companies really differ, so trust each company’s own average. Small pull.</li>
+</ul>
+</div>
+<hr>
+</section>
+</section>
+<section id="tell-the-commander" class="level2">
+<h2 class="anchored" data-anchor-id="tell-the-commander">Tell the Commander</h2>
+<p>Company matters, but not much: 7% of the variation in AFT scores is company to company, and most company averages sit within about 22 points of 400. Do not rank companies on a handful of scores. D3 tops the raw board on 4 cadets, and its estimate drops to 412 once you account for how little 4 scores tell you. On the evidence so far, B1 is the most fit company.</p>
+<hr>
+</section>
+<section id="fixed-or-random" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-or-random">Fixed or Random?</h2>
+<p>Model 2 treats company as a <strong>fixed effect</strong>. Model 3 treats it as a <strong>random effect</strong>.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Fixed</th>
+<th style="text-align: left;">Random</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">The levels</td>
+<td style="text-align: left;">the only ones you care about</td>
+<td style="text-align: left;">a sample of many</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Companies</em></td>
+<td style="text-align: left;"><em>these 36 companies are all that matter</em></td>
+<td style="text-align: left;"><em>these 36 stand in for companies in general, including J5, a company not in the data</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">The question</td>
+<td style="text-align: left;">is <em>this</em> level different?</td>
+<td style="text-align: left;">how much do levels vary?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Companies</em></td>
+<td style="text-align: left;"><em>is D3 better than B1?</em></td>
+<td style="text-align: left;"><em>how much do companies differ?</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estimates</td>
+<td style="text-align: left;">one effect per level</td>
+<td style="text-align: left;">one variance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Companies</em></td>
+<td style="text-align: left;"><em>36 company averages</em></td>
+<td style="text-align: left;"><em><span class="math inline">\(\hat\sigma^2_u = 125.6\)</span>, companies differ by about 11 points (SD)</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Small groups</td>
+<td style="text-align: left;">taken at face value</td>
+<td style="text-align: left;">pulled toward the overall average</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Mixed model:</strong> some factors fixed, some random. <code>lmer(score ~ class_year + (1 | company))</code>: class year fixed, company random.</p>
+<section id="your-turn" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn">Your Turn</h3>
+<p>Fixed or random?</p>
+<div class="compact">
+<ol type="1">
+<li>Three fertilizer brands. You will buy one.</li>
+<li>12 recruiting stations sampled from the hundreds in USAREC.</li>
+<li>Day 1 and Day 2 sections of MA376.</li>
+<li>30 patients in a drug trial, each measured every week.</li>
+<li>The four AFT test sites at West Point. The Master of the Sword wants to know which one scores low.</li>
+<li>20 Army units chosen for a survey on retention.</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ol type="1">
+<li>Fixed. You care about these three.</li>
+<li>Random. The stations stand in for all of them.</li>
+<li>Fixed. There are only two days.</li>
+<li>Random. The patients stand in for future patients.</li>
+<li>Fixed. The question is about these four sites.</li>
+<li>Random. The units stand in for the Army.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled" title="Takeaway">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Grouped data, three choices: ignore the group, a dummy for each group, or a random intercept.</li>
+<li>Dummies take every group’s average at face value, so small groups land at the extremes by luck.</li>
+<li>A random intercept is regression with a ridge penalty on the group effects. Small groups get pulled toward the overall average.</li>
+<li>Fixed: you care about these levels. Random: the levels are a sample, and you care about how much they vary.</li>
+<li>The ICC is the share of the variance between groups. It sets the pull.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li>Three models for grouped data: ignore the group, dummies, random intercept</li>
+<li><code>lmer</code>: regression with a ridge penalty on the group effects</li>
+<li>Shrinkage: small companies pulled to the middle</li>
+<li>Fixed or random: these levels, or a sample of levels</li>
+<li>The ICC: the share of the variance between groups</li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 24: Mixed-Effects Logistic Regression</strong></p>
+<div class="compact">
+<ul>
+<li><strong>Frame.</strong> Leads nested in stations: ignore the station, fit a dummy for each, or fit one random intercept.</li>
+<li><strong>Apply.</strong> Fit a logistic model with a station random intercept, compare the three fits, and score and rank the incoming leads.</li>
+<li><strong>Mean.</strong> What shrinkage does to a small station, why the dummies overfit, and why ignoring the station misleads.</li>
+<li><strong>Communicate.</strong> Tell the battalion which stations convert above the rest and how sure you are.</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA376-AY27-1/lesson-22.html" class="pagination-link" aria-label="MA376 AY27-1 Lesson 22">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA376 AY27-1 Lesson 22</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
