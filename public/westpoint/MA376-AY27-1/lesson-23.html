@@ -280,6 +280,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
   </ul></li>
+  <li><a href="#practice-radon-in-minnesota" id="toc-practice-radon-in-minnesota" class="nav-link" data-scroll-target="#practice-radon-in-minnesota">Practice: Radon in Minnesota</a></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
@@ -318,10 +319,20 @@ window.Quarto = {
 .rulecols colgroup col { width: auto !important; }
 .rulecols th, .rulecols td { white-space: nowrap; }
 
+/* a rulecols table whose cells wrap, so it fits without scrolling */
+.wrapcols th, .wrapcols td { white-space: normal !important; }
+.wrapcols table { width: 100%; }
+
 /* long R output scrolls in a box instead of running down the page */
 pre.scroll-out { max-height: 420px; overflow-y: auto; }
 </style>
-<p><img src="https://imgs.xkcd.com/comics/extrapolating.png" class="img-fluid quarto-figure quarto-figure-center" style="width:75.0%" alt="xkcd 605, My Hobby: Extrapolating. A graph shows zero husbands yesterday and one today, and the stick figure says that by late next month she will have over four dozen husbands."> <!-- 605 is "Extrapolating": one husband today, four dozen by next month. Too much from too little data, which is the small-company problem. No profanity. --></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgs.xkcd.com/comics/extrapolating.png" class="img-fluid figure-img" style="width:75.0%" alt="xkcd 605, My Hobby: Extrapolating. A graph shows zero husbands yesterday and one today, and the stick figure says that by late next month she will have over four dozen husbands."></p>
+<figcaption><a href="https://xkcd.com/605/">xkcd 605</a></figcaption>
+</figure>
+</div>
+<!-- 605 is "Extrapolating": one husband today, four dozen by next month. Too much from too little data, which is the small-company problem. No profanity. -->
 <section id="break" class="level2">
 <h2 class="anchored" data-anchor-id="break">Break!</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -400,7 +411,7 @@ pre.scroll-out { max-height: 420px; overflow-y: auto; }
 <li><a href="https://westpoint.instructure.com/courses/12755/pages/l23-fixed-random-and-mixed-effects">Canvas page</a></li>
 <li><a href="boardsheet-L23.pdf">Board Sheet</a></li>
 <li><a href="files/L23_Mixed_Effects_inclass.R">R Script</a></li>
-<li>Data: <a href="data/L23_aft_companies.csv">L23_aft_companies.csv</a></li>
+<li>Data: <a href="data/L23_aft_companies.csv">L23_aft_companies.csv</a>, <a href="data/L23_radon_counties.csv">L23_radon_counties.csv</a> (practice)</li>
 </ul></li>
 <li><strong>Lesson 27</strong>
 <ul>
@@ -506,7 +517,7 @@ pre.scroll-out { max-height: 420px; overflow-y: auto; }
 </div>
 <p>The number over each dot is how many cadets tested.</p>
 <p><strong>The commander’s question: which company is the most fit?</strong></p>
-<p>Three ways to model it.</p>
+<p>The highest and lowest dots are orange. Fitness or luck? Three ways to model it.</p>
 <hr>
 </section>
 <section id="model-1-no-company-effect" class="level2">
@@ -643,20 +654,11 @@ Multiple R-squared:  0.09084,   Adjusted R-squared:  0.07153
 F-statistic: 4.704 on 35 and 1648 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="lesson-23_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
 <div class="compact">
 <ul>
-<li>36 parameters. Each company’s estimate is its own average.</li>
+<li>36 parameters. Each company’s estimate is its own average: the dots in the first plot.</li>
 <li>Answer to the commander: D3, at 453.0, on 4 cadets.</li>
-<li>The highest and lowest companies are the small ones. A few scores can land high or low by luck.</li>
+<li>The highest and lowest companies are the small ones. A 4-cadet average is off by about 21 points by luck alone; real companies differ by about 11.</li>
 <li>D3’s 4 cadets count as much as H2’s 120.</li>
 </ul>
 </div>
@@ -687,7 +689,7 @@ F-statistic: 4.704 on 35 and 1648 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="model-3-random-company-effect" class="level2">
 <h2 class="anchored" data-anchor-id="model-3-random-company-effect">Model 3: Random Company Effect</h2>
-<p>Same equation as Model 2, one new assumption about the company effects:</p>
+<p>Model 2 trusts 4 cadets as much as 120 and says nothing about J5. Model 3 fixes both with one new assumption about the company effects:</p>
 <div class="compact">
 <ul>
 <li><strong>Model 2:</strong> 36 unrelated numbers. Each company’s effect comes only from its own cadets.</li>
@@ -726,7 +728,7 @@ F-statistic: 4.704 on 35 and 1648 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="compact">
 <ul>
 <li><span class="math inline">\(\mu\)</span>: the overall average</li>
-<li><span class="math inline">\(u_j\)</span>: how far company <span class="math inline">\(j\)</span> sits from <span class="math inline">\(\mu\)</span> (Model 2’s <span class="math inline">\(\beta_j\)</span>)</li>
+<li><span class="math inline">\(u_j\)</span>: how far company <span class="math inline">\(j\)</span> sits from <span class="math inline">\(\mu\)</span> (like Model 2’s <span class="math inline">\(\beta_j\)</span>, but measured from <span class="math inline">\(\mu\)</span>, not A1)</li>
 <li><span class="math inline">\(\sigma^2_u\)</span>: how much companies differ</li>
 <li><span class="math inline">\(\sigma^2\)</span>: the variance left over after accounting for company</li>
 </ul>
@@ -734,26 +736,30 @@ F-statistic: 4.704 on 35 and 1648 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="fitting-it-lmer" class="level3">
 <h3 class="anchored" data-anchor-id="fitting-it-lmer">Fitting It: <code>lmer</code></h3>
 <p><code>lmer()</code> from the <code>lme4</code> package: <strong>l</strong>inear <strong>m</strong>ixed-<strong>e</strong>ffects <strong>r</strong>egression. Same formula as <code>lm()</code>, plus random effects.</p>
-<div class="rulecols">
+<div class="rulecols wrapcols">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Piece of the formula</th>
 <th style="text-align: left;">Means</th>
+<th style="text-align: left;">Effect</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><code>score ~ 1</code></td>
 <td style="text-align: left;">one overall average, <span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><strong>Fixed:</strong> one number, estimated directly (<span class="math inline">\(\hat\mu\)</span>). <code>Fixed effects</code> in the summary.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>(1 | company)</code></td>
 <td style="text-align: left;">an intercept (<span class="math inline">\(1\)</span>) for each company, drawn from <span class="math inline">\(N(0, \sigma^2_u)\)</span></td>
+<td style="text-align: left;"><strong>Random:</strong> estimate their spread (<span class="math inline">\(\hat\sigma^2_u\)</span>), then predict each <span class="math inline">\(u_j\)</span>. <code>Random effects</code> in the summary.</td>
 </tr>
 </tbody>
 </table>
@@ -786,7 +792,7 @@ Fixed effects:
 </div>
 <div class="compact">
 <ul>
-<li><strong>Random effects:</strong> the two variances. <code>company</code> is <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span>. <code>Residual</code> is <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span>.</li>
+<li><strong>Random effects:</strong> the two variances; read the <code>Variance</code> column (<code>Std.Dev.</code> is its square root). <code>company</code> is <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span>. <code>Residual</code> is <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span>.</li>
 <li><strong>Fixed effects:</strong> <code>(Intercept)</code> is <span class="math inline">\(\hat\mu = 399.7\)</span>.</li>
 <li>3 parameters: <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2_u\)</span>, <span class="math inline">\(\sigma^2\)</span>.</li>
 </ul>
@@ -794,61 +800,24 @@ Fixed effects:
 </section>
 <section id="the-model-3-formula" class="level3">
 <h3 class="anchored" data-anchor-id="the-model-3-formula">The Model 3 Formula</h3>
-<p>Start from the model:</p>
-<p><span class="math display">\[y_{ij} = \mu + u_j + \varepsilon_{ij}\]</span></p>
 <p>Like Models 1 and 2, predict a cadet by dropping <span class="math inline">\(\varepsilon_{ij}\)</span> (it averages 0):</p>
-<p><span class="math display">\[\hat y_{ij} = \hat\mu + \hat u_j\]</span></p>
-<p>where <span class="math inline">\(\hat\mu = 399.7\)</span> comes from the summary, and</p>
-<p><span class="math display">\[\hat u_j = w_j\,(\bar y_j - \hat\mu)\]</span></p>
-<p>the company’s gap from the overall average, times a trust <span class="math inline">\(w_j\)</span> between 0 (ignore the gap, Model 1) and 1 (take all of it, Model 2), where</p>
-<p><span class="math display">\[w_j = \frac{n_j}{n_j + \lambda}\]</span></p>
-<p>more cadets (<span class="math inline">\(n_j\)</span>), more trust; when <span class="math inline">\(n_j = \lambda\)</span>, the company’s own average gets half the weight, where</p>
-<p><span class="math display">\[\lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1685.3}{125.6} = 13.4\]</span></p>
-<p>cadet noise (<code>Residual</code>) over how much companies really differ (<code>company</code>), both from the summary.</p>
+<p><span class="math display">\[\hat y_{ij} = \hat\mu + \hat u_j = \hat\mu + w_j\,(\bar y_j - \hat\mu)\]</span></p>
+<p>The overall average <span class="math inline">\(\hat\mu = 399.7\)</span>, plus a share <span class="math inline">\(w_j\)</span> of the company’s gap from it. Multiply out and regroup: <span class="math inline">\(\hat\mu + w_j\bar y_j - w_j\hat\mu = w_j\,\bar y_j + (1 - w_j)\,\hat\mu\)</span>, a blend of the company’s own average and the overall average.</p>
+<p><span class="math display">\[w_j = \frac{n_j}{n_j + \lambda}, \qquad \lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1685.3}{125.6} = 13.4\]</span></p>
 <div class="compact">
 <ul>
-<li><span class="math inline">\(\lambda\)</span> is big when cadets vary a lot or companies barely differ (a small company’s average is mostly luck), and small when companies really differ (trust each company’s own average).</li>
+<li><span class="math inline">\(w_j\)</span>: the trust in the company’s own average, between 0 (ignore it, Model 1) and 1 (take all of it, Model 2). More cadets (<span class="math inline">\(n_j\)</span>), more trust.</li>
+<li><span class="math inline">\(\lambda\)</span>: cadet noise (<code>Residual</code>) over how much companies really differ (<code>company</code>), both from the summary. Big when cadets vary a lot or companies barely differ, small when companies really differ.</li>
 <li>Here <span class="math inline">\(\lambda = 13.4\)</span>: a company needs about 13 cadets before its own average gets half the weight.</li>
 </ul>
 </div>
-<p>Why <span class="math inline">\(w_j\)</span> and <span class="math inline">\(\lambda\)</span> take these forms: the collapsed box below.</p>
-<p><strong>D3:</strong> <span class="math inline">\(n_j = 4\)</span>, <span class="math inline">\(\bar y_j = 453.0\)</span>.</p>
-<p><span class="math display">\[w = \frac{4}{4 + 13.4} = 0.23, \qquad \hat u = 0.23\,(453.0 - 399.7) = 12.2, \qquad \hat y = 399.7 + 12.2 = 411.9\]</span></p>
-<p><strong>H2:</strong> <span class="math inline">\(n_j = 120\)</span>, <span class="math inline">\(\bar y_j = 414.3\)</span>.</p>
-<p><span class="math display">\[w = \frac{120}{120 + 13.4} = 0.90, \qquad \hat u = 0.90\,(414.3 - 399.7) = 13.2, \qquad \hat y = 399.7 + 13.2 = 412.9\]</span></p>
-<div class="compact">
-<ul>
-<li>D3: 4 cadets, <span class="math inline">\(w = 0.23\)</span>. Keeps 23% of its gap.</li>
-<li>H2: 120 cadets, <span class="math inline">\(w = 0.90\)</span>. Keeps 90% of its gap.</li>
-</ul>
-</div>
-<p><strong>A new company, J5:</strong> no cadets, so no gap to trust. <span class="math inline">\(\hat u_{J5} = 0\)</span> and <span class="math inline">\(\hat y = 399.7\)</span>.</p>
-<p><strong>Why shrink?</strong> Companies differ by about 11.2 points (SD). D3’s 53.3-point gap would be 4.8 SDs out, on 4 cadets. Unlikely, so the model trusts it little.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fixef</span>(fit3)                                            <span class="co"># mu-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(Intercept) 
-   399.7035 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fit3)<span class="sc">$</span>company[<span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]     <span class="co"># u-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   (Intercept)
-D3    12.23671
-H2    13.16557</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit3, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>, <span class="st">"J5"</span>)), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)   <span class="co"># J5 is a new company</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       1        2        3 
-411.9403 412.8691 399.7035 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Where w and lambda come from: ridge regression">
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Where w, lambda and the two variances come from">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Where w and lambda come from: ridge regression
+<span class="screen-reader-only">Note</span>Where w, lambda and the two variances come from
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -878,21 +847,21 @@ H2    13.16557</code></pre>
 <li>Model 3 sits between, and <span class="math inline">\(\lambda\)</span> decides where.</li>
 </ul>
 </div>
-<p><strong>Why <span class="math inline">\(\lambda\)</span> is the variance ratio.</strong> Lesson 8 tuned <span class="math inline">\(\lambda\)</span> by cross-validation. Here the assumption <span class="math inline">\(u_j \sim N(0, \sigma^2_u)\)</span> sets it. Model 3’s two assumptions, written as how likely the data are, have two pieces:</p>
+<p><strong>Why <span class="math inline">\(\lambda\)</span> is the variance ratio.</strong> Lesson 8 tuned <span class="math inline">\(\lambda\)</span> by cross-validation. Here the assumption <span class="math inline">\(u_j \sim N(0, \sigma^2_u)\)</span> sets it. Model 3’s two assumptions, written as <span class="math inline">\(-2 \log\)</span> density (constants dropped), have two pieces:</p>
 <p><span class="math display">\[\underbrace{\frac{1}{\sigma^2}\sum_{i,j}(y_{ij} - \mu - u_j)^2}_{\text{cadets: } \varepsilon \sim N(0, \sigma^2)} + \underbrace{\frac{1}{\sigma^2_u}\sum_j u_j^2}_{\text{companies: } u_j \sim N(0, \sigma^2_u)}\]</span></p>
 <p>Multiply by <span class="math inline">\(\sigma^2\)</span>: the ridge objective with <span class="math inline">\(\lambda = \sigma^2 / \sigma^2_u\)</span>. Ridge had no rule for <span class="math inline">\(\lambda\)</span>. This assumption gives one.</p>
 <p><strong>How <code>lmer</code> finds the two variances.</strong> By maximum likelihood, with calculus, like Lesson 9’s logistic regression.</p>
-<p><strong>1. Write down how likely the data are</strong> for any values of the two variances. Company <span class="math inline">\(j\)</span>’s average has variance <span class="math inline">\(v_j = \sigma^2_u + \sigma^2 / n_j\)</span>: real company spread plus the luck of <span class="math inline">\(n_j\)</span> cadets. The log-likelihood:</p>
+<p><strong>1. Write down how likely the data are</strong> for any values of the two variances. Company <span class="math inline">\(j\)</span>’s average has variance <span class="math inline">\(v_j = \sigma^2_u + \sigma^2 / n_j\)</span>: real company spread plus the luck of <span class="math inline">\(n_j\)</span> cadets. The maximum likelihood (ML) log-likelihood:</p>
 <p><span class="math display">\[\ell(\mu, \sigma^2_u, \sigma^2) = -\frac{1}{2}\sum_j \left[ (n_j - 1)\log\sigma^2 + \frac{SS_j}{\sigma^2} + \log v_j + \frac{(\bar y_j - \mu)^2}{v_j} \right] + \text{const}\]</span></p>
 <p><span class="math inline">\(SS_j\)</span>: the sum of squares of cadets around their own company average.</p>
 <p><strong>2. Take the derivative and set it to 0.</strong></p>
 <p><span class="math display">\[\frac{\partial \ell}{\partial \sigma^2_u} = -\frac{1}{2}\sum_j \left[ \frac{1}{v_j} - \frac{(\bar y_j - \mu)^2}{v_j^2} \right] = 0\]</span></p>
-<p><strong>3. No closed-form answer.</strong> <span class="math inline">\(\sigma^2_u\)</span> sits inside every <span class="math inline">\(v_j\)</span>, and each company has its own <span class="math inline">\(n_j\)</span>. You cannot solve it by hand. The computer climbs the hill, as <code>glm</code> did in Lesson 9. <code>lmer</code> uses REML, a version of maximum likelihood with a small correction for estimating <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>3. No closed-form answer.</strong> <span class="math inline">\(\sigma^2_u\)</span> sits inside every <span class="math inline">\(v_j\)</span>, and each company has its own <span class="math inline">\(n_j\)</span>. You cannot solve it by hand. The computer climbs the hill, as <code>glm</code> did in Lesson 9. <code>lmer</code> uses REML, a version of maximum likelihood with a small correction for estimating <span class="math inline">\(\mu\)</span>: it adds <span class="math inline">\(-\tfrac{1}{2}\log \sum_j 1/v_j\)</span> to <span class="math inline">\(\ell\)</span>. The hill below is REML.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-23_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -900,6 +869,54 @@ H2    13.16557</code></pre>
 <p><strong>4. Read off the top.</strong> <span class="math inline">\(\hat\sigma^2_u = 125.6\)</span> and <span class="math inline">\(\hat\sigma^2 = 1685.3\)</span>.</p>
 </div>
 </div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-23_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>D3:</strong> <span class="math inline">\(n_j = 4\)</span>, <span class="math inline">\(\bar y_j = 453.0\)</span>.</p>
+<p><span class="math display">\[w = \frac{4}{4 + 13.4} = 0.23, \qquad \hat y = 399.7 + 0.23\,(453.0 - 399.7) = 411.9\]</span></p>
+<p><strong>H2:</strong> <span class="math inline">\(n_j = 120\)</span>, <span class="math inline">\(\bar y_j = 414.3\)</span>.</p>
+<p><span class="math display">\[w = \frac{120}{120 + 13.4} = 0.90, \qquad \hat y = 399.7 + 0.90\,(414.3 - 399.7) = 412.9\]</span></p>
+<div class="compact">
+<ul>
+<li>D3: 4 cadets, <span class="math inline">\(w = 0.23\)</span>. Keeps 23% of its gap.</li>
+<li>H2: 120 cadets, <span class="math inline">\(w = 0.90\)</span>. Keeps 90% of its gap.</li>
+</ul>
+</div>
+<p><strong>A new company, J5:</strong> no cadets, so no gap to trust. <span class="math inline">\(\hat u_{J5} = 0\)</span> and <span class="math inline">\(\hat y = 399.7\)</span>.</p>
+<p><strong>Why shrink?</strong> A 4-cadet average is off by about 20.5 points from luck alone; companies really differ by about 11.2. Mostly luck, so D3 keeps 23% of its gap. H2’s 120 cadets: luck about 3.7, so it keeps 90%. The larger the sample, the more we trust the company average and the less we shrink.</p>
+<p>The same <span class="math inline">\(w_j\)</span> two ways. Divide top and bottom by <span class="math inline">\(n_j\)</span> and put in <span class="math inline">\(\lambda = \hat\sigma^2 / \hat\sigma^2_u\)</span>: real spread over real spread plus luck.</p>
+<p><span class="math display">\[w_j = \frac{n_j}{n_j + \lambda} = \frac{\hat\sigma^2_u}{\hat\sigma^2_u + \hat\sigma^2 / n_j}\]</span></p>
+<p><span class="math display">\[w_{D3} = \frac{4}{4 + 13.4} = \frac{11.2^2}{11.2^2 + 20.5^2} = 0.23\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fixef</span>(fit3)                                            <span class="co"># mu-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept) 
+   399.7035 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fit3)<span class="sc">$</span>company[<span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]     <span class="co"># u-hat = y-hat minus mu-hat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   (Intercept)
+D3    12.23671
+H2    13.16557</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit3, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"D3"</span>, <span class="st">"H2"</span>, <span class="st">"J5"</span>)), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)   <span class="co"># J5 is new: allow.new.levels sets u-hat = 0 (Model 2 errors)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+411.9403 412.8691 399.7035 </code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><code>ranef</code> gives <span class="math inline">\(\hat u_j = \hat y - \hat\mu\)</span>: 12.2 for D3, 13.2 for H2.</li>
+<li><code>predict</code> matches the hand values, and J5 gets <span class="math inline">\(\hat\mu\)</span>.</li>
+</ul>
 </div>
 </section>
 <section id="shrinkage" class="level3">
@@ -1025,7 +1042,7 @@ H2    13.16557</code></pre>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">411.9</td>
 <td style="text-align: center;">412.9</td>
-<td style="text-align: left;">400, give or take 22</td>
+<td style="text-align: left;">399.7</td>
 </tr>
 </tbody>
 </table>
@@ -1048,13 +1065,14 @@ H2    13.16557</code></pre>
 <p><span class="math display">\[\text{ICC} = \frac{\hat\sigma^2_u}{\hat\sigma^2_u + \hat\sigma^2} = \frac{125.6}{125.6 + 1685.3} = 0.069\]</span></p>
 </div>
 </div>
-<p><strong>Intraclass correlation coefficient (ICC):</strong> the share of the total variance that comes from the groups. “Intraclass” means within a class (here, a company): how alike two members of the same group are.</p>
+<p><strong>Intraclass correlation coefficient (ICC):</strong> Lesson 22’s share of variance from the groups, now read straight off <code>lmer</code>’s two variances.</p>
 <div class="compact">
 <ul>
 <li>0: the company tells you nothing. Every company looks the same.</li>
 <li>1: everyone in a company scores the same. All the variation is company to company.</li>
 <li>7% of the variation in a cadet’s score comes from the company. The rest is cadet to cadet.</li>
 <li>Also a correlation: two cadets in the same company have scores correlated at 0.07.</li>
+<li>So cadets in a company are not independent. Model 1 assumes they are, so its standard errors are too small.</li>
 </ul>
 </div>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Why the ICC is a correlation">
@@ -1072,19 +1090,12 @@ H2    13.16557</code></pre>
 <p>Two cadets in the same company share <span class="math inline">\(u_j\)</span>:</p>
 <p><span class="math display">\[y_{1j} = \mu + u_j + \varepsilon_{1j}, \qquad y_{2j} = \mu + u_j + \varepsilon_{2j}\]</span></p>
 <p><span class="math display">\[\text{Cor}(y_{1j}, y_{2j}) = \frac{\text{Cov}(y_{1j}, y_{2j})}{\text{Var}(y_{1j})} = \frac{\sigma^2_u}{\sigma^2_u + \sigma^2} = \text{ICC}\]</span></p>
-<p>Model 1 assumes every cadet is independent. They are not, so its standard errors are too small.</p>
 </div>
 </div>
 </div>
 <section id="the-icc-sets-the-pull" class="level3">
 <h3 class="anchored" data-anchor-id="the-icc-sets-the-pull">The ICC Sets the Pull</h3>
 <p><span class="math display">\[\lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1 - \text{ICC}}{\text{ICC}} = \frac{1 - 0.069}{0.069} = 13.4\]</span></p>
-<div class="compact">
-<ul>
-<li>Low ICC: companies barely differ, so a small company’s average is mostly luck. Big pull.</li>
-<li>High ICC: companies really differ, so trust each company’s own average. Small pull.</li>
-</ul>
-</div>
 <hr>
 </section>
 </section>
@@ -1146,10 +1157,15 @@ H2    13.16557</code></pre>
 <td style="text-align: left;">taken at face value</td>
 <td style="text-align: left;">pulled toward the overall average</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">Pick it when</td>
+<td style="text-align: left;">few levels, every one well sampled</td>
+<td style="text-align: left;">many levels, or some thinly sampled, even when you want to rank them</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p><strong>Mixed model:</strong> some factors fixed, some random. <code>lmer(score ~ class_year + (1 | company))</code>: class year fixed, company random.</p>
+<p><strong>Mixed model:</strong> some effects fixed, some random. Model 3 is already one: <span class="math inline">\(\mu\)</span> fixed (the <code>Fixed effects</code> block), company random. Lesson 24 adds fixed predictors.</p>
 <section id="your-turn" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn">Your Turn</h3>
 <p>Fixed or random?</p>
@@ -1189,6 +1205,268 @@ H2    13.16557</code></pre>
 </div>
 </div>
 <hr>
+</section>
+</section>
+<section id="practice-radon-in-minnesota" class="level2">
+<h2 class="anchored" data-anchor-id="practice-radon-in-minnesota">Practice: Radon in Minnesota</h2>
+<p>Radon is a radioactive gas that seeps into basements from the ground. The state of Minnesota tested homes in every county it could reach.</p>
+<div class="compact">
+<ul>
+<li><code>county</code>: 85 Minnesota counties</li>
+<li><code>log_radon</code>: radon level on the log scale (log of picocuries per liter)</li>
+<li>919 homes. 1 to 116 per county. 11 counties tested 2 homes or fewer.</li>
+<li>Source: Gelman and Hill (2007), <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>.</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>radon <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L23_radon_counties.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>The state’s question: which county has the worst radon?</strong></p>
+<p><strong>1.</strong> Find each county’s average <code>log_radon</code> and number of homes. Which county is highest? Lowest? How many homes did each test?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(log_radon <span class="sc">~</span> county, <span class="at">data =</span> radon, <span class="at">FUN =</span> mean)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>avg<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(radon<span class="sc">$</span>county)[avg<span class="sc">$</span>county])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg[<span class="fu">order</span>(<span class="sc">-</span>avg<span class="sc">$</span>log_radon), ], <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          county log_radon n
+36 Lac Qui Parle    2.6062 2
+50        Murray    2.5014 1
+82        Wilkin    2.2407 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg[<span class="fu">order</span>(avg<span class="sc">$</span>log_radon), ], <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        county log_radon n
+37        Lake 0.4100889 9
+35 Koochiching 0.4752857 7
+79      Waseca 0.5338500 4</code></pre>
+</div>
+</div>
+<p>Highest: Lac Qui Parle, 2.61 on 2 homes. Lowest: Lake, 0.41 on 9 homes. The top three tested 2 homes or fewer.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> Fit Model 2, a fixed county effect. Which county does it call the worst?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 2">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rfit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_radon <span class="sc">~</span> county, <span class="at">data =</span> radon)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfit2, <span class="fu">data.frame</span>(<span class="at">county =</span> <span class="st">"Lac Qui Parle"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     1 
+2.6062 </code></pre>
+</div>
+</div>
+<p>Lac Qui Parle, at its own average 2.61, on 2 homes.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Fit Model 3, a random county effect. Report <span class="math inline">\(\hat\mu\)</span>, <span class="math inline">\(\hat\sigma^2_u\)</span>, <span class="math inline">\(\hat\sigma^2\)</span> and <span class="math inline">\(\lambda\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 3">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rfit3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(log_radon <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> county), <span class="at">data =</span> radon)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rfit3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: log_radon ~ 1 + (1 | county)
+   Data: radon
+
+REML criterion at convergence: 2184.9
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.6881 -0.5883  0.0323  0.6444  3.4186 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ county   (Intercept) 0.0886   0.2977  
+ Residual             0.5869   0.7661  
+Number of obs: 919, groups:  county, 85
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)    1.350      0.047   28.72</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\hat\mu = 1.350\)</span> (<code>Fixed effects</code>)</li>
+<li><span class="math inline">\(\hat\sigma^2_u = 0.0886\)</span> (<code>county</code> variance), <span class="math inline">\(\hat\sigma^2 = 0.5869\)</span> (<code>Residual</code> variance)</li>
+<li><span class="math inline">\(\lambda = 0.5869 / 0.0886 = 6.6\)</span>: a county needs about 7 homes before its own average gets half the weight.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Find <span class="math inline">\(w\)</span> for Lac Qui Parle (2 homes) and St.&nbsp;Louis (116 homes). Use both forms of <span class="math inline">\(w_j\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 4">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[w_{\text{Lac Qui Parle}} = \frac{2}{2 + 6.6} = \frac{0.0886}{0.0886 + 0.5869 / 2} = 0.23\]</span></p>
+<p><span class="math display">\[w_{\text{St. Louis}} = \frac{116}{116 + 6.6} = \frac{0.0886}{0.0886 + 0.5869 / 116} = 0.95\]</span></p>
+<p>Lac Qui Parle keeps 23% of its gap. St.&nbsp;Louis keeps 95%.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Predict a home in Lac Qui Parle, a home in St.&nbsp;Louis, and a home in a county the state never tested. By hand, then with <code>predict</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 5">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\hat y_{\text{Lac Qui Parle}} = 1.350 + 0.23\,(2.606 - 1.350) = 1.64\]</span></p>
+<p><span class="math display">\[\hat y_{\text{St. Louis}} = 1.350 + 0.95\,(0.828 - 1.350) = 0.86\]</span></p>
+<p>New county: <span class="math inline">\(\hat u = 0\)</span>, so <span class="math inline">\(\hat y = \hat\mu = 1.35\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfit3, <span class="fu">data.frame</span>(<span class="at">county =</span> <span class="fu">c</span>(<span class="st">"Lac Qui Parle"</span>, <span class="st">"St. Louis"</span>, <span class="st">"New County"</span>)), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+1.641220 0.856191 1.349832 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Find the ICC. What share of the radon variation is county to county?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 6">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{ICC} = \frac{0.0886}{0.0886 + 0.5869} = 0.131\]</span></p>
+<p>13% of the variation is county to county. The rest is home to home inside a county.</p>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> List the top five counties under Model 2 and under Model 3. Who drops out, and why?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 7">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">coef</span>(rfit3)<span class="sc">$</span>county</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>est<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(radon<span class="sc">$</span>county)[<span class="fu">rownames</span>(est)])</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>avg[<span class="fu">order</span>(<span class="sc">-</span>avg<span class="sc">$</span>log_radon), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]                   <span class="co"># Model 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          county log_radon n
+36 Lac Qui Parle  2.606200 2
+50        Murray  2.501400 1
+82        Wilkin  2.240700 1
+81      Watonwan  2.240633 3
+51      Nicollet  2.177875 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(est[<span class="fu">order</span>(<span class="sc">-</span>est[, <span class="dv">1</span>]), , <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="dv">5</span>)       <span class="co"># Model 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           (Intercept)  n
+Blue Earth    1.741245 14
+Freeborn      1.701185  9
+Goodhue       1.700457 14
+Nicollet      1.661615  4
+Clay          1.661544 14</code></pre>
+</div>
+</div>
+<p>Every Model 2 top five county tested 4 homes or fewer. Lac Qui Parle, Murray, Wilkin, Watonwan drop out of the Model 3 top five: their high averages rest on a handful of homes. Blue Earth (14 homes) moves to first.</p>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> Answer the state in two or three plain sentences.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 8">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>County matters some: 13% of the variation in radon is county to county. Do not rank counties on two or three homes. Lac Qui Parle tops the raw board on 2 homes, but Blue Earth, on 14 homes, has the highest radon that holds up.</p>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> A state inspector asks, “Is Lac Qui Parle worse than Blue Earth?” Fixed or random?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 9">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 9
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Random. There are 85 counties, and 11 of them tested 2 homes or fewer. Even to rank them, shrink first. A fixed effect would take Lac Qui Parle’s 2 homes at face value.</p>
+</div>
+</div>
+</div>
+<hr>
 <div class="callout callout-style-default callout-important callout-titled" title="Takeaway">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1203,7 +1481,7 @@ H2    13.16557</code></pre>
 <ul>
 <li>Grouped data, three choices: ignore the group, a dummy for each group, or a random intercept.</li>
 <li>Dummies take every group’s average at face value, so small groups land at the extremes by luck.</li>
-<li>A random intercept is regression with a ridge penalty on the group effects. Small groups get pulled toward the overall average.</li>
+<li>A random intercept blends each group’s own average with the overall average. Small groups get pulled toward the overall average.</li>
 <li>Fixed: you care about these levels. Random: the levels are a sample, and you care about how much they vary.</li>
 <li>The ICC is the share of the variance between groups. It sets the pull.</li>
 </ul>
@@ -1212,7 +1490,6 @@ H2    13.16557</code></pre>
 </div>
 <hr>
 </section>
-</section>
 <section id="before-you-leave" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
 <section id="today" class="level3">
@@ -1220,7 +1497,7 @@ H2    13.16557</code></pre>
 <div class="compact">
 <ul>
 <li>Three models for grouped data: ignore the group, dummies, random intercept</li>
-<li><code>lmer</code>: regression with a ridge penalty on the group effects</li>
+<li><code>lmer</code>: a blend of each group’s own average and the overall average</li>
 <li>Shrinkage: small companies pulled to the middle</li>
 <li>Fixed or random: these levels, or a sample of levels</li>
 <li>The ICC: the share of the variance between groups</li>

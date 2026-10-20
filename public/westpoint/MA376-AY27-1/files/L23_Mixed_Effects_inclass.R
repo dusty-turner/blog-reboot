@@ -10,6 +10,7 @@
 #   7  the ICC                                                         (The ICC)
 #   8  tell the commander                                              (Tell the Commander)
 #   9  fixed or random?                                                (Fixed or Random?)
+#  10  practice: radon in Minnesota, 85 counties                      (Practice)
 # kable() (from the knitr package) prints each result as a small labeled table. lmer() is in the lme4 package.
 # If R says there's no package called knitr or lme4, run install.packages(c("knitr", "lme4")) once.
 library(knitr)
@@ -78,10 +79,11 @@ s2   <- vc$vcov[vc$grp == "Residual"]            # Random effects, Residual: how
 kable(data.frame(mu, s2_u, s2), digits = 1, caption = "From summary(fit3)")
 
 # The Model 3 formula:
-#   y-hat = mu-hat + u-hat_j
-#   where u-hat_j = w_j (ybar_j - mu-hat)    the company's gap, times a trust w_j between 0 and 1
-#   where w_j     = n_j / (n_j + lambda)     more cadets, more trust
-#   where lambda  = sigma^2 / sigma_u^2      big when cadets are noisy or companies barely differ
+#   y-hat = mu-hat + u-hat_j = mu-hat + w_j (ybar_j - mu-hat)
+#   the overall average plus a share w_j of the company's gap, w_j between 0 (Model 1) and 1 (Model 2)
+#   w_j    = n_j / (n_j + lambda)                    more cadets, more trust
+#          = sigma_u^2 / (sigma_u^2 + sigma^2 / n_j)  the same w: real spread over real spread plus luck
+#   lambda = sigma^2 / sigma_u^2                     big when cadets are noisy or companies barely differ
 lambda <- s2 / s2_u
 lambda                                           # n_j = lambda gives w_j = 1/2
 
@@ -91,10 +93,15 @@ co$y_hat <- mu + co$u_hat
 kable(co[c("D3", "H2"), ], digits = 2, caption = "The Model 3 formula, filled in")
 # A new company, J5: no cadets, so no gap to trust. u-hat = 0 and y-hat = mu-hat.
 
+# Why shrink? Luck in a small company's average against how much companies really differ.
+sqrt(s2 / co["D3", "n"])                         # D3: points of luck in a 4-cadet average
+sqrt(s2_u)                                       # how much companies really differ
+s2_u / (s2_u + s2 / co["D3", "n"])               # the same w as n / (n + lambda)
+
 # R does the same arithmetic. ranef() holds the u-hats.
 fixef(fit3)                                      # mu-hat
-ranef(fit3)$company[c("D3", "H2"), , drop = FALSE]   # u-hat
-predict(fit3, data.frame(company = c("D3", "H2", "J5")), allow.new.levels = TRUE)   # J5 is a new company
+ranef(fit3)$company[c("D3", "H2"), , drop = FALSE]   # u-hat = y-hat minus mu-hat
+predict(fit3, data.frame(company = c("D3", "H2", "J5")), allow.new.levels = TRUE)   # J5 is new: allow.new.levels sets u-hat = 0 (Model 2 errors)
 
 # ============================================================================
 #  5. SHRINKAGE
@@ -145,5 +152,36 @@ kable(co[c(best, "D3"), ], digits = 1, caption = "Model 3's top company against 
 #  9. FIXED OR RANDOM?
 #  Fixed: these levels are the only ones you care about (is THIS level different?).
 #  Random: the levels are a sample of many (how much do levels vary?).
-#  Mixed model: some factors fixed, some random, e.g. lmer(score ~ class_year + (1 | company)).
+#  Pick fixed for few levels, every one well sampled. Pick random for many levels, or some thinly
+#  sampled, even when you want to rank them.
+#  Mixed model: some effects fixed, some random. Model 3 is one: mu fixed, company random.
 # ============================================================================
+
+# ============================================================================
+#  10. PRACTICE: RADON IN MINNESOTA
+#  Radon is a radioactive gas that seeps into basements. One row per home.
+#  county: 85 Minnesota counties.  log_radon: radon on the log scale.
+#  Source: Gelman and Hill (2007). Answers are on the lesson page, under Practice.
+#  The state's question: which county has the worst radon?
+# ============================================================================
+radon <- read.csv(paste0(where, "L23_radon_counties.csv"))
+head(radon)
+table(radon$county)                              # homes tested per county
+
+# P1. Each county's average log_radon and number of homes. Highest? Lowest? How many homes?
+
+# P2. Fit Model 2, lm(log_radon ~ county). Which county does it call the worst?
+
+# P3. Fit Model 3, lmer(log_radon ~ 1 + (1 | county)). Report mu-hat, sigma_u^2, sigma^2 and lambda.
+
+# P4. w for Lac Qui Parle and St. Louis, both forms.
+
+# P5. Predict a home in Lac Qui Parle, in St. Louis, and in a county never tested. By hand, then predict().
+
+# P6. The ICC. What share of the radon variation is county to county?
+
+# P7. Top five counties under Model 2 and Model 3. Who drops out, and why?
+
+# P8. Tell the state in two or three sentences.
+
+# P9. "Is Lac Qui Parle worse than Blue Earth?" Fixed or random? Why?
