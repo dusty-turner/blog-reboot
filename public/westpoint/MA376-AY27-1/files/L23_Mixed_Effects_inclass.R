@@ -164,11 +164,15 @@ kable(co[c(best, "D3"), ], digits = 1, caption = "Model 3's top company against 
 #  Source: Gelman and Hill (2007). Answers are on the lesson page, under Practice.
 #  The state's question: which county has the worst radon?
 # ============================================================================
-radon <- read.csv(paste0(where, "L23_radon_counties.csv"))
-head(radon)
-table(radon$county)                              # homes tested per county
+#  This part uses the tidyverse. If R says there's no package called tidyverse, run
+#  install.packages("tidyverse") once.
+library(tidyverse)
+radon <- read_csv(paste0(where, "L23_radon_counties.csv"), show_col_types = FALSE)
+radon
+radon |> count(county)                           # homes tested per county
 
 # P1. Each county's average log_radon and number of homes. Highest? Lowest? How many homes?
+#     Hint: group_by(county) |> summarise(n = n(), avg = mean(log_radon)), then arrange().
 
 # P2. Fit Model 2, lm(log_radon ~ county). Which county does it call the worst?
 

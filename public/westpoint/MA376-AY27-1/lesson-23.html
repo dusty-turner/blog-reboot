@@ -1219,7 +1219,8 @@ H2    13.16557</code></pre>
 </ul>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>radon <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L23_radon_counties.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>radon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/L23_radon_counties.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>The state’s question: which county has the worst radon?</strong></p>
 <p><strong>1.</strong> Find each county’s average <code>log_radon</code> and number of homes. Which county is highest? Lowest? How many homes did each test?</p>
@@ -1236,21 +1237,27 @@ H2    13.16557</code></pre>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(log_radon <span class="sc">~</span> county, <span class="at">data =</span> radon, <span class="at">FUN =</span> mean)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>avg<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(radon<span class="sc">$</span>county)[avg<span class="sc">$</span>county])</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg[<span class="fu">order</span>(<span class="sc">-</span>avg<span class="sc">$</span>log_radon), ], <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> radon <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">avg =</span> <span class="fu">mean</span>(log_radon))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>avg <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(avg)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>)   <span class="co"># highest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          county log_radon n
-36 Lac Qui Parle    2.6062 2
-50        Murray    2.5014 1
-82        Wilkin    2.2407 1</code></pre>
+<pre><code># A tibble: 3 × 3
+  county            n   avg
+  &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt;
+1 Lac Qui Parle     2  2.61
+2 Murray            1  2.50
+3 Wilkin            1  2.24</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg[<span class="fu">order</span>(avg<span class="sc">$</span>log_radon), ], <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>avg <span class="sc">|&gt;</span> <span class="fu">arrange</span>(avg) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>)         <span class="co"># lowest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        county log_radon n
-37        Lake 0.4100889 9
-35 Koochiching 0.4752857 7
-79      Waseca 0.5338500 4</code></pre>
+<pre><code># A tibble: 3 × 3
+  county          n   avg
+  &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt;
+1 Lake            9 0.410
+2 Koochiching     7 0.475
+3 Waseca          4 0.534</code></pre>
 </div>
 </div>
 <p>Highest: Lac Qui Parle, 2.61 on 2 homes. Lowest: Lake, 0.41 on 9 homes. The top three tested 2 homes or fewer.</p>
@@ -1272,7 +1279,7 @@ H2    13.16557</code></pre>
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rfit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_radon <span class="sc">~</span> county, <span class="at">data =</span> radon)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfit2, <span class="fu">data.frame</span>(<span class="at">county =</span> <span class="st">"Lac Qui Parle"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfit2, <span class="fu">tibble</span>(<span class="at">county =</span> <span class="st">"Lac Qui Parle"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     1 
 2.6062 </code></pre>
@@ -1366,10 +1373,15 @@ Fixed effects:
 <p><span class="math display">\[\hat y_{\text{St. Louis}} = 1.350 + 0.95\,(0.828 - 1.350) = 0.86\]</span></p>
 <p>New county: <span class="math inline">\(\hat u = 0\)</span>, so <span class="math inline">\(\hat y = \hat\mu = 1.35\)</span>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfit3, <span class="fu">data.frame</span>(<span class="at">county =</span> <span class="fu">c</span>(<span class="st">"Lac Qui Parle"</span>, <span class="st">"St. Louis"</span>, <span class="st">"New County"</span>)), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">county =</span> <span class="fu">c</span>(<span class="st">"Lac Qui Parle"</span>, <span class="st">"St. Louis"</span>, <span class="st">"New County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y_hat =</span> <span class="fu">predict</span>(rfit3, <span class="at">newdata =</span> <span class="fu">pick</span>(county), <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       1        2        3 
-1.641220 0.856191 1.349832 </code></pre>
+<pre><code># A tibble: 3 × 2
+  county        y_hat
+  &lt;chr&gt;         &lt;dbl&gt;
+1 Lac Qui Parle 1.64 
+2 St. Louis     0.856
+3 New County    1.35 </code></pre>
 </div>
 </div>
 </div>
@@ -1407,25 +1419,33 @@ Fixed effects:
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">coef</span>(rfit3)<span class="sc">$</span>county</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>est<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(radon<span class="sc">$</span>county)[<span class="fu">rownames</span>(est)])</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>avg[<span class="fu">order</span>(<span class="sc">-</span>avg<span class="sc">$</span>log_radon), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]                   <span class="co"># Model 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">coef</span>(rfit3)<span class="sc">$</span>county <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">model3 =</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(avg, <span class="at">by =</span> <span class="st">"county"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>est <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(avg)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)      <span class="co"># Model 2: the county's own average</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          county log_radon n
-36 Lac Qui Parle  2.606200 2
-50        Murray  2.501400 1
-82        Wilkin  2.240700 1
-81      Watonwan  2.240633 3
-51      Nicollet  2.177875 4</code></pre>
+<pre><code># A tibble: 5 × 4
+  county        model3     n   avg
+  &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+1 Lac Qui Parle   1.64     2  2.61
+2 Murray          1.50     1  2.50
+3 Wilkin          1.47     1  2.24
+4 Watonwan        1.63     3  2.24
+5 Nicollet        1.66     4  2.18</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(est[<span class="fu">order</span>(<span class="sc">-</span>est[, <span class="dv">1</span>]), , <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="dv">5</span>)       <span class="co"># Model 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>est <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(model3)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)   <span class="co"># Model 3: shrunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           (Intercept)  n
-Blue Earth    1.741245 14
-Freeborn      1.701185  9
-Goodhue       1.700457 14
-Nicollet      1.661615  4
-Clay          1.661544 14</code></pre>
+<pre><code># A tibble: 5 × 4
+  county     model3     n   avg
+  &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+1 Blue Earth   1.74    14  1.93
+2 Freeborn     1.70     9  1.96
+3 Goodhue      1.70    14  1.87
+4 Nicollet     1.66     4  2.18
+5 Clay         1.66    14  1.81</code></pre>
 </div>
 </div>
 <p>Every Model 2 top five county tested 4 homes or fewer. Lac Qui Parle, Murray, Wilkin, Watonwan drop out of the Model 3 top five: their high averages rest on a handful of homes. Blue Earth (14 homes) moves to first.</p>
