@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-24 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA376-AY27-1/lesson-23.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY27-1/index.html"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../misc-lessons/index.html" aria-current="page"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA376-AY27-1/lesson-24.html">MA376 AY27-1 Lesson 24</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 AY26-2 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-24.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA376 AY27-1 Lesson 24</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-24-mixed-effects-logistic-regression" id="toc-lesson-24-mixed-effects-logistic-regression" class="nav-link active" data-scroll-target="#lesson-24-mixed-effects-logistic-regression">Lesson 24: Mixed-Effects Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a>
+  <ul class="collapse">
+  <li><a href="#tee-slots" id="toc-tee-slots" class="nav-link" data-scroll-target="#tee-slots">TEE Slots</a></li>
+  </ul></li>
+  <li><a href="#what-we-did-lesson-23" id="toc-what-we-did-lesson-23" class="nav-link" data-scroll-target="#what-we-did-lesson-23">What We Did: Lesson 23</a></li>
+  <li><a href="#what-were-doing-lesson-24" id="toc-what-were-doing-lesson-24" class="nav-link" data-scroll-target="#what-were-doing-lesson-24">What We’re Doing: Lesson 24</a>
+  <ul class="collapse">
+  <li><a href="#but-what-about-data-like-this" id="toc-but-what-about-data-like-this" class="nav-link" data-scroll-target="#but-what-about-data-like-this">But What About Data Like This?</a></li>
+  <li><a href="#fixed-company-effect-logistic-regression" id="toc-fixed-company-effect-logistic-regression" class="nav-link" data-scroll-target="#fixed-company-effect-logistic-regression">Fixed Company Effect: Logistic Regression</a></li>
+  <li><a href="#random-company-effect-glmer" id="toc-random-company-effect-glmer" class="nav-link" data-scroll-target="#random-company-effect-glmer">Random Company Effect: <code>glmer</code></a></li>
+  <li><a href="#how-much-does-each-company-shrink" id="toc-how-much-does-each-company-shrink" class="nav-link" data-scroll-target="#how-much-does-each-company-shrink">How Much Does Each Company Shrink?</a></li>
+  <li><a href="#shrinkage" id="toc-shrinkage" class="nav-link" data-scroll-target="#shrinkage">Shrinkage</a></li>
+  </ul></li>
+  <li><a href="#project-rifle-qualification" id="toc-project-rifle-qualification" class="nav-link" data-scroll-target="#project-rifle-qualification">Project: Rifle Qualification</a>
+  <ul class="collapse">
+  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore">Explore</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#use-it" id="toc-use-it" class="nav-link" data-scroll-target="#use-it">Use It</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-24-mixed-effects-logistic-regression" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 24: Mixed-Effects Logistic Regression</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+
+/* long R output scrolls in a box instead of running down the page */
+pre.scroll-out { max-height: 420px; overflow-y: auto; }
+</style>
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l24.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calendar for 5 October to 6 November with red boxes around Thursday 22 October and Friday 23 October, Lesson 24, Mixed-Effects Logistic Regression."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<div class="compact">
+<ul>
+<li><strong>Lesson 27</strong>
+<ul>
+<li>Block 3 quiz (Lessons 20 to 23)</li>
+<li>Memo 4 due in class, hard copy</li>
+</ul></li>
+<li><strong>Capstone Milestone 2: methodology and preliminary results.</strong> Due 2359 Friday 13 November, 60 points.
+<ul>
+<li>2 to 4 pages that motivate and defend your method, with a short look at results</li>
+<li>A plebe in MA103 should understand at least 80% of it</li>
+</ul></li>
+<li><strong>Capstone final presentation.</strong> Lessons 37 and 38, 3 to 8 December, 100 points.</li>
+<li>I’m here through Lesson 29, 6 November.</li>
+</ul>
+</div>
+<section id="tee-slots" class="level3">
+<h3 class="anchored" data-anchor-id="tee-slots">TEE Slots</h3>
+<p>All TEE periods run <strong>0730 to 1100</strong>. Find your name under your section.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 A1 14 (15 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 A1 14 (15 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (8)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (7)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Anteen</td>
+<td style="text-align: center;">Baron</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Carroll</td>
+<td style="text-align: center;">Fountain</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Cole</td>
+<td style="text-align: center;">Hardwick</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Fonte</td>
+<td style="text-align: center;">Rebolledo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Konopka</td>
+<td style="text-align: center;">Shioutakon</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Ploetz</td>
+<td style="text-align: center;">Smith</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Sun</td>
+<td style="text-align: center;">Youmans</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Toth</td>
+<td style="text-align: center;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 BC1 15 (14 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 BC1 15 (14 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (5)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (9)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Bode</td>
+<td style="text-align: center;">Best</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Lee</td>
+<td style="text-align: center;">De La Torre</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Ndiaye</td>
+<td style="text-align: center;">Laub</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">O’Keefe</td>
+<td style="text-align: center;">Loughman</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Russell</td>
+<td style="text-align: center;">Miranda</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Nguyen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Plummer</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Ward</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Weisenborn</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 BC2 16 (15 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 BC2 16 (15 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (4)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (11)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Gray</td>
+<td style="text-align: center;">Applegate</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Harris</td>
+<td style="text-align: center;">Cannon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Van Kley</td>
+<td style="text-align: center;">Ivey</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Zhai</td>
+<td style="text-align: center;">Johnson</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Kendig</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Marino</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Myers</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Silverman</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Song</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Tullier</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Wittrock</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-we-did-lesson-23" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-23">What We Did: Lesson 23</h2>
+<p>AFT scores, 36 companies. Which company is the most fit?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-24_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The number over each dot is how many cadets tested. A random intercept for company:</p>
+<p><span class="math display">\[y_{ij} = \mu + u_j + \varepsilon_{ij}, \qquad u_j \sim N(0, \sigma^2_u), \qquad \varepsilon_{ij} \sim N(0, \sigma^2)\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>aft <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L23_aft_companies.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(score <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> company), <span class="at">data =</span> aft)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: score ~ 1 + (1 | company)
+   Data: aft
+
+REML criterion at convergence: 17330.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.99943 -0.64960 -0.03483  0.67039  2.90049 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ company  (Intercept)  125.6   11.21   
+ Residual             1685.3   41.05   
+Number of obs: 1684, groups:  company, 36
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  399.704      2.374   168.3</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\hat y_{ij} = \hat\mu + \hat u_j = \hat\mu + w_j\,(\bar y_j - \hat\mu), \qquad w_j = \frac{n_j}{n_j + \lambda}, \qquad \lambda = \frac{\hat\sigma^2}{\hat\sigma^2_u} = \frac{1685.3}{125.6} = 13.4\]</span></p>
+<p><strong>D3:</strong> <span class="math inline">\(n_j = 4\)</span>, <span class="math inline">\(\bar y_j = 453.0\)</span>.</p>
+<p><span class="math display">\[w = \frac{4}{4 + 13.4} = 0.23, \qquad \hat y = 399.7 + 0.23\,(453.0 - 399.7) = 411.9\]</span></p>
+<p>D3’s 4 cadets keep 23% of their gap. Small companies shrink toward the overall average.</p>
+<hr>
+</section>
+<section id="what-were-doing-lesson-24" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-24">What We’re Doing: Lesson 24</h2>
+<section id="but-what-about-data-like-this" class="level3">
+<h3 class="anchored" data-anchor-id="but-what-about-data-like-this">But What About Data Like This?</h3>
+<p>Indoor Obstacle Course Test (IOCT) results, same 36 companies, same number of cadets in each. Pass or fail.</p>
+<div class="compact">
+<ul>
+<li><code>company</code>: A1 to I4</li>
+<li><code>pass</code>: 1 = passed, 0 = failed</li>
+<li>1,684 cadets. 77% passed.</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ioct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/L24_ioct_companies.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ioct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  company pass
+1      A1    1
+2      A1    0
+3      A1    1
+4      A1    1
+5      A1    1
+6      A1    0</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-24_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Passed over tested above each dot. H3 and A2 passed everyone, on 4 and 5 cadets.</p>
+<p><strong>Which company is best at the IOCT?</strong></p>
+</section>
+<section id="fixed-company-effect-logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-company-effect-logistic-regression">Fixed Company Effect: Logistic Regression</h3>
+<p>Lesson 9: model the log-odds of passing. One dummy per company.</p>
+<p><span class="math display">\[\log\frac{p_{ij}}{1 - p_{ij}} = \beta_0 + \beta_j\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(p_{ij}\)</span>: the chance cadet <span class="math inline">\(i\)</span> in company <span class="math inline">\(j\)</span> passes</li>
+<li><span class="math inline">\(\beta_0\)</span>: company A1’s log-odds (the baseline)</li>
+<li><span class="math inline">\(\beta_j\)</span>: how far company <span class="math inline">\(j\)</span>’s log-odds sit from A1</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fitF <span class="ot">&lt;-</span> <span class="fu">glm</span>(pass <span class="sc">~</span> company, <span class="at">family =</span> binomial, <span class="at">data =</span> ioct)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">summary</span>(fitF)<span class="sc">$</span>coefficients, <span class="dv">3</span>)   <span class="co"># the coefficient table, 3 decimals</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre class="scroll-out"><code>            Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)    1.099      0.816   1.346    0.178
+companyA2     13.467    394.776   0.034    0.973
+companyA3     -0.405      1.190  -0.341    0.733
+companyA4      0.000      1.155   0.000    1.000
+companyB1      0.452      0.868   0.521    0.603
+companyB2     -1.232      0.869  -1.417    0.156
+companyB3     -0.251      1.069  -0.235    0.814
+companyB4     -1.099      1.291  -0.851    0.395
+companyC1      1.099      1.106   0.994    0.320
+companyC2      1.246      0.907   1.373    0.170
+companyC3      0.178      0.849   0.209    0.834
+companyC4     -0.368      0.851  -0.432    0.666
+companyD1      0.288      1.384   0.208    0.835
+companyD2     -0.693      0.935  -0.741    0.459
+companyD3      0.000      1.414   0.000    1.000
+companyD4      0.636      0.893   0.712    0.476
+companyE1      1.099      1.333   0.824    0.410
+companyE2     -0.390      0.844  -0.463    0.644
+companyE3      0.288      1.384   0.208    0.835
+companyE4      0.226      0.853   0.265    0.791
+companyF1      0.351      0.855   0.411    0.681
+companyF2     -0.087      1.004  -0.087    0.931
+companyF3      0.125      0.848   0.148    0.883
+companyF4      1.540      1.097   1.405    0.160
+companyG1      1.099      1.018   1.079    0.281
+companyG2     -0.405      1.021  -0.397    0.691
+companyG3      0.288      1.137   0.253    0.800
+companyG4      1.344      0.896   1.500    0.134
+companyH1     -0.405      0.876  -0.463    0.643
+companyH2      0.091      0.845   0.108    0.914
+companyH3     13.467    441.372   0.031    0.976
+companyH4      0.288      0.935   0.308    0.758
+companyI1     -0.053      0.848  -0.062    0.950
+companyI2      0.847      1.345   0.630    0.529
+companyI3      0.636      0.863   0.737    0.461
+companyI4     -0.460      0.841  -0.547    0.585</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\hat p_{ij} = \frac{e^{\hat\beta_0 + \hat\beta_j}}{1 + e^{\hat\beta_0 + \hat\beta_j}}\]</span></p>
+<p><strong>G4:</strong> <span class="math inline">\(\hat\beta_0 + \hat\beta_{G4} = 1.10 + 1.34 = 2.44\)</span></p>
+<p><span class="math display">\[\hat p = \frac{e^{2.44}}{1 + e^{2.44}} = 0.920\]</span></p>
+<p><strong>H3:</strong> <span class="math inline">\(\hat\beta_0 + \hat\beta_{H3} = 1.10 + 13.47 = 14.57\)</span></p>
+<p><span class="math display">\[\hat p = \frac{e^{14.57}}{1 + e^{14.57}} = 1.000\]</span></p>
+<div class="compact">
+<ul>
+<li>Each company’s <span class="math inline">\(\hat p\)</span> is its own pass rate: G4 92/100, H3 4/4.</li>
+<li>H3: <span class="math inline">\(\hat\beta = 13.47\)</span>, standard error 441. Every cadet passed, so the best log-odds is <span class="math inline">\(+\infty\)</span>. <code>glm</code> stops when it gives up.</li>
+<li>Answer: H3 and A2, at 100%, on 4 and 5 cadets.</li>
+</ul>
+</div>
+</section>
+<section id="random-company-effect-glmer" class="level3">
+<h3 class="anchored" data-anchor-id="random-company-effect-glmer">Random Company Effect: <code>glmer</code></h3>
+<p>Lesson 23’s random intercept, on the log-odds scale:</p>
+<p><span class="math display">\[\log\frac{p_{ij}}{1 - p_{ij}} = \mu + u_j, \qquad u_j \sim N(0, \sigma^2_u)\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\mu\)</span>: the log-odds for an average company</li>
+<li><span class="math inline">\(u_j\)</span>: how far company <span class="math inline">\(j\)</span>’s log-odds sit from <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(\sigma^2_u\)</span>: how much companies differ</li>
+<li>No <span class="math inline">\(\varepsilon_{ij}\)</span>: pass or fail is the noise.</li>
+</ul>
+</div>
+<p><code>glmer()</code>: <strong>g</strong>eneralized <strong>l</strong>inear <strong>m</strong>ixed-<strong>e</strong>ffects <strong>r</strong>egression. <code>lmer</code> plus a <code>family</code>, like <code>lm</code> to <code>glm</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fitR <span class="ot">&lt;-</span> <span class="fu">glmer</span>(pass <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> company), <span class="at">family =</span> binomial, <span class="at">data =</span> ioct)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: pass ~ 1 + (1 | company)
+   Data: ioct
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+   1766.9    1777.8    -881.5    1762.9      1682 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.8338  0.3529  0.4868  0.5467  0.8864 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ company (Intercept) 0.2532   0.5032  
+Number of obs: 1684, groups:  company, 36
+
+Fixed effects:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)   1.3048     0.1183   11.03   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Random effects:</strong> <code>company</code> is <span class="math inline">\(\hat\sigma^2_u = 0.253\)</span>. No <code>Residual</code> row.</li>
+<li><strong>Fixed effects:</strong> <code>(Intercept)</code> is <span class="math inline">\(\hat\mu = 1.305\)</span>.</li>
+<li>2 parameters: <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2_u\)</span>.</li>
+</ul>
+</div>
+<p><span class="math display">\[\hat p_{ij} = \frac{e^{\hat\mu + \hat u_j}}{1 + e^{\hat\mu + \hat u_j}}\]</span></p>
+<p><code>ranef()</code> gives each <span class="math inline">\(\hat u_j\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fitR)<span class="sc">$</span>company[<span class="fu">c</span>(<span class="st">"G4"</span>, <span class="st">"H3"</span>), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   (Intercept)
+G4   0.7783914
+H3   0.1861507</code></pre>
+</div>
+</div>
+<p><code>glmer</code> solves for each <span class="math inline">\(\hat u_j\)</span>; how it does that is in the <a href="#how-much-does-each-company-shrink">next section</a>.</p>
+<p><strong>G4:</strong> <span class="math inline">\(\hat\mu + \hat u_{G4} = 1.305 + 0.778 = 2.083\)</span></p>
+<p><span class="math display">\[\hat p = \frac{e^{2.083}}{1 + e^{2.083}} = 0.889\]</span></p>
+<p><strong>H3:</strong> <span class="math inline">\(\hat\mu + \hat u_{H3} = 1.305 + 0.186 = 1.491\)</span></p>
+<p><span class="math display">\[\hat p = \frac{e^{1.491}}{1 + e^{1.491}} = 0.816\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fitR, <span class="fu">data.frame</span>(<span class="at">company =</span> <span class="fu">c</span>(<span class="st">"G4"</span>, <span class="st">"H3"</span>)), <span class="at">type =</span> <span class="st">"response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2 
+0.8892618 0.8162257 </code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>G4: 100 cadets, raw 92.0%, model 88.9%. Barely moves.</li>
+<li>H3: 4 cadets, raw 100%, model 81.6%. Pulled toward the average, 78.7%.</li>
+</ul>
+</div>
+</section>
+<section id="how-much-does-each-company-shrink" class="level3">
+<h3 class="anchored" data-anchor-id="how-much-does-each-company-shrink">How Much Does Each Company Shrink?</h3>
+<p><strong>An approximation.</strong> Because of the logistic curve, algebra can’t solve for <span class="math inline">\(\hat u_j\)</span> directly. R uses Lesson 23’s formula over and over, updating <span class="math inline">\(\lambda\)</span> each time, until the answer stops moving (box below). Our formula is the first pass. It lands within 1.7 points of <code>glmer</code> for every company.</p>
+<p><span class="math display">\[\hat p_{ij} \approx \bar p + \hat u_j\]</span></p>
+<p><span class="math display">\[\hat u_j = w_j\left(\frac{k_j}{n_j} - \bar p\right)\]</span></p>
+<p><span class="math display">\[w_j = \frac{n_j}{n_j + \lambda}\]</span></p>
+<p><span class="math display">\[\lambda = \frac{\text{noise}}{\text{signal}} = \frac{\bar p(1 - \bar p)}{\hat\sigma^2_u\,\big[\bar p(1 - \bar p)\big]^2}\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\bar p\)</span>: the average company’s pass rate, from <span class="math inline">\(\hat\mu\)</span></li>
+<li><span class="math inline">\(\hat u_j\)</span>: how far company <span class="math inline">\(j\)</span> sits from <span class="math inline">\(\bar p\)</span>, in pass-rate points (<code>ranef()</code> reports it in log-odds)</li>
+<li><span class="math inline">\(k_j / n_j\)</span>: company <span class="math inline">\(j\)</span>’s own pass rate, <span class="math inline">\(k_j\)</span> passed out of <span class="math inline">\(n_j\)</span></li>
+<li><span class="math inline">\(w_j\)</span>: the trust in the company’s own rate, between 0 (ignore it) and 1 (take all of it)</li>
+<li><span class="math inline">\(\lambda\)</span>: noise (one cadet’s pass/fail variance) over signal (how much companies differ, <span class="math inline">\(\hat\sigma^2_u\)</span> converted from log-odds to pass rates)</li>
+</ul>
+</div>
+<p><strong>1. <span class="math inline">\(\bar p\)</span>.</strong> <span class="math inline">\(\hat\mu = 1.305\)</span> is log-odds. Convert:</p>
+<p><span class="math display">\[\bar p = \frac{e^{1.305}}{1 + e^{1.305}} = 0.787\]</span></p>
+<p><strong>2. <span class="math inline">\(\lambda\)</span>.</strong> Where we are: <span class="math inline">\(\hat u_j\)</span> needs <span class="math inline">\(w_j\)</span>, and <span class="math inline">\(w_j\)</span> needs <span class="math inline">\(\lambda\)</span>.</p>
+<p><span class="math display">\[\hat u_j = w_j\left(\frac{k_j}{n_j} - \bar p\right), \qquad w_j = \frac{n_j}{n_j + \lambda}, \qquad \lambda = \frac{\text{noise}}{\text{signal}} = \frac{\bar p(1 - \bar p)}{\hat\sigma^2_u\,\big[\bar p(1 - \bar p)\big]^2}\]</span></p>
+<p>Noise: a pass/fail has variance <span class="math inline">\(p(1-p)\)</span>. Signal: <span class="math inline">\(\hat\sigma^2_u = 0.253\)</span> from the summary.</p>
+<p><span class="math display">\[\text{noise} = \bar p(1 - \bar p) = 0.787 \times 0.213 = 0.168\]</span></p>
+<p><span class="math display">\[\text{signal} = \hat\sigma^2_u\,\big[\bar p(1 - \bar p)\big]^2 = 0.253 \times 0.168^2 = 0.0071\]</span></p>
+<p><span class="math display">\[\lambda = \frac{0.168}{0.0071} = 23.5\]</span></p>
+<div class="compact">
+<ul>
+<li>Signal is an SD of 0.084: real companies differ by about 8 percentage points.</li>
+<li>A company needs about 24 cadets before its own pass rate gets half the weight.</li>
+</ul>
+</div>
+<p><strong>3. H3.</strong> 4 of 4 passed.</p>
+<p><span class="math display">\[\frac{k_j}{n_j} = \frac{4}{4} = 1.000\]</span></p>
+<p><span class="math display">\[w = \frac{4}{4 + 23.5} = 0.15\]</span></p>
+<p><span class="math display">\[\hat u = 0.15\,(1.000 - 0.787) = 0.031\]</span></p>
+<p><span class="math display">\[\hat p \approx 0.787 + 0.031 = 0.818\]</span></p>
+<p><strong>4. G4.</strong> 92 of 100 passed.</p>
+<p><span class="math display">\[\frac{k_j}{n_j} = \frac{92}{100} = 0.920\]</span></p>
+<p><span class="math display">\[w = \frac{100}{100 + 23.5} = 0.81\]</span></p>
+<p><span class="math display">\[\hat u = 0.81\,(0.920 - 0.787) = 0.108\]</span></p>
+<p><span class="math display">\[\hat p \approx 0.787 + 0.108 = 0.895\]</span></p>
+<div class="compact">
+<ul>
+<li><code>glmer</code>: 0.816 for H3, 0.889 for G4. Every company is within 1.7 points.</li>
+<li>H3 keeps 15% of its gap. G4 keeps 81%.</li>
+</ul>
+</div>
+<p><strong>5. The second pass.</strong> The first pass set <span class="math inline">\(\lambda\)</span> at <span class="math inline">\(\bar p\)</span> for every company. The second pass starts by recomputing <span class="math inline">\(\lambda\)</span> at each company’s own first-pass estimate: same formula, <span class="math inline">\(\hat p_j\)</span> in place of <span class="math inline">\(\bar p\)</span>.</p>
+<p><span class="math display">\[\hat p_{ij} \approx \bar p + \hat u_j, \qquad \hat u_j = w_j\left(\frac{k_j}{n_j} - \bar p\right), \qquad w_j = \frac{n_j}{n_j + \lambda_j}, \qquad \lambda_j = \frac{\hat p_j(1 - \hat p_j)}{\hat\sigma^2_u\,\big[\hat p_j(1 - \hat p_j)\big]^2}\]</span></p>
+<p>For G4:</p>
+<p><span class="math display">\[\lambda_{G4} = \frac{0.895(1 - 0.895)}{0.253\,\big[0.895(1 - 0.895)\big]^2} = 41.9\]</span></p>
+<p>Then <span class="math inline">\(w_j\)</span> and <span class="math inline">\(\hat u_j\)</span> again, and repeat until <span class="math inline">\(\hat u_j\)</span> stops moving. <code>glmer</code> ends at <span class="math inline">\(\lambda = 40.1\)</span> for G4 (box below, step 3).</p>
+<p><strong>Add 24 average cadets.</strong> Multiply out and regroup: the company’s cadets plus <span class="math inline">\(\lambda\)</span> stand-in cadets who pass at <span class="math inline">\(\bar p\)</span>.</p>
+<p><span class="math display">\[\hat p_{H3} \approx \frac{4 + 23.5(0.787)}{4 + 23.5} = 0.818, \qquad \hat p_{G4} \approx \frac{92 + 23.5(0.787)}{100 + 23.5} = 0.895\]</span></p>
+<p>H3’s 4 for 4 is swamped by the stand-ins. G4’s 100 cadets barely notice them.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="What glmer does exactly">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What glmer does exactly
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>The <span class="math inline">\(\hat u_j\)</span>.</strong> Lesson 23’s “fit the data plus a penalty,” with Lesson 9’s log-likelihood in place of squared error. For company <span class="math inline">\(j\)</span>, <code>glmer</code> picks the <span class="math inline">\(u_j\)</span> that maximizes</p>
+<p><span class="math display">\[\underbrace{\sum_{i=1}^{n_j} \Big[y_{ij}(\mu + u_j) - \log\big(1 + e^{\mu + u_j}\big)\Big]}_{\text{fit the cadets}} \;-\; \underbrace{\frac{u_j^2}{2\sigma^2_u}}_{\text{penalty: keep } u_j \text{ near } 0}\]</span></p>
+<p><strong>1. Take the derivative and set it to 0.</strong> With <span class="math inline">\(k_j\)</span> passes:</p>
+<p><span class="math display">\[k_j - n_j\,\hat p_j = \frac{u_j}{\sigma^2_u}, \qquad \hat p_j = \frac{e^{\mu + u_j}}{1 + e^{\mu + u_j}}\]</span></p>
+<p>Actual passes minus predicted passes equals the penalty’s pull.</p>
+<p><strong>2. No closed form.</strong> <span class="math inline">\(u_j\)</span> is on both sides, inside <span class="math inline">\(\hat p_j\)</span>. The computer solves it, as <code>glm</code> did in Lesson 9.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">fixef</span>(fitR)[[<span class="dv">1</span>]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s2u <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">VarCorr</span>(fitR)<span class="sc">$</span>company)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">4</span>; n <span class="ot">&lt;-</span> <span class="dv">4</span>                                           <span class="co"># H3: 4 of 4 passed</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(u) k <span class="sc">-</span> n <span class="sc">*</span> <span class="fu">plogis</span>(mu <span class="sc">+</span> u) <span class="sc">-</span> u <span class="sc">/</span> s2u, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1861508</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fitR)<span class="sc">$</span>company[<span class="st">"H3"</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1861507</code></pre>
+</div>
+</div>
+<p><strong>3. How R solves it.</strong> Start at <span class="math inline">\(\hat u = 0\)</span>. Each round, at the current guess: turn the company’s pass rate into a log-odds stand-in, apply <span class="math inline">\(\hat u = w \times \text{gap}\)</span> with <span class="math inline">\(w = n / (n + \lambda)\)</span>, and recompute <span class="math inline">\(\lambda\)</span> at the company’s current pass rate. Repeat until <span class="math inline">\(\hat u\)</span> stops moving. (This is Newton’s method on the equation in step 1.)</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Company (passed)</th>
+<th style="text-align: center;">Round 1</th>
+<th style="text-align: center;">Round 2</th>
+<th style="text-align: center;">Round 3</th>
+<th style="text-align: center;"><code>ranef()</code></th>
+<th style="text-align: center;">Final <span class="math inline">\(\lambda\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">H3 (4/4)</td>
+<td style="text-align: center;">0.1847</td>
+<td style="text-align: center;">0.1862</td>
+<td style="text-align: center;">0.1862</td>
+<td style="text-align: center;">0.1862</td>
+<td style="text-align: center;">26.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">G4 (92/100)</td>
+<td style="text-align: center;">0.6432</td>
+<td style="text-align: center;">0.7735</td>
+<td style="text-align: center;">0.7784</td>
+<td style="text-align: center;">0.7784</td>
+<td style="text-align: center;">40.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">B2 (21/45)</td>
+<td style="text-align: center;">-1.2519</td>
+<td style="text-align: center;">-1.0644</td>
+<td style="text-align: center;">-1.0636</td>
+<td style="text-align: center;">-1.0636</td>
+<td style="text-align: center;">16.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every company lands on <code>ranef()</code>. Each gets its own final <span class="math inline">\(\lambda\)</span>, set at its own pass rate.</p>
+<p><strong>4. Where the blend comes from.</strong> Near <span class="math inline">\(\bar p\)</span>, the logistic curve’s slope is <span class="math inline">\(\bar p(1 - \bar p)\)</span>. So a log-odds spread of <span class="math inline">\(\sigma_u\)</span> is a pass-rate spread of about <span class="math inline">\(\bar p(1 - \bar p)\,\sigma_u\)</span>, the signal above. Treat the curve as a straight line there and the equation above becomes Lesson 23’s <span class="math inline">\(w_j = n_j / (n_j + \lambda)\)</span>. The farther a company sits from <span class="math inline">\(\bar p\)</span>, the less straight the curve, and the more the blend and <code>glmer</code> differ (B2, 21 of 45: 0.577 against 0.560).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="shrinkage" class="level3">
+<h3 class="anchored" data-anchor-id="shrinkage">Shrinkage</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-24_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Small companies get pulled toward the average. Large companies barely move.</li>
+<li>Same shrinkage as Lesson 23, on pass rates.</li>
+</ul>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 31%">
+<col style="width: 13%">
+<col style="width: 32%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Rank</th>
+<th style="text-align: center;">Fixed: company (passed)</th>
+<th style="text-align: center;">Pass rate</th>
+<th style="text-align: center;">Random: company (passed)</th>
+<th style="text-align: center;">Pass rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A2 (5/5)</td>
+<td style="text-align: center;">100.0%</td>
+<td style="text-align: center;">G4 (92/100)</td>
+<td style="text-align: center;">88.9%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">H3 (4/4)</td>
+<td style="text-align: center;">100.0%</td>
+<td style="text-align: center;">C2 (73/80)</td>
+<td style="text-align: center;">87.9%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">F4 (28/30)</td>
+<td style="text-align: center;">93.3%</td>
+<td style="text-align: center;">F4 (28/30)</td>
+<td style="text-align: center;">86.3%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">G4 (92/100)</td>
+<td style="text-align: center;">92.0%</td>
+<td style="text-align: center;">G1 (27/30)</td>
+<td style="text-align: center;">84.7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">C2 (73/80)</td>
+<td style="text-align: center;">91.2%</td>
+<td style="text-align: center;">I3 (85/100)</td>
+<td style="text-align: center;">83.7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Answer: G4. 100 cadets, a high pass rate that holds up.</p>
+<hr>
+</section>
+</section>
+<section id="project-rifle-qualification" class="level2">
+<h2 class="anchored" data-anchor-id="project-rifle-qualification">Project: Rifle Qualification</h2>
+<p>The range OIC hands you the scores from fall rifle qualification. One row per round fired.</p>
+<div class="compact">
+<ul>
+<li><code>shooter</code>: S01 to S48</li>
+<li><code>position</code>: prone supported, prone unsupported, kneeling</li>
+<li><code>distance</code>: target distance, 50 to 300 meters</li>
+<li><code>hit</code>: 1 = hit, 0 = miss</li>
+<li>Most shooters fired 40 rounds. Lightning closed the range before 6 finished; they fired 10.</li>
+</ul>
+</div>
+<p><strong>The OIC’s questions: how much do distance and position matter, and who are the best shooters?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rifle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/L24_rifle_qual.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position =</span> <span class="fu">factor</span>(position, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"prone supported"</span>, <span class="st">"prone unsupported"</span>, <span class="st">"kneeling"</span>)),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">dist100 =</span> distance <span class="sc">/</span> <span class="dv">100</span>)   <span class="co"># distance in hundreds of meters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="explore" class="level3">
+<h3 class="anchored" data-anchor-id="explore">Explore</h3>
+<p><strong>1.</strong> What is one row? How many shooters, and how many rounds did each fire?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rifle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,740
+Columns: 5
+$ shooter  &lt;chr&gt; "S01", "S01", "S01", "S01", "S01", "S01", "S01", "S01", "S01"…
+$ position &lt;fct&gt; prone supported, prone supported, prone supported, prone supp…
+$ distance &lt;dbl&gt; 200, 300, 150, 100, 150, 100, 150, 200, 50, 100, 50, 250, 300…
+$ hit      &lt;dbl&gt; 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1…
+$ dist100  &lt;dbl&gt; 2.0, 3.0, 1.5, 1.0, 1.5, 1.0, 1.5, 2.0, 0.5, 1.0, 0.5, 2.5, 3…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rifle <span class="sc">|&gt;</span> <span class="fu">count</span>(shooter) <span class="sc">|&gt;</span> <span class="fu">count</span>(n, <span class="at">name =</span> <span class="st">"shooters"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+      n shooters
+  &lt;int&gt;    &lt;int&gt;
+1    10        6
+2    40       42</code></pre>
+</div>
+</div>
+<p>One row is one round. 48 shooters: 42 fired 40, 6 fired 10. Rounds are grouped in shooters.</p>
+</div>
+</div>
+</div>
+<p><strong>2.</strong> What is the hit rate overall, by distance, and by position?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 2">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rifle <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">hit_rate =</span> <span class="fu">mean</span>(hit))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  hit_rate
+     &lt;dbl&gt;
+1    0.676</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rifle <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(distance, position) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">hit_rate =</span> <span class="fu">mean</span>(hit), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(distance, hit_rate, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"target distance (m)"</span>, <span class="at">y =</span> <span class="st">"hit rate"</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-24_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>68% overall. Hits fall as distance grows, and fall from prone supported to prone unsupported to kneeling.</p>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> What is each shooter’s hit rate? Who looks best? Is that a fair ranking?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 3">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rifle <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(shooter) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">rounds =</span> <span class="fu">n</span>(), <span class="at">hits =</span> <span class="fu">sum</span>(hit), <span class="at">hit_rate =</span> <span class="fu">mean</span>(hit), <span class="at">avg_distance =</span> <span class="fu">mean</span>(distance)) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hit_rate)) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  shooter rounds  hits hit_rate avg_distance
+  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+1 S17         10    10    1             170 
+2 S41         10    10    1             140 
+3 S22         40    37    0.925         185 
+4 S02         10     9    0.9           175 
+5 S13         40    35    0.875         172.</code></pre>
+</div>
+</div>
+<p>S17 and S41, 10 for 10. Not fair, two reasons:</p>
+<div class="compact">
+<ul>
+<li>They fired 10 rounds. A perfect 10 is easy to get by luck (Lesson 23).</li>
+<li>Shooters drew different targets. A hit at 300 m kneeling is worth more than a hit at 50 m prone.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="model" class="level3">
+<h3 class="anchored" data-anchor-id="model">Model</h3>
+<p><strong>4.</strong> Which variables should be fixed effects and which random? Why?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 4">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols wrapcols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Effect</th>
+<th style="text-align: left;">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>distance</code></td>
+<td style="text-align: left;"><strong>Fixed</strong></td>
+<td style="text-align: left;">We want its effect: how much harder is each 100 m? Its values are the ones we care about.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>position</code></td>
+<td style="text-align: left;"><strong>Fixed</strong></td>
+<td style="text-align: left;">Only three positions, and we want each one’s effect.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>shooter</code></td>
+<td style="text-align: left;"><strong>Random</strong></td>
+<td style="text-align: left;">48 cadets are a sample of all cadets. We care how much shooters differ, and we want to predict a shooter not in the data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Fixed and random in one model: a <strong>mixed model</strong>.</p>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Write the model.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 5">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Round <span class="math inline">\(i\)</span> fired by shooter <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[\log\frac{p_{ij}}{1 - p_{ij}} = \beta_0 + \beta_1\,\text{dist}_{ij} + \beta_2\,\text{unsupported}_{ij} + \beta_3\,\text{kneeling}_{ij} + u_j, \qquad u_j \sim N(0, \sigma^2_u)\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>: log-odds of a hit for an average shooter, prone supported, at 0 m</li>
+<li><span class="math inline">\(\beta_1\)</span>: change in log-odds per 100 m</li>
+<li><span class="math inline">\(\beta_2, \beta_3\)</span>: prone unsupported and kneeling, each against prone supported</li>
+<li><span class="math inline">\(u_j\)</span>: shooter <span class="math inline">\(j\)</span>’s skill, how far above or below an average shooter</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><strong>6.</strong> Fit it with <code>glmer</code>. Interpret each fixed effect as an odds ratio.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 6">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit_rifle <span class="ot">&lt;-</span> <span class="fu">glmer</span>(hit <span class="sc">~</span> dist100 <span class="sc">+</span> position <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> shooter), <span class="at">family =</span> binomial, <span class="at">data =</span> rifle)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_rifle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: hit ~ dist100 + position + (1 | shooter)
+   Data: rifle
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+   1925.9    1953.2    -957.9    1915.9      1735 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.2048 -0.7875  0.3995  0.6433  2.8322 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ shooter (Intercept) 0.4503   0.671   
+Number of obs: 1740, groups:  shooter, 48
+
+Fixed effects:
+                          Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                2.87243    0.19717  14.568  &lt; 2e-16 ***
+dist100                   -0.91371    0.07187 -12.714  &lt; 2e-16 ***
+positionprone unsupported -0.44369    0.13906  -3.191  0.00142 ** 
+positionkneeling          -0.95333    0.13769  -6.924  4.4e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+            (Intr) dst100 pstnpu
+dist100     -0.747              
+pstnprnunsp -0.300  0.053       
+positnknlng -0.356  0.122  0.377</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">fixef</span>(fit_rifle))   <span class="co"># odds ratios</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              (Intercept)                   dist100 positionprone unsupported 
+               17.6800079                 0.4010319                 0.6416649 
+         positionkneeling 
+                0.3854535 </code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Distance:</strong> each 100 m multiplies the odds of a hit by <span class="math inline">\(e^{-0.914} = 0.40\)</span>.</li>
+<li><strong>Prone unsupported:</strong> <span class="math inline">\(e^{-0.444} = 0.64\)</span> times the odds of prone supported.</li>
+<li><strong>Kneeling:</strong> <span class="math inline">\(e^{-0.953} = 0.39\)</span> times the odds of prone supported.</li>
+<li>All for the <strong>same shooter</strong>: <span class="math inline">\(u_j\)</span> is held fixed.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><strong>7.</strong> How much do shooters differ? Find the ICC.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 7">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>On the log-odds scale there is no <code>Residual</code> row. A logistic model’s built-in noise has variance <span class="math inline">\(\pi^2 / 3 = 3.29\)</span>, so it stands in for <span class="math inline">\(\sigma^2\)</span>:</p>
+<p><span class="math display">\[\text{ICC} = \frac{\hat\sigma^2_u}{\hat\sigma^2_u + \pi^2 / 3} = \frac{0.450}{0.450 + 3.29} = 0.120\]</span></p>
+<p>About 12% of the variation in hitting, on the log-odds scale, is shooter to shooter. The rest is round to round.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="use-it" class="level3">
+<h3 class="anchored" data-anchor-id="use-it">Use It</h3>
+<p><strong>8.</strong> Predict the chance of a hit at 300 m kneeling for an average shooter and for S22.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 8">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Average shooter, <span class="math inline">\(u_j = 0\)</span>:</p>
+<p><span class="math display">\[2.872 - 0.914(3) - 0.953 = -0.822, \qquad \hat p = \frac{e^{-0.822}}{1 + e^{-0.822}} = 0.305\]</span></p>
+<p>S22, <span class="math inline">\(\hat u = 1.182\)</span>:</p>
+<p><span class="math display">\[-0.822 + 1.182 = 0.360, \qquad \hat p = \frac{e^{0.360}}{1 + e^{0.360}} = 0.589\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">shooter =</span> <span class="fu">c</span>(<span class="st">"new shooter"</span>, <span class="st">"S22"</span>), <span class="at">dist100 =</span> <span class="dv">3</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">position =</span> <span class="fu">factor</span>(<span class="st">"kneeling"</span>, <span class="at">levels =</span> <span class="fu">levels</span>(rifle<span class="sc">$</span>position)))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(fit_rifle, new, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2 
+0.3053301 0.5889384 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> Rank the shooters by <span class="math inline">\(\hat u_j\)</span>. Who is best? Why not S17? S13 and S15 both hit 35 of 40. Why do they differ?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 9">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 9
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(fit_rifle)<span class="sc">$</span>shooter <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"shooter"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">u_hat =</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(u_hat)) <span class="sc">|&gt;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  shooter     u_hat
+1     S22 1.1816218
+2     S15 0.9653990
+3     S13 0.8372588
+4     S17 0.7629350
+5     S29 0.7026167</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Best: S22</strong>, 37 of 40.</li>
+<li><strong>S17:</strong> 10 for 10, <span class="math inline">\(\hat u = 0.763\)</span>. Few rounds, so shrunk toward average.</li>
+<li><strong>S15 over S13:</strong> same hits, but S15’s targets averaged 185 m against 172.5 m. The fixed effects credit the harder targets.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><strong>10.</strong> Fit <code>glm(hit ~ dist100 + position)</code>, ignoring the shooter. Compare its coefficients to the mixed model’s.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 10">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 10
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fit_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(hit <span class="sc">~</span> dist100 <span class="sc">+</span> position, <span class="at">family =</span> binomial, <span class="at">data =</span> rifle)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cbind</span>(<span class="at">glm =</span> <span class="fu">coef</span>(fit_glm), <span class="at">glmer =</span> <span class="fu">fixef</span>(fit_rifle)), <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             glm  glmer
+(Intercept)                2.588  2.872
+dist100                   -0.821 -0.914
+positionprone unsupported -0.410 -0.444
+positionkneeling          -0.878 -0.953</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><code>glm</code>’s effects are smaller: -0.821 per 100 m against -0.914.</li>
+<li><code>glmer</code> answers “for one shooter, how much does 100 m cost?” <code>glm</code> answers “across all shooters mixed together.” Mixing good and bad shooters flattens the curve.</li>
+<li><code>glm</code> also treats 1740 rounds as independent. They are not: one shooter’s rounds share a skill.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><strong>11.</strong> Tell the OIC.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Answer 11">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer 11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each 100 m cuts the odds of a hit to about 40%, and kneeling cuts them to about 39% of prone supported. Shooters differ, about 12% of the variation. The best shooter is S22, 37 of 40. S17 and S41 went 10 for 10 before lightning closed the range: too few rounds to rank them first.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA376-AY27-1/lesson-23.html" class="pagination-link" aria-label="MA376 AY27-1 Lesson 23">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA376 AY27-1 Lesson 23</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
