@@ -884,8 +884,8 @@ Prediction   0   1
 <div class="compact">
 <ul>
 <li><strong>Top:</strong> the prediction, 1 = pass or 0 = fail. Whichever is more common in the box.</li>
-<li><strong>Middle:</strong> the share of cadets in the box who passed.</li>
-<li><strong>Bottom:</strong> the share of all cadets who land in the box.</li>
+<li><strong>Middle:</strong> the proportion of <code>train</code> cadets in the box who passed.</li>
+<li><strong>Bottom:</strong> the percent of all <code>train</code> cadets who land in the box.</li>
 </ul>
 </div>
 <p>Read it down: yes goes left.</p>
@@ -982,8 +982,8 @@ Prediction   0   1
 <div class="compact">
 <ul>
 <li><strong>Top:</strong> the prediction, 1 = pass or 0 = fail.</li>
-<li><strong>Middle:</strong> the share of cadets in the box who passed.</li>
-<li><strong>Bottom:</strong> the share of all cadets who land in the box.</li>
+<li><strong>Middle:</strong> the proportion of <code>train</code> cadets in the box who passed.</li>
+<li><strong>Bottom:</strong> the percent of all <code>train</code> cadets who land in the box.</li>
 </ul>
 </div>
 <div class="cell">
@@ -1004,14 +1004,31 @@ Prediction   0   1
 </section>
 <section id="three-splits" class="level3">
 <h3 class="anchored" data-anchor-id="three-splits">Three Splits</h3>
-<p>One more level, for good measure.</p>
+<p>One more level, for good measure. The same search inside the two 7 or more boxes:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Top row: the 70 cadets with 7 or more pull-ups, 75 inches or taller. Bottom row: the 1,415 under 75 inches.</li>
+<li><strong>Under 75:</strong> the best cut is height at 64.5. 64 inches or shorter, 35% pass, so they flip from a 1 to a 0. The tree keeps it.</li>
+<li><strong>75 or taller:</strong> the best cut is run time at 13.15. The 9 fast runners pass 56% and would flip to a 1, but that fixes one mistake. Too small to keep, so <code>rpart</code> drops it.</li>
+<li><strong>6 or fewer:</strong> still no split.</li>
+</ul>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_three <span class="ot">&lt;-</span> <span class="fu">rpart</span>(pass <span class="sc">~</span> ., <span class="at">data =</span> train, <span class="at">method =</span> <span class="st">"class"</span>, <span class="at">maxdepth =</span> <span class="dv">3</span>)   <span class="co"># three levels of questions</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(fit_three, <span class="at">extra =</span> <span class="dv">106</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -1047,7 +1064,7 @@ Prediction   0   1
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1101,7 +1118,7 @@ Prediction   0   1
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1159,7 +1176,7 @@ Prediction   0   1
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1184,9 +1201,9 @@ Prediction   0   1
 <span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_meas_vec</span>(te<span class="sc">$</span>pass, pred, <span class="at">event_level =</span> <span class="st">"second"</span>)</span>
 <span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="fu">expand_grid</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"logistic"</span>, <span class="fu">names</span>(trees)), <span class="at">split =</span> <span class="fu">names</span>(splits)) <span class="sc">|&gt;</span></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">f_meas =</span> <span class="fu">map2_dbl</span>(model, split, score_split)) <span class="sc">|&gt;</span></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> split, <span class="at">values_from =</span> f_meas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>f1_splits <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"logistic"</span>, <span class="fu">names</span>(trees)), <span class="at">split =</span> <span class="fu">names</span>(splits)) <span class="sc">|&gt;</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">f_meas =</span> <span class="fu">map2_dbl</span>(model, split, score_split))</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>f1_splits <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> split, <span class="at">values_from =</span> f_meas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   model        original `split A` `split B`
@@ -1197,6 +1214,15 @@ Prediction   0   1
 4 three splits    0.774     0.779     0.791
 5 no limits       0.695     0.704     0.709
 6 limited tree    0.781     0.793     0.791</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="compact">
@@ -1333,7 +1359,7 @@ Prediction   0   1
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1416,7 +1442,7 @@ Prediction   0   1
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lesson-25_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="lesson-25_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
