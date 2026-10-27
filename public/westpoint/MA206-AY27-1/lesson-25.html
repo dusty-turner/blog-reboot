@@ -325,6 +325,12 @@ window.Quarto = {
  <span class="menu-text">Lesson 25</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -365,7 +371,7 @@ window.Quarto = {
   <li><a href="#problem-1-paired-or-independent" id="toc-problem-1-paired-or-independent" class="nav-link" data-scroll-target="#problem-1-paired-or-independent">Problem 1: Paired or Independent?</a></li>
   <li><a href="#problem-2-grip-strength" id="toc-problem-2-grip-strength" class="nav-link" data-scroll-target="#problem-2-grip-strength">Problem 2: Grip Strength</a></li>
   <li><a href="#problem-3-read-the-output" id="toc-problem-3-read-the-output" class="nav-link" data-scroll-target="#problem-3-read-the-output">Problem 3: Read the Output</a></li>
-  <li><a href="#problem-4-the-wrong-test" id="toc-problem-4-the-wrong-test" class="nav-link" data-scroll-target="#problem-4-the-wrong-test">Problem 4: The Wrong Test</a></li>
+  <li><a href="#problem-4-ignore-the-pairing" id="toc-problem-4-ignore-the-pairing" class="nav-link" data-scroll-target="#problem-4-ignore-the-pairing">Problem 4: Ignore the Pairing</a></li>
   </ul></li>
   <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
   <ul class="collapse">
@@ -798,7 +804,7 @@ window.Quarto = {
 <ul>
 <li>Each observation in one sample is linked to exactly one observation in the other: same cadet twice, twins, left and right hand, same squad under two conditions.</li>
 <li><span class="math inline">\(n\)</span> pairs, so <span class="math inline">\(n_1 = n_2 = n\)</span>.</li>
-<li>The two measurements on a unit are <strong>not independent</strong>. A fast cadet is fast before and after Military Movement. The L24 test does not apply.</li>
+<li>The two measurements on a unit are <strong>not independent</strong>. A fast cadet is fast before and after Military Movement. The L24 test still runs, but it ignores the pairing.</li>
 <li>Fix: subtract within each pair. The differences <span class="math inline">\(d_1, \dots, d_n\)</span> are one sample, and we already know how to test one sample (Lesson 22).</li>
 </ul>
 </div>
@@ -1172,8 +1178,8 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
-<th style="text-align: center;">Paired (correct)</th>
-<th style="text-align: center;">Two-sample (wrong)</th>
+<th style="text-align: center;">Paired</th>
+<th style="text-align: center;">Two-sample (ignores pairing)</th>
 </tr>
 </thead>
 <tbody>
@@ -1223,7 +1229,7 @@ window.Quarto = {
 <ul>
 <li>Each difference removes what is constant about that unit (fitness, ability, body size).</li>
 <li>Less variability in the <span class="math inline">\(d_i\)</span>, smaller <span class="math inline">\(s_D/\sqrt{n}\)</span>, larger <span class="math inline">\(|t|\)</span>, smaller P-value.</li>
-<li>Paired data analyzed as independent: the test is invalid and usually loses a real effect.</li>
+<li>Paired data analyzed as two samples: the test still runs, but the larger standard error can hide a real effect.</li>
 </ul>
 </div>
 </div>
@@ -1569,8 +1575,8 @@ mean difference
 </div>
 <hr>
 </section>
-<section id="problem-4-the-wrong-test" class="level3">
-<h3 class="anchored" data-anchor-id="problem-4-the-wrong-test">Problem 4: The Wrong Test</h3>
+<section id="problem-4-ignore-the-pairing" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4-ignore-the-pairing">Problem 4: Ignore the Pairing</h3>
 <p>A classmate ran the same pushup data through the L24 test.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1602,7 +1608,7 @@ mean of x mean of y
 <ol type="a">
 <li><p>What does this output conclude at <span class="math inline">\(\alpha = 0.05\)</span>?</p></li>
 <li><p>Both tests estimate the same difference. Why is this P-value so much larger?</p></li>
-<li><p>Which conclusion is correct?</p></li>
+<li><p>Which test should we report, and why?</p></li>
 </ol>
 </div>
 </div>
@@ -1622,7 +1628,7 @@ mean of x mean of y
 <ol type="a">
 <li><p>P-value <span class="math inline">\(= 0.2253 &gt; 0.05\)</span>. Fail to reject <span class="math inline">\(H_0\)</span>: no evidence of a difference.</p></li>
 <li><p>Same estimate, <span class="math inline">\(45.70 - 43.00 = 2.70\)</span>. The two-sample standard error includes the cadet to cadet spread (36 to 52 pushups). The paired standard error only includes how much each cadet’s change varies, which is much smaller. Smaller SE, larger <span class="math inline">\(|t|\)</span>, smaller P-value.</p></li>
-<li><p>The paired test (Problem 3). The data are paired, so the two-sample test’s independence condition fails.</p></li>
+<li><p>The paired test (Problem 3). Both tests run, but the paired test removes the cadet to cadet spread, so it is more accurate and detects the difference.</p></li>
 </ol>
 </div>
 </div>
@@ -2160,6 +2166,9 @@ mean of x mean of y
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../MA206-AY27-1/lesson-26.html" class="pagination-link" aria-label="Lesson 26">
+        <span class="nav-page-text">Lesson 26</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
