@@ -4,10 +4,10 @@
 #   1  the IOCT data: pass or fail, one row per cadet, train (last year) and test (this year)
 #   2  what we know: logistic regression                                    (question 1)
 #   3  one split, and where it comes from: Gini impurity at every cut       (questions 2 and 3)
-#   4  grow the tree: two splits, three splits, no limits, the limited tree (questions 4 to 6)
-#   5  so what's the downside? two new train/test splits                    (question 7)
-#   6  random forest, and tuning it                                         (questions 8 to 10)
-#   7  so what do I make of it? variable importance                         (questions 11 and 12)
+#   4  grow the tree: two splits, three splits, no limits, the limited tree (questions 4 to 7)
+#   5  so what's the downside? two new train/test splits                    (question 8)
+#   6  random forest, and tuning it                                         (questions 9 to 11)
+#   7  so what do I make of it? variable importance                         (questions 12 and 13)
 # If R says there's no package called something, run once:
 #   install.packages(c("tidyverse", "yardstick", "rpart", "rpart.plot", "randomForest"))
 library(tidyverse)
@@ -57,7 +57,8 @@ coef(fit_logit) |> round(3)                      # one slope per predictor (ques
 
 # ============================================================================
 #  3. ONE SPLIT
-#  Each box: its prediction (1 = pass, 0 = fail), the share who passed, the share of cadets in the box.
+#  Each box, top to bottom: the prediction (1 = pass, 0 = fail), the proportion of train cadets in the box
+#  who passed, the percent of all train cadets who land in the box.
 #  Gini impurity of a box where a share p passed: G = 2p(1 - p). 0 is pure, 0.5 is half and half.
 #  The tree tries every cut of every predictor and keeps the one with the lowest G after the split.
 # ============================================================================
@@ -109,6 +110,11 @@ results_two <- test |> mutate(pred = predict(fit_two, test, type = "class"))
 scoreboard <- scoreboard |>
   bind_rows(results_two |> ioct_metrics(truth = pass, estimate = pred, event_level = "second") |> mutate(model = "two splits"))
 
+# The third split: the same search, inside each 7 or more box (question 5).
+bind_rows(`75 or taller` = g_curves(filter(train, pullups >= 7, height_in >= 75)),
+          `under 75`     = g_curves(filter(train, pullups >= 7, height_in < 75)), .id = "box") |>
+  group_by(box, predictor) |> slice_min(G, n = 1, with_ties = FALSE) |> arrange(box, G)
+
 fit_three <- rpart(pass ~ ., data = train, method = "class", maxdepth = 3)
 rpart.plot(fit_three, extra = 106)
 results_three <- test |> mutate(pred = predict(fit_three, test, type = "class"))
@@ -116,7 +122,7 @@ scoreboard <- scoreboard |>
   bind_rows(results_three |> ioct_metrics(truth = pass, estimate = pred, event_level = "second") |> mutate(model = "three splits"))
 scoreboard |> select(model, .metric, .estimate) |> pivot_wider(names_from = .metric, values_from = .estimate)
 
-# Let it run: no limits (question 5).
+# Let it run: no limits (question 6).
 fit_big <- rpart(pass ~ ., data = train, method = "class", cp = 0, minsplit = 2)
 sum(fit_big$frame$var != "<leaf>")               # number of splits
 train |> mutate(pred = predict(fit_big, train, type = "class")) |> accuracy(truth = pass, estimate = pred)
@@ -125,7 +131,7 @@ scoreboard <- scoreboard |>
   bind_rows(results_big |> ioct_metrics(truth = pass, estimate = pred, event_level = "second") |> mutate(model = "no limits"))
 scoreboard |> select(model, .metric, .estimate) |> pivot_wider(names_from = .metric, values_from = .estimate)
 
-# Limiting the tree: rpart's defaults, cp = 0.01, minsplit = 20, maxdepth = 30 (question 6).
+# Limiting the tree: rpart's defaults, cp = 0.01, minsplit = 20, maxdepth = 30 (question 7).
 fit_tree <- rpart(pass ~ ., data = train, method = "class")
 rpart.plot(fit_tree, extra = 106)
 results_tree <- test |> mutate(pred = predict(fit_tree, test, type = "class"))
@@ -135,7 +141,7 @@ scoreboard |> select(model, .metric, .estimate) |> pivot_wider(names_from = .met
 
 # ============================================================================
 #  5. SO WHAT'S THE DOWNSIDE?
-#  Same cadets, two new random 70/30 splits. Refit everything (question 7).
+#  Same cadets, two new random 70/30 splits. Refit everything (question 8).
 # ============================================================================
 make_split <- function(seed) {
   set.seed(seed)
@@ -168,14 +174,21 @@ score_split <- function(m, s) {
   }
   f_meas_vec(te$pass, pred, event_level = "second")
 }
-expand_grid(model = c("logistic", names(trees)), split = names(splits)) |>
-  mutate(f_meas = map2_dbl(model, split, score_split)) |>
-  pivot_wider(names_from = split, values_from = f_meas)
+f1_splits <- expand_grid(model = c("logistic", names(trees)), split = names(splits)) |>
+  mutate(f_meas = map2_dbl(model, split, score_split))
+f1_splits |> pivot_wider(names_from = split, values_from = f_meas)
+
+f1_splits |>
+  mutate(model = fct_rev(fct_inorder(model))) |>
+  ggplot(aes(f_meas, model)) +
+  geom_line(aes(group = model), color = "grey70", linewidth = 1.2) +
+  geom_point(aes(color = split), size = 3.5) +
+  labs(x = "F1 on that split's test set", y = NULL, color = NULL)
 
 # ============================================================================
 #  6. RANDOM FOREST
 #  500 trees. Each grows on a bootstrap sample of the cadets, sees only mtry predictors at each split,
-#  and grows with no limits. Every tree votes; the majority wins (questions 8 and 9).
+#  and grows with no limits. Every tree votes; the majority wins (questions 9 and 10).
 # ============================================================================
 set.seed(376)
 fit_rf <- randomForest(pass ~ ., data = train,
@@ -189,7 +202,7 @@ scoreboard <- scoreboard |>
   bind_rows(results_rf |> ioct_metrics(truth = pass, estimate = pred, event_level = "second") |> mutate(model = "forest"))
 scoreboard |> select(model, .metric, .estimate) |> pivot_wider(names_from = .metric, values_from = .estimate)
 
-# Tune all three knobs on OOB F1. Never on the test set. About 30 seconds (question 10).
+# Tune all three knobs on OOB F1. Never on the test set. About 30 seconds (question 11).
 rf_grid <- expand_grid(mtry = 1:6, ntree = c(100, 300, 500), nodesize = c(1, 5, 20)) |>
   mutate(oob_f1 = pmap_dbl(list(mtry, ntree, nodesize), \(m, n, k) {
     set.seed(376)
@@ -211,7 +224,7 @@ scoreboard |> select(model, .metric, .estimate) |> pivot_wider(names_from = .met
 # ============================================================================
 #  7. SO WHAT DO I MAKE OF IT?
 #  Variable importance: scramble one predictor among the OOB cadets; how much worse does the forest do?
-#  (questions 11 and 12)
+#  (questions 12 and 13)
 # ============================================================================
 importance(fit_best, type = 1) |>                # type = 1: the scramble test, mean decrease in accuracy
   as_tibble(rownames = "predictor") |>

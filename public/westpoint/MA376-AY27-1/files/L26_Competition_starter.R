@@ -275,5 +275,5 @@ upload <- incoming |>
 sum(upload$call)
 write_csv(upload, "team_XX_type6.csv")
 
-# Tune ntree, mtry, nodesize with Lesson 25's grid, scored on OOB. With 2.6% enlisted, a box of 5
-# leads almost never holds an enlistee. Think about nodesize.
+# Tune ntree, mtry, nodesize with Lesson 25's grid. Check the winner on test before you upload:
+# with this few enlistees, the best OOB score can be luck.
