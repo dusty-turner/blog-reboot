@@ -1246,22 +1246,13 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>results_logit <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_logit, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>results_logit <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">max_prob =</span> <span class="fu">max</span>(prob), <span class="at">calls =</span> <span class="fu">sum</span>(call <span class="sc">==</span> <span class="st">"1"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  max_prob calls
-     &lt;dbl&gt; &lt;int&gt;
-1   0.0655     0</code></pre>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<p>The highest probability on any test lead is 0.066. A 0.5 cut calls <strong>nobody</strong>.</p>
 </section>
 <section id="score-it-like-the-board" class="level4">
 <h4 class="anchored" data-anchor-id="score-it-like-the-board">4. Score It Like the Board</h4>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(results_logit, <span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(results_logit, <span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Truth
 Prediction    0    1
@@ -1270,10 +1261,10 @@ Prediction    0    1
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lead_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(f_meas, accuracy, sensitivity, specificity, precision)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>results_logit <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lead_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(f_meas, accuracy, sensitivity, specificity, precision)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>results_logit <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   .metric     .estimator .estimate
@@ -1283,17 +1274,6 @@ Prediction    0    1
 3 sensitivity binary         0    
 4 specificity binary         1    
 5 precision   binary        NA    </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>results_logit <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">calls =</span> <span class="fu">sum</span>(call <span class="sc">==</span> <span class="st">"1"</span>),</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">caught =</span> <span class="fu">sum</span>(call <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">&amp;</span> enlisted <span class="sc">==</span> <span class="st">"1"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  calls caught
-  &lt;int&gt;  &lt;int&gt;
-1     0      0</code></pre>
 </div>
 </div>
 <div class="compact">
@@ -1306,16 +1286,16 @@ Prediction    0    1
 <section id="refit-on-all-12000-and-write-the-upload" class="level4">
 <h4 class="anchored" data-anchor-id="refit-on-all-12000-and-write-the-upload">5. Refit on All 12,000 and Write the Upload</h4>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> market_type <span class="sc">+</span> propensity <span class="sc">+</span> lead_source <span class="sc">+</span> education <span class="sc">+</span> age <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                   distance_miles <span class="sc">+</span> social_media,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(upload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> market_type <span class="sc">+</span> propensity <span class="sc">+</span> lead_source <span class="sc">+</span> education <span class="sc">+</span> age <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                   distance_miles <span class="sc">+</span> social_media,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(upload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   lead_id probability  call
@@ -1327,11 +1307,11 @@ Prediction    0    1
 5       5      0.0126     0
 6       6      0.0171     0</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(upload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(upload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3900</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type1.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type1.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Put your team code in place of <code>XX</code>. Upload it as model type 1. That’s your team on the board.</p>
 </section>
@@ -1343,45 +1323,45 @@ Prediction    0    1
 <h4 class="anchored" data-anchor-id="type-2-logistic-your-cut-fix-1">Type 2: Logistic, Your Cut (Fix 1)</h4>
 <p>Pick your predictors. Tune the cut on <span class="math inline">\(F_1\)</span> by five-fold cross-validation on <code>train</code>, as in Lesson 21. Never tune on <code>test</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cuts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.10</span>, <span class="at">by =</span> <span class="fl">0.005</span>)                  <span class="co"># the cuts to try</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fold <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(train)))   <span class="co"># each training lead gets a fold</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>p_cv <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(train))</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> train[fold <span class="sc">!=</span> k, ])                  <span class="co"># fit on four folds</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  p_cv[fold <span class="sc">==</span> k] <span class="ot">&lt;-</span> <span class="fu">predict</span>(f, train[fold <span class="sc">==</span> k, ], <span class="at">type =</span> <span class="st">"response"</span>)    <span class="co"># predict the fifth</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cuts, <span class="cf">function</span>(t) {</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  call <span class="ot">&lt;-</span> p_cv <span class="sc">&gt;</span> t</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(call <span class="sc">&amp;</span> train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">/</span> (<span class="fu">sum</span>(call) <span class="sc">+</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>))</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>best_cut <span class="ot">&lt;-</span> cuts[<span class="fu">which.max</span>(f1)]</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>best_cut</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cuts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.10</span>, <span class="at">by =</span> <span class="fl">0.005</span>)                  <span class="co"># the cuts to try</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>fold <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(train)))   <span class="co"># each training lead gets a fold</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>p_cv <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(train))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> train[fold <span class="sc">!=</span> k, ])                  <span class="co"># fit on four folds</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  p_cv[fold <span class="sc">==</span> k] <span class="ot">&lt;-</span> <span class="fu">predict</span>(f, train[fold <span class="sc">==</span> k, ], <span class="at">type =</span> <span class="st">"response"</span>)    <span class="co"># predict the fifth</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cuts, <span class="cf">function</span>(t) {</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  call <span class="ot">&lt;-</span> p_cv <span class="sc">&gt;</span> t</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(call <span class="sc">&amp;</span> train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">/</span> (<span class="fu">sum</span>(call) <span class="sc">+</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>))</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>best_cut <span class="ot">&lt;-</span> cuts[<span class="fu">which.max</span>(f1)]</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>best_cut</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fit_cut <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>results_cut <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_cut, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>results_cut <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>results_cut <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit_cut <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>results_cut <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_cut, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>results_cut <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>results_cut <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fit_cut_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_cut_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type2.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fit_cut_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_cut_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type2.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="compact">
 <ul>
@@ -1393,30 +1373,30 @@ Prediction    0    1
 <h4 class="anchored" data-anchor-id="type-3-logistic-class-weights-fix-2">Type 3: Logistic, Class Weights (Fix 2)</h4>
 <p>Each training enlistee counts as <span class="math inline">\(n_0 / n_1\)</span> leads, as in Lesson 21. Cut at 0.5.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>, <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>) <span class="sc">/</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="dv">1</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fit_weighted <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> binomial, <span class="at">data =</span> train, <span class="at">weights =</span> w)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R warns about "non-integer #successes" because the weights aren't whole numbers. We mean it.</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_weighted, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>, <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>) <span class="sc">/</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>fit_weighted <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> binomial, <span class="at">data =</span> train, <span class="at">weights =</span> w)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R warns about "non-integer #successes" because the weights aren't whole numbers. We mean it.</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_weighted, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>results_weighted <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>w_all <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>, <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>) <span class="sc">/</span> <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="dv">1</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fit_weighted_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">family =</span> binomial, <span class="at">data =</span> leads, <span class="at">weights =</span> w_all)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_weighted_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type3.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>w_all <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>, <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>) <span class="sc">/</span> <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="dv">1</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>fit_weighted_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">family =</span> binomial, <span class="at">data =</span> leads, <span class="at">weights =</span> w_all)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_weighted_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type3.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="compact">
 <ul>
@@ -1428,60 +1408,60 @@ Prediction    0    1
 <h4 class="anchored" data-anchor-id="type-4-logistic-undersampled-fix-3">Type 4: Logistic, Undersampled (Fix 3)</h4>
 <p>In <code>train</code>, keep every enlistee and the same number of leads that didn’t enlist, drawn at random, as in Lesson 21. Cut at 0.5.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="fu">sample</span>(<span class="fu">which</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>), <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>)))</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>fit_under <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial, <span class="at">data =</span> train[keep, ])</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>results_under <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_under, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>results_under <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>results_under <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="fu">sample</span>(<span class="fu">which</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>), <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>)))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fit_under <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial, <span class="at">data =</span> train[keep, ])</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>results_under <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_under, test, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>results_under <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>results_under <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>keep_all <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="fu">sample</span>(<span class="fu">which</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>), <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>)))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>fit_under_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial, <span class="at">data =</span> leads[keep_all, ])</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_under_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type4.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>keep_all <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>), <span class="fu">sample</span>(<span class="fu">which</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"0"</span>), <span class="fu">sum</span>(leads<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>)))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>fit_under_final <span class="ot">&lt;-</span> <span class="fu">glm</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial, <span class="at">data =</span> leads[keep_all, ])</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_under_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type4.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="type-5-mixed-effects-logistic-lesson-24" class="level4">
 <h4 class="anchored" data-anchor-id="type-5-mixed-effects-logistic-lesson-24">Type 5: Mixed-Effects Logistic (Lesson 24)</h4>
 <p>Your predictors plus a random intercept for each station, fit with <code>glmer</code> as in Lesson 24. A 0.5 cut calls nobody again, so use type 2’s cut.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fit_glmer <span class="ot">&lt;-</span> <span class="fu">glmer</span>(enlisted <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> station),</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_glmer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fit_glmer <span class="ot">&lt;-</span> <span class="fu">glmer</span>(enlisted <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> station),</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> binomial, <span class="at">data =</span> train)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_glmer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_glmer, test, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_glmer, test, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>results_glmer <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fit_glmer_final <span class="ot">&lt;-</span> <span class="fu">glmer</span>(enlisted <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> station),</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_glmer_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type5.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fit_glmer_final <span class="ot">&lt;-</span> <span class="fu">glmer</span>(enlisted <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> station),</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">family =</span> binomial, <span class="at">data =</span> leads)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_glmer_final, incoming, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">allow.new.levels =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_cut, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type5.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="compact">
 <ul>
@@ -1496,43 +1476,43 @@ Prediction    0    1
 <h4 class="anchored" data-anchor-id="type-6-random-forest-lesson-25">Type 6: Random Forest (Lesson 25)</h4>
 <p>Fit the forest as in Lesson 25. A majority vote calls nobody here, so cut the share of trees that vote “enlisted.” Tune the cut on the out-of-bag votes, never on <code>test</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>fit_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> train,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ntree =</span> ___,       <span class="co"># how many trees</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mtry =</span> ___,        <span class="co"># predictors each split may look at</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">nodesize =</span> ___)    <span class="co"># smallest box a tree can make</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>fit_rf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fit_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> train,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ntree =</span> ___,       <span class="co"># how many trees</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mtry =</span> ___,        <span class="co"># predictors each split may look at</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">nodesize =</span> ___)    <span class="co"># smallest box a tree can make</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>fit_rf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p_oob <span class="ot">&lt;-</span> fit_rf<span class="sc">$</span>votes[, <span class="st">"1"</span>]   <span class="co"># each training lead, voted on only by trees that never saw it</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>f1_rf <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cuts, <span class="cf">function</span>(t) {</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  call <span class="ot">&lt;-</span> p_oob <span class="sc">&gt;</span> t</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(call <span class="sc">&amp;</span> train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">/</span> (<span class="fu">sum</span>(call) <span class="sc">+</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>))</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>best_rf <span class="ot">&lt;-</span> cuts[<span class="fu">which.max</span>(f1_rf)]</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>best_rf</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>results_rf <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_rf, test, <span class="at">type =</span> <span class="st">"prob"</span>)[, <span class="st">"1"</span>],</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_rf, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>results_rf <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>results_rf <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p_oob <span class="ot">&lt;-</span> fit_rf<span class="sc">$</span>votes[, <span class="st">"1"</span>]   <span class="co"># each training lead, voted on only by trees that never saw it</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>f1_rf <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cuts, <span class="cf">function</span>(t) {</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  call <span class="ot">&lt;-</span> p_oob <span class="sc">&gt;</span> t</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(call <span class="sc">&amp;</span> train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">/</span> (<span class="fu">sum</span>(call) <span class="sc">+</span> <span class="fu">sum</span>(train<span class="sc">$</span>enlisted <span class="sc">==</span> <span class="st">"1"</span>))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>best_rf <span class="ot">&lt;-</span> cuts[<span class="fu">which.max</span>(f1_rf)]</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>best_rf</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>results_rf <span class="ot">&lt;-</span> test <span class="sc">|&gt;</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="fu">predict</span>(fit_rf, test, <span class="at">type =</span> <span class="st">"prob"</span>)[, <span class="st">"1"</span>],</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(prob <span class="sc">&gt;</span> best_rf, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>results_rf <span class="sc">|&gt;</span> <span class="fu">conf_mat</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>results_rf <span class="sc">|&gt;</span> <span class="fu">lead_metrics</span>(<span class="at">truth =</span> enlisted, <span class="at">estimate =</span> call, <span class="at">event_level =</span> <span class="st">"second"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fit_rf_final <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(enlisted <span class="sc">~</span> ___,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> leads, <span class="at">ntree =</span> ___, <span class="at">mtry =</span> ___, <span class="at">nodesize =</span> ___)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_rf_final, incoming, <span class="at">type =</span> <span class="st">"prob"</span>)[, <span class="st">"1"</span>],</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_rf, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type6.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">376</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>fit_rf_final <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(enlisted <span class="sc">~</span> ___,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> leads, <span class="at">ntree =</span> ___, <span class="at">mtry =</span> ___, <span class="at">nodesize =</span> ___)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>upload <span class="ot">&lt;-</span> incoming <span class="sc">|&gt;</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability =</span> <span class="fu">predict</span>(fit_rf_final, incoming, <span class="at">type =</span> <span class="st">"prob"</span>)[, <span class="st">"1"</span>],</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">call =</span> <span class="fu">if_else</span>(probability <span class="sc">&gt;</span> best_rf, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lead_id, probability, call)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(upload<span class="sc">$</span>call)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(upload, <span class="st">"team_XX_type6.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="compact">
 <ul>

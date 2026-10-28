@@ -59,8 +59,6 @@ results_logit <- test |>
   mutate(prob = predict(fit_logit, test, type = "response"),
          call = factor(if_else(prob > 0.5, 1, 0), levels = c(0, 1)))
 
-results_logit |> summarise(max_prob = max(prob), calls = sum(call == "1"))
-
 # ============================================================================
 #  4. SCORE IT LIKE THE BOARD
 #  F1 is the score. The rest are columns you can sort the board by.
@@ -72,10 +70,6 @@ lead_metrics <- metric_set(f_meas, accuracy, sensitivity, specificity, precision
 results_logit |>
   lead_metrics(truth = enlisted, estimate = call, event_level = "second")
 # F1 is NA when you call nobody: precision is 0/0. The board scores it 0.
-
-results_logit |>
-  summarise(calls = sum(call == "1"),                        # the recruiters can make 1,230 a week
-            caught = sum(call == "1" & enlisted == "1"))
 
 # ============================================================================
 #  5. REFIT ON ALL 12,000 AND WRITE THE UPLOAD FILE
