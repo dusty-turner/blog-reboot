@@ -12286,5 +12286,71 @@
       "Guest Lessons",
       "MA376 AY27-1 Lesson 26"
     ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html",
+    "href": "MA376-AY27-1/lesson-27.html",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "Final leaderboard: https://dustydell.tail280d22.ts.net:8443/ma376\n\n\n\n\n\n\n\n\n\n\nDue Monday 2 November, every section. Hard copy by 1600, in class or at my office, TH239B.\nTasking, data description\nMemo 4 is individual. Use your team’s model if you like; the argument is yours.\n\n\n\n\n\n\n\nLesson 28, PCA: the model. BC2 Tue 3 Nov; A1, BC1 Wed 4 Nov. Read ISLR 12.1 through 12.2.1 (pages 495 to 501).\nCapstone Milestone 2: methodology and preliminary results. Due 2359 Friday 13 November, 60 points.\nCapstone final presentation. Lessons 37 and 38, 3 to 8 December, 100 points.\nI’m here through Lesson 29, 6 November.\n\n\n\n\n\nAll TEE periods run 0730 to 1100. Find your name under your section.\n\n\n\n\n\n\nNoteMA376 A1 14 (15 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (8)\nP4: Wed 16 Dec (7)\n\n\n\n\nAnteen\nBaron\n\n\nCarroll\nFountain\n\n\nCole\nHardwick\n\n\nFonte\nRebolledo\n\n\nKonopka\nShioutakon\n\n\nPloetz\nSmith\n\n\nSun\nYoumans\n\n\nToth\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteMA376 BC1 15 (14 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (5)\nP4: Wed 16 Dec (9)\n\n\n\n\nBode\nBest\n\n\nLee\nDe La Torre\n\n\nNdiaye\nLaub\n\n\nO’Keefe\nLoughman\n\n\nRussell\nMiranda\n\n\n \nNguyen\n\n\n \nPlummer\n\n\n \nWard\n\n\n \nWeisenborn\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteMA376 BC2 16 (15 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (4)\nP4: Wed 16 Dec (11)\n\n\n\n\nGray\nApplegate\n\n\nHarris\nCannon\n\n\nVan Kley\nIvey\n\n\nZhai\nJohnson\n\n\n \nKendig\n\n\n \nMarino\n\n\n \nMyers\n\n\n \nSilverman\n\n\n \nSong\n\n\n \nTullier\n\n\n \nWittrock\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Judging a Classifier (Lesson 20)\n\n\n\n\n\n\n\n\n\n\nTruth positive\nTruth negative\n\n\n\n\nPredicted positive\nTP\nFP, a false alarm\n\n\nPredicted negative\nFN, a miss\nTN\n\n\n\n\n\n\nAccuracy \\(= \\dfrac{TP + TN}{n}\\)\nSensitivity (recall) \\(= \\dfrac{TP}{TP + FN}\\), specificity \\(= \\dfrac{TN}{TN + FP}\\)\nPrecision \\(= \\dfrac{TP}{TP + FP}\\)\n\\(F_1 = \\dfrac{2\\,TP}{2\\,TP + FP + FN}\\)\nCut probabilities into labels at a threshold. \\(0.5\\) is a default, not a rule.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Class Imbalance and Prevalence (Lesson 21)\n\n\n\n\n\n\n\nRare outcome: the null classifier scores \\(1 - \\text{prevalence}\\), and a \\(0.5\\) threshold flags almost nothing.\nThree fixes: move the threshold, class weights (glm(..., weights = w)), undersample. Each one moves the cutoff. None improves the model.\nSensitivity and specificity do not move with prevalence. Precision does.\nReport performance with the prevalence it was measured at.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Rater Agreement and the ICC (Lesson 22)\n\n\n\n\n\n\n\nPercent agreement \\(p_o\\). Chance agreement \\(p_e = P(A)P(B) + P(A^c)P(B^c)\\)\nCohen’s kappa \\(\\kappa = \\dfrac{p_o - p_e}{1 - p_e}\\): agreement once you remove chance. Falls as prevalence moves to an extreme.\n\\(\\text{PABAK} = 2p_o - 1\\): kappa with the prevalence set at half\nICC \\(= \\dfrac{\\hat\\sigma^2_{\\text{subject}}}{\\hat\\sigma^2_{\\text{subject}} + \\hat\\sigma^2_{\\text{rater}} + \\hat\\sigma^2_{\\text{error}}}\\), from a two-way ANOVA with raters as blocks\nReliability is not validity: raters can agree and all be wrong.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Fixed, Random and Mixed Effects (Lesson 23)\n\n\n\n\n\n\n\n\\(y_{ij} = \\mu + u_j + \\varepsilon_{ij}\\), \\(u_j \\sim N(0, \\sigma^2_u)\\), \\(\\varepsilon_{ij} \\sim N(0, \\sigma^2)\\)\nlmer(y ~ 1 + (1 | group), data = d), then fixef(), ranef(), coef()\n\\(\\hat y_{ij} = \\hat\\mu + w_j(\\bar y_j - \\hat\\mu)\\), \\(w_j = \\dfrac{n_j}{n_j + \\lambda}\\), \\(\\lambda = \\dfrac{\\hat\\sigma^2}{\\hat\\sigma^2_u}\\): small groups shrink toward the average\n\\(\\text{ICC} = \\dfrac{\\hat\\sigma^2_u}{\\hat\\sigma^2_u + \\hat\\sigma^2}\\)\nFixed: these levels are all you care about. Random: the levels are a sample of many.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Mixed-Effects Logistic Regression (Lesson 24)\n\n\n\n\n\n\n\n\\(\\log\\dfrac{p_{ij}}{1 - p_{ij}} = \\mu + u_j\\), \\(u_j \\sim N(0, \\sigma^2_u)\\). No \\(\\varepsilon\\): pass or fail is the noise.\nglmer(y ~ x + (1 | group), family = binomial, data = d)\npredict(fit, newdata, type = \"response\", allow.new.levels = TRUE)\nglm with a dummy per group: a group at 100% gets \\(\\hat\\beta \\to \\infty\\). glmer shrinks it.\n\\(\\text{ICC} = \\dfrac{\\hat\\sigma^2_u}{\\hat\\sigma^2_u + \\pi^2/3}\\)\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Trees and Random Forest (Lesson 25)\n\n\n\n\n\n\n\nA tree splits the data into boxes. Each split picks the predictor and cut that lowers Gini impurity the most.\nGini for a box: \\(G = 2p(1 - p)\\). After a split, average the two boxes, weighted by size.\nA tree grown all the way memorizes the training data and does worse on new data. Limit it.\nRandom forest: many trees, each on a bootstrap sample, each split choosing from mtry random predictors. The forest votes.\nrandomForest(y ~ ., data = train, ntree = , mtry = , nodesize = ); tune on out-of-bag \\(F_1\\).\npredict(fit, newdata, type = \"prob\") gives the share of trees that vote yes.\nVariable importance says which predictors the forest leans on, not how.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Model Competition (Lesson 26)\n\n\n\n\n\n\n\nSix model types on the Memo 4 leads, scored on \\(F_1\\) of the call column.\nLogistic at \\(0.5\\) calls nobody: about 97% accurate, \\(F_1 = 0\\).\nTune the cut on train (five-fold cross-validation) or on the forest’s out-of-bag votes. Never on test.\nCheck on test, then refit on all 12,000 before you predict the incoming leads.\nCalls \\(= TP + FP\\). The recruiters can make 1,230.\n\n\n\n\n\n\n\n\n\n\n\nhttps://dustydell.tail280d22.ts.net:8443/ma376",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html#admin",
+    "href": "MA376-AY27-1/lesson-27.html#admin",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "Final leaderboard: https://dustydell.tail280d22.ts.net:8443/ma376\n\n\n\n\n\n\n\n\n\n\nDue Monday 2 November, every section. Hard copy by 1600, in class or at my office, TH239B.\nTasking, data description\nMemo 4 is individual. Use your team’s model if you like; the argument is yours.\n\n\n\n\n\n\n\nLesson 28, PCA: the model. BC2 Tue 3 Nov; A1, BC1 Wed 4 Nov. Read ISLR 12.1 through 12.2.1 (pages 495 to 501).\nCapstone Milestone 2: methodology and preliminary results. Due 2359 Friday 13 November, 60 points.\nCapstone final presentation. Lessons 37 and 38, 3 to 8 December, 100 points.\nI’m here through Lesson 29, 6 November.\n\n\n\n\n\nAll TEE periods run 0730 to 1100. Find your name under your section.\n\n\n\n\n\n\nNoteMA376 A1 14 (15 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (8)\nP4: Wed 16 Dec (7)\n\n\n\n\nAnteen\nBaron\n\n\nCarroll\nFountain\n\n\nCole\nHardwick\n\n\nFonte\nRebolledo\n\n\nKonopka\nShioutakon\n\n\nPloetz\nSmith\n\n\nSun\nYoumans\n\n\nToth\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteMA376 BC1 15 (14 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (5)\nP4: Wed 16 Dec (9)\n\n\n\n\nBode\nBest\n\n\nLee\nDe La Torre\n\n\nNdiaye\nLaub\n\n\nO’Keefe\nLoughman\n\n\nRussell\nMiranda\n\n\n \nNguyen\n\n\n \nPlummer\n\n\n \nWard\n\n\n \nWeisenborn\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteMA376 BC2 16 (15 cadets)\n\n\n\n\n\n\n\n\n\nP1: Tue 15 Dec (4)\nP4: Wed 16 Dec (11)\n\n\n\n\nGray\nApplegate\n\n\nHarris\nCannon\n\n\nVan Kley\nIvey\n\n\nZhai\nJohnson\n\n\n \nKendig\n\n\n \nMarino\n\n\n \nMyers\n\n\n \nSilverman\n\n\n \nSong\n\n\n \nTullier\n\n\n \nWittrock",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html#break",
+    "href": "MA376-AY27-1/lesson-27.html#break",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "ImportantTo do\n\n\n\nBreak media for Lesson 27.",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html#what-we-did-lessons-20-to-26",
+    "href": "MA376-AY27-1/lesson-27.html#what-we-did-lessons-20-to-26",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "NoteReview: Judging a Classifier (Lesson 20)\n\n\n\n\n\n\n\n\n\n\nTruth positive\nTruth negative\n\n\n\n\nPredicted positive\nTP\nFP, a false alarm\n\n\nPredicted negative\nFN, a miss\nTN\n\n\n\n\n\n\nAccuracy \\(= \\dfrac{TP + TN}{n}\\)\nSensitivity (recall) \\(= \\dfrac{TP}{TP + FN}\\), specificity \\(= \\dfrac{TN}{TN + FP}\\)\nPrecision \\(= \\dfrac{TP}{TP + FP}\\)\n\\(F_1 = \\dfrac{2\\,TP}{2\\,TP + FP + FN}\\)\nCut probabilities into labels at a threshold. \\(0.5\\) is a default, not a rule.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Class Imbalance and Prevalence (Lesson 21)\n\n\n\n\n\n\n\nRare outcome: the null classifier scores \\(1 - \\text{prevalence}\\), and a \\(0.5\\) threshold flags almost nothing.\nThree fixes: move the threshold, class weights (glm(..., weights = w)), undersample. Each one moves the cutoff. None improves the model.\nSensitivity and specificity do not move with prevalence. Precision does.\nReport performance with the prevalence it was measured at.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Rater Agreement and the ICC (Lesson 22)\n\n\n\n\n\n\n\nPercent agreement \\(p_o\\). Chance agreement \\(p_e = P(A)P(B) + P(A^c)P(B^c)\\)\nCohen’s kappa \\(\\kappa = \\dfrac{p_o - p_e}{1 - p_e}\\): agreement once you remove chance. Falls as prevalence moves to an extreme.\n\\(\\text{PABAK} = 2p_o - 1\\): kappa with the prevalence set at half\nICC \\(= \\dfrac{\\hat\\sigma^2_{\\text{subject}}}{\\hat\\sigma^2_{\\text{subject}} + \\hat\\sigma^2_{\\text{rater}} + \\hat\\sigma^2_{\\text{error}}}\\), from a two-way ANOVA with raters as blocks\nReliability is not validity: raters can agree and all be wrong.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Fixed, Random and Mixed Effects (Lesson 23)\n\n\n\n\n\n\n\n\\(y_{ij} = \\mu + u_j + \\varepsilon_{ij}\\), \\(u_j \\sim N(0, \\sigma^2_u)\\), \\(\\varepsilon_{ij} \\sim N(0, \\sigma^2)\\)\nlmer(y ~ 1 + (1 | group), data = d), then fixef(), ranef(), coef()\n\\(\\hat y_{ij} = \\hat\\mu + w_j(\\bar y_j - \\hat\\mu)\\), \\(w_j = \\dfrac{n_j}{n_j + \\lambda}\\), \\(\\lambda = \\dfrac{\\hat\\sigma^2}{\\hat\\sigma^2_u}\\): small groups shrink toward the average\n\\(\\text{ICC} = \\dfrac{\\hat\\sigma^2_u}{\\hat\\sigma^2_u + \\hat\\sigma^2}\\)\nFixed: these levels are all you care about. Random: the levels are a sample of many.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Mixed-Effects Logistic Regression (Lesson 24)\n\n\n\n\n\n\n\n\\(\\log\\dfrac{p_{ij}}{1 - p_{ij}} = \\mu + u_j\\), \\(u_j \\sim N(0, \\sigma^2_u)\\). No \\(\\varepsilon\\): pass or fail is the noise.\nglmer(y ~ x + (1 | group), family = binomial, data = d)\npredict(fit, newdata, type = \"response\", allow.new.levels = TRUE)\nglm with a dummy per group: a group at 100% gets \\(\\hat\\beta \\to \\infty\\). glmer shrinks it.\n\\(\\text{ICC} = \\dfrac{\\hat\\sigma^2_u}{\\hat\\sigma^2_u + \\pi^2/3}\\)\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Trees and Random Forest (Lesson 25)\n\n\n\n\n\n\n\nA tree splits the data into boxes. Each split picks the predictor and cut that lowers Gini impurity the most.\nGini for a box: \\(G = 2p(1 - p)\\). After a split, average the two boxes, weighted by size.\nA tree grown all the way memorizes the training data and does worse on new data. Limit it.\nRandom forest: many trees, each on a bootstrap sample, each split choosing from mtry random predictors. The forest votes.\nrandomForest(y ~ ., data = train, ntree = , mtry = , nodesize = ); tune on out-of-bag \\(F_1\\).\npredict(fit, newdata, type = \"prob\") gives the share of trees that vote yes.\nVariable importance says which predictors the forest leans on, not how.\n\n\n\n\n\n\n\n\n\n\n\nNoteReview: Model Competition (Lesson 26)\n\n\n\n\n\n\n\nSix model types on the Memo 4 leads, scored on \\(F_1\\) of the call column.\nLogistic at \\(0.5\\) calls nobody: about 97% accurate, \\(F_1 = 0\\).\nTune the cut on train (five-fold cross-validation) or on the forest’s out-of-bag votes. Never on test.\nCheck on test, then refit on all 12,000 before you predict the incoming leads.\nCalls \\(= TP + FP\\). The recruiters can make 1,230.",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html#what-were-doing-lesson-27",
+    "href": "MA376-AY27-1/lesson-27.html#what-were-doing-lesson-27",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "https://dustydell.tail280d22.ts.net:8443/ma376",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
+  },
+  {
+    "objectID": "MA376-AY27-1/lesson-27.html#before-lesson-28",
+    "href": "MA376-AY27-1/lesson-27.html#before-lesson-28",
+    "title": "Lesson 27: Model Competition Finale",
+    "section": "",
+    "text": "Memo 4 due Monday 2 November, hard copy by 1600.\nLesson 28, PCA: the model. BC2 Tue 3 Nov; A1, BC1 Wed 4 Nov. Read ISLR 12.1 through 12.2.1 (pages 495 to 501).",
+    "crumbs": [
+      "Guest Lessons",
+      "MA376 AY27-1 Lesson 27"
+    ]
   }
 ]
