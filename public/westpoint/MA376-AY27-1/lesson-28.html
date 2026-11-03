@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-28 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA376-AY27-1/lesson-27.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY27-1/index.html"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../misc-lessons/index.html" aria-current="page"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA376-AY27-1/lesson-28.html">MA376 AY27-1 Lesson 28</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../misc-lessons/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA476 AY26-2 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MA376 AY27-1 Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA376-AY27-1/lesson-28.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MA376 AY27-1 Lesson 28</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-28-pca-the-model" id="toc-lesson-28-pca-the-model" class="nav-link active" data-scroll-target="#lesson-28-pca-the-model">Lesson 28: PCA, the Model</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a>
+  <ul class="collapse">
+  <li><a href="#this-lesson" id="toc-this-lesson" class="nav-link" data-scroll-target="#this-lesson">This Lesson</a></li>
+  <li><a href="#coming-up" id="toc-coming-up" class="nav-link" data-scroll-target="#coming-up">Coming Up</a></li>
+  <li><a href="#tee-slots" id="toc-tee-slots" class="nav-link" data-scroll-target="#tee-slots">TEE Slots</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a></li>
+  <li><a href="#what-we-did-lessons-20-to-26" id="toc-what-we-did-lessons-20-to-26" class="nav-link" data-scroll-target="#what-we-did-lessons-20-to-26">What We Did: Lessons 20 to 26</a></li>
+  <li><a href="#what-were-doing-lesson-28" id="toc-what-were-doing-lesson-28" class="nav-link" data-scroll-target="#what-were-doing-lesson-28">What We’re Doing: Lesson 28</a>
+  <ul class="collapse">
+  <li><a href="#so-far-supervised-learning" id="toc-so-far-supervised-learning" class="nav-link" data-scroll-target="#so-far-supervised-learning">So Far: Supervised Learning</a></li>
+  <li><a href="#what-if-we-dont-have-a-y" id="toc-what-if-we-dont-have-a-y" class="nav-link" data-scroll-target="#what-if-we-dont-have-a-y">What If We Don’t Have a <span class="math inline">\(y\)</span>?</a></li>
+  <li><a href="#the-data-crime-in-50-states" id="toc-the-data-crime-in-50-states" class="nav-link" data-scroll-target="#the-data-crime-in-50-states">The Data: Crime in 50 States</a></li>
+  <li><a href="#how-can-we-rank-the-states-by-crime" id="toc-how-can-we-rank-the-states-by-crime" class="nav-link" data-scroll-target="#how-can-we-rank-the-states-by-crime">How Can We Rank the States by Crime?</a></li>
+  <li><a href="#what-we-want" id="toc-what-we-want" class="nav-link" data-scroll-target="#what-we-want">What We Want</a></li>
+  <li><a href="#principal-components" id="toc-principal-components" class="nav-link" data-scroll-target="#principal-components">Principal Components</a></li>
+  <li><a href="#reading-the-loadings" id="toc-reading-the-loadings" class="nav-link" data-scroll-target="#reading-the-loadings">Reading the Loadings</a></li>
+  <li><a href="#how-much-does-each-keep" id="toc-how-much-does-each-keep" class="nav-link" data-scroll-target="#how-much-does-each-keep">How Much Does Each Keep?</a></li>
+  <li><a href="#back-to-the-ranking" id="toc-back-to-the-ranking" class="nav-link" data-scroll-target="#back-to-the-ranking">Back to the Ranking</a></li>
+  <li><a href="#four-columns-two-numbers" id="toc-four-columns-two-numbers" class="nav-link" data-scroll-target="#four-columns-two-numbers">Four Columns, Two Numbers</a></li>
+  <li><a href="#what-did-it-get-us" id="toc-what-did-it-get-us" class="nav-link" data-scroll-target="#what-did-it-get-us">What Did It Get Us?</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-28-pca-the-model" class="level1 unnumbered">
+<h1 class="unnumbered">Lesson 28: PCA, the Model</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+
+/* tables that fit the page width and wrap text instead of scrolling */
+.wrapcols table { width: 100%; }
+.wrapcols th, .wrapcols td { white-space: normal; }
+.wrapcols colgroup col { width: auto !important; }
+.wrapcols th:first-child, .wrapcols td:first-child { width: 1%; white-space: nowrap; }
+.wrapcols table > :not(caption) > * > * + * { border-left: 1px solid #dee2e6 !important; }
+
+/* long R output scrolls in a box instead of running down the page */
+pre.scroll-out { max-height: 420px; overflow-y: auto; }
+</style>
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l28.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calendar for 5 October to 6 November with red boxes around Tuesday 3 November and Wednesday 4 November, Lesson 28, PCA: The Model."></p>
+</figure>
+</div>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<section id="this-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="this-lesson">This Lesson</h3>
+<div class="compact">
+<ul>
+<li><a href="https://westpoint.instructure.com/courses/12755/pages/l28-pca-the-model">Canvas page</a></li>
+<li><a href="boardsheet-L28.pdf">Board Sheet</a></li>
+<li><a href="files/L28_PCA_inclass.R">R Script</a></li>
+<li>Data: <code>USArrests</code> ships with R. Nothing to download.</li>
+<li><strong>Reading:</strong> ISLR 12.1 through 12.2.1 (pages 495 to 501, stop at 12.2.2), plus Scaling the Variables (pages 505 to 506).</li>
+<li>Page 499 says “Table 12.2.1.” It means Table 12.1 on page 501.</li>
+</ul>
+</div>
+</section>
+<section id="coming-up" class="level3">
+<h3 class="anchored" data-anchor-id="coming-up">Coming Up</h3>
+<div class="compact">
+<ul>
+<li><strong>Lesson 29, PCA interpretation and the scree plot.</strong> BC2 Thu 5 Nov; A1, BC1 Fri 6 Nov.&nbsp;Read ISLR pages 503 to 505 and 507 to 508.</li>
+<li><strong>Capstone Milestone 2: methodology and preliminary results.</strong> Due 2359 Friday 13 November, 60 points.</li>
+<li><strong>Capstone final presentation.</strong> Lessons 37 and 38, 3 to 8 December, 100 points.</li>
+<li>I’m here through Lesson 29, 6 November.</li>
+</ul>
+</div>
+</section>
+<section id="tee-slots" class="level3">
+<h3 class="anchored" data-anchor-id="tee-slots">TEE Slots</h3>
+<p>All TEE periods run <strong>0730 to 1100</strong>. Find your name under your section.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 A1 14 (15 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 A1 14 (15 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (8)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (7)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Anteen</td>
+<td style="text-align: center;">Baron</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Carroll</td>
+<td style="text-align: center;">Fountain</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Cole</td>
+<td style="text-align: center;">Hardwick</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Fonte</td>
+<td style="text-align: center;">Rebolledo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Konopka</td>
+<td style="text-align: center;">Shioutakon</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Ploetz</td>
+<td style="text-align: center;">Smith</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Sun</td>
+<td style="text-align: center;">Youmans</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Toth</td>
+<td style="text-align: center;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 BC1 15 (14 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 BC1 15 (14 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (5)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (9)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Bode</td>
+<td style="text-align: center;">Best</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Lee</td>
+<td style="text-align: center;">De La Torre</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Ndiaye</td>
+<td style="text-align: center;">Laub</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">O’Keefe</td>
+<td style="text-align: center;">Loughman</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Russell</td>
+<td style="text-align: center;">Miranda</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Nguyen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Plummer</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Ward</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Weisenborn</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="MA376 BC2 16 (15 cadets)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MA376 BC2 16 (15 cadets)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">P1: Tue 15 Dec (4)</th>
+<th style="text-align: center;">P4: Wed 16 Dec (11)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Gray</td>
+<td style="text-align: center;">Applegate</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Harris</td>
+<td style="text-align: center;">Cannon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Van Kley</td>
+<td style="text-align: center;">Ivey</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Zhai</td>
+<td style="text-align: center;">Johnson</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Kendig</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Marino</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Myers</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Silverman</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Song</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Tullier</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">Wittrock</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Vid 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Vid 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Vid 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Football</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Halloween</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/baseball-1-l28.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/baseball-2-l28.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/baseball-3-l28.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/football-l28.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A girl in a white number 1 football jersey running with a football, bright yellow fall leaves behind her."></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/halloween-l28.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="Seven kids in football jersey Halloween costumes with trick-or-treat bags, and one in an inflatable pink dinosaur costume, standing in fall leaves."></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lessons-20-to-26" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-20-to-26">What We Did: Lessons 20 to 26</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Judging a Classifier (Lesson 20)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Judging a Classifier (Lesson 20)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Truth positive</th>
+<th style="text-align: center;">Truth negative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Predicted positive</strong></td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">FP, a false alarm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Predicted negative</strong></td>
+<td style="text-align: center;">FN, a miss</td>
+<td style="text-align: center;">TN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Accuracy <span class="math inline">\(= \dfrac{TP + TN}{n}\)</span></li>
+<li>Sensitivity (recall) <span class="math inline">\(= \dfrac{TP}{TP + FN}\)</span>, specificity <span class="math inline">\(= \dfrac{TN}{TN + FP}\)</span></li>
+<li>Precision <span class="math inline">\(= \dfrac{TP}{TP + FP}\)</span></li>
+<li><span class="math inline">\(F_1 = \dfrac{2\,TP}{2\,TP + FP + FN}\)</span></li>
+<li>Cut probabilities into labels at a threshold. <span class="math inline">\(0.5\)</span> is a default, not a rule.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Class Imbalance and Prevalence (Lesson 21)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Class Imbalance and Prevalence (Lesson 21)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Rare outcome: the null classifier scores <span class="math inline">\(1 - \text{prevalence}\)</span>, and a <span class="math inline">\(0.5\)</span> threshold flags almost nothing.</li>
+<li>Three fixes: move the threshold, class weights (<code>glm(..., weights = w)</code>), undersample. Each one moves the cutoff. None improves the model.</li>
+<li>Sensitivity and specificity do not move with prevalence. Precision does.</li>
+<li>Report performance with the prevalence it was measured at.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Rater Agreement and the ICC (Lesson 22)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Rater Agreement and the ICC (Lesson 22)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Percent agreement <span class="math inline">\(p_o\)</span>. Chance agreement <span class="math inline">\(p_e = P(A)P(B) + P(A^c)P(B^c)\)</span></li>
+<li>Cohen’s kappa <span class="math inline">\(\kappa = \dfrac{p_o - p_e}{1 - p_e}\)</span>: agreement once you remove chance. Falls as prevalence moves to an extreme.</li>
+<li><span class="math inline">\(\text{PABAK} = 2p_o - 1\)</span>: kappa with the prevalence set at half</li>
+<li>ICC <span class="math inline">\(= \dfrac{\hat\sigma^2_{\text{subject}}}{\hat\sigma^2_{\text{subject}} + \hat\sigma^2_{\text{rater}} + \hat\sigma^2_{\text{error}}}\)</span>, from a two-way ANOVA with raters as blocks</li>
+<li>Reliability is not validity: raters can agree and all be wrong.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Fixed, Random and Mixed Effects (Lesson 23)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Fixed, Random and Mixed Effects (Lesson 23)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><span class="math inline">\(y_{ij} = \mu + u_j + \varepsilon_{ij}\)</span>, <span class="math inline">\(u_j \sim N(0, \sigma^2_u)\)</span>, <span class="math inline">\(\varepsilon_{ij} \sim N(0, \sigma^2)\)</span></li>
+<li><code>lmer(y ~ 1 + (1 | group), data = d)</code>, then <code>fixef()</code>, <code>ranef()</code>, <code>coef()</code></li>
+<li><span class="math inline">\(\hat y_{ij} = \hat\mu + w_j(\bar y_j - \hat\mu)\)</span>, <span class="math inline">\(w_j = \dfrac{n_j}{n_j + \lambda}\)</span>, <span class="math inline">\(\lambda = \dfrac{\hat\sigma^2}{\hat\sigma^2_u}\)</span>: small groups shrink toward the average</li>
+<li><span class="math inline">\(\text{ICC} = \dfrac{\hat\sigma^2_u}{\hat\sigma^2_u + \hat\sigma^2}\)</span></li>
+<li>Fixed: these levels are all you care about. Random: the levels are a sample of many.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Mixed-Effects Logistic Regression (Lesson 24)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Mixed-Effects Logistic Regression (Lesson 24)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\log\dfrac{p_{ij}}{1 - p_{ij}} = \mu + u_j\)</span>, <span class="math inline">\(u_j \sim N(0, \sigma^2_u)\)</span>. No <span class="math inline">\(\varepsilon\)</span>: pass or fail is the noise.</li>
+<li><code>glmer(y ~ x + (1 | group), family = binomial, data = d)</code></li>
+<li><code>predict(fit, newdata, type = "response", allow.new.levels = TRUE)</code></li>
+<li><code>glm</code> with a dummy per group: a group at 100% gets <span class="math inline">\(\hat\beta \to \infty\)</span>. <code>glmer</code> shrinks it.</li>
+<li><span class="math inline">\(\text{ICC} = \dfrac{\hat\sigma^2_u}{\hat\sigma^2_u + \pi^2/3}\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Trees and Random Forest (Lesson 25)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Trees and Random Forest (Lesson 25)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>A tree splits the data into boxes. Each split picks the predictor and cut that lowers Gini impurity the most.</li>
+<li>Gini for a box: <span class="math inline">\(G = 2p(1 - p)\)</span>. After a split, average the two boxes, weighted by size.</li>
+<li>A tree grown all the way memorizes the training data and does worse on new data. Limit it.</li>
+<li>Random forest: many trees, each on a bootstrap sample, each split choosing from <code>mtry</code> random predictors. The forest votes.</li>
+<li><code>randomForest(y ~ ., data = train, ntree = , mtry = , nodesize = )</code>; tune on out-of-bag <span class="math inline">\(F_1\)</span>.</li>
+<li><code>predict(fit, newdata, type = "prob")</code> gives the share of trees that vote yes.</li>
+<li>Variable importance says which predictors the forest leans on, not how.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Model Competition (Lesson 26)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Model Competition (Lesson 26)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Six model types on the Memo 4 leads, scored on <span class="math inline">\(F_1\)</span> of the <code>call</code> column.</li>
+<li>Logistic at <span class="math inline">\(0.5\)</span> calls nobody: about 97% accurate, <span class="math inline">\(F_1 = 0\)</span>.</li>
+<li>Tune the cut on <code>train</code> (five-fold cross-validation) or on the forest’s out-of-bag votes. Never on <code>test</code>.</li>
+<li>Check on <code>test</code>, then refit on all 12,000 before you predict the incoming leads.</li>
+<li>Calls <span class="math inline">\(= TP + FP\)</span>. The recruiters can make 1,230.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-28" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-28">What We’re Doing: Lesson 28</h2>
+<section id="so-far-supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="so-far-supervised-learning">So Far: Supervised Learning</h3>
+<p>Every model since Lesson 1 had a <strong>response</strong> <span class="math inline">\(y\)</span> and <strong>predictors</strong> <span class="math inline">\(x\)</span>. We used the <span class="math inline">\(x\)</span>’s to model the <span class="math inline">\(y\)</span>.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Lesson</th>
+<th style="text-align: left;"><span class="math inline">\(y\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(x\)</span>’s</th>
+<th style="text-align: left;">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">AFT score (a number)</td>
+<td style="text-align: left;">company</td>
+<td style="text-align: left;"><code>lmer(score ~ 1 + (1 | company))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">rifle hit (yes or no)</td>
+<td style="text-align: left;">distance, position, shooter</td>
+<td style="text-align: left;"><code>glmer(hit ~ dist100 + position + (1 | shooter))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">clinic no-show (yes or no)</td>
+<td style="text-align: left;">days between booking and the appointment</td>
+<td style="text-align: left;"><code>glm(no_show ~ lead_days)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">IOCT pass (yes or no)</td>
+<td style="text-align: left;">height, weight, pull-ups, run, plank</td>
+<td style="text-align: left;"><code>randomForest(pass ~ .)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">lead enlists (yes or no)</td>
+<td style="text-align: left;">the Memo 4 lead columns</td>
+<td style="text-align: left;">your choice</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Regression:</strong> <span class="math inline">\(y\)</span> is a number.</li>
+<li><strong>Classification:</strong> <span class="math inline">\(y\)</span> is a category.</li>
+</ul>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>In every case we had the right answer for the training data.</li>
+<li>So we could check ourselves: test set error, accuracy, <span class="math inline">\(F_1\)</span>, a leaderboard.</li>
+<li>This is <strong>supervised learning</strong>. The <span class="math inline">\(y\)</span> supervises.</li>
+</ul>
+</div>
+</section>
+<section id="what-if-we-dont-have-a-y" class="level3">
+<h3 class="anchored" data-anchor-id="what-if-we-dont-have-a-y">What If We Don’t Have a <span class="math inline">\(y\)</span>?</h3>
+<div class="compact">
+<ul>
+<li>Only <span class="math inline">\(x\)</span>’s. Nothing to predict.</li>
+<li>No right answer, so no test set, no accuracy, no <span class="math inline">\(F_1\)</span>.</li>
+<li>ISLR (page 496): “there is no way to check our work because we don’t know the true answer.”</li>
+<li>This is <strong>unsupervised learning</strong>: Block 4.</li>
+<li>The goal is to find structure: which columns move together, which rows group together.</li>
+</ul>
+</div>
+</section>
+<section id="the-data-crime-in-50-states" class="level3">
+<h3 class="anchored" data-anchor-id="the-data-crime-in-50-states">The Data: Crime in 50 States</h3>
+<p><code>USArrests</code> ships with R. One row per state, 1973.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Murder</code></td>
+<td style="text-align: left;">murder arrests per 100,000 residents</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Assault</code></td>
+<td style="text-align: left;">assault arrests per 100,000 residents</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>UrbanPop</code></td>
+<td style="text-align: left;">percent of residents living in cities</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Rape</code></td>
+<td style="text-align: left;">rape arrests per 100,000 residents</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(USArrests, <span class="at">rownames =</span> <span class="st">"state"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>arrests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 5
+   state       Murder Assault UrbanPop  Rape
+   &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+ 1 Alabama       13.2     236       58  21.2
+ 2 Alaska        10       263       48  44.5
+ 3 Arizona        8.1     294       80  31  
+ 4 Arkansas       8.8     190       50  19.5
+ 5 California     9       276       91  40.6
+ 6 Colorado       7.9     204       78  38.7
+ 7 Connecticut    3.3     110       77  11.1
+ 8 Delaware       5.9     238       72  15.8
+ 9 Florida       15.4     335       80  31.9
+10 Georgia       17.4     211       60  25.8
+# ℹ 40 more rows</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>No <span class="math inline">\(y\)</span>. Four <span class="math inline">\(x\)</span>’s and a state name.</li>
+</ul>
+</div>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>state, <span class="at">names_to =</span> <span class="st">"column"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(column) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(value), <span class="at">mean =</span> <span class="fu">mean</span>(value), <span class="at">max =</span> <span class="fu">max</span>(value), <span class="at">sd =</span> <span class="fu">sd</span>(value))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  column     min   mean   max    sd
+  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Assault   45   171.   337   83.3 
+2 Murder     0.8   7.79  17.4  4.36
+3 Rape       7.3  21.2   46    9.37
+4 UrbanPop  32    65.5   91   14.5 </code></pre>
+</div>
+</div>
+</section>
+<section id="each-column-on-its-own" class="level4">
+<h4 class="anchored" data-anchor-id="each-column-on-its-own">Each Column on Its Own</h4>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>state, <span class="at">names_to =</span> <span class="st">"column"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> column, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="all-four-on-one-axis" class="level4">
+<h4 class="anchored" data-anchor-id="all-four-on-one-axis">All Four on One Axis</h4>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>state, <span class="at">names_to =</span> <span class="st">"column"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value, column)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>What do you notice?</li>
+</ul>
+</div>
+</section>
+<section id="on-a-map" class="level4">
+<h4 class="anchored" data-anchor-id="on-a-map">On a Map</h4>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)   <span class="co"># the lower 48: no Alaska or Hawaii</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">str_to_lower</span>(state)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(Murder, Assault, UrbanPop, Rape), <span class="at">names_to =</span> <span class="st">"column"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(column) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">percent_rank</span>(value)) <span class="sc">|&gt;</span>   <span class="co"># 0 = lowest state, 1 = highest</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(states, <span class="at">by =</span> <span class="st">"region"</span>, <span class="at">relationship =</span> <span class="st">"many-to-many"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(column)) <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(long, lat, <span class="at">group =</span> group, <span class="at">fill =</span> rank)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_quickmap</span>() <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> column) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Rank"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"lowest"</span>, <span class="st">"highest"</span>)) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="two-columns-at-a-time" class="level4">
+<h4 class="anchored" data-anchor-id="two-columns-at-a-time">Two Columns at a Time</h4>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> arrests <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>state, <span class="at">names_to =</span> <span class="st">"column"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(long, <span class="at">by =</span> <span class="st">"state"</span>, <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_x"</span>, <span class="st">"_y"</span>), <span class="at">relationship =</span> <span class="st">"many-to-many"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(column_x <span class="sc">!=</span> column_y) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value_x, value_y)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(column_y <span class="sc">~</span> column_x, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>state) <span class="sc">|&gt;</span> <span class="fu">cor</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Murder Assault UrbanPop Rape
+Murder     1.00    0.80     0.07 0.56
+Assault    0.80    1.00     0.26 0.67
+UrbanPop   0.07    0.26     1.00 0.41
+Rape       0.56    0.67     0.41 1.00</code></pre>
+</div>
+</div>
+</section>
+<section id="who-is-at-the-top" class="level4">
+<h4 class="anchored" data-anchor-id="who-is-at-the-top">Who Is at the Top?</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>state, <span class="at">names_to =</span> <span class="st">"column"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(column) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(value, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">top_three =</span> <span class="fu">paste</span>(state, <span class="at">collapse =</span> <span class="st">", "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  column   top_three                               
+  &lt;chr&gt;    &lt;chr&gt;                                   
+1 Assault  North Carolina, Florida, Maryland       
+2 Murder   Georgia, Mississippi, Florida, Louisiana
+3 Rape     Nevada, Alaska, California              
+4 UrbanPop California, New Jersey, Rhode Island    </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="how-can-we-rank-the-states-by-crime" class="level3">
+<h3 class="anchored" data-anchor-id="how-can-we-rank-the-states-by-crime">How Can We Rank the States by Crime?</h3>
+<div class="compact">
+<ul>
+<li>Each crime crowns a different state: Georgia (Murder), North Carolina (Assault), Nevada (Rape).</li>
+<li>The three crimes overlap a lot: correlations from 0.56 to 0.80.</li>
+<li>We want <strong>one crime number</strong> per state. How do we combine them?</li>
+</ul>
+</div>
+<section id="try-1-add-them-up" class="level4">
+<h4 class="anchored" data-anchor-id="try-1-add-them-up">Try 1: Add Them Up</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>added <span class="ot">&lt;-</span> arrests <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">crime =</span> Murder <span class="sc">+</span> Assault <span class="sc">+</span> Rape)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>added <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(crime, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  state          Murder Assault UrbanPop  Rape crime
+  &lt;chr&gt;           &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Florida          15.4     335       80  31.9  382.
+2 North Carolina   13       337       45  16.1  366.
+3 Maryland         11.3     300       67  27.8  339.
+4 Arizona           8.1     294       80  31    333.
+5 New Mexico       11.4     285       70  32.1  328.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(added<span class="sc">$</span>crime, added<span class="sc">$</span>Assault)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9966603</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>The ranking is just Assault.</li>
+<li>Assaults are counted in the hundreds, murders in single digits. The biggest units win.</li>
+</ul>
+</div>
+</section>
+<section id="try-2-scale-then-average" class="level4">
+<h4 class="anchored" data-anchor-id="try-2-scale-then-average">Try 2: Scale, Then Average</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>averaged <span class="ot">&lt;-</span> arrests <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Murder, Assault, Rape), \(x) (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x)),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">crime =</span> (Murder <span class="sc">+</span> Assault <span class="sc">+</span> Rape) <span class="sc">/</span> <span class="dv">3</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>averaged <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(crime, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  state      Murder Assault UrbanPop  Rape crime
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Florida     1.75    1.97        80  1.14  1.62
+2 Nevada      1.01    0.975       81  2.64  1.54
+3 Alaska      0.508   1.11        48  2.48  1.37
+4 California  0.278   1.26        91  2.07  1.20
+5 Michigan    0.990   1.01        74  1.48  1.16</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Each crime is now in standard deviations, <span class="math inline">\(\dfrac{x - \bar x}{s}\)</span>, so no crime wins on units.</li>
+<li>But <strong>we</strong> picked the weights: one third each, and zero for UrbanPop.</li>
+<li>Why equal? Why leave UrbanPop out? How much does one number lose?</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="what-we-want" class="level3">
+<h3 class="anchored" data-anchor-id="what-we-want">What We Want</h3>
+<div class="compact">
+<ul>
+<li>Let the data pick the weights.</li>
+<li>Know how much one number keeps, and what it misses.</li>
+<li>That is <strong>principal components analysis (PCA)</strong>.</li>
+</ul>
+</div>
+</section>
+<section id="principal-components" class="level3">
+<h3 class="anchored" data-anchor-id="principal-components">Principal Components</h3>
+<p>Try 2 built <strong>one new column</strong>, <code>crime</code>, as a weighted sum of the old columns, with weights we picked.</p>
+<p>PCA builds <strong>new columns</strong> the same way, with weights the data picks. Each new column is a <strong>principal component</strong>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Z_1 &amp;= \phi_{11}\,\text{Murder} + \phi_{21}\,\text{Assault} + \phi_{31}\,\text{UrbanPop} + \phi_{41}\,\text{Rape} \\
+Z_2 &amp;= \phi_{12}\,\text{Murder} + \phi_{22}\,\text{Assault} + \phi_{32}\,\text{UrbanPop} + \phi_{42}\,\text{Rape} \\
+Z_3 &amp;= \phi_{13}\,\text{Murder} + \phi_{23}\,\text{Assault} + \phi_{33}\,\text{UrbanPop} + \phi_{43}\,\text{Rape} \\
+Z_4 &amp;= \phi_{14}\,\text{Murder} + \phi_{24}\,\text{Assault} + \phi_{34}\,\text{UrbanPop} + \phi_{44}\,\text{Rape}
+\end{aligned}
+\]</span></p>
+<section id="what-each-piece-is" class="level4">
+<h4 class="anchored" data-anchor-id="what-each-piece-is">What Each Piece Is</h4>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Piece</th>
+<th style="text-align: left;">What it is</th>
+<th style="text-align: left;">In R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(Z_1\)</span></td>
+<td style="text-align: left;">A new column. One number per state, called its <strong>score</strong>.</td>
+<td style="text-align: left;"><code>pca$x[, 1]</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\phi_{11}, \phi_{21}, \phi_{31}, \phi_{41}\)</span></td>
+<td style="text-align: left;">The four weights that build <span class="math inline">\(Z_1\)</span>, called <strong>loadings</strong>. <span class="math inline">\(\phi_{21}\)</span> is Assault’s weight in <span class="math inline">\(Z_1\)</span>.</td>
+<td style="text-align: left;"><code>pca$rotation[, 1]</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\text{Var}(Z_1)\)</span></td>
+<td style="text-align: left;">How spread out the 50 scores are.</td>
+<td style="text-align: left;"><code>summary(pca)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li>Each column is <strong>scaled first</strong>, <span class="math inline">\(\dfrac{x - \bar x}{s}\)</span>, like Try 2. No column wins on units, and every <span class="math inline">\(Z\)</span> averages 0.</li>
+<li>Four columns in, four new columns out.</li>
+</ul>
+</div>
+</section>
+<section id="fit-pca" class="level4">
+<h4 class="anchored" data-anchor-id="fit-pca">Fit PCA</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(arrests <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>state), <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>rotation[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="sc">-</span>pca<span class="sc">$</span>rotation[, <span class="dv">1</span>]   <span class="co"># flip PC1 so more crime is higher</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>x[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="sc">-</span>pca<span class="sc">$</span>x[, <span class="dv">1</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> arrests <span class="sc">|&gt;</span> <span class="fu">bind_cols</span>(<span class="fu">as_tibble</span>(pca<span class="sc">$</span>x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="compact">
+<ul>
+<li><code>scale. = TRUE</code> scales each column first.</li>
+<li>R picks the sign of each component, and it made more crime negative. The two middle lines flip PC1 so <strong>higher is more crime</strong>. Flipping changes nothing else.</li>
+<li>R names the new columns <code>PC1</code> to <code>PC4</code>. <code>PC1</code> is <span class="math inline">\(Z_1\)</span>: each state’s score on the first principal component.</li>
+</ul>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(PC1, <span class="at">n =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  state      Murder Assault UrbanPop  Rape   PC1     PC2    PC3     PC4
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 Florida      15.4     335       80  31.9  2.98 -0.0388  0.571 -0.0953
+2 Nevada       12.2     252       81  46    2.85  0.768  -1.15   0.311 
+3 California    9       276       91  40.6  2.50  1.53   -0.593 -0.339 
+4 Michigan     12.1     255       74  35.1  2.09  0.154  -0.381  0.101 
+5 New Mexico   11.4     285       70  32.1  1.96 -0.141  -0.182 -0.336 
+6 Alaska       10       263       48  44.5  1.93 -1.06   -2.02  -0.434 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">|&gt;</span> <span class="fu">slice_min</span>(PC1, <span class="at">n =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  state         Murder Assault UrbanPop  Rape   PC1     PC2     PC3     PC4
+  &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 North Dakota     0.8      45       44   7.3 -2.96 -0.593  -0.298  -0.251 
+2 Vermont          2.2      48       32  11.2 -2.77 -1.39   -0.833  -0.143 
+3 Maine            2.1      83       51   7.8 -2.37 -0.373   0.0650 -0.327 
+4 New Hampshire    2.1      57       56   9.5 -2.36  0.0179 -0.0365 -0.0328
+5 Iowa             2.2      56       57  11.3 -2.23  0.103  -0.163   0.0174
+6 West Virginia    5.7      81       39   9.3 -2.09 -1.41   -0.104   0.131 </code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Most crime: Florida, Nevada, California. Least: North Dakota, Vermont, Maine.</li>
+</ul>
+</div>
+</section>
+<section id="how-the-weights-are-chosen" class="level4">
+<h4 class="anchored" data-anchor-id="how-the-weights-are-chosen">How the Weights Are Chosen</h4>
+<p>What R chose, the 16 <span class="math inline">\(\phi\)</span>’s, one set of four for each <span class="math inline">\(Z\)</span> (columns scaled):</p>
+<p><span class="math display">\[
+\begin{aligned}
+Z_1 &amp;= \phi_{11}\,\text{Murder} + \phi_{21}\,\text{Assault} + \phi_{31}\,\text{UrbanPop} + \phi_{41}\,\text{Rape} \\
+Z_2 &amp;= \phi_{12}\,\text{Murder} + \phi_{22}\,\text{Assault} + \phi_{32}\,\text{UrbanPop} + \phi_{42}\,\text{Rape} \\
+Z_3 &amp;= \phi_{13}\,\text{Murder} + \phi_{23}\,\text{Assault} + \phi_{33}\,\text{UrbanPop} + \phi_{43}\,\text{Rape} \\
+Z_4 &amp;= \phi_{14}\,\text{Murder} + \phi_{24}\,\text{Assault} + \phi_{34}\,\text{UrbanPop} + \phi_{44}\,\text{Rape}
+\end{aligned}
+\]</span></p>
+<p>How R picks the <span class="math inline">\(\phi\)</span>’s:</p>
+<div class="compact">
+<ul>
+<li>The scaled columns each have variance 1, so the total is 4.</li>
+<li><strong><span class="math inline">\(\phi_{11}, \dots, \phi_{41}\)</span>:</strong> chosen so <span class="math inline">\(Z_1\)</span> is as spread out as possible (biggest variance).</li>
+<li><strong><span class="math inline">\(\phi_{12}, \dots, \phi_{42}\)</span>:</strong> chosen so <span class="math inline">\(Z_2\)</span> is as spread out as possible while staying uncorrelated with <span class="math inline">\(Z_1\)</span>.</li>
+<li><strong><span class="math inline">\(Z_3\)</span> and <span class="math inline">\(Z_4\)</span>:</strong> the same, each uncorrelated with every <span class="math inline">\(Z\)</span> before.</li>
+<li>For every <span class="math inline">\(Z\)</span>, its four <span class="math inline">\(\phi\)</span>’s have squares summing to 1.</li>
+</ul>
+</div>
+<div class="rulecols">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><span class="math inline">\(Z_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(Z_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(Z_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(Z_4\)</span></th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Variance</td>
+<td style="text-align: center;">2.48</td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.36</td>
+<td style="text-align: center;">0.17</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Why these rules?">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why these rules?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Squares sum to 1:</strong> without it, double every <span class="math inline">\(\phi\)</span> and the variance doubles, so there would be no biggest.</li>
+<li><strong>Uncorrelated:</strong> without it, <span class="math inline">\(Z_2\)</span>’s best <span class="math inline">\(\phi\)</span>’s would just be <span class="math inline">\(Z_1\)</span>’s again.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-with-just-two-columns" class="level4">
+<h4 class="anchored" data-anchor-id="pca-with-just-two-columns">PCA With Just Two Columns</h4>
+<p>Start small: PCA on only Murder and Assault, scaled.</p>
+<p><span class="math display">\[
+Z_1 = \phi_{11}\,\text{Murder} + \phi_{21}\,\text{Assault}
+\]</span></p>
+<div class="compact">
+<ul>
+<li>The scaled columns each have variance 1, so the total is 2.</li>
+<li><strong><span class="math inline">\(\phi_{11}, \phi_{21}\)</span>:</strong> chosen so <span class="math inline">\(Z_1\)</span> is as spread out as possible, with squares summing to 1.</li>
+<li><strong><span class="math inline">\(Z_2\)</span>:</strong> the line at a right angle, uncorrelated with <span class="math inline">\(Z_1\)</span>.</li>
+</ul>
+</div>
+<p>On the plot:</p>
+<div class="compact">
+<ul>
+<li><strong>Green arrow:</strong> <span class="math inline">\(\phi_{11}\)</span> across, <span class="math inline">\(\phi_{21}\)</span> up. Turning the line changes them.</li>
+<li><strong>Gray lines:</strong> each state dropped onto the line. Where it lands is its <span class="math inline">\(Z_1\)</span> score.</li>
+<li><strong>Curve:</strong> <span class="math inline">\(\text{Var}(Z_1)\)</span> at every angle.</li>
+</ul>
+</div>
+<script>window.PCA_APP =  {"states":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],"cols":["Murder","Assault","UrbanPop","Rape"],"X":[[1.24256,0.78284,-0.52091,-0.00342],[0.50786,1.10682,-1.21176,2.4842],[0.07163,1.4788,0.99898,1.04288],[0.23235,0.23087,-1.07359,-0.18492],[0.27827,1.26281,1.75892,2.06782],[0.02571,0.39886,0.86081,1.86497],[-1.03042,-0.72908,0.79172,-1.08174],[-0.43347,0.80684,0.44629,-0.57995],[1.74767,1.97078,0.99898,1.13897],[2.20686,0.48285,-0.38274,0.4877],[-0.57123,-1.49704,1.20624,-0.11018],[-1.19113,-0.60909,-0.79725,-0.75077],[0.5997,0.93883,1.20624,0.29552],[-0.135,-0.69308,-0.03731,-0.02477],[-1.28297,-1.37705,-0.58999,-1.06039],[-0.41051,-0.66909,0.03178,-0.34506],[0.43898,-0.74108,-0.93542,-0.52656],[1.74767,0.93883,0.03178,0.10335],[-1.30593,-1.05307,-1.00451,-1.43406],[0.80634,1.5508,0.10087,0.70123],[-0.77787,-0.26111,1.34441,-0.52656],[0.99001,1.01083,0.58447,1.48061],[-1.16818,-1.18506,0.03178,-0.67603],[1.90839,1.05883,-1.48811,-0.44115],[0.27827,0.08688,0.30812,0.74394],[-0.41051,-0.74108,-0.86634,-0.51589],[-0.80082,-0.82508,-0.24456,-0.50521],[1.01297,0.97483,1.06807,2.64435],[-1.30593,-1.36505,-0.65908,-1.25256],[-0.08908,-0.14111,1.62075,-0.25965],[0.82929,1.37081,0.30812,1.16032],[0.76042,0.99883,1.41349,0.51973],[1.19665,1.99478,-1.41902,-0.54792],[-1.6044,-1.50904,-1.48811,-1.48745],[-0.11204,-0.60909,0.65355,0.01794],[-0.27276,-0.23711,0.16995,-0.13153],[-0.66307,-0.14111,0.10087,0.86138],[-0.34164,-0.77708,0.44629,-0.67603],[-1.00746,0.03888,1.48258,-1.38068],[1.51808,1.29881,-1.21176,0.13538],[-0.91562,-1.01707,-1.41902,-0.90024],[1.24256,0.20687,-0.45182,0.60514],[1.12777,0.36286,0.99898,0.45567],[-1.05338,-0.60909,0.99898,0.17808],[-1.28297,-1.47304,-2.31714,-1.07106],[0.16347,-0.17711,-0.17548,-0.0568],[-0.8697,-0.3091,0.51538,0.53041],[-0.47939,-1.07706,-1.83354,-1.27392],[-1.19113,-1.41305,0.03178,-1.11377],[-0.22684,-0.11711,-0.38274,-0.6013]],"R":[[1,0.801873,0.069573,0.563579],[0.801873,1,0.258872,0.665241],[0.069573,0.258872,1,0.411341],[0.563579,0.665241,0.411341,1]],"v1":[0.535899,0.583184,0.278191,0.543432],"v2":[-0.418181,-0.187986,0.872806,0.167319],"lam":[2.480242,0.989765,0.356563,0.17343]} ;</script>
+<style>
+.pca-app { border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 1rem 0; }
+.pca-app .row-flex { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+.pca-app .row-flex > div { flex: 1 1 320px; min-width: 0; }
+.pca-app svg { width: 100%; height: auto; display: block; }
+.pca-app .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.pca-app .controls input[type=range] { flex: 1 1 200px; }
+.pca-app button { padding: 2px 10px; }
+.pca-app .readout { font-family: var(--bs-font-monospace, monospace); font-size: 0.9rem; line-height: 1.5; }
+.pca-app .oneline { white-space: nowrap; overflow-x: auto; }
+.pca-app .cap { font-size: 0.85rem; color: #666; margin: 2px 0; }
+.pca-app table.ld { border-collapse: collapse; font-size: 0.9rem; }
+.pca-app table.ld td, .pca-app table.ld th { padding: 1px 8px; text-align: right; }
+.pca-app table.ld th:first-child, .pca-app table.ld td:first-child { text-align: left; }
+</style>
+
+<div class="pca-app" id="app-line">
+  <div class="controls">
+    <label for="ang">Angle of the line:</label>
+    <input type="range" id="ang" min="0" max="179" step="1" value="150">
+    <span id="angval" class="readout"></span>
+    <button id="play">Play</button>
+    <button id="best">Jump to the best line</button>
+  </div>
+  <div class="readout oneline" id="lineread"></div>
+  <div class="row-flex">
+    <div>
+      <svg id="scat" viewbox="0 0 400 400"></svg>
+      <p class="cap">Blue: states. Red: the line. Green: φ₁₁ and φ₂₁. Gray: each drop. Dashed: Z₂.</p>
+    </div>
+    <div>
+      <svg id="curve" viewbox="0 0 400 230"></svg>
+      <p class="cap">Var(Z₁) at every angle. The dot is the current line.</p>
+    </div>
+  </div>
+  <svg id="strip1" viewbox="0 0 820 70"></svg>
+  <p class="cap">The 50 scores, Z, on a number line. Hover a dot for the state.</p>
+</div>
+
+<script>
+(function () {
+  const D = window.PCA_APP, NS = "http://www.w3.org/2000/svg";
+  const n = D.states.length;
+  const xs = D.X.map(r => r[0]), ys = D.X.map(r => r[1]);   // Murder, Assault (scaled)
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const variance = z => { const m = z.reduce((a, b) => a + b, 0) / z.length;
+    return z.reduce((a, b) => a + (b - m) ** 2, 0) / (z.length - 1); };
+  const scoresAt = deg => { const t = deg * Math.PI / 180, c = Math.cos(t), s = Math.sin(t);
+    return xs.map((x, i) => x * c + ys[i] * s); };
+
+  // scatter
+  const sc = document.getElementById("scat"), S = 62, cx = 200, cy = 200;
+  const px = x => cx + x * S, py = y => cy - y * S;
+  el("line", {x1: 10, y1: cy, x2: 390, y2: cy, stroke: "#ccc"}, sc);
+  el("line", {x1: cx, y1: 10, x2: cx, y2: 390, stroke: "#ccc"}, sc);
+  const tx = el("text", {x: 390, y: cy - 6, "text-anchor": "end", "font-size": 12, fill: "#555"}, sc); tx.textContent = "Murder (scaled)";
+  const ty = el("text", {x: cx + 6, y: 20, "font-size": 12, fill: "#555"}, sc); ty.textContent = "Assault (scaled)";
+  const perp = el("line", {stroke: "firebrick", "stroke-dasharray": "5,4", "stroke-width": 1}, sc);
+  const main = el("line", {stroke: "firebrick", "stroke-width": 2.5}, sc);
+  const drops = [], lands = [];
+  for (let i = 0; i < n; i++) drops.push(el("line", {stroke: "#bbb", "stroke-width": 1}, sc));
+  for (let i = 0; i < n; i++) { const c = el("circle", {cx: px(xs[i]), cy: py(ys[i]), r: 4, fill: "steelblue"}, sc);
+    el("title", {}, c).textContent = D.states[i]; }
+  for (let i = 0; i < n; i++) lands.push(el("circle", {r: 2.6, fill: "firebrick"}, sc));
+  // Florida: its drop in black, so one gray line has a name
+  const fl = D.states.indexOf("Florida");
+  const flDrop = el("line", {stroke: "black", "stroke-width": 2}, sc);
+  el("circle", {cx: px(xs[fl]), cy: py(ys[fl]), r: 6, fill: "none", stroke: "black", "stroke-width": 1.5}, sc);
+  const flLab = el("text", {x: px(xs[fl]) + 8, y: py(ys[fl]) - 8, "font-size": 12, "font-weight": "bold"}, sc); flLab.textContent = "Florida";
+  // the weights as a unit arrow with its two legs
+  const G = "#1b7a3a";
+  const legX = el("line", {stroke: G, "stroke-width": 2, "stroke-dasharray": "4,3"}, sc);
+  const legY = el("line", {stroke: G, "stroke-width": 2, "stroke-dasharray": "4,3"}, sc);
+  const arrow = el("line", {stroke: G, "stroke-width": 3.5}, sc);
+  const tip = el("circle", {r: 4, fill: G}, sc);
+  const labX = el("text", {"font-size": 13, fill: G, "font-weight": "bold", "text-anchor": "middle"}, sc);
+  const labY = el("text", {"font-size": 13, fill: G, "font-weight": "bold"}, sc);
+
+  // spread curve
+  const cv = document.getElementById("curve");
+  const angs = [...Array(180).keys()], vars = angs.map(a => variance(scoresAt(a)));
+  const vmax = 2, gx = a => 40 + a * (350 / 179), gy = v => 200 - v * (180 / vmax);
+  el("line", {x1: 40, y1: 200, x2: 390, y2: 200, stroke: "#999"}, cv);
+  el("line", {x1: 40, y1: 20, x2: 40, y2: 200, stroke: "#999"}, cv);
+  [0, 45, 90, 135, 179].forEach(a => { const t = el("text", {x: gx(a), y: 216, "text-anchor": "middle", "font-size": 11, fill: "#555"}, cv); t.textContent = a + "°"; });
+  [0, 1, 2].forEach(v => { const t = el("text", {x: 34, y: gy(v) + 4, "text-anchor": "end", "font-size": 11, fill: "#555"}, cv); t.textContent = v; });
+  const lab = el("text", {x: 48, y: 30, "font-size": 12, fill: "#555"}, cv); lab.textContent = "Var(Z)";
+  el("path", {d: angs.map((a, i) => (i ? "L" : "M") + gx(a) + "," + gy(vars[i])).join(""), fill: "none", stroke: "steelblue", "stroke-width": 2}, cv);
+  const bestA = vars.indexOf(Math.max(...vars));
+  el("line", {x1: gx(bestA), y1: 20, x2: gx(bestA), y2: 200, stroke: "#999", "stroke-dasharray": "3,3"}, cv);
+  const mk = el("circle", {r: 6, fill: "firebrick"}, cv);
+
+  // strip
+  const st = document.getElementById("strip1"), sx = z => 410 + z * 95;
+  el("line", {x1: 20, y1: 35, x2: 800, y2: 35, stroke: "#999"}, st);
+  [-4, -2, 0, 2, 4].forEach(z => { el("line", {x1: sx(z), y1: 30, x2: sx(z), y2: 40, stroke: "#999"}, st);
+    const t = el("text", {x: sx(z), y: 58, "text-anchor": "middle", "font-size": 12, fill: "#555"}, st); t.textContent = z; });
+  const sdots = D.states.map(s => { const c = el("circle", {cy: 35, r: 5, fill: "firebrick", "fill-opacity": 0.5}, st);
+    el("title", {}, c).textContent = s; return c; });
+
+  const ang = document.getElementById("ang"), angval = document.getElementById("angval"), rd = document.getElementById("lineread");
+  function draw(deg) {
+    const t = deg * Math.PI / 180, c = Math.cos(t), s = Math.sin(t), z = scoresAt(deg), v = variance(z);
+    main.setAttribute("x1", px(-4 * c)); main.setAttribute("y1", py(-4 * s)); main.setAttribute("x2", px(4 * c)); main.setAttribute("y2", py(4 * s));
+    perp.setAttribute("x1", px(4 * s)); perp.setAttribute("y1", py(-4 * c)); perp.setAttribute("x2", px(-4 * s)); perp.setAttribute("y2", py(4 * c));
+    for (let i = 0; i < n; i++) { const lx = px(z[i] * c), ly = py(z[i] * s);
+      drops[i].setAttribute("x1", px(xs[i])); drops[i].setAttribute("y1", py(ys[i])); drops[i].setAttribute("x2", lx); drops[i].setAttribute("y2", ly);
+      lands[i].setAttribute("cx", lx); lands[i].setAttribute("cy", ly); sdots[i].setAttribute("cx", sx(z[i])); }
+    mk.setAttribute("cx", gx(deg)); mk.setAttribute("cy", gy(v));
+    flDrop.setAttribute("x1", px(xs[fl])); flDrop.setAttribute("y1", py(ys[fl]));
+    flDrop.setAttribute("x2", px(z[fl] * c)); flDrop.setAttribute("y2", py(z[fl] * s));
+    legX.setAttribute("x1", px(0)); legX.setAttribute("y1", py(0)); legX.setAttribute("x2", px(c)); legX.setAttribute("y2", py(0));
+    legY.setAttribute("x1", px(c)); legY.setAttribute("y1", py(0)); legY.setAttribute("x2", px(c)); legY.setAttribute("y2", py(s));
+    arrow.setAttribute("x1", px(0)); arrow.setAttribute("y1", py(0)); arrow.setAttribute("x2", px(c)); arrow.setAttribute("y2", py(s));
+    tip.setAttribute("cx", px(c)); tip.setAttribute("cy", py(s));
+    labX.setAttribute("x", px(c / 2)); labX.setAttribute("y", py(0) + 16); labX.textContent = "φ₁₁";
+    labY.setAttribute("x", px(c) + (c >= 0 ? 6 : -30)); labY.setAttribute("y", py(s / 2) + 4); labY.textContent = "φ₂₁";
+    angval.textContent = deg + "°";
+    rd.innerHTML = "Z₁ = φ₁₁ Murder + φ₂₁ Assault<br>" +
+      "&nbsp;&nbsp; = " + c.toFixed(3) + " Murder + " + s.toFixed(3) + " Assault<br>" +
+      "φ₁₁² + φ₂₁² = " + (c * c).toFixed(3) + " + " + (s * s).toFixed(3) + " = 1<br>" +
+      "Florida: Z₁ = " + c.toFixed(3) + "(" + xs[fl].toFixed(2) + ") + " + s.toFixed(3) + "(" + ys[fl].toFixed(2) + ") = " + z[fl].toFixed(2) + "<br>" +
+      "Var(Z₁) = " + v.toFixed(3) + "<br>" +
+      "Total = Var(Murder) + Var(Assault) = 1 + 1 = 2<br>" +
+      "Share kept = " + v.toFixed(3) + " / 2 = " + (50 * v).toFixed(1) + "%";
+  }
+  let timer = null;
+  ang.addEventListener("input", () => draw(+ang.value));
+  document.getElementById("best").addEventListener("click", () => { ang.value = bestA; draw(bestA); });
+  const pb = document.getElementById("play");
+  pb.addEventListener("click", () => {
+    if (timer) { clearInterval(timer); timer = null; pb.textContent = "Play"; return; }
+    pb.textContent = "Pause";
+    timer = setInterval(() => { const a = (+ang.value + 1) % 180; ang.value = a; draw(a); }, 45);
+  });
+  draw(+ang.value);
+})();
+</script>
+<div class="compact">
+<ul>
+<li>Play tries every <span class="math inline">\(\phi_{11}, \phi_{21}\)</span>. The peak of the curve is <span class="math inline">\(Z_1\)</span>.</li>
+<li>Two scaled columns always peak at 45 degrees. Four columns do not.</li>
+</ul>
+</div>
+</section>
+<section id="find-the-weights-all-four-columns" class="level4">
+<h4 class="anchored" data-anchor-id="find-the-weights-all-four-columns">Find the Weights: All Four Columns</h4>
+<p>Same idea, four columns. We cannot draw the line, but we can still drop every state onto it: that is the strip.</p>
+<div class="compact">
+<ul>
+<li><strong>Sliders:</strong> set <span class="math inline">\(\phi_{11}, \phi_{21}, \phi_{31}, \phi_{41}\)</span>. The page rescales them so the squares sum to 1.</li>
+<li><strong>Strip:</strong> each state’s <span class="math inline">\(Z_1\)</span> score. Wider means more spread.</li>
+<li><strong>Try it:</strong> just Murder, just Assault, equal crimes. Then try to beat them.</li>
+</ul>
+</div>
+<div class="pca-app" id="app-slide">
+  <div class="controls">
+    <button data-w="1,0,0,0">Just Murder</button>
+    <button data-w="0,1,0,0">Just Assault</button>
+    <button data-w="1,1,0,1">Equal crimes (Try 2)</button>
+    <button id="w-rand">Random</button>
+    <button id="w-best">Jump to the best weights</button>
+    <button id="w-reset">Start over</button>
+  </div>
+  <div class="sliders" id="w-sliders"></div>
+  <div class="readout oneline" id="w-read"></div>
+  <svg id="w-bar" viewbox="0 0 820 54"></svg>
+  <p class="cap">Var(Z₁) out of the total 4. Black tick: the best you have found.</p>
+  <svg id="w-strip" viewbox="0 0 820 96"></svg>
+  <p class="cap">The 50 scores. Florida is black. Hover a dot for the state.</p>
+</div>
+
+<style>
+.pca-app .sliders { display: grid; grid-template-columns: max-content 1fr 4.5em; gap: 4px 10px; align-items: center; margin: 6px 0 10px; }
+.pca-app .sliders label { font-weight: 600; }
+.pca-app .sliders span { font-family: var(--bs-font-monospace, monospace); text-align: right; }
+</style>
+
+<script>
+(function () {
+  const D = window.PCA_APP, NS = "http://www.w3.org/2000/svg", p = 4, n = D.states.length;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const sub = ["₁₁", "₂₁", "₃₁", "₄₁"], fl = D.states.indexOf("Florida");
+
+  // sliders
+  const box = document.getElementById("w-sliders"), sl = [], sv = [];
+  D.cols.forEach((c, j) => {
+    const lab = document.createElement("label"); lab.textContent = "φ" + sub[j] + "  " + c; box.appendChild(lab);
+    const r = document.createElement("input"); Object.assign(r, {type: "range", min: -1, max: 1, step: 0.01, value: j === 0 ? 1 : 0});
+    box.appendChild(r); sl.push(r);
+    const v = document.createElement("span"); box.appendChild(v); sv.push(v);
+    r.addEventListener("input", draw); });
+
+  // spread bar
+  const bar = document.getElementById("w-bar"), bx = v => 20 + v * 195;
+  el("rect", {x: bx(0), y: 8, width: bx(4) - bx(0), height: 18, fill: "#eee", stroke: "#999"}, bar);
+  const fill = el("rect", {x: bx(0), y: 8, height: 18, fill: "steelblue"}, bar);
+  const bestTick = el("line", {y1: 2, y2: 32, stroke: "black", "stroke-width": 3}, bar);
+  [0, 1, 2, 3, 4].forEach(v => { const t = el("text", {x: bx(v), y: 48, "text-anchor": "middle", "font-size": 12, fill: "#555"}, bar); t.textContent = v; });
+
+  // strip
+  const st = document.getElementById("w-strip"), sx = z => 410 + z * 95;
+  el("line", {x1: 20, y1: 40, x2: 800, y2: 40, stroke: "#999"}, st);
+  [-4, -2, 0, 2, 4].forEach(z => { el("line", {x1: sx(z), y1: 35, x2: sx(z), y2: 45, stroke: "#999"}, st);
+    const t = el("text", {x: sx(z), y: 62, "text-anchor": "middle", "font-size": 12, fill: "#555"}, st); t.textContent = z; });
+  const dots = D.states.map((s, i) => { const c = el("circle", {cy: 40, r: i === fl ? 6 : 5,
+      fill: i === fl ? "black" : "firebrick", "fill-opacity": i === fl ? 1 : 0.5}, st);
+    el("title", {}, c).textContent = s; return c; });
+  const lowLab = el("text", {x: 20, y: 86, "font-size": 12, fill: "#333"}, st);
+  const highLab = el("text", {x: 800, y: 86, "font-size": 12, fill: "#333", "text-anchor": "end"}, st);
+  const lowArrow = el("text", {x: 20, y: 20, "font-size": 12, fill: "#777"}, st); lowArrow.textContent = "low score";
+  const highArrow = el("text", {x: 800, y: 20, "font-size": 12, fill: "#777", "text-anchor": "end"}, st); highArrow.textContent = "high score";
+
+  let best = 0;
+  function draw() {
+    const raw = sl.map(r => +r.value), len = Math.sqrt(raw.reduce((a, b) => a + b * b, 0));
+    raw.forEach((v, j) => sv[j].textContent = v.toFixed(2));
+    const rd = document.getElementById("w-read");
+    if (len < 1e-9) { rd.innerHTML = "Set at least one weight away from 0."; return; }
+    const w = raw.map(x => x / len);
+    const z = D.X.map(r => r.reduce((a, x, j) => a + x * w[j], 0));
+    const m = z.reduce((a, b) => a + b, 0) / n, v = z.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1);
+    best = Math.max(best, v);
+    const f = x => (x < 0 ? "- " : "+ ") + Math.abs(x).toFixed(3);
+    const form = w.map((x, j) => (j === 0 ? (x < 0 ? "-" : "") + Math.abs(x).toFixed(3) : f(x)) + " " + D.cols[j]).join(" ");
+    rd.innerHTML = "Z₁ = φ₁₁ Murder + φ₂₁ Assault + φ₃₁ UrbanPop + φ₄₁ Rape<br>" +
+      "&nbsp;&nbsp; = " + form + "<br>" +
+      "φ₁₁² + φ₂₁² + φ₃₁² + φ₄₁² = " + w.map(x => (x * x).toFixed(3)).join(" + ") + " = 1<br>" +
+      "Florida: Z₁ = " + w.map((x, j) => x.toFixed(3) + "(" + D.X[fl][j].toFixed(2) + ")").join(" + ") + " = " + z[fl].toFixed(2) + "<br>" +
+      "Var(Z₁) = " + v.toFixed(3) + "&nbsp;&nbsp; Total = 1 + 1 + 1 + 1 = 4&nbsp;&nbsp; Share kept = " + (25 * v).toFixed(1) + "%<br>" +
+      "Best so far: " + best.toFixed(3) + " (" + (25 * best).toFixed(1) + "%)";
+    fill.setAttribute("width", bx(v) - bx(0));
+    bestTick.setAttribute("x1", bx(best)); bestTick.setAttribute("x2", bx(best));
+    z.forEach((s, i) => dots[i].setAttribute("cx", sx(s)));
+    const order = [...z.keys()].sort((a, b) => z[a] - z[b]);
+    lowLab.textContent = "Lowest: " + order.slice(0, 3).map(i => D.states[i]).join(", ");
+    highLab.textContent = "Highest: " + order.slice(-3).reverse().map(i => D.states[i]).join(", ");
+  }
+  const setW = ws => { ws.forEach((x, j) => sl[j].value = x); draw(); };
+  document.querySelectorAll("#app-slide button[data-w]").forEach(b => b.addEventListener("click", () => setW(b.dataset.w.split(",").map(Number))));
+  document.getElementById("w-rand").addEventListener("click", () => setW(sl.map(() => Math.round((Math.random() * 2 - 1) * 100) / 100)));
+  document.getElementById("w-best").addEventListener("click", () => setW(D.v1.map(x => Math.round(x * 100) / 100)));
+  document.getElementById("w-reset").addEventListener("click", () => { best = 0; setW([1, 0, 0, 0]); });
+  draw();
+})();
+</script>
+<div class="compact">
+<ul>
+<li>The best is about equal on the three crimes and less on UrbanPop: R’s <span class="math inline">\(Z_1\)</span>. Equal crimes (Try 2) gets close.</li>
+<li><span class="math inline">\(Z_2\)</span> would be the same game, using only weights uncorrelated with <span class="math inline">\(Z_1\)</span>.</li>
+<li>R does not slide. It solves for the weights directly: next section.</li>
+</ul>
+</div>
+</section>
+<section id="how-r-finds-the-loadings" class="level4">
+<h4 class="anchored" data-anchor-id="how-r-finds-the-loadings">How R Finds the Loadings</h4>
+<p>R does not search. It uses the eigen system of the correlation matrix:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(arrests <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>state)))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(e<span class="sc">$</span>vectors) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(pca<span class="sc">$</span>rotation)   <span class="co"># label the rows and columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Eigenvalues = the variances of the <span class="math inline">\(Z\)</span>’s:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>e<span class="sc">$</span>values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4802416 0.9897652 0.3565632 0.1734301</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4802416 0.9897652 0.3565632 0.1734301</code></pre>
+</div>
+</div>
+<p><strong>Eigenvectors = the loadings:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>e<span class="sc">$</span>vectors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                PC1        PC2        PC3         PC4
+Murder   -0.5358995  0.4181809 -0.3412327  0.64922780
+Assault  -0.5831836  0.1879856 -0.2681484 -0.74340748
+UrbanPop -0.2781909 -0.8728062 -0.3780158  0.13387773
+Rape     -0.5434321 -0.1673186  0.8177779  0.08902432</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               PC1        PC2        PC3         PC4
+Murder   0.5358995 -0.4181809  0.3412327  0.64922780
+Assault  0.5831836 -0.1879856  0.2681484 -0.74340748
+UrbanPop 0.2781909  0.8728062  0.3780158  0.13387773
+Rape     0.5434321  0.1673186 -0.8177779  0.08902432</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Same numbers.</li>
+<li>Some columns have the opposite sign. A <span class="math inline">\(Z\)</span> and its mirror image spread the same, so either sign is right.</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="reading-the-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="reading-the-loadings">Reading the Loadings</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               PC1        PC2        PC3         PC4
+Murder   0.5358995 -0.4181809  0.3412327  0.64922780
+Assault  0.5831836 -0.1879856  0.2681484 -0.74340748
+UrbanPop 0.2781909  0.8728062  0.3780158  0.13387773
+Rape     0.5434321  0.1673186 -0.8177779  0.08902432</code></pre>
+</div>
+</div>
+<p>The loadings fill in the formulas (each column scaled):</p>
+<p><span class="math display">\[
+\begin{aligned} Z_1 &amp;=  0.536\,\text{Murder} + 0.583\,\text{Assault} + 0.278\,\text{UrbanPop} + 0.543\,\text{Rape} \\ Z_2 &amp;= - 0.418\,\text{Murder} - 0.188\,\text{Assault} + 0.873\,\text{UrbanPop} + 0.167\,\text{Rape} \\ Z_3 &amp;=  0.341\,\text{Murder} + 0.268\,\text{Assault} + 0.378\,\text{UrbanPop} - 0.818\,\text{Rape} \\ Z_4 &amp;=  0.649\,\text{Murder} - 0.743\,\text{Assault} + 0.134\,\text{UrbanPop} + 0.089\,\text{Rape} \end{aligned}
+\]</span></p>
+<p>Read each <span class="math inline">\(Z\)</span> by its biggest weights:</p>
+<div class="wrapcols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Biggest weights</th>
+<th style="text-align: left;">A high score means</th>
+<th style="text-align: left;">Highest</th>
+<th style="text-align: left;">Lowest</th>
+<th style="text-align: center;">Share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(Z_1\)</span></td>
+<td style="text-align: left;">all three crimes, about 0.55 each</td>
+<td style="text-align: left;"><strong>more crime overall</strong></td>
+<td style="text-align: left;">Florida, Nevada</td>
+<td style="text-align: left;">North Dakota, Vermont</td>
+<td style="text-align: center;">62.0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(Z_2\)</span></td>
+<td style="text-align: left;">UrbanPop 0.87, Murder -0.42</td>
+<td style="text-align: left;"><strong>more urban</strong>, fewer murders</td>
+<td style="text-align: left;">Hawaii, California</td>
+<td style="text-align: left;">Mississippi, North Carolina</td>
+<td style="text-align: center;">24.7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(Z_3\)</span></td>
+<td style="text-align: left;">Rape -0.82</td>
+<td style="text-align: left;">no clear meaning</td>
+<td style="text-align: left;">Rhode Island, North Carolina</td>
+<td style="text-align: left;">Alaska, Nevada</td>
+<td style="text-align: center;">8.9%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(Z_4\)</span></td>
+<td style="text-align: left;">Murder 0.65, Assault -0.74</td>
+<td style="text-align: left;">no clear meaning</td>
+<td style="text-align: left;">Georgia, Hawaii</td>
+<td style="text-align: left;">North Carolina, Delaware</td>
+<td style="text-align: center;">4.3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(Z_1\)</span> and <span class="math inline">\(Z_2\)</span> carry most of the spread and have clear meanings: crime and urban.</li>
+<li><span class="math inline">\(Z_3\)</span> and <span class="math inline">\(Z_4\)</span> are small leftovers. More on how many to keep in Lesson 29.</li>
+</ul>
+</div>
+</section>
+<section id="how-much-does-each-keep" class="level3">
+<h3 class="anchored" data-anchor-id="how-much-does-each-keep">How Much Does Each Keep?</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4
+Standard deviation     1.5749 0.9949 0.59713 0.41645
+Proportion of Variance 0.6201 0.2474 0.08914 0.04336
+Cumulative Proportion  0.6201 0.8675 0.95664 1.00000</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Proportion of Variance:</strong> the variance of each <span class="math inline">\(Z\)</span> column as a share of the total. More in Lesson 29.</li>
+<li><span class="math inline">\(Z_1\)</span> alone keeps 62.0%. <span class="math inline">\(Z_1\)</span> and <span class="math inline">\(Z_2\)</span> together keep 86.8%.</li>
+</ul>
+</div>
+</section>
+<section id="back-to-the-ranking" class="level3">
+<h3 class="anchored" data-anchor-id="back-to-the-ranking">Back to the Ranking</h3>
+<p>Rank the states on <span class="math inline">\(Z_1\)</span>, next to equal weights on the three crimes:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">equal_crimes =</span> averaged<span class="sc">$</span>crime) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(PC1, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state, PC1, equal_crimes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  state        PC1 equal_crimes
+  &lt;chr&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+1 Florida     2.98         1.62
+2 Nevada      2.85         1.54
+3 California  2.50         1.20
+4 Michigan    2.09         1.16
+5 New Mexico  1.96         1.12</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(scores<span class="sc">$</span>PC1, averaged<span class="sc">$</span>crime)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.985298</code></pre>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Almost the same ranking as equal weights on the crimes.</li>
+<li>The difference: the data picked these weights, and we know <span class="math inline">\(Z_1\)</span> keeps 62.0%.</li>
+</ul>
+</div>
+</section>
+<section id="four-columns-two-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="four-columns-two-numbers">Four Columns, Two Numbers</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>arrows <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(pca<span class="sc">$</span>rotation, <span class="at">rownames =</span> <span class="st">"variable"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">PC1 =</span> <span class="dv">3</span> <span class="sc">*</span> PC1, <span class="at">PC2 =</span> <span class="dv">3</span> <span class="sc">*</span> PC2)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scores, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"gray80"</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"gray80"</span>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vector</span>(<span class="at">data =</span> arrows, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">fx =</span> PC1, <span class="at">fy =</span> PC2, <span class="at">color =</span> <span class="fu">I</span>(<span class="st">"firebrick"</span>)),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">normalize =</span> <span class="cn">FALSE</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">bind_rows</span>(scores <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">label =</span> state, <span class="at">type =</span> <span class="st">"state"</span>),</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                                   arrows <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">label =</span> variable, <span class="at">type =</span> <span class="st">"column"</span>,</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                                                    <span class="at">PC1 =</span> <span class="fl">1.15</span> <span class="sc">*</span> PC1, <span class="at">PC2 =</span> <span class="fl">1.15</span> <span class="sc">*</span> PC2)),</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">color =</span> type, <span class="at">fontface =</span> <span class="fu">if_else</span>(type <span class="sc">==</span> <span class="st">"column"</span>, <span class="st">"bold"</span>, <span class="st">"plain"</span>),</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">size =</span> type), <span class="at">max.overlaps =</span> <span class="dv">50</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">state =</span> <span class="st">"gray30"</span>, <span class="at">column =</span> <span class="st">"firebrick"</span>)) <span class="sc">+</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">state =</span> <span class="dv">3</span>, <span class="at">column =</span> <span class="fl">4.5</span>)) <span class="sc">+</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Z1 (right = more crime)"</span>, <span class="at">y =</span> <span class="st">"Z2 (up = more urban)"</span>) <span class="sc">+</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lesson-28_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li>Dots: each state’s <span class="math inline">\(Z_1\)</span> and <span class="math inline">\(Z_2\)</span> scores. Arrows: each column’s loadings (stretched 3x to show).</li>
+<li>The three crime arrows point right together. UrbanPop points up, on its own.</li>
+<li>California and Mississippi: both high crime. California is urban, Mississippi is not.</li>
+<li><code>biplot(pca, scale = 0)</code> draws the same picture in base R. That is the ISLR lab.</li>
+</ul>
+</div>
+</section>
+<section id="what-did-it-get-us" class="level3">
+<h3 class="anchored" data-anchor-id="what-did-it-get-us">What Did It Get Us?</h3>
+<div class="compact">
+<ul>
+<li>One crime number, with weights the data picked: <span class="math inline">\(Z_1\)</span> keeps 62.0%.</li>
+<li>Add <span class="math inline">\(Z_2\)</span> (how urban) and two numbers keep 86.8%.</li>
+<li>Scale first, or <span class="math inline">\(Z_1\)</span> is just the column with the biggest units.</li>
+<li>No <span class="math inline">\(y\)</span>, so nothing says these components are “right.” You judge them by whether they make sense.</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA376-AY27-1/lesson-27.html" class="pagination-link" aria-label="MA376 AY27-1 Lesson 27">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MA376 AY27-1 Lesson 27</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
