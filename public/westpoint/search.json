@@ -12451,5 +12451,247 @@
       "MA206-AY27-1",
       "Lesson 28"
     ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html",
+    "href": "MA206-AY27-1/lesson-29.html",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "NoteReview: Statistical Inference (Lessons 18 to 26)\n\n\n\n\n\n\n\nCLT: \\(\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\dfrac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\), approximately, for \\(n &gt; 40\\)\nConfidence interval: \\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nSix steps: hypotheses, conditions, test statistic, P-value, decision, conclusion\nOne group: \\(z\\) or \\(t\\) for \\(\\mu\\), \\(z\\) for \\(p\\)\nTwo groups: two-sample \\(t\\) for \\(\\mu_1 - \\mu_2\\), paired \\(t\\) for \\(\\mu_D\\), two-proportion \\(z\\) for \\(p_1 - p_2\\)\n\n\n\n\n\n\n\n\n\n\n\nBlock II: is there an effect? How big is it?\nBlock III: can we predict one variable from another?\nToday: one numeric \\(x\\), a straight line.\n\n\n\n\n\n\n\n\n\n\nState the simple linear regression model \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\) and its assumptions. (SLO 4)\nEstimate \\(\\beta_0\\) and \\(\\beta_1\\) by least squares and interpret the estimated regression line. (SLO 4)\n\n\n\n\n\nDevore 12.1, 12.2\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 29\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\)\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{S_{xy}}{S_{xx}}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data\n\n\n\n\n\n\n\n\n\nDoes pack weight slow cadets down? Twelve cadets each rucked 12 miles with a different pack weight.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCadet\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n\n\n\n\nWeight \\(x\\) (lb)\n25\n28\n30\n33\n35\n38\n40\n44\n47\n50\n55\n60\n\n\nTime \\(y\\) (min)\n156\n159\n168\n174\n166\n185\n173\n175\n184\n191\n192\n204\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResponse \\(y\\): ruck time, vertical axis. Explanatory \\(x\\): pack weight, horizontal axis.\nDirection: positive\nForm: roughly linear\nStrength: fairly strong\nUnusual observations: none\n\n\n\n\n\n\nWe could use our eyeball to estimate a line through the data.\n\n\n\n\n\n\n\n\n\nIs this line any good? Is there a better one?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor each point, measure the error: how far the point is from the line.\n\n\n\n\n\n\n\n\n\nEach grey line is an error (residual): \\(e_i = y_i - \\hat{y}_i\\).\n\n\n\n\nThe best line makes these errors as small as possible.\n\n\nFitted line: \\(\\hat{y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_i\\)\nError: \\(e_i = y_i - \\hat{y}_i\\)\nPositive and negative errors cancel, so square them: \\(e_i^2 = (y_i - \\hat{y}_i)^2\\)\nAdd them up:\n\n\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^{n} \\left(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i\\right)^2\\]\nThe least squares line chooses \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) to minimize SSE.\n\n\n\n\n\n\nNoteDeriving the Least Squares Estimates\n\n\n\n\n\nMinimize \\(f(b_0, b_1) = \\sum_{i=1}^{n} (y_i - b_0 - b_1 x_i)^2\\). Take partial derivatives and set them equal to zero.\nWith respect to \\(b_0\\): chain rule, the inner derivative is \\(-1\\):\n\\[\\frac{\\partial f}{\\partial b_0} = -2 \\sum (y_i - b_0 - b_1 x_i) = 0\\]\nDivide by \\(-2\\) and distribute the sum:\n\\[\\sum y_i - n b_0 - b_1 \\sum x_i = 0\\]\nSince \\(\\sum y_i = n\\bar{y}\\) and \\(\\sum x_i = n\\bar{x}\\), divide by \\(n\\):\n\\[\\bar{y} - b_0 - b_1 \\bar{x} = 0 \\quad \\Longrightarrow \\quad b_0 = \\bar{y} - b_1 \\bar{x}\\]\nWith respect to \\(b_1\\): chain rule, the inner derivative is \\(-x_i\\):\n\\[\\frac{\\partial f}{\\partial b_1} = -2 \\sum x_i(y_i - b_0 - b_1 x_i) = 0\\]\nDivide by \\(-2\\), distribute, and split the sum:\n\\[\\sum x_i y_i - b_0 \\sum x_i - b_1 \\sum x_i^2 = 0\\]\nSubstitute \\(\\sum x_i = n\\bar{x}\\) and \\(b_0 = \\bar{y} - b_1 \\bar{x}\\):\n\\[\\sum x_i y_i - (\\bar{y} - b_1 \\bar{x}) n\\bar{x} - b_1 \\sum x_i^2 = 0\\]\n\\[\\sum x_i y_i - n\\bar{x}\\bar{y} + b_1 n\\bar{x}^2 - b_1 \\sum x_i^2 = 0\\]\nFactor out \\(b_1\\):\n\\[\\sum x_i y_i - n\\bar{x}\\bar{y} = b_1 \\left(\\sum x_i^2 - n\\bar{x}^2\\right) \\quad \\Longrightarrow \\quad b_1 = \\frac{\\sum x_i y_i - n\\bar{x}\\bar{y}}{\\sum x_i^2 - n\\bar{x}^2}\\]\nCentered form. Denominator:\n\\[\\sum (x_i - \\bar{x})^2 = \\sum x_i^2 - 2\\bar{x}\\sum x_i + n\\bar{x}^2 = \\sum x_i^2 - 2n\\bar{x}^2 + n\\bar{x}^2 = \\sum x_i^2 - n\\bar{x}^2\\]\nNumerator:\n\\[\\sum (x_i - \\bar{x})(y_i - \\bar{y}) = \\sum x_i y_i - \\bar{y}\\sum x_i - \\bar{x}\\sum y_i + n\\bar{x}\\bar{y} = \\sum x_i y_i - n\\bar{x}\\bar{y}\\]\nSo\n\\[\\hat{\\beta}_1 = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}, \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\n\n\n\n\n\n\n\nImportantLeast Squares Estimates\n\n\n\n\\[S_{xx} = \\sum (x_i - \\bar{x})^2, \\qquad S_{xy} = \\sum (x_i - \\bar{x})(y_i - \\bar{y})\\]\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}}, \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\n\n\n\n\n\n\n\n\n\n\nImportantSimple Linear Regression Model\n\n\n\n\\[Y = \\beta_0 + \\beta_1 x + \\varepsilon, \\qquad \\varepsilon \\sim N(0, \\sigma^2)\\]\n\n\n\\(\\beta_0\\), \\(\\beta_1\\): true intercept and slope, parameters. \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\): their least squares estimates.\nTrue regression line: \\(\\mu_{Y \\cdot x} = \\beta_0 + \\beta_1 x\\), the mean of \\(Y\\) at a given \\(x\\)\nLinear: the mean of \\(Y\\) is a straight line in \\(x\\)\nIndependent: the errors \\(\\varepsilon_i\\) are independent\nNormal: the errors are normally distributed\nEqual variance: \\(\\sigma^2\\) is the same at every \\(x\\)\n\n\n\n\n\n\n\n\n\nruck &lt;- data.frame(\n  weight = c(25, 28, 30, 33, 35, 38, 40, 44, 47, 50, 55, 60),\n  time   = c(156, 159, 168, 174, 166, 185, 173, 175, 184, 191, 192, 204)\n)\nmodel &lt;- lm(time ~ weight, data = ruck)\nsummary(model)\n\n\nCall:\nlm(formula = time ~ weight, data = ruck)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-6.614 -3.282 -1.871  3.034 10.693 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 128.0279     6.0311  21.228 1.20e-09 ***\nweight        1.2179     0.1444   8.435 7.39e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.275 on 10 degrees of freedom\nMultiple R-squared:  0.8768,    Adjusted R-squared:  0.8644 \nF-statistic: 71.14 on 1 and 10 DF,  p-value: 7.386e-06\n\n\n\n\n\n\n\\[\\widehat{\\text{time}} = 128.03 + 1.22\\,(\\text{weight})\\]\n\n\n\n\n\n\nImportantInterpreting Slope and Intercept\n\n\n\nSlope (\\(\\hat{\\beta}_1 = 1.22\\)): for each additional pound of pack weight, the estimated mean 12 mile ruck time increases by 1.22 minutes.\nIntercept (\\(\\hat{\\beta}_0 = 128.03\\)): the estimated mean ruck time with a 0 lb pack is 128.03 minutes. Not meaningful: 0 lb is outside the data (25 to 60 lb).\n\n\nThere is a P-value at the end of each row. Where there’s a P-value, there’s a hypothesis test.\n\n\n\n\n\n\nNoteHypothesis Tests in the Output\n\n\n\nSlope: is there a linear relationship between \\(x\\) and \\(y\\)?\n\\[H_0: \\beta_1 = 0 \\qquad H_a: \\beta_1 \\neq 0\\]\n\\(t = 8.43\\), P-value \\(= 7.39 \\times 10^{-6}\\). Reject \\(H_0\\): pack weight is a useful predictor of ruck time.\nIntercept: is the true intercept different from zero?\n\\[H_0: \\beta_0 = 0 \\qquad H_a: \\beta_0 \\neq 0\\]\n\\(t = 21.23\\), P-value \\(= 1.20 \\times 10^{-9}\\). Usually not of interest.\nThe slope test is the one we care about. Fail to reject \\(H_0: \\beta_1 = 0\\) means \\(x\\) is not a useful linear predictor of \\(y\\). More next lesson.\n\n\n\n\n\n\n\n\nWarningContext Matters\n\n\n\n\n\nInterpret the slope with units and context. “The slope is 1.22” is not enough.\nIf \\(x = 0\\) is outside the data, the intercept may not be meaningful. Say so.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo line has a smaller sum of squared errors. “Not bad” was 390.\n\n\n\n\nPredict the mean ruck time for a 45 lb pack:\n\\[\\widehat{\\text{time}} = 128.03 + 1.22(45) = \\mathbf{182.83} \\text{ minutes}\\]\n\npredict(model, newdata = data.frame(weight = 45))\n\n       1 \n182.8319 \n\n\n\n\n\n\n\n\nWarningInterpolation vs. Extrapolation\n\n\n\n\n\nInterpolation: predicting inside the observed \\(x\\) range (25 to 60 lb). Fine.\nExtrapolation: predicting outside it. Dangerous: the line may not continue. See today’s comic.\n45 lb is interpolation. 100 lb would be extrapolation.\n\n\n\n\n\n\n\n\nMA206 folder in Vantage\n\n# MA206 Exploratory Data Analysis: Brigade Readiness\n\nlibrary(tidyverse)\nlibrary(foundry)\n\n# Read the full AY27-1 readiness dataset from Foundry.\nmaster &lt;- datasets.read_table(\"ay27_1_master\")\n\n# Select the brigade used in the EDA report.\nMY_BRIGADE &lt;- \"20TH ENGINEER BRIGADE\"\nbde &lt;- master |&gt;\n  filter(BrigadeName == MY_BRIGADE) |&gt;\n  select(age, time_in_active_service_years, skill_level, height, weight, aft_score_total) |&gt;\n  filter(!is.na(aft_score_total))\n\n# Create model\nmod &lt;- lm(weight~height, data = bde)\nsummary(mod)\n\n\n\n\n\n\n\n\nFor a random sample of cadets, average nightly sleep \\(x\\) (hours, observed from 4 to 9) and ACFT score \\(y\\) give the fitted line\n\\[\\hat{y} = 380 + 12.5x\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nIdentify the explanatory and response variables.\nInterpret the slope in context.\nPredict the mean ACFT score for cadets who sleep 7 hours.\nA cadet who sleeps 7 hours scored 480. Find the residual.\nInterpret the intercept. Is it meaningful?\nShould we use the line to predict for a cadet who sleeps 12 hours?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\nExplanatory: sleep (hours). Response: ACFT score.\nFor each additional hour of nightly sleep, the estimated mean ACFT score increases by 12.5 points.\n\\(\\hat{y} = 380 + 12.5(7) = \\mathbf{467.5}\\)\n\\(e = 480 - 467.5 = \\mathbf{12.5}\\). The cadet scored 12.5 points above the line.\nEstimated mean ACFT score with 0 hours of sleep is 380. Not meaningful: 0 hours is far outside 4 to 9.\nNo. 12 hours is outside the observed range: extrapolation.\n\n\n\n\n\n\n\n\nFor \\(n = 8\\) cadets, \\(x\\) = hours of range practice and \\(y\\) = hits out of 40 at qualification.\n\\[\\bar{x} = 6, \\qquad \\bar{y} = 31, \\qquad S_{xx} = 56, \\qquad S_{xy} = 84\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nCompute \\(\\hat{\\beta}_1\\) and \\(\\hat{\\beta}_0\\).\nWrite the fitted line.\nInterpret the slope.\nPredict the mean hits for a cadet with 8 hours of practice.\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}} = \\frac{84}{56} = \\mathbf{1.5}\\]\n\n\\[\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x} = 31 - 1.5(6) = \\mathbf{22}\\]\n\n\\(\\widehat{\\text{hits}} = 22 + 1.5\\,(\\text{hours})\\)\nEach additional hour of range practice increases the estimated mean hits by 1.5.\n\\(\\hat{y} = 22 + 1.5(8) = \\mathbf{34}\\) hits\n\n\n\n\n\n\n\n\nTwenty cadets reported hours studied (\\(x\\)) for a calculus exam and their score (\\(y\\), percent).\n\nsummary(lm(score ~ hrs))\n\n\nCall:\nlm(formula = score ~ hrs)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-10.525  -3.739   1.338   5.033   8.604 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  59.9955     3.7703  15.913 4.78e-12 ***\nhrs           3.7650     0.6071   6.201 7.48e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 6.532 on 18 degrees of freedom\nMultiple R-squared:  0.6812,    Adjusted R-squared:  0.6634 \nF-statistic: 38.45 on 1 and 18 DF,  p-value: 7.484e-06\n\n\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nWrite the fitted line.\nInterpret the slope.\nState the hypotheses for the slope test. What do you conclude at \\(\\alpha = 0.05\\)?\nPredict the mean score for a cadet who studied 6 hours.\nA cadet studied 6 hours and scored 78. Find the residual. Above or below the line?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\widehat{\\text{score}} = 59.995 + 3.765\\,(\\text{hours})\\)\nEach additional hour studied increases the estimated mean exam score by 3.765 points.\n\\(H_0: \\beta_1 = 0\\) versus \\(H_a: \\beta_1 \\ne 0\\). P-value \\(= 7.48 \\times 10^{-6} \\le 0.05\\). Reject \\(H_0\\): hours studied is a useful linear predictor of exam score.\n\\(\\hat{y} = 59.995 + 3.765(6) = \\mathbf{82.59}\\)\n\\(e = 78 - 82.59 = \\mathbf{-4.59}\\). Below the line.\n\n\n\n\n\n\n\n\nTwo mile run time \\(Y\\) (minutes) and hours of sleep the night before \\(x\\) follow the model\n\\[Y = 17.5 - 0.3x + \\varepsilon, \\qquad \\sigma = 0.8\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nWhat is the mean run time for cadets who slept 7 hours?\nWhat is the distribution of \\(Y\\) when \\(x = 7\\)?\nFind \\(P(Y &gt; 16)\\) when \\(x = 7\\).\nHow does the mean run time change when sleep increases by 2 hours?\nWhich LINE assumption says \\(\\sigma = 0.8\\) at every \\(x\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\mu_{Y \\cdot 7} = 17.5 - 0.3(7) = \\mathbf{15.4}\\) minutes\n\\(Y \\sim N(15.4,\\ 0.8^2)\\)\n\\(P(Y &gt; 16) = \\mathbf{0.2266}\\). 1 - pnorm(16, 15.4, 0.8)\n\\(2\\beta_1 = 2(-0.3) = \\mathbf{-0.6}\\). The mean run time drops by 0.6 minutes.\nEqual variance.\n\n\n\n\n\n\n\n\n\n\n\n\n\nScatterplot first: direction, form, strength, unusual observations\nLeast squares minimizes \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{S_{xy}}{S_{xx}}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\n\\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), LINE\nSlope: change in the mean of \\(y\\) per one unit of \\(x\\), in context\nEvery P-value in summary(lm()) is a test; the slope test asks \\(H_0: \\beta_1 = 0\\)\nNo extrapolation\n\n\nAny questions?\n\n\n\n\nLesson 30: Simple Linear Regression II\n\n\n9, 10 Nov\nDevore 12.2, 12.3, 12.5\n\\(t\\) test and confidence interval for \\(\\beta_1\\)\nCorrelation \\(r\\) and \\(r^2\\)\nReading summary(lm()) output in R\nTalk about the project\n\n\n\n\n\n\n\n\nWebAssign 12.1, 12.2: due at the start of Lesson 30\nProject IPR: Lesson 34 (20-23 Nov)\nTEE: 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#warm-up",
+    "href": "MA206-AY27-1/lesson-29.html#warm-up",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Do heavier packs slow cadets down? Ten randomly selected cadets rucked 12 miles with a 35 lb pack, ten others with a 50 lb pack (minutes). Test at \\(\\alpha = 0.05\\).\n\n\n\n\nGroup\n\\(n\\)\n\\(\\bar{x}\\)\n\\(s\\)\n\n\n\n\n1: 35 lb\n10\n168\n12\n\n\n2: 50 lb\n10\n181\n14\n\n\n\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n1. Hypotheses: \\(H_0: \\mu_1 - \\mu_2 = 0\\) versus \\(H_a: \\mu_1 - \\mu_2 &lt; 0\\). \\(\\mu_1\\) and \\(\\mu_2\\) are the true mean 12 mile ruck times of all cadets with a 35 lb and a 50 lb pack.\n2. Conditions: Two independent random samples. \\(n_1, n_2 \\le 40\\), so both populations must be approximately normal.\n3. Test statistic:\n\\[t = \\frac{(\\bar{x}_1 - \\bar{x}_2) - \\Delta_0}{\\sqrt{s_1^2/n_1 + s_2^2/n_2}}\\]\n\\[t = \\frac{(168 - 181) - 0}{\\sqrt{12^2/10 + 14^2/10}} = \\mathbf{-2.23}, \\qquad \\nu = 17.59 \\to 17\\]\n4. P-value: \\(P(T \\le -2.23) = \\mathbf{0.0198}\\). pt(-2.229, 17)\n5. Decision: \\(0.0198 \\le 0.05\\). Reject \\(H_0\\).\n6. Conclusion: At the 5% level there is sufficient evidence that the true mean 12 mile ruck time is longer with a 50 lb pack than with a 35 lb pack.\n\n\n\n\n\n\nNow change the design. Twelve cadets each carry a different pack weight, from 25 lb to 60 lb.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCadet\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n\n\n\n\nWeight \\(x\\) (lb)\n25\n28\n30\n33\n35\n38\n40\n44\n47\n50\n55\n60\n\n\nTime \\(y\\) (min)\n156\n159\n168\n174\n166\n185\n173\n175\n184\n191\n192\n204\n\n\n\n\nCan we run the same test as above?\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nNo. There are no groups. Pack weight is now a numeric variable, not a label.\nWe want more than “is there a difference”: how much longer does the ruck take for each extra pound? That is today.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#what-we-did-block-ii",
+    "href": "MA206-AY27-1/lesson-29.html#what-we-did-block-ii",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "NoteReview: Statistical Inference (Lessons 18 to 26)\n\n\n\n\n\n\n\nCLT: \\(\\bar{X} \\sim N\\left(\\mu,\\ \\left(\\dfrac{\\sigma}{\\sqrt{n}}\\right)^2\\right)\\), approximately, for \\(n &gt; 40\\)\nConfidence interval: \\(\\text{estimate} \\pm \\text{critical value} \\times \\text{standard error}\\)\nSix steps: hypotheses, conditions, test statistic, P-value, decision, conclusion\nOne group: \\(z\\) or \\(t\\) for \\(\\mu\\), \\(z\\) for \\(p\\)\nTwo groups: two-sample \\(t\\) for \\(\\mu_1 - \\mu_2\\), paired \\(t\\) for \\(\\mu_D\\), two-proportion \\(z\\) for \\(p_1 - p_2\\)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#block-iii-regression-and-the-analysis-of-variance",
+    "href": "MA206-AY27-1/lesson-29.html#block-iii-regression-and-the-analysis-of-variance",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Block II: is there an effect? How big is it?\nBlock III: can we predict one variable from another?\nToday: one numeric \\(x\\), a straight line.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#what-were-doing-lesson-29",
+    "href": "MA206-AY27-1/lesson-29.html#what-were-doing-lesson-29",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "State the simple linear regression model \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\) and its assumptions. (SLO 4)\nEstimate \\(\\beta_0\\) and \\(\\beta_1\\) by least squares and interpret the estimated regression line. (SLO 4)\n\n\n\n\n\nDevore 12.1, 12.2\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 29\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\)\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{S_{xy}}{S_{xx}}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#look-at-the-data",
+    "href": "MA206-AY27-1/lesson-29.html#look-at-the-data",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Explanatory variable \\(x\\): pack weight. Response variable \\(y\\): ruck time.\nPositive, roughly linear, not perfect.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#the-model",
+    "href": "MA206-AY27-1/lesson-29.html#the-model",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "ImportantSimple Linear Regression Model\n\n\n\n\\[Y = \\beta_0 + \\beta_1 x + \\varepsilon, \\qquad \\varepsilon \\sim N(0, \\sigma^2)\\]\n\n\n\\(\\beta_0\\), \\(\\beta_1\\): true intercept and slope, parameters. \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\): their least squares estimates.\nTrue regression line: \\(\\mu_{Y \\cdot x} = \\beta_0 + \\beta_1 x\\), the mean of \\(Y\\) at a given \\(x\\)\nLinear: the mean of \\(Y\\) is a straight line in \\(x\\)\nIndependent: the errors \\(\\varepsilon_i\\) are independent\nNormal: the errors are normally distributed\nEqual variance: \\(\\sigma^2\\) is the same at every \\(x\\)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#least-squares",
+    "href": "MA206-AY27-1/lesson-29.html#least-squares",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "We never know \\(\\beta_0\\) and \\(\\beta_1\\). We estimate them from the data.\n\n\n\n\n\n\nImportantFitted Line and Residuals\n\n\n\n\\[\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\]\n\n\nFitted value: \\(\\hat{y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_i\\)\nResidual: \\(e_i = y_i - \\hat{y}_i\\), observed minus predicted\nLeast squares picks the line that minimizes \\(\\text{SSE} = \\sum (y_i - \\hat{y}_i)^2\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantLeast Squares Estimates\n\n\n\n\\[S_{xx} = \\sum (x_i - \\bar{x})^2, \\qquad S_{xy} = \\sum (x_i - \\bar{x})(y_i - \\bar{y})\\]\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}}, \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\nThe line always passes through \\((\\bar{x}, \\bar{y})\\)\n\n\n\n\n\n\n\n\n\n\nNoteThe calculus: where the formulas come from\n\n\n\n\n\nMinimize \\(f(b_0, b_1) = \\sum (y_i - b_0 - b_1 x_i)^2\\). Set both partial derivatives to zero:\n\\[\\frac{\\partial f}{\\partial b_0} = -2\\sum (y_i - b_0 - b_1 x_i) = 0, \\qquad \\frac{\\partial f}{\\partial b_1} = -2\\sum x_i(y_i - b_0 - b_1 x_i) = 0\\]\nThe first gives \\(b_0 = \\bar{y} - b_1\\bar{x}\\). Substitute into the second and solve: \\(b_1 = S_{xy}/S_{xx}\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#ruck-fit-the-line",
+    "href": "MA206-AY27-1/lesson-29.html#ruck-fit-the-line",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Back to the Warm-Up’s 12 cadets.\n1. Summaries: Find \\(\\bar{x}\\), \\(\\bar{y}\\), \\(S_{xx}\\), and \\(S_{xy}\\).\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\bar{x} = 40.4167, \\qquad \\bar{y} = 177.25\\]\n\\[S_{xx} = 1334.92, \\qquad S_{xy} = 1625.75\\]\n\n\n\n2. Estimates: Find \\(\\hat{\\beta}_1\\) and \\(\\hat{\\beta}_0\\). Write the fitted line.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}} = \\frac{1625.75}{1334.92} = \\mathbf{1.2179}\\]\n\\[\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x} = 177.25 - 1.2179(40.4167) = \\mathbf{128.03}\\]\n\\[\\widehat{\\text{time}} = 128.03 + 1.2179\\,(\\text{weight})\\]\n\n\n\n3. Slope: Interpret \\(\\hat{\\beta}_1\\) in context.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nFor each additional pound of pack weight, the estimated mean 12 mile ruck time increases by 1.22 minutes.\n\n\n\n4. Intercept: Interpret \\(\\hat{\\beta}_0\\). Does it make sense?\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nThe estimated mean ruck time with a 0 lb pack is 128.03 minutes. Not meaningful: \\(x = 0\\) is far outside the data (25 to 60 lb), and a 0 lb ruck is not a ruck.\n\n\n\n5. Predict: Estimate the mean ruck time for a 45 lb pack.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\hat{y} = 128.03 + 1.2179(45) = \\mathbf{182.83} \\text{ minutes}\\]\n\n\n\n6. Residual: Cadet 6 carried 38 lb and finished in 185 minutes. Find the residual.\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\[\\hat{y} = 128.03 + 1.2179(38) = 174.31\\]\n\\[e = y - \\hat{y} = 185 - 174.31 = \\mathbf{10.69}\\]\nPositive: Cadet 6 was 10.69 minutes slower than the line predicts.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#in-r",
+    "href": "MA206-AY27-1/lesson-29.html#in-r",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Call:\nlm(formula = time ~ weight)\n\nCoefficients:\n(Intercept)       weight  \n    128.028        1.218  \n\n\n\n\nlm(y ~ x): response on the left, explanatory on the right\n(Intercept) is \\(\\hat{\\beta}_0\\), weight is \\(\\hat{\\beta}_1\\)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#extrapolation",
+    "href": "MA206-AY27-1/lesson-29.html#extrapolation",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "WarningStay Inside the Data\n\n\n\nThe line is only supported for \\(x\\) between the smallest and largest observed values. Predicting outside that range is extrapolation: nothing in the data says the relationship stays linear there. See today’s comic.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#board-problems",
+    "href": "MA206-AY27-1/lesson-29.html#board-problems",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "For a random sample of cadets, average nightly sleep \\(x\\) (hours, observed from 4 to 9) and ACFT score \\(y\\) give the fitted line\n\\[\\hat{y} = 380 + 12.5x\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nIdentify the explanatory and response variables.\nInterpret the slope in context.\nPredict the mean ACFT score for cadets who sleep 7 hours.\nA cadet who sleeps 7 hours scored 480. Find the residual.\nInterpret the intercept. Is it meaningful?\nShould we use the line to predict for a cadet who sleeps 12 hours?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\nExplanatory: sleep (hours). Response: ACFT score.\nFor each additional hour of nightly sleep, the estimated mean ACFT score increases by 12.5 points.\n\\(\\hat{y} = 380 + 12.5(7) = \\mathbf{467.5}\\)\n\\(e = 480 - 467.5 = \\mathbf{12.5}\\). The cadet scored 12.5 points above the line.\nEstimated mean ACFT score with 0 hours of sleep is 380. Not meaningful: 0 hours is far outside 4 to 9.\nNo. 12 hours is outside the observed range: extrapolation.\n\n\n\n\n\n\n\n\nFor \\(n = 8\\) cadets, \\(x\\) = hours of range practice and \\(y\\) = hits out of 40 at qualification.\n\\[\\bar{x} = 6, \\qquad \\bar{y} = 31, \\qquad S_{xx} = 56, \\qquad S_{xy} = 84\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nCompute \\(\\hat{\\beta}_1\\) and \\(\\hat{\\beta}_0\\).\nWrite the fitted line.\nInterpret the slope.\nPredict the mean hits for a cadet with 8 hours of practice.\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}} = \\frac{84}{56} = \\mathbf{1.5}\\]\n\n\\[\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x} = 31 - 1.5(6) = \\mathbf{22}\\]\n\n\\(\\widehat{\\text{hits}} = 22 + 1.5\\,(\\text{hours})\\)\nEach additional hour of range practice increases the estimated mean hits by 1.5.\n\\(\\hat{y} = 22 + 1.5(8) = \\mathbf{34}\\) hits\n\n\n\n\n\n\n\n\nTwenty cadets reported hours studied (\\(x\\)) for a calculus exam and their score (\\(y\\), percent).\n\nsummary(lm(score ~ hrs))\n\n\nCall:\nlm(formula = score ~ hrs)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-10.525  -3.739   1.338   5.033   8.604 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  59.9955     3.7703  15.913 4.78e-12 ***\nhrs           3.7650     0.6071   6.201 7.48e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 6.532 on 18 degrees of freedom\nMultiple R-squared:  0.6812,    Adjusted R-squared:  0.6634 \nF-statistic: 38.45 on 1 and 18 DF,  p-value: 7.484e-06\n\n\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nWrite the fitted line.\nInterpret the slope.\nState the hypotheses for the slope test. What do you conclude at \\(\\alpha = 0.05\\)?\nPredict the mean score for a cadet who studied 6 hours.\nA cadet studied 6 hours and scored 78. Find the residual. Above or below the line?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\widehat{\\text{score}} = 59.995 + 3.765\\,(\\text{hours})\\)\nEach additional hour studied increases the estimated mean exam score by 3.765 points.\n\\(H_0: \\beta_1 = 0\\) versus \\(H_a: \\beta_1 \\ne 0\\). P-value \\(= 7.48 \\times 10^{-6} \\le 0.05\\). Reject \\(H_0\\): hours studied is a useful linear predictor of exam score.\n\\(\\hat{y} = 59.995 + 3.765(6) = \\mathbf{82.59}\\)\n\\(e = 78 - 82.59 = \\mathbf{-4.59}\\). Below the line.\n\n\n\n\n\n\n\n\nTwo mile run time \\(Y\\) (minutes) and hours of sleep the night before \\(x\\) follow the model\n\\[Y = 17.5 - 0.3x + \\varepsilon, \\qquad \\sigma = 0.8\\]\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nWhat is the mean run time for cadets who slept 7 hours?\nWhat is the distribution of \\(Y\\) when \\(x = 7\\)?\nFind \\(P(Y &gt; 16)\\) when \\(x = 7\\).\nHow does the mean run time change when sleep increases by 2 hours?\nWhich LINE assumption says \\(\\sigma = 0.8\\) at every \\(x\\)?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(\\mu_{Y \\cdot 7} = 17.5 - 0.3(7) = \\mathbf{15.4}\\) minutes\n\\(Y \\sim N(15.4,\\ 0.8^2)\\)\n\\(P(Y &gt; 16) = \\mathbf{0.2266}\\). 1 - pnorm(16, 15.4, 0.8)\n\\(2\\beta_1 = 2(-0.3) = \\mathbf{-0.6}\\). The mean run time drops by 0.6 minutes.\nEqual variance.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#before-you-leave",
+    "href": "MA206-AY27-1/lesson-29.html#before-you-leave",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Scatterplot first: direction, form, strength, unusual observations\nLeast squares minimizes \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{S_{xy}}{S_{xx}}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\n\\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), LINE\nSlope: change in the mean of \\(y\\) per one unit of \\(x\\), in context\nEvery P-value in summary(lm()) is a test; the slope test asks \\(H_0: \\beta_1 = 0\\)\nNo extrapolation\n\n\nAny questions?\n\n\n\n\nLesson 30: Simple Linear Regression II\n\n\n9, 10 Nov\nDevore 12.2, 12.3, 12.5\n\\(t\\) test and confidence interval for \\(\\beta_1\\)\nCorrelation \\(r\\) and \\(r^2\\)\nReading summary(lm()) output in R\nTalk about the project\n\n\n\n\n\n\n\n\nWebAssign 12.1, 12.2: due at the start of Lesson 30\nProject IPR: Lesson 34 (20-23 Nov)\nTEE: 15-18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#scatterplots",
+    "href": "MA206-AY27-1/lesson-29.html#scatterplots",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Does pack weight slow cadets down? Twelve cadets each rucked 12 miles with a different pack weight.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCadet\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n\n\n\n\nWeight \\(x\\) (lb)\n25\n28\n30\n33\n35\n38\n40\n44\n47\n50\n55\n60\n\n\nTime \\(y\\) (min)\n156\n159\n168\n174\n166\n185\n173\n175\n184\n191\n192\n204\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResponse \\(y\\): ruck time, vertical axis. Explanatory \\(x\\): pack weight, horizontal axis.\nDirection: positive\nForm: roughly linear\nStrength: fairly strong\nUnusual observations: none",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#how-can-we-model-this",
+    "href": "MA206-AY27-1/lesson-29.html#how-can-we-model-this",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "We could use our eyeball to estimate a line through the data.\n\n\n\n\n\n\n\n\n\nIs this line any good? Is there a better one?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#how-can-we-get-the-best-line",
+    "href": "MA206-AY27-1/lesson-29.html#how-can-we-get-the-best-line",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "For each point, measure the error: how far the point is from the line.\n\n\n\n\n\n\n\n\n\nEach grey line is an error (residual): \\(e_i = y_i - \\hat{y}_i\\).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#minimizing-the-error",
+    "href": "MA206-AY27-1/lesson-29.html#minimizing-the-error",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "The best line makes these errors as small as possible.\n\n\nFitted line: \\(\\hat{y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_i\\)\nError: \\(e_i = y_i - \\hat{y}_i\\)\nPositive and negative errors cancel, so square them: \\(e_i^2 = (y_i - \\hat{y}_i)^2\\)\nAdd them up:\n\n\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^{n} \\left(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i\\right)^2\\]\nThe least squares line chooses \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) to minimize SSE.\n\n\n\n\n\n\nNoteDeriving the Least Squares Estimates\n\n\n\n\n\nMinimize \\(f(b_0, b_1) = \\sum_{i=1}^{n} (y_i - b_0 - b_1 x_i)^2\\). Take partial derivatives and set them equal to zero.\nWith respect to \\(b_0\\): chain rule, the inner derivative is \\(-1\\):\n\\[\\frac{\\partial f}{\\partial b_0} = -2 \\sum (y_i - b_0 - b_1 x_i) = 0\\]\nDivide by \\(-2\\) and distribute the sum:\n\\[\\sum y_i - n b_0 - b_1 \\sum x_i = 0\\]\nSince \\(\\sum y_i = n\\bar{y}\\) and \\(\\sum x_i = n\\bar{x}\\), divide by \\(n\\):\n\\[\\bar{y} - b_0 - b_1 \\bar{x} = 0 \\quad \\Longrightarrow \\quad b_0 = \\bar{y} - b_1 \\bar{x}\\]\nWith respect to \\(b_1\\): chain rule, the inner derivative is \\(-x_i\\):\n\\[\\frac{\\partial f}{\\partial b_1} = -2 \\sum x_i(y_i - b_0 - b_1 x_i) = 0\\]\nDivide by \\(-2\\), distribute, and split the sum:\n\\[\\sum x_i y_i - b_0 \\sum x_i - b_1 \\sum x_i^2 = 0\\]\nSubstitute \\(\\sum x_i = n\\bar{x}\\) and \\(b_0 = \\bar{y} - b_1 \\bar{x}\\):\n\\[\\sum x_i y_i - (\\bar{y} - b_1 \\bar{x}) n\\bar{x} - b_1 \\sum x_i^2 = 0\\]\n\\[\\sum x_i y_i - n\\bar{x}\\bar{y} + b_1 n\\bar{x}^2 - b_1 \\sum x_i^2 = 0\\]\nFactor out \\(b_1\\):\n\\[\\sum x_i y_i - n\\bar{x}\\bar{y} = b_1 \\left(\\sum x_i^2 - n\\bar{x}^2\\right) \\quad \\Longrightarrow \\quad b_1 = \\frac{\\sum x_i y_i - n\\bar{x}\\bar{y}}{\\sum x_i^2 - n\\bar{x}^2}\\]\nCentered form. Denominator:\n\\[\\sum (x_i - \\bar{x})^2 = \\sum x_i^2 - 2\\bar{x}\\sum x_i + n\\bar{x}^2 = \\sum x_i^2 - 2n\\bar{x}^2 + n\\bar{x}^2 = \\sum x_i^2 - n\\bar{x}^2\\]\nNumerator:\n\\[\\sum (x_i - \\bar{x})(y_i - \\bar{y}) = \\sum x_i y_i - \\bar{y}\\sum x_i - \\bar{x}\\sum y_i + n\\bar{x}\\bar{y} = \\sum x_i y_i - n\\bar{x}\\bar{y}\\]\nSo\n\\[\\hat{\\beta}_1 = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}, \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]\n\n\n\n\n\n\n\n\n\nImportantLeast Squares Estimates\n\n\n\n\\[S_{xx} = \\sum (x_i - \\bar{x})^2, \\qquad S_{xy} = \\sum (x_i - \\bar{x})(y_i - \\bar{y})\\]\n\\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}}, \\qquad \\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#fitting-a-regression-in-r",
+    "href": "MA206-AY27-1/lesson-29.html#fitting-a-regression-in-r",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "ruck &lt;- data.frame(\n  weight = c(25, 28, 30, 33, 35, 38, 40, 44, 47, 50, 55, 60),\n  time   = c(156, 159, 168, 174, 166, 185, 173, 175, 184, 191, 192, 204)\n)\nmodel &lt;- lm(time ~ weight, data = ruck)\nsummary(model)\n\n\nCall:\nlm(formula = time ~ weight, data = ruck)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-6.614 -3.282 -1.871  3.034 10.693 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 128.0279     6.0311  21.228 1.20e-09 ***\nweight        1.2179     0.1444   8.435 7.39e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.275 on 10 degrees of freedom\nMultiple R-squared:  0.8768,    Adjusted R-squared:  0.8644 \nF-statistic: 71.14 on 1 and 10 DF,  p-value: 7.386e-06",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#interpreting-the-output",
+    "href": "MA206-AY27-1/lesson-29.html#interpreting-the-output",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "\\[\\widehat{\\text{time}} = 128.03 + 1.22\\,(\\text{weight})\\]\n\n\n\n\n\n\nImportantInterpreting Slope and Intercept\n\n\n\nSlope (\\(\\hat{\\beta}_1 = 1.22\\)): for each additional pound of pack weight, the estimated mean 12 mile ruck time increases by 1.22 minutes.\nIntercept (\\(\\hat{\\beta}_0 = 128.03\\)): the estimated mean ruck time with a 0 lb pack is 128.03 minutes. Not meaningful: 0 lb is outside the data (25 to 60 lb).\n\n\nThere is a P-value at the end of each row. Where there’s a P-value, there’s a hypothesis test.\n\n\n\n\n\n\nNoteHypothesis Tests in the Output\n\n\n\nSlope: is there a linear relationship between \\(x\\) and \\(y\\)?\n\\[H_0: \\beta_1 = 0 \\qquad H_a: \\beta_1 \\neq 0\\]\n\\(t = 8.43\\), P-value \\(= 7.39 \\times 10^{-6}\\). Reject \\(H_0\\): pack weight is a useful predictor of ruck time.\nIntercept: is the true intercept different from zero?\n\\[H_0: \\beta_0 = 0 \\qquad H_a: \\beta_0 \\neq 0\\]\n\\(t = 21.23\\), P-value \\(= 1.20 \\times 10^{-9}\\). Usually not of interest.\nThe slope test is the one we care about. Fail to reject \\(H_0: \\beta_1 = 0\\) means \\(x\\) is not a useful linear predictor of \\(y\\). More next lesson.\n\n\n\n\n\n\n\n\nWarningContext Matters\n\n\n\n\n\nInterpret the slope with units and context. “The slope is 1.22” is not enough.\nIf \\(x = 0\\) is outside the data, the intercept may not be meaningful. Say so.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#visualizing-the-fit",
+    "href": "MA206-AY27-1/lesson-29.html#visualizing-the-fit",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "No line has a smaller sum of squared errors. “Not bad” was 390.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#making-predictions",
+    "href": "MA206-AY27-1/lesson-29.html#making-predictions",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "Predict the mean ruck time for a 45 lb pack:\n\\[\\widehat{\\text{time}} = 128.03 + 1.22(45) = \\mathbf{182.83} \\text{ minutes}\\]\n\npredict(model, newdata = data.frame(weight = 45))\n\n       1 \n182.8319 \n\n\n\n\n\n\n\n\nWarningInterpolation vs. Extrapolation\n\n\n\n\n\nInterpolation: predicting inside the observed \\(x\\) range (25 to 60 lb). Fine.\nExtrapolation: predicting outside it. Dangerous: the line may not continue. See today’s comic.\n45 lb is interpolation. 100 lb would be extrapolation.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-29.html#lets-go-to-vantage",
+    "href": "MA206-AY27-1/lesson-29.html#lets-go-to-vantage",
+    "title": "Lesson 29: Simple Linear Regression I",
+    "section": "",
+    "text": "MA206 folder in Vantage\n\n# MA206 Exploratory Data Analysis: Brigade Readiness\n\nlibrary(tidyverse)\nlibrary(foundry)\n\n# Read the full AY27-1 readiness dataset from Foundry.\nmaster &lt;- datasets.read_table(\"ay27_1_master\")\n\n# Select the brigade used in the EDA report.\nMY_BRIGADE &lt;- \"20TH ENGINEER BRIGADE\"\nbde &lt;- master |&gt;\n  filter(BrigadeName == MY_BRIGADE) |&gt;\n  select(age, time_in_active_service_years, skill_level, height, weight, aft_score_total) |&gt;\n  filter(!is.na(aft_score_total))\n\n# Create model\nmod &lt;- lm(weight~height, data = bde)\nsummary(mod)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 29"
+    ]
   }
 ]
