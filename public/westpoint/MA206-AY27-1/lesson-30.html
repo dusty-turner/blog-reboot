@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-30 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206-AY27-1/lesson-29.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206-AY27-1/index.html" aria-current="page"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../misc-lessons/index.html"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY27-1/lesson-30.html">Lesson 30</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-30.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-30-simple-linear-regression-ii" id="toc-lesson-30-simple-linear-regression-ii" class="nav-link active" data-scroll-target="#lesson-30-simple-linear-regression-ii">Lesson 30: Simple Linear Regression II</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a></li>
+  <li><a href="#what-we-did-lesson-29" id="toc-what-we-did-lesson-29" class="nav-link" data-scroll-target="#what-we-did-lesson-29">What We Did: Lesson 29</a></li>
+  <li><a href="#what-were-doing-lesson-30" id="toc-what-were-doing-lesson-30" class="nav-link" data-scroll-target="#what-were-doing-lesson-30">What We’re Doing: Lesson 30</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a></li>
+  <li><a href="#dmath-intramurals" id="toc-dmath-intramurals" class="nav-link" data-scroll-target="#dmath-intramurals">DMath Intramurals</a>
+  <ul class="collapse">
+  <li><a href="#dmath-frisbee" id="toc-dmath-frisbee" class="nav-link" data-scroll-target="#dmath-frisbee">DMath Frisbee!!</a></li>
+  <li><a href="#dmath-basketball" id="toc-dmath-basketball" class="nav-link" data-scroll-target="#dmath-basketball">DMath Basketball!!</a></li>
+  <li><a href="#dmath-volleyball" id="toc-dmath-volleyball" class="nav-link" data-scroll-target="#dmath-volleyball">DMath Volleyball!!</a></li>
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#lesson-29-again" id="toc-lesson-29-again" class="nav-link" data-scroll-target="#lesson-29-again">Lesson 29, Again</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#which-line-is-best" id="toc-which-line-is-best" class="nav-link" data-scroll-target="#which-line-is-best">Which Line Is Best?</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The Model</a></li>
+  <li><a href="#fitting-it-in-r" id="toc-fitting-it-in-r" class="nav-link" data-scroll-target="#fitting-it-in-r">Fitting It in R</a></li>
+  <li><a href="#the-regression-equation" id="toc-the-regression-equation" class="nav-link" data-scroll-target="#the-regression-equation">The Regression Equation</a></li>
+  <li><a href="#the-p-values-hypothesis-tests" id="toc-the-p-values-hypothesis-tests" class="nav-link" data-scroll-target="#the-p-values-hypothesis-tests">The P-Values: Hypothesis Tests</a>
+  <ul class="collapse">
+  <li><a href="#ruck-weight" id="toc-ruck-weight" class="nav-link" data-scroll-target="#ruck-weight">Ruck Weight</a></li>
+  </ul></li>
+  <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions">Making Predictions</a></li>
+  <li><a href="#how-good-is-the-fit-r2" id="toc-how-good-is-the-fit-r2" class="nav-link" data-scroll-target="#how-good-is-the-fit-r2">How Good Is the Fit? <span class="math inline">\(r^2\)</span></a></li>
+  <li><a href="#the-project" id="toc-the-project" class="nav-link" data-scroll-target="#the-project">The Project</a>
+  <ul class="collapse">
+  <li><a href="#what-your-analysis-needs" id="toc-what-your-analysis-needs" class="nav-link" data-scroll-target="#what-your-analysis-needs">What Your Analysis Needs</a></li>
+  <li><a href="#graded-events" id="toc-graded-events" class="nav-link" data-scroll-target="#graded-events">Graded Events</a></li>
+  <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This Week</a></li>
+  <li><a href="#the-brief" id="toc-the-brief" class="nav-link" data-scroll-target="#the-brief">The Brief</a></li>
+  </ul></li>
+  <li><a href="#lets-go-to-vantage" id="toc-lets-go-to-vantage" class="nav-link" data-scroll-target="#lets-go-to-vantage">Let’s Go to Vantage!</a></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-30-simple-linear-regression-ii" class="level1">
+<h1>Lesson 30: Simple Linear Regression II</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+
+/* tables size to their content and never wrap; scroll sideways if the screen is narrow */
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+.rulecols th, .rulecols td { white-space: nowrap; }
+</style>
+<!-- Dusty is back teaching his own section after L29. L30 re-teaches most of L29 (same ruck data) before the new material, so he knows his cadets have seen it. -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- Previously used this term: 552 (L1), 2435 (L2), 982 (L3), 1132 (L4), 936 (L5), 795 (L6), flag (L7), 221 (L8), 904 (L9), flag (L10), 2117 (L11), 2118 (L12), 612 (L13), 2048 (L14), 1236 (L15), 2059 (L16), 2110 (L18), 2311 (L19), 1347 (L20), 539 (L21), 882 (L22), 2303 (L23), 2569 (L27), 1725 (L28), 605 (L29) -->
+<!-- 2533 is "Slope Hypothesis Testing" (scream loudness, each student yells more times until p < 0.05). Panels and alt text checked, no profanity. Ties to Board Problem 5 (independence). -->
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l30.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Block III calendar with a red box around Tuesday 10 November, Lesson 30, Simple Linear Regression II."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<div class="compact">
+<ul>
+<li><strong>Project partners:</strong> <a href="https://dustydell.tail280d22.ts.net/pair/">Select your project partner</a></li>
+<li><strong>Partner status (as of 9 Nov):</strong> 13 of 51 cadets still need a partner (B2: 5, C2: 8, D2: 0)</li>
+<li><strong>Project:</strong> we talk about it at the end of class</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lesson-29" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lesson-29">What We Did: Lesson 29</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 29">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 29
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Model:</strong> <span class="math inline">\(Y = \beta_0 + \beta_1 x + \varepsilon\)</span>, <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span></li>
+<li><strong>Least squares:</strong> choose <span class="math inline">\(\hat{\beta}_0\)</span>, <span class="math inline">\(\hat{\beta}_1\)</span> to minimize <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span></li>
+<li><span class="math inline">\(\hat{\beta}_1 = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\)</span>, <span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}\)</span></li>
+<li><strong>Slope:</strong> change in the mean of <span class="math inline">\(y\)</span> for a one unit increase in <span class="math inline">\(x\)</span></li>
+<li><strong>Predict</strong> only inside the range of the <span class="math inline">\(x\)</span> data</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Review: Statistical Inference (Lessons 18 to 26)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Review: Statistical Inference (Lessons 18 to 26)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Confidence interval:</strong> <span class="math inline">\(\text{estimate} \pm \text{critical value} \times \text{standard error}\)</span></li>
+<li><strong>Six steps:</strong> hypotheses, conditions, test statistic, P-value, decision, conclusion</li>
+<li><strong>One group:</strong> <span class="math inline">\(z\)</span> or <span class="math inline">\(t\)</span> for <span class="math inline">\(\mu\)</span>, <span class="math inline">\(z\)</span> for <span class="math inline">\(p\)</span></li>
+<li><strong>Two groups:</strong> two-sample <span class="math inline">\(t\)</span> for <span class="math inline">\(\mu_1 - \mu_2\)</span>, paired <span class="math inline">\(t\)</span> for <span class="math inline">\(\mu_D\)</span>, two-proportion <span class="math inline">\(z\)</span> for <span class="math inline">\(p_1 - p_2\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-30" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-30">What We’re Doing: Lesson 30</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li>Carry out a <span class="math inline">\(t\)</span> test for the slope <span class="math inline">\(\beta_1\)</span>. (SLO 5)</li>
+<li>Compute and interpret the coefficient of determination <span class="math inline">\(r^2\)</span> (from SSE and SST). (SLO 2, 4)</li>
+<li>Fit a simple linear regression in R and interpret the standard software output: estimated coefficients, standard errors, <span class="math inline">\(t\)</span> statistics and <span class="math inline">\(P\)</span>-values, and <span class="math inline">\(r^2\)</span>. (SLO 4)</li>
+</ul>
+</div>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore 12.2, 12.3, 12.5</p>
+<hr>
+<!-- Break: Cal catch-up. Hits 1 to 3 were shown in MA376 (L25 Vid 1, L28 Vid 1, L28 Vid 3), never in MA206.
+     TODO: the hit-in-the-head clip; not found among the clips on disk. -->
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Vid 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Vid 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Vid 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Vid 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/cal-hit-1-l30.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/cal-hit-2-l30.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/cal-hit-3-l30.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/cal-bunt-l30.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<!-- DMath sports catch up. Frisbee: MA206 cadets last saw 9-0 (L20, DMI 15-3); CBSE 15-12 came from MA376 L22.
+     Volleyball and basketball per Dusty 2026-11-08. TODO: game scores for volleyball and both basketball games, and the first basketball opponent. -->
+</section>
+<section id="dmath-intramurals" class="level2">
+<h2 class="anchored" data-anchor-id="dmath-intramurals">DMath Intramurals</h2>
+<section id="dmath-frisbee" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-frisbee">DMath Frisbee!!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/frisbee.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs CBSE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>10-0</p>
+</div>
+<div style="text-align: center; font-size: 2.2em;">
+<p>15-12</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dmath-basketball" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-basketball">DMath Basketball!!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/basketball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Game 1</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>1-0</p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Math vs DPW</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>1-1</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dmath-volleyball" class="level3">
+<h3 class="anchored" data-anchor-id="dmath-volleyball">DMath Volleyball!!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../MA206-AY26-1/assets/img/volleyball.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><strong>Math vs DPE</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Result">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Result
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div style="text-align: center; font-size: 5em;">
+<p>0-1</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 30">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 30
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Least squares:</strong> <span class="math inline">\(\hat{\beta}_1 = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\)</span>, <span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}\)</span></li>
+<li><strong>Slope test:</strong> <span class="math inline">\(H_0: \beta_1 = 0\)</span>, <span class="math inline">\(t = \hat{\beta}_1 / s_{\hat{\beta}_1}\)</span>, df <span class="math inline">\(= n - 2\)</span></li>
+<li><strong><span class="math inline">\(r^2 = 1 - \text{SSE}/\text{SST}\)</span>:</strong> proportion of variation in <span class="math inline">\(y\)</span> explained by the line</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lesson-29-again" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-29-again">Lesson 29, Again</h2>
+<p>Same ruck data, start to finish. Then we build on it.</p>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>Does pack weight slow cadets down? Twelve cadets each rucked 12 miles with a different pack weight.</p>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Cadet</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">9</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">11</th>
+<th style="text-align: center;">12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Weight <span class="math inline">\(x\)</span> (lb)</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Time <span class="math inline">\(y\)</span> (min)</td>
+<td style="text-align: center;">156</td>
+<td style="text-align: center;">159</td>
+<td style="text-align: center;">168</td>
+<td style="text-align: center;">174</td>
+<td style="text-align: center;">166</td>
+<td style="text-align: center;">185</td>
+<td style="text-align: center;">173</td>
+<td style="text-align: center;">175</td>
+<td style="text-align: center;">184</td>
+<td style="text-align: center;">191</td>
+<td style="text-align: center;">192</td>
+<td style="text-align: center;">204</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="Scatterplot of 12 mile ruck time in minutes against pack weight in pounds for 12 cadets. Time rises with weight in a roughly straight line, from about 156 minutes at 25 lb to about 204 minutes at 60 lb." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Response</strong> <span class="math inline">\(y\)</span>: ruck time. <strong>Explanatory</strong> <span class="math inline">\(x\)</span>: pack weight.</li>
+<li><strong>Direction:</strong> positive. <strong>Form:</strong> roughly linear. <strong>Strength:</strong> fairly strong. <strong>Unusual observations:</strong> none.</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="which-line-is-best" class="level2">
+<h2 class="anchored" data-anchor-id="which-line-is-best">Which Line Is Best?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" alt="Four panels of the ruck data, each with a different red line: a reasonable line through the trend, a line that is too steep, a line sloping downward, and a line so steep it barely touches the data." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We want the line that <strong>minimizes the grey lines</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-30_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" alt="The same four panels with a grey vertical segment from each point to the line. The eyeball line has the shortest segments and the smallest sum of squared errors. The steepest line has the longest." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Each line is written</p>
+<p><span class="math display">\[\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x\]</span></p>
+<p>Each grey segment is an <strong>error</strong> (residual): <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>.</p>
+<p>The <strong>least squares</strong> line chooses <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> to minimize</p>
+<p><span class="math display">\[\text{SSE} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} \left(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i\right)^2\]</span></p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Deriving the Least Squares Estimates">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Deriving the Least Squares Estimates
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Minimize <span class="math inline">\(f(b_0, b_1) = \sum_{i=1}^{n} (y_i - b_0 - b_1 x_i)^2\)</span>. Take partial derivatives and set them equal to zero.</p>
+<p><strong>With respect to <span class="math inline">\(b_0\)</span>:</strong> chain rule, the inner derivative is <span class="math inline">\(-1\)</span>:</p>
+<p><span class="math display">\[\frac{\partial f}{\partial b_0} = -2 \sum (y_i - b_0 - b_1 x_i) = 0\]</span></p>
+<p>Divide by <span class="math inline">\(-2\)</span> and distribute the sum:</p>
+<p><span class="math display">\[\sum y_i - n b_0 - b_1 \sum x_i = 0\]</span></p>
+<p>Since <span class="math inline">\(\sum y_i = n\bar{y}\)</span> and <span class="math inline">\(\sum x_i = n\bar{x}\)</span>:</p>
+<p><span class="math display">\[n\bar{y} - n b_0 - b_1 n\bar{x} = 0\]</span></p>
+<p>Divide by <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[\bar{y} - b_0 - b_1 \bar{x} = 0 \quad \Longrightarrow \quad b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
+<p><strong>With respect to <span class="math inline">\(b_1\)</span>:</strong> chain rule, the inner derivative is <span class="math inline">\(-x_i\)</span>:</p>
+<p><span class="math display">\[\frac{\partial f}{\partial b_1} = -2 \sum x_i(y_i - b_0 - b_1 x_i) = 0\]</span></p>
+<p>Divide by <span class="math inline">\(-2\)</span>, distribute, and split the sum:</p>
+<p><span class="math display">\[\sum x_i y_i - b_0 \sum x_i - b_1 \sum x_i^2 = 0\]</span></p>
+<p>Substitute <span class="math inline">\(\sum x_i = n\bar{x}\)</span> and <span class="math inline">\(b_0 = \bar{y} - b_1 \bar{x}\)</span>:</p>
+<p><span class="math display">\[\sum x_i y_i - (\bar{y} - b_1 \bar{x}) n\bar{x} - b_1 \sum x_i^2 = 0\]</span></p>
+<p><span class="math display">\[\sum x_i y_i - n\bar{x}\bar{y} + b_1 n\bar{x}^2 - b_1 \sum x_i^2 = 0\]</span></p>
+<p>Factor out <span class="math inline">\(b_1\)</span>:</p>
+<p><span class="math display">\[\sum x_i y_i - n\bar{x}\bar{y} = b_1 \left(\sum x_i^2 - n\bar{x}^2\right) \quad \Longrightarrow \quad b_1 = \frac{\sum x_i y_i - n\bar{x}\bar{y}}{\sum x_i^2 - n\bar{x}^2}\]</span></p>
+<p><strong>Centered form.</strong> Denominator:</p>
+<p><span class="math display">\[\sum (x_i - \bar{x})^2 = \sum x_i^2 - 2\bar{x}\sum x_i + n\bar{x}^2 = \sum x_i^2 - 2n\bar{x}^2 + n\bar{x}^2 = \sum x_i^2 - n\bar{x}^2\]</span></p>
+<p>Numerator:</p>
+<p><span class="math display">\[\sum (x_i - \bar{x})(y_i - \bar{y}) = \sum x_i y_i - \bar{y}\sum x_i - \bar{x}\sum y_i + n\bar{x}\bar{y} = \sum x_i y_i - n\bar{x}\bar{y}\]</span></p>
+<p>So</p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}, \qquad \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Least Squares Estimates">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Least Squares Estimates
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}, \qquad \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}\]</span></p>
+</div>
+</div>
+<p><strong>Ruck data:</strong> <span class="math inline">\(\bar{x} = 40.42\)</span>, <span class="math inline">\(\bar{y} = 177.25\)</span>, <span class="math inline">\(\sum (x_i - \bar{x})(y_i - \bar{y}) = 1625.75\)</span>, <span class="math inline">\(\sum (x_i - \bar{x})^2 = 1334.92\)</span></p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{1625.75}{1334.92} = 1.2179, \qquad \hat{\beta}_0 = 177.25 - 1.2179(40.42) = 128.03\]</span></p>
+<hr>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The Model</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Simple Linear Regression Model">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Simple Linear Regression Model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[Y = \beta_0 + \beta_1 x + \varepsilon, \qquad \varepsilon \sim N(0, \sigma^2)\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>: true intercept and slope, <strong>parameters</strong>. <span class="math inline">\(\hat{\beta}_0\)</span>, <span class="math inline">\(\hat{\beta}_1\)</span>: their least squares <strong>estimates</strong>.</li>
+<li><strong>True regression line:</strong> <span class="math inline">\(\mu_{Y \cdot x} = \beta_0 + \beta_1 x\)</span>, the mean of <span class="math inline">\(Y\)</span> at a given <span class="math inline">\(x\)</span></li>
+<li><strong>L</strong>inear: the mean of <span class="math inline">\(Y\)</span> is a straight line in <span class="math inline">\(x\)</span></li>
+<li><strong>I</strong>ndependent: the errors <span class="math inline">\(\varepsilon_i\)</span> are independent</li>
+<li><strong>N</strong>ormal: the errors are normally distributed</li>
+<li><strong>E</strong>qual variance: <span class="math inline">\(\sigma^2\)</span> is the same at every <span class="math inline">\(x\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="fitting-it-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-it-in-r">Fitting It in R</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ruck <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">33</span>, <span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">44</span>, <span class="dv">47</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">time   =</span> <span class="fu">c</span>(<span class="dv">156</span>, <span class="dv">159</span>, <span class="dv">168</span>, <span class="dv">174</span>, <span class="dv">166</span>, <span class="dv">185</span>, <span class="dv">173</span>, <span class="dv">175</span>, <span class="dv">184</span>, <span class="dv">191</span>, <span class="dv">192</span>, <span class="dv">204</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(time <span class="sc">~</span> weight, <span class="at">data =</span> ruck)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = time ~ weight, data = ruck)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-6.614 -3.282 -1.871  3.034 10.693 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 128.0279     6.0311  21.228 1.20e-09 ***
+weight        1.2179     0.1444   8.435 7.39e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.275 on 10 degrees of freedom
+Multiple R-squared:  0.8768,    Adjusted R-squared:  0.8644 
+F-statistic: 71.14 on 1 and 10 DF,  p-value: 7.386e-06</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-regression-equation" class="level2">
+<h2 class="anchored" data-anchor-id="the-regression-equation">The Regression Equation</h2>
+<p>Read the <code>Estimate</code> column: <code>(Intercept)</code> is <span class="math inline">\(\hat{\beta}_0\)</span>, <code>weight</code> is <span class="math inline">\(\hat{\beta}_1\)</span>.</p>
+<p><span class="math display">\[\widehat{\text{time}} = 128.03 + 1.22\,(\text{weight})\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Interpreting Slope and Intercept">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Interpreting Slope and Intercept
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Slope</strong> (<span class="math inline">\(\hat{\beta}_1 = 1.22\)</span>): for each additional pound of pack weight, the estimated mean 12 mile ruck time increases by 1.22 minutes.</p>
+<p><strong>Intercept</strong> (<span class="math inline">\(\hat{\beta}_0 = 128.03\)</span>): the estimated mean ruck time with a 0 lb pack. Not meaningful: 0 lb is outside the data (25 to 60 lb).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Context Matters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Context Matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li>Interpret the slope with <strong>units</strong> and <strong>context</strong>. “The slope is 1.22” is not enough.</li>
+<li>If <span class="math inline">\(x = 0\)</span> is outside the data, the intercept may not be meaningful. Say so.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-p-values-hypothesis-tests" class="level2">
+<h2 class="anchored" data-anchor-id="the-p-values-hypothesis-tests">The P-Values: Hypothesis Tests</h2>
+<p>There is a P-value at the end of each row. <strong>Where there’s a P-value, there’s a hypothesis test.</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept) 128.02790    6.03114 21.2278 1.198e-09 ***
+weight        1.21787    0.14439  8.4346 7.386e-06 ***</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Hypothesis Tests in the Output">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Hypothesis Tests in the Output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Slope:</strong> is there a linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>?</p>
+<p><span class="math display">\[H_0: \beta_1 = 0 \qquad H_a: \beta_1 \neq 0\]</span></p>
+<p>If <span class="math inline">\(\beta_1 = 0\)</span>, the true line is flat: <span class="math inline">\(x\)</span> tells us nothing about the mean of <span class="math inline">\(Y\)</span>. <strong>This is the test we care about.</strong></p>
+<p><strong>Intercept:</strong> is the true intercept different from zero?</p>
+<p><span class="math display">\[H_0: \beta_0 = 0 \qquad H_a: \beta_0 \neq 0\]</span></p>
+<p>Usually not of interest.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="$t$ Test for the Slope">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="math inline">\(t\)</span> Test for the Slope
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[T = \frac{\hat{\beta}_1 - 0}{s_{\hat{\beta}_1}} \sim t_{n-2}\]</span></p>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(\hat{\beta}_1\)</span>: <code>Estimate</code>. <span class="math inline">\(s_{\hat{\beta}_1}\)</span>: <code>Std. Error</code>. <span class="math inline">\(T\)</span>: <code>t value</code>. P-value: Pr(&gt;|t|).</li>
+<li>By hand: <span class="math inline">\(s = \sqrt{\dfrac{\text{SSE}}{n - 2}}\)</span> (R’s <code>Residual standard error</code>), <span class="math inline">\(s_{\hat{\beta}_1} = \dfrac{s}{\sqrt{\sum (x_i - \bar{x})^2}}\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<section id="ruck-weight" class="level3">
+<h3 class="anchored" data-anchor-id="ruck-weight">Ruck Weight</h3>
+<p>Is there a linear relationship between pack weight and ruck time? Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><span class="math display">\[H_0: \beta_1 = 0\]</span></p>
+<p><span class="math display">\[H_a: \beta_1 \neq 0\]</span></p>
+<p><strong>Test statistic.</strong> From the <code>weight</code> row:</p>
+<p><span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{s_{\hat{\beta}_1}}\]</span></p>
+<p><span class="math display">\[t = \frac{1.2179}{0.1444} = 8.43\]</span></p>
+<p><strong>P-value.</strong> df <span class="math inline">\(= 10\)</span>. P-value <span class="math inline">\(= 2P(T &gt; 8.43) = 7.39 \times 10^{-6}\)</span></p>
+<p><code>2 * (1 - pt(8.435, 10))</code></p>
+<p><strong>Decision and conclusion.</strong> P-value <span class="math inline">\(\le 0.05\)</span>, so reject <span class="math inline">\(H_0\)</span>. There is convincing evidence of a linear relationship between pack weight and 12 mile ruck time.</p>
+<p><strong>Intercept row:</strong> <span class="math inline">\(t = 21.23\)</span>, P-value <span class="math inline">\(= 1.20 \times 10^{-9}\)</span>. Reject <span class="math inline">\(H_0: \beta_0 = 0\)</span>, but we don’t care: 0 lb is outside the data.</p>
+<hr>
+</section>
+</section>
+<section id="making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="making-predictions">Making Predictions</h2>
+<p>How long would we expect a cadet carrying 45 lb to take on the 12 mile ruck?</p>
+<p><span class="math display">\[\widehat{\text{time}} = 128.03 + 1.22(45) = \mathbf{182.83} \text{ minutes}\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">weight =</span> <span class="dv">45</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+182.8319 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Interpolation vs. Extrapolation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Interpolation vs.&nbsp;Extrapolation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Interpolation:</strong> predicting inside the observed <span class="math inline">\(x\)</span> range (25 to 60 lb). Fine.</li>
+<li><strong>Extrapolation:</strong> predicting outside it. The line may not continue.</li>
+<li>45 lb is interpolation. 100 lb would be extrapolation.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-good-is-the-fit-r2" class="level2">
+<h2 class="anchored" data-anchor-id="how-good-is-the-fit-r2">How Good Is the Fit? <span class="math inline">\(r^2\)</span></h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Coefficient of Determination">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Coefficient of Determination
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[r^2 = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad \text{SST} = \sum (y_i - \bar{y})^2, \qquad \text{SSE} = \sum (y_i - \hat{y}_i)^2\]</span></p>
+</div>
+</div>
+<p><strong>Ruck data:</strong> <code>Multiple R-squared</code> <span class="math inline">\(= 0.8768\)</span>. About 87.7% of the variation in ruck time is explained by pack weight.</p>
+<hr>
+</section>
+<section id="the-project" class="level2">
+<h2 class="anchored" data-anchor-id="the-project">The Project</h2>
+<p><strong>The question:</strong> answer a real question for a real Army decision maker, using real unit data in Vantage.</p>
+<section id="what-your-analysis-needs" class="level3">
+<h3 class="anchored" data-anchor-id="what-your-analysis-needs">What Your Analysis Needs</h3>
+<div class="compact">
+<ul>
+<li><strong>A research question</strong> you and your partner developed, for a named decision maker</li>
+<li><strong>A one-sample test:</strong> compare your unit to a standard or benchmark. One-sample <span class="math inline">\(t\)</span>, or one-proportion <span class="math inline">\(z\)</span> for categorical data.</li>
+<li><strong>A two-sample test:</strong> compare two groups in your unit. Two-sample <span class="math inline">\(t\)</span>, or two-proportion <span class="math inline">\(z\)</span> for categorical data.</li>
+<li><strong>A regression (required):</strong> <code>lm(response ~ proxy)</code>. Slope test, <span class="math inline">\(r^2\)</span>. Check LINE (Lesson 31), then add predictors (Lessons 32, 33).</li>
+<li><strong>Every test:</strong> hypotheses, test statistic, P-value, decision and conclusion in context</li>
+</ul>
+</div>
+</section>
+<section id="graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="graded-events">Graded Events</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">When</th>
+<th style="text-align: left;">What</th>
+<th style="text-align: center;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>EDA</strong></td>
+<td style="text-align: left;">Lesson 14</td>
+<td style="text-align: left;">Research question, decision maker, construct, proxy, initial EDA</td>
+<td style="text-align: center;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>IPR</strong></td>
+<td style="text-align: left;">Lesson 34 (20, 23 Nov)</td>
+<td style="text-align: left;">Your project as finished as possible. Instructor and peer feedback.</td>
+<td style="text-align: center;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Products</strong></td>
+<td style="text-align: left;">Lesson 37 (3, 4 Dec)</td>
+<td style="text-align: left;">Slide deck, executive summary, analysis code in Canvas</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Brief</strong></td>
+<td style="text-align: left;">Lessons 38, 39 (7 to 10 Dec)</td>
+<td style="text-align: left;">5 minute BLUF brief, 10 minute defense led by your instructor</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The IPR:</strong> come in as close to done as you can. A finished draft gets feedback you can use. A plan gets “go do the analysis.”</p>
+</section>
+<section id="this-week" class="level3">
+<h3 class="anchored" data-anchor-id="this-week">This Week</h3>
+<div class="compact">
+<ul>
+<li><strong>Pick a partner:</strong> <a href="https://dustydell.tail280d22.ts.net/pair/">Select your project partner</a>. As of 9 Nov, 13 cadets still need one.</li>
+<li><strong>Settle the research question</strong> with your partner.</li>
+<li><strong>Run the one-sample and two-sample tests</strong> in Vantage now. You already know how.</li>
+</ul>
+</div>
+</section>
+<section id="the-brief" class="level3">
+<h3 class="anchored" data-anchor-id="the-brief">The Brief</h3>
+<div class="compact">
+<ul>
+<li><strong>BLUF first:</strong> answer the decision maker’s question in one sentence.</li>
+<li>Every number gets an interpretation in context.</li>
+<li><strong>Defense:</strong> expect “Why this proxy?”, “Do the assumptions hold?”, “What would change your answer?”</li>
+</ul>
+</div>
+<p><strong>AI:</strong> Level 2. Use it and document it IAW the DAAW. You own every number you brief.</p>
+<hr>
+</section>
+</section>
+<section id="lets-go-to-vantage" class="level2">
+<h2 class="anchored" data-anchor-id="lets-go-to-vantage">Let’s Go to Vantage!</h2>
+<p><a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.e389c1a1-fed7-423a-a65d-3a9e4c2acac4">MA206 folder in Vantage</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MA206 Exploratory Data Analysis: Brigade Readiness</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foundry)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the full AY27-1 readiness dataset from Foundry.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>master <span class="ot">&lt;-</span> <span class="fu">datasets.read_table</span>(<span class="st">"ay27_1_master"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the brigade used in the EDA report.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>MY_BRIGADE <span class="ot">&lt;-</span> <span class="st">"20TH ENGINEER BRIGADE"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bde <span class="ot">&lt;-</span> master <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BrigadeName <span class="sc">==</span> MY_BRIGADE) <span class="sc">|&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, time_in_active_service_years, skill_level, height, weight, aft_score_total) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(aft_score_total))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create model</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>height, <span class="at">data =</span> bde)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="compact">
+<ul>
+<li>Is height a useful linear predictor of weight? Which row, which number?</li>
+<li>What proportion of the variation in weight is explained by height?</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li>Least squares line: <span class="math inline">\(\hat{\beta}_1 = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\)</span>, <span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}\)</span></li>
+<li><span class="math inline">\(s = \sqrt{\text{SSE}/(n-2)}\)</span>, <span class="math inline">\(s_{\hat{\beta}_1} = s / \sqrt{\sum (x_i - \bar{x})^2}\)</span></li>
+<li>Slope test: <span class="math inline">\(t = \hat{\beta}_1 / s_{\hat{\beta}_1}\)</span>, df <span class="math inline">\(= n - 2\)</span></li>
+<li><span class="math inline">\(r^2 = 1 - \text{SSE}/\text{SST}\)</span></li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 31: Simple Linear Regression III</strong></p>
+<div class="compact">
+<ul>
+<li>12, 13 Nov</li>
+<li>Devore 13.1</li>
+<li>Residual plots and normal probability plots</li>
+<li>Checking the LINE assumptions</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<div class="compact">
+<ul>
+<li><strong>WebAssign 12.2, 12.3, 12.5:</strong> due at the start of Lesson 31</li>
+<li><strong>Project IPR:</strong> Lesson 34 (20, 23 Nov)</li>
+<li><strong>TEE:</strong> 15 to 18 Dec 2026</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY27-1/lesson-29.html" class="pagination-link" aria-label="Lesson 29">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 29</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
