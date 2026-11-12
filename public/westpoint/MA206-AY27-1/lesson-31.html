@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lesson-31 – LTC Dusty Turner</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA206-AY27-1/lesson-30.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LTC Dusty Turner</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../MA206-AY27-1/index.html" aria-current="page"> 
+<span class="menu-text">MA206-AY27-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206x-AY26-2/index.html"> 
+<span class="menu-text">MA206x-AY26-2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../MA206-AY26-1/index.html"> 
+<span class="menu-text">MA206-AY26-1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../misc-lessons/index.html"> 
+<span class="menu-text">Guest Lessons</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA206-AY27-1/lesson-31.html">Lesson 31</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 9</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 10</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 11</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 12</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 13</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 14</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 15</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 16</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 17</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 18</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 19</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 20</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 21</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 22</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 24</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 25</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 26</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 27</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 28</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-29.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 29</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-30.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lesson 30</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA206-AY27-1/lesson-31.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lesson 31</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lesson-31-simple-linear-regression-iii" id="toc-lesson-31-simple-linear-regression-iii" class="nav-link active" data-scroll-target="#lesson-31-simple-linear-regression-iii">Lesson 31: Simple Linear Regression III</a>
+  <ul class="collapse">
+  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
+  <li><a href="#admin" id="toc-admin" class="nav-link" data-scroll-target="#admin">Admin</a></li>
+  <li><a href="#what-we-did-lessons-29-and-30" id="toc-what-we-did-lessons-29-and-30" class="nav-link" data-scroll-target="#what-we-did-lessons-29-and-30">What We Did: Lessons 29 and 30</a></li>
+  <li><a href="#what-were-doing-lesson-31" id="toc-what-were-doing-lesson-31" class="nav-link" data-scroll-target="#what-were-doing-lesson-31">What We’re Doing: Lesson 31</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break!</a>
+  <ul class="collapse">
+  <li><a href="#the-takeaway-for-today" id="toc-the-takeaway-for-today" class="nav-link" data-scroll-target="#the-takeaway-for-today">The Takeaway for Today</a></li>
+  </ul></li>
+  <li><a href="#our-model-we-must-validate-the-assumptions" id="toc-our-model-we-must-validate-the-assumptions" class="nav-link" data-scroll-target="#our-model-we-must-validate-the-assumptions">Our Model: We Must Validate the Assumptions</a></li>
+  <li><a href="#four-assumptions" id="toc-four-assumptions" class="nav-link" data-scroll-target="#four-assumptions">Four Assumptions</a></li>
+  <li><a href="#the-model-with-its-errors" id="toc-the-model-with-its-errors" class="nav-link" data-scroll-target="#the-model-with-its-errors">The Model, With Its Errors</a>
+  <ul class="collapse">
+  <li><a href="#what-each-letter-means" id="toc-what-each-letter-means" class="nav-link" data-scroll-target="#what-each-letter-means">What Each Letter Means</a></li>
+  </ul></li>
+  <li><a href="#l-linearity" id="toc-l-linearity" class="nav-link" data-scroll-target="#l-linearity">L: Linearity</a>
+  <ul class="collapse">
+  <li><a href="#ruck-data" id="toc-ruck-data" class="nav-link" data-scroll-target="#ruck-data">Ruck Data</a></li>
+  </ul></li>
+  <li><a href="#i-independence" id="toc-i-independence" class="nav-link" data-scroll-target="#i-independence">I: Independence</a></li>
+  <li><a href="#n-normality" id="toc-n-normality" class="nav-link" data-scroll-target="#n-normality">N: Normality</a>
+  <ul class="collapse">
+  <li><a href="#ruck-data-1" id="toc-ruck-data-1" class="nav-link" data-scroll-target="#ruck-data-1">Ruck Data</a></li>
+  </ul></li>
+  <li><a href="#e-equal-variance" id="toc-e-equal-variance" class="nav-link" data-scroll-target="#e-equal-variance">E: Equal Variance</a>
+  <ul class="collapse">
+  <li><a href="#ruck-data-2" id="toc-ruck-data-2" class="nav-link" data-scroll-target="#ruck-data-2">Ruck Data</a></li>
+  </ul></li>
+  <li><a href="#back-to-i-independence" id="toc-back-to-i-independence" class="nav-link" data-scroll-target="#back-to-i-independence">Back to I: Independence</a>
+  <ul class="collapse">
+  <li><a href="#ruck-data-3" id="toc-ruck-data-3" class="nav-link" data-scroll-target="#ruck-data-3">Ruck Data</a></li>
+  </ul></li>
+  <li><a href="#lets-go-to-vantage" id="toc-lets-go-to-vantage" class="nav-link" data-scroll-target="#lets-go-to-vantage">Let’s Go to Vantage!</a></li>
+  <li><a href="#board-problems" id="toc-board-problems" class="nav-link" data-scroll-target="#board-problems">Board Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-range-day" id="toc-problem-1-range-day" class="nav-link" data-scroll-target="#problem-1-range-day">Problem 1: Range Day</a></li>
+  <li><a href="#problem-2-weekly-mileage" id="toc-problem-2-weekly-mileage" class="nav-link" data-scroll-target="#problem-2-weekly-mileage">Problem 2: Weekly Mileage</a></li>
+  <li><a href="#problem-3-company-ruck" id="toc-problem-3-company-ruck" class="nav-link" data-scroll-target="#problem-3-company-ruck">Problem 3: Company Ruck</a></li>
+  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link" data-scroll-target="#before-you-leave">Before You Leave</a>
+  <ul class="collapse">
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#next-lesson" id="toc-next-lesson" class="nav-link" data-scroll-target="#next-lesson">Next Lesson</a></li>
+  <li><a href="#upcoming-graded-events" id="toc-upcoming-graded-events" class="nav-link" data-scroll-target="#upcoming-graded-events">Upcoming Graded Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lesson-31-simple-linear-regression-iii" class="level1">
+<h1>Lesson 31: Simple Linear Regression III</h1>
+<!-- page-scoped CSS -->
+<style>
+/* compact list utility */
+.compact ul, .compact ol { margin: 0.25rem 0 0.25rem 1.2rem; }
+.compact li { margin: 0.1rem 0; }
+.compact li p { margin: 0; }
+
+/* long display equations scroll instead of wrapping or overflowing the page */
+.math.display { overflow-x: auto; overflow-y: hidden; }
+
+/* vertical rules so the columns read as separate */
+.rulecols table > :not(caption) > * > * + * {
+  border-left: 1px solid #dee2e6 !important;
+}
+.rulecols { overflow-x: auto; }
+.rulecols table { width: auto; table-layout: auto; }
+.rulecols colgroup col { width: auto !important; }
+</style>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- Previously used this term: 552 (L1), 2435 (L2), 982 (L3), 1132 (L4), 936 (L5), 795 (L6), flag (L7), 221 (L8), 904 (L9), flag (L10), 2117 (L11), 2118 (L12), 612 (L13), 2048 (L14), 1236 (L15), 2059 (L16), 2110 (L18), 2311 (L19), 1347 (L20), 539 (L21), 882 (L22), 2303 (L23), 2569 (L27), 1725 (L28), 605 (L29), 2533 (L30) -->
+<!-- 1838 is "Machine Learning" ("Just stir the pile until they start looking right"). No profanity. Today: don't stir, check the assumptions. -->
+<section id="calendar" class="level2">
+<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/calendar-l31.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Block III calendar with a red box around Thursday 12 November, Lesson 31, Simple Linear Regression III."></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="admin" class="level2">
+<h2 class="anchored" data-anchor-id="admin">Admin</h2>
+<div class="compact">
+<ul>
+<li><strong>Project partners:</strong> <a href="https://dustydell.tail280d22.ts.net:8443/pair/">Select your project partner</a></li>
+<li><strong>Partner status (as of 11 Nov):</strong> 8 cadets still need to pick their partner (B2: 0, C2: 8, D2: 0)</li>
+<li><strong>Project IPR:</strong> Lesson 34 (20, 23 Nov). Come in as finished as possible.</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="what-we-did-lessons-29-and-30" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-lessons-29-and-30">What We Did: Lessons 29 and 30</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 29">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 29
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Least squares:</strong> choose <span class="math inline">\(\hat{\beta}_0\)</span>, <span class="math inline">\(\hat{\beta}_1\)</span> to minimize <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span></li>
+<li><span class="math inline">\(\hat{\beta}_1 = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\)</span>, <span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}\)</span></li>
+<li><strong>Slope:</strong> change in the mean of <span class="math inline">\(y\)</span> for a one unit increase in <span class="math inline">\(x\)</span></li>
+<li><strong>Predict</strong> only inside the range of the <span class="math inline">\(x\)</span> data</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 30">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 30
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Slope test:</strong> <span class="math inline">\(H_0: \beta_1 = 0\)</span>, <span class="math inline">\(t = \hat{\beta}_1 / s_{\hat{\beta}_1}\)</span>, df <span class="math inline">\(= n - 2\)</span></li>
+<li><strong><span class="math inline">\(r^2 = 1 - \text{SSE}/\text{SST}\)</span>:</strong> proportion of variation in <span class="math inline">\(y\)</span> explained by the line</li>
+<li><strong>R:</strong> <code>lm(y ~ x)</code>, <code>summary()</code>, <code>predict()</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-were-doing-lesson-31" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-doing-lesson-31">What We’re Doing: Lesson 31</h2>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="compact">
+<ul>
+<li>Produce residual plots and a normal-probability plot for a fitted regression model. (SLO 2, 4)</li>
+<li>Assess the assumptions of linear regression and judge model adequacy. (SLO 4, 6)</li>
+</ul>
+</div>
+</section>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<p>Devore 13.1</p>
+<hr>
+<!-- Break: softball catch-up (L30 was Cal). Vid 1 and 4 Reese from MA376 L22 (pitching last, his call); Vid 2-3 and Team from MA376 L26 (Hit 1, Hit 2, Team). None shown in MA206 before. -->
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break!</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Vid 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Vid 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Vid 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Vid 4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Team</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/reese-hit-l31.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/softball-single-l31.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/softball-double-l31.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div style="display: flex; justify-content: center;">
+<p><video style="max-width: 100%; height: auto;" controls=""> <source src="assets/video/reese-pitch-l31.mp4" type="video/mp4"> Your browser does not support the video tag. </video></p>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/softball-team-l31.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="Ten softball players lined up arm in arm on a lit field at night, each in a different colored shirt with a white letter m, like a bag of M&amp;Ms."></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<!-- TODO DMath Intramurals: L30 showed Frisbee 10-0 / 15-12 vs CBSE, Basketball 1-0 and 1-1 (vs DPW), Volleyball 0-1 (vs DPE). Add any new scores here.
+
+## DMath Intramurals
+
+### DMath Basketball!!
+
+![](../MA206-AY26-1/assets/img/basketball.png){fig-align="center" width="50%"}
+
+**Math vs ?**
+
+:::{.callout-note collapse="true" title="Previously 1-1"}
+<div style="text-align: center; font-size: 5em;">
+?-?
+</div>
+:::
+
+-->
+<section id="the-takeaway-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="the-takeaway-for-today">The Takeaway for Today</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Concepts from Lesson 31">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Concepts from Lesson 31
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>Model:</strong> <span class="math inline">\(Y = \beta_0 + \beta_1 x + \varepsilon\)</span>, <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span>, independent</li>
+<li><strong>LINE:</strong> Linear, Independent, Normal, Equal variance</li>
+<li><strong>Residual plot</strong> (residuals vs fitted): no pattern checks <strong>L</strong>, constant spread checks <strong>E</strong></li>
+<li><strong>Histogram</strong> of residuals: checks <strong>N</strong></li>
+<li><strong>Independence:</strong> comes from how the data were collected</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="our-model-we-must-validate-the-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="our-model-we-must-validate-the-assumptions">Our Model: We Must Validate the Assumptions</h2>
+<p>Same question as Lesson 30, now with <strong>100 cadets</strong>. <a href="assets/files/ruck-100.csv">Download the data</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ruck <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ruck-100.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(time <span class="sc">~</span> weight, <span class="at">data =</span> ruck)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = time ~ weight, data = ruck)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.8414  -3.7023   0.1586   3.8041  14.6021 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 129.1315     2.2660   56.98   &lt;2e-16 ***
+weight        1.2026     0.0528   22.78   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.454 on 98 degrees of freedom
+Multiple R-squared:  0.8411,    Adjusted R-squared:  0.8395 
+F-statistic: 518.8 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\widehat{\text{time}} = 129.13 + 1.20\,(\text{weight})\]</span></p>
+<p>The slope test and <span class="math inline">\(r^2\)</span> say this is a good model. <strong>Can we trust them?</strong></p>
+<hr>
+</section>
+<section id="four-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="four-assumptions">Four Assumptions</h2>
+<p>Everything we did in Lesson 30 (the <span class="math inline">\(t\)</span> test, the P-value, predictions) relies on <strong>four assumptions</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="LINE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>LINE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="compact">
+<ul>
+<li><strong>L</strong>inear</li>
+<li><strong>I</strong>ndependent</li>
+<li><strong>N</strong>ormal</li>
+<li><strong>E</strong>qual variance</li>
+</ul>
+</div>
+</div>
+</div>
+<p>We don’t get to assume them. <strong>We have to validate them.</strong></p>
+<hr>
+</section>
+<section id="the-model-with-its-errors" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-with-its-errors">The Model, With Its Errors</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Simple Linear Regression Model">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Simple Linear Regression Model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[Y = \beta_0 + \beta_1 x + \varepsilon, \qquad \varepsilon \sim N(0, \sigma^2)\]</span></p>
+</div>
+</div>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(Y\)</span>: the response (ruck time). <span class="math inline">\(x\)</span>: the explanatory variable (pack weight).</li>
+<li><span class="math inline">\(\beta_0 + \beta_1 x\)</span>: the <strong>true regression line</strong>, the mean of <span class="math inline">\(Y\)</span> at a given <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>: the <strong>random error</strong>, how far one cadet lands from the line</li>
+<li><span class="math inline">\(N(0, \sigma^2)\)</span>: errors are normal, centered at 0, with the <strong>same</strong> variance <span class="math inline">\(\sigma^2\)</span> at every <span class="math inline">\(x\)</span></li>
+<li>We estimate <span class="math inline">\(\varepsilon_i\)</span> with the <strong>residual</strong> <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span> and <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(s = \sqrt{\text{SSE}/(n-2)}\)</span></li>
+</ul>
+</div>
+<section id="what-each-letter-means" class="level3">
+<h3 class="anchored" data-anchor-id="what-each-letter-means">What Each Letter Means</h3>
+<div class="rulecols">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: left;">Assumption</th>
+<th style="text-align: left;">In the model</th>
+<th style="text-align: left;">Check it with</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>L</strong></td>
+<td style="text-align: left;">The mean of <span class="math inline">\(Y\)</span> is a straight line in <span class="math inline">\(x\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\beta_0 + \beta_1 x\)</span></td>
+<td style="text-align: left;">Residual plot: no pattern</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>I</strong></td>
+<td style="text-align: left;">The errors are independent of each other</td>
+<td style="text-align: left;"><span class="math inline">\(\varepsilon_1, \dots, \varepsilon_n\)</span> independent</td>
+<td style="text-align: left;">How the data were collected</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>N</strong></td>
+<td style="text-align: left;">The errors are normally distributed</td>
+<td style="text-align: left;"><span class="math inline">\(\varepsilon \sim N\)</span></td>
+<td style="text-align: left;">Histogram of residuals</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>E</strong></td>
+<td style="text-align: left;">The errors have the same variance at every <span class="math inline">\(x\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sigma^2\)</span>, not <span class="math inline">\(\sigma^2_x\)</span></td>
+<td style="text-align: left;">Residual plot: constant spread</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>L</strong> is about the line. <strong>I</strong>, <strong>N</strong>, <strong>E</strong> are all about <span class="math inline">\(\varepsilon\)</span>. Let’s take them one at a time.</p>
+<hr>
+</section>
+</section>
+<section id="l-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="l-linearity">L: Linearity</h2>
+<p>Is a straight line the right shape?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" alt="Two scatterplots of ruck time against pack weight with least squares lines. Left: the 100 cadet ruck data follow the line. Right: ruck time climbs faster and faster as packs get heavier, so the points curve upward, above the line at both ends and below it in the middle." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Easy to see here. Harder when the curve is subtle:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" alt="Scatterplot with a least squares line. The points look like they follow the line." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The trend tilts the picture. <strong>Take the line out.</strong></p>
+<p>Remember the grey lines from Lesson 29? Each one is a <strong>residual</strong>:</p>
+<p><span class="math display">\[e_i = y_i - \hat{y}_i \qquad \text{(observed minus predicted)}\]</span></p>
+<style>
+.stepvid { margin: 1rem 0; }
+.stepvid video { width: 100%; display: block; border: 1px solid #dee2e6; }
+.stepvid .btns { display: flex; gap: .5rem; justify-content: center; margin-top: .5rem; }
+.stepvid button { padding: .3rem 1rem; border: 1px solid #1f5fa8; background: #fff; color: #1f5fa8; border-radius: 4px; font-weight: 600; }
+.stepvid button:hover { background: #1f5fa8; color: #fff; }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".stepvid").forEach(w => {
+    const v = w.querySelector("video");
+    const stops = v.dataset.stops.split(",").map(Number);
+    let target = null;
+    const all = () => stops.concat(isFinite(v.duration) ? [v.duration] : []);
+    const watch = () => {
+      if (target === null) return;
+      if (v.currentTime >= target - 0.03 || v.ended) {
+        v.pause(); v.currentTime = Math.min(target, v.duration - 0.001); target = null; return;
+      }
+      requestAnimationFrame(watch);
+    };
+    w.querySelector('[data-act="next"]').onclick = () => {
+      const t = v.currentTime, nx = all().find(s => s > t + 0.05);
+      if (nx === undefined) return;
+      target = nx; v.play(); requestAnimationFrame(watch);
+    };
+    w.querySelector('[data-act="back"]').onclick = () => {
+      const t = v.currentTime, pv = all().filter(s => s < t - 0.05).pop();
+      target = null; v.pause(); v.currentTime = pv === undefined ? 0 : pv;
+    };
+    w.querySelector('[data-act="restart"]').onclick = () => { target = null; v.pause(); v.currentTime = 0; };
+  });
+});
+</script>
+<!-- data-stops: step boundaries in seconds, printed by CD-MA206-AY27-1/_dev/plots/residual-animation.R -->
+<div class="stepvid">
+  <video src="assets/img/residual-animation-1.mp4" data-stops="0,1.667,3.833,6.333,8.333,8.5" muted="" playsinline="" preload="auto" aria-label="Animation on the ruck data. The least squares line draws across the scatterplot. Orange residual segments drop from each point to the line. The line is subtracted off, so the scatterplot tilts into a residual plot with the line flat at zero. Each residual is then divided by s, the axis becomes standardized residuals, and dashed lines mark -2 and 2."></video>
+  <div class="btns"><button data-act="restart">⏮ Restart</button><button data-act="back">◀ Back</button><button data-act="next">Next ▶</button></div>
+</div>
+<p><strong>Residual plot:</strong> the scatterplot with the line subtracted off. Plot <span class="math inline">\(e_i\)</span> against <span class="math inline">\(\hat{y}_i\)</span>. The line becomes <span class="math inline">\(e = 0\)</span>. In R, <code>plot(model, which = 1)</code> also draws a red trend line through the residuals: flat means no pattern.</p>
+<p><strong>Standardized residual:</strong> <span class="math inline">\(z_i = e_i / s\)</span>. Same picture, now in standard deviations. Most should fall between <span class="math inline">\(-2\)</span> and <span class="math inline">\(2\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" alt="Three rows, each a scatterplot beside its residual plot. Top: the ruck data, residuals in random scatter around zero with a flat red trend line. Middle: the clearly curved data, residuals in a strong U. Bottom: the subtle curve data, which looks linear in the scatterplot, residuals in a clear U." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both curves are obvious now, even the subtle one. <strong>A pattern in the residual plot means L fails.</strong></p>
+<section id="ruck-data" class="level3">
+<h3 class="anchored" data-anchor-id="ruck-data">Ruck Data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Random scatter above and below 0. The red line stays flat. <strong>L</strong> ✓</p>
+<hr>
+</section>
+</section>
+<section id="i-independence" class="level2">
+<h2 class="anchored" data-anchor-id="i-independence">I: Independence</h2>
+<p>Not judged on a plot. <strong>We’ll come back to this.</strong></p>
+<hr>
+</section>
+<section id="n-normality" class="level2">
+<h2 class="anchored" data-anchor-id="n-normality">N: Normality</h2>
+<p>Are the errors normal: most points close to the line, fewer far away, the same above and below?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="Two scatterplots of ruck time against pack weight with least squares lines. Left: points scattered evenly above and below the line, most close to it. Right: most points sit just below the line, with a few far above it." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hard to judge from a scatterplot. <strong>Stack the residuals.</strong></p>
+<!-- data-stops: step boundaries in seconds, printed by CD-MA206-AY27-1/_dev/plots/residual-animation.R -->
+<div class="stepvid">
+  <video src="assets/img/residual-animation-2.mp4" data-stops="0,5.083" muted="" playsinline="" preload="auto" aria-label="Animation on the ruck data. Starting from the residual plot, the residuals slide right into a sideways histogram of the residuals."></video>
+  <div class="btns"><button data-act="restart">⏮ Restart</button><button data-act="back">◀ Back</button><button data-act="next">Next ▶</button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" alt="Two rows, each a scatterplot beside a histogram of its residuals. Top: the ruck data, residuals bell shaped and centered at zero. Bottom: the not normal data, residuals strongly right skewed with a long tail of large positive residuals." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>A skewed histogram of residuals means N fails.</strong></p>
+<section id="ruck-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="ruck-data-1">Ruck Data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(model<span class="sc">$</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Roughly bell shaped, centered at 0. <strong>N</strong> ✓</p>
+<hr>
+</section>
+</section>
+<section id="e-equal-variance" class="level2">
+<h2 class="anchored" data-anchor-id="e-equal-variance">E: Equal Variance</h2>
+<p>Is the spread around the line the same at every <span class="math inline">\(x\)</span>?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" alt="Two scatterplots of ruck time against pack weight with least squares lines. Left: the spread around the line is the same at every pack weight. Right: points are tight around the line at light packs and spread far from it at heavy packs." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Check the residual plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" alt="Two rows, each a scatterplot beside its residual plot. Top: the ruck data, residuals in an even band around zero. Bottom: the spread grows data, residuals in a funnel that opens to the right." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>A funnel in the residual plot means E fails.</strong></p>
+<section id="ruck-data-2" class="level3">
+<h3 class="anchored" data-anchor-id="ruck-data-2">Ruck Data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Spread about the same from left to right. No funnel. <strong>E</strong> ✓</p>
+<hr>
+</section>
+</section>
+<section id="back-to-i-independence" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-i-independence">Back to I: Independence</h2>
+<div class="compact">
+<ul>
+<li>No plot settles it. Ask <strong>how the data were collected</strong>.</li>
+<li>Does one observation affect another?</li>
+<li><strong>Red flags:</strong> the same cadet measured repeatedly, data collected over time, cadets from the same squad rucking together</li>
+</ul>
+</div>
+<section id="ruck-data-3" class="level3">
+<h3 class="anchored" data-anchor-id="ruck-data-3">Ruck Data</h3>
+<p>100 <strong>different</strong> cadets, each rucked once. One cadet’s time doesn’t affect another’s. <strong>I</strong> ✓</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Ruck Model: Adequate">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ruck Model: Adequate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All four assumptions are reasonable. We can trust the slope test and <span class="math inline">\(r^2\)</span> from Lesson 30.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="If an Assumption Fails">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>If an Assumption Fails
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The P-values and predictions from the model can’t be trusted.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lets-go-to-vantage" class="level2">
+<h2 class="anchored" data-anchor-id="lets-go-to-vantage">Let’s Go to Vantage!</h2>
+<p><a href="https://vantage.army.mil/workspace/compass/view/ri.compass.main.folder.e389c1a1-fed7-423a-a65d-3a9e4c2acac4">MA206 folder in Vantage</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foundry)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the full AY27-1 readiness dataset from Foundry</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>master <span class="ot">&lt;-</span> <span class="fu">datasets.read_table</span>(<span class="st">"ay27_1_master"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep one brigade and the columns we need; drop rows missing height or weight</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>MY_BRIGADE <span class="ot">&lt;-</span> <span class="st">"20TH ENGINEER BRIGADE"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>bde <span class="ot">&lt;-</span> master <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BrigadeName <span class="sc">==</span> MY_BRIGADE) <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height, weight, sex) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height), <span class="sc">!</span><span class="fu">is.na</span>(weight))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Regression: weight on height ----</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> bde)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># L and E: residual plot (no curve, no funnel, red line flat)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod, <span class="at">which =</span> <span class="dv">1</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># N: histogram of residuals (roughly bell shaped)</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mod<span class="sc">$</span>residuals)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- t tests: pull out each group's heights as a vector ----</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>males <span class="ot">&lt;-</span> bde <span class="sc">|&gt;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(height)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>females <span class="ot">&lt;-</span> bde <span class="sc">|&gt;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(height)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># One-sample t: are male soldiers shorter than 72 inches on average?</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: mu = 72   Ha: mu &lt; 72</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> males, <span class="at">mu =</span> <span class="dv">72</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-sample t: do male and female soldiers differ in mean height?</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: mu_M - mu_F = 0   Ha: mu_M - mu_F != 0</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># R's default is the two-sample t with approximate df (no equal variance assumption)</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> males, <span class="at">y =</span> females, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="compact">
+<ul>
+<li><strong>Regression:</strong> Is there a curve? A funnel? Are the residuals approximately normal? Are the soldiers independent of each other?</li>
+<li><strong>One-sample:</strong> Which number is the test statistic? The P-value? Are male soldiers shorter than 72 inches on average?</li>
+<li><strong>Two-sample:</strong> Do male and female soldiers differ in mean height?</li>
+<li>Do the same for <strong>your project</strong>.</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="board-problems" class="level2">
+<h2 class="anchored" data-anchor-id="board-problems">Board Problems</h2>
+<section id="problem-1-range-day" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-range-day">Problem 1: Range Day</h3>
+<p>Cadets fire at a qualification range. A regression of qualification score on hours of range time gives this residual plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" alt="Residual plot with points scattered around zero. The spread is narrow at small fitted values and widens steadily at large fitted values." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Which assumption does this plot check?</li>
+<li>Is the model adequate? Why or why not?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>L and E.</strong> A residual plot checks for a pattern (L) and for constant spread (E).</p></li>
+<li><p><strong>No.</strong> The spread grows from left to right (a funnel). <strong>E</strong> fails.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-2-weekly-mileage" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-weekly-mileage">Problem 2: Weekly Mileage</h3>
+<p>A regression of 2 mile run improvement on weekly running miles gives this residual plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" alt="Residual plot in which the residuals follow an upside down U: negative at both ends and positive in the middle." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Which assumption fails?</li>
+<li>What does that say about the straight line model?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>L.</strong> The residuals curve: below 0 at both ends, above 0 in the middle.</p></li>
+<li><p>A straight line is the wrong shape. Improvement levels off at high mileage.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-3-company-ruck" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-company-ruck">Problem 3: Company Ruck</h3>
+<p>A company commander records ruck times for every cadet in one company on the same morning, rucking together in squads. A regression of time on pack weight gives this residual plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lesson-31_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" alt="Residual plot with random scatter around zero and even spread." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Questions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Do L and E look reasonable?</li>
+<li>Which assumption is still in question? Why?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Answers">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>Yes.</strong> Random scatter, no curve, constant spread.</p></li>
+<li><p><strong>I.</strong> Cadets in the same squad ruck together, so their times are likely related. The plot can’t show that.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before You Leave</h2>
+<section id="today" class="level3">
+<h3 class="anchored" data-anchor-id="today">Today</h3>
+<div class="compact">
+<ul>
+<li><span class="math inline">\(Y = \beta_0 + \beta_1 x + \varepsilon\)</span>, <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span></li>
+<li><strong>LINE:</strong> Linear, Independent, Normal, Equal variance</li>
+<li>Residual plot for L and E; histogram for N; data collection for I</li>
+<li>Check them before you trust a P-value</li>
+</ul>
+</div>
+<p>Any questions?</p>
+<hr>
+</section>
+<section id="next-lesson" class="level3">
+<h3 class="anchored" data-anchor-id="next-lesson">Next Lesson</h3>
+<p><strong>Lesson 32: Multiple Linear Regression I</strong></p>
+<div class="compact">
+<ul>
+<li>16, 17 Nov</li>
+<li>Devore 13.4</li>
+<li>More than one explanatory variable</li>
+<li><strong>Project:</strong> starter code for a Quarto presentation or Markdown report</li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="upcoming-graded-events" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-graded-events">Upcoming Graded Events</h3>
+<div class="compact">
+<ul>
+<li><strong>Project IPR:</strong> Lesson 34 (20, 23 Nov)</li>
+<li><strong>TEE:</strong> 15 to 18 Dec 2026</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+(function() {
+  var API_URL = "https://dustypi.tail280d22.ts.net/pageview/api/hit";
+
+  function getVisitorId() {
+    var match = document.cookie.match(/(?:^|; )_pvid=([^;]+)/);
+    if (match) return match[1];
+    var id = 'v_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    document.cookie = "_pvid=" + id + "; path=/; max-age=31536000; SameSite=Lax";
+    return id;
+  }
+
+  function sendHit(publicIp) {
+    try {
+      var data = {
+        page: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        screen_width: screen.width,
+        screen_height: screen.height,
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        timestamp: new Date().toISOString(),
+        visitor_id: getVisitorId(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        connection_type: (navigator.connection && navigator.connection.effectiveType) || null,
+        public_ip: publicIp || null
+      };
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(API_URL, JSON.stringify(data));
+      } else {
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+
+  // Check localStorage cache first (refreshed daily)
+  function getCachedIp() {
+    try {
+      var cached = JSON.parse(localStorage.getItem('_pvip') || '{}');
+      if (cached.ip && cached.ts && (Date.now() - cached.ts) < 86400000) return cached.ip;
+    } catch(e) {}
+    return null;
+  }
+
+  function cacheIp(ip) {
+    try { localStorage.setItem('_pvip', JSON.stringify({ ip: ip, ts: Date.now() })); } catch(e) {}
+  }
+
+  var cachedIp = getCachedIp();
+  if (cachedIp) {
+    sendHit(cachedIp);
+    return;
+  }
+
+  // Try multiple IP services, use whichever responds first
+  var sent = false;
+  var timer = setTimeout(function() { if (!sent) { sent = true; sendHit(null); } }, 3000);
+
+  function tryService(url, extract) {
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+      var ip = extract(d);
+      if (!sent && ip) { sent = true; clearTimeout(timer); cacheIp(ip); sendHit(ip); }
+    }).catch(function() {});
+  }
+
+  tryService("https://api.ipify.org?format=json", function(d) { return d.ip; });
+  tryService("https://api.seeip.org/jsonip", function(d) { return d.ip; });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../MA206-AY27-1/lesson-30.html" class="pagination-link" aria-label="Lesson 30">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lesson 30</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
