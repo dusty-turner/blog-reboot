@@ -1,0 +1,72 @@
+---
+title: "Your Research Question Here"
+subtitle: "MA206 Course Project"
+author: "CDT Last Name and CDT Last Name"
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(foundry)
+
+# Read your unit's data and keep the columns you need
+master <- datasets.read_table("ay27_1_master")
+dat <- master |>
+  filter(BrigadeName == "YOUR BRIGADE") |>
+  select(response_var, explanatory_var)
+```
+
+## BLUF
+
+- **Question:** one sentence
+- **Answer:** one sentence, with the number that supports it
+- **Recommendation:** what the decision maker should do
+
+## Decision Maker and Construct
+
+- **Decision maker:** who cares about this answer
+- **Construct:** what you want to measure
+- **Proxy:** the variable you used, and why it is a fair stand in
+
+## The Data
+
+```{r}
+ggplot(dat, aes(x = explanatory_var, y = response_var)) +
+  geom_point()
+```
+
+- Source, number of soldiers, anything you filtered out
+
+## Analysis
+
+```{r}
+mod <- lm(response_var ~ explanatory_var, data = dat)
+summary(mod)
+```
+
+- Hypotheses, test statistic, P-value, conclusion in context
+
+## Assumptions
+
+```{r}
+#| layout-ncol: 2
+plot(mod, which = 1)
+hist(mod$residuals, main = "Residuals")
+```
+
+- L, I, N, E: which hold, which are questionable
+
+## Conclusion and Limitations
+
+- What you can say, and what you can't
+- Correlation is not causation
+
+## Questions?

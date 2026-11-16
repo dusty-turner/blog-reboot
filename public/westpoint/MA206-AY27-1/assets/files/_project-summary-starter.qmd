@@ -1,0 +1,58 @@
+---
+title: "Executive Summary: Your Research Question Here"
+author: "CDT Last Name and CDT Last Name"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(foundry)
+
+# Read your unit's data and keep the columns you need
+master <- datasets.read_table("ay27_1_master")
+dat <- master |>
+  filter(BrigadeName == "YOUR BRIGADE") |>
+  select(response_var, explanatory_var)
+mod <- lm(response_var ~ explanatory_var, data = dat)
+```
+
+## BLUF
+
+One short paragraph: the question, the answer, and the recommendation.
+
+## Background
+
+Who the decision maker is, what construct you measured, and the proxy you used.
+
+## Data
+
+Where the data came from and how many soldiers are in it (`r nrow(dat)`).
+
+## Analysis and Results
+
+```{r}
+ggplot(dat, aes(x = explanatory_var, y = response_var)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+State the hypotheses, the test statistic, the P-value, and the conclusion in context.
+
+## Assumptions
+
+```{r}
+#| layout-ncol: 2
+plot(mod, which = 1)
+hist(mod$residuals, main = "Residuals")
+```
+
+## Limitations
+
+What the data can't tell you.
