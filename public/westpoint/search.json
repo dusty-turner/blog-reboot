@@ -13507,5 +13507,126 @@
       "MA206-AY27-1",
       "Lesson 32"
     ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html",
+    "href": "MA206-AY27-1/lesson-33.html",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "Project IPR: next lesson, Lesson 34 (20, 23 Nov). Come in as finished as possible.\nProject starter code: Lesson 32\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 29\n\n\n\n\n\n\n\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 30\n\n\n\n\n\n\n\nSlope test: \\(H_0: \\beta_1 = 0\\), \\(t = \\hat{\\beta}_1 / s_{\\hat{\\beta}_1}\\), df \\(= n - 2\\)\n\\(r^2 = 1 - \\text{SSE}/\\text{SST}\\): proportion of variation in \\(y\\) explained by the line\nR: lm(y ~ x), summary(), predict()\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 31\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), independent\nLINE: Linear, Independent, Normal, Equal variance\nResidual plot (residuals vs fitted): no pattern checks L, constant spread checks E\nHistogram of residuals: checks N\nIndependence: comes from how the data were collected\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 32\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_k x_k + \\varepsilon\\)\nInterpret \\(\\hat{\\beta}_j\\): holding all else constant, a one unit increase in \\(x_j\\) is a \\(\\hat{\\beta}_j\\) unit increase in \\(y\\), on average\nNot significant? Drop it and refit\nCategorical with 3 levels: 2 indicator variables; each coefficient is a difference from the baseline level\nR: lm(y ~ x1 + x2 + x3)\n\n\n\n\n\n\n\n\n\n\n\n\n\nAssess the assumptions of the multiple regression model and judge model adequacy. (SLO 4, 6)\nInterpret the coefficient of multiple determination \\(R^2\\) and adjusted \\(R^2\\). (SLO 4)\nIncorporate categorical predictors using indicator (dummy) variables and interpret their coefficients. (SLO 4)\n\n\n\n\n\nDevore 13.4, 13.5, S4\n\n\n\n\n\n\n\nVideo 1Video 2Video 3\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 33\n\n\n\n\n\nNot significant? Drop the predictor and refit\nCategorical: each indicator compares one level to the baseline; keep the variable if any level is significant\n\\(R^2\\): proportion of the variation in \\(y\\) explained by the model; adjusted \\(R^2\\) penalizes extra predictors\nLINE: same plots as Lesson 31, plot(model, which = 1) and hist(model$residuals)\n\n\n\n\n\n\n\n\n\nWhat drives Indoor Obstacle Course Test time? 120 cadets. Download the data\n\n\ntime: IOCT time (sec), the response\npullups: max pull-ups\nweight: body weight (lb)\nsleep: hours of sleep the night before\nclass: Cow, Firstie, Plebe, or Yearling\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nioct &lt;- read.csv(\"ioct-mlr.csv\")\nmodel1 &lt;- lm(time ~ pullups + weight + sleep + class, data = ioct)\nsummary(model1)\n\n\n\n\nCall:\nlm(formula = time ~ pullups + weight + sleep + class, data = io)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.885  -7.814  -0.229   6.532  35.117 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   201.45917   10.72836  18.778  &lt; 2e-16 ***\npullups        -4.22389    0.27716 -15.240  &lt; 2e-16 ***\nweight          0.34319    0.04758   7.212 6.70e-11 ***\nsleep          -0.07612    1.02606  -0.074 0.940996    \nclassFirstie   -0.54505    3.21873  -0.169 0.865835    \nclassPlebe     21.08757    3.22546   6.538 1.88e-09 ***\nclassYearling  12.10654    3.15409   3.838 0.000205 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.81 on 113 degrees of freedom\nMultiple R-squared:  0.7711,    Adjusted R-squared:  0.7589 \nF-statistic: 63.43 on 6 and 113 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\nNoteWhich predictors are significant? Why?\n\n\n\n\n\n\n\npullups, weight: P-values &lt; 0.001. Significant.\nclassPlebe, classYearling: P-values &lt; 0.001. Significant.\nsleep: P-value = 0.94. Not significant.\nclassFirstie: P-value = 0.87. Not significant, but it is one level of class. Plebe and Yearling are significant, so class stays.\n\n\nDrop sleep and refit.\n\n\n\n\n\n\n\n\nmodel2 &lt;- lm(time ~ pullups + weight + class, data = ioct)\nsummary(model2)\n\n\n\n\nCall:\nlm(formula = time ~ pullups + weight + class, data = io)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.920  -7.870  -0.264   6.514  35.137 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   201.00716    8.79151  22.864  &lt; 2e-16 ***\npullups        -4.22434    0.27588 -15.312  &lt; 2e-16 ***\nweight          0.34304    0.04733   7.248 5.42e-11 ***\nclassFirstie   -0.52795    3.19643  -0.165 0.869104    \nclassPlebe     21.11634    3.18805   6.624 1.21e-09 ***\nclassYearling  12.11452    3.13847   3.860 0.000188 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.76 on 114 degrees of freedom\nMultiple R-squared:  0.7711,    Adjusted R-squared:  0.761 \nF-statistic: 76.79 on 5 and 114 DF,  p-value: &lt; 2.2e-16\n\n\n\\[\\widehat{\\text{time}} = 201.01 - 4.22\\,(\\text{pullups}) + 0.34\\,(\\text{weight}) - 0.53\\,x_{\\text{Firstie}} + 21.12\\,x_{\\text{Plebe}} + 12.11\\,x_{\\text{Yearling}}\\]\n\n\n\n\n\n\n\n\nNoteInterpret each coefficient.\n\n\n\n\n\n\n\npullups: holding all else constant, a one pull-up increase is a 4.22 second decrease in IOCT time, on average.\nweight: holding all else constant, a one pound increase in body weight is a 0.34 second increase in IOCT time, on average.\nclassFirstie: holding all else constant, Firsties are 0.53 seconds faster than Cows, on average. Not significant: no evidence Firsties and Cows differ.\nclassPlebe: holding all else constant, Plebes are 21.12 seconds slower than Cows, on average.\nclassYearling: holding all else constant, Yearlings are 12.11 seconds slower than Cows, on average.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAnswer\n\n\n\n\n\n\n\npullups, weight, Plebe, Yearling: P-values &lt; 0.001, below 0.05. Reject \\(H_0: \\beta_j = 0\\).\nFirstie: P-value = 0.87, above 0.05. Fail to reject: Firsties are no different from the baseline, Cows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAnswer\n\n\n\n\n\n\\(R^2 =\\) 77.1%. The model explains 77.1% of the variation in IOCT time.\nAdjusted \\(R^2\\) penalizes predictors that don’t help.\n\n\n\n\nModel\n\\(R^2\\)\nAdjusted \\(R^2\\)\n\n\n\n\nWith sleep\n77.1%\n75.9%\n\n\nWithout sleep\n77.1%\n76.1%\n\n\n\n\nDropping sleep barely moved \\(R^2\\), and adjusted \\(R^2\\) went up.\n\n\n\n\n\n\n\n\n\nplot(model2, which = 1)\nhist(model2$residuals)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteIs each LINE assumption reasonable?\n\n\n\n\n\n\n\nL (Linear): residuals vs fitted shows no pattern. Reasonable.\nI (Independent): one IOCT per cadet, cadets run separately. Reasonable.\nN (Normal): histogram is roughly symmetric and bell shaped. Reasonable.\nE (Equal variance): spread is about the same across the fitted values. Reasonable.\n\n\n\n\n\n\n\n\n\nMA206 folder in Vantage\n\nlibrary(tidyverse)\nlibrary(foundry)\n\nmaster &lt;- datasets.read_table(\"ay27_1_master\")\n\nMY_BRIGADE &lt;- \"20TH ENGINEER BRIGADE\"\nbde &lt;- master |&gt;\n  filter(BrigadeName == MY_BRIGADE) |&gt;\n  select(height, weight, sex) |&gt;\n  filter(!is.na(height), !is.na(weight), !is.na(sex))\n\nmod &lt;- lm(weight ~ height + sex, data = bde)\nsummary(mod)\n\nplot(mod, which = 1)\nhist(mod$residuals)\n\n\n\nWhich predictors are significant? Why?\nInterpret each coefficient.\nWhat is \\(R^2\\)? What does it mean?\nIs each LINE assumption reasonable?\nDo the same for your project model. Drop what isn’t significant and refit.\n\n\n\n\n\n\n\n\n\n\nPredictor not significant: drop it and refit\nCategorical: one level not significant? Keep the variable if another level is\n\\(R^2\\): proportion of the variation in \\(y\\) explained; adjusted \\(R^2\\) penalizes extra predictors\nCheck LINE on the refit model\n\n\nAny questions?\n\n\n\n\nLesson 34: Project IPR\n\n\n20, 23 Nov\nCome in as finished as possible\n\n\n\n\n\n\n\n\nProject IPR: Lesson 34 (20, 23 Nov)\nProject Products: Lesson 37 (3, 4 Dec)\nTEE: 15 to 18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#admin",
+    "href": "MA206-AY27-1/lesson-33.html#admin",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "Project IPR: next lesson, Lesson 34 (20, 23 Nov). Come in as finished as possible.\nProject starter code: Lesson 32",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#what-we-did-lessons-29-to-32",
+    "href": "MA206-AY27-1/lesson-33.html#what-we-did-lessons-29-to-32",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "NoteKey Concepts from Lesson 29\n\n\n\n\n\n\n\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 30\n\n\n\n\n\n\n\nSlope test: \\(H_0: \\beta_1 = 0\\), \\(t = \\hat{\\beta}_1 / s_{\\hat{\\beta}_1}\\), df \\(= n - 2\\)\n\\(r^2 = 1 - \\text{SSE}/\\text{SST}\\): proportion of variation in \\(y\\) explained by the line\nR: lm(y ~ x), summary(), predict()\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 31\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), independent\nLINE: Linear, Independent, Normal, Equal variance\nResidual plot (residuals vs fitted): no pattern checks L, constant spread checks E\nHistogram of residuals: checks N\nIndependence: comes from how the data were collected\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 32\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_k x_k + \\varepsilon\\)\nInterpret \\(\\hat{\\beta}_j\\): holding all else constant, a one unit increase in \\(x_j\\) is a \\(\\hat{\\beta}_j\\) unit increase in \\(y\\), on average\nNot significant? Drop it and refit\nCategorical with 3 levels: 2 indicator variables; each coefficient is a difference from the baseline level\nR: lm(y ~ x1 + x2 + x3)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#what-were-doing-lesson-33",
+    "href": "MA206-AY27-1/lesson-33.html#what-were-doing-lesson-33",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "Assess the assumptions of the multiple regression model and judge model adequacy. (SLO 4, 6)\nInterpret the coefficient of multiple determination \\(R^2\\) and adjusted \\(R^2\\). (SLO 4)\nIncorporate categorical predictors using indicator (dummy) variables and interpret their coefficients. (SLO 4)\n\n\n\n\n\nDevore 13.4, 13.5, S4",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#break",
+    "href": "MA206-AY27-1/lesson-33.html#break",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "Video 1Video 2Video 3\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n  Your browser does not support the video tag. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 33\n\n\n\n\n\nNot significant? Drop the predictor and refit\nCategorical: each indicator compares one level to the baseline; keep the variable if any level is significant\n\\(R^2\\): proportion of the variation in \\(y\\) explained by the model; adjusted \\(R^2\\) penalizes extra predictors\nLINE: same plots as Lesson 31, plot(model, which = 1) and hist(model$residuals)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#the-ioct",
+    "href": "MA206-AY27-1/lesson-33.html#the-ioct",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "What drives Indoor Obstacle Course Test time? 120 cadets. Download the data\n\n\ntime: IOCT time (sec), the response\npullups: max pull-ups\nweight: body weight (lb)\nsleep: hours of sleep the night before\nclass: Cow, Firstie, Plebe, or Yearling",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#start-with-everything",
+    "href": "MA206-AY27-1/lesson-33.html#start-with-everything",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "ioct &lt;- read.csv(\"ioct-mlr.csv\")\nmodel1 &lt;- lm(time ~ pullups + weight + sleep + class, data = ioct)\nsummary(model1)\n\n\n\n\nCall:\nlm(formula = time ~ pullups + weight + sleep + class, data = io)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.885  -7.814  -0.229   6.532  35.117 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   201.45917   10.72836  18.778  &lt; 2e-16 ***\npullups        -4.22389    0.27716 -15.240  &lt; 2e-16 ***\nweight          0.34319    0.04758   7.212 6.70e-11 ***\nsleep          -0.07612    1.02606  -0.074 0.940996    \nclassFirstie   -0.54505    3.21873  -0.169 0.865835    \nclassPlebe     21.08757    3.22546   6.538 1.88e-09 ***\nclassYearling  12.10654    3.15409   3.838 0.000205 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.81 on 113 degrees of freedom\nMultiple R-squared:  0.7711,    Adjusted R-squared:  0.7589 \nF-statistic: 63.43 on 6 and 113 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\nNoteWhich predictors are significant? Why?\n\n\n\n\n\n\n\npullups, weight: P-values &lt; 0.001. Significant.\nclassPlebe, classYearling: P-values &lt; 0.001. Significant.\nsleep: P-value = 0.94. Not significant.\nclassFirstie: P-value = 0.87. Not significant, but it is one level of class. Plebe and Yearling are significant, so class stays.\n\n\nDrop sleep and refit.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#refit-without-sleep",
+    "href": "MA206-AY27-1/lesson-33.html#refit-without-sleep",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "model2 &lt;- lm(time ~ pullups + weight + class, data = ioct)\nsummary(model2)\n\n\n\n\nCall:\nlm(formula = time ~ pullups + weight + class, data = io)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.920  -7.870  -0.264   6.514  35.137 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   201.00716    8.79151  22.864  &lt; 2e-16 ***\npullups        -4.22434    0.27588 -15.312  &lt; 2e-16 ***\nweight          0.34304    0.04733   7.248 5.42e-11 ***\nclassFirstie   -0.52795    3.19643  -0.165 0.869104    \nclassPlebe     21.11634    3.18805   6.624 1.21e-09 ***\nclassYearling  12.11452    3.13847   3.860 0.000188 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.76 on 114 degrees of freedom\nMultiple R-squared:  0.7711,    Adjusted R-squared:  0.761 \nF-statistic: 76.79 on 5 and 114 DF,  p-value: &lt; 2.2e-16\n\n\n\\[\\widehat{\\text{time}} = 201.01 - 4.22\\,(\\text{pullups}) + 0.34\\,(\\text{weight}) - 0.53\\,x_{\\text{Firstie}} + 21.12\\,x_{\\text{Plebe}} + 12.11\\,x_{\\text{Yearling}}\\]\n\n\n\n\n\n\n\n\nNoteInterpret each coefficient.\n\n\n\n\n\n\n\npullups: holding all else constant, a one pull-up increase is a 4.22 second decrease in IOCT time, on average.\nweight: holding all else constant, a one pound increase in body weight is a 0.34 second increase in IOCT time, on average.\nclassFirstie: holding all else constant, Firsties are 0.53 seconds faster than Cows, on average. Not significant: no evidence Firsties and Cows differ.\nclassPlebe: holding all else constant, Plebes are 21.12 seconds slower than Cows, on average.\nclassYearling: holding all else constant, Yearlings are 12.11 seconds slower than Cows, on average.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAnswer\n\n\n\n\n\n\n\npullups, weight, Plebe, Yearling: P-values &lt; 0.001, below 0.05. Reject \\(H_0: \\beta_j = 0\\).\nFirstie: P-value = 0.87, above 0.05. Fail to reject: Firsties are no different from the baseline, Cows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAnswer\n\n\n\n\n\n\\(R^2 =\\) 77.1%. The model explains 77.1% of the variation in IOCT time.\nAdjusted \\(R^2\\) penalizes predictors that don’t help.\n\n\n\n\nModel\n\\(R^2\\)\nAdjusted \\(R^2\\)\n\n\n\n\nWith sleep\n77.1%\n75.9%\n\n\nWithout sleep\n77.1%\n76.1%\n\n\n\n\nDropping sleep barely moved \\(R^2\\), and adjusted \\(R^2\\) went up.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#critique-the-assumptions",
+    "href": "MA206-AY27-1/lesson-33.html#critique-the-assumptions",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "plot(model2, which = 1)\nhist(model2$residuals)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteIs each LINE assumption reasonable?\n\n\n\n\n\n\n\nL (Linear): residuals vs fitted shows no pattern. Reasonable.\nI (Independent): one IOCT per cadet, cadets run separately. Reasonable.\nN (Normal): histogram is roughly symmetric and bell shaped. Reasonable.\nE (Equal variance): spread is about the same across the fitted values. Reasonable.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#lets-go-to-vantage",
+    "href": "MA206-AY27-1/lesson-33.html#lets-go-to-vantage",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "MA206 folder in Vantage\n\nlibrary(tidyverse)\nlibrary(foundry)\n\nmaster &lt;- datasets.read_table(\"ay27_1_master\")\n\nMY_BRIGADE &lt;- \"20TH ENGINEER BRIGADE\"\nbde &lt;- master |&gt;\n  filter(BrigadeName == MY_BRIGADE) |&gt;\n  select(height, weight, sex) |&gt;\n  filter(!is.na(height), !is.na(weight), !is.na(sex))\n\nmod &lt;- lm(weight ~ height + sex, data = bde)\nsummary(mod)\n\nplot(mod, which = 1)\nhist(mod$residuals)\n\n\n\nWhich predictors are significant? Why?\nInterpret each coefficient.\nWhat is \\(R^2\\)? What does it mean?\nIs each LINE assumption reasonable?\nDo the same for your project model. Drop what isn’t significant and refit.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-33.html#before-you-leave",
+    "href": "MA206-AY27-1/lesson-33.html#before-you-leave",
+    "title": "Lesson 33: Multiple Linear Regression II",
+    "section": "",
+    "text": "Predictor not significant: drop it and refit\nCategorical: one level not significant? Keep the variable if another level is\n\\(R^2\\): proportion of the variation in \\(y\\) explained; adjusted \\(R^2\\) penalizes extra predictors\nCheck LINE on the refit model\n\n\nAny questions?\n\n\n\n\nLesson 34: Project IPR\n\n\n20, 23 Nov\nCome in as finished as possible\n\n\n\n\n\n\n\n\nProject IPR: Lesson 34 (20, 23 Nov)\nProject Products: Lesson 37 (3, 4 Dec)\nTEE: 15 to 18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 33"
+    ]
   }
 ]
