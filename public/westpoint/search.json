@@ -13672,5 +13672,203 @@
       "MA206-AY27-1",
       "Lesson 34"
     ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html",
+    "href": "MA206-AY27-1/lesson-35.html",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Project Products: Lesson 37 (3, 4 Dec)\nProject starter code: Lesson 32\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 29\n\n\n\n\n\n\n\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 30\n\n\n\n\n\n\n\nSlope test: \\(H_0: \\beta_1 = 0\\), \\(t = \\hat{\\beta}_1 / s_{\\hat{\\beta}_1}\\), df \\(= n - 2\\)\n\\(r^2 = 1 - \\text{SSE}/\\text{SST}\\): proportion of variation in \\(y\\) explained by the line\nR: lm(y ~ x), summary(), predict()\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 31\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), independent\nLINE: Linear, Independent, Normal, Equal variance\nResidual plot (residuals vs fitted): no pattern checks L, constant spread checks E\nHistogram of residuals: checks N\nIndependence: comes from how the data were collected\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 32\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_k x_k + \\varepsilon\\)\nInterpret \\(\\hat{\\beta}_j\\): holding all else constant, a one unit increase in \\(x_j\\) is a \\(\\hat{\\beta}_j\\) unit increase in \\(y\\), on average\nNot significant? Drop it and refit\nCategorical with 3 levels: 2 indicator variables; each coefficient is a difference from the baseline level\nR: lm(y ~ x1 + x2 + x3)\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 33\n\n\n\n\n\n\n\nNot significant? Drop the predictor and refit\nCategorical: each indicator compares one level to the baseline; keep the variable if any level is significant\n\\(R^2\\): proportion of the variation in \\(y\\) explained by the model; adjusted \\(R^2\\) penalizes extra predictors\nLINE: same plots as Lesson 31, plot(model, which = 1) and hist(model$residuals)\n\n\n\n\n\n\n\n\n\n\n\n\n\nState the assumptions and hypotheses for single-factor (one-way) ANOVA. (SLO 5)\nCompute the \\(F\\) statistic from the ANOVA table (sums of squares and mean squares) and carry out the \\(F\\) test. (SLO 4)\nInterpret the \\(P\\)-value and conclude whether the population means differ. (SLO 5)\n\n\n\n\n\nDevore 10.1\n\n\n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMath vs USMAPS\n\n\n\n\n\n\nNotePreviously 3-3\n\n\n\n\n\n\n5-3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 35\n\n\n\n\n\nGoal: compare \\(I \\ge 3\\) population means with one test\n\\(H_0: \\mu_1 = \\mu_2 = \\cdots = \\mu_I\\) versus \\(H_a\\): at least two of the \\(\\mu_i\\)’s differ\n\\(F = \\text{MSTr}/\\text{MSE}\\): between-group variability over within-group variability\nP-value: 1 - pf(F, I-1, n-I), always the upper tail\nANOVA says whether the means differ, not which ones (Lesson 36)\n\n\n\n\n\n\n\n\n\nAFT scores, 25 Soldiers each from A Co and B Co. Do the companies differ?\n\n\n\n\n\n\n\n\n\n\nA\n\n [1] 308 335 370 302 328 333 348 324 380 327 340 355 320 304 375 272 352 331 355\n[20] 341 382 300 370 379 330\n\nB\n\n [1] 299 372 345 380 367 378 368 387 353 341 345 317 337 346 354 350 311 339 408\n[20] 376 410 352 358 355 330\n\n\n\nt.test(A, B, paired = F)\n\n\n    Welch Two Sample t-test\n\ndata:  A and B\nt = -2.1235, df = 47.796, p-value = 0.03892\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -32.4753184  -0.8846816\nsample estimates:\nmean of x mean of y \n   338.44    355.12 \n\n\nOne test, one \\(\\alpha\\). Done.\n\n\n\n\nA battalion has A, B, C, and HHC. Does any company differ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteHow many two-sample t tests?\n\n\n\n\\[\\binom{4}{2} = 6\\]\n\n\n\n\n\n\nComparison\nP-value\nReject at 0.05?\n\n\n\n\nA vs B\n0.039\nYes\n\n\nA vs C\n0.532\nNo\n\n\nA vs HHC\n0.457\nNo\n\n\nB vs C\n0.070\nNo\n\n\nB vs HHC\n0.130\nNo\n\n\nC vs HHC\n0.841\nNo\n\n\n\n\n\n\n\n\n\n\nEach test has a 5% chance of a false positive when \\(H_0\\) is true.\nTwo tests. \\(A\\) = false positive on test 1, \\(B\\) = false positive on test 2. \\(P(A) = P(B) = 0.05\\), independent.\n\\[\n\\begin{aligned}\nP(\\text{at least one false positive}) &= 1 - P(A' \\cap B') \\\\\n&= 1 - P(A')\\,P(B') \\\\\n&= 1 - (0.95)(0.95) \\\\\n&= 0.0975\n\\end{aligned}\n\\]\nSix tests.\n\\[P(\\text{at least one false positive}) = 1 - (0.95)^6 = 0.265\\]\n\n\n\n\n\n\nWarningMultiple Comparisons\n\n\n\nMore tests means a higher chance of at least one false positive. Run enough of them and something will look significant by chance.\n\n\n\n\n\n\n\n\nNoteOne fix: Bonferroni\n\n\n\nShrink each test’s \\(\\alpha\\): \\(\\alpha^* = 0.05 / 6 = 0.0083\\).\nReject now? None of the six. Very conservative: real differences get missed.\n\n\n\n\n\n\nAre any of the population means different?\n\nThat test is ANOVA (analysis of variance).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSame means. Left: tiny spread, the gaps look real. Right: huge spread, the same gaps disappear into the noise.\n\n\n\n\n\n\n\n\n\nSame spread. Left: means close, probably no real difference. Right: means far apart, real differences.\n\n\n\n\n\n\nTipTwo things decide it\n\n\n\n\n\nHow far apart the group means are (between)\nHow noisy each group is (within)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantSingle-Factor ANOVA\n\n\n\n\\[\n\\begin{aligned}\nH_0&: \\mu_1 = \\mu_2 = \\cdots = \\mu_I \\\\\nH_a&: \\text{at least two of the } \\mu_i\\text{'s differ}\n\\end{aligned}\n\\]\n\n\nFor the AFT data, \\(I = 4\\):\n\\[\n\\begin{aligned}\nH_0&: \\mu_A = \\mu_B = \\mu_C = \\mu_{HHC} \\\\\nH_a&: \\text{at least two of the company means differ}\n\\end{aligned}\n\\]\n\n\n\n\nNotation: \\(I\\) = number of groups, \\(J_i\\) = observations in group \\(i\\), \\(n\\) = total observations, \\(\\bar{y}_{i\\cdot}\\) = mean of group \\(i\\), \\(\\bar{y}_{\\cdot\\cdot}\\) = grand mean (all the data).\nFor the AFT data: \\(I = 4\\), \\(n = 100\\), \\(\\bar{y}_{\\cdot\\cdot} = 345.10\\)\n\n\n\n\nCompany\n\\(J_i\\)\n\\(\\bar{y}_{i\\cdot}\\)\n\n\n\n\nA\n25\n338.44\n\n\nB\n25\n355.12\n\n\nC\n25\n342.80\n\n\nHHC\n25\n344.04\n\n\n\n\n\n\nHow far does each group mean sit from the grand mean?\n\n\n\n\n\n\n\n\n\nTreatment = group. Here, the treatments are the four companies.\n\n\nSSTr: treatment sum of squares\nMSTr: mean square for treatments\n\n\n\\[\\text{SSTr} = \\sum_i J_i(\\bar{y}_{i\\cdot} - \\bar{y}_{\\cdot\\cdot})^2 \\qquad \\text{MSTr} = \\frac{\\text{SSTr}}{I - 1}\\]\n\\[\\text{SSTr} = 25(338.44 - 345.10)^2 + 25(355.12 - 345.10)^2 + 25(342.80 - 345.10)^2 + 25(344.04 - 345.10)^2 = 3779.2\\]\n\\[\\text{MSTr} = \\frac{3779.2}{3} = 1259.75\\]\n\n\n\nHow far does each observation sit from its own group mean?\n\n\n\n\n\n\n\n\n\nError = the variation left over inside each group.\n\n\nSSE: error sum of squares\nMSE: mean square for error\n\n\n\\[\\text{SSE} = \\sum_i \\sum_j (y_{ij} - \\bar{y}_{i\\cdot})^2 \\qquad \\text{MSE} = \\frac{\\text{SSE}}{n - I}\\]\n\\[\\text{SSE} = 59731.8 \\qquad \\text{MSE} = \\frac{59731.8}{96} = 622.21\\]\n\n\n\n\\[F = \\frac{\\text{MSTr}}{\\text{MSE}} = \\frac{\\text{between}}{\\text{within}} = \\frac{1259.75}{622.21} = 2.025\\]\n\n\n\n\n\n\nNoteWhat does F tell us?\n\n\n\n\\(F\\) is a distance measure: how big the differences between the groups are, relative to the differences within the groups. The larger the between differences relative to the within differences, the more evidence the groups are actually different.\n\n\n\\(F\\) near 1: the gaps between means look like ordinary noise. Consistent with \\(H_0\\).\n\\(F\\) much bigger than 1: the means are farther apart than noise explains. Evidence for \\(H_a\\).\n\n\n\n\n\n\n\nSST: total sum of squares, how far every observation sits from the grand mean. \\(\\text{SST} = \\text{SSTr} + \\text{SSE}\\).\nEverything above, in one table:\n\n\n\n\n\n\nImportantANOVA Table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments\n\\(\\text{SSTr} = \\sum_i J_i(\\bar{y}_{i\\cdot} - \\bar{y}_{\\cdot\\cdot})^2\\)\n\\(I - 1\\)\n\\(\\text{MSTr} = \\dfrac{\\text{SSTr}}{I-1}\\)\n\\(\\dfrac{\\text{MSTr}}{\\text{MSE}}\\)\n\n\nError\n\\(\\text{SSE} = \\sum_i \\sum_j (y_{ij} - \\bar{y}_{i\\cdot})^2\\)\n\\(n - I\\)\n\\(\\text{MSE} = \\dfrac{\\text{SSE}}{n-I}\\)\n\n\n\nTotal\n\\(\\text{SST} = \\text{SSTr} + \\text{SSE}\\)\n\\(n - 1\\)\n\n\n\n\n\n\n\n\nAFT data:\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments (Company)\n3779.2\n3\n1259.75\n2.025\n\n\nError\n59731.8\n96\n622.21\n\n\n\nTotal\n63511.0\n99\n\n\n\n\n\n\nHow big does \\(F\\) need to be?\n\n\n\n\n\nWhen \\(H_0\\) is true, \\(F \\sim F_{I-1,\\, n-I}\\). Big \\(F\\) is evidence against \\(H_0\\), so the P-value is always the upper tail.\n\n\n\n\n\n\nImportantANOVA P-Value\n\n\n\n\\[\\text{P-value} = P(F_{I-1,\\,n-I} \\ge F)\\]\n1 - pf(F, I-1, n-I)\n\n\n\n1 - pf(2.025, 3, 96)\n\n[1] 0.1155218\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDecision and conclusion\n\n\n\nP-value = 0.116 \\(&gt;\\) 0.05: fail to reject \\(H_0\\). There is not sufficient evidence that any of the four companies have different true mean AFT scores.\n\n\n\n\n\n\n\n\nWarningWhich companies?\n\n\n\nANOVA does not say which means differ. That is Lesson 36 (Tukey).\n\n\n\n\nDrag a dot to move one Soldier. Drag a company’s mean bar to move the whole company. Watch SSTr, SSE, \\(F\\), and the P-value.\nDownload the ANOVA Machine\nOne HTML file. Opens in any browser, no internet needed.\n\n\n\n\n\n\n\n\nmodel &lt;- aov(score ~ company, data = aft)\nsummary(model)\n\n\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)\ncompany      3   3779  1259.7   2.025  0.116\nResiduals   96  59732   622.2               \n\n\n\n\n\n\nR output\nANOVA table\n\n\n\n\ncompany row\nTreatments\n\n\nResiduals row\nError\n\n\nDf\n\\(I - 1\\) and \\(n - I\\)\n\n\nSum Sq\nSSTr and SSE\n\n\nMean Sq\nMSTr and MSE\n\n\nF value\n\\(F\\)\n\n\nPr(&gt;F)\nP-value\n\n\n\n\n\n\n\n\nA battalion compares rifle qualification scores across four training methods, 10 Soldiers per method.\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments (Method)\n120\n3\n?\n?\n\n\nError\n432\n36\n?\n\n\n\nTotal\n552\n39\n\n\n\n\n\n\n\n\n\n\n\n\nNoteHypotheses\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2 = \\mu_3 = \\mu_4\\) versus \\(H_a\\): at least two of the method means differ.\n\n\n\n\n\n\n\n\n\nNoteMean squares and F\n\n\n\n\n\n\\[\\text{MSTr} = \\frac{120}{3} = 40.00 \\qquad \\text{MSE} = \\frac{432}{36} = 12.00 \\qquad F = \\frac{40.00}{12.00} = 3.333\\]\n\n\n\n\n\n\n\n\n\nNoteP-value\n\n\n\n\n\n1 - pf(3.333, 3, 36)\nP-value = 0.030\n\n\n\n\n\n\n\n\n\nNoteDecision and conclusion\n\n\n\n\n\n0.030 \\(\\le\\) 0.05: reject \\(H_0\\). There is sufficient evidence that at least two of the four training methods have different true mean qualification scores.\n\n\n\n\n\n\n\n\n\nThree companies run the same land navigation course, 10 cadets each. Mean points found: A Co 70, B Co 75, C Co 80. The grand mean is 75 and \\(\\text{SSE} = 1350\\).\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nState \\(H_0\\) and \\(H_a\\).\nFind SSTr.\nFind MSTr, MSE, and \\(F\\). (df: 2 and 27)\nFind the P-value.\nDecision and conclusion at \\(\\alpha = 0.05\\).\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(H_0: \\mu_A = \\mu_B = \\mu_C\\) versus \\(H_a\\): at least two of the company means differ.\n\\(\\text{SSTr} = 10(70 - 75)^2 + 10(75 - 75)^2 + 10(80 - 75)^2 = 250 + 0 + 250 = 500\\)\n\\(\\text{MSTr} = 500/2 = 250\\), \\(\\text{MSE} = 1350/27 = 50\\), \\(F = 250/50 = 5\\)\n1 - pf(5, 2, 27) = 0.014\n0.014 \\(\\le\\) 0.05: reject \\(H_0\\). There is sufficient evidence that at least two of the three companies have different true mean land navigation scores.\n\n\n\n\n\n\n\n\nA company commander compares 12 mile ruck times (minutes) across three platoons, 12 Soldiers each.\n            Df Sum Sq Mean Sq F value Pr(&gt;F)\nplatoon      2   84.6   42.30   2.014  0.149\nResiduals   33  693.0   21.00\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nState \\(H_0\\) and \\(H_a\\).\nWhich number is MSE? What does it measure?\nDecision and conclusion at \\(\\alpha = 0.05\\).\nThe 1st Platoon’s sample mean is the fastest. Can the commander say 1st Platoon is faster than the others?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2 = \\mu_3\\) versus \\(H_a\\): at least two of the platoon means differ.\n21.00, the Residuals mean square: the variation in ruck times within each platoon.\nP-value = 0.149 \\(&gt;\\) 0.05: fail to reject \\(H_0\\). There is not sufficient evidence that the platoons have different true mean ruck times.\nNo. ANOVA found no evidence of any difference, so the gap in sample means could be noise. (Even if we had rejected, ANOVA alone does not say which platoons differ: Lesson 36.)\n\n\n\n\n\n\n\n\n\n\n\n\n\nMany \\(t\\) tests inflate the chance of at least one false positive; ANOVA asks one question\n\\(H_0: \\mu_1 = \\cdots = \\mu_I\\) versus \\(H_a\\): at least two differ\n\\(F = \\text{MSTr}/\\text{MSE}\\), P-value 1 - pf(F, I-1, n-I)\nReject \\(H_0\\): some means differ, but not which ones\n\n\nAny questions?\n\n\n\n\nLesson 36: ANOVA II\n\n\n1, 2 Dec\nDevore 10.2\n\n\n\n\n\n\n\n\nProject Products: Lesson 37 (3, 4 Dec)\nTEE: 15 to 18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#admin",
+    "href": "MA206-AY27-1/lesson-35.html#admin",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Project Products: Lesson 37 (3, 4 Dec)\nProject starter code: Lesson 32",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#what-we-did-lessons-29-to-33",
+    "href": "MA206-AY27-1/lesson-35.html#what-we-did-lessons-29-to-33",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "NoteKey Concepts from Lesson 29\n\n\n\n\n\n\n\nLeast squares: choose \\(\\hat{\\beta}_0\\), \\(\\hat{\\beta}_1\\) to minimize \\(\\sum (y_i - \\hat{y}_i)^2\\)\n\\(\\hat{\\beta}_1 = \\dfrac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\), \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1\\bar{x}\\)\nSlope: change in the mean of \\(y\\) for a one unit increase in \\(x\\)\nPredict only inside the range of the \\(x\\) data\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 30\n\n\n\n\n\n\n\nSlope test: \\(H_0: \\beta_1 = 0\\), \\(t = \\hat{\\beta}_1 / s_{\\hat{\\beta}_1}\\), df \\(= n - 2\\)\n\\(r^2 = 1 - \\text{SSE}/\\text{SST}\\): proportion of variation in \\(y\\) explained by the line\nR: lm(y ~ x), summary(), predict()\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 31\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x + \\varepsilon\\), \\(\\varepsilon \\sim N(0, \\sigma^2)\\), independent\nLINE: Linear, Independent, Normal, Equal variance\nResidual plot (residuals vs fitted): no pattern checks L, constant spread checks E\nHistogram of residuals: checks N\nIndependence: comes from how the data were collected\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 32\n\n\n\n\n\n\n\nModel: \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_k x_k + \\varepsilon\\)\nInterpret \\(\\hat{\\beta}_j\\): holding all else constant, a one unit increase in \\(x_j\\) is a \\(\\hat{\\beta}_j\\) unit increase in \\(y\\), on average\nNot significant? Drop it and refit\nCategorical with 3 levels: 2 indicator variables; each coefficient is a difference from the baseline level\nR: lm(y ~ x1 + x2 + x3)\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 33\n\n\n\n\n\n\n\nNot significant? Drop the predictor and refit\nCategorical: each indicator compares one level to the baseline; keep the variable if any level is significant\n\\(R^2\\): proportion of the variation in \\(y\\) explained by the model; adjusted \\(R^2\\) penalizes extra predictors\nLINE: same plots as Lesson 31, plot(model, which = 1) and hist(model$residuals)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#what-were-doing-lesson-35",
+    "href": "MA206-AY27-1/lesson-35.html#what-were-doing-lesson-35",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "State the assumptions and hypotheses for single-factor (one-way) ANOVA. (SLO 5)\nCompute the \\(F\\) statistic from the ANOVA table (sums of squares and mean squares) and carry out the \\(F\\) test. (SLO 4)\nInterpret the \\(P\\)-value and conclude whether the population means differ. (SLO 5)\n\n\n\n\n\nDevore 10.1",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#dmath-intramurals",
+    "href": "MA206-AY27-1/lesson-35.html#dmath-intramurals",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Math vs USMAPS\n\n\n\n\n\n\nNotePreviously 3-3\n\n\n\n\n\n\n5-3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteKey Concepts from Lesson 35\n\n\n\n\n\nGoal: compare \\(I \\ge 3\\) population means with one test\n\\(H_0: \\mu_1 = \\mu_2 = \\cdots = \\mu_I\\) versus \\(H_a\\): at least two of the \\(\\mu_i\\)’s differ\n\\(F = \\text{MSTr}/\\text{MSE}\\): between-group variability over within-group variability\nP-value: 1 - pf(F, I-1, n-I), always the upper tail\nANOVA says whether the means differ, not which ones (Lesson 36)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#two-companies",
+    "href": "MA206-AY27-1/lesson-35.html#two-companies",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "AFT scores, 25 Soldiers each from A Co and B Co. Do the companies differ?\n\n\n\n\n\n\n\n\n\n\nA\n\n [1] 308 335 370 302 328 333 348 324 380 327 340 355 320 304 375 272 352 331 355\n[20] 341 382 300 370 379 330\n\nB\n\n [1] 299 372 345 380 367 378 368 387 353 341 345 317 337 346 354 350 311 339 408\n[20] 376 410 352 358 355 330\n\n\n\nt.test(A, B, paired = F)\n\n\n    Welch Two Sample t-test\n\ndata:  A and B\nt = -2.1235, df = 47.796, p-value = 0.03892\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -32.4753184  -0.8846816\nsample estimates:\nmean of x mean of y \n   338.44    355.12 \n\n\nOne test, one \\(\\alpha\\). Done.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#now-four-companies",
+    "href": "MA206-AY27-1/lesson-35.html#now-four-companies",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "A battalion has A, B, C, and HHC. Does any company differ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteHow many two-sample t tests?\n\n\n\n\\[\\binom{4}{2} = 6\\]\n\n\n\n\n\n\nComparison\nP-value\nReject at 0.05?\n\n\n\n\nA vs B\n0.039\nYes\n\n\nA vs C\n0.532\nNo\n\n\nA vs HHC\n0.457\nNo\n\n\nB vs C\n0.070\nNo\n\n\nB vs HHC\n0.130\nNo\n\n\nC vs HHC\n0.841\nNo\n\n\n\n\n\n\n\n\n\n\nEach test has a 5% chance of a false positive when \\(H_0\\) is true.\nTwo tests. \\(A\\) = false positive on test 1, \\(B\\) = false positive on test 2. \\(P(A) = P(B) = 0.05\\), independent.\n\\[\n\\begin{aligned}\nP(\\text{at least one false positive}) &= 1 - P(A' \\cap B') \\\\\n&= 1 - P(A')\\,P(B') \\\\\n&= 1 - (0.95)(0.95) \\\\\n&= 0.0975\n\\end{aligned}\n\\]\nSix tests.\n\\[P(\\text{at least one false positive}) = 1 - (0.95)^6 = 0.265\\]\n\n\n\n\n\n\nWarningMultiple Comparisons\n\n\n\nMore tests means a higher chance of at least one false positive. Run enough of them and something will look significant by chance.\n\n\n\n\n\n\n\n\nNoteOne fix: Bonferroni\n\n\n\nShrink each test’s \\(\\alpha\\): \\(\\alpha^* = 0.05 / 6 = 0.0083\\).\nReject now? None of the six. Very conservative: real differences get missed.\n\n\n\n\n\n\nAre any of the population means different?\n\nThat test is ANOVA (analysis of variance).",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#what-does-different-means-look-like",
+    "href": "MA206-AY27-1/lesson-35.html#what-does-different-means-look-like",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Same means. Left: tiny spread, the gaps look real. Right: huge spread, the same gaps disappear into the noise.\n\n\n\n\n\n\n\n\n\nSame spread. Left: means close, probably no real difference. Right: means far apart, real differences.\n\n\n\n\n\n\nTipTwo things decide it\n\n\n\n\n\nHow far apart the group means are (between)\nHow noisy each group is (within)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#hypotheses-and-assumptions",
+    "href": "MA206-AY27-1/lesson-35.html#hypotheses-and-assumptions",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "ImportantSingle-Factor ANOVA\n\n\n\n\\[\n\\begin{aligned}\nH_0&: \\mu_1 = \\mu_2 = \\cdots = \\mu_I \\\\\nH_a&: \\text{at least two of the } \\mu_i\\text{'s differ}\n\\end{aligned}\n\\]\nAssumptions\n\n\nIndependent random samples from each of the \\(I\\) populations\nEach population is approximately normal\nEqual variances: largest \\(s\\) no more than about twice the smallest\n\n\n\n\n\n\n\n\n\n\nNoteAFT data: are the assumptions reasonable?\n\n\n\n\n\n\n\n\n\nCompany\n\\(J_i\\)\n\\(\\bar{y}_{i\\cdot}\\)\n\\(s_i\\)\n\n\n\n\nA\n25\n338.44\n28.66\n\n\nB\n25\n355.12\n26.85\n\n\nC\n25\n342.80\n19.42\n\n\nHHC\n25\n344.04\n23.86\n\n\n\n\n\n\nIndependent: different Soldiers in each company, randomly sampled. Reasonable.\nNormal: boxplots roughly symmetric, no extreme outliers. Reasonable.\nEqual variances: 28.66 \\(\\le 2 \\times\\) 19.42. Reasonable.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#the-anova-table",
+    "href": "MA206-AY27-1/lesson-35.html#the-anova-table",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "\\(I\\) = number of groups, \\(J_i\\) = observations in group \\(i\\), \\(n\\) = total observations, \\(\\bar{y}_{i\\cdot}\\) = group \\(i\\) mean, \\(\\bar{y}_{\\cdot\\cdot}\\) = grand mean.\n\n\n\n\n\n\nImportantANOVA Table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments\n\\(\\text{SSTr} = \\sum_i J_i(\\bar{y}_{i\\cdot} - \\bar{y}_{\\cdot\\cdot})^2\\)\n\\(I - 1\\)\n\\(\\text{MSTr} = \\dfrac{\\text{SSTr}}{I-1}\\)\n\\(\\dfrac{\\text{MSTr}}{\\text{MSE}}\\)\n\n\nError\n\\(\\text{SSE} = \\sum_i \\sum_j (y_{ij} - \\bar{y}_{i\\cdot})^2\\)\n\\(n - I\\)\n\\(\\text{MSE} = \\dfrac{\\text{SSE}}{n-I}\\)\n\n\n\nTotal\n\\(\\text{SST} = \\text{SSTr} + \\text{SSE}\\)\n\\(n - 1\\)\n\n\n\n\n\n\n\n\n\n\nSSTr: how far the group means sit from the grand mean (between)\nSSE: how far each observation sits from its own group mean (within)\n\n\n\n\n\\(I = 4\\), \\(n = 100\\), \\(\\bar{y}_{\\cdot\\cdot} = 345.10\\)\n\\[\\text{SSTr} = 25(338.44 - 345.10)^2 + 25(355.12 - 345.10)^2 + 25(342.80 - 345.10)^2 + 25(344.04 - 345.10)^2 = 3779.2\\]\n\\[\\text{MSTr} = \\frac{3779.2}{3} = 1259.75 \\qquad \\text{MSE} = \\frac{59731.8}{96} = 622.21\\]\n\\[F = \\frac{\\text{MSTr}}{\\text{MSE}} = \\frac{1259.75}{622.21} = 2.025\\]\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments (Company)\n3779.2\n3\n1259.75\n2.025\n\n\nError\n59731.8\n96\n622.21\n\n\n\nTotal\n63511.0\n99\n\n\n\n\n\n\n\n\n\n\n\n\nNoteWhat does F tell us?\n\n\n\n\n\n\n\n\\(F\\) near 1: between-group spread looks like ordinary noise. Consistent with \\(H_0\\).\n\\(F\\) much bigger than 1: the means are farther apart than noise explains. Evidence for \\(H_a\\).\n\n\nHow big is big enough?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#the-p-value",
+    "href": "MA206-AY27-1/lesson-35.html#the-p-value",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "When \\(H_0\\) is true, \\(F \\sim F_{I-1,\\, n-I}\\). Big \\(F\\) is evidence against \\(H_0\\), so the P-value is always the upper tail.\n\n\n\n\n\n\nImportantANOVA P-Value\n\n\n\n\\[\\text{P-value} = P(F_{I-1,\\,n-I} \\ge F)\\]\n1 - pf(F, I-1, n-I)\n\n\n\n1 - pf(2.025, 3, 96)\n\n[1] 0.1155218\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDecision and conclusion\n\n\n\nP-value = 0.116 \\(&gt;\\) 0.05: fail to reject \\(H_0\\). There is not sufficient evidence that any of the four companies have different true mean AFT scores.\n\n\n\n\n\n\n\n\nWarningWhich companies?\n\n\n\nANOVA does not say which means differ. That is Lesson 36 (Tukey).\n\n\n\n\nDrag a dot to move one Soldier. Drag a company’s mean bar to move the whole company. Watch SSTr, SSE, \\(F\\), and the P-value.\nDownload the ANOVA Machine\nOne HTML file. Opens in any browser, no internet needed.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#doing-this-in-r",
+    "href": "MA206-AY27-1/lesson-35.html#doing-this-in-r",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "model &lt;- aov(score ~ company, data = aft)\nsummary(model)\n\n\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)\ncompany      3   3779  1259.7   2.025  0.116\nResiduals   96  59732   622.2               \n\n\n\n\n\n\nR output\nANOVA table\n\n\n\n\ncompany row\nTreatments\n\n\nResiduals row\nError\n\n\nDf\n\\(I - 1\\) and \\(n - I\\)\n\n\nSum Sq\nSSTr and SSE\n\n\nMean Sq\nMSTr and MSE\n\n\nF value\n\\(F\\)\n\n\nPr(&gt;F)\nP-value",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#complete-the-table",
+    "href": "MA206-AY27-1/lesson-35.html#complete-the-table",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "A battalion compares rifle qualification scores across four training methods, 10 Soldiers per method.\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments (Method)\n120\n3\n?\n?\n\n\nError\n432\n36\n?\n\n\n\nTotal\n552\n39\n\n\n\n\n\n\n\n\n\n\n\n\nNoteHypotheses\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2 = \\mu_3 = \\mu_4\\) versus \\(H_a\\): at least two of the method means differ.\n\n\n\n\n\n\n\n\n\nNoteMean squares and F\n\n\n\n\n\n\\[\\text{MSTr} = \\frac{120}{3} = 40.00 \\qquad \\text{MSE} = \\frac{432}{36} = 12.00 \\qquad F = \\frac{40.00}{12.00} = 3.333\\]\n\n\n\n\n\n\n\n\n\nNoteP-value\n\n\n\n\n\n1 - pf(3.333, 3, 36)\nP-value = 0.030\n\n\n\n\n\n\n\n\n\nNoteDecision and conclusion\n\n\n\n\n\n0.030 \\(\\le\\) 0.05: reject \\(H_0\\). There is sufficient evidence that at least two of the four training methods have different true mean qualification scores.",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#lets-go-to-vantage",
+    "href": "MA206-AY27-1/lesson-35.html#lets-go-to-vantage",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "MA206 folder in Vantage\nDoes mean AFT score differ by skill level?\n\nlibrary(tidyverse)\nlibrary(foundry)\n\nmaster &lt;- datasets.read_table(\"ay27_1_master\")\n\nMY_BRIGADE &lt;- \"20TH ENGINEER BRIGADE\"\nbde &lt;- master |&gt;\n  filter(BrigadeName == MY_BRIGADE) |&gt;\n  select(aft_score_total, skill_level) |&gt;\n  filter(!is.na(aft_score_total), !is.na(skill_level)) |&gt;\n  mutate(skill_level = factor(skill_level))\n\nbde |&gt;\n  group_by(skill_level) |&gt;\n  summarise(n = n(), mean = mean(aft_score_total), sd = sd(aft_score_total))\n\nggplot(bde, aes(x = skill_level, y = aft_score_total)) +\n  geom_boxplot()\n\nmod &lt;- aov(aft_score_total ~ skill_level, data = bde)\nsummary(mod)\n\n\n\nState \\(H_0\\) and \\(H_a\\).\nFind the P-value with 1 - pf(F, I-1, n-I). Does it match Pr(&gt;F)?\nDecision and conclusion at \\(\\alpha = 0.05\\).\nCan you say which skill levels differ?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#before-you-leave",
+    "href": "MA206-AY27-1/lesson-35.html#before-you-leave",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Many \\(t\\) tests inflate the chance of at least one false positive; ANOVA asks one question\n\\(H_0: \\mu_1 = \\cdots = \\mu_I\\) versus \\(H_a\\): at least two differ\n\\(F = \\text{MSTr}/\\text{MSE}\\), P-value 1 - pf(F, I-1, n-I)\nReject \\(H_0\\): some means differ, but not which ones\n\n\nAny questions?\n\n\n\n\nLesson 36: ANOVA II\n\n\n1, 2 Dec\nDevore 10.2\n\n\n\n\n\n\n\n\nProject Products: Lesson 37 (3, 4 Dec)\nTEE: 15 to 18 Dec 2026",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#hypotheses",
+    "href": "MA206-AY27-1/lesson-35.html#hypotheses",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "ImportantSingle-Factor ANOVA\n\n\n\n\\[\n\\begin{aligned}\nH_0&: \\mu_1 = \\mu_2 = \\cdots = \\mu_I \\\\\nH_a&: \\text{at least two of the } \\mu_i\\text{'s differ}\n\\end{aligned}\n\\]\n\n\nFor the AFT data, \\(I = 4\\):\n\\[\n\\begin{aligned}\nH_0&: \\mu_A = \\mu_B = \\mu_C = \\mu_{HHC} \\\\\nH_a&: \\text{at least two of the company means differ}\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#building-the-f-statistic",
+    "href": "MA206-AY27-1/lesson-35.html#building-the-f-statistic",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Notation: \\(I\\) = number of groups, \\(J_i\\) = observations in group \\(i\\), \\(n\\) = total observations, \\(\\bar{y}_{i\\cdot}\\) = mean of group \\(i\\), \\(\\bar{y}_{\\cdot\\cdot}\\) = grand mean (all the data).\nFor the AFT data: \\(I = 4\\), \\(n = 100\\), \\(\\bar{y}_{\\cdot\\cdot} = 345.10\\)\n\n\n\n\nCompany\n\\(J_i\\)\n\\(\\bar{y}_{i\\cdot}\\)\n\n\n\n\nA\n25\n338.44\n\n\nB\n25\n355.12\n\n\nC\n25\n342.80\n\n\nHHC\n25\n344.04\n\n\n\n\n\n\nHow far does each group mean sit from the grand mean?\n\n\n\n\n\n\n\n\n\nTreatment = group. Here, the treatments are the four companies.\n\n\nSSTr: treatment sum of squares\nMSTr: mean square for treatments\n\n\n\\[\\text{SSTr} = \\sum_i J_i(\\bar{y}_{i\\cdot} - \\bar{y}_{\\cdot\\cdot})^2 \\qquad \\text{MSTr} = \\frac{\\text{SSTr}}{I - 1}\\]\n\\[\\text{SSTr} = 25(338.44 - 345.10)^2 + 25(355.12 - 345.10)^2 + 25(342.80 - 345.10)^2 + 25(344.04 - 345.10)^2 = 3779.2\\]\n\\[\\text{MSTr} = \\frac{3779.2}{3} = 1259.75\\]\n\n\n\nHow far does each observation sit from its own group mean?\n\n\n\n\n\n\n\n\n\nError = the variation left over inside each group.\n\n\nSSE: error sum of squares\nMSE: mean square for error\n\n\n\\[\\text{SSE} = \\sum_i \\sum_j (y_{ij} - \\bar{y}_{i\\cdot})^2 \\qquad \\text{MSE} = \\frac{\\text{SSE}}{n - I}\\]\n\\[\\text{SSE} = 59731.8 \\qquad \\text{MSE} = \\frac{59731.8}{96} = 622.21\\]\n\n\n\n\\[F = \\frac{\\text{MSTr}}{\\text{MSE}} = \\frac{\\text{between}}{\\text{within}} = \\frac{1259.75}{622.21} = 2.025\\]\n\n\n\n\n\n\nNoteWhat does F tell us?\n\n\n\n\\(F\\) is a distance measure: how big the differences between the groups are, relative to the differences within the groups. The larger the between differences relative to the within differences, the more evidence the groups are actually different.\n\n\n\\(F\\) near 1: the gaps between means look like ordinary noise. Consistent with \\(H_0\\).\n\\(F\\) much bigger than 1: the means are farther apart than noise explains. Evidence for \\(H_a\\).\n\n\n\n\n\n\n\nSST: total sum of squares, how far every observation sits from the grand mean. \\(\\text{SST} = \\text{SSTr} + \\text{SSE}\\).\nEverything above, in one table:\n\n\n\n\n\n\nImportantANOVA Table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments\n\\(\\text{SSTr} = \\sum_i J_i(\\bar{y}_{i\\cdot} - \\bar{y}_{\\cdot\\cdot})^2\\)\n\\(I - 1\\)\n\\(\\text{MSTr} = \\dfrac{\\text{SSTr}}{I-1}\\)\n\\(\\dfrac{\\text{MSTr}}{\\text{MSE}}\\)\n\n\nError\n\\(\\text{SSE} = \\sum_i \\sum_j (y_{ij} - \\bar{y}_{i\\cdot})^2\\)\n\\(n - I\\)\n\\(\\text{MSE} = \\dfrac{\\text{SSE}}{n-I}\\)\n\n\n\nTotal\n\\(\\text{SST} = \\text{SSTr} + \\text{SSE}\\)\n\\(n - 1\\)\n\n\n\n\n\n\n\n\nAFT data:\n\n\n\n\nSource\nSum of Squares\ndf\nMean Square\n\\(F\\)\n\n\n\n\nTreatments (Company)\n3779.2\n3\n1259.75\n2.025\n\n\nError\n59731.8\n96\n622.21\n\n\n\nTotal\n63511.0\n99\n\n\n\n\n\n\nHow big does \\(F\\) need to be?",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
+  },
+  {
+    "objectID": "MA206-AY27-1/lesson-35.html#board-problems",
+    "href": "MA206-AY27-1/lesson-35.html#board-problems",
+    "title": "Lesson 35: ANOVA I",
+    "section": "",
+    "text": "Three companies run the same land navigation course, 10 cadets each. Mean points found: A Co 70, B Co 75, C Co 80. The grand mean is 75 and \\(\\text{SSE} = 1350\\).\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nState \\(H_0\\) and \\(H_a\\).\nFind SSTr.\nFind MSTr, MSE, and \\(F\\). (df: 2 and 27)\nFind the P-value.\nDecision and conclusion at \\(\\alpha = 0.05\\).\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(H_0: \\mu_A = \\mu_B = \\mu_C\\) versus \\(H_a\\): at least two of the company means differ.\n\\(\\text{SSTr} = 10(70 - 75)^2 + 10(75 - 75)^2 + 10(80 - 75)^2 = 250 + 0 + 250 = 500\\)\n\\(\\text{MSTr} = 500/2 = 250\\), \\(\\text{MSE} = 1350/27 = 50\\), \\(F = 250/50 = 5\\)\n1 - pf(5, 2, 27) = 0.014\n0.014 \\(\\le\\) 0.05: reject \\(H_0\\). There is sufficient evidence that at least two of the three companies have different true mean land navigation scores.\n\n\n\n\n\n\n\n\nA company commander compares 12 mile ruck times (minutes) across three platoons, 12 Soldiers each.\n            Df Sum Sq Mean Sq F value Pr(&gt;F)\nplatoon      2   84.6   42.30   2.014  0.149\nResiduals   33  693.0   21.00\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nState \\(H_0\\) and \\(H_a\\).\nWhich number is MSE? What does it measure?\nDecision and conclusion at \\(\\alpha = 0.05\\).\nThe 1st Platoon’s sample mean is the fastest. Can the commander say 1st Platoon is faster than the others?\n\n\n\n\n\n\n\n\n\n\nTipAnswers\n\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2 = \\mu_3\\) versus \\(H_a\\): at least two of the platoon means differ.\n21.00, the Residuals mean square: the variation in ruck times within each platoon.\nP-value = 0.149 \\(&gt;\\) 0.05: fail to reject \\(H_0\\). There is not sufficient evidence that the platoons have different true mean ruck times.\nNo. ANOVA found no evidence of any difference, so the gap in sample means could be noise. (Even if we had rejected, ANOVA alone does not say which platoons differ: Lesson 36.)",
+    "crumbs": [
+      "MA206-AY27-1",
+      "Lesson 35"
+    ]
   }
 ]
