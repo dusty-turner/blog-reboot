@@ -108,35 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -3361,10 +3332,21 @@ Instructor lay down, who teaches which hour
 </section>
 <section id="tukey" class="level2">
 <h2 class="anchored" data-anchor-id="tukey">Tukey</h2>
-<p>Forge 14’s AFT example: ANOVA rejected <span class="math inline">\(H_0\)</span> (P-value = 0.038). Which companies differ?</p>
+<p>AFT scores for 25 cadets in each of four companies. ANOVA first:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> company, <span class="at">data =</span> aft)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+company      3  27079    9026   4.178 0.00795 **
+Residuals   96 207420    2161                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>P-value = 0.008 &lt; 0.05, so at least two company means differ. Which ones?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
@@ -3372,13 +3354,13 @@ Instructor lay down, who teaches which hour
 Fit: aov(formula = score ~ company, data = aft)
 
 $company
-                diff        lwr      upr     p adj
-Bravo-Alpha    32.48  -1.069979 66.02998 0.0614513
-Charlie-Alpha   9.72 -23.829979 43.26998 0.8732393
-Delta-Alpha    28.96  -4.589979 62.50998 0.1156049
-Charlie-Bravo -22.76 -56.309979 10.78998 0.2922783
-Delta-Bravo    -3.52 -37.069979 30.02998 0.9927414
-Delta-Charlie  19.24 -14.309979 52.78998 0.4418641</code></pre>
+                diff       lwr       upr     p adj
+Bravo-Alpha    46.12  11.74516 80.494837 0.0037870
+Charlie-Alpha  17.72 -16.65484 52.094837 0.5350555
+Delta-Alpha    20.36 -14.01484 54.734837 0.4128811
+Charlie-Bravo -28.40 -62.77484  5.974837 0.1419393
+Delta-Bravo   -25.76 -60.13484  8.614837 0.2107338
+Delta-Charlie   2.64 -31.73484 37.014837 0.9971145</code></pre>
 </div>
 </div>
 <p><strong>Reading each row:</strong> the difference in sample means, a 95% family-wise confidence interval for the difference in population means, and an adjusted P-value. An interval that contains 0 (P-value above 0.05) is no evidence that pair differs.</p>
@@ -3386,17 +3368,20 @@ Delta-Charlie  19.24 -14.309979 52.78998 0.4418641</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="forge-15_files/figure-html/aft-tukey-plot-1.png" class="img-fluid figure-img" alt="Tukey 95 percent family-wise confidence intervals for the six pairwise differences in mean AFT score. Every interval crosses zero; Bravo minus Alpha comes closest." width="768"></p>
+<p><img src="forge-15_files/figure-html/aft-tukey-plot-1.png" class="img-fluid figure-img" alt="Tukey 95 percent family-wise confidence intervals for the six pairwise differences in mean AFT score. Only the Bravo minus Alpha interval lies entirely above zero; the other five cross zero." width="768"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Interpretation:</strong> all six intervals contain 0, so Tukey finds no single pair of companies that differs at the 0.05 family-wise level. The closest is Bravo vs Alpha (difference 32.48, P-value = 0.061).</p>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><strong>Bravo vs Alpha:</strong> the interval (11.75, 80.49) does not contain 0 (P-value = 0.004). There is convincing evidence Bravo’s mean AFT score is higher than Alpha’s, by 46.12 points in the sample.</li>
+<li><strong>The other five pairs:</strong> each interval contains 0 (P-values 0.142 to 0.997). No convincing evidence those means differ.</li>
+</ul>
 <p><strong>What this does and does not establish:</strong></p>
 <ul>
 <li>ANOVA says at least two means differ. It does not say which.</li>
 <li>Tukey checks every pair while holding the overall false positive rate at 5%. Each interval is wider than a single two-sample t interval.</li>
-<li>ANOVA can reject while Tukey flags no pair, as here. The overall F test pools the evidence across all four groups; no one pair is strong enough on its own.</li>
 <li>Neither shows cause. These are observed companies, not a randomized experiment.</li>
 </ul>
 
